@@ -12,6 +12,15 @@ var nav = {
 			"Requirements":	"requirements.html",
 			"License":		"license.html",
 			"Credits":		"credits.html"
+		},
+		"Installation": {
+
+		},
+		"General": {
+
+		},
+		"Classes": {
+			"Config":	"classes/config.html"
 		}
 };
 

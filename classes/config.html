@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Fuel Documentation</title>
+	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../assets/js/nav.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			show_nav('classes', '../');
+		});
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>FUEL Documentation</h1>
+	</header>
+
+	<nav></nav>
+
+	<section id="content">
+		<h2>Config Class</h2>
+
+		<p>The Config class handles nearly all configuration options in Fuel.  You use this class whenever you need to load in a config file, get a value or set a value.</p>
+
+		<h4>load($file, $group = null)</h4>
+		<p>The <strong>load</strong> method reads in a config file into the system.  It searches through the config directories for the requested file.  You can optionally group the config files to avoid naming collisions.</p>
+		<table class="method">
+			<tbody>
+			<tr>
+				<th>Visibility</th>
+				<td>Public</td>
+			</tr>
+			<tr>
+				<th>Static</th>
+				<td>Yes</td>
+			</tr>
+			<tr>
+				<th>Parameters</th>
+				<td>
+					<table class="parameters">
+						<tr>
+							<th><kbd>$file</kbd></th>
+							<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed).</td>
+						</tr>
+						<tr>
+							<th><kbd>$group</kbd></th>
+							<td>(Optional) A group name to use.  If set to <kbd>true</kbd> then a group of the same name as <kbd>$file</kbd> will be created.  If this is not set or is <kbd>null</kbd> then the loaded config will be merged with the root config.</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<th>Returns</th>
+				<td>An <kbd>array</kbd> containing the configuration that has been loaded.  If the config file has already been loaded then it will return <kbd>false</kbd></td>
+			</tr>
+			<tr>
+				<th>Example</th>
+				<td>
+					<code>
+						// This merges the "custom" config file in with the root config.<br />
+						Config::load('custom');<br />
+						<br />
+						// This loads the "custom" config file in a group named "custom".<br />
+						Config::load('custom', true);<br />
+						<br />
+						// This loads the "custom" config file in a group named "foo".<br />
+						Config::load('custom', 'foo');<br />
+					</code>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel PHP</a> is released under the MIT license.<br />
+			&copy; 2010 Dan Horrigan
+		</p>
+	</section>
+
+</body>
+</html>
