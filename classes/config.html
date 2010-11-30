@@ -6,10 +6,13 @@
 	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
 	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			show_nav('classes', '../');
 		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
 	</script>
 </head>
 <body>
@@ -59,16 +62,14 @@
 			<tr>
 				<th>Example</th>
 				<td>
-					<code>
-						// This merges the "custom" config file in with the root config.<br />
-						Config::load('custom');<br />
-						<br />
-						// This loads the "custom" config file in a group named "custom".<br />
-						Config::load('custom', true);<br />
-						<br />
-						// This loads the "custom" config file in a group named "foo".<br />
-						Config::load('custom', 'foo');<br />
-					</code>
+					<pre class="php"><code>// This merges the "custom" config file in with the root config.
+Config::load('custom');
+
+// This loads the "custom" config file in a group named "custom".
+Config::load('custom', true);
+
+// This loads the "custom" config file in a group named "foo".
+Config::load('custom', 'foo');</code></pre>
 				</td>
 			</tr>
 			</tbody>
