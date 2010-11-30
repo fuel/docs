@@ -12,11 +12,6 @@ var nav = {
 			"Requirements":"requirements.html",
 			"License":"license.html",
 			"Credits":"credits.html"
-		},
-		//example group
-		"Group1": {
-			"Item 1":"group1/item1.html",
-			"Item 2":"group1/item2.html"
 		}
 };
 
