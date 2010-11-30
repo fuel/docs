@@ -26,13 +26,13 @@ function show_nav(page)
 	$.each(nav, function(section,links) {
 		var h3 = $('<h3></h3>');
 		h3.addClass('collapsible').html(section);
-		h3.attr('id', section.toLowerCase().replace(' ', ''));
+		h3.attr('id', 'nav_'+section.toLowerCase().replace(' ', ''));
 		h3.bind('click', function() {
 			$(this).next('div').slideToggle();
 		});
 		$('nav').append(h3);
 		var div = $('<div></div>');
-		if (page != h3.attr('id')) {
+		if ('nav_'+page != h3.attr('id')) {
 			div.hide();
 		}
 		var ul = div.append('<ul></ul>');
@@ -40,6 +40,6 @@ function show_nav(page)
 			ul.find('ul').append('<li><a href="'+href+'">'+title+'</a></li>');
 		});
 		$('nav').append(div);
-		$('nav').find('#'+page).next('div').slideDown();
+		$('nav').find('#nav_'+page).next('div').slideDown();
 	});
 }
