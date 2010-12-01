@@ -13,12 +13,12 @@ var nav = {
 			"License":		"license.html",
 			"Credits":		"credits.html"
 		},
-		"Installation": {
+/*		"Installation": {
 
 		},
 		"General": {
 
-		},
+		},*/
 		"Classes": {
 			"Config":	"classes/config.html"
 		}
