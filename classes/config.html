@@ -33,7 +33,7 @@
 		<p>A config group is simply a way to scope config options.  This avoids naming collisions.  All config files (db.php, routes.php, etc.) are loaded into groups of the same name, with the exception of the main <kbd>config.php</kbd> file.</p>
 
 		<article>
-			<h4>get($item, $default = false)</h4>
+			<h4>get($item, $default = null)</h4>
 			<p>The <strong>get</strong> method returns the desired config item.  If the item does not exist then <kbd>$default</kbd> is returned.  If the item you are retrieving is a group, then the entire group is returned.</p>
 			<table class="method">
 				<tbody>
@@ -57,7 +57,7 @@
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
-								<td><kbd>false</kbd></td>
+								<td><kbd>null</kbd></td>
 								<td>(Optional) The default value to return if <kbd>$item</kbd> is not found.</td>
 							</tr>
 						</table>
@@ -73,8 +73,8 @@
 						<pre class="php"><code>// Outputs the current language set in config.php
 echo Config::get('language');
 
-// By default a non-existent item will return false
-if (Config::get('items_to_display') === false)
+// By default a non-existent item will return null
+if (Config::get('items_to_display') === null)
 {
 	throw new Exception('You must set the number of items to display in config.php');
 }
