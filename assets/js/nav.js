@@ -37,7 +37,7 @@ function show_nav(page, path)
 			$(this).next('div').slideToggle();
 		});
 
-		$('nav').append(h3);
+		$('#main-nav').append(h3);
 		var div = $('<div></div>');
 		if ('nav_'+page != h3.attr('id')) {
 			div.hide();
@@ -53,7 +53,7 @@ function show_nav(page, path)
 			ul.find('ul').append('<li><a href="'+path+href+'"'+active+'>'+title+'</a></li>');
 		});
 
-		$('nav').append(div);
-		$('nav').find('#nav_'+page).next('div').slideDown();
+		$('#main-nav').append(div);
+		$('#main-nav').find('#nav_'+page).next('div').slideDown();
 	});
 }
