@@ -15,10 +15,10 @@ var nav = {
 		},
 /*		"Installation": {
 
-		},
-		"General": {
-
 		},*/
+		"General": {
+			"Coding Standards":	"general/coding_standards.html"
+		},
 		"Classes": {
 			"Config":	"classes/config.html",
 			"Html":		"classes/html.html"
