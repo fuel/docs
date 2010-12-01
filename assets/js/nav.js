@@ -20,7 +20,8 @@ var nav = {
 
 		},*/
 		"Classes": {
-			"Config":	"classes/config.html"
+			"Config":	"classes/config.html",
+			"Html":		"classes/html.html"
 		}
 };
 
