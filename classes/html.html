@@ -79,10 +79,10 @@
 echo Html::h('Example');
 
 //returns &lt;h2 id="h2" class="sample" style="color:red;"&gt;Some other example&lt;/h2&gt;
-echo Html::h('Some other example', '2', array('id'=>'h2', 'class'=>'sample', 'style'=>'color:red'));
+echo Html::h('Some other example', '2', array('id' => 'h2', 'class' => 'sample', 'style' => 'color:red'));
 
 //returns &lt;h3 id="sample" class="sample" style="color:blue;"&gt;Variable!&lt;/h3&gt;
-$attributes = array('id'=>'sample', 'class'=>'sample', 'style'=>'color:blue');
+$attributes = array('id' => 'sample', 'class' => 'sample', 'style' => 'color:blue');
 echo Html::h('Variable!', '3', $attributes);</code></pre>
 					</td>
 				</tr>
@@ -132,7 +132,7 @@ echo Html::h('Variable!', '3', $attributes);</code></pre>
 echo Html::br();
 
 //returns &lt;br id="example" class="sample" style="color:red;" /&gt;&lt;br id="h2" class="sample" style="color:red;" /&gt;
-echo Html::br('2', array('id'=>'example', 'class'=>'sample', 'style'=>'color:red'));
+echo Html::br('2', array('id' => 'example', 'class' => 'sample', 'style' => 'color:red'));
 </code></pre>
 					</td>
 				</tr>
@@ -177,7 +177,7 @@ echo Html::br('2', array('id'=>'example', 'class'=>'sample', 'style'=>'color:red
 echo Html::hr();
 
 //returns &lt;hr id="example" class="sample" style="color:red;" /&gt;
-echo Html::hr(array('id'=>'example', 'class'=>'sample', 'style'=>'color:red'));
+echo Html::hr(array('id' => 'example', 'class' => 'sample', 'style' => 'color:red'));
 </code></pre>
 					</td>
 				</tr>
@@ -222,7 +222,7 @@ echo Html::hr(array('id'=>'example', 'class'=>'sample', 'style'=>'color:red'));
 echo Html::title('Some title!');
 
 //returns &lt;title&gt;&lt;/title&gt;
-echo Html::title();</code></pre>
+echo Html::title('');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -266,7 +266,7 @@ echo Html::title();</code></pre>
 echo Html::nbs();
 
 //returns &amp;nbsp;&amp;nbsp;
-echo Html::nbs('2');</code></pre>
+echo Html::nbs(2);</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -358,7 +358,7 @@ echo Html::meta($meta);</code></pre>
 							</tr>
 							<tr>
 								<th><kbd>$type</kbd></th>
-								<td><i>required</i></td>
+								<td>'xhtml1-trans'</td>
 								<td>Type of html doctype tag to be outputted. Can be: <kbd>xhtml11</kbd>, <kbd>xhtml1-strict</kbd>, <kbd>xhtml1-trans</kbd>, <kbd>xhtml1-frame</kbd>, <kbd>html5</kbd>, <kbd>html4-strict</kbd>, <kbd>html4-trans</kbd>, <kbd>html4-frame</kbd></td>
 							</tr>
 						</table>
@@ -432,7 +432,7 @@ echo Html::header('Oh Yeah baby');</code></pre>
 		</article>
 
 		<article>
-			<h4>audio($src = array(), $attr = false)</h4>
+			<h4>audio($src, $attr = false)</h4>
 			<p>The <strong>audio</strong> method requires you to set html5 as the doctype in order to be used.</p>
 			<table class="method">
 				<tbody>
@@ -527,8 +527,8 @@ echo Html::audio(array('../sounds/beep.mp3','../sounds/frog.mp4','../sounds/car.
 &lt;/ul&gt;
 */
 $items = array('red', 'blue', 'green', 'yellow');
-$attr = array('id'=>'todo','class'=>'pending');
-echo Html::ul($items,$attr);
+$attr = array('id' => 'todo','class' => 'pending');
+echo Html::ul($items, $attr);
 
 /* returns
 &lt;ul class="order"&gt;
@@ -548,9 +548,13 @@ echo Html::ul($items,$attr);
 	&lt;/li&gt;
 &lt;/ul&gt;
 */
-$items = array('colors'=>array('blue', 'red', 'green'), 'sky', 'tools'=>array('screwdriver','hammer'));
-$attr = array('class'=>'order');
-echo Html::ol($items,$attr);</code></pre>
+$items = array(
+	'colors' => array('blue', 'red', 'green'),
+	'sky',
+	'tools' => array('screw driver','hammer')
+);
+$attr = array('class' => 'order');
+echo Html::ol($items, $attr);</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -604,8 +608,8 @@ echo Html::ol($items,$attr);</code></pre>
 &lt;/ol&gt;
 */
 $items = array('red', 'blue', 'green', 'yellow');
-$attr = array('id'=>'todo','class'=>'pending');
-echo Html::ol($items,$attr);
+$attr = array('id' => 'todo','class' => 'pending');
+echo Html::ol($items, $attr);
 
 /* returns
 &lt;ol class="order"&gt;
@@ -625,9 +629,12 @@ echo Html::ol($items,$attr);
 	&lt;/li&gt;
 &lt;/ol&gt;
 */
-$items = array('colors'=>array('blue', 'red', 'green'), 'sky', 'tools'=>array('screwdriver','hammer'));
-$attr = array('class'=>'order');
-echo Html::ol($items,$attr);</code></pre>
+$items = array(
+	'colors' => array('blue', 'red', 'green'),
+	'sky',
+	'tools' => array('screw driver','hammer'));
+$attr = array('class' => 'order');
+echo Html::ol($items, $attr);</code></pre>
 					</td>
 				</tr>
 				</tbody>
