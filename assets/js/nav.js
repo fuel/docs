@@ -24,6 +24,7 @@ var nav = {
 		},
 		"Classes": {
 			"Config":	"classes/config.html",
+			"Event":	"classes/event.html",
 			"Html":		"classes/html.html"
 		}
 };
