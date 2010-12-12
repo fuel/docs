@@ -46,8 +46,6 @@
 			<h4>factory()</h4>
 			<p>
 				The <strong>factory</strong> method allows you to manually instantiate a session driver.
-				Note that you can instantiate a session driver only once.
-				If you try to instantiate an already loaded driver, the loaded instance will be returned!
 			</p>
 			<table class="method">
 				<tbody>
@@ -108,6 +106,13 @@ $session = Session::factory( array('driver' => 'memcached', 'expiration_time' =>
 				</tr>
 				</tbody>
 			</table>
+
+			<p class="note">
+				<kbd>Please note:</kbd> when you want to use multiple session drivers at the same time, the <kbd>cookie_name</kbd> for each of these driver instances must be unique.
+				If you attempt to load a driver using a <kbd>cookie_name</kbd> that is already in use, and the instance using it uses the same driver as you are trying to load, that instance is reused.
+				If the instance is using a different driver, an exception is thrown.
+			</p>
+
 		</article>
 
 		<h2>Concurrency</h2>
