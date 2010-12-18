@@ -41,6 +41,52 @@
 		</p>
 
 		<article>
+			<h4>instance()</h4>
+			<p>The <strong>instance</strong> method returns the default session instance, or a specific instance, identified by name.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$cookiename</kbd></th>
+								<td><i>optional</i></td>
+								<td>Cookiename (as defined in config/session.php) that identifies the required session instance.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>mixed - session object, or false in case the requested instance does not exist.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php">
+<code>// get the default session instance (identified by the 'driver' configuration setting).
+$session = Session::instance();
+
+// get a specific session instance
+$session = Session::instance('myappcookie');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
 			<h4>set()</h4>
 			<p>The <strong>set</strong> method allows you to set a session variable.</p>
 			<table class="method">
