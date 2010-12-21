@@ -30,6 +30,10 @@ var nav = {
 				"Usage":			"classes/session/usage.html",
 				"Advanced":			"classes/session/advanced.html"
 			},
+			"Upload":	{
+				"Configuration":	"classes/upload/config.html",
+				"Usage":			"classes/upload/usage.html",
+			},
 			"Html":		"classes/html.html"
 		}
 };
