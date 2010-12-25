@@ -115,6 +115,74 @@ $session = Session::factory( array('driver' => 'memcached', 'expiration_time' =>
 
 		</article>
 
+		<h2>Using sessions with Flash</h2>
+
+		<p>
+			One of the problems with using Flash objects in websites, is that when they interact with your web application, they don't send the cookies
+			back that have been stored in the browser. Due to this problem, it is difficult to make them aware of the session state of the application.
+		</p>
+
+		<p>
+			To solve this problem, the Session class allows you to pass the cookie to the application using a POST variable.
+			You can set the name of the variable using the configuration setting 'post_cookie_name'. If the Session class can't locate the session cookie,
+			it will check for this variable, and if it exists, use it's contents instead. This allows you to copy the contents of the session cookie
+			client-side into the POST variable using a bit of javascript.
+		</p>
+
+						<pre class="javascript">
+<code>// function to get the session cookie
+// you can use or own, or use the one your favorite javascript framework provides
+function getCookie(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=");
+  if (c_start!=-1)
+    {
+    c_start=c_start + c_name.length+1;
+    c_end=document.cookie.indexOf(";",c_start);
+    if (c_end==-1) c_end=document.cookie.length;
+    return unescape(document.cookie.substring(c_start,c_end));
+    }
+  }
+return "";
+}
+
+// we're using jquery and uploadify in this example, and we're passing
+// the fuel cookie (called 'fuelcid' here) in the scriptData as 'fuelcid'
+
+// Note: when generating this code, don't hardcode the cookie name, but
+// instead get the cookie name from the session configuration file.
+
+$(function()
+{
+	$('#custom_file_upload').uploadify(
+	{
+		'uploader'       : '/uploadify/uploadify.swf',
+		'script'         : '/uploadify/uploadify.php',
+		'cancelImg'      : '/uploadify/cancel.png',
+		'folder'         : '/uploads',
+		'multi'          : true,
+		'auto'           : true,
+		'fileExt'        : '*.jpg;*.gif;*.png',
+		'fileDesc'       : 'Image Files (.JPG, .GIF, .PNG)',
+		'queueID'        : 'custom-queue',
+		'queueSizeLimit' : 3,
+		'simUploadLimit' : 3,
+		'removeCompleted': false,
+		'onSelectOnce'   : function(event,data)
+		'scriptData'     : {'fuelcid': getCookie('fuelcid')},
+		{
+			$('#status-message').text(data.filesSelected + ' files have been added to the queue.');
+		},
+		'onAllComplete'  : function(event,data)
+		{
+			$('#status-message').text(data.filesUploaded + ' files uploaded, ' + data.errors + ' errors.');
+		}
+	});
+}
+</code></pre>
+
 		<h2>Concurrency</h2>
 
 		<p>
