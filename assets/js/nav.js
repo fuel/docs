@@ -20,6 +20,8 @@ var nav = {
 		"General": {
 			"Controllers":		"general/controllers.html",
 			"Views":			"general/views.html",
+			"Tasks":			"general/tasks.html",
+			"Migrations":		"general/migrations.html",
 			"Coding Standards":	"general/coding_standards.html"
 		},
 		"Classes": {
@@ -32,8 +34,10 @@ var nav = {
 			},
 			"Upload":	{
 				"Configuration":	"classes/upload/config.html",
-				"Usage":			"classes/upload/usage.html",
+				"Usage":			"classes/upload/usage.html"
 			},
+			"Migrate":	"classes/migrate.html",
+			"Session":	"classes/session.html",
 			"Html":		"classes/html.html"
 		}
 };
