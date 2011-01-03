@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Event Class - Fuel Documentation</title>
+	<title>Cookie Class - Fuel Documentation</title>
 	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
 	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="../assets/js/nav.js"></script>
@@ -24,13 +24,13 @@
 	<div id="main-nav"></div>
 
 	<section id="content">
-		<h2>Event Class</h2>
+		<h2>Cookie Class</h2>
 
-		<p>The event class allows you to interact with the Fuel Core without having to alter any core files.</p>
+		<p>The cookie class allows you to get, set and delete cookies.</p>
 
 		<article>
-			<h4>register()</h4>
-			<p>The <strong>register</strong> method allows files to register an object that will be ran when the <kbd>trigger</kbd> method is called.</p>
+			<h4>get($name, $default = null)</h4>
+			<p>The <strong>get</strong> method allows you to read a $_COOKIE variable.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -47,14 +47,64 @@
 								<th class="description">Description</th>
 							</tr>
 							<tr>
-								<th><kbd>$event</kbd></th>
-								<td><i>required</i></td>
-								<td>The event you are registering your code to.</td>
+								<th><kbd>$name</kbd></th>
+								<td><i>Required</i></td>
+								<td>The key in the $_COOKIE array.</td>
 							</tr>
 							<tr>
-								<th><kbd>$callback</kbd></th>
-								<td><i>required</i></td>
-								<td>The callback method. </td>
+								<th><kbd>$default</kbd></th>
+								<td><pre class="php"><code>null</code></pre></td>
+								<td>What value should be returned if the array item is not found?</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>mixed</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>$theme = Cookie::get('theme', 'blue');</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4>set($name, $value, $expiration = null)</h4>
+			<p>The <strong>set</strong> method allows you to create a cookie.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$name</kbd></th>
+								<td><i>Required</i></td>
+								<td>The key in the $_COOKIE array.</td>
+							</tr>
+							<tr>
+								<th><kbd>$value</kbd></th>
+								<td><i>Required</i></td>
+								<td>The value of the cookie.</td>
+							</tr>
+							<tr>
+								<th><kbd>$expiration</kbd></th>
+								<td><pre class="php"><code>null</code></pre></td>
+								<td>Number of seconds the cookie should last for.</td>
 							</tr>
 						</table>
 					</td>
@@ -66,7 +116,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Event::register('user_login', 'Class::method')</code></pre>
+						<pre class="php"><code>Cookie::set('theme', 'blue', 60 * 60 * 24);</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -74,8 +124,8 @@
 		</article>
 
 		<article>
-			<h4>trigger($event, $data = '', $return_type = 'string')</h4>
-			<p>The <strong>trigger</strong> method is used to trigger or activate callbacks that are associated through the register method.</p>
+			<h4>delete($name)</h4>
+			<p>The <strong>delete</strong> delete a parameter from the $_COOKIE array.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -92,77 +142,26 @@
 								<th class="description">Description</th>
 							</tr>
 							<tr>
-								<th><kbd>$event</kbd></th>
-								<td><i>required</i></td>
-								<td>The event you are triggering.</td>
-							</tr>
-							<tr>
-								<th><kbd>$data</kbd></th>
-								<td><i>optional</i></td>
-								<td>Any data you want to send to the method registered.</td>
-							</tr>
-							<tr>
-								<th><kbd>$return_type</kbd></th>
-								<td><i>optional</i></td>
-								<td>What type of return data you expect. (string, array, json, none, serialized) - <strong>Default is string</strong></td>
+								<th><kbd>$name</kbd></th>
+								<td><i>Required</i></td>
+								<td>Remove a cookie item.</td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>mixed - Dependent on the <var>$return_type</var>.</td>
+					<td>void</td>
 				</tr>
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>Event::trigger('user_login', $data)</code></pre>
+						<pre class="php"><code>Cookie::delete('theme')</code></pre>
 					</td>
 				</tr>
 				</tbody>
 			</table>
 		</article>
-
-		<article>
-			<h4>has_events($event)</h4>
-			<p>The <strong>has_events</strong> method is available so you can check if a particular registered event has triggers.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$event</kbd></th>
-								<td><i>required</i></td>
-								<td>The event you are checking.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>boolean</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>Event::has_events('user_login')</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
 
 	</section>
 
