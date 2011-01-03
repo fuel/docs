@@ -43,6 +43,7 @@ var nav = {
 				"Usage":			"classes/ftp/usage.html"
 			},
 			"Input":	"classes/input.html",
+			"Log":	    "classes/log.html",
 			"Session":	{
 				"Configuration":	"classes/session/config.html",
 				"Usage":			"classes/session/usage.html",
