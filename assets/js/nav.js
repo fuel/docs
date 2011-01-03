@@ -30,7 +30,7 @@ var nav = {
 			"Coding Standards":	"general/coding_standards.html"
 		},
 		"Classes": {
-			// "Arr":			"todo.html",
+			 "Arr":			"classes/arr.html",
 			// "Asset":		"todo.html",
 			// "Cache":		"todo.html",
 			"Cli":			"classes/cli.html",
