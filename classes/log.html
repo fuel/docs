@@ -72,10 +72,22 @@
 		<p>There are three predefined functions for ease of use:</p>
 		<pre class="php"><code>Log::info<br/>Log::debug<br/>Log::error</code></pre>
 		
-		<p>They all use the main function <strong>Log::write</strong> which requires the <strong>$level</strong> parameter as the first argument.</p>
+		<p>They all use the main function <strong>Log::write()</strong> which requires the <strong>$level</strong> parameter as the first argument.</p>
 		
 		<h6>Some examples:</h6>
-		<pre class="php"><code>// writes a log entry with the level "Info" to the log file for the current day<br/>$var = 1;<br/>Log::info('Application started (with $var = '.$var.')', 'my_init_function()');<br/><br/>// we save the new value of $var to the log file, without the $method paramenter<br/>$var = 5;<br/>Log::debug('$var is now '.$var);<br/><br/>// we send an error log entry<br/>if($var !== 1) Log::error('We cannot keep going, $var has been changed! :o');<br/><br/>// and finally, we create a log entry with a custom $level<br/>Log::write('Link', 'More info on http://fuelphp.com/')</code></pre>
+		<pre class="php"><code>// Write a log entry with the level "Info" to the log file for the current day
+$var = 1;
+Log::info('Application started (with $var = '.$var.')', 'my_init_function()');
+
+// Save the new value of $var to the log file, without the $method paramenter
+$var = 5;
+Log::debug('$var is now '.$var);
+
+// Send an error log entry
+if($var !== 1) Log::error('We cannot keep going, $var has been changed! :o');
+
+// Finally, create a log entry with a custom $level
+Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 		
 		<h5>Output</h5>
 		
@@ -109,7 +121,7 @@
 							</tr>
 							<tr>
 								<th><kbd>$method</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>Information about the method which created the log entry.</td>
 							</tr>
 						</table>
@@ -154,7 +166,7 @@
 							</tr>
 							<tr>
 								<th><kbd>$method</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>Information about the method which created the log entry.</td>
 							</tr>
 						</table>
@@ -199,7 +211,7 @@
 							</tr>
 							<tr>
 								<th><kbd>$method</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>Information about the method which created the log entry.</td>
 							</tr>
 						</table>
@@ -249,7 +261,7 @@
 							</tr>
 							<tr>
 								<th><kbd>$method</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>Information about the method which created the log entry.</td>
 							</tr>
 						</table>
