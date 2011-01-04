@@ -29,47 +29,6 @@
 		<p>The security class allows you to have CSRF protection in your application.</p>
 
 		<article>
-			<h4>strip_tags($value)</h4>
-			<p>The <strong>strip_tags</strong> method allows you to strip HTML and PHP tags from a string.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$value</kbd></th>
-								<td><i>Required</i></td>
-								<td>The input string.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>string</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>$text = '&lt;p&gt;Test paragraph.&lt;/p&gt;';
-$text = Security::strip_tags($text);</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
 			<h4>check_token($value = null)</h4>
 			<p>The <strong>check_token</strong> method allows you to check the CSRF token.</p>
 			<table class="method">
@@ -137,6 +96,33 @@ $text = Security::strip_tags($text);</code></pre>
 		</article>
 		
 		<article>
+			<h4>js_fetch_token()</h4>
+			<p>The <strong>js_fetch_token</strong> method allows you to produce JavaScript fuel_csrf_token() function that will return the current CSRF token when called. Use to fill right field on form submit for AJAX operations.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>None</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>echo Security::js_fetch_token();</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
 			<h4>regenerate_token()</h4>
 			<p>The <strong>regenerate_token</strong> method allows you to generate a new token if the old one expired or was checked.</p>
 			<table class="method">
@@ -164,8 +150,8 @@ $text = Security::strip_tags($text);</code></pre>
 		</article>
 		
 		<article>
-			<h4>js_fetch_token()</h4>
-			<p>The <strong>js_fetch_token</strong> method allows you to produce JavaScript fuel_csrf_token() function that will return the current CSRF token when called. Use to fill right field on form submit for AJAX operations.</p>
+			<h4>strip_tags($value)</h4>
+			<p>The <strong>strip_tags</strong> method allows you to strip HTML and PHP tags from a string.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -174,7 +160,20 @@ $text = Security::strip_tags($text);</code></pre>
 				</tr>
 				<tr>
 					<th>Parameters</th>
-					<td>None</td>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$value</kbd></th>
+								<td><i>Required</i></td>
+								<td>The input string.</td>
+							</tr>
+						</table>
+					</td>
 				</tr>
 				<tr>
 					<th>Returns</th>
@@ -183,12 +182,14 @@ $text = Security::strip_tags($text);</code></pre>
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>echo Security::js_fetch_token();</code></pre>
+						<pre class="php"><code>$text = '&lt;p&gt;Test paragraph.&lt;/p&gt;';
+$text = Security::strip_tags($text);</code></pre>
 					</td>
 				</tr>
 				</tbody>
 			</table>
 		</article>
+		
 	</section>
 
 	<section id="footer">
