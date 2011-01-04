@@ -30,7 +30,7 @@ var nav = {
 			"Coding Standards":	"general/coding_standards.html"
 		},
 		"Classes": {
-			// "Arr":			"todo.html",
+			 "Arr":			"classes/arr.html",
 			// "Asset":		"todo.html",
 			// "Cache":		"todo.html",
 			"Cli":			"classes/cli.html",
@@ -43,7 +43,7 @@ var nav = {
 			// "Database":		"todo.html",
 			// "Date":			"todo.html",
 			// "DButil":		"todo.html",
-			// "Debug":		"todo.html",
+			"Debug":		"classes/debug.html",
 			// "Email":		"todo.html",
 			"Event":		"classes/event.html",
 			// "Error":		"todo.html",
