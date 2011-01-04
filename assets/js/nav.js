@@ -62,7 +62,7 @@ var nav = {
 			"Log":	    	"classes/log.html",
 			"Migrate":		"classes/migrate.html",
 			"Output":		"classes/output.html",
-			// "Pagination":	"todo.html",
+			"Pagination":	"classes/pagination.html",
 			// "Profiler":		"todo.html",
 			// "Redis":		"todo.html",
 			// "Request":		"todo.html",
