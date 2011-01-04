@@ -67,7 +67,7 @@ var nav = {
 			// "Redis":		"todo.html",
 			// "Request":		"todo.html",
 			// "Route":		"todo.html",
-			// "Security":		"todo.html",
+			"Security":		"classes/security.html",
 			"Session": {
 				"Configuration":	"classes/session/config.html",
 				"Usage":			"classes/session/usage.html",
