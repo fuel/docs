@@ -58,7 +58,7 @@ var nav = {
 			"Html":			"classes/html.html",
 			"Inflector":	"todo.html",
 			"Input":		"classes/input.html",
-			"Lang":			"todo.html",
+			"Lang":			"classes/lang.html",
 			"Log":	    	"classes/log.html",
 			"Migrate":		"classes/migrate.html",
 			"Output":		"classes/output.html",
