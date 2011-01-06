@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Lang Class - Fuel Documentation</title>
+	<title>Language Class - Fuel Documentation</title>
 	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
 	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="../assets/js/nav.js"></script>
@@ -24,13 +24,13 @@
 	<div id="main-nav"></div>
 
 	<section id="content">
-		<h2>Lang Class</h2>
+		<h2>Language Class</h2>
 
-		<p>Interact with the command line by accepting input options, parameters and output text.</p>
+		<p>The languague class allows you to set language variables using language files in your application.</p>
 
 		<article>
-			<h4>beep($num = 1)</h4>
-			<p>The <strong>beep</strong> method fires a system beep on the computer running the command.</p>
+			<h4>load($file, $group = null)</h4>
+			<p>The <strong>load</strong> method allows you to load a language file.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -47,9 +47,14 @@
 								<th class="description">Description</th>
 							</tr>
 							<tr>
-								<th><kbd>$num</kbd></th>
-								<td><i>1</i></td>
-								<td>Number of beeps.</td>
+								<th><kbd>$file</kbd></th>
+								<td><i>Required</i></td>
+								<td>The path of the desired file.</td>
+							</tr>
+							<tr>
+								<th><kbd>$group</kbd></th>
+								<td><pre class="php"><code>null</code></pre></td>
+								<td>Sets a language group to be used. If set to true, it will use the file itself as the group.</td>
 							</tr>
 						</table>
 					</td>
@@ -61,13 +66,132 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Cli::beep(25);</code></pre>
+						<pre class="php"><code>// Example of a language file:
+return array(
+	'hello' => 'Hello there :name!',
+	'something'=> 'something :name!',
+	'test'=> array('hello'=>'hello','something'=>'plop')// Group
+);
+
+// Loads example.php.
+// Note: If no language is set by default it will fallback to english.
+$language = Lang::load('example');
+
+// Will load the 'test' group from the given file.
+$language = Lang:load('example','test');
+</code></pre>
 					</td>
 				</tr>
 				</tbody>
 			</table>
 		</article>
 		
+		<article>
+			<h4>line($line, $params = array())</h4>
+			<p>The <strong>line</strong> method allows you to get a specific line from the language file.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$line</kbd></th>
+								<td><i>Required</i></td>
+								<td>The desired line's identifier.</td>
+							</tr>
+							<tr>
+								<th><kbd>$parameters</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>Sets an array of parameter that might be passed to the line.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php">
+						<code>// Outputs Hello there Alfie!
+$this->output = Lang::line('hello',array('name'=>'Alfie');</code>
+						</pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4>set($line, $value, $group = null)</h4>
+			<p>The <strong>set</strong> method allows you to set a specific line to the language file.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$line</kbd></th>
+								<td><i>Required</i></td>
+								<td>The desired line's identifier.</td>
+							</tr>
+							<tr>
+								<th><kbd>$value</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>Sets the value of the line.</td>
+							</tr>
+							<tr>
+								<th><kbd>$group</kbd></th>
+								<td><pre class="php"><code>null</code></pre></td>
+								<td>Sets a language group to be used.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>boolean</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Returns true
+Lang::set('hello','Ahoy!');
+
+// Using groups
+Lang:set('hello','Ahoy!','test');
+
+// Will also work as above
+Lang::load('test','test);
+Lang::set('hello','Ahoy!');</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
 	</section>
 
 	<section id="footer">
