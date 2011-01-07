@@ -72,8 +72,8 @@ var nav = {
 				"Configuration":	"classes/upload/config.html",
 				"Usage":			"classes/upload/usage.html"
 			},
-			"Uri":			"classes/uri.html"
-			// "Validation":	"todo.html",
+			"Uri":			"classes/uri.html",
+			"Validation":	"classes/validation.html"
 			// "View":			"todo.html"
 		},
 		"Packages": {

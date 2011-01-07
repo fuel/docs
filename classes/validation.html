@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Validation Class - Fuel Documentation</title>
+	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('classes', '../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>FUEL Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+		<h2>Validation Class</h2>
+
+		<p>The Validation class helps you validate user input, if you want to create a form &amp; its validation at
+			the same time use the <a href="fieldset.html">Fieldset</a> class instead.</p>
+
+		<ul>
+			<li><a href="#usage">Usage</a></li>
+			<li><a href="#rules">Validation rules</a></li>
+			<li><a href="#methods">All methods</a></li>
+		</ul>
+
+		<article>
+			<h3><a name="usage">Usage</a></h3>
+
+			<p>To start validation you need to create an object, this can be the default object named "default" or
+			you can name it if you need multiple validation objects.</p>
+
+			<pre class="php"><code>// Use default
+$val = Validation::factory();
+
+// ... or name it
+$val = Validation::factory('my_validation');</code></pre>
+
+			<p>After having it instantiated you can start adding fields to it. This works exactly like the when using
+			the Fieldset class, however here we'll only document the prefered usage.</p>
+
+			<pre class="php"><code>$val = Validation::factory('my_validation');
+
+// Add a field for username, give it the label "Your username" and make it required
+$val->add('username', 'Your username')->add_rule('required');
+
+// Now add another field for password, and require it to contain at least 3 and at most 10 characters
+$val->add('password', 'Your password')->add_rule('required')
+    ->add_rule('min_length', 3)
+    ->add_rule('max_length', 10);</code></pre>
+
+			<p>The first parameter of the add_rule() method can contain PHP native function names, any valid PHP
+			callback and Closures in addition to the provided validation methods. The method will get the value to
+			be validated as its first arguement and any further arguements can be given to the add_rule() method.</p>
+
+			<p>We also provide a shorter syntax which is very limited in comparison. It will not accept array-callbacks,
+			closures or parameters other then strings.</p>
+
+			<pre class="php"><code>// The same fields as the example above
+$val = Validation::factory('my_validation');
+$val->add_field('username', 'Your username', 'required');
+$val->add_field('password', 'Your password', 'required|min_length[3]|max_length[10]');</code></pre>
+
+			<p>Once all the fields have been added you can run your validation. This will default to $_POST input, but
+			can be extended and overwritten when given an input array.</p>
+
+			<pre class="php"><code>// run validation on just post
+if ($val->run())
+{
+	// process your stuff when validation succeeds
+}
+else
+{
+	// validation failed
+}
+
+// alternative to above, overwriting the username in post, password will still be sought in post
+if ($val->run(array('username' => 'something')))</code></pre>
+
+			<p>When validation is ran there are three methods available for information about the input:</p>
+
+			<pre class="php"><code>// get an array of succesfully validated fields => value pairs
+$vars = $val->validated();
+// get an array of validation errors as field => error pairs
+$errors = $val->errors();
+// get an array of the input that was validated, this merged the post & input given to run()
+$input = $val->input();
+
+// all these methods can also get just the value for a single field
+$var = $val->validated('username');</code></pre>
+
+			<p>Validation can also run partially, in that case even required fields are ignored when they're not in
+			POST or the input given to run(). One does this by setting the 2nd parameter of run to true.</p>
+
+			<pre class="php"><code>// this will only validate the password when username isn't present in post
+$val->run(array('password' => 'whatever'), true);</code></pre>
+		</article>
+
+		<article>
+			<h3><a name="rules">Validation rules</a></h3>
+
+			<p>To be written.</p>
+		</article>
+
+		<article>
+			<h3><a name="methods">All methods</a></h3>
+
+			<p>To be written.</p>
+		</article>
+
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel PHP</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>
