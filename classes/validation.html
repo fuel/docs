@@ -32,6 +32,7 @@
 		<ul>
 			<li><a href="#usage">Usage</a></li>
 			<li><a href="#rules">Validation rules</a></li>
+			<li><a href="#errors">Error messages</a></li>
 			<li><a href="#methods">All methods</a></li>
 		</ul>
 
@@ -109,6 +110,188 @@ $val->run(array('password' => 'whatever'), true);</code></pre>
 
 		<article>
 			<h3><a name="rules">Validation rules</a></h3>
+
+			<p>Note that all methods (even min_length) will also return true on empty input. To also require the field
+			you must add the rule "required" as well.</p>
+
+			<p>All these rules can be used like below:</p>
+			<pre class="php"><code>// example normal usage with rule without and one with params
+$val->add('email', 'Email address')->add_rule('match_value', 'me@mydomain.com', true)->add_rule('valid_email');
+$val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_email');</code></pre>
+
+			<h4>Rules table</h4>
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Rule</th>
+						<th>Additional parameters</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>required</th>
+						<td>(none)</td>
+						<td>
+							The field must be set and have been given something other than <kbd>null</kbd>,
+							<kbd>false</kbd> or empty string.
+						</td>
+					</tr>
+					<tr>
+						<th>match_value</th>
+						<td><kbd>$compare</kbd>, <kbd>$strickt</kbd> = false</td>
+						<td>
+							The field input must match <kbd>$compare</kbd>, will be done using == unless 2nd parameter
+							is also given as true (then === is used).
+						</td>
+					</tr>
+					<tr>
+						<th>match_pattern</th>
+						<td><kbd>$pattern</kbd></td>
+						<td>
+							Will try to match the value against the given $pattern which must be a full PREG regex.
+						</td>
+					</tr>
+					<tr>
+						<th>match_field</th>
+						<td><kbd>$field</kbd></td>
+						<td>
+							Will try to match the field to the field with the given fieldname, the matching is done
+							using ===.<br />
+							<strong>Important:</strong> you can only match against a field that was added before the
+							field this rule is added to.
+						</td>
+					</tr>
+					<tr>
+						<th>min_length</th>
+						<td><kbd>$length</kbd></td>
+						<td>
+							Tests whether the string contains at least <kbd>$length</kbd>'s number of character.
+						</td>
+					</tr>
+					<tr>
+						<th>max_length</th>
+						<td><kbd>$length</kbd></td>
+						<td>
+							Tests whether the string contains no more than <kbd>$length</kbd>'s number of character.
+						</td>
+					</tr>
+					<tr>
+						<th>exact_length</th>
+						<td><kbd>$length</kbd></td>
+						<td>
+							Tests whether the string has precisely <kbd>$length</kbd>'s number of character.
+						</td>
+					</tr>
+					<tr>
+						<th>valid_email</th>
+						<td>(none)</td>
+						<td>
+							Validates if the given input is a valid email address.
+						</td>
+					</tr>
+					<tr>
+						<th>valid_emails</th>
+						<td>(none)</td>
+						<td>
+							Validates multiple email addresses seperated by comma's.
+						</td>
+					</tr>
+					<tr>
+						<th>valid_url</th>
+						<td>(none)</td>
+						<td>
+							Validates if the given input is a valid URL.
+						</td>
+					</tr>
+					<tr>
+						<th>valid_ip</th>
+						<td>(none)</td>
+						<td>
+							Validates if the given input is a valid IP.
+						</td>
+					</tr>
+					<tr>
+						<th>numeric_min</th>
+						<td><kbd>$min_val</kbd></td>
+						<td>
+							Tests whether the given input is a number that is greater than <kbd>$min_val</kbd>.
+						</td>
+					</tr>
+					<tr>
+						<th>numeric_max</th>
+						<td><kbd>$max_val</kbd></td>
+						<td>
+							Tests whether the given input is a number that is smaller than <kbd>$max_val</kbd>.
+						</td>
+					</tr>
+					<tr>
+						<th>valid_string</th>
+						<td><kbd>$flags</kbd> = array('alpha', 'utf8')</td>
+						<td>
+							See below.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h4>Valid string rule</h4>
+			<p>Validates whether a string adheres to the conditions set by the $flags parameter. The accepted flags
+			are:</p>
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Flag</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>alpha</th>
+						<td>Allow alphabetical characters.</td>
+					</tr>
+					<tr>
+						<th>uppercase</th>
+						<td>Used in combination with alpha to only allow uppercase characters.</td>
+					</tr>
+					<tr>
+						<th>lowercase</th>
+						<td>Used in combination with alpha to only allow lowercase characters.</td>
+					</tr>
+					<tr>
+						<th>numeric</th>
+						<td>Allow numeric characters.</td>
+					</tr>
+					<tr>
+						<th>spaces</th>
+						<td>Allow normal spaces.</td>
+					</tr>
+					<tr>
+						<th>newlines</th>
+						<td>Allow newline character.</td>
+					</tr>
+					<tr>
+						<th>tabs</th>
+						<td>Allow tabs.</td>
+					</tr>
+					<tr>
+						<th>dots</th>
+						<td>Allow dots.</td>
+					</tr>
+					<tr>
+						<th>punctuation</th>
+						<td>Allow dots, comma's, exclemation marks, question marks, colons and semi-colons.</td>
+					</tr>
+					<tr>
+						<th>dashes</th>
+						<td>Allow dashes and underscores.</td>
+					</tr>
+					<tr>
+						<th>utf8</th>
+						<td>Adds UTF8 modifier to regex.</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h3><a name="errors">Error messages</a></h3>
 
 			<p>To be written.</p>
 		</article>
