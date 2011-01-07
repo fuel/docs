@@ -32,7 +32,11 @@ var nav = {
 		"Classes": {
 			 "Arr":			"classes/arr.html",
 			"Asset":		"classes/asset.html",
-			// "Cache":		"todo.html",
+			"Cache": {
+				"Configuration":	"classes/cache/config.html",
+				"Usage":			"classes/cache/usage.html",
+				"Advanced":			"classes/cache/advanced.html"
+			},
 			"Cli":			"classes/cli.html",
 			"Config":		"classes/config.html",
 			"Cookie":		"classes/cookie.html",
