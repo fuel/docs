@@ -83,6 +83,7 @@ var nav = {
 		"Packages": {
 			"ActiveRecord": {
 				"Introduction":		"packages/activerecord/intro.html", 
+				"Conventions":		"packages/activerecord/conventions.html", 
 			},
 			"Auth": {
 				"Introduction":		"packages/auth/intro.html",
