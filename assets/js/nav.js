@@ -81,7 +81,9 @@ var nav = {
 			// "View":			"todo.html"
 		},
 		"Packages": {
-			// "ActiveRecord":		"todo.html",
+			"ActiveRecord": {
+				"Introduction":		"packages/activerecord/intro.html", 
+			},
 			"Auth": {
 				"Introduction":		"packages/auth/intro.html",
 				"Usage":			"packages/auth/usage.html",
