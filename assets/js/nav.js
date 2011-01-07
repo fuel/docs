@@ -50,7 +50,11 @@ var nav = {
 			// "Error":		"todo.html",
 			// "Exception":	"todo.html",
 			// "Fieldset":		"todo.html",
-			// "File":			"todo.html",
+			"File": {
+				"Introduction":	"classes/file/intro.html",
+				"Usage":		"classes/file/usage.html",
+				"Advanced":		"classes/file/advanced.html"
+			},
 			// "Form":			"todo.html",
 			"Ftp":			"classes/ftp.html",
 			"Html":			"classes/html.html",
@@ -82,8 +86,8 @@ var nav = {
 		},
 		"Packages": {
 			"ActiveRecord": {
-				"Introduction":		"packages/activerecord/intro.html", 
-				"Conventions":		"packages/activerecord/conventions.html", 
+				"Introduction":		"packages/activerecord/intro.html",
+				"Conventions":		"packages/activerecord/conventions.html"
 			},
 			"Auth": {
 				"Introduction":		"packages/auth/intro.html",
