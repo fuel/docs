@@ -29,7 +29,7 @@
 		<p>The Uri class allows you to interact with the URI.</p>
 
 		<article>
-			<h4>create($uri = null, $variables = array())</h4>
+			<h4>create($uri = null, $segment_variables = array(), $querystring_variables = array())</h4>
 			<p>The <strong>create</strong> method allows you to create a URL with the given URI, including the base URL.</p>
 			<table class="method">
 				<tbody>
@@ -52,9 +52,14 @@
 								<td>The URL.</td>
 							</tr>
 							<tr>
-								<th><kbd>$variables</kbd></th>
+								<th><kbd>$segment_variables</kbd></th>
 								<td><pre class="php"><code>array()</code></pre></td>
-								<td>The variables for the URL.</td>
+								<td>The segment variables for the URL.</td>
+							</tr>
+							<tr>
+								<th><kbd>$querystring_variables</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>The querystring ($_GET) variables for the URL.</td>
 							</tr>
 						</table>
 					</td>
@@ -66,7 +71,19 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>echo Uri::create('controller/method'); // returns http://localhost/controller/method</code></pre>
+						<pre class="php"><code>echo Uri::create('controller/method'); 
+// returns http://localhost/controller/method
+
+// note the ':' in ':name' in the first param, versus 'name' in the second param
+echo Uri::create('controller/method/:name', array('name' => 'value')); 
+// returns http://localhost/controller/method/value
+
+echo Uri::create('controller/method', array(), array('name' => 'value')); 
+// returns http://localhost/controller/method?name=value
+
+//this is the same as Uri::current()
+Uri::create();
+						</code></pre>
 					</td>
 				</tr>
 				</tbody>
