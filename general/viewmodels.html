@@ -37,11 +37,9 @@
 
 		<p>First we'll create an empty ViewModel in <kbd>app/classes/view/index.php</kbd>:</p>
 
-		<pre><code>class View_Index extends ViewModel {
-	protected $_template = 'index';
-}</code></pre>
+		<pre><code>class View_Index extends ViewModel {}</code></pre>
 
-		<p>Then you create te view to which this belongs in <kbd>app/views/index.php</kbd>:</p>
+		<p>Then you create the view to which this belongs in <kbd>app/views/index.php</kbd>:</p>
 
 		<pre><code>&lt;h1&gt;&lt;?php echo $title; ?&gt;&lt;/h1&gt;
 
@@ -55,6 +53,13 @@
 ?&gt;
 &lt;/ul&gt;</code></pre>
 
+		<p><strong>On view names:</strong> A ViewModel and its view are expected to share the same name. Thus a 
+		ViewModel <kbd>View_Index</kbd> expects the view to be in <kbd>app/views/index.php</kbd>. And underscores
+		work here the same as with classes, which means that <kbd>View_Some_Thing</kbd> is expected to be in
+		<kbd>app/views/some/thing.php</kbd>.<br />
+		This default can be overwritten by setting a <kbd>$_template</kbd> property in your ViewModel with the
+		View name (without .php suffix).</p>
+
 		<p>And last we'll call the ViewModel from the controller:</p>
 
 		<pre><code>ViewModel::factory('Index');</code></pre>
@@ -64,7 +69,6 @@
 		to the ViewModel which will assign this data:</p>
 
 		<pre><code>class View_Index extends ViewModel {
-	protected $_template = 'index';
 
 	public function view()
 	{
@@ -91,6 +95,12 @@ ViewModel::factory('Index', 'other_method');</code></pre>
 
 		<p>If you need to have some data added for all the methods in the ViewModel you can add a <kbd>before()</kbd>
 		or <kbd>after()</kbd> method just like you can with Controllers.</p>
+
+		<h3>Using ViewModels from other namespaces or not View_ prefixed</h3>
+
+		<p>If you want to use these you have to use the full classname with the factory(), including the namespace.
+		In these cases the default naming will often not work as expected so setting the <kbd>$_template</kbd>
+		property is encouraged.</p>
 
 	</section>
 
