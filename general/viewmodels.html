@@ -60,8 +60,8 @@
 		ViewModel <kbd>View_Index</kbd> expects the view to be in <kbd>app/views/index.php</kbd>. And underscores
 		work here the same as with classes, which means that the view for <kbd>View_Some_Thing</kbd> is expected
 		to be in <kbd>app/views/some/thing.php</kbd>.<br />
-		This default can be overwritten by setting a <kbd>$_template</kbd> property in your ViewModel with the
-		View name (without .php suffix).</p>
+		This default can be overwritten by setting a non-static <kbd>$_template</kbd> property in your ViewModel 
+		class with the View name as its contents.</p>
 
 		<p>And last we'll call the ViewModel from the controller:</p>
 
@@ -92,7 +92,7 @@
 
 	public function view()
 	{
-		// add it filtered, this becomes &lt;strong&gt;not bold because filtered&lt;/strong&gt;
+		// add it filtered, outputs: &amp;lt;strong&amp;gt;not bold because filtered&amp;lt;/strong&amp;gt;
 		$this->title = '&lt;strong&gt;not bold because filtered&lt;/strong&gt;';
 
 		// add it unfiltered just like you added
