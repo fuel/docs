@@ -43,7 +43,11 @@
 				<li><a href="#models">Models</a></li>
 				<li><a href="#views">Views</a></li>
 				<li><a href="#migrations">Migrations</a></li>
-				<li><a href="#scaffolding">Scaffolding</a></li>
+				<li><a href="#scaffolding">Scaffolding</a>
+					<ul>
+						<li><a href="#scaffolding_templates">Template packs for the scaffolding code generator</a></li>
+					</ul>
+				</li>
 			</ul>
 
 			<a name="controllers"></a>
@@ -270,6 +274,39 @@ Migrated to latest version: 3.
 /* End of file monkeys.php */
 </code></pre>
 
+			<a name="scaffolding_templates"></a>
+			<h4>Template packs for the scaffolding code generator</h4>
+			
+			<p>
+				The tool uses a bunch of view files to 'render' the code that will be put inside the 
+				files it generates. These views are located in a subfolder in 
+				<b>'fuel/packages/oil/views/default'</b>;
+			</p>
+			
+			<p>
+				The next two lines are equivalent:
+			
+				<pre class="cli">$ php oil generate scaffold monkey name:string description:text</pre>
+				
+				<pre class="cli">$ php oil generate scaffold/default monkey name:string description:text</pre>
+				
+				Where <b>'default'</b> is the subfolder in which the views that 'render code' are located.
+			</p>
+			
+			<p>
+				You can copy the views from <b>'oil/views/default'</b> to <b>'oil/views/my_subfolder'</b>, 
+				and modify them however you like. Then issue the command:
+			
+				<pre class="cli">$ php oil generate scaffold/my_subfolder monkey name:string description:text</pre>
+			
+				The short version with <b>'g'</b> instead of <b>'generator'</b> works too:
+				<br><br>
+			
+				<pre class="cli">$ php oil g scaffold/my_subfolder monkey name:string description:text</pre>
+			</p>
+
+		
+		
 		</section>
 
 	</section>
