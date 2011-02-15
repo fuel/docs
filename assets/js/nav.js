@@ -63,6 +63,7 @@ var nav = {
 				"Advanced":		"classes/file/advanced.html"
 			},
 			// "Form":			"todo.html",
+			"Format":		"classes/format.html",
 			"Ftp":			"classes/ftp.html",
 			"Html":			"classes/html.html",
 			"Inflector":	"classes/inflector.html",
