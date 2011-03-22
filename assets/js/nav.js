@@ -32,6 +32,7 @@ var nav = {
 				"Introduction":		"general/classes.html",
 				"Extending Core":	"general/extending_core.html"
 			},
+			"Modules":			"general/modules.html",
 			"Tasks":			"general/tasks.html",
 			"Migrations":		"general/migrations.html",
 			"Coding Standards":	"general/coding_standards.html"
