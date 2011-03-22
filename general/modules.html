@@ -119,6 +119,10 @@ class Controller_Widget {
 		<pre><code>// fetch the output of a mymodule controller method
 $widget = Request::factory('mymodule/mycontroller/mymethod/parms', false)->execute()->output;
 </code></pre>
+		<p class="note">
+			Note that you have to use '<strong>false</strong>' as second parameter to the factory() call, to prevent your URI to be routed.
+			If you don't, and you request a non-routable URI, you will end up with a 404 error!
+		</p>
 
 		<h3>Using static calls</h3>
 
@@ -146,6 +150,11 @@ $widget = Request::factory('mymodule/mycontroller/mymethod/parms', false)->execu
 
 		<pre><code class="php">// add the module MyModule to FuelPHP
 Fuel::add_module('mymodule');
+</code></pre>
+
+		<p>You then call the module class like this:</p>
+
+		<pre><code class="php">\mymodule\myclass::mymethod('parms');
 </code></pre>
 
 	</section>
