@@ -77,7 +77,7 @@ var nav = {
 			"Pagination":	"classes/pagination.html",
 			// "Profiler":	"todo.html",
 			// "Redis":		"todo.html",
-			// "Request":	"todo.html",
+			"Request":		"classes/request.html",
 			// "Route":		"todo.html",
 			"Security":		"classes/security.html",
 			"Session": {
