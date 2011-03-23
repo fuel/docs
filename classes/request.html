@@ -231,6 +231,80 @@ echo $request;</code></pre>
 			</table>
 		</article>
 
+		<article>
+			<h4>add_path($path, $prefix = false)</h4>
+			<p>The <strong>add_path</strong> method allows you to add a search path to the current request instance. The search paths are used by Fuel::find_file() to locate files within your application.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$path</kbd></th>
+								<td><i>required</i></td>
+								<td>Path to be added to the list of Request local search paths</td>
+							</tr>
+							<tr>
+								<th><kbd>$prefix</kbd></th>
+								<td><pre class="php"><code>false</code></pre></td>
+								<td>If <strong>false</strong>, the path will be appended to the search path. If <strong>true</strong>, it will be prepended.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td><i>void</i></td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// add the applications myfiles folder to the search path of the active request instance
+Request::active()->add_path(APPPATH.'myfiles'.DS);</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4>get_paths()</h4>
+			<p>The <strong>get_paths</strong> method returns the defined list of search paths.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td><i>void</i></td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// get the defined search paths of the active request instance
+Request::active()->get_paths();</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
 	</section>
 
 	<section id="footer">
