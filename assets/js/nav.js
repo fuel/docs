@@ -77,7 +77,7 @@ var nav = {
 			"Output":		"classes/output.html",
 			"Pagination":	"classes/pagination.html",
 			// "Profiler":	"todo.html",
-			// "Redis":		"todo.html",
+			"Redis":		"classes/redis.html",
 			"Request":		"classes/request.html",
 			// "Route":		"todo.html",
 			"Security":		"classes/security.html",
