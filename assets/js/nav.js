@@ -69,6 +69,7 @@ var nav = {
 			"Ftp":			"classes/ftp.html",
 			"Fuel":			"classes/fuel.html",
 			"Html":			"classes/html.html",
+			"Image":	    "classes/image.html",
 			"Inflector":	"classes/inflector.html",
 			"Input":		"classes/input.html",
 			"Lang":			"classes/lang.html",
