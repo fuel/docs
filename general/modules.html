@@ -28,9 +28,16 @@
 
 		<h3>What is a module?</h3>
 
-		<p>In short, a module is an independently developed part of an application.</p>
 		<p>
-			Within that application, it can operate independently, like for example a blog module or an album module. You can route directly to the module controllers, without having to access any global code.
+			A module is a group of independent MVC elements. The use of modules allows for re-usability and encapsulation of your code.
+			A module typically resides within an application sub-directory named <strong>modules</strong>.
+			It is suggested to take advantage of modules whenever you're working on a large project,
+			of which you believe it's code-base will be more than just a few lines of code.
+			It will help you to keep things neatly in order.
+		</p>
+
+		<p>
+			A module can operate independently, like for example a blog module or an album module. You can route directly to the module controllers, without having to access any global code.
 			Modules can also be used in a true HMVC context, where controllers call other controllers, which will produce (a part of) the result needed to generate the result of the page request.
 		</p>
 
@@ -45,12 +52,11 @@
 		<pre><code>/**
  * To enable you to split up your application into modules which can be
  * routed by the first uri segment you have to define their basepaths
- * here. By default empty, but to use them you can add something
- * like this:
- *      array(APPPATH.'modules'.DS)
+ * here.
  */
 'module_paths' => array(
-	//APPPATH.'modules'.DS
+	APPPATH.'modules'.DS,		// path to application modules
+	APPPATH.'..'.DS.'globalmods'.DS	// path to our global modules
 ),
 </code></pre>
 		<p>When you define your paths, make sure they end with DS, the FuelPHP platform independent directory separator.</p>
