@@ -97,10 +97,6 @@ var nav = {
 			// "View":			"todo.html"
 		},
 		"Packages": {
-			"ActiveRecord": {
-				"Introduction":		"packages/activerecord/intro.html",
-				"Conventions":		"packages/activerecord/conventions.html"
-			},
 			"Auth": {
 				"Introduction":		"packages/auth/intro.html",
 				"Usage":			"packages/auth/usage.html",
@@ -116,6 +112,12 @@ var nav = {
 				"Package":			"packages/oil/package.html",
 //				"Test":				"packages/oil/test.html",
 				"Console":			"packages/oil/console.html"
+			},
+			"Orm": {
+				"Introduction":		"packages/orm/intro.html",
+				"Creating Models":	"packages/orm/creating_models.html",
+				"CRUD":				"packages/orm/crud.html",
+				"Relating Models":	"packages/orm/relating_models.html"
 			}
 		}
 };
