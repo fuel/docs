@@ -117,7 +117,8 @@ var nav = {
 				"Introduction":		"packages/orm/intro.html",
 				"Creating Models":	"packages/orm/creating_models.html",
 				"CRUD":				"packages/orm/crud.html",
-				"Relating Models":	"packages/orm/relating_models.html"
+				"Relating Models":	"packages/orm/relating_models.html",
+				"Observers":		"packages/orm/observers.html"
 			}
 		}
 };
