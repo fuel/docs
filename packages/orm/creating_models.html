@@ -35,7 +35,49 @@
 		<section>
 			<h2>Creating Models</h2>
 
-			<p>This will focus on writing and configuring models.</p>
+			<p>Creating a model takes little time, the convention is to use the <kbd>Model_</kbd> prefix and thus place
+				them in <kbd>app/classes/model/</kbd> but you are free to use whatever name you choose.</p>
+
+			<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
+
+			<p class="note">The above only works with the MySQL and MySQLi drivers because it needs to fetch the model
+				properties from the database. It is however not very efficient and thus discouraged to use it this way
+				because you'll always need that one extra query per model just to fetch the columnnames.</p>
+
+			<pre class="php"><code>class Model_Article extends Orm\Model {
+	protected static $_properties = array('id', 'title', 'contents', 'publish');
+}</code></pre>
+
+			<h2>Configuration</h2>
+
+			<p>You can add static properties to the Model to configure it. As we've seen there are none required but
+				setting <kbd>$_properties</kbd> is encouraged. All these can be both <kbd>public</kbd> and
+				<kbd>protected</kbd> but may NOT be <kbd>private</kbd>.<br />
+				Note that all configuration properties are prefixed with a single underscore to prevent collisions with
+				your column names.</p>
+
+			<h3>protected static $_table_name</h3>
+
+			<p>When this isn't set the <kbd>Model_</kbd> prefix is removed from the classname and the classname is
+				pluralized. Thus "Model_Article" expects table "articles". If you don't follow this convention you can
+				change it by setting the <kbd>$table_name</kbd> property.</p>
+
+			<pre class="php"><code>class Model_Article extends Orm\Model {
+	protected static $_table_name = 'myarticles';
+}</code></pre>
+
+			<h3>protected static $_primary_key</h3>
+
+			<p>By default this is set to <kbd>array('id')</kbd>, if you use another column name or multiple primary
+				keys you need to set this property.</p>
+
+			<pre class="php"><code>class Model_Article extends Orm\Model {
+	protected static $_primary_key = array('aid');
+}</code></pre>
+
+			<h3>protected static $_properties</h3>
+
+			<p></p>
 		</section>
 
 	</section>
