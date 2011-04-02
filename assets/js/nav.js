@@ -52,6 +52,7 @@ var nav = {
 			"Crypt":		"classes/crypt.html",
 			// "Database":		"todo.html",
 			 "Date":			"classes/date.html",
+			"DB":		"classes/db.html",
 			// "DButil":		"todo.html",
 			"Debug":		"classes/debug.html",
 			// "Email":		"todo.html",
