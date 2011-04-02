@@ -59,13 +59,13 @@ var nav = {
 			"Event":		"classes/event.html",
 			// "Error":		"todo.html",
 			// "Exception":	"todo.html",
-			// "Fieldset":		"todo.html",
+			"Fieldset":		"classes/fieldset.html",
 			"File": {
 				"Introduction":	"classes/file/intro.html",
 				"Usage":		"classes/file/usage.html",
 				"Advanced":		"classes/file/advanced.html"
 			},
-			// "Form":			"todo.html",
+			"Form":			"classes/form.html",
 			"Format":		"classes/format.html",
 			"Ftp":			"classes/ftp.html",
 			"Fuel":			"classes/fuel.html",
