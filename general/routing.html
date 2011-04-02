@@ -18,7 +18,7 @@
 <body>
 
 	<header>
-		<h1>FUEL Documentation</h1>
+		<h1>Fuel Documentation</h1>
 	</header>
 
 	<div id="main-nav"></div>
@@ -116,12 +116,25 @@ $this->param('id');</code></pre>
     'blog/(:any)' => array(array('GET', new Route('blog/show/$1'))),
 ),</code></pre>
 
+		<h3>Module Routing</h3>
+
+		<p>
+			When you use modules in routed mode, you can add custom routes to your module by including a <b>routes.php</b> in your modules config folder.
+			These routes will be loaded when FuelPHP detects that the first URI segment refers to a module, and only the routes of that module will be loaded.
+		</p>
+
+		<p>
+			This implies that module routes can not be used to define routes for global routing or routes for other modules.
+			In other words, the left side should always include the current module as first URI segment.
+			For the right side you can use anything described in the sections above, it's perfectly fine to have a module
+			route to an app controller or another module.
+		</p>
 
 	</section>
 
 	<section id="footer">
 		<p>
-			<a href="http://fuelphp.com">FUEL</a> is released under the MIT license.<br />
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
 			&copy; 2010 - 2011 Fuel Development Team
 		</p>
 	</section>
