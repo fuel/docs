@@ -18,7 +18,7 @@
 <body>
 
 	<header>
-		<h1>FUEL Documentation</h1>
+		<h1>Fuel Documentation</h1>
 	</header>
 
 	<div id="main-nav"></div>
@@ -100,7 +100,7 @@ $entry = Model_Article::find('all');
 // find all articles from category 1 order descending by date
 $entry = Model_Article::find('last', array(
 	'where' => array('category_id', 1),
-	'order_by' => array('date', 'desc')
+	'order_by' => array('date' => 'desc')
 ));</code></pre>
 
 				<p>In this example it will always return an array of instances of Model_Article.</p>
@@ -110,7 +110,7 @@ $entry = Model_Article::find('last', array(
 				<p>When you use the <kbd>find()</kbd> method without properties it will return an Orm\Query object
 					which you can use, and possibly reuse to find entries.</p>
 
-				<pre class="php"><code>$query = Model_Article::find()->where('category_id', 1)->order_by('date', 'desc');
+				<pre class="php"><code>$query = Model_Article::find()->where('category_id', 1)->order_by('date' => 'desc');
 
 // We want to know the total number of articles for pagination
 $number_of_articles = $query->count();
@@ -190,7 +190,7 @@ Model_Article::find('all', array('where' => array(array('category_id', 5), array
 
 	<section id="footer">
 		<p>
-			<a href="http://fuelphp.com">FUEL</a> is released under the MIT license.<br />
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
 			&copy; 2010 - 2011 Fuel Development Team
 		</p>
 	</section>

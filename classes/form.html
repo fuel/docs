@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Form Class - Fuel Documentation</title>
+	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('classes', '../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>Fuel Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+		<h2>Form Class</h2>
+
+		<p>
+			The Form class can both be used to create individual form elements or to create a full form along with
+			validation, the latter is done in combination with the <a href="fieldset.html">Fieldset</a> class.
+		</p>
+
+		<h2>Create individual form elements</h2>
+
+		<article>
+			<h4>open($attributes = array(), $hidden = array())</h4>
+			<p>Create a form open tag.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$attributes</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>Either a string which will be the action attribute or an array of settings, if
+									action isn't given it will use the current Uri. The attribute's values will be used
+									as html tag properties.</td>
+							</tr>
+							<tr>
+								<th><kbd>$hidden</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>An associative array of fieldnames and their values, will all be set as hidden
+									fields.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// returns &lt;form action="http://mydomain.com/uri/to/form" accept-charset="utf-8" method="post"&gt;
+echo Form::open('uri/to/form');
+
+// returns &lt;form action="http://google.com/" accept-charset="utf-8" method="get"&gt;
+echo Form::open(array('action' => 'http://google.com/', 'method' => 'get'));</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4>close()</h4>
+			<p>Create a form close tag.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>(none)</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// returns &lt;/form&gt;
+echo Form::close();</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4>input($field, $value = null, $attributes = array())</h4>
+			<p>Creates an html input element. It can be set using the fieldname, it's value and tag attributes or all
+				in one attribute for the first arguement.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><i>Required</i></td>
+								<td>Either a string for the fieldname or an array of tag attributes.</td>
+							</tr>
+							<tr>
+								<th><kbd>$value</kbd></th>
+								<td><pre class="php"><code>null</code></pre></td>
+								<td>Field value, will be ignored when the first param is an array.</td>
+							</tr>
+							<tr>
+								<th><kbd>$attributes</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>These will be used as html tag properties.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>echo Form::input('name', 'value', array('style' => 'border: 2px;'));
+// more to be added</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4>hidden($field, $value = null, $attributes = array())</h4>
+
+			<p>This is an alias for <kbd>Form::input()</kbd> that automaticly sets the <kbd>type</kbd> attribute to
+			<kbd>'hidden'</kbd>.</p>
+		</article>
+
+		<article>
+			<h4>password($field, $value = null, $attributes = array())</h4>
+
+			<p>This is an alias for <kbd>Form::input()</kbd> that automaticly sets the <kbd>type</kbd> attribute to
+			<kbd>'password'</kbd>.</p>
+		</article>
+
+		<article>
+			<h4>radio($field, $value = null, $attributes = array())</h4>
+
+			<p>This is an alias for <kbd>Form::input()</kbd> that automaticly sets the <kbd>type</kbd> attribute to
+			<kbd>'radio'</kbd>.</p>
+		</article>
+
+		<article>
+			<h4>checkbox($field, $value = null, $attributes = array())</h4>
+
+			<p>This is an alias for <kbd>Form::input()</kbd> that automaticly sets the <kbd>type</kbd> attribute to
+			<kbd>'checkbox'</kbd>.</p>
+		</article>
+
+		<article>
+			<h4>button($field, $value = null, $attributes = array())</h4>
+
+			<p>This is an alias for <kbd>Form::input()</kbd> that automaticly sets the <kbd>type</kbd> attribute to
+			<kbd>'button'</kbd>.</p>
+		</article>
+
+		<article>
+			<h4>reset($field, $value = null, $attributes = array())</h4>
+
+			<p>This is an alias for <kbd>Form::input()</kbd> that automaticly sets the <kbd>type</kbd> attribute to
+			<kbd>'reset'</kbd>.</p>
+		</article>
+
+		<article>
+			<h4>submit($field, $value = null, $attributes = array())</h4>
+
+			<p>This is an alias for <kbd>Form::input()</kbd> that automaticly sets the <kbd>type</kbd> attribute to
+			<kbd>'submit'</kbd>.</p>
+		</article>
+
+		<article>
+			<h4>textarea($field, $value = null, $attributes = array())</h4>
+			<p>Creates an html textarea element. It can be set using the fieldname, it's value and tag attributes or all
+				in one attribute for the first arguement.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><i>Required</i></td>
+								<td>Either a string for the fieldname or an array of tag attributes.</td>
+							</tr>
+							<tr>
+								<th><kbd>$value</kbd></th>
+								<td><pre class="php"><code>null</code></pre></td>
+								<td>Field value, will be ignored when the first param is an array.</td>
+							</tr>
+							<tr>
+								<th><kbd>$attributes</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>These will be used as html tag properties.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>echo Form::textarea('description', 'enter here', array('rows' => 6, 'cols' => 8));
+// more to be added</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4>select($field, $values = null, $options = array(), $attributes = array())</h4>
+			<p>Creates an html select element. It can be set using the fieldname, it's selected value(s), it's options
+				and tag attributes or all in one attribute for the first arguement.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><i>Required</i></td>
+								<td>Either a string for the fieldname or an array of tag attributes.</td>
+							</tr>
+							<tr>
+								<th><kbd>$values</kbd></th>
+								<td><pre class="php"><code>null</code></pre></td>
+								<td>Field value or array of values when multiselect, will be ignored when the first
+									param is an array.</td>
+							</tr>
+							<tr>
+								<th><kbd>$options</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>Associative array of value=>label pairs, may also contain option groups as
+									opt_name=>array() where the array contains it's set of value=>label pairs.</td>
+							</tr>
+							<tr>
+								<th><kbd>$attributes</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>These will be used as html tag properties.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>echo Form::select('country', 'none', array(
+	'none' => 'None',
+	'europe' => array(
+		'uk' => 'United Kingdom',
+		'nl' => 'Netherlands'
+	),
+	'us' => 'United States'
+));
+// more to be added</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4>label($label, $id = null, $attributes = array())</h4>
+			<p>Creates an html label element. It can be set using label, the id it's for and tag attributes or all
+				in one attribute for the first arguement.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$label</kbd></th>
+								<td><i>Required</i></td>
+								<td>Either a string for the label or an array of tag attributes.</td>
+							</tr>
+							<tr>
+								<th><kbd>$id</kbd></th>
+								<td><pre class="php"><code>null</code></pre></td>
+								<td>The field's id this label belongs to.</td>
+							</tr>
+							<tr>
+								<th><kbd>$attributes</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>These will be used as html tag properties.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>echo Form::label('Username', 'username');
+// more to be added</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+
+		<h2>Create forms in an OOP way using fieldsets</h2>
+
+		<p>Not yet documented.</p>
+
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>
