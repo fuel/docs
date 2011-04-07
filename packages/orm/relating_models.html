@@ -35,7 +35,25 @@
 		<section>
 			<h2>Relating Models</h2>
 
-			<h3>Basic Usage</h3>
+			<h3>Usage</h3>
+
+			<p>The Orm allows for both eager and lazy-loading of relationships. Eager loading means that some (or all)
+				relations are fetched in the original query. Lazy loading means that the relations aren't fetched until
+				you request them.</p>
+
+			<pre class="php"><code>// eager loading, using joins:
+$post = Model_Post::find('all', array('related' => array('comments')));
+// or
+$post = Model_Post::find()->related('comments')->get();
+// $post->comments is available without any further querying after this
+
+// or use lazy loading, it won't use joins but query a relation once requested
+// first get a "post", 1 query without join
+$post = Model_Post::find('first');
+// now request the comments (not yet loaded), which will do another query without join automaticly
+$comments = $post->comments;</code></pre>
+
+			<h3>Basic config</h3>
 
 			<pre class="php"><code>$_has_many = array('comments');</code></pre>
 
@@ -43,7 +61,7 @@
 				<kbd>Model_Comment</kbd> objects which have the field <kbd>article_id</kbd> matching the primary key of
 				a given Article instance through the property <kbd>comments</kbd>.</p>
 
-			<h3>Advanced Usage</h3>
+			<h3>Fully configured</h3>
 
 			<pre class="php"><code>$_has_many = array('comments' => array(
 	'model_to' => 'Model_Fancy_Comment',
@@ -51,6 +69,7 @@
 	'key_to' => 'parent_article_id',
 	'cascade_save' => true,
 	'cascade_delete' => false,
+	// there are some more options for specific relation types
 ));</code></pre>
 
 			<p>In the basic example, Orm automatically assumes the model name and field mapping. This example
@@ -104,6 +123,35 @@
 				</tbody>
 			</table>
 
+			<article id="relation_types">
+				<h2>Relation types</h2>
+
+				<p>The Orm supports the following relationship types natively:</p>
+
+				<ul>
+					<li><a href="#belongs_to">Belongs To</a><br />
+						Has the primary key of the relation keps in its table, belongs to 1 related object.</li>
+					<li><a href="#has_one">Has One</a><br />
+						Has its primary key saved in one other row of another table (which belongs to this), has 1
+						related object.</li>
+					<li><a href="#has_many">Has Many</a><br />
+						Has its primary key saved in many other rows of another table (which belong to this one), has
+						many related objects.</li>
+					<li><a href="#many_many">Many to Many</a><br />
+						Have their primary keys saved in a table in between which keeps pairs of primary keys from both
+						tables. Have and belong to many objects.</li>
+					<li><a href="#many_through">Many Through</a><br />
+						Same as "Many to Many" but have a model relating them to each other instead of just a 2-column
+						table.</li>
+				</ul>
+			</article>
+
+			<article id="belongs_to">
+				<h2>Belongs To</h2>
+
+				<p>To be written.</p>
+			</article>
+
 			<article id="has_one">
 				<h2>Has One</h2>
 
@@ -134,6 +182,18 @@ $posts = $user->posts;
 
 // Returns an array of Model_Comment objects
 $comments = $user->comments;</code></pre>
+			</article>
+
+			<article id="many_many">
+				<h2>Many to Many</h2>
+
+				<p>To be written.</p>
+			</article>
+
+			<article id="many_through">
+				<h2>Many Through</h2>
+
+				<p>To be written.</p>
 			</article>
 		</section>
 
