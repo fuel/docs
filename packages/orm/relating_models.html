@@ -150,6 +150,19 @@ $comments = $post->comments;</code></pre>
 				<h2>Belongs To</h2>
 
 				<p>To be written.</p>
+
+				<h3>Full config example with defualts as values</h3>
+
+			<pre class="php"><code>// in a Model_Comment which belong to a post
+$_has_many = array(
+	'post' => array(
+		'key_from' => 'comment_id',
+		'model_to' => 'Model_Post',
+		'key_to' => 'id',
+		'cascade_save' => true,
+		'cascade_delete' => false,
+	)
+);</code></pre>
 			</article>
 
 			<article id="has_one">
@@ -158,12 +171,18 @@ $comments = $post->comments;</code></pre>
 				<p>Specifies a one-to-one relationship to another model. The target model must include a "Belongs To"
 					reference to the current model to allow the inverse relationship.</p>
 
-				<pre class="php"><code>// Basic reference in an example Model_Book
-$_has_one = array('author');</code></pre>
+				<h3>Full config example with defualts as values</h3>
 
-				<p>The author can then be referenced from a <kbd>Model_Book</kbd> instance as follows:</p>
-
-				<pre class="php"><code>$author = $book->author;</code></pre>
+			<pre class="php"><code>// in a Model_User which has one profile
+$_has_one = array(
+	'profile' => array(
+		'key_from' => 'id',
+		'model_to' => 'Model_Profile',
+		'key_to' => 'user_id',
+		'cascade_save' => true,
+		'cascade_delete' => false,
+	)
+);</code></pre>
 			</article>
 
 			<article id="has_many">
@@ -172,28 +191,67 @@ $_has_one = array('author');</code></pre>
 				<p>Specifies a one-to-many relationship to another model. The target model must include a "Belongs To"
 					reference to the current model to allow the inverse relationship.</p>
 
-				<pre class="php"><code>// Basic references in an example Model_User
-$_has_many = array('posts', 'comments');</code></pre>
+				<h3>Full config example with defualts as values</h3>
 
-				<p>A user's posts can then be referenced by their respective aliases as follows:</p>
-
-				<pre class="php"><code>// Returns an array of Model_Post objects
-$posts = $user->posts;
-
-// Returns an array of Model_Comment objects
-$comments = $user->comments;</code></pre>
+			<pre class="php"><code>// in a Model_Post which has many comments
+$_has_many = array(
+	'comments' => array(
+		'key_from' => 'id',
+		'model_to' => 'Model_Comment',
+		'key_to' => 'post_id',
+		'cascade_save' => true,
+		'cascade_delete' => false,
+	)
+);</code></pre>
 			</article>
 
 			<article id="many_many">
 				<h2>Many to Many</h2>
 
 				<p>To be written.</p>
+
+				<h3>Full config example with defualts as values</h3>
+
+			<pre class="php"><code>// in a Model_Post which has and belongs to many Users
+// = multiple posts per user and multiple users (authors) per post
+$_many_many = array(
+	'users' => array(
+		'key_from' => 'id',
+		'key_through_from' => 'post_id', // column 1 from the table in between, should match a posts.id
+		'table_through' => 'posts_users', // both models plural without prefix in alphabetical order
+		'key_through_to' => 'user_id', // column 2 from the table in between, should match a users.id
+		'model_to' => 'Model_User',
+		'key_to' => 'id',
+		'cascade_save' => true,
+		'cascade_delete' => false,
+	)
+);</code></pre>
 			</article>
 
 			<article id="many_through">
 				<h2>Many Through</h2>
 
 				<p>To be written.</p>
+
+				<p class="note">Saving/deleting these are not yet supported directly, need to be done through the
+					model connecting them.</p>
+
+				<h3>Full config example with defualts as values</h3>
+
+			<pre class="php"><code>// in a Model_Post which has and belongs to many Users with a model in between
+// = multiple posts per user and multiple users (authors) per post
+$_many_many = array(
+	'users' => array(
+		'key_from' => 'id',
+		'key_through_from' => 'post_id', // column 1 from the table in between, should match a posts.id
+		'model_through' => 'Model_Posts_Users', // both models plural without prefix in alphabetical order
+		'key_through_to' => 'user_id', // column 2 from the table in between, should match a users.id
+		'model_to' => 'Model_User',
+		'key_to' => 'id',
+		'cascade_save' => true,
+		'cascade_delete' => false,
+	)
+);</code></pre>
 			</article>
 		</section>
 
