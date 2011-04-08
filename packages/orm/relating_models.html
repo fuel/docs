@@ -35,7 +35,25 @@
 		<section>
 			<h2>Relating Models</h2>
 
-			<h3>Basic Usage</h3>
+			<h3>Usage</h3>
+
+			<p>The Orm allows for both eager and lazy-loading of relationships. Eager loading means that some (or all)
+				relations are fetched in the original query. Lazy loading means that the relations aren't fetched until
+				you request them.</p>
+
+			<pre class="php"><code>// eager loading, using joins:
+$post = Model_Post::find('all', array('related' => array('comments')));
+// or
+$post = Model_Post::find()->related('comments')->get();
+// $post->comments is available without any further querying after this
+
+// or use lazy loading, it won't use joins but query a relation once requested
+// first get a "post", 1 query without join
+$post = Model_Post::find('first');
+// now request the comments (not yet loaded), which will do another query without join automaticly
+$comments = $post->comments;</code></pre>
+
+			<h3>Basic config</h3>
 
 			<pre class="php"><code>$_has_many = array('comments');</code></pre>
 
@@ -43,7 +61,7 @@
 				<kbd>Model_Comment</kbd> objects which have the field <kbd>article_id</kbd> matching the primary key of
 				a given Article instance through the property <kbd>comments</kbd>.</p>
 
-			<h3>Advanced Usage</h3>
+			<h3>Fully configured</h3>
 
 			<pre class="php"><code>$_has_many = array('comments' => array(
 	'model_to' => 'Model_Fancy_Comment',
@@ -51,6 +69,7 @@
 	'key_to' => 'parent_article_id',
 	'cascade_save' => true,
 	'cascade_delete' => false,
+	// there are some more options for specific relation types
 ));</code></pre>
 
 			<p>In the basic example, Orm automatically assumes the model name and field mapping. This example
@@ -104,18 +123,66 @@
 				</tbody>
 			</table>
 
+			<article id="relation_types">
+				<h2>Relation types</h2>
+
+				<p>The Orm supports the following relationship types natively:</p>
+
+				<ul>
+					<li><a href="#belongs_to">Belongs To</a><br />
+						Has the primary key of the relation keps in its table, belongs to 1 related object.</li>
+					<li><a href="#has_one">Has One</a><br />
+						Has its primary key saved in one other row of another table (which belongs to this), has 1
+						related object.</li>
+					<li><a href="#has_many">Has Many</a><br />
+						Has its primary key saved in many other rows of another table (which belong to this one), has
+						many related objects.</li>
+					<li><a href="#many_many">Many to Many</a><br />
+						Have their primary keys saved in a table in between which keeps pairs of primary keys from both
+						tables. Have and belong to many objects.</li>
+					<li><a href="#many_through">Many Through</a><br />
+						Same as "Many to Many" but have a model relating them to each other instead of just a 2-column
+						table.</li>
+				</ul>
+			</article>
+
+			<article id="belongs_to">
+				<h2>Belongs To</h2>
+
+				<p>To be written.</p>
+
+				<h3>Full config example with defualts as values</h3>
+
+			<pre class="php"><code>// in a Model_Comment which belong to a post
+$_has_many = array(
+	'post' => array(
+		'key_from' => 'comment_id',
+		'model_to' => 'Model_Post',
+		'key_to' => 'id',
+		'cascade_save' => true,
+		'cascade_delete' => false,
+	)
+);</code></pre>
+			</article>
+
 			<article id="has_one">
 				<h2>Has One</h2>
 
 				<p>Specifies a one-to-one relationship to another model. The target model must include a "Belongs To"
 					reference to the current model to allow the inverse relationship.</p>
 
-				<pre class="php"><code>// Basic reference in an example Model_Book
-$_has_one = array('author');</code></pre>
+				<h3>Full config example with defualts as values</h3>
 
-				<p>The author can then be referenced from a <kbd>Model_Book</kbd> instance as follows:</p>
-
-				<pre class="php"><code>$author = $book->author;</code></pre>
+			<pre class="php"><code>// in a Model_User which has one profile
+$_has_one = array(
+	'profile' => array(
+		'key_from' => 'id',
+		'model_to' => 'Model_Profile',
+		'key_to' => 'user_id',
+		'cascade_save' => true,
+		'cascade_delete' => false,
+	)
+);</code></pre>
 			</article>
 
 			<article id="has_many">
@@ -124,16 +191,67 @@ $_has_one = array('author');</code></pre>
 				<p>Specifies a one-to-many relationship to another model. The target model must include a "Belongs To"
 					reference to the current model to allow the inverse relationship.</p>
 
-				<pre class="php"><code>// Basic references in an example Model_User
-$_has_many = array('posts', 'comments');</code></pre>
+				<h3>Full config example with defualts as values</h3>
 
-				<p>A user's posts can then be referenced by their respective aliases as follows:</p>
+			<pre class="php"><code>// in a Model_Post which has many comments
+$_has_many = array(
+	'comments' => array(
+		'key_from' => 'id',
+		'model_to' => 'Model_Comment',
+		'key_to' => 'post_id',
+		'cascade_save' => true,
+		'cascade_delete' => false,
+	)
+);</code></pre>
+			</article>
 
-				<pre class="php"><code>// Returns an array of Model_Post objects
-$posts = $user->posts;
+			<article id="many_many">
+				<h2>Many to Many</h2>
 
-// Returns an array of Model_Comment objects
-$comments = $user->comments;</code></pre>
+				<p>To be written.</p>
+
+				<h3>Full config example with defualts as values</h3>
+
+			<pre class="php"><code>// in a Model_Post which has and belongs to many Users
+// = multiple posts per user and multiple users (authors) per post
+$_many_many = array(
+	'users' => array(
+		'key_from' => 'id',
+		'key_through_from' => 'post_id', // column 1 from the table in between, should match a posts.id
+		'table_through' => 'posts_users', // both models plural without prefix in alphabetical order
+		'key_through_to' => 'user_id', // column 2 from the table in between, should match a users.id
+		'model_to' => 'Model_User',
+		'key_to' => 'id',
+		'cascade_save' => true,
+		'cascade_delete' => false,
+	)
+);</code></pre>
+			</article>
+
+			<article id="many_through">
+				<h2>Many Through</h2>
+
+				<p>To be written.</p>
+
+				<p class="note">Saving/deleting these are not yet supported directly, need to be done through the
+					model connecting them.</p>
+
+				<h3>Full config example with defualts as values</h3>
+
+			<pre class="php"><code>// in a Model_Post which has and belongs to many Users with a model in between
+// = multiple posts per user and multiple users (authors) per post
+$_many_many = array(
+	'users' => array(
+		'key_from' => 'id',
+		'key_through_from' => 'post_id', // column 1 from the table in between, should match a posts.id
+		'model_through' => 'Model_Posts_Users', // both models plural without prefix in alphabetical order
+		'key_through_to' => 'user_id', // column 2 from the table in between, should match a users.id
+		'model_to' => 'Model_User',
+		'key_to' => 'id',
+		'cascade_save' => true,
+		'cascade_delete' => false,
+	)
+);</code></pre>
 			</article>
 		</section>
 
