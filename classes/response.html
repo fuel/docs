@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Output Class - Fuel Documentation</title>
+	<title>Response Class - Fuel Documentation</title>
 	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
 	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="../assets/js/nav.js"></script>
@@ -24,14 +24,15 @@
 	<div id="main-nav"></div>
 
 	<section id="content">
-		<h2>Output Class</h2>
+		<h2>Response Class</h2>
 
-		<p>The output class contains the methods to deal with HTTP header information.</p>
+		<p>The response class contains the methods to deal with HTTP response and browser output.</p>
 
 		<article>
 			<h4>Setting the Status Header</h4>
-			<p>The status header is treated as a &quot;special&quot; header in Fuel.  You do not set it as you would other headers.  The status header is set as follows:</p>
-			<pre class="php"><code>Output::$status = 404;</code></pre>
+			<p>The status header is treated as a &quot;special&quot; header in Fuel.  You do not set it as you would
+				other headers.  The status header is set as follows in the controller:</p>
+			<pre class="php"><code>$this->response->status = 404;</code></pre>
 			<p>You simply set the <kbd>$status</kbd> variable to the status number for the request.</p>
 		</article>
 
@@ -74,72 +75,19 @@
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>// We'll be outputting a PDF
-Output::set_header('Content-Type', 'application/pdf');
+Response::set_header('Content-Type', 'application/pdf');
 
 // It will be called downloaded.pdf
-Output::set_header('Content-Disposition', 'attachment; filename="downloaded.pdf"');
+Response::set_header('Content-Disposition', 'attachment; filename="downloaded.pdf"');
 
 // Set no cache
-Output::set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
-Output::set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
-Output::set_header('Pragma', 'no-cache');
+Response::set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
+Response::set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
+Response::set_header('Pragma', 'no-cache');
 
 // More examples
-Output::set_header('Content-Language', 'en');
-Output::set_header('Content-Type', 'text/html; charset=utf-8');
-</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4>set_header($headers)</h4>
-			<p>The <strong>set_headers</strong> method allows set multiple custom HTTP headers.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$headers</kbd></th>
-								<td><i>Required</i></td>
-								<td>Array with name/value pairs of the headers to add</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>void</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>
-$headers = array(
-	'Cache-Control' => 'no-cache, no-store, max-age=0, must-revalidate',
-	'Expires'		=> 'Mon, 26 Jul 1997 05:00:00 GMT',
-	'Pragma'		=> 'no-cache'
-);
-Output::set_headers($headers);
-
-// Above method will do the same as
-Output::set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
-Output::set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
-Output::set_header('Pragma', 'no-cache');
-</code></pre>
+Response::set_header('Content-Language', 'en');
+Response::set_header('Content-Type', 'text/html; charset=utf-8');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -166,12 +114,12 @@ Output::set_header('Pragma', 'no-cache');
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>Output::send_headers();</code></pre>
+						<pre class="php"><code>Response::send_headers();</code></pre>
 					</td>
 				</tr>
 				</tbody>
 			</table>
-			<p>Note that you normally don't have to call this method manually. FuelPHP will take care of this as part of processing the request.</p>
+			<p>Note that you normally don't have to call this method manually. Fuel will take care of this as part of processing the request.</p>
 		</article>
 
 		<article>
