@@ -115,7 +115,7 @@
 		<p>
 			A base controller is a shared controller, like <kbd>Controller_Public</kbd> or <kbd>Controller_Admin</kbd> and are used to share logic between groups of controllers.
 			For example, the <kbd>Controller_Admin</kbd> controller could contain your login/logout actions and maybe a dashboard, but it could also contain a <kbd>before()</kbd> method
-			that checks to see if the user is logged in as an admin. Then all other controllers in your admin panel will extend this an automatically be secured.
+			that checks to see if the user is logged in as an admin. Then all other controllers in your admin panel will extend this and automatically be secured.
 		</p>
 
 <pre class="php"><code>class Controller_Admin extends Controller {
@@ -138,7 +138,7 @@
 	}
 }</code></pre>
 
-		<p>That code will go in <kbd>fuel/app/classes/controller/admin.php</kbd> and all of your other controllers should go in <kbd>fuel/app/classes/controller/admin/users.php</kbd>:</p>
+		<p>That code will go in <kbd>fuel/app/classes/controller/admin.php</kbd> and all of your other controllers should go in <kbd>fuel/app/classes/controller/admin/</kbd>:</p>
 
 <pre class="php"><code>class Controller_Admin_User extends Controller_Admin {
 
