@@ -31,6 +31,10 @@
 		<p>A Template Controller is an extension of the Base Controller which has template support built in using some pre-defined before() and after() methods. Basically it can be used to wrap
 		your view in a layout with a header, footer, sidebar, etc.</p>
 
+		<p class="note"><strong>Please note:</strong> if you have a before() method in your template controller you
+			<strong>must</strong> add <kbd>parent::before();</kbd> to that method or the <kbd>$this->template</kbd> will
+			not be available.</p>
+
 		<h3>Using the template controller</h3>
 
 		<p>Like all Controllers you create a class in the <kbd>fuel/app/classes/controller</kbd> directory. They need to extend the <kbd>Controller_Template</kbd> class and are prefixed by default by "Controller_". Below is an example of the controller "example": </p>
@@ -80,7 +84,7 @@
 <pre><code>class Controller_Example extends Controller_Template {
 
     public $template = 'template_admin';
-    
+
     public function action_index()
     {
         $this->template->title = 'Example Page';
