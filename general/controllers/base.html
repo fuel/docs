@@ -39,7 +39,7 @@
 	public function action_index()
 	{
 		$data['css'] = Asset::css(array('reset.css','960.css','main.css'));
-		$this->output = View::factory('test/index', $data);
+		$this->response->body = View::factory('test/index', $data);
 	}
 }</code></pre>
 
@@ -53,7 +53,7 @@
 {
 	$data['name'] = strtoupper($name);
 	$data['name_2'] = strtoupper($name_2);
-	$this->output = View::factory('test/name_to_upper', $data);
+	$this->response->body = View::factory('test/name_to_upper', $data);
 }</code></pre>
 
 		<p>If we call this method using <kdb>www.yoursite.com/example/name_to_upper/fuel/php</kbd> it will return the view <kbd>test/name_to_upper</kbd> with it given "Fuel" and "PHP" as values <var>$name_1</var> and <var>$name_2</var>. </p>
@@ -94,8 +94,8 @@
 		</article>
 
 		<article>
-			<h4>$output</h4>
-			<p>This property holds the output that will be given to the browser, if you want to output anything don't echo it just add it to the $this->output property.</p>
+			<h4>$response</h4>
+			<p>This property holds the Reponse object, if you want to output anything don't echo it just add it to the <kbd>$this->response->body</kbd> property.</p>
 		</article>
 
 		<h3>Extending other controllers</h3>
@@ -107,7 +107,7 @@
 	// your methods
 
 }</code></pre>
-		
+
 		<p>This may sound strange at first, but extending controllers allows you to share methods and create base controllers really easily.</p>
 
 		<h3>Creating Base Controllers</h3>
@@ -115,7 +115,7 @@
 		<p>
 			A base controller is a shared controller, like <kbd>Controller_Public</kbd> or <kbd>Controller_Admin</kbd> and are used to share logic between groups of controllers.
 			For example, the <kbd>Controller_Admin</kbd> controller could contain your login/logout actions and maybe a dashboard, but it could also contain a <kbd>before()</kbd> method
-			that checks to see if the user is logged in as an admin. Then all other controllers in your admin panel will extend this an automatically be secured.
+			that checks to see if the user is logged in as an admin. Then all other controllers in your admin panel will extend this and automatically be secured.
 		</p>
 
 <pre class="php"><code>class Controller_Admin extends Controller {
@@ -138,7 +138,7 @@
 	}
 }</code></pre>
 
-		<p>That code will go in <kbd>fuel/app/classes/controller/admin.php</kbd> and all of your other controllers should go in <kbd>fuel/app/classes/controller/admin/users.php</kbd>:</p>
+		<p>That code will go in <kbd>fuel/app/classes/controller/admin.php</kbd> and all of your other controllers should go in <kbd>fuel/app/classes/controller/admin/</kbd>:</p>
 
 <pre class="php"><code>class Controller_Admin_User extends Controller_Admin {
 

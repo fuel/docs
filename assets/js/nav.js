@@ -76,11 +76,11 @@ var nav = {
 			"Lang":			"classes/lang.html",
 			"Log":	    	"classes/log.html",
 			"Migrate":		"classes/migrate.html",
-			"Output":		"classes/output.html",
 			"Pagination":	"classes/pagination.html",
 			// "Profiler":	"todo.html",
 			"Redis":		"classes/redis.html",
 			"Request":		"classes/request.html",
+			"Response":		"classes/response.html",
 			// "Route":		"todo.html",
 			"Security":		"classes/security.html",
 			"Session": {
