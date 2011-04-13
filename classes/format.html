@@ -272,6 +272,42 @@ print_r( Format::factory( $array )->to_serialized() );
 				</tbody>
 			</table>
 		</article>
+		<article>
+			<h4>to_php()</h4>
+			<p>The <strong>to_php</strong> method returns the given data as a PHP representation of the data in a string. You could pass this into eval() or use it for other crazy things.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>$array = array (1, 2, array ("a", "b", "c"));
+echo Format::factory( $array )->to_php();
+
+// Returns
+"array (
+  0 => 1,
+  1 => 2,
+  2 => 
+  array (
+    0 => 'a',
+    1 => 'b',
+    2 => 'c',
+  ),
+)"</code>
+						</pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
 	</section>
 
 	<section id="footer">
