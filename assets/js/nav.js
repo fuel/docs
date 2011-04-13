@@ -38,7 +38,6 @@ var nav = {
 			"Coding Standards":	"general/coding_standards.html"
 		},
 		"Classes": {
-			"Agent":		"classes/agent.html",
 			"Arr":			"classes/arr.html",
 			"Asset":		"classes/asset.html",
 			"Cache": {
@@ -51,8 +50,15 @@ var nav = {
 			"Cookie":		"classes/cookie.html",
 			"Crypt":		"classes/crypt.html",
 			// "Database":		"todo.html",
-			 "Date":			"classes/date.html",
-			"DB":		"classes/db.html",
+			"Date":			"classes/date.html",
+			"Database": {
+				"Introduction":     "classes/database/introduction.html",
+				//"Configuration":     "classes/database/configuration.html",
+				"Usage":     "classes/database/usage.html",
+				"DB class":     "classes/database/db.html"
+				//"DBUtil class":     "todo.html",
+			},
+			//"DB":		"classes/db.html",
 			// "DButil":		"todo.html",
 			"Debug":		"classes/debug.html",
 			// "Email":		"todo.html",
@@ -76,11 +82,11 @@ var nav = {
 			"Lang":			"classes/lang.html",
 			"Log":	    	"classes/log.html",
 			"Migrate":		"classes/migrate.html",
-			"Output":		"classes/output.html",
 			"Pagination":	"classes/pagination.html",
 			// "Profiler":	"todo.html",
 			"Redis":		"classes/redis.html",
 			"Request":		"classes/request.html",
+			"Response":		"classes/response.html",
 			// "Route":		"todo.html",
 			"Security":		"classes/security.html",
 			"Session": {

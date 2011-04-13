@@ -126,6 +126,10 @@ Fuel\Core\Date Object
 		<article>
 			<h4>create_from_string($input, $pattern_key = 'local')</h4>
 			<p>The <strong>create_from_string</strong> creates a Date object from a named date string format</p>
+
+			<p class="note">This function uses <kbd>strptime()</kbd> for internationalization purposes. That method
+				isn't available on Windows hosts however, on those <kbd>strtotime()</kbd> is used instead and the
+				pattern is ignored.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -305,7 +309,7 @@ echo Date::days_in_month(2,2000); // 29
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4>time_ago($timestamp)</h4>
 			<p>The <strong>time_ago</strong> method returns a formatted time difference.</p>

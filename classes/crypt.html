@@ -28,14 +28,18 @@
 
 		<p>
 			The Crypt class allows encrypt or decrypt a string. The Crypt class is also used internally by for example the Fuel Sessions class.
-			It is <strong>very important</strong> that you configure a truly random salt for your application, even if you don't use the Crypt class directly.
 		</p>
+		<p>It uses the encryption and hashing methods provided by PHPSecLib, so it's not dependent on external modules being available, such as mcrypt.</p>
 
 		<section>
 			<h2>Configuration</h2>
 
 			<p>
-				The Crypt class is configured through the <kbd>app/config/crypt.php</kbd> configuration file. It is already populated with default configuration values.</p>
+				The Crypt class is configured through the <kbd>app/config/crypt.php</kbd> configuration file. It will be generated and populated with random values when you first use the Crypt class or if one of the required configuration values is missing.
+			</p>
+			<p class="note">
+				Note that this will require write access to app/config/crypt.php! If this is not possible, make sure all configuration settings are set!
+			</p>
 			<p>The following configuration settings can be defined:</p>
 			<table class="config">
 				<tbody>
@@ -46,35 +50,27 @@
 						<th>Description</th>
 					</tr>
 					<tr>
-						<th>salt</th>
+						<th>crypto_key</th>
 						<td>string</td>
-						<td><pre class="php"><code>'sup3rs3Cr3tk3y564'</code></pre></td>
+						<td>n/a</td>
 						<td>
-							Random salt value used in the encryption routines for extra entropy. Make sure you set this to something unique and random!
+							Random encryption key value used in the encryption routines. Make sure you set this to something unique and random!
 						</td>
 					</tr>
 					<tr>
-						<th>use_mcrypt</th>
-						<td>boolean</td>
-						<td><pre class="php"><code>true</code></pre></td>
+						<th>crypto_iv</th>
+						<td>string</td>
+						<td>n/a</td>
 						<td>
-							Optional: Indicates if you want to use PHP's Mcrypt library if available. It is a lot faster, but might cause your data not to be portable anymore (all target platforms need to have Mcrypt installed as well).
+							Random encryption initialisation vector used in the encryption routines. Make sure you set this to something unique and random!
 						</td>
 					</tr>
 					<tr>
-						<th>mcrypt_cipher</th>
-						<td>integer</td>
-						<td><pre class="php"><code>MCRYPT_RIJNDAEL_256</code></pre></td>
+						<th>crypto_hmac</th>
+						<td>string</td>
+						<td>n/a</td>
 						<td>
-							Optional: http://www.php.net/manual/en/mcrypt.ciphers.php for available ciphers.
-						</td>
-					</tr>
-					<tr>
-						<th>mcrypt_mode</th>
-						<td>integer</td>
-						<td><pre class="php"><code>MCRYPT_MODE_CBC</code></pre></td>
-						<td>
-							Optional: http://www.php.net/manual/en/mcrypt.constants.php for available cipher modes.
+							Random value used in the Hash-based Message Authentication Code (HMAC) routines. Make sure you set this to something unique and random!
 						</td>
 					</tr>
 				</tbody>
@@ -82,8 +78,8 @@
 		</section>
 
 		<article>
-			<h4>encode($value, $salt = false)</h4>
-			<p>The <strong>encode</strong> method encrypts a string value, optionally with a custom salt.</p>
+			<h4>encode($value, $key = false)</h4>
+			<p>The <strong>encode</strong> method encrypts a string value, optionally with a custom encryption key.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -105,9 +101,9 @@
 								<td>String value to encode.</td>
 							</tr>
 							<tr>
-								<th><kbd>$salt</kbd></th>
+								<th><kbd>$key</kbd></th>
 								<td><pre class="php"><code>false</code></pre></td>
-								<td>Optional custom salt value to be used to add more entropy to the value to encode.</td>
+								<td>Optional custom key value to be used to encode the value passsed. If false, the config value '<strong>crypto_key</strong>' is used.</td>
 							</tr>
 						</table>
 					</td>
@@ -119,8 +115,8 @@
 				<tr>
 					<th>Example</th>
 					<td>
-<pre class="php"><code>// encode a variable with a custom salt
-$value = Crypt::encode($value, 'R@nd0mS@1t');</code></pre>
+<pre class="php"><code>// encode a variable with a custom key
+$value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -128,8 +124,8 @@ $value = Crypt::encode($value, 'R@nd0mS@1t');</code></pre>
 		</article>
 
 		<article>
-			<h4>decode($value, $salt = false)</h4>
-			<p>The <strong>decode</strong> method decrypts a string value, optionally with a custom salt.</p>
+			<h4>decode($value, $key = false)</h4>
+			<p>The <strong>decode</strong> method decrypts a string value, optionally with a custom key.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -151,9 +147,9 @@ $value = Crypt::encode($value, 'R@nd0mS@1t');</code></pre>
 								<td>String value to decode.</td>
 							</tr>
 							<tr>
-								<th><kbd>$salt</kbd></th>
+								<th><kbd>$key</kbd></th>
 								<td><pre class="php"><code>false</code></pre></td>
-								<td>Optional custom salt value used when the <kbd>$value</kbd> was encoded.</td>
+								<td>Optional custom key value to be used to decode the value passsed. If false, the config value '<strong>crypto_key</strong>' is used.</td>
 							</tr>
 						</table>
 					</td>
@@ -165,13 +161,9 @@ $value = Crypt::encode($value, 'R@nd0mS@1t');</code></pre>
 				<tr>
 					<th>Example</th>
 					<td>
-<pre class="php"><code>// decode a variable with a custom salt
-$value = Crypt::decode($value, 'R@nd0mS@1t');</code></pre>
+<pre class="php"><code>// decode a variable with a custom key
+$value = Crypt::decode($value, 'R@nd0mK~Y');</code></pre>
 					</td>
-				</tr>
-				<tr>
-					<th>Throws</th>
-					<td><strong>Exception</strong> in case the <kbd>$value</kbd> passed was encoding using the Mcrypt library, but Mcrypt is not available to decode it.</td>
 				</tr>
 				</tbody>
 			</table>
