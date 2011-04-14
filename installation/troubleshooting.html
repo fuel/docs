@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Troubleshooting - Fuel Documentation</title>
+	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('installation', '../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>Fuel Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+		<h2>Troubleshooting</h2>
+
+		<p>Fuel supports a wide variety of configurations. Sometimes the configuration needs some work in order to work properly. Listed below are a couple of scenario's that may pop up when setting up Fuel on your machine.</p>
+
+		<p>When your problem is not listed below or is listed but no proper solution is provided, please report this at the issue tracker ( http://dev.fuel.com ).</p>
+
+		<h3>Syntax errors with clean installation</h3>
+
+		<pre>Parse error: syntax error, unexpected T_FUNCTION, expecting ')' in /Users/info/Sites/fiuel/public/index.php on line 9</pre>
+
+		<h4>Happens When...</h4>
+
+		<p>When running Fuel on a PHP version prior to 5.3.</p>
+
+		<h4>Solution</h4>
+
+		<p>Check the phpinfo(); in a seperate testfile and see if you're running 5.3 or higher. More info on <a href="http://fuelphp.com/docs/requirements.html" title="Requirements - Fuel Documentation">requirements</a> is here.</p>
+
+		<p>When developing loca;ly, update your server to the latest version of PHP 5.3. If you are not developing locally you'll need to ask your hosting company. Versions of PHP below 5.3 have lost support not just by us, but <a href="http://www.php.net/archive/2011.php#id2011-03-17-1" title="PHP: News Archive - 2011">by PHP themselves</a>.</p>
+
+
+		<h3>Oil cannot connect to DB but application can</h3>
+
+		<pre>mysql_connect(): [2002] No such file or directory (trying to connect via unix:///var/mysql/mysql.sock) in /Users/phil/Sites/fuel/fuel/core/classes/database/mysql/connection.php on 73</pre>
+
+		<h4>Happens When...</h4>
+
+		<p>Happens when you try to interact with the database via the command line, often when using MAMP for your MySQL server. The reason for this is that PHP-CLI is a different installation to the MAMP provided by MAMP, so PHP knows nothing of the database server.</p>
+
+		<p>Note: Before performing the following step to fix the problem, verify the database connection via normal browser access.</p>
+
+		<h4>Solution</h4>
+
+		<p>Change "localhost" to "127.0.0.1" in your database.php</p>
+
+		<strong>Failing that:</strong>
+
+		<p>Create a symlink pointing at MAMP's mysql.socket.</p>
+
+		<pre class="cli">$ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</pre>
+
+		<p>In some cases you have to create the directory first:</p>
+
+		<pre class="cli">$ sudo mkdir /var/mysql
+$ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</pre>
+
+
+		<h3>Orm\Exception [ Error ]: Listing columns not failed</h3>
+
+		<h4>Error</h4>
+
+		<pre>Orm\Exception [ Error ]: Listing columns not failed, you have to set the model properties with a static $_properties setting in the model.</pre>
+
+		<h4>Happens When...</h4>
+
+		<p>Working with ORM models when not connection via mysql.</p>
+
+		<h4>Solution</h4>
+
+		<p>Make sure the db config values are correct and test you database connection.</p>
+
+		<p>Update the model to contain the properties.</p>
+		
+		<pre class="php"><code>protected static $_properties = array('id', 'title', 'contents', 'publish');</code></pre>
+		
+		<p>Or set the change the db type to "mysql" in APPATH/config/db.php</p>
+
+
+		<h3>Assets do not work after changing the location of index.php</h3>
+
+		<h4>Solution</h4>
+
+		<p>That is because Asset class uses relative path to index.php.</p>
+
+		<p>To fix that you have to modify the app/config/asset.php to set the correct path. Notice in index.php that a constant named DOCROOT is being defined:</p>
+
+		<pre class="php"><code>define('DOCROOT', __DIR__.DIRECTORY_SEPARATOR);</code></pre>
+
+		<p>You can use that in app/config/asset.php. This will set the asset path back to the default folder folder doctroot/public/assets, where the subfolders for css/ img/ and js/ are located:</p>
+
+		<pre class="php"><code>'paths' => array(DOCROOT.'public/assets/'),</code></pre> 
+
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>

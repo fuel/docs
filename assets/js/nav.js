@@ -15,7 +15,8 @@ var nav = {
 		},
 		"Installation": {
 			"Instructions":	"installation/instructions.html",
-			"Download":		"installation/download.html"
+			"Download":		"installation/download.html",
+			"Troubleshooting":		"installation/troubleshooting.html"
 		},
 		"General": {
 			"Model-View-Controller":	"general/mvc.html",
@@ -49,7 +50,6 @@ var nav = {
 			"Config":		"classes/config.html",
 			"Cookie":		"classes/cookie.html",
 			"Crypt":		"classes/crypt.html",
-			// "Database":		"todo.html",
 			"Date":			"classes/date.html",
 			"Database": {
 				"Introduction":     "classes/database/introduction.html",
@@ -58,8 +58,6 @@ var nav = {
 				"DB class":     "classes/database/db.html"
 				//"DBUtil class":     "todo.html",
 			},
-			//"DB":		"classes/db.html",
-			// "DButil":		"todo.html",
 			"Debug":		"classes/debug.html",
 			// "Email":		"todo.html",
 			"Event":		"classes/event.html",
@@ -111,7 +109,6 @@ var nav = {
 				"SimpleAuth, Group &amp; Acl":		"packages/auth/simpleauth.html",
 				"Writing drivers":	"packages/auth/drivers.html"
 			},
-			// "Octane":			"todo.html",
 			"Oil": {
 				"Introduction":		"packages/oil/intro.html",
 				"Generate":			"packages/oil/generate.html",
