@@ -66,6 +66,28 @@
 
 		<p>The main configuration can be found at app/config/config.php. Edit it to your liking.</p>
 
+		<h2>Install inside the document root</h2>
+
+		<p>As explained in point 3, for security reasons it is strongly advised NOT to install Fuel inside your webserver's document root.</p>
+		<p>
+			However, there are cases where you would like to do that, for example for a (local) development environment where Apache's dynamic mass virtual hosting module
+			is used to quickly setup new development environments without the need to restart the webserver.
+		</p>
+		<p>In that case, you need an additional .htaccess file that you need to place in your document root, which will redirect requests to the site root to your public folder, and also modifies the rewrites to include the public folder:</p>
+<pre>
+&lt;IfModule mod_rewrite.c>
+	RewriteEngine on
+
+	RewriteBase /public
+
+	RewriteRule ^(/)?$ index.php/$1 [L]
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	RewriteRule ^(.*)$ index.php/$1 [L]
+&lt;/IfModule>
+</pre>
 
 	</section>
 
