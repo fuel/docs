@@ -50,15 +50,13 @@ var nav = {
 			"Cookie":		"classes/cookie.html",
 			"Crypt":		"classes/crypt.html",
 			// "Database":		"todo.html",
-			"Date":			"classes/date.html",
 			"Database": {
 				"Introduction":     "classes/database/introduction.html",
-				//"Configuration":     "classes/database/configuration.html",
-				"Usage":     "classes/database/usage.html",
-				"DB class":     "classes/database/db.html"
-				//"DBUtil class":     "todo.html",
+				"Usage":            "classes/database/usage.html",
+				"DB class":         "classes/database/db.html",
+				"DBUtil class":     "classes/database/dbutil.html"
 			},
-			//"DB":		"classes/db.html",
+			"Date":			"classes/date.html",
 			// "DButil":		"todo.html",
 			"Debug":		"classes/debug.html",
 			// "Email":		"todo.html",
