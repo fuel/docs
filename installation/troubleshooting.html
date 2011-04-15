@@ -80,7 +80,7 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</pre>
 		<h4>Happens When...</h4>
 
 		<p>Working with ORM models when not connection via mysql.</p>
-
+		
 		<h4>Solution</h4>
 
 		<p>Make sure the db config values are correct and test you database connection.</p>
@@ -93,19 +93,24 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</pre>
 
 
 		<h3>Assets do not work after changing the location of index.php</h3>
+		<h4>Error</h4>
 
-		<h4>Solution</h4>
+		<pre>Fuel\Core\Fuel_Exception [ Error ]: Could not find asset: foo.css</pre>
+		
+		<h4>Preferred Solution</h4>
+		<p>Leave index.php where it is, and instead, use a .htaccess file to redirect requests to it. For further information see: Installation &gt; Manual Installation &gt; Install inside the document root.</p>
+		
+		<h4>Solution B (If you still want to move index.php)</h4>
 
-		<p>That is because Asset class uses relative path to index.php.</p>
+		<p>The Asset class checks if the files actually exist on the disk, and it uses paths relative  to index.php to do so. When you change the location of index.php, it doesn't find those asset files anymore.</p>
 
-		<p>To fix that you have to modify the app/config/asset.php to set the correct path. Notice in index.php that a constant named DOCROOT is being defined:</p>
+		<p>To fix that you have to modify the app/config/asset.php to set the correct relative path. Notice in index.php that a constant named DOCROOT is being defined:</p>
 
 		<pre class="php"><code>define('DOCROOT', __DIR__.DIRECTORY_SEPARATOR);</code></pre>
 
-		<p>You can use that in app/config/asset.php. This will set the asset path back to the default folder folder doctroot/public/assets, where the subfolders for css/ img/ and js/ are located:</p>
-
+		<p>You can use that in app/config/asset.php. This will set the asset path back to the default folder: doctroot/public/assets, where the subfolders for css/ img/ and js/ are located:</p>
 		<pre class="php"><code>'paths' => array(DOCROOT.'public/assets/'),</code></pre> 
-
+		
 	</section>
 
 	<section id="footer">
