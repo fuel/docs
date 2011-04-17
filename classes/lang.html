@@ -49,7 +49,7 @@
 							<tr>
 								<th><kbd>$file</kbd></th>
 								<td><i>required</i></td>
-								<td>The path of the desired file.</td>
+								<td>The path of the desired file. You can prefix this with a namespace to load a config file from a loaded package or module.</td>
 							</tr>
 							<tr>
 								<th><kbd>$group</kbd></th>
@@ -81,8 +81,10 @@ Lang::load('example');
 Lang:load('example', 'test');
 
 // Outputs Plop
-$this->output = Lang::line('test.test.something');</code></pre>
-</code></pre>
+$this->output = Lang::line('test.test.something');
+
+// Will load the given file from the module 'foo' into the 'bar' group.
+Lang:load('foo\\example', 'bar');</code></pre>
 					</td>
 				</tr>
 				</tbody>
