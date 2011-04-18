@@ -3,13 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<title>Orm - Creating Models - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<link href="../../../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../../../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../../../assets/js/highlight.pack.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			show_nav('ormpackage', '../../');
+			show_nav('ormpackage', '../../../');
 		});
 		hljs.tabReplace = '    ';
 		hljs.initHighlightingOnLoad();
@@ -33,7 +33,7 @@
 			Active Record Pattern</a>, but was also influenced by other systems.</p>
 
 		<section>
-			<h2>Relating Models</h2>
+			<h2>Relations: Introduction</h2>
 
 			<h3>Usage</h3>
 
@@ -129,129 +129,21 @@ $comments = $post->comments;</code></pre>
 				<p>The Orm supports the following relationship types natively:</p>
 
 				<ul>
-					<li><a href="#belongs_to">Belongs To</a><br />
+					<li><a href="belongs_to.html">Belongs To</a><br />
 						Has the primary key of the relation keps in its table, belongs to 1 related object.</li>
-					<li><a href="#has_one">Has One</a><br />
+					<li><a href="has_one.html">Has One</a><br />
 						Has its primary key saved in one other row of another table (which belongs to this), has 1
 						related object.</li>
-					<li><a href="#has_many">Has Many</a><br />
+					<li><a href="has_many.html">Has Many</a><br />
 						Has its primary key saved in many other rows of another table (which belong to this one), has
 						many related objects.</li>
-					<li><a href="#many_many">Many to Many</a><br />
+					<li><a href="many_many.html">Many to Many</a><br />
 						Have their primary keys saved in a table in between which keeps pairs of primary keys from both
 						tables. Have and belong to many objects.</li>
-					<li><a href="#many_through">Many Through</a><br />
+					<li><a href="many_through.html">Many Through</a><br />
 						Same as "Many to Many" but have a model relating them to each other instead of just a 2-column
 						table.</li>
 				</ul>
-			</article>
-
-			<article id="belongs_to">
-				<h2>Belongs To</h2>
-
-				<p>To be written.</p>
-
-				<h3>Full config example with defaults as values</h3>
-
-			<pre class="php"><code>// in a Model_Comment which belong to a post
-$_belongs_to = array(
-	'post' => array(
-		'key_from' => 'comment_id',
-		'model_to' => 'Model_Post',
-		'key_to' => 'id',
-		'cascade_save' => true,
-		'cascade_delete' => false,
-	)
-);</code></pre>
-			</article>
-
-			<article id="has_one">
-				<h2>Has One</h2>
-
-				<p>Specifies a one-to-one relationship to another model. The target model must include a "Belongs To"
-					reference to the current model to allow the inverse relationship.</p>
-
-				<h3>Full config example with defaults as values</h3>
-
-			<pre class="php"><code>// in a Model_User which has one profile
-$_has_one = array(
-	'profile' => array(
-		'key_from' => 'id',
-		'model_to' => 'Model_Profile',
-		'key_to' => 'user_id',
-		'cascade_save' => true,
-		'cascade_delete' => false,
-	)
-);</code></pre>
-			</article>
-
-			<article id="has_many">
-				<h2>Has Many</h2>
-
-				<p>Specifies a one-to-many relationship to another model. The target model must include a "Belongs To"
-					reference to the current model to allow the inverse relationship.</p>
-
-				<h3>Full config example with defaults as values</h3>
-
-			<pre class="php"><code>// in a Model_Post which has many comments
-$_has_many = array(
-	'comments' => array(
-		'key_from' => 'id',
-		'model_to' => 'Model_Comment',
-		'key_to' => 'post_id',
-		'cascade_save' => true,
-		'cascade_delete' => false,
-	)
-);</code></pre>
-			</article>
-
-			<article id="many_many">
-				<h2>Many to Many</h2>
-
-				<p>To be written.</p>
-
-				<h3>Full config example with defaults as values</h3>
-
-			<pre class="php"><code>// in a Model_Post which has and belongs to many Users
-// = multiple posts per user and multiple users (authors) per post
-$_many_many = array(
-	'users' => array(
-		'key_from' => 'id',
-		'key_through_from' => 'post_id', // column 1 from the table in between, should match a posts.id
-		'table_through' => 'posts_users', // both models plural without prefix in alphabetical order
-		'key_through_to' => 'user_id', // column 2 from the table in between, should match a users.id
-		'model_to' => 'Model_User',
-		'key_to' => 'id',
-		'cascade_save' => true,
-		'cascade_delete' => false,
-	)
-);</code></pre>
-			</article>
-
-			<article id="many_through">
-				<h2>Many Through</h2>
-
-				<p>To be written.</p>
-
-				<p class="note">Saving/deleting these are not yet supported directly, need to be done through the
-					model connecting them.</p>
-
-				<h3>Full config example with defaults as values</h3>
-
-			<pre class="php"><code>// in a Model_Post which has and belongs to many Users with a model in between
-// = multiple posts per user and multiple users (authors) per post
-$_many_through = array(
-	'users' => array(
-		'key_from' => 'id',
-		'key_through_from' => 'post_id', // column 1 from the table in between, should match a posts.id
-		'model_through' => 'Model_Posts_Users', // both models plural without prefix in alphabetical order
-		'key_through_to' => 'user_id', // column 2 from the table in between, should match a users.id
-		'model_to' => 'Model_User',
-		'key_to' => 'id',
-		'cascade_save' => true,
-		'cascade_delete' => false,
-	)
-);</code></pre>
 			</article>
 		</section>
 

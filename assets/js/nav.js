@@ -128,7 +128,14 @@ var nav = {
 			"Introduction":		"packages/orm/intro.html",
 			"Creating Models":	"packages/orm/creating_models.html",
 			"CRUD":				"packages/orm/crud.html",
-			"Relating Models":	"packages/orm/relating_models.html",
+			"Relating Models": {
+				"Introduction":	"packages/orm/relations/intro.html",
+				"Belongs To":	"packages/orm/relations/belongs_to.html",
+				"Has One":		"packages/orm/relations/has_one.html",
+				"Has Many":		"packages/orm/relations/has_many.html",
+				"Many to Many":	"packages/orm/relations/many_many.html",
+				"Many Through":	"packages/orm/relations/many_through.html"
+			},
 			"Observers":		"packages/orm/observers.html"
 		}
 };
