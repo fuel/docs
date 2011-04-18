@@ -3,13 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<title>Auth package - Introduction - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<link href="../../../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../../../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../../../assets/js/highlight.pack.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			show_nav('packages', '../../');
+			show_nav('authpackage', '../../../');
 		});
 		hljs.tabReplace = '    ';
 		hljs.initHighlightingOnLoad();
@@ -32,16 +32,6 @@
 
 		<section>
 			<h2>SimpleAuth</h2>
-
-		</section>
-
-		<section>
-			<h2>SimpleGroup</h2>
-
-		</section>
-
-		<section>
-			<h2>SimpleAcl</h2>
 
 		</section>
 
@@ -73,12 +63,12 @@ public function action_login()
 	$data = array();
 	if($_POST)
 	{
-	
+
 		// Ok, you pressed the submit button. let's go over
 
 		// first of all, let's get a auth object
 		$auth = Auth::instance();
-		
+
 		// check the credentials. This assumes that you have the previous table created
 		if($auth->login($_POST['username'],$_POST['password']))
 		{
