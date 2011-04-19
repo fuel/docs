@@ -71,7 +71,7 @@
 	$data['title'] = 'Home';
 
 	//assign the view to browser output
-	$this->output = View::factory('home/index', $data);
+	$this->response->body = View::factory('home/index', $data);
 }</code></pre>
 
 		<p><strong>Method 2 (using example view above):</strong></p>
@@ -89,7 +89,7 @@
 	$view->set('title', 'Home');
 
 	//assign the view to browser output
-	$this->output = $view;
+	$this->response->body = $view;
 }</code></pre>
 
 		<h2>Security</h2>
@@ -181,7 +181,7 @@
 	$view->footer = View::factory('footer');
 
 	//assign to browser output
-	$this->output = $view;
+	$this->response->body = $view;
 }</code></pre>
 
 		<h3>Method 2 (using example views above):</h3>
