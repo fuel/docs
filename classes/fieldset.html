@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Form Class - Fuel Documentation</title>
+	<title>Fieldset Class - Fuel Documentation</title>
 	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
 	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="../assets/js/nav.js"></script>
@@ -27,12 +27,652 @@
 		<h2>Fieldset Class</h2>
 
 		<p>
-			The Fieldset class is used to create a form and it's validation in an object oriented way, it uses the Form
+			The Fieldset class is used to create a form and handle its' validation in an object oriented way. It uses the Form
 			and Validation classes. This class itself is only meant to model the fieldset and its fields while the other
 			two classes do the real work.
 		</p>
+		<p>
+			The resulting form markup is generated when passing the Fieldset instance to a View or by calling <kbd>build()</kbd>.
+		</p>
 
-		<p>To be documented.</p>
+		<article>
+			<h4>factory($name = 'default', $config = array())</h4>
+			<p>The <strong>factory</strong> method returns a new Fieldset instance. Note: there can only be one instance per <kdb>$name<kbd>.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$name</kbd></th>
+								<td><i><code>'default'</code></i></td>
+								<td>Identifier for this fieldset</td>
+							</tr>
+							<tr>
+								<th><kbd>$config</kbd></th>
+								<td><code>array()</code></td>
+								<td>Configuration array</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Fieldset Object</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$article_form = Fieldset::factory('article');</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>instance($instance = null)</h4>
+			<p>Returns a specific instance, or the default instance (is created if necessary).</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$instance</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>Identifier of the fieldset instance you want to retrieve</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Fieldset Object<br />
+					or <kbd>false</kbd> if the specified instance doesn't exist.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$article_form = Fieldset::instance('article');</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>validation()</h4>
+			<p>Gets the Validation instance for the current Fieldset. Creates the Validation instance if it doesn't already exist.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Validation Object</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$validation = $article_form->validation();</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>form()</h4>
+			<p>Gets the Form instance for the current Fieldset. Creates the Form instance if it doesn't already exist.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Form Object</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$form = $article_form->form();</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>instance($instance = null)</h4>
+			<p>Returns a specific instance, or the default instance (is created if necessary).</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$instance</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>Identifier of the fieldset instance you want to retrieve</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Fieldset Object<br />
+					or <kbd>false</kbd> if the specified instance doesn't exist.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$article_form = Fieldset::instance('article');</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>add($name, $label = '', array $attributes = array(), array $rules = array())</h4>
+			<p>Creates a Fieldset_Field instance and adds it to the current Fieldset.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$name</kbd></th>
+								<td><i>required</i></td>
+								<td>HTML name attribute, also used for referencing the field within the Fieldset</td>
+							</tr>
+							<tr>
+								<th><kbd>$label</kbd></th>
+								<td><i><code>''</code></i></td>
+								<td>Field label</td>
+							</tr>
+							<tr>
+								<th><kbd>$attributes</kbd></th>
+								<td><i><code>array()</code></i></td>
+								<td>HTML attributes as an associative array</td>
+							</tr>
+							<tr>
+								<th><kbd>$rules</kbd></th>
+								<td><i><code>array()</code></i></td>
+								<td>Validation rules to be applied to this Field</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Fieldset_Field Object</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$title_field = $article_form->add('article_title', 'Title', array('class' => 'pretty_input'));</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>field($name = null)</h4>
+			<p>Gets one or all Fieldset_Field instances for the current Fieldset.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$name</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>The name of an existing field in this Fieldset or null to get all fields.</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Fieldset_Field Object<br />
+					or <kbd>array()</kbd> of Fieldset_Fields</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$fields = $article_form->field();
+						$title_field = $article_form->field('article_title');</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>add_model($class, $instance = null, $method = 'set_form_fields')</h4>
+			<p>Add a model's fields. The model must have a method <kbd>set_form_fields()</kbd> that takes this Fieldset instance and adds fields to it.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$class</kbd></th>
+								<td><i>required</i></td>
+								<td>Either a full classname (including full namespace) or object instance of the model to get fields from.</td>
+							</tr>
+							<tr>
+								<th><kbd>$instance</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>Array or object that has the exactly same named properties to populate the fields. (Takes the field names from the model and fetches the remaining parameters from this array/object.</td>
+							</tr>
+							<tr>
+								<th><kbd>$method</kbd></th>
+								<td><i><code>'set_form_fields'</code></i></td>
+								<td>The name of the method name to call on the model for field fetching.</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Fieldset Object</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$article_form = Fieldset::factory('article');
+						$article_form->add_model('Model_Article');</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>set_config($config, $value = null)</h4>
+			<p>Sets a config value on the fieldset.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$config</kbd></th>
+								<td><i>required</i></td>
+								<td>Configuration array.</td>
+							</tr>
+							<tr>
+								<th><kbd>$value</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>If specified, sets the item to set from the passed Configuration array.</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Fieldset Object</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$article_form->set_config($config);</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>get_config($key = null, $default = null)</h4>
+			<p>Get the configuration array or one or more config values by key.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$key</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>A single key or multiple in an array, empty to fetch all.</td>
+							</tr>
+							<tr>
+								<th><kbd>$default</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>A single config value or multiple in an array if $key input is an array to be returned if the items aren't found.</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>array() or mixed</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$config = $article_form->get_config();</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>repopulate($input = null)</h4>
+			<p>Set all field values to the given and/or posted input.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$input</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>An associative array of values to assign to their respective Fields, or a Model instance to take the values from. If <kbd>null</kbd>, tries to fetch values from POST data.</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Fieldset Object</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$article_form->repopulate();</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>build($action = null)</h4>
+			<p>Alias for $this->form()->build() for this fieldset. Generates the HTML form markup. See <a href="form.html">Form</a>.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$action</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>A URL for the <kbd>action</kbd> attribute of the form.</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string HTML markup</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$this->template->form = $article_form->build(Uri::create('article/submit'));</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>input($field = null)</h4>
+			<p>Alias for $this->validation()->input(). Gets an array of validated input value(s) from either POST data or given input. See <a href="validation.html#usage">Validation</a>.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>A specific field for which to get the input.</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Array of input or string value of specified field</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$input_values = $article_form->input();</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>validated($field = null)</h4>
+			<p>Alias for $this->validation()->validated(). Gets an array of input value(s) that passed validation. See <a href="validation.html#usage">Validation</a>.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>A specific field for which to get the input.</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Array of input or string value of specified field, or <kbd>false</kbd> if the field isn't found</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$validated_values = $article_form->validated();</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>errors($field = null)</h4>
+			<p>Alias for $this->validation()->errors(). Gets an array of input value(s) that did not pass validation. See <a href="validation.html#usage">Validation</a>.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><i><code>null</code></i></td>
+								<td>A specific field for which to get the input.</td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Array of input or string value of specified field, or <kbd>false</kbd> if the field isn't found</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$validated_values = $article_form->validated();</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>show_errors(Array $config = array())</h4>
+			<p>Alias for $this->validation()->show_errors(). Returns all errors in a list or with set markup from the $config parameter. See <a href="validation.html#usage">Validation</a>.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tbody><tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$config</kbd></th>
+								<td><i><code>array()</code></i></td>
+								<td>Uses keys open_list, close_list, open_error, close_error &amp; no_errors. Overrides the values </td>
+							</tr>
+						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Array of input or string value of specified field, or <kbd>false</kbd> if the field isn't found</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$validated_values = $article_form->validated();</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<p>More examples to be written.</p>
+
 	</section>
 
 	<section id="footer">
