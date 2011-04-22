@@ -166,41 +166,49 @@
 		<h3>Method 1 (using example views above):</h3>
 
 <pre><code>class Controller_Home extends Controller {
-	//create the view
-	$view = View::factory('layout');
 
-	//assign variables
-	$view->username = 'Joe14';
-	$view->set('title', 'Home');
-	$view->site_title = 'My Website';
+	public function action_index()
+	{
+		//create the view
+		$view = View::factory('layout');
 
-	//assign views as variables
-	$view->head = View::factory('head');
-	$view->header = View::factory('header');
-	$view->content = View::factory('content');
-	$view->footer = View::factory('footer');
+		//assign variables
+		$view->username = 'Joe14';
+		$view->set('title', 'Home');
+		$view->site_title = 'My Website';
 
-	//assign to browser output
-	$this->response->body = $view;
+		//assign views as variables
+		$view->head = View::factory('head');
+		$view->header = View::factory('header');
+		$view->content = View::factory('content');
+		$view->footer = View::factory('footer');
+
+		//assign to browser output
+		$this->response->body = $view;
+	}
 }</code></pre>
 
 		<h3>Method 2 (using example views above):</h3>
 
 <pre><code>class Controller_Home extends Controller {
-	//assign variables
-	$data = array();
-	$data['title'] = 'Home';
-	$data['site_title'] = 'My Website';
-	$data['username'] = 'Joe14';
 
-	//assign views as variables
-	$data['head'] = View::factory('head', $data)->render();
-	$data['header'] = View::factory('header', $data)->render();
-	$data['content'] = View::factory('content', $data)->render();
-	$data['footer'] = View::factory('footer', $data)->render();
+	public function action_index()
+	{
+		//assign variables
+		$data = array();
+		$data['title'] = 'Home';
+		$data['site_title'] = 'My Website';
+		$data['username'] = 'Joe14';
 
-	//assign to browser output
-	$this->output = View::factory('layout', $data);
+		//assign views as variables
+		$data['head'] = View::factory('head', $data)->render();
+		$data['header'] = View::factory('header', $data)->render();
+		$data['content'] = View::factory('content', $data)->render();
+		$data['footer'] = View::factory('footer', $data)->render();
+
+		//assign to browser output
+		$this->output = View::factory('layout', $data);
+	}
 }</code></pre>
 
 		<h2>View Functions</h2>
