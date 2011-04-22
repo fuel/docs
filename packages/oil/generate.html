@@ -58,6 +58,7 @@
 					<li><a href="#views">Views</a></li>
 					<li><a href="#migrations">Migrations</a></li>
 					<li><a href="#scaffolding">Scaffolding</a></li>
+					<li><a href="#configs">Configs</a></li>
 				</ul>
 	
 				<h3 id="controllers">Controllers</h3>
@@ -305,6 +306,59 @@ Migrated to latest version: 3.
 
 /* End of file monkeys.php */
 </code></pre>
+
+				<h3 id="configs">Configs</h3>
+
+				<p>
+					To generate a <a href="../../classes/config.html">Config</a>, use the following command:
+				</p>
+
+				<pre class="cli"><code>$ php oil g config sample hello:world
+	Created config: APPPATH/config/sample.php</code></pre>
+
+				<p>This will produce a config that looks like this:</p>
+
+				<pre class="php"><code>return array (
+	'hello' => 'world',
+);
+
+/* End of file sample.php */</code></pre>
+			
+				<h3>Generate Config from COREPATH</h3>
+				<p>
+					To combine config from COREPATH/config if APPPATH/config doesn't have one
+				</p>
+			
+				<pre class="cli"><code>$ php oil g config package
+	Created config: APPPATH/config/package.php</code></pre>
+			
+				<p>This will produce a config that looks like this:</p>
+
+				<pre class="php"><code>return array (
+	'sources' => 
+	array (
+		0 => 'github.com/fuel-packages',
+	),
+);</code></pre>
+			
+				<h3>Force Update Config from COREPATH &amp; APPPATH</h3>
+				<p>
+					To combine config from COREPATH/config and combine APPPATH/config to APPPATH/config
+				</p>
+			
+				<pre class="cli"><code>$ php oil g config form -overwrite
+	Created config: APPPATH/config/form.php</code></pre>
+			
+				<p>This will produce a config that looks like this:</p>
+
+				<pre class="php"><code>return array (
+	'prep_value' => true,
+	'auto_id' => true,
+	'auto_id_prefix' => '',
+	'form_method' => 'post',
+);
+
+/* End of file form.php */</code></pre>
 	
 			</section>
 
