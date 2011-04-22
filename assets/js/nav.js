@@ -139,7 +139,7 @@ var nav = {
 			"Observers": {
 				"Introduction":			"packages/orm/observers/intro.html",
 				"Included observers":	"packages/orm/observers/included.html",
-				"Creating observers":	"packages/orm/observers/creating.html"
+				"Writing your own":		"packages/orm/observers/creating.html"
 			}
 		}
 };
