@@ -136,7 +136,11 @@ var nav = {
 				"Many to Many":	"packages/orm/relations/many_many.html",
 				"Many Through":	"packages/orm/relations/many_through.html"
 			},
-			"Observers":		"packages/orm/observers.html"
+			"Observers": {
+				"Introduction":			"packages/orm/observers/intro.html",
+				"Included observers":	"packages/orm/observers/included.html",
+				"Creating observers":	"packages/orm/observers/creating.html"
+			}
 		}
 };
 
