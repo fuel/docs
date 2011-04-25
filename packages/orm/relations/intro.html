@@ -113,12 +113,24 @@ $comments = $post->comments;</code></pre>
 					<tr>
 						<th>cascade_save</th>
 						<td>bool <kbd>true</kbd></td>
-						<td rowspan="2">You can override these options at runtime by passing <kbd>true</kbd> as the first
+						<td rowspan="2">Cascading means the operation on the model is repeated on its relation. Thus
+							cascading a save will save the relations as well, cascading a delete will delete the
+							relations as well. <strong>Be very carefull with cascading delete!</strong><br />
+							You can override these options at runtime by passing <kbd>true</kbd> as the first
 							argument when calling <kbd>save()</kbd> or <kbd>delete()</kbd> on the originating model.</td>
 					</tr>
 					<tr>
 						<th>cascade_delete</th>
 						<td>bool <kbd>false</kbd></td>
+					</tr>
+					<tr>
+						<th>conditions</th>
+						<td><kbd>array()</kbd></td>
+						<td>Takes 'where' and 'order_by' keys. These are more limited than the normal usage:
+							<kbd>where</kbd> must be an array of arrays containing
+							<kbd>array(field, compare, value)</kbd>. <kbd>order_by</kbd> contains an array of fields or
+							associative <kbd>field => direction</kbd>.<br />
+							<strong>Note:</strong> these are always used and cannot be turned off.</td>
 					</tr>
 				</tbody>
 			</table>
