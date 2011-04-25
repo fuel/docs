@@ -35,49 +35,10 @@
 		<h2>Relations: Introduction</h2>
 
 		<ul>
-			<li><a href="#usage">Usage</a></li>
 			<li><a href="#config">Configuration</a></li>
+			<li><a href="#usage">Usage</a></li>
 			<li><a href="#relation_types">Relation types</a></li>
 		</ul>
-
-		<article id="usage">
-			<h3>Usage</h3>
-
-			<p>The Orm allows for both eager and lazy-loading of relationships. Eager loading means that some (or all)
-				relations are fetched in the original query. Lazy loading means that the relations aren't fetched until
-				you request them.</p>
-
-			<pre class="php"><code>// eager loading, using joins:
-$post = Model_Post::find('all', array('related' => array('comments')));
-// or
-$post = Model_Post::find()->related('comments')->get();
-// $post->comments is available without any further querying after this
-
-// or use lazy loading, it won't use joins but query a relation once requested
-// first get a "post", 1 query without join
-$post = Model_Post::find('first');
-// now request the comments (not yet loaded), which will do another query without join automaticly
-$comments = $post->comments;</code></pre>
-
-			<h3>Usage with where/order_by conditions</h3>
-
-			<p>You can also additional conditions when fetching with the Orm. Note though that would also mean the
-				data retrieved will only be valid to the conditions with which you fetched them.<br />
-				Additional conditions are only possible with eager loading, though with lazy loading any default
-				conditions (see config table below) will be used of course.</p>
-
-			<pre class="php"><code>// right now this is only possible with method chaining
-$post = Model_Post::query()->related('articles', array(
-	'order_by' => array('id' => 'desc'),
-	'where' => array(array('id', '>', 5), array('publish_date', '>', time()))
-)->get_one();
-
-// but the same can also be done by prefixing the relation name to the column:
-$post = Model_Post::query()->related('articles')
-	->order_by('articles.id', 'desc')
-	->where('articles.publish_date', '>', time())
-	->get_one();</code></pre>
-		</article>
 
 		<article id="config">
 			<h2>Configuration</h2>
@@ -163,6 +124,108 @@ $post = Model_Post::query()->related('articles')
 					</tr>
 				</tbody>
 			</table>
+		</article>
+
+		<article id="usage">
+			<h2>Usage</h2>
+
+			<p>The Orm allows for both eager and lazy-loading of relationships. Eager loading means that some (or all)
+				relations are fetched in the original query. Lazy loading means that the relations aren't fetched until
+				you request them.</p>
+
+			<pre class="php"><code>// eager loading, using joins:
+$post = Model_Post::find('all', array('related' => array('comments')));
+// or
+$post = Model_Post::find()->related('comments')->get();
+// $post->comments is available without any further querying after this
+
+// or use lazy loading, it won't use joins but query a relation once requested
+// first get a "post", 1 query without join
+$post = Model_Post::find('first');
+// now request the comments (not yet loaded), which will do another query without join automaticly
+$comments = $post->comments;</code></pre>
+
+			<h3>Usage with where/order_by conditions</h3>
+
+			<p>You can also additional conditions when fetching with the Orm. Note though that would also mean the
+				data retrieved will only be valid to the conditions with which you fetched them.<br />
+				Additional conditions are only possible with eager loading, though with lazy loading any default
+				conditions (see config table below) will be used of course.</p>
+
+			<pre class="php"><code>// using array querying
+$post = Model_Post::find('first', array(
+	'related' => array(
+		'articles' => array(
+			'order_by' => array('id' => 'desc'),
+			'where' => array(
+				array('publish_date', '>', time()),
+				array('published', '=', 1),
+			),
+		),
+	),
+));
+
+// using method chaining
+$post = Model_Post::query()->related('articles', array(
+	'order_by' => array('id' => 'desc'),
+	'where' => array(
+		array('publish_date', '>', time()),
+		array('published', 1), // when using '=' it can be omitted
+	),
+)->get_one();
+
+// but the same can also be done by prefixing the relation name to the column:
+$post = Model_Post::query()->related('articles')
+	->order_by('articles.id', 'desc')
+	->where('articles.publish_date', '>', time())
+	->where('articles.published', 1)
+	->get_one();</code></pre>
+
+			<h3>Usage with nested relationships</h3>
+
+			<p>It is also possible to fetch the relations of relations to an unlimited depth (though you might want to
+				be carefull creating queries that require too many joins). All these can also be combined with where
+				and order_by conditions, some are exemplified below.</p>
+
+			<p class="note">Note that the order matters here, if you want to fetch the relations of a relation you must
+				load the "parent" relation before it's relation. Otherwise an exception will be thrown.</p>
+
+			<pre class="php"><code>// using array querying
+$post = Model_Post::find('first', array(
+	'related' => array(
+		'articles' => array(
+			'related' => array(
+				'user' => array(
+					'related' => array('profile'),
+					'where' => array('active', 1),
+				),
+			),
+			'order_by' => array(
+				'published' => 'desc',
+			),
+		),
+	),
+));
+
+// using only method chaining
+$post = Model_Post::query()
+	->related('articles')
+	->related('articles.user')
+	->related('articles.user.profile')
+	->where('articles.user.active', '=', 1)
+	->order_by('articles.published', 'desc')
+	->get_one();
+
+// or combine array & method chaining
+$post = Model_Post::query()
+	->related('articles', array(
+		'related' => array('user' => array(
+			'where' => array('active' => 1),
+		)),
+		'order_by' => array('published', 'desc'),
+	))
+	->related('articles.user.profile')
+	->get_one();</code></pre>
 		</article>
 
 		<article id="relation_types">
