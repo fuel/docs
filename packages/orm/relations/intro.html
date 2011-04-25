@@ -36,7 +36,12 @@
 
 		<ul>
 			<li><a href="#config">Configuration</a></li>
-			<li><a href="#usage">Usage</a></li>
+			<li><a href="#usage">Usage</a>
+				<ul>
+					<li><a href="#usage_rel_conditions">... with where/order_by conditions</a></li>
+					<li><a href="#usage_nested_rels">... with nested relationships</a></li>
+				</ul>
+			</li>
 			<li><a href="#relation_types">Relation types</a></li>
 		</ul>
 
@@ -145,7 +150,7 @@ $post = Model_Post::find('first');
 // now request the comments (not yet loaded), which will do another query without join automaticly
 $comments = $post->comments;</code></pre>
 
-			<h3>Usage with where/order_by conditions</h3>
+			<h3 id="usage_rel_conditions">Usage with where/order_by conditions</h3>
 
 			<p>You can also additional conditions when fetching with the Orm. Note though that would also mean the
 				data retrieved will only be valid to the conditions with which you fetched them.<br />
@@ -181,7 +186,7 @@ $post = Model_Post::query()->related('articles')
 	->where('articles.published', 1)
 	->get_one();</code></pre>
 
-			<h3>Usage with nested relationships</h3>
+			<h3 id="usage_nested_rels">Usage with nested relationships</h3>
 
 			<p>It is also possible to fetch the relations of relations to an unlimited depth (though you might want to
 				be carefull creating queries that require too many joins). All these can also be combined with where
