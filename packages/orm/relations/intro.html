@@ -32,9 +32,15 @@
 			It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
 			Active Record Pattern</a>, but was also influenced by other systems.</p>
 
-		<section>
-			<h2>Relations: Introduction</h2>
+		<h2>Relations: Introduction</h2>
 
+		<ul>
+			<li><a href="#usage">Usage</a></li>
+			<li><a href="#config">Configuration</a></li>
+			<li><a href="#relation_types">Relation types</a></li>
+		</ul>
+
+		<article id="usage">
 			<h3>Usage</h3>
 
 			<p>The Orm allows for both eager and lazy-loading of relationships. Eager loading means that some (or all)
@@ -52,6 +58,29 @@ $post = Model_Post::find()->related('comments')->get();
 $post = Model_Post::find('first');
 // now request the comments (not yet loaded), which will do another query without join automaticly
 $comments = $post->comments;</code></pre>
+
+			<h3>Usage with where/order_by conditions</h3>
+
+			<p>You can also additional conditions when fetching with the Orm. Note though that would also mean the
+				data retrieved will only be valid to the conditions with which you fetched them.<br />
+				Additional conditions are only possible with eager loading, though with lazy loading any default
+				conditions (see config table below) will be used of course.</p>
+
+			<pre class="php"><code>// right now this is only possible with method chaining
+$post = Model_Post::query()->related('articles', array(
+	'order_by' => array('id' => 'desc'),
+	'where' => array(array('id', '>', 5), array('publish_date', '>', time()))
+)->get_one();
+
+// but the same can also be done by prefixing the relation name to the column:
+$post = Model_Post::query()->related('articles')
+	->order_by('articles.id', 'desc')
+	->where('articles.publish_date', '>', time())
+	->get_one();</code></pre>
+		</article>
+
+		<article id="config">
+			<h2>Configuration</h2>
 
 			<h3>Basic config</h3>
 
@@ -134,30 +163,30 @@ $comments = $post->comments;</code></pre>
 					</tr>
 				</tbody>
 			</table>
+		</article>
 
-			<article id="relation_types">
-				<h2>Relation types</h2>
+		<article id="relation_types">
+			<h2>Relation types</h2>
 
-				<p>The Orm supports the following relationship types natively:</p>
+			<p>The Orm supports the following relationship types natively:</p>
 
-				<ul>
-					<li><a href="belongs_to.html">Belongs To</a><br />
-						Has the primary key of the relation keps in its table, belongs to 1 related object.</li>
-					<li><a href="has_one.html">Has One</a><br />
-						Has its primary key saved in one other row of another table (which belongs to this), has 1
-						related object.</li>
-					<li><a href="has_many.html">Has Many</a><br />
-						Has its primary key saved in many other rows of another table (which belong to this one), has
-						many related objects.</li>
-					<li><a href="many_many.html">Many to Many</a><br />
-						Have their primary keys saved in a table in between which keeps pairs of primary keys from both
-						tables. Have and belong to many objects.</li>
-					<li><a href="many_through.html">Many Through</a><br />
-						Same as "Many to Many" but have a model relating them to each other instead of just a 2-column
-						table.</li>
-				</ul>
-			</article>
-		</section>
+			<ul>
+				<li><a href="belongs_to.html">Belongs To</a><br />
+					Has the primary key of the relation keps in its table, belongs to 1 related object.</li>
+				<li><a href="has_one.html">Has One</a><br />
+					Has its primary key saved in one other row of another table (which belongs to this), has 1
+					related object.</li>
+				<li><a href="has_many.html">Has Many</a><br />
+					Has its primary key saved in many other rows of another table (which belong to this one), has
+					many related objects.</li>
+				<li><a href="many_many.html">Many to Many</a><br />
+					Have their primary keys saved in a table in between which keeps pairs of primary keys from both
+					tables. Have and belong to many objects.</li>
+				<li><a href="many_through.html">Many Through</a><br />
+					Same as "Many to Many" but have a model relating them to each other instead of just a 2-column
+					table.</li>
+			</ul>
+		</article>
 
 	</section>
 
