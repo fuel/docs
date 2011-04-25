@@ -133,8 +133,7 @@ var nav = {
 				"Belongs To":	"packages/orm/relations/belongs_to.html",
 				"Has One":		"packages/orm/relations/has_one.html",
 				"Has Many":		"packages/orm/relations/has_many.html",
-				"Many to Many":	"packages/orm/relations/many_many.html",
-				"Many Through":	"packages/orm/relations/many_through.html"
+				"Many to Many":	"packages/orm/relations/many_many.html"
 			},
 			"Observers": {
 				"Introduction":			"packages/orm/observers/intro.html",
