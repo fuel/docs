@@ -75,6 +75,13 @@
 				also performed on its loaded relations, deleting isn't cascaded by default but can be if you switch
 				this on.</p>
 
+			<p class="note">There is a limitation when fetching relations and limiting their output: you can't use
+				complex where statements on the main object. That are queries using parenthesis for nesting conditions
+				using <kbd>where_open()</kbd>. Normal (non-nested) where queries can be applied without problems.<br />
+				Technically it works like this: to limit the output the query on the base model's
+				table is actually a subquery with a limit set on it. Any of those nested where conditions are applied
+				on the result of the subquery and further joined relations.</p>
+
 			<h3>Configuration Options</h3>
 
 			<p>All of the configurations are optional when using the most common naming conventions.</p>
