@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Database - Usage - Fuel Documentation</title>
+	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('classes', '../../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>Fuel Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+		<h2>Database Usage</h2>
+		<p>
+			Normal database interactions are to go through the <a href="./db.html">DB class</a>.
+			The following examples will give you a feel for how to go about using the databse in fuel.
+		</p>
+		<p>Database usage is devided into a couple of segments:</p>
+		
+		<ul>
+			<li><a href="#running-queries">Running queries.</a></li>
+			<li><a href="#selecting">Selecting</a>,</li>
+			<li><a href="#filtering">filtering</a>,</li>
+			<li><a href="#updating">inserting</a>,</li>
+			<li><a href="#updating">updating</a> and</li>
+			<li><a href="#deleting">deleting</a> data.</li>
+			<li><a href="#joins">Joins.</a></li>
+		</ul>
+
+			
+		<article>
+			<h2 id="running-queries">Running queries</h2>
+			<p>First we prepare a query using <a href="./db.html#method_query">DB::query</a>.</p>
+			<pre><code>// returns a new Database_Query
+$query = DB::query('SELECT * FROM `users`');
+</code></pre>
+			<p>Now we can execute that query:</p>
+			<pre><code>$query = DB::query('SELECT * FROM `users`');
+
+// return a new Database_MySQLi_Result
+$query->execute();
+
+// Or execute is on a different database group
+$query->execute('another_group');
+// or
+$query->execute(Database_Connection::instance('another_group'));
+
+// And we can chain then like this:
+$result = DB::query('SELECT * FROM `users`')->execute();
+</code></pre>
+		</article>
+		
+		<article>
+			<h2 id="selecting">Selection data</h2>
+			<p>
+				First let's select data using <a href="./db.html#method_query">DB::query</a>.
+				As we are going to fetch a result from this query, we need to let the it know
+				what kind of query we are going to run.
+			</p>
+			<pre><code>
+$result = DB::query('SELECT * FROM `users`', DB::SELECT)->execute();
+			</code></pre>
+			<p>
+				We can also select data using <a href="./db.html#method_select">DB::select</a> or
+				<a href="./db.html#method_select_array">DB::select_array</a>. 
+			</p>
+			<pre><code>// Will execute SELECT `id`, `name` FROM `users`
+$result = DB::select('id','name')->from('users')->execute();
+			</code></pre>
+			
+			<p>If you want to alias columns, use arrays instead of strings</p>
+			
+			<pre><code>// Will execute SELECT `name` as `the_name` FROM `users`;
+$result = DB::select(array('name','the_name'))->from('users')->execute();
+</code></pre>
+					
+			<h4>Results</h4>
+			<p>
+				Executing a select query will generate a result object containing the requested database records.
+				By default the result is fetched as objects. Here is an exaple how to influence this behaviour.
+			</p>
+			<pre><code>// Will fetch the result as an associative array.
+$result = DB::select('id','name')->from('users')->as_assoc()->execute();
+
+// Will fetch the result as an object.
+$result = DB::select('id','name')->from('users')->as_object()->execute();
+
+// Will fetch the result as an Model_Users object.
+$result = DB::select('id','name')->from('users')->as_object('Model_Users')->execute();
+			</code></pre>	
+			<p>Want to know how many records you have fetched? It's dead simple!</p>
+<pre><code>
+$result = DB::select('*')->from('users')->execute();
+// Just count the results, it returns an int.
+$num_rows = count($result);
+			</code></pre>
+			<p>To access these results you eighter loop through the result object directly, or get the result array.</p>
+			<pre><code>$result = DB::select()->from('users')->execute();
+foreach($result as $item)
+{
+	// do something with $item
+}
+
+$result_array = $result->as_array();
+foreach($result_array as $item)
+{
+	// do something with $item
+}
+</code></pre>
+			<p>Optionaly we specify the array key and value to be returned from <em>as_array</em></p>
+			<pre><code>$result = DB::select()->from('users')->execute();
+$on_key = $result->as_array('id');
+foreach($on_key as $id => $item)
+{
+	// $id will contain the records id
+	// do something with $item or it's $id
+}
+
+$key_value = $result->as_array('id', 'email');
+foreach($key_value as $id => $email)
+{
+	// now $email will be the email field.
+	// so you can do something with $id or $email
+}
+</code></pre>
+			
+		</article>
+		
+		<article>
+			
+			<h2 id="filtering">Filtering</h2>
+			<p>
+				In order to set the conditions on our queries we can set WHERE conditions.
+				These examples also apply to updating and deleting.
+			</p>
+			<pre><code>// Will execute SELECT * FROM `users` WHERE `id` = 1
+$result = DB::select()->from('users')->where('id', '=', 1)->execute();
+
+// Will execute SELECT * FROM `users` WHERE `id` IN (1, 2, 3)
+$id_array = array(1,2,3);
+$result = DB::select()->from('users')->where('id', 'IN', $id_array)->execute();
+
+// Will execute SELECT * FROM `users` WHERE `id` != 1
+$result = DB::select()->from('users')->where('id', '!=', 1)->execute();
+
+// Will execute SELECT * FROM `users` WHERE `name` LIKE "john%"
+$who = "john%";
+$result = DB::select()->from('users')->where('id', 'like', $who)->execute();
+</code></pre>
+			<p>Grouped where statements are also supported</p>
+			
+			<pre><code>// SELECT * FROM `users` WHERE (`name` = 'John' AND `email` = 'john@example.com')
+// OR (`name` = 'mike' OR `name` = 'dirk')
+$result = DB::select()->from('users')->where_open()
+	->where('name', 'John')
+	->and_where('email', 'john@example.com')
+->where_close()
+->or_where_open()
+	->where('name', 'mike')
+	->or_where('name', 'dirk')
+->or_where_close()->execute();
+</code></pre>
+			
+		</article>
+		
+		<article>
+		
+			<h2 id="updating">Inserting</h2>
+			<p>
+				For inserting data we use <a href="./db.html#method_insert">DB::insert</a>.
+				If succesfully executed an insert query will return an array containing a
+				list of insert id and rows created.
+			</p>
+			<pre><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`) 
+// VALUES ("John Random", "john@example.com", "s0_s3cr3t")
+list($insert_id, $rows_affected) = DB::insert('users')->set(array(
+	'name' => 'John Random',
+	'email' => 'john@example.com',
+	'password' => 's0_s3cr3t',
+))->execute();
+</code></pre>
+			<p>You can also set the columns and values seperatly</p>
+			
+			<pre><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`)
+// VALUES ("John Random", "john@example.com", "s0_s3cr3t")
+list($insert_id, $rows_affected) = DB::insert('users')->columns(array(
+	'name', 'email', 'password'
+))->values(array(
+	'John Random', 'john@example.com', 's0_s3cr3t'
+))->execute();
+</code></pre>
+		
+		</article>
+		
+		<article>
+		
+			<h2 id="deleting">Deleting</h2>
+			
+			<p>
+				To delete records, use <a href="./db.html#method_delete">DB::delete</a>.
+				When executed it will return the number of rows affected.
+			</p>
+			<pre><code>// Empty the whole users table
+$result = DB::delete('users')->execute(); // (int) 20
+
+// Executes DELETE FROM `users` WHERE `email` LIKE "%@example.com"
+$result = DB::delete('users')->where('email', 'like', '%@example.com')->execute(); // (int) 7
+</code></pre>
+		
+		</article>
+		
+		<article>
+		
+			<h2 id="joins">Joins</h2>			
+			<p>When selecting data, you can also join other tables into the result.</p>
+			
+			<pre><code>// Will execute SELECT * FROM `users` LEFT JOIN `roles` ON `roles`.`id` = `users`.`role_id`
+$result = DB::select()->from('users')->join('roles','LEFT')->on('roles.id', '=', 'users.role_id');
+
+// Will execute SELECT * FROM `users` RIGHT OUTER JOIN `roles` ON `roles`.`id` = `users`.`role_id`
+$result = DB::select()->from('users')->join('roles','right outer')->on('roles.id', '=', 'users.role_id');
+</code></pre>
+		
+		</article>
+
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>

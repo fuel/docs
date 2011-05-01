@@ -78,7 +78,7 @@ $request = Request::factory('admin/login');
 
 		<article>
 			<h4>execute()</h4>
-			<p>The <strong>execute</strong> method executes a request, and stores the resulting output in the request object to be used later.</p>
+			<p>The <strong>execute</strong> method executes a request, and stores the resulting response in the request object to be used later.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -105,8 +105,8 @@ $request = Request::factory('admin/login')->execute();</code></pre>
 		</article>
 
 		<article>
-			<h4>output()</h4>
-			<p>The <strong>output</strong> method fetches the output of the executed request.</p>
+			<h4>response()</h4>
+			<p>The <strong>response</strong> method fetches the response object of the executed request.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -119,18 +119,18 @@ $request = Request::factory('admin/login')->execute();</code></pre>
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>Fuel\Core\Request Object</td>
+					<td>Fuel\Core\Response Object</td>
 				</tr>
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>// execute the request, fetch the output, and display it
-$request = Request::factory('admin/login')->execute()->output();
-echo $request;
+						<pre class="php"><code>// execute the request, fetch the response, and display it
+$response = Request::factory('admin/login')->execute()->response();
+echo $response;
 
 // The Request object contains a __toString() method as an alternative way to fetch the output
-$request = Request::factory('admin/login')->execute();
-echo $request;</code></pre>
+$output = Request::factory('admin/login')->execute();
+echo $output;</code></pre>
 					</td>
 				</tr>
 				</tbody>

@@ -15,7 +15,8 @@ var nav = {
 		},
 		"Installation": {
 			"Instructions":	"installation/instructions.html",
-			"Download":		"installation/download.html"
+			"Download":		"installation/download.html",
+			"Troubleshooting":		"installation/troubleshooting.html"
 		},
 		"General": {
 			"Model-View-Controller":	"general/mvc.html",
@@ -38,7 +39,6 @@ var nav = {
 			"Coding Standards":	"general/coding_standards.html"
 		},
 		"Classes": {
-			"Agent":		"classes/agent.html",
 			"Arr":			"classes/arr.html",
 			"Asset":		"classes/asset.html",
 			"Cache": {
@@ -50,10 +50,14 @@ var nav = {
 			"Config":		"classes/config.html",
 			"Cookie":		"classes/cookie.html",
 			"Crypt":		"classes/crypt.html",
-			// "Database":		"todo.html",
-			 "Date":			"classes/date.html",
-			"DB":		"classes/db.html",
-			// "DButil":		"todo.html",
+			"Database": {
+				"Introduction":     "classes/database/introduction.html",
+				"Usage":            "classes/database/usage.html",
+				"DB class":         "classes/database/db.html",
+				"DBUtil class":     "classes/database/dbutil.html"
+			},
+			"Date":			"classes/date.html",
+			// "DButil":		"todo.html",\
 			"Debug":		"classes/debug.html",
 			// "Email":		"todo.html",
 			"Event":		"classes/event.html",
@@ -97,29 +101,44 @@ var nav = {
 			"Validation":	"classes/validation.html"
 			// "View":			"todo.html"
 		},
-		"Packages": {
-			"Auth": {
-				"Introduction":		"packages/auth/intro.html",
-				"Usage":			"packages/auth/usage.html",
-				"Driver types":		"packages/auth/driver_types.html",
-				"SimpleAuth, Group &amp; Acl":		"packages/auth/simpleauth.html",
-				"Writing drivers":	"packages/auth/drivers.html"
-			},
-			// "Octane":			"todo.html",
-			"Oil": {
-				"Introduction":		"packages/oil/intro.html",
-				"Generate":			"packages/oil/generate.html",
-				"Refine":			"packages/oil/refine.html",
-				"Package":			"packages/oil/package.html",
+		"Oil": {
+			"Introduction":		"packages/oil/intro.html",
+			"Generate":			"packages/oil/generate.html",
+			"Refine":			"packages/oil/refine.html",
+			"Package":			"packages/oil/package.html",
 //				"Test":				"packages/oil/test.html",
-				"Console":			"packages/oil/console.html"
+			"Console":			"packages/oil/console.html"
+		},
+		"Auth Package": {
+			"Introduction":		"packages/auth/intro.html",
+			"Usage":			"packages/auth/usage.html",
+			"Driver types": {
+				"Login":		"packages/auth/types/login.html",
+				"Groups":		"packages/auth/types/groups.html",
+				"ACL":			"packages/auth/types/acl.html"
 			},
-			"Orm": {
-				"Introduction":		"packages/orm/intro.html",
-				"Creating Models":	"packages/orm/creating_models.html",
-				"CRUD":				"packages/orm/crud.html",
-				"Relating Models":	"packages/orm/relating_models.html",
-				"Observers":		"packages/orm/observers.html"
+			"SimpleAuth": {
+				"Login":		"packages/auth/simpleauth/login.html",
+				"Groups":		"packages/auth/simpleauth/groups.html",
+				"ACL":			"packages/auth/simpleauth/acl.html"
+			},
+			"Writing drivers":	"packages/auth/drivers.html"
+		},
+		"Orm Package": {
+			"Introduction":		"packages/orm/intro.html",
+			"Creating Models":	"packages/orm/creating_models.html",
+			"CRUD":				"packages/orm/crud.html",
+			"Relating Models": {
+				"Introduction":	"packages/orm/relations/intro.html",
+				"Belongs To":	"packages/orm/relations/belongs_to.html",
+				"Has One":		"packages/orm/relations/has_one.html",
+				"Has Many":		"packages/orm/relations/has_many.html",
+				"Many to Many":	"packages/orm/relations/many_many.html"
+			},
+			"Observers": {
+				"Introduction":			"packages/orm/observers/intro.html",
+				"Included observers":	"packages/orm/observers/included.html",
+				"Writing your own":		"packages/orm/observers/creating.html"
 			}
 		}
 };

@@ -2,14 +2,14 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Orm - Introduction - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<title>Orm - Relations - Has One - Fuel Documentation</title>
+	<link href="../../../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../../../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../../../assets/js/highlight.pack.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			show_nav('ormpackage', '../../');
+			show_nav('ormpackage', '../../../');
 		});
 		hljs.tabReplace = '    ';
 		hljs.initHighlightingOnLoad();
@@ -33,20 +33,23 @@
 			Active Record Pattern</a>, but was also influenced by other systems.</p>
 
 		<section>
-			<h2>Introduction</h2>
+			<h2>Relations: Has One</h2>
 
-			<p>Unlike many other ActiveRecord implementations, ours is small, fast and dead simple to use. It attempts
-				to make creating, updating and deleting items from your database as easy as possible. It does this by
-				doing all the hard work for you.</p>
-		</section>
+			<p>Specifies a one-to-one relationship to another model. The target model must include a "Belongs To"
+				reference to the current model to allow the inverse relationship.</p>
 
-		<section>
-			<h2>Installation</h2>
+			<h3>Full config example with defaults as values</h3>
 
-			<p>The Orm package is included in the Fuel download. All you need to do is enable it in your config.</p>
-            <pre class="php"><code>'packages' => array(
-    'orm',
-),</code></pre>
+			<pre class="php"><code>// in a Model_User which has one profile
+$_has_one = array(
+	'profile' => array(
+		'key_from' => 'id',
+		'model_to' => 'Model_Profile',
+		'key_to' => 'user_id',
+		'cascade_save' => true,
+		'cascade_delete' => false,
+	)
+);</code></pre>
 		</section>
 
 	</section>

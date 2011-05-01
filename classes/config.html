@@ -173,7 +173,7 @@ Config::set('blog.items_to_display', 5);</code></pre>
 							<tr>
 								<th><kbd>$file</kbd></th>
 								<td><i>required</i></td>
-								<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed).</td>
+								<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed). You can prefix this with a namespace to load a config file from a loaded package or module.</td>
 							</tr>
 							<tr>
 								<th><kbd>$group</kbd></th>
@@ -197,7 +197,10 @@ Config::load('custom');
 Config::load('custom', true);
 
 // This loads the "custom" config file in a group named "foo".
-Config::load('custom', 'foo');</code></pre>
+Config::load('custom', 'foo');
+
+// This loads the "custom" config from a module called foo in a group named "bar"
+Config::load('foo\\custom', 'bar');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -225,7 +228,7 @@ Config::load('custom', 'foo');</code></pre>
 							<tr>
 								<th><kbd>$file</kbd></th>
 								<td><i>required</i></td>
-								<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed).</td>
+								<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed). You can prefix this with a namespace to load a config file from a loaded package or module.</td>
 							</tr>
 							<tr>
 								<th><kbd>$config</kbd></th>
@@ -250,6 +253,9 @@ Config::set('foo.key', $value);
 
 // save the updated config group 'foo' (note: it will save everything in that group!)
 Config::save('custom', 'foo');
+
+// save the updated config group 'bar' to config file 'custom' in the module 'foo'
+Config::save('foo\\custom', 'bar');
 </code></pre>
 					</td>
 				</tr>

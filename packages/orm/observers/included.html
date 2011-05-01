@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Orm - Observers - Included observers - Fuel Documentation</title>
+	<link href="../../../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../../../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../../../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('ormpackage', '../../../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>Fuel Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+		<h2>Orm</h2>
+
+		<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
+			Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
+			to esteblish relations between those objects.<br />
+			It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
+			Active Record Pattern</a>, but was also influenced by other systems.</p>
+
+		<article id="included_observers">
+			<h2>Observers: Included observers</h2>
+
+			<h3>Observer_CreatedAt</h3>
+
+			<p>This observer acts only upon <kbd>before_insert</kbd> and expects your model to have a
+				<kbd>created_at</kbd> property which will be set to the Unix timestamp when saving for the first time.</p>
+
+			<pre class="php"><code>// Just add the Observer
+protected static $_observers = array('Orm\\Observer_CreatedAt');
+
+// But adding it just for before_insert is enough
+protected static $_observers = array('Orm\\Observer_CreatedAt' => array('before_insert'));</code></pre>
+
+			<p>You can change the default property expected and use a mySQL timestamp instead of the defaults:</p>
+
+			<pre class="php"><code>// Use mySQL timestamp instead of Unix timestamp
+Orm\Observer_CreatedAt::$mysql_timestamp = true;
+
+// Use property called just "updated" instead of "updated_at"
+Orm\Observer_CreatedAt::$property = 'updated';</code></pre>
+
+			<h3>Observer_UpdatedAt</h3>
+
+			<p>This observer acts only upon <kbd>before_save</kbd> and expects your model to have a
+				<kbd>updated_at</kbd> property which will be set to the Unix timestamp when saving (also during the
+				first time).</p>
+
+			<pre class="php"><code>// Just add the Observer
+protected static $_observers = array('Orm\\Observer_UpdatedAt');
+
+// But adding it just for before_insert is enough
+protected static $_observers = array('Orm\\Observer_UpdatedAt' => array('before_save'));</code></pre>
+
+			<p>You can change a <kbd>$mysql_timestamp</kbd> and <kbd>$property</kbd> value on this observer just like
+				on the CreatedAt observer.</p>
+
+			<h3>Observer_Validation</h3>
+
+			<p>To be written.</p>
+
+			<pre class="php"><code>// Just add the Observer
+protected static $_observers = array('Orm\\Observer_Validation');
+
+// But adding it just for before_insert is enough
+protected static $_observers = array('Orm\\Observer_Validation' => array('before_save'));</code></pre>
+
+			<h3>Observer_Typing</h3>
+
+			<p>This is for 2 things: type enforcement for input and type casting for output from the DB. That means
+				that when you're saving the Typing observer will try to cast the input value to the expected type and
+				throw an exception when it can't. And when you're retrieving DB data, normally it would all be strings
+				(even integers and floats) but with the typing observer those will be cast to their scalar type.</p>
+
+			<p>In addition to the above the Typing observer also adds support for serialized & json fields. Both should
+				be string type fields ("text" preferably) but will have their value encoded for saving (using
+				<kbd>serialize()</kbd> or <kbd>json_encode()</kbd>) and decoded when retrieving from the DB (using
+				<kbd>unserialize()</kbd> or <kbd>json_decode()</kbd>).</p>
+
+			<p class="note">The Observer_Typing isn't meant as an alternative to validation, don't try to use it as
+				such. Neither are the exceptions thrown by this observer meant to be read by the visitor of your site,
+				they're meant to help you debug your code.</p>
+
+			<pre class="php"><code>// Just add the Observer
+protected static $_observers = array('Orm\\Observer_Typing');
+
+// But adding it just for these specific events is enough
+protected static $_observers = array('Orm\\Observer_Typing' => array('before_save', 'after_save', 'after_load'));</code></pre>
+
+			<p>For this observer to work you must have your the <kbd>$_properties</kbd> static variable set in your
+				model, or not set at all using detection with <kbd>DB::list_columns()</kbd> (mySQL only!). When
+				configuring it yourself the following settings are available:</p>
+
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th style="width: 15%;">Param</th>
+							<th style="width: 35%;">Valid input</th>
+							<th style="width: 50%;">Description</th>
+						</tr>
+						<tr>
+							<th>data_type</th>
+							<td>varchar, int, integer, tinyint, smallint, mediumint, bigint, float, double, decimal,
+								text, tinytext, mediumtext, longtext, enum, set, bool, boolean, serialize, json</td>
+							<td>
+								The SQL data type, <strong>Required</strong> to have the typing observer used on a field.
+							</td>
+						</tr>
+						<tr>
+							<th>is_nullable</th>
+							<td>bool</td>
+							<td>
+								Whether <kbd>null</kbd> is allowed as a value
+							</td>
+						</tr>
+						<tr>
+							<th>character_maximum_length</th>
+							<td>int</td>
+							<td>
+								The maximum number of characters allowed for a string data type (varchar, text)
+							</td>
+						</tr>
+						<tr>
+							<th>min</th>
+							<td>int</td>
+							<td>
+								The minimal value for an integer
+							</td>
+						</tr>
+						<tr>
+							<th>max</th>
+							<td>int</td>
+							<td>
+								The mixamum value for an integer
+							</td>
+						</tr>
+						<tr>
+							<th>options</th>
+							<td>array</td>
+							<td>
+								Array of valid string values for set or enum data type<br />
+								<strong>Note:</strong> currently the options themselves cannot contain comma's.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		</article>
+
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>

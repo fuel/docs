@@ -24,7 +24,29 @@
 	<div id="main-nav"></div>
 
 	<section id="content">
-		<h2>Installation Instructions</h2>
+		<h5>Choose One: <a href="#command">Command Line Installation</a> | <a href="#manual">Manual Installation</a></h5>
+		<br />
+		<h2 id="command">Command Line Installation</h2>
+    <p class="note">This currently only works on *nix systems (Linux, OS X, Unix, etc).</p>
+		<p>Our quick installer is a stripped down interface for the Oil package.  It allows you to create a new project with one command.  You will also no longer need to use 'php' in your oil commands.</p>
+
+		<p>To install the quick installer simply open up a shell and run the following command:</p>
+		
+		<pre class="cli">$ curl get.fuelphp.com/oil | sh</pre>
+		
+		<p class="note">This will ask for your password, as it installs the script too /usr/bin.</p>
+		
+		<p>Now you can just use 'oil' instead of 'php oil' in your projects.</p>
+
+		<p>To create a new project simply run:</p>
+
+		<pre class="cli">$ oil create &lt;project_name&gt;</pre>
+		
+		<p>This will create a folder in the directory you are in with the project name you gave.  It will then clone the repository and all submodules into that directory.</p>
+		
+		<p>Note: This will also run <kbd>$ oil refine install</kbd>, which makes the necessary directories writable.</p>
+
+		<h2 id="manual">Manual Installation Instructions</h2>
 
 		<p>This will create the default installation of the Fuel framework on your web server.</p>
 
@@ -53,7 +75,7 @@
 </pre>
 			</li>
 			<li>
-				Set permissions on write-able folders manually, or run:
+				Set permissions on writable folders manually, or run:
 <pre>$ php oil refine install
 	Made writable: APPPATH/cache
 	Made writable: APPPATH/logs
@@ -66,6 +88,28 @@
 
 		<p>The main configuration can be found at app/config/config.php. Edit it to your liking.</p>
 
+		<h2>Install inside the document root</h2>
+
+		<p>As explained in point 3, for security reasons it is strongly advised NOT to install Fuel inside your webserver's document root.</p>
+		<p>
+			However, there are cases where you would like to do that, for example for a (local) development environment where Apache's dynamic mass virtual hosting module
+			is used to quickly setup new development environments without the need to restart the webserver.
+		</p>
+		<p>In that case, you need an additional .htaccess file that you need to place in your document root, which will redirect requests to the site root to your public folder, and also modifies the rewrites to include the public folder:</p>
+<pre>
+&lt;IfModule mod_rewrite.c>
+	RewriteEngine on
+
+	RewriteBase /public
+
+	RewriteRule ^(/)?$ index.php/$1 [L]
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	RewriteRule ^(.*)$ index.php/$1 [L]
+&lt;/IfModule>
+</pre>
 
 	</section>
 
