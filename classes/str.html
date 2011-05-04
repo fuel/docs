@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Str Class - Fuel Documentation</title>
+	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('classes', '../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>Fuel Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+		<h2>Str Class</h2>
+
+		<p>The str class is a set of methods to help with the manipulation of strings.</p>
+
+		<article>
+			<h4>random($type = 'alnum', $length = 8)</h4>
+			<p>The <strong>random</strong> method generates a random string based on the type given.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><i>alnum</i></td>
+									<td>The type of string to generate. Your choices are alnum, numeric, nozero, alpha, distinct, hexdec, unique, and sha1.</td>
+								</tr>
+								<tr>
+									<th><kbd>$length</kbd></th>
+									<td><pre class="php"><code>16</code></pre></td>
+									<td>The number of characters you would like the final string to be (unique and sha1 ignore this parameter).</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// alnum (uppercase and lowercase letters mixed with numbers)
+Str::random('alnum', 16);
+// Returns: SvZi9Dh3lq7zQYim
+
+// numeric (just numbers)
+Str::random('numeric', 16);
+// Returns: 1045343964672481
+
+// nozero (just numbers excluding zero)
+Str::random('nozero', 16);
+// Returns: 3244623373994515
+
+// alpha (just uppercase and lowercase letters)
+Str::random('alpha', 16);
+// Returns: LuVAXbmxQbbWoYqz
+
+// distinct (uppercase letters and numbers that cannot be confused)
+Str::random('distinct', 16);
+// Returns: R79MPKMH4KTRN35J
+
+// hexdec (hexadecimal characters a-f, 0-9)
+Str::random('hexdec', 16);
+// Returns: 09c34e42f36547f8
+
+// unique (32 character string based on md5)
+Str::random('unique');
+// Returns: ed4bb844a35b7a4edb7eed0d3795d328
+
+// sha1 (40 character string based on sha1)
+Str::random('sha1');
+// Returns: af5c5a8cc3be9a3180205c1ed2975015cd6cf1e7</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>
