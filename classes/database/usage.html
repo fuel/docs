@@ -34,10 +34,10 @@
 		<ul>
 			<li><a href="#running-queries">Running queries.</a></li>
 			<li><a href="#selecting">Selecting</a>,</li>
-			<li><a href="#filtering">Filtering</a>,</li>
-			<li><a href="#inserting">Inserting</a>,</li>
-			<li><a href="#updating">Updating</a>,</li>
-			<li><a href="#deleting">Deleting</a> data.</li>
+			<li><a href="#filtering">filtering</a>,</li>
+			<li><a href="#updating">inserting</a>,</li>
+			<li><a href="#updating">updating</a> and</li>
+			<li><a href="#deleting">deleting</a> data.</li>
 			<li><a href="#joins">Joins.</a></li>
 		</ul>
 
@@ -179,38 +179,6 @@ $result = DB::select()->from('users')->where_open()
 		
 		<article>
 		
-			<h2 id="updating">Updating</h2>
-			<p>
-				For updating data we use <a href="./db.html#method_update">DB::update</a>.
-				If successfully executed an update query will return an integer representing
-				the amount of affected rows.
-			</p>
-			
-			<p>To update a single column.</p>
-			<pre><code>// Will execute UPDATE `users` SET `name` = "John Random" WHERE `id` = "2";
-DB::update('users')
-	->value("name", "John Random")
-	->where('id', '=', '2')
-	->execute();
-</code></pre>
-
-			<p>To update multiple columns.</p>
-			<pre><code>// Will execute UPDATE `users`
-// SET `group` = "Peter Griffon", `email` = "peter@thehindenpeter.com"
-// WHERE `id` = "16";
-DB::update('users')
-	->set(array(
-		'name'  => "Peter Griffon",
-		'email' => "peter@thehindenpeter.com"
-	))
-	->where('id', '=', '16')
-	->execute();
-</code></pre>
-		
-		</article>
-		
-		<article>
-		
 			<h2 id="inserting">Inserting</h2>
 			<p>
 				For inserting data we use <a href="./db.html#method_insert">DB::insert</a>.
@@ -236,6 +204,39 @@ list($insert_id, $rows_affected) = DB::insert('users')->columns(array(
 ))->execute();
 </code></pre>
 		
+		</article>
+		
+		<article>
+		
+			<h2 id="Updating">Updating</h2>
+			<p>
+				For updating data we use <a href="./db.html#method_update">DB::update</a>.
+				If succesfully executed an update query will return the affected rows
+			</p>
+			<pre><code>// Will execute UDATE `users` SET `name` = "John Random", `email` = "john@example.com", `password` = "s0_s3cr3t"
+$rows_affected = DB::update('users')->set(array(
+	'name' => 'John Random',
+	'email' => 'john@example.com',
+	'password' => 's0_s3cr3t',
+))->execute();
+</code></pre>
+			<p>You can also set the columns and values seperatly</p>
+			<pre><code>// Will execute UDATE `users` SET `name` = "John Random", `email` = "john@example.com", `password` = "s0_s3cr3t"
+$rows_affected = DB::update('users')->columns(array(
+	'name', 'email', 'password'
+))->values(array(
+	'John Random', 'john@example.com', 's0_s3cr3t'
+))->execute();
+</code></pre>
+			<p>And use where statements to specify what needs to be updated</p>
+			<pre><code>// Will execute UDATE `users` SET `name` = "John Random", `email` = "john@example.com", `password` = "s0_s3cr3t"
+WHERE `id` = 1
+$rows_affected = DB::update('users')->where('id', '=', 1)->columns(array(
+	'name', 'email', 'password'
+))->values(array(
+	'John Random', 'john@example.com', 's0_s3cr3t'
+))->execute();
+</code></pre>
 		</article>
 		
 		<article>
