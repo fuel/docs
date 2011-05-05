@@ -208,7 +208,7 @@ list($insert_id, $rows_affected) = DB::insert('users')->columns(array(
 		
 		<article>
 		
-			<h2 id="Updating">Updating</h2>
+			<h2 id="updating">Updating</h2>
 			<p>
 				For updating data we use <a href="./db.html#method_update">DB::update</a>.
 				If succesfully executed an update query will return the affected rows
@@ -229,8 +229,7 @@ $rows_affected = DB::update('users')->columns(array(
 ))->execute();
 </code></pre>
 			<p>And use where statements to specify what needs to be updated</p>
-			<pre><code>// Will execute UDATE `users` SET `name` = "John Random", `email` = "john@example.com", `password` = "s0_s3cr3t"
-WHERE `id` = 1
+			<pre><code>// Will execute UDATE `users` SET `name` = "John Random", `email` = "john@example.com", `password` = "s0_s3cr3t" WHERE `id` = 1
 $rows_affected = DB::update('users')->where('id', '=', 1)->columns(array(
 	'name', 'email', 'password'
 ))->values(array(
