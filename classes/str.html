@@ -27,7 +27,60 @@
 		<h2>Str Class</h2>
 
 		<p>The str class is a set of methods to help with the manipulation of strings.</p>
+		
+		<article>
+			<h4>increment($str, $first = 1)</h4>
+			<p>The <strong>increment</strong> method allows you to append a number to the end of a string an increment that number if it already exists.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$string</kbd></th>
+									<td><i>required</i></td>
+									<td>The string to increment.</td>
+								</tr>
+								<tr>
+									<th><kbd>$first</kbd></th>
+									<td><pre class="php"><code>1</code></pre></td>
+									<td>The first number to increment with.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$string = "filename";
+Str::increment($string); // returns filename_1
 
+$string = "filename_1";
+Str::increment($string); // returns filename_2
+
+$string = "filename";
+Str::increment($string, 3); // returns filename_3
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
 		<article>
 			<h4>random($type = 'alnum', $length = 8)</h4>
 			<p>The <strong>random</strong> method generates a random string based on the type given.</p>
@@ -97,6 +150,66 @@ Str::random('unique');
 // sha1 (40 character string based on sha1)
 Str::random('sha1');
 // Returns: af5c5a8cc3be9a3180205c1ed2975015cd6cf1e7</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4>truncate($string, $limit, $continuation = '...', $is_html = false)</h4>
+			<p>The <strong>truncate</strong> method allows you to limit characters and provide a continuation string without breaking html.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$string</kbd></th>
+									<td><i>required</i></td>
+									<td>The string to truncate.</td>
+								</tr>
+								<tr>
+									<th><kbd>$limit</kbd></th>
+									<td><i>required</i></td>
+									<td>The number of characters to allow in the string.</td>
+								</tr>
+								<tr>
+									<th><kbd>$continuation</kbd></th>
+									<td><pre class="php"><code>'...'</code></pre></td>
+									<td>The string to append to the end of the truncated string.</td>
+								</tr>
+								<tr>
+									<th><kbd>$is_html</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>If the string contains html. Setting this as true will make the method not break html.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+Str::truncate($string, 15); // returns Lorem ipsum dol...
+
+$string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+Str::truncate($string, 15, '...Read More'); // returns Lorem ipsum dol...Read More
+</code></pre>
 						</td>
 					</tr>
 				</tbody>
