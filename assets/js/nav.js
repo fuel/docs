@@ -39,6 +39,10 @@ var nav = {
 			"Coding Standards":	"general/coding_standards.html"
 		},
 		"Classes": {
+			"Agent": {
+				"Configuration":	"classes/agent/config.html",
+				"Usage":			"classes/agent/usage.html",
+			},
 			"Arr":			"classes/arr.html",
 			"Asset":		"classes/asset.html",
 			"Cache": {
@@ -92,7 +96,7 @@ var nav = {
 				"Usage":			"classes/session/usage.html",
 				"Advanced":			"classes/session/advanced.html"
 			},
-			"Str": 			"classes/str.html", 
+			"Str": 			"classes/str.html",
 			// "Unzip":		"todo.html", // dont do this, needs to be cleaned up. forget it exists.
 			"Upload": {
 				"Configuration":	"classes/upload/config.html",
