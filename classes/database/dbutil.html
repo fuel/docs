@@ -33,7 +33,7 @@
 		<p>DBUtil allows you to create, rename, alter and drop databases field</p>
 		
 		<article>
-			<h4 id="method_query">DBUtil::create_database</h4>
+			<h4 id="method_create_database">DBUtil::create_database</h4>
 			<p>The <strong>create_database</strong> method creates a database.  Will throw a Database_Exception if it cannot.</p>
 			<table class="method">
 				<tbody>
@@ -54,6 +54,11 @@
 									<th><kbd>$database</kbd></th>
 									<td><em>required</em></td>
 									<td>the database name</td>
+								</tr>
+								<tr>
+									<th><kbd>$chartset</kbd></th>
+									<td><em>null</em></td>
+									<td>the default charset</td>
 								</tr>
 							</table>
 						</td>
@@ -81,15 +86,24 @@ catch(\Database_Exception $e)
 {
 	// Creation failed...
 }
+
+// You can also set a default charset.
+// CREATE DATABASE `new_database` DEFAULT CHARACTER SET 'uft8'
+DBUtil::create_database('new_database', 'utf8');
+
+// CREATE DATABASE `new_database  DEFAULT CHARACTER SET 'utf8' COLLATE 'uft8_unicode_ci'
+DBUTIL::create_database('new_database', 'uft8_unicode_ci');
 </code></pre>
 						</td>
 					</tr>
 				</tbody>
 			</table>
+			<p>The default charset can also be set by adding it to app/config/db.php:</p>
+			<pre class="php"><code>'default_charset' => 'uft8_general_ci',</code></pre>
 		</article>
 		
 		<article>
-			<h4 id="method_query">DBUtil::drop_database</h4>
+			<h4 id="method_drop_database">DBUtil::drop_database</h4>
 			<p>The <strong>drop_database</strong> method drops a database.  Will throw a Database_Exception if it cannot.</p>
 			<table class="method">
 				<tbody>
@@ -145,7 +159,7 @@ catch(\Database_Exception $e)
 		</article>
 		
 		<article>
-			<h4 id="method_query">DBUtil::drop_table</h4>
+			<h4 id="method_drop_table">DBUtil::drop_table</h4>
 			<p>The <strong>drop_table</strong> method drops a table.  Will throw a Database_Exception if it cannot.</p>
 			<table class="method">
 				<tbody>
@@ -201,7 +215,7 @@ catch(\Database_Exception $e)
 		</article>
 	
 		<article>
-			<h4 id="method_select">DBUtil::rename_table</h4>
+			<h4 id="method_rename_table">DBUtil::rename_table</h4>
 			<p>The <strong>rename_table</strong> method renames a table.</p>
 			<table class="method">
 				<tbody>
@@ -262,7 +276,7 @@ catch(\Database_Exception $e)
 		</article>
 	
 		<article>
-			<h4 id="method_select_array">DBUtil::create_table</h4>
+			<h4 id="method_create_table">DBUtil::create_table</h4>
 			<p>The <strong>create_table</strong> method creates a table.</p>
 			<table class="method">
 				<tbody>
@@ -313,21 +327,64 @@ catch(\Database_Exception $e)
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>\DBUtil::create_table('users2', array(
-		'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
-		'name' => array('type' => 'text'),
-		'email' => array('constraint' => 50, 'type' => 'varchar'),
-		'title' => array('constraint' => 50, 'type' => 'varchar', 'default' => 'mr.'),
-		'password' => array('constraint' => 125, 'type' => 'varchar'),
-	), array('id'));
-	</code></pre>
+							<pre class="php"><code>\DBUtil::create_table('users', array(
+	'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
+	'name' => array('type' => 'text'),
+	'email' => array('constraint' => 50, 'type' => 'varchar'),
+	'title' => array('constraint' => 50, 'type' => 'varchar', 'default' => 'mr.'),
+	'password' => array('constraint' => 125, 'type' => 'varchar'),
+), array('id'));
+</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<th>Possible parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>name</kbd></th>
+									<td>the field name</td>
+								</tr>
+								<tr>
+									<th><kbd>type</kbd></th>
+									<td>field type (varchar, enum, text, ...)</td>
+								</tr>
+								<tr>
+									<th><kbd>constraint</kbd></th>
+									<td>Length or values.</td>
+								</tr>
+								<tr>
+									<th><kbd>charset</kbd></th>
+									<td>field charst</td>
+								</tr>
+								<tr>
+									<th><kbd>unsigned</kbd></th>
+									<td>boolean, <em>true</em> if is unsigned, defaults to <em>false</em></td>
+								</tr>
+								<tr>
+									<th><kbd>default</kbd></th>
+									<td>default value</td>
+								</tr>
+								<tr>
+									<th><kbd>null</kbd></th>
+									<td>boolean, <em>true</em> if nullable, defaults to <em>false</em></td>
+								</tr>
+								<tr>
+									<th><kbd>auto_increment</kbd></th>
+									<td>set to <em>true</em> to use auto incrementing</td>
+								</tr>
+							</table>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			
 			<p>Default fields values are escaped by default. In some cases you might want not to escape this value. If so, you can use <a href="./db.html#method_escape">DB::escape</a>.</p>
-			<pre class="php"><code>\DBUtil::create_table('users2', array(
+			<pre class="php"><code>\DBUtil::create_table('users', array(
 	'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
 	'name' => array('type' => 'text'),
 	'email' => array('constraint' => 50, 'type' => 'varchar'),
@@ -337,13 +394,120 @@ catch(\Database_Exception $e)
 ), array('id'));
 </code></pre>
 			
+			<p>Escaping values work the same for DBUtil::add_fields and DBUtil::modify_fields</p>
 			
+		</article>
+		
+		<article>
+			<h4 id="method_add_fields">DBUtil::add_fields</h4>
+			<p>The <strong>modify_fields</strong> method adds fields to a table.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$table</kbd></th>
+									<td><em>required</em></td>
+									<td>the table name</td>
+								</tr>
+								<tr>
+									<th><kbd>$fields</kbd></th>
+									<td><em>required</em></td>
+									<td>array containing fields</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the number of affected rows.</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>\Database_Exception on failure</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>\DBUtil::add_fields('users', array(
+	'surname' => array('constraint' => 100, 'type' => 'varchar'),
+	'twitter_name' => array('constraint' => 100, 'type' => 'varchar'),
+));
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_modify_fields">DBUtil::modify_fields</h4>
+			<p>The <strong>modify_fields</strong> method alters fields in a table.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$table</kbd></th>
+									<td><em>required</em></td>
+									<td>the table name</td>
+								</tr>
+								<tr>
+									<th><kbd>$fields</kbd></th>
+									<td><em>required</em></td>
+									<td>array containing fields</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the number of affected rows.</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>\Database_Exception on failure</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>\DBUtil::modify_fields('users2', array(
+	'name' => array('constraint' => 100, 'type' => 'varchar', 'charset' => 'uft8_general_ci'),
+	'title' => array('constraint' => 50, 'type' => 'varchar', 'default' => 'mrs.'),
+));
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</article>
 		
 		<h2 id="database-operations">Database operations</h2>
 					
 		<article>
-			<h4 id="method_insert">DBUtil::truncate_table</h4>
+			<h4 id="method_truncate_table">DBUtil::truncate_table</h4>
 			<p>The <strong>truncate_table</strong> method truncates a table.</p>
 			<table class="method">
 				<tbody>
@@ -387,7 +551,7 @@ catch(\Database_Exception $e)
 		</article>
 	
 		<article>
-			<h4 id="method_update">DBUtil::analyze_table</h4>
+			<h4 id="method_analyze_table">DBUtil::analyze_table</h4>
 			<p>The <strong>analyze_table</strong> method analyzes a table.</p>
 			<table class="method">
 				<tbody>
@@ -431,7 +595,7 @@ catch(\Database_Exception $e)
 		</article>
 		
 		<article>
-			<h4 id="method_update">DBUtil::check_table</h4>
+			<h4 id="method_check_table">DBUtil::check_table</h4>
 			<p>The <strong>check_table</strong> method checks a table.</p>
 			<table class="method">
 				<tbody>
@@ -475,7 +639,7 @@ catch(\Database_Exception $e)
 		</article>
 		
 		<article>
-			<h4 id="method_update">DBUtil::optimize_table</h4>
+			<h4 id="method_optimize_table">DBUtil::optimize_table</h4>
 			<p>The <strong>check_table</strong> method optimizes a table.</p>
 			<table class="method">
 				<tbody>
@@ -519,7 +683,7 @@ catch(\Database_Exception $e)
 		</article>
 		
 		<article>
-			<h4 id="method_update">DBUtil::repair_table</h4>
+			<h4 id="method_repair_table">DBUtil::repair_table</h4>
 			<p>The <strong>check_table</strong> method repairs a table.</p>
 			<table class="method">
 				<tbody>
