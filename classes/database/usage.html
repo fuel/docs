@@ -143,6 +143,7 @@ foreach($key_value as $id => $email)
 		<article>
 			
 			<h2 id="filtering">Filtering</h2>
+			<h4>Where statements</h4>
 			<p>
 				In order to set the conditions on our queries we can set WHERE conditions.
 				These examples also apply to updating and deleting.
@@ -174,6 +175,31 @@ $result = DB::select()->from('users')->where_open()
 	->or_where('name', 'dirk')
 ->or_where_close()->execute();
 </code></pre>
+
+			<h4>Order by statement</h4>
+			<p>For sorting data we use the order_by function.</p>
+			<pre class="php"><code>//SELECT * FROM `users` ORDER BY `name` ASC
+DB::select()->from('users')->order_by('name','asc');
+
+// SELECT * FROM `users` ORDER BY `name` ASC, `surname` DESC
+DB::select()->from('users')->order_by('name','asc')->order_by('surname', 'desc');
+
+// You can ommit the direction by leaving the second parameter out.
+// SELECT * FROM `users` ORDER BY `name`
+DB::select()->from('users')->order_by('name');
+</code></pre>
+
+			<h4>Limit and offset</h4>
+			<p>For limiting the number of rows fetched we use the limit and offset function. Note that the offset function is only available when selecting data.</p>
+			<pre class="php"><code></code>// SELECT * FROM `users` LIMIT 1
+DB::select()->from('users')->limit(1);
+
+// SELECT * FROM `users` LIMIT 10 OFFSET 5
+DB::select()->from('users')->limit(10)->offset(5);
+
+// SELECT * FROM `users` ORDER BY `id` ASC LIMIT 10
+DB::DELETE('users')->order_by('id','asc')->limit(10);
+</pre>
 			
 		</article>
 		
