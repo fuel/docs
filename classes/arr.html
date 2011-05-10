@@ -226,6 +226,81 @@ Array
 				</tbody>
 			</table>
 		</article>
+		
+		<article>
+			<h4>filter_keys($array, $keys, $remove = false)</h4>
+			<p>The <strong>filter_keys</strong> method filters a given array to a set of keys. It returns an array that contains only the items whose keys are in the <kbd>$keys</kbd> array. Can also remove the specified <kbd>$keys</kbd> from an array.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$array</kbd></th>
+								<td><i>Required</i></td>
+								<td>The array to filter.</td>
+							</tr>
+							<tr>
+								<th><kbd>$keys</kbd></th>
+								<td><i>Required</i></td>
+								<td>Array of keys to filter the above array with.</td>
+							</tr>
+							<tr>
+								<th><kbd>$remove</kbd></th>
+								<td><pre class="php"><code>false</code></pre></td>
+								<td>If true, removes the <kbd>$keys</kbd> from the <kbd>$array</kbd> instead of fetching them.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>array</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+<pre class="php"><code>$arr = array(
+	"user_name" => "John",
+	"user_surname" => "Lastname",
+	"project_name" => "FuelPHP",
+	"project_type" => "Framework",
+);
+
+print_r( Arr::filter_keys($arr, array('project_name', 'user_name')));
+
+// Returns
+Array
+(
+	[project_name] => FuelPHP
+	[user_name] => John
+)
+
+// Let's remove some keys
+print_r( Arr::filter_keys($arr, array('user_name', 'user_surname', true)));
+
+// Returns
+Array
+(
+	[project_name] => FuelPHP
+	[project_type] => Framework
+)
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
 
 		<article>
 			<h4>element($array, $key, $default = false)</h4>
