@@ -337,6 +337,49 @@ catch(\Database_Exception $e)
 </code></pre>
 						</td>
 					</tr>
+					<tr>
+						<th>Possible parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>name</kbd></th>
+									<td>the field name</td>
+								</tr>
+								<tr>
+									<th><kbd>type</kbd></th>
+									<td>field type (varchar, enum, text, ...)</td>
+								</tr>
+								<tr>
+									<th><kbd>constraint</kbd></th>
+									<td>Length or values.</td>
+								</tr>
+								<tr>
+									<th><kbd>charset</kbd></th>
+									<td>field charst</td>
+								</tr>
+								<tr>
+									<th><kbd>unsigned</kbd></th>
+									<td>boolean, <em>true</em> if is unsigned, defaults to <em>false</em></td>
+								</tr>
+								<tr>
+									<th><kbd>default</kbd></th>
+									<td>default value</td>
+								</tr>
+								<tr>
+									<th><kbd>null</kbd></th>
+									<td>boolean, <em>true</em> if nullable, defaults to <em>false</em></td>
+								</tr>
+								<tr>
+									<th><kbd>auto_increment</kbd></th>
+									<td>set to <em>true</em> to use auto incrementing</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 			
@@ -451,7 +494,7 @@ catch(\Database_Exception $e)
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>\DBUtil::modify_fields('users2', array(
-	'name' => array('constraint' => 100, 'type' => 'varchar'),
+	'name' => array('constraint' => 100, 'type' => 'varchar', 'charset' => 'uft8_general_ci'),
 	'title' => array('constraint' => 50, 'type' => 'varchar', 'default' => 'mrs.'),
 ));
 </code></pre>
