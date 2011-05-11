@@ -34,7 +34,7 @@
 		<ul>
 			<li><a href="#running-queries">Running queries.</a></li>
 			<li><a href="#selecting">Selecting</a>,</li>
-			<li><a href="#filtering">Filtering</a>,</li>
+			<li><a href="#filtering">Filtering</a> (where, order by, limit, offset),</li>
 			<li><a href="#inserting">Inserting</a>,</li>
 			<li><a href="#updating">Updating</a>,</li>
 			<li><a href="#deleting">Deleting</a> data.</li>
@@ -162,9 +162,10 @@ $result = DB::select()->from('users')->where('id', '!=', 1)->execute();
 $who = "john%";
 $result = DB::select()->from('users')->where('id', 'like', $who)->execute();
 </code></pre>
-			<p>Grouped where statements are also supported</p>
+
+			<p>Grouped where statements are also supported:</p>
 			
-			<pre><code>// SELECT * FROM `users` WHERE (`name` = 'John' AND `email` = 'john@example.com')
+			<pre class="php"><code>// SELECT * FROM `users` WHERE (`name` = 'John' AND `email` = 'john@example.com')
 // OR (`name` = 'mike' OR `name` = 'dirk')
 $result = DB::select()->from('users')->where_open()
 	->where('name', 'John')
@@ -176,6 +177,14 @@ $result = DB::select()->from('users')->where_open()
 ->or_where_close()->execute();
 </code></pre>
 
+			<p>The <em>BETWEEN</em> and <em>IN</em> also go through the <em>where</em> method:</p>
+			<pre class="php"><code>// SELECT * FROM `users` WHERE `id` BETWEEN 1 AND 10
+$users = DB::select()->from('users')->where('id', 'between', array(1, 10))->execute();
+
+// SELECT * FROM `users` WHERE `name` IN ('john', 'simon', 'dirk')
+$users = DB::select()->from('users')->where('name', 'in', array('john', 'simon', 'dirk'))->execute();
+</code></pre>
+			<!-- SELECT * FROM `users` WHERE `id` BETWEEN 1 AND 10 -->
 			<h4>Order by statement</h4>
 			<p>For sorting data we use the order_by function.</p>
 			<pre class="php"><code>//SELECT * FROM `users` ORDER BY `name` ASC
