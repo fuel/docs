@@ -45,11 +45,11 @@
 		<article>
 			<h2 id="running-queries">Running queries</h2>
 			<p>First we prepare a query using <a href="./db.html#method_query">DB::query</a>.</p>
-			<pre><code>// returns a new Database_Query
+			<pre class="php"><code>// returns a new Database_Query
 $query = DB::query('SELECT * FROM `users`');
 </code></pre>
 			<p>Now we can execute that query:</p>
-			<pre><code>$query = DB::query('SELECT * FROM `users`');
+			<pre class="php"><code>$query = DB::query('SELECT * FROM `users`');
 
 // return a new Database_MySQLi_Result
 $query->execute();
@@ -71,21 +71,43 @@ $result = DB::query('SELECT * FROM `users`')->execute();
 				As we are going to fetch a result from this query, we need to let the it know
 				what kind of query we are going to run.
 			</p>
-			<pre><code>
+			<pre class="php"><code>
 $result = DB::query('SELECT * FROM `users`', DB::SELECT)->execute();
 			</code></pre>
 			<p>
 				We can also select data using <a href="./db.html#method_select">DB::select</a> or
 				<a href="./db.html#method_select_array">DB::select_array</a>. 
 			</p>
-			<pre><code>// Will execute SELECT `id`, `name` FROM `users`
+			<pre class="php"><code>// Will execute SELECT `id`, `name` FROM `users`
 $result = DB::select('id','name')->from('users')->execute();
 			</code></pre>
 			
 			<p>If you want to alias columns, use arrays instead of strings</p>
 			
-			<pre><code>// Will execute SELECT `name` as `the_name` FROM `users`;
+			<pre class="php"><code>// Will execute SELECT `name` as `the_name` FROM `users`;
 $result = DB::select(array('name','the_name'))->from('users')->execute();
+</code></pre>
+
+			<p>To select distinct values set distinct to <em>true</em>:</p>
+			<pre class="php"><code>// SELECT DISTINCT `name` FROM `users`
+$users = DB::select('name')->from('users')->distinct(true)->execute();
+
+print_r($users->as_array());
+/*
+Array
+(
+    [0] => Array
+        (
+            [name] => Dirk
+        )
+
+    [1] => Array
+        (
+            [name] => John
+        )
+
+)
+*/
 </code></pre>
 					
 			<h4>Results</h4>
@@ -93,7 +115,7 @@ $result = DB::select(array('name','the_name'))->from('users')->execute();
 				Executing a select query will generate a result object containing the requested database records.
 				By default the result is fetched as objects. Here is an exaple how to influence this behaviour.
 			</p>
-			<pre><code>// Will fetch the result as an associative array.
+			<pre class="php"><code>// Will fetch the result as an associative array.
 $result = DB::select('id','name')->from('users')->as_assoc()->execute();
 
 // Will fetch the result as an object.
@@ -103,13 +125,13 @@ $result = DB::select('id','name')->from('users')->as_object()->execute();
 $result = DB::select('id','name')->from('users')->as_object('Model_Users')->execute();
 			</code></pre>	
 			<p>Want to know how many records you have fetched? It's dead simple!</p>
-<pre><code>
+			<pre class="php"><code>
 $result = DB::select('*')->from('users')->execute();
 // Just count the results, it returns an int.
 $num_rows = count($result);
 			</code></pre>
 			<p>To access these results you eighter loop through the result object directly, or get the result array.</p>
-			<pre><code>$result = DB::select()->from('users')->execute();
+			<pre class="php"><code>$result = DB::select()->from('users')->execute();
 foreach($result as $item)
 {
 	// do something with $item
@@ -121,8 +143,9 @@ foreach($result_array as $item)
 	// do something with $item
 }
 </code></pre>
+			
 			<p>Optionaly we specify the array key and value to be returned from <em>as_array</em></p>
-			<pre><code>$result = DB::select()->from('users')->execute();
+			<pre class="php"><code>$result = DB::select()->from('users')->execute();
 $on_key = $result->as_array('id');
 foreach($on_key as $id => $item)
 {
@@ -148,7 +171,7 @@ foreach($key_value as $id => $email)
 				In order to set the conditions on our queries we can set WHERE conditions.
 				These examples also apply to updating and deleting.
 			</p>
-			<pre><code>// Will execute SELECT * FROM `users` WHERE `id` = 1
+			<pre class="php"><code>// Will execute SELECT * FROM `users` WHERE `id` = 1
 $result = DB::select()->from('users')->where('id', '=', 1)->execute();
 
 // Will execute SELECT * FROM `users` WHERE `id` IN (1, 2, 3)
@@ -184,8 +207,9 @@ $users = DB::select()->from('users')->where('id', 'between', array(1, 10))->exec
 // SELECT * FROM `users` WHERE `name` IN ('john', 'simon', 'dirk')
 $users = DB::select()->from('users')->where('name', 'in', array('john', 'simon', 'dirk'))->execute();
 </code></pre>
-			<!-- SELECT * FROM `users` WHERE `id` BETWEEN 1 AND 10 -->
+
 			<h4>Order by statement</h4>
+			
 			<p>For sorting data we use the order_by function.</p>
 			<pre class="php"><code>//SELECT * FROM `users` ORDER BY `name` ASC
 DB::select()->from('users')->order_by('name','asc');
@@ -222,18 +246,18 @@ DB::DELETE('users')->order_by('id','asc')->limit(10);
 			</p>
 			
 			<p>To update a single column.</p>
-			<pre><code>// Will execute UPDATE `users` SET `name` = "John Random" WHERE `id` = "2";
-DB::update('users')
+			<pre class="php"><code>// Will execute UPDATE `users` SET `name` = "John Random" WHERE `id` = "2";
+$result = DB::update('users')
 	->value("name", "John Random")
 	->where('id', '=', '2')
 	->execute();
 </code></pre>
 
 			<p>To update multiple columns.</p>
-			<pre><code>// Will execute UPDATE `users`
+			<pre class="php"><code>// Will execute UPDATE `users`
 // SET `group` = "Peter Griffon", `email` = "peter@thehindenpeter.com"
 // WHERE `id` = "16";
-DB::update('users')
+$result = DB::update('users')
 	->set(array(
 		'name'  => "Peter Griffon",
 		'email' => "peter@thehindenpeter.com"
@@ -252,7 +276,7 @@ DB::update('users')
 				If succesfully executed an insert query will return an array containing a
 				list of insert id and rows created.
 			</p>
-			<pre><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`) 
+			<pre class="php"><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`) 
 // VALUES ("John Random", "john@example.com", "s0_s3cr3t")
 list($insert_id, $rows_affected) = DB::insert('users')->set(array(
 	'name' => 'John Random',
@@ -262,7 +286,7 @@ list($insert_id, $rows_affected) = DB::insert('users')->set(array(
 </code></pre>
 			<p>You can also set the columns and values seperatly</p>
 			
-			<pre><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`)
+			<pre class="php"><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`)
 // VALUES ("John Random", "john@example.com", "s0_s3cr3t")
 list($insert_id, $rows_affected) = DB::insert('users')->columns(array(
 	'name', 'email', 'password'
@@ -281,7 +305,7 @@ list($insert_id, $rows_affected) = DB::insert('users')->columns(array(
 				To delete records, use <a href="./db.html#method_delete">DB::delete</a>.
 				When executed it will return the number of rows affected.
 			</p>
-			<pre><code>// Empty the whole users table
+			<pre class="php"><code>// Empty the whole users table
 $result = DB::delete('users')->execute(); // (int) 20
 
 // Executes DELETE FROM `users` WHERE `email` LIKE "%@example.com"
@@ -295,7 +319,7 @@ $result = DB::delete('users')->where('email', 'like', '%@example.com')->execute(
 			<h2 id="joins">Joins</h2>			
 			<p>When selecting data, you can also join other tables into the result.</p>
 			
-			<pre><code>// Will execute SELECT * FROM `users` LEFT JOIN `roles` ON `roles`.`id` = `users`.`role_id`
+			<pre class="php"><code>// Will execute SELECT * FROM `users` LEFT JOIN `roles` ON `roles`.`id` = `users`.`role_id`
 $result = DB::select()->from('users')->join('roles','LEFT')->on('roles.id', '=', 'users.role_id');
 
 // Will execute SELECT * FROM `users` RIGHT OUTER JOIN `roles` ON `roles`.`id` = `users`.`role_id`
