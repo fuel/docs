@@ -44,7 +44,7 @@
 		<h3>Module configuration</h3>
 
 		<p>
-			To be able to use modules, you will have to tell FuelPHP where your modules are stored.
+			To be able to use modules, you will have to tell Fuel where your modules are stored.
 			By default, this is in the modules folder of your application. You use the 'modules_path' setting in your applications config.php file to define your module path.
 			You can also define multiple paths. If you do, they will be searched in the sequence you have defined them.
 		</p>
@@ -59,11 +59,11 @@
 	APPPATH.'..'.DS.'globalmods'.DS	// path to our global modules
 ),
 </code></pre>
-		<p>When you define your paths, make sure they end with DS, the FuelPHP platform independent directory separator.</p>
+		<p>When you define your paths, make sure they end with DS, the Fuel platform independent directory separator.</p>
 
 		<h3>Module namespace</h3>
 
-		<p>One of the problems often encountered when working with independently developed code are class name collisions. For example, a lot of modules come with an admin controller. To avoid collisions, in FuelPHP every module lives in its own PHP namespace, which <strong><u>must</u></strong> be named identical to the folder name of the module.</p>
+		<p>One of the problems often encountered when working with independently developed code are class name collisions. For example, a lot of modules come with an admin controller. To avoid collisions, in Fuel every module lives in its own PHP namespace, which <strong><u>must</u></strong> be named identical to the folder name of the module.</p>
 
 		<pre><code>&lt;?php
 /**
@@ -134,8 +134,8 @@ $widget = Request::factory('mymodule/mycontroller/mymethod/parms', false)->execu
 
 		<p>
 			It is also possible to call static methods in a module class.
-			For this to work, FuelPHP needs to be able to autoload the class when you reference it in your code.
-			Which means you will have to tell FuelPHP where to find the module. There are two ways to do this.
+			For this to work, Fuel needs to be able to autoload the class when you reference it in your code.
+			Which means you will have to tell Fuel where to find the module. There are two ways to do this.
 		</p>
 
 		<p>You can preload the module by specifying the module to load in the 'always_load', 'modules' setting of your applications config.php file:</p>
@@ -154,7 +154,7 @@ $widget = Request::factory('mymodule/mycontroller/mymethod/parms', false)->execu
 
 		<p>You can also add the module manually at runtime, before you use any of the static methods:</p>
 
-		<pre><code class="php">// add the module MyModule to FuelPHP
+		<pre><code class="php">// add the module MyModule to Fuel
 Fuel::add_module('mymodule');
 </code></pre>
 
