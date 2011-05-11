@@ -88,18 +88,17 @@ catch(\Database_Exception $e)
 }
 
 // You can also set a default charset.
-// CREATE DATABASE `new_database` DEFAULT CHARACTER SET 'uft8'
+// CREATE DATABASE `new_database` DEFAULT CHARACTER SET 'utf8'
 DBUtil::create_database('new_database', 'utf8');
 
-// CREATE DATABASE `new_database  DEFAULT CHARACTER SET 'utf8' COLLATE 'uft8_unicode_ci'
-DBUTIL::create_database('new_database', 'uft8_unicode_ci');
+// CREATE DATABASE `new_database  DEFAULT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci'
+DBUtil::create_database('new_database', 'utf8_unicode_ci');
 </code></pre>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<p>The default charset can also be set by adding it to app/config/db.php:</p>
-			<pre class="php"><code>'default_charset' => 'uft8_general_ci',</code></pre>
+			<p>If no charset is profided it wil fall back to the charset of the active db group.</p>
 		</article>
 		
 		<article>
@@ -313,6 +312,16 @@ catch(\Database_Exception $e)
 									<td><strong>true</strong></td>
 									<td>whether to use <em>IF NOT EXISTS</em></td>
 								</tr>
+								<tr>
+									<th><kbd>$engine</kbd></th>
+									<td><strong>false</strong></td>
+									<td>which storage engine to use (MyISAM, InnoDB, ...)</td>
+								</tr>
+								<tr>
+									<th><kbd>$charset</kbd></th>
+									<td><strong>null</strong></td>
+									<td>the default charset, falls back to the active db group charset</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -333,7 +342,7 @@ catch(\Database_Exception $e)
 	'email' => array('constraint' => 50, 'type' => 'varchar'),
 	'title' => array('constraint' => 50, 'type' => 'varchar', 'default' => 'mr.'),
 	'password' => array('constraint' => 125, 'type' => 'varchar'),
-), array('id'));
+), array('id'), false, 'InnoDB', 'utf8_unicode_ci');
 </code></pre>
 						</td>
 					</tr>
@@ -494,7 +503,7 @@ catch(\Database_Exception $e)
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>\DBUtil::modify_fields('users2', array(
-	'name' => array('constraint' => 100, 'type' => 'varchar', 'charset' => 'uft8_general_ci'),
+	'name' => array('constraint' => 100, 'type' => 'varchar', 'charset' => 'utf8_general_ci'),
 	'title' => array('constraint' => 50, 'type' => 'varchar', 'default' => 'mrs.'),
 ));
 </code></pre>
