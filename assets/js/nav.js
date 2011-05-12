@@ -20,6 +20,7 @@ var nav = {
 		},
 		"General": {
 			"Model-View-Controller":	"general/mvc.html",
+			"HMVC Requests":	"general/hmvc.html",
 			"Controllers": {
 				"Base" :		"general/controllers/base.html",
 				"Template":		"general/controllers/template.html",

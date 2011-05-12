@@ -108,28 +108,18 @@ class Controller_Widget {
 
 		<p>To be written.</p>
 
-		<h3>HMVC requests</h3>
+		<h3>Modules and HMVC requests</h3>
 
 		<p>
 			Besides using modules as a way of separating logically independent parts of your application,
 			you can also use module controllers in an HMVC context, where one of your application's controllers calls one of more module controllers
 			to create the final result of the URI requested.
 		</p>
+		
 		<p>
-			One common use of this is when you use a theme or template engine to generate your pages,
-			where every page is divided into sections, and sections are populated by widgets.
-			By using modules to produce the widget output, you can create a highly modular application, with easy to re-use components.
+			Read the <a href="./hmvc.html">HMVC requests docs</a> to find out more.
 		</p>
-
-		<p>You call a module controller method using the <a href="../classes/request.html">Request</a> class:</p>
-		<pre><code>// fetch the output of a mymodule controller method
-$widget = Request::factory('mymodule/mycontroller/mymethod/parms', false)->execute()->output;
-</code></pre>
-		<p class="note">
-			Note that you have to use '<strong>false</strong>' as second parameter to the factory() call, to prevent your URI to be routed.
-			If you don't, and you request a non-routable URI, you will end up with a 404 error!
-		</p>
-
+		
 		<h3>Using static calls</h3>
 
 		<p>
