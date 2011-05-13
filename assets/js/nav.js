@@ -35,6 +35,7 @@ var nav = {
 				"Extending Core":	"general/extending_core.html"
 			},
 			"Modules":			"general/modules.html",
+			"Packages":			"general/packages.html",
 			"Tasks":			"general/tasks.html",
 			"Migrations":		"general/migrations.html",
 			"Coding Standards":	"general/coding_standards.html"
@@ -46,6 +47,7 @@ var nav = {
 			},
 			"Arr":			"classes/arr.html",
 			"Asset":		"classes/asset.html",
+			//"Autoloader"	"todo.html",
 			"Cache": {
 				"Configuration":	"classes/cache/config.html",
 				"Usage":			"classes/cache/usage.html",
