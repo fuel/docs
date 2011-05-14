@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Autoloader Class - Fuel Documentation</title>
+	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('classes', '../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>Fuel Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+		
+		<h2>Autoloader Class</h2>
+		
+		<p>The Autoloader class contains Fuel's autoloader function. It also supplies methods to interact with the autoloading process.</p>
+		
+		<article>
+			<h4>Autoloader::add_namespace</h4>
+			<p>The <strong>add_namespace</strong> method adds a namespace and path.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$namepace</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">the namespace</td>
+								</tr>
+								<tr>
+									<th><kbd>$path</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">path to the namespace</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><em>Void</em></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Autoloader::add_namespace('Mynamespace', PKGPATH.'mynamespace/');
+							
+// With nested namespaces note the double backslash
+Autoloader::add_namespace('Nested\\Namespace', PKGPATH.'nested/');
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4>Autoloader::add_namespaces</h4>
+			<p>The <strong>add_namespaces</strong> method adds an array of namespaces.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$namepace</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">an array of namespaces</td>
+								</tr>
+								<tr>
+									<th><kbd>$prepend</kbd></th>
+									<td><em>false</em></td>
+									<td class="description">set to <em>true</em> is you want to prepend.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><em>Void</em></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Autoloader::add_namespaces(array(
+	'Mynamespace' => PKGPATH.'mynamespace/',
+	'Othernamespace' => PKGPATH.'othernamespace/',
+);
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4>Autoloader::namespace_path</h4>
+			<p>The <strong>namespace_path</strong> method retrieves the path to a namespace.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$namepace</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">the namespace</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>path to the namespace or <em>false</em> when it doesn't exist</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code> // /path/to/mynamespace/
+$path = Autoloader::namespace_path('Mynamespace');
+
+// false
+$path = Autoloader::namespace_path('Unknown\\Namespace');
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4>Autoloader::add_class</h4>
+			<p>The <strong>add_class</strong> method adds a class path.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$class</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">the class name</td>
+								</tr>
+								<tr>
+									<th><kbd>$class</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">the path to the class file</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><em>Void</em></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Autoloader::add_class('Namespace\\Class', PKGPATH.'namespace/classes/class.php');
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4>Autoloader::add_classes</h4>
+			<p>The <strong>add_class</strong> method adds an array of classes.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$classes</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">the array of classes</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><em>Void</em></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Autoloader::add_classes(array(
+	'Namespace\\Class', PKGPATH.'namespace/classes/class.php',
+	'Namespace\\Other', PKGPATH.'namespace/classes/other.php',
+);
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4>Autoloader::alias_to_namespace</h4>
+			<p>The <strong>alias_to_namespace</strong> method aliases a class to a namespace, the root by default.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$class</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">the class name</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><em>Void</em></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Autoloader::alias_to_namespace('Mynamspace\\Myclass');
+
+// Alias it to a namespace
+Autoloader::alias_to_namespace('Mynamspace\\Myclass', 'Other\\Namespace\\');
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+	
+		<article>
+			<h4>Autoloader::add_core_namespace</h4>
+			<p>
+				The <strong>add_core_namespace</strong> method adds a namespace for which classes may be used without the namespace prefix and 
+				will be auto-aliased to the global namespace. Prefixing the classes will overwrite core classes and previously added namespaces.
+			</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$namespace</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">the namespace</td>
+								</tr>
+								<tr>
+									<th><kbd>$prefix</kbd></th>
+									<td><em>false</em></td>
+									<td class="description">set to <em>true</em> to prefix the namespace</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><em>Void</em></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Autoloader::add_core_namespace('Mynamespace');
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4>Autoloader::load</h4>
+			<p>The <strong>load</strong> method tries to find the class, load it, and fire it's _init function if exists.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$class</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">the class name</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><em>Void</em></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Autoloader::load('Model_Users');
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+
+		
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>

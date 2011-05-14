@@ -47,7 +47,7 @@ var nav = {
 			},
 			"Arr":			"classes/arr.html",
 			"Asset":		"classes/asset.html",
-			//"Autoloader"	"todo.html",
+			"Autoloader":	"classes/autoloader.html",
 			"Cache": {
 				"Configuration":	"classes/cache/config.html",
 				"Usage":			"classes/cache/usage.html",
@@ -64,7 +64,6 @@ var nav = {
 				"DBUtil class":     "classes/database/dbutil.html"
 			},
 			"Date":			"classes/date.html",
-			// "DButil":		"todo.html",\
 			"Debug":		"classes/debug.html",
 			// "Email":		"todo.html",
 			"Event":		"classes/event.html",
