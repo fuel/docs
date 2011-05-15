@@ -106,7 +106,7 @@ var nav = {
 			},
 			"Uri":			"classes/uri.html",
 			"Validation":	"classes/validation.html"
-			// "View":			"todo.html"
+			"View":			"classes/view.html"
 		},
 		"Oil": {
 			"Introduction":		"packages/oil/intro.html",
