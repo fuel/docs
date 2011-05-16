@@ -84,6 +84,16 @@
 
 			<p>Relating models to each other is explained in <a href="relations/intro.html">Relating Models</a></p>
 
+			<h3>protected static $_connection</h3>
+
+			<p>By default this property does not exist and Model::connection() returns <kbd>null</kbd>, but you can set
+			it to any other database name configured in <kbd>app/config/db.php</kbd>. Note however that relations don't
+			work across connections.</p>
+
+			<pre class="php"><code>class Model_Article extends Orm\Model {
+	protected static $_connection = 'articles_database';
+}</code></pre>
+
 			<h3>protected static $_observers</h3>
 
 			<p>Adding observers is explained in <a href="observers/intro.html">Observers</a></p>
