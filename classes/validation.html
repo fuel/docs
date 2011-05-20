@@ -213,14 +213,17 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 						<th>numeric_min</th>
 						<td><kbd>$min_val</kbd></td>
 						<td>
-							Tests whether the given input is a number that is greater than <kbd>$min_val</kbd>.
+							Tests whether the given input is a number that is greater than <kbd>$min_val</kbd>, it does
+							not check or cast the input to a numeric value so any non-numeric value will be considered
+							to be zero. Use the PHP function <kbd>is_numeric</kbd> to check that first.
 						</td>
 					</tr>
 					<tr>
 						<th>numeric_max</th>
 						<td><kbd>$max_val</kbd></td>
 						<td>
-							Tests whether the given input is a number that is smaller than <kbd>$max_val</kbd>.
+							Tests whether the given input is a number that is smaller than <kbd>$max_val</kbd>. (see
+							note about non-numeric values with <kbd>numeric_min</kbd> rule)
 						</td>
 					</tr>
 					<tr>
@@ -292,6 +295,9 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 
 		<article>
 			<h3><a name="errors">Error messages</a></h3>
+
+			<p class="note">Errors are returned as Validation_Error objects which you can work with for more flexible
+			output, if you don't need that just cast the Validation_Error object to a string to get the error message.</p>
 
 			<p>Error messages are set using a language file "validation.php" which is loaded automatically.</p>
 
