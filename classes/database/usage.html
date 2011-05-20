@@ -27,18 +27,19 @@
 		<h2>Database Usage</h2>
 		<p>
 			Normal database interactions are to go through the <a href="./db.html">DB class</a>.
-			The following examples will give you a feel for how to go about using the databse in fuel.
+			The following examples will give you a feel for how to go about using databases in Fuel.
 		</p>
 		<p>Database usage is devided into a couple of segments:</p>
 		
 		<ul>
-			<li><a href="#running-queries">Running queries.</a></li>
+			<li><a href="#running-queries">Running queries</a></li>
 			<li><a href="#selecting">Selecting</a>,</li>
 			<li><a href="#filtering">Filtering</a> (where, order by, limit, offset),</li>
 			<li><a href="#inserting">Inserting</a>,</li>
 			<li><a href="#updating">Updating</a>,</li>
-			<li><a href="#deleting">Deleting</a> data.</li>
-			<li><a href="#joins">Joins.</a></li>
+			<li><a href="#deleting">Deleting</a> data</li>
+			<li><a href="#joins">Joins</a></li>
+			<li><a href="#escaping">Escaping</a></li>
 		</ul>
 
 			
@@ -324,6 +325,24 @@ $result = DB::select()->from('users')->join('roles','LEFT')->on('roles.id', '=',
 
 // Will execute SELECT * FROM `users` RIGHT OUTER JOIN `roles` ON `roles`.`id` = `users`.`role_id`
 $result = DB::select()->from('users')->join('roles','right outer')->on('roles.id', '=', 'users.role_id');
+</code></pre>
+		
+		</article>
+		
+		<article>
+		
+			<h2 id="escaping">Escaping</h2>
+			
+			<p>Fields and values in database calls are escaped by default. In some cases you'll want to not escape data. The DB class provides a method to create <em>database expressions</em>, <a href="./db.html#method_expr">DB::expr</a>. If you don't want a value to get escaped, just wrap it in a database expression.</p>
+			<p>Database expressions are especially helpful when dealing with thing like MySQL's native function (like <em>COUNT</em>) and predefined constands (like <em>DEFAULT</em>).</p>
+			
+			<pre class="php"><code>// Set a field to it's default
+DB::update('users')->where('id', '=', 1)->set(array(
+	'some_column' => DB::expr('DEFAULT'),
+))->execute();
+
+// SELECT COUNT(*) FROM `users`
+$result = DB::select(DB:expr('COUNT(*)'))->from('users')->execute();
 </code></pre>
 		
 		</article>

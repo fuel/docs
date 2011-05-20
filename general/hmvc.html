@@ -36,10 +36,12 @@
 
 		<p>You call a module controller method using the <a href="../classes/request.html">Request</a> class:</p>
 		<pre class="php"><code>// fetch the output of a controller
-$widget = Request::factory('mycontroller/mymethod/parms', false)->execute()->output;
+$widget = Request::factory('mycontroller/mymethod/parms', false)->execute();
+echo $widget;
 
 // or fetch the output of a module
-$widget = Request::factory('mymodule/mycontroller/mymethod/parms', false)->execute()->output;
+$widget = Request::factory('mymodule/mycontroller/mymethod/parms', false)->execute();
+echo $widget;
 </code></pre>
 		<p class="note">
 			Note that you have to use '<strong>false</strong>' as second parameter to the factory() call, to prevent your URI to be routed.

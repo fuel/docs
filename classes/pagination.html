@@ -27,7 +27,7 @@
 		<h2>Pagination Class</h2>
 
 		<p>The pagination class allows you to easily setup pagination for records you display.</p>
- 		
+
 		<section>
 			<h2>How To</h2>
 			<p>A simple example on how to use the Pagination class, the <strong>set_config</strong> method is used in this example. You can put this inside your action methods in your controller.
@@ -50,7 +50,7 @@ $data['example_data] = DB::select('id', 'value')->from('pagination')
 $data['pagination'] = Pagination::create_links();
 $this->render('welcome/index', $data);</code></pre>
 		</section>
-		
+
 		<section>
 			<h2>Configuration</h2>
 
@@ -115,7 +115,7 @@ $this->render('welcome/index', $data);</code></pre>
 				</tbody>
 			</table>
 		</section>
-		
+
 		<section>
 			<article>
 				<h4>Global Config Array</h4>
@@ -274,6 +274,33 @@ $this->render('welcome/index', $data);</code></pre>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>echo Pagination::prev_link('Previous Page');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4>page_links()</h4>
+				<p>The <strong>page_links</strong> method displays the page links between previous and next links for pagination.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>echo Pagination::page_links();</code></pre>
 						</td>
 					</tr>
 					</tbody>

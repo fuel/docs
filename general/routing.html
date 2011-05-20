@@ -40,10 +40,10 @@
 				catch-all route.</li>
 		</ul>
 
-		<pre><code>array(
+		<pre class="php"><code>return array(
     '_root_'  => 'welcome/index',
     '_404_'   => 'welcome/404',
-),</code></pre>
+);</code></pre>
 
 		<h3>Basic Routing</h3>
 
@@ -51,11 +51,11 @@
 
 		<p>This allows you to do things like the following:</p>
 
-		<pre><code>array(
+		<pre class="php"><code>return array(
     'about'   => 'site/about',
     'contact' => 'contact/form',
     'admin'   => 'admin/login',
-),</code></pre>
+);</code></pre>
 
 
 		<h3>Slightly Advanced Routing</h3>
@@ -72,10 +72,10 @@
 
 		<p>Here are some examples:</p>
 
-		<pre><code>'routes' => array(
+		<pre class="php"><code>return array(
     'blog/(:any)'      => 'blog/entry/$1', // Routes /blog/entry_name to /blog/entry/entry_name
     '(:segment)/about' => 'site/about/$1', // Routes /en/about to /site/about/en
-),</code></pre>
+);</code></pre>
 
 
 		<h3>Advanced Routing</h3>
@@ -85,15 +85,15 @@
 
 		<p>Example:</p>
 
-		<pre><code>array(
+		<pre class="php"><code>return array(
     'blog/:year/:month/:id' => 'blog/entry', // Routes /blog/2010/11/entry_name to /blog/entry
-),</code></pre>
+);</code></pre>
 
 		<p>In the above example it would catch the following <kbd>/blog/2010/11/entry_name</kbd>.  It would then
 		route that request to your 'entry' action in your 'blog' controller.  There, the named params
 		will be available like this:</p>
 
-		<pre><code>$this->param('year');
+		<pre class="php"><code>$this->param('year');
 $this->param('month');
 $this->param('id');</code></pre>
 
@@ -105,16 +105,16 @@ $this->param('id');</code></pre>
 
 		<p>Example:</p>
 
-		<pre><code>array(
+		<pre class="php"><code>return array(
     // Routes GET /blog to /blog/all and POST /blog to /blog/create
     'blog' => array(array('GET', new Route('blog/all')), array('POST', new Route('blog/create'))),
-),</code></pre>
+);</code></pre>
 
 		<p>You can use named parameters and regexes within your URL just like normal:</p>
 
-        <pre><code>'routes' => array(
+        <pre class="php"><code>return array(
     'blog/(:any)' => array(array('GET', new Route('blog/show/$1'))),
-),</code></pre>
+);</code></pre>
 
 		<h3>Module Routing</h3>
 
