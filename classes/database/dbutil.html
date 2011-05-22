@@ -33,7 +33,7 @@
 		<p>DBUtil allows you to create, rename, alter and drop databases field</p>
 		
 		<article>
-			<h4 id="method_create_database">DBUtil::create_database</h4>
+			<h4 id="method_create_database">create_database($database, charset = null)</h4>
 			<p>The <strong>create_database</strong> method creates a database.  Will throw a Database_Exception if it cannot.</p>
 			<table class="method">
 				<tbody>
@@ -56,7 +56,7 @@
 									<td>the database name</td>
 								</tr>
 								<tr>
-									<th><kbd>$chartset</kbd></th>
+									<th><kbd>$charset</kbd></th>
 									<td><em>null</em></td>
 									<td>the default charset</td>
 								</tr>
@@ -102,7 +102,7 @@ DBUtil::create_database('new_database', 'utf8_unicode_ci');
 		</article>
 		
 		<article>
-			<h4 id="method_drop_database">DBUtil::drop_database</h4>
+			<h4 id="method_drop_database">drop_database($database)</h4>
 			<p>The <strong>drop_database</strong> method drops a database.  Will throw a Database_Exception if it cannot.</p>
 			<table class="method">
 				<tbody>
@@ -158,7 +158,7 @@ catch(\Database_Exception $e)
 		</article>
 		
 		<article>
-			<h4 id="method_drop_table">DBUtil::drop_table</h4>
+			<h4 id="method_drop_table">drop_table($table)</h4>
 			<p>The <strong>drop_table</strong> method drops a table.  Will throw a Database_Exception if it cannot.</p>
 			<table class="method">
 				<tbody>
@@ -214,7 +214,7 @@ catch(\Database_Exception $e)
 		</article>
 	
 		<article>
-			<h4 id="method_rename_table">DBUtil::rename_table</h4>
+			<h4 id="method_rename_table">rename_table($table, $new_table_name)</h4>
 			<p>The <strong>rename_table</strong> method renames a table.</p>
 			<table class="method">
 				<tbody>
@@ -239,7 +239,7 @@ catch(\Database_Exception $e)
 								<tr>
 									<th><kbd>$new_table_name</kbd></th>
 									<td><em>required</em></td>
-									<td>The old table name</td>
+									<td>The new table name</td>
 								</tr>
 							</table>
 						</td>
@@ -275,7 +275,7 @@ catch(\Database_Exception $e)
 		</article>
 	
 		<article>
-			<h4 id="method_create_table">DBUtil::create_table</h4>
+			<h4 id="method_create_table">create_table($table, $fields, $primary_keys = array(), $if_not_exists = true, $engine = false, $charset = null)</h4>
 			<p>The <strong>create_table</strong> method creates a table.</p>
 			<table class="method">
 				<tbody>
@@ -408,7 +408,7 @@ catch(\Database_Exception $e)
 		</article>
 		
 		<article>
-			<h4 id="method_add_fields">DBUtil::add_fields</h4>
+			<h4 id="method_add_fields">add_fields($table, $fields)</h4>
 			<p>The <strong>modify_fields</strong> method adds fields to a table.</p>
 			<table class="method">
 				<tbody>
@@ -461,7 +461,7 @@ catch(\Database_Exception $e)
 		</article>
 		
 		<article>
-			<h4 id="method_modify_fields">DBUtil::modify_fields</h4>
+			<h4 id="method_modify_fields">modify_fields($table, $fields)</h4>
 			<p>The <strong>modify_fields</strong> method alters fields in a table.</p>
 			<table class="method">
 				<tbody>
@@ -516,7 +516,7 @@ catch(\Database_Exception $e)
 		<h2 id="database-operations">Database operations</h2>
 					
 		<article>
-			<h4 id="method_truncate_table">DBUtil::truncate_table</h4>
+			<h4 id="method_truncate_table">truncate_table($table)</h4>
 			<p>The <strong>truncate_table</strong> method truncates a table.</p>
 			<table class="method">
 				<tbody>
@@ -560,7 +560,7 @@ catch(\Database_Exception $e)
 		</article>
 	
 		<article>
-			<h4 id="method_analyze_table">DBUtil::analyze_table</h4>
+			<h4 id="method_analyze_table">analyze_table($table)</h4>
 			<p>The <strong>analyze_table</strong> method analyzes a table.</p>
 			<table class="method">
 				<tbody>
@@ -604,7 +604,7 @@ catch(\Database_Exception $e)
 		</article>
 		
 		<article>
-			<h4 id="method_check_table">DBUtil::check_table</h4>
+			<h4 id="method_check_table">check_table($table)</h4>
 			<p>The <strong>check_table</strong> method checks a table.</p>
 			<table class="method">
 				<tbody>
@@ -648,7 +648,7 @@ catch(\Database_Exception $e)
 		</article>
 		
 		<article>
-			<h4 id="method_optimize_table">DBUtil::optimize_table</h4>
+			<h4 id="method_optimize_table">optimize_table($table)</h4>
 			<p>The <strong>check_table</strong> method optimizes a table.</p>
 			<table class="method">
 				<tbody>
@@ -692,7 +692,7 @@ catch(\Database_Exception $e)
 		</article>
 		
 		<article>
-			<h4 id="method_repair_table">DBUtil::repair_table</h4>
+			<h4 id="method_repair_table">repair_table($table)</h4>
 			<p>The <strong>check_table</strong> method repairs a table.</p>
 			<table class="method">
 				<tbody>
@@ -719,7 +719,7 @@ catch(\Database_Exception $e)
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td><em>True</em> if the table is OK or repaired. <em>False</em> on failure. If not supported or failed it logs the error message.</td>
+						<td><em>True</em> if the table is OK or repaired. <em>false</em> on failure. If not supported or failed it logs the error message.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
