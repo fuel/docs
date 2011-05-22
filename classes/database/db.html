@@ -29,7 +29,7 @@
 		<p>The DB class allows you to build and execute database queries and fetch the result.</p>
 		
 		<article>
-			<h4 id="method_query">DB::query</h4>
+			<h4 id="method_query">query($query)</h4>
 			<p>The <strong>query</strong> method returns an new Database_Query object.</p>
 			<table class="method">
 				<tbody>
@@ -71,7 +71,7 @@ $query = DB::query('SELECT * FROM `users`');
 		</article>
 		
 		<article>
-				<h4 id="method_select">DB::select</h4>
+				<h4 id="method_select">select()</h4>
 				<p>The <strong>select</strong> method returns an new Database_Query_Builder_Select object.</p>
 				<table class="method">
 					<tbody>
@@ -116,7 +116,7 @@ $query = DB::select('id', 'name');
 		</article>
 		
 		<article>
-			<h4 id="method_select_array">DB::select_array</h4>
+			<h4 id="method_select_array">select_array($colmns)</h4>
 			<p>The <strong>select_array</strong> method returns an new Database_Query_Builder_Select object.</p>
 			<table class="method">
 				<tbody>
@@ -161,7 +161,7 @@ $query = DB::select_array(array('id', 'name'));
 		</article>
 			
 		<article>
-			<h4 id="method_insert">DB::insert</h4>
+			<h4 id="method_insert">insert($table = null, $columns = array())</h4>
 			<p>The <strong>insert</strong> method returns an new Database_Query_Builder_Insert object.</p>
 			<table class="method">
 				<tbody>
@@ -211,7 +211,7 @@ $query = DB::insert('table_name', array('id', 'name'));
 		</article>
 	
 		<article>
-			<h4 id="method_update">DB::update</h4>
+			<h4 id="method_update">update($table = null)</h4>
 			<p>The <strong>update</strong> method returns an new Database_Query_Builder_Update object.</p>
 			<table class="method">
 				<tbody>
@@ -253,7 +253,7 @@ $query = DB::update('table_name');
 		</article>
 		
 		<article>
-			<h4 id="method_delete">DB::delete</h4>
+			<h4 id="method_delete">delete($table = null)</h4>
 			<p>The <strong>insert</strong> method returns an new Database_Query_Builder_Delete object.</p>
 			<table class="method">
 				<tbody>
@@ -295,7 +295,7 @@ $query = DB::delete('table_name');
 		</article>
 		
 		<article>
-			<h4 id="method_expr">DB::expr</h4>
+			<h4 id="method_expr">expr($expression)</h4>
 			<p>The <strong>expr</strong> method returns an new Database_Expression object.</p>
 			<table class="method">
 				<tbody>
@@ -337,7 +337,7 @@ $query = DB::expr('COUNT(table_name.table_column)');
 		</article>
 		
 		<article>
-			<h4 id="method_quote">DB::quote</h4>
+			<h4 id="method_quote">quote($string, $db = null)</h4>
 			<p>The <strong>quote</strong> method returns a quoted string for an SQL query.</p>
 			<table class="method">
 				<tbody>
@@ -387,7 +387,7 @@ $query = DB::quote("'something's quoted'", $db_connection);
 		</article>
 		
 		<article>
-			<h4 id="method_quote_identifier">DB::quote_identifier</h4>
+			<h4 id="method_quote_identifier">quote_identifier($string, $db)</h4>
 			<p>The <strong>quote_identifier</strong> method returns a quoted string for an SQL query.</p>
 			<table class="method">
 				<tbody>
@@ -439,7 +439,7 @@ print_r(DB::quote_identifier(array('users.name')));
 		</article>
 		
 		<article>
-			<h4 id="method_quote_table">DB::quote_table</h4>
+			<h4 id="method_quote_table">quote_table($string, $db = null)</h4>
 			<p>The <strong>quote_table</strong> method returns a quoted string for an SQL query.</p>
 			<table class="method">
 				<tbody>
@@ -491,7 +491,7 @@ print_r(DB::quote_identifier(array('users')));
 		</article>
 		
 		<article>
-			<h4 id="method_table_prefix">DB::table_prefix</h4>
+			<h4 id="method_table_prefix">table_prefix($table, $db = null)</h4>
 			<p>The <strong>table_prefix</strong> method returns the table name with the configured prefix.
 			If not, then just the prefix is returned.</p>
 			<table class="method">
@@ -510,7 +510,7 @@ print_r(DB::quote_identifier(array('users')));
 									<th class="description">Description</th>
 								</tr>
 								<tr>
-									<th><kbd>$string</kbd></th>
+									<th><kbd>$table</kbd></th>
 									<td><em>required</em></td>
 									<td class="description">The table name to prefix.</td>
 								</tr>
@@ -539,7 +539,7 @@ print_r(DB::table_prefix('table_name'));
 		</article>
 		
 		<article>
-			<h4 id="method_escape">DB::escape</h4>
+			<h4 id="method_escape">escape($string, $db = null)</h4>
 			<p>The <strong>escape</strong> method returns a escaped string for an SQL query.</p>
 			<table class="method">
 				<tbody>
@@ -586,7 +586,7 @@ print_r(DB::escape('or *\' "'));
 		</article>
 			
 		<article>
-			<h4 id="method_list_columns">DB::list_columns</h4>
+			<h4 id="method_list_columns">list_columns($table, $like = null, $db = null)</h4>
 			<p>The <strong>list_columns</strong> method return a lists all of the columns in a table.
 			Optionally, a LIKE string can be used to search for specific fields.</p>
 			<table class="method">
@@ -697,7 +697,7 @@ print_r(DB::list_columns('users','%name%'));
 		</article>
 		
 		<article>
-			<h4 id="method_list_tables">DB::list_tables</h4>
+			<h4 id="method_list_tables">list_tables($like = null, $db = null</h4>
 			<p>The <strong>list_tables</strong> method return a lists all of the tables in a database.
 			Optionally, a LIKE string can be used to search for specific tables.</p>
 			<table class="method">
@@ -762,7 +762,7 @@ DB::list_tables('%sessions%');
 		</article>
 	
 		<article>
-			<h4 id="method_datatypes">DB::datatype</h4>
+			<h4 id="method_datatypes">datatype($type, $db = null)</h4>
 			<p>The <strong>datatype</strong> method returns a normalized array describing the SQL data type.</p>
 			<table class="method">
 				<tbody>
@@ -815,7 +815,7 @@ DB::datatype('char');
 		</article>
 		
 		<article>
-			<h4 id="method_count_records">DB::count_records</h4>
+			<h4 id="method_count_records">count_records($table, $db = null)</h4>
 			<p>The <strong>count_records</strong> method returns the number of records in a table.</p>
 			<table class="method">
 				<tbody>
@@ -862,7 +862,7 @@ DB::count_records('users');
 		</article>
 		
 		<article>
-			<h4 id="method_count_last_query">DB::count_last_query</h4>
+			<h4 id="method_count_last_query">count_last_query($db = null)</h4>
 			<p>The <strong>count_last_query</strong> method returns the number of records in the last query, without LIMIT or OFFSET applied.</p>
 			<table class="method">
 				<tbody>
@@ -907,7 +907,7 @@ DB::count_records('users');
 		</article>
 		
 		<article>
-			<h4 id="method_set_charset">DB::set_charset</h4>
+			<h4 id="method_set_charset">set_charset($charset, $db)</h4>
 			<p>The <strong>set_charset</strong> method sets the connection character set. This is called automatically by [static::connect].</p>
 			<table class="method">
 				<tbody>
@@ -952,7 +952,7 @@ DB::count_records('users');
 		</article>
 		
 		<article>
-			<h4 id="method_transactional">DB::transactional</h4>
+			<h4 id="method_transactional">transactional($use_trans = true, $db = null)</h4>
 			<p>The <strong>transactional</strong> method sets the Database instance to use transactions.</p>
 			<table class="method">
 				<tbody>
@@ -997,7 +997,7 @@ DB::count_records('users');
 		</article>
 		
 		<article>
-			<h4 id="method_start_transaction">DB::start_transaction</h4>
+			<h4 id="method_start_transaction">start_transaction($db = null)</h4>
 			<p>The <strong>start_transaction</strong> method begins a transaction on an instance.</p>
 			<table class="method">
 				<tbody>
@@ -1037,7 +1037,7 @@ DB::count_records('users');
 		</article>
 		
 		<article>
-			<h4 id="method_commit_transaction">DB::commit_transaction</h4>
+			<h4 id="method_commit_transaction">commit_transaction($db = null)</h4>
 			<p>The <strong>commit_transaction</strong> method commits all pending transactional queries.</p>
 			<table class="method">
 				<tbody>
@@ -1077,7 +1077,7 @@ DB::count_records('users');
 		</article>
 		
 		<article>
-			<h4 id="method_rollback_transaction">DB::rollback_transaction</h4>
+			<h4 id="method_rollback_transaction">rollback_transaction($db = null)</h4>
 			<p>The <strong>rollback_transaction</strong> method rolls back all pending transactional queries.</p>
 			<table class="method">
 				<tbody>
