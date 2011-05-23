@@ -362,8 +362,8 @@ class Myvalidation {
     {
         list($table, $field) = explode('.', $options);
 
-        $result = DB::select('LOWER ("$field")')
-            ->where("$field", '=', Str::lower($val))
+        $result = DB::select("LOWER (\"$field\")")
+            ->where($field, '=', Str::lower($val))
             ->from($table)->execute();
 
         return ! ($result->count() > 0);
