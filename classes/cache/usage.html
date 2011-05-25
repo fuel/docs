@@ -145,12 +145,13 @@ try
 }
 catch (\CacheNotFoundException $e)
 {
-	// Cache is not found...
+	/*
+		Catching the CacheNotFoundException exception will catch 
+		both CacheNotFoundException and CacheExpiredException.
+		Use this when cathing the exception.
+	*/
 }
-catch (\CacheExpiredException $e)
-{
-	// Cache has expired...
-}</code></pre>
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
