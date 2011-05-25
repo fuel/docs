@@ -32,8 +32,12 @@
 			Variables can be assigned with the view object and referenced locally within the view.
 		</p>
 		
+		<p>
+			<a href="../general/views.html">Read more about using views.</a>
+		</p>
+		
 		<article>
-			<h4>The constructor (__construct)</h4>
+			<h4>__construct($file = null, $data = null, $auto_encode = null)</h4>
 			<table class="method">
 				<tbody>
 					<tr>
@@ -87,7 +91,7 @@
 		</article>		
 
 		<article>
-			<h4>View::factory</h4>
+			<h4>factory($file = null, $data = null, $auto_encode = null)</h4>
 			<p>The <strong>factory</strong> method returns a new View object.</p>
 			<table class="method">
 				<tbody>
@@ -107,7 +111,7 @@
 								<tr>
 									<th><kbd>$file</kbd></th>
 									<td><em>null</em></td>
-									<td class="description">the view filename, if not supplied you must supply it later through <em>set_filename</em> or supply it in <em>render</em>. View files should be relative to the <em>app/views</em> directory.</td>
+									<td class="description">the view filename, if not supplied you must supply it later through <em>set_filename</em> or supply it in <em>render</em>. View files should be relative to the <em>app/views</em> directory and be supplied without the <strong>.php</strong> file extension.</td>
 								</tr>
 								<tr>
 									<th><kbd>$data</kbd></th>
@@ -129,7 +133,8 @@
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$view = View::factory('path/to/view', array(
+							<pre class="php"><code>// Will create a View object for APPPATH/
+$view = View::factory('path/to/view', array(
 	'menu' => $menu,
 	'articles' => $articles,
 	'footer_links' => $footer_links,
@@ -142,7 +147,172 @@
 		</article>
 		
 		<article>
-			<h4>View::set_global</h4>
+			<h4>auto_encode($encode = true)</h4>
+			<p>The <strong>auto_encode</strong> sets whether to encode the data or not on a View instance.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$encode</kbd></th>
+									<td><em>true</em></td>
+									<td class="description">whether to encode the data or not on a View instance</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Current View object</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$view = View::factory('path/to/view', array(
+	'menu' => $menu,
+	'articles' => $articles,
+	'footer_links' => $footer_links,
+));
+
+$view->auto_encode();
+
+// or set it to false
+
+$view->auto_encode(false);
+
+// or chain it
+
+$view = View::factory('path/to/view', array(
+	'menu' => $menu,
+	'articles' => $articles,
+	'footer_links' => $footer_links,
+))->auto_encode();
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4>set_filename($file)</h4>
+			<p>The <strong>set_filename</strong> allows you to set or change the view filename.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$file</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">the view filename, view files should be relative to the <em>app/views</em> directory and be supplied without the <strong>.php</strong> extension.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Current View object</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$view = new View();
+
+$view->set_filename('path/to/view');
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4>set($key, $value = null, $encode = null)</h4>
+			<p>The <strong>set</strong> assigns a variable to a view.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">variable name or array of variables</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>null</em></td>
+									<td class="description">the value</td>
+								</tr>
+								<tr>
+									<th><kbd>$encode</kbd></th>
+									<td><em>null</em></td>
+									<td class="description">set to <em>true</em> or <em>false</em> to encoding, defaults to main auto encoding setting</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Current View object</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$view = new View;
+$view->set('users', $users, false);
+
+// or set an array
+
+$view->set(array(
+	'users' => $users,
+	'articles' => $articles,
+), null, true);
+
+// If you need HTML / Javascript passed you need to set the last param to false
+// when output encoding is enabled.
+$view->set('example', '&lt;h1&gt;Heading&lt;/h1&gt;', false);
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4>set_global($key, $value = null, $encode = null)</h4>
 			<p>The <strong>set_global</strong> sets a variable accessible for all views.</p>
 			<table class="method">
 				<tbody>
@@ -200,9 +370,68 @@ View::set_global(array(
 		</article>
 		
 		<article>
-			<h4>View::bind_global</h4>
+			<h4>bind($key, $value = null)</h4>
+			<p>
+				Assigns a value by reference. The benefit of binding is that values can be altered without re-setting
+				them. It is also possible to bind variables before they have values. Assigned values will be available
+				as a variable within the view file.
+			</p>
+			<p class="note">Please note: these cannot be cleaned by output encoding and should thus be considered unsafe.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td class="description">variable name or array of variables</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>null</em></td>
+									<td class="description">the value</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Current View object</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$view = new View;
+$view->bind('users', $users, false);
+
+// or set an array
+
+$view->bind(array(
+	'users' => $users,
+	'articles' => $articles,
+), null, true);
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4>bind_global($key, $value = null)</h4>
 			<p>The <strong>bind_global</strong> assigns a global variable by reference accessible for all views.</p>
-			<p class="note">Variables set through <em>bind_global</em> are not encoded.</p>
+			<p class="note">Please note: these cannot be cleaned by output encoding and should thus be considered unsafe.</p>
 			<table class="method">
 				<tbody>
 					<tr>
@@ -245,225 +474,9 @@ View::set_global(array(
 				</tbody>
 			</table>
 		</article>
-		
-		<article>
-			<h4>View::auto_encode</h4>
-			<p>The <strong>auto_encode</strong> sets whether to encode the data or not on a View instance.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$encode</kbd></th>
-									<td><em>true</em></td>
-									<td class="description">whether to encode the data or not on a View instance</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td><strong>$this</strong></td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>$view = View::factory('path/to/view', array(
-	'menu' => $menu,
-	'articles' => $articles,
-	'footer_links' => $footer_links,
-));
-
-$view->auto_encode();
-
-// or set it to false
-
-$view->auto_encode(false);
-
-// or chain it
-
-$view = View::factory('path/to/view', array(
-	'menu' => $menu,
-	'articles' => $articles,
-	'footer_links' => $footer_links,
-))->auto_encode();
-</code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4>View::set_filename</h4>
-			<p>The <strong>set_filename</strong> sets the view filename.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$file</kbd></th>
-									<td><em>required</em></td>
-									<td class="description">the view filename, view files should be relative to the <em>app/views</em> directory.</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td><strong>$this</strong></td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>$view = new View();
-
-$view->set_filename('path/to/view');
-</code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4>View::set</h4>
-			<p>The <strong>set</strong> assigns a variable to a view.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$key</kbd></th>
-									<td><em>required</em></td>
-									<td class="description">variable name or array of variables</td>
-								</tr>
-								<tr>
-									<th><kbd>$value</kbd></th>
-									<td><em>null</em></td>
-									<td class="description">the value</td>
-								</tr>
-								<tr>
-									<th><kbd>$encode</kbd></th>
-									<td><em>null</em></td>
-									<td class="description">set to <em>true</em> or <em>false</em> to encoding, defaults to main auto encoding setting</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td><strong>$this</strong></td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>$view = new View;
-$view->set('users', $users, false);
-
-// or set an array
-
-$view->set(array(
-	'users' => $users,
-	'articles' => $articles,
-), null, true);
-</code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4>View::bind</h4>
-			<p>The <strong>set</strong> assigns a variable to a view by reference.</p>
-			<p class="note">Variables set through <em>bind</em> are not encoded.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$key</kbd></th>
-									<td><em>required</em></td>
-									<td class="description">variable name or array of variables</td>
-								</tr>
-								<tr>
-									<th><kbd>$value</kbd></th>
-									<td><em>null</em></td>
-									<td class="description">the value</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td><strong>$this</strong></td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>$view = new View;
-$view->bind('users', $users, false);
-
-// or set an array
-
-$view->bind(array(
-	'users' => $users,
-	'articles' => $articles,
-), null, true);
-</code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
 				
 		<article>
-			<h4>View::render</h4>
+			<h4>render($file = null)</h4>
 			<p>
 				The <strong>set</strong> renders the view object to a string.
 				Global and local data are merged and extracted to create local variables within the view file.
@@ -513,7 +526,7 @@ $html = View::factory()->set_filename('path/to/view')->render();
 				</tbody>
 			</table>
 		</article>
-		
+				
 	</section>
 
 	<section id="footer">

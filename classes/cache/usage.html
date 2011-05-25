@@ -133,7 +133,7 @@ Cache::set('test', 'String to be cached.', 3600 * 3);</code></pre>
 					</tr>
 					<tr>
 						<th>Throws</th>
-						<td>Cache_Exception - when Cache doesn't exist or has expired</td>
+						<td>CacheNotFoundException when Cache doesn't exist or CacheExpiredException when it has expired</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -143,12 +143,15 @@ try
 {
 	$content = Cache::get('test');
 }
-// generate the $content var contents and save cache when that failed
-catch (Exception $e)
+catch (\CacheNotFoundException $e)
 {
-	$content = 'String to be cached.';
-	Cache::set('test', $content, 3600 * 3);
-}</code></pre>
+	/*
+		Catching the CacheNotFoundException exception will catch 
+		both CacheNotFoundException and CacheExpiredException.
+		Use this when cathing the exception.
+	*/
+}
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
