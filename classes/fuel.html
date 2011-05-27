@@ -151,7 +151,101 @@
 
 		<h3>Class properties</h3>
 
-		<p>To be written.</p>
+		<p>Environment, Profiling, and Locale</p>
+		<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Name</th>
+						<th>Type</th>
+						<th>Value</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>$env</th>
+						<td>const</td>
+						<td><pre class="php"><code>\Fuel::DEVELOPMENT</code></pre></td>
+						<td>
+							Environment constant. Set to config value on init().
+						</td>
+					</tr>
+					<tr>
+						<th>$profiling</th>
+						<td>bool</td>
+						<td><pre class="php"><code>FALSE</code></pre></td>
+						<td>
+							Profiling on or off. Set to config value on init().
+						</td>
+					</tr>
+					<tr>
+						<th>$locale</th>
+						<td>string</td>
+						<td><pre class="php"><code>No default - not set.</code></pre></td>
+						<td>
+							Sets locale using PHP setlocale() function. Set to config value on init().
+						</td>
+					</tr>
+					<tr>
+						<th>$encoding</th>
+						<td>string</td>
+						<td><pre class="php"><code>'UTF-8'</code></pre></td>
+						<td>
+							Sets locale using PHP setlocale() function. Set to config value on init().
+						</td>
+					</tr>
+					<tr>
+						<th>$is_cli</th>
+						<td>bool</td>
+						<td><pre class="php"><code>FALSE</code></pre></td>
+						<td>
+							Running in Command Line Interface (CLI) mode?
+						</td>
+					</tr>
+					<tr>
+						<th>$is_test</th>
+						<td>bool</td>
+						<td><pre class="php"><code>FALSE</code></pre></td>
+						<td>
+							Running in test mode?
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+		<p>Path Caching - implments the Cascading File System</p>
+		<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Name</th>
+						<th>Type</th>
+						<th>Value</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>$caching</th>
+						<td>bool</td>
+						<td><pre class="php"><code>FALSE</code></pre></td>
+						<td>
+							Cache path calls. Set to config value on init().
+						</td>
+					</tr>
+					<tr>
+						<th>$cache_path</th>
+						<td>array</td>
+						<td><pre class="php"><code>empty array</code></pre></td>
+						<td>
+							Holds the path cache if caching is set to TRUE.
+						</td>
+					</tr>
+					<tr>
+						<th>$cache_lifetime</th>
+						<td>int</td>
+						<td><pre class="php"><code>3600</code></pre></td>
+						<td>
+							Sets cache time to live in seconds (3600 seconds = 1 hour). Set to config value on init().
+						</td>
+					</tr>
+				</tbody>
+			</table>
 
 		<article>
 			<h4>find_file($directory, $file, $ext = '.php', $multiple = false, $cache = true)</h4>
