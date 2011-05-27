@@ -35,6 +35,20 @@
 		<article id="included_observers">
 			<h2>Observers: Included observers</h2>
 
+			<h3>Observer_Self</h3>
+
+			<p>While not exactly good practice, in some cases it's probably cleanest to just have the event method with
+				your model. That's where the Observer_Self comes in, it checks if you model has a method named after
+				the event and prefixed with <kbd>_event_</kbd>. For example for the <kbd>after_save</kbd> event you need
+				to add a public method <kbd>_event_after_save()</kbd> to your model so it can have the observer call on
+				the model itself.</p>
+
+			<pre class="php"><code>// Just add the Observer
+protected static $_observers = array('Orm\\Observer_Self');
+
+// But if you only observe some events you can optimize by only adding those
+protected static $_observers = array('Orm\\Observer_Self' => array('after_save', 'before_insert'));</code></pre>
+
 			<h3>Observer_CreatedAt</h3>
 
 			<p>This observer acts only upon <kbd>before_insert</kbd> and expects your model to have a
