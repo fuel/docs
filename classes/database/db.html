@@ -71,6 +71,51 @@ $query = DB::query('SELECT * FROM `users`');
 		</article>
 		
 		<article>
+			<h4 id="method_query">last_query()</h4>
+			<p>The <strong>last_query</strong> method returns the last executed SQL query.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$db</kbd></th>
+									<td><em>null</em></td>
+									<td>The database connection.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>The last executed SQL query.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// execute a query
+$user = DB::select()->from('users')->where('id', 1);
+
+echo DB::last_query();
+// SELECT * FROM `users` WHERE `id` = 1
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
 				<h4 id="method_select">select()</h4>
 				<p>The <strong>select</strong> method returns an new Database_Query_Builder_Select object.</p>
 				<table class="method">
