@@ -67,10 +67,10 @@
 
 		<pre><code>&lt;?php
 /**
- * Module controller in the MyModule module
+ * Module controller in the Mymodule module
  */
 
-namespace MyModule;
+namespace Mymodule;
 
 class Controller_Widget {
 
@@ -106,7 +106,17 @@ class Controller_Widget {
 
 		<h3>Module routing</h3>
 
-		<p>To be written.</p>
+		<p>
+			When you use modules in routed mode, you can add custom routes to your module by including a <b>routes.php</b> in your modules config folder.
+			These routes will be loaded when Fuel detects that the first URI segment refers to a module, and only the routes of that module will be loaded.
+		</p>
+
+		<p>
+			This implies that module routes can not be used to define routes for global routing or routes for other modules.
+			In other words, the left side should always include the current module as first URI segment.
+			For the right side you can use anything described in the sections above, it's perfectly fine to have a module
+			route to an app controller or another module.
+		</p>
 
 		<h3>Modules and HMVC requests</h3>
 
@@ -144,13 +154,13 @@ class Controller_Widget {
 
 		<p>You can also add the module manually at runtime, before you use any of the static methods:</p>
 
-		<pre><code class="php">// add the module MyModule to Fuel
+		<pre><code class="php">// add the module Mymodule to Fuel
 Fuel::add_module('mymodule');
 </code></pre>
 
 		<p>You then call the module class like this:</p>
 
-		<pre><code class="php">\mymodule\myclass::mymethod('parms');
+		<pre><code class="php">\Mymodule\Myclass::mymethod('params');
 </code></pre>
 
 	</section>
