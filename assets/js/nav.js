@@ -36,6 +36,7 @@ var nav = {
 			},
 			"Modules":			"general/modules.html",
 			"Packages":			"general/packages.html",
+			"Security":			"general/security.html",
 			"Tasks":			"general/tasks.html",
 			"Migrations":		"general/migrations.html",
 			"Coding Standards":	"general/coding_standards.html"
