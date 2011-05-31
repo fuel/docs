@@ -437,8 +437,8 @@
 			</table>
 		</article>
 		<article>
-			<h4>repopulate($input = null)</h4>
-			<p>Set all field values to the given and/or posted input.</p>
+			<h4>populate($input, $repopulate = false)</h4>
+			<p>Set initial field values to the given input, optionally set it to repopulate after that as well.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -456,10 +456,45 @@
 							</tr>
 							<tr>
 								<th><kbd>$input</kbd></th>
-								<td><i><code>null</code></i></td>
-								<td>An associative array of values to assign to their respective Fields, or a Model instance to take the values from. If <kbd>null</kbd>, tries to fetch values from POST data.</td>
+								<td><i>required</i></td>
+								<td>An object or associative array of values to assign to their respective Fields,
+									or a Model instance to take the values from.</td>
+							</tr>
+							<tr>
+								<th><kbd>$repopulate</kbd></th>
+								<td><code>false</code></td>
+								<td>Use the repopulate() method after inital populating</td>
 							</tr>
 						</tbody></table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Fieldset Object</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<code>$article_form->repopulate($model);</code>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		<article>
+			<h4>repopulate()</h4>
+			<p>Set all field values to the input send by a form submission (uses the form <kbd>method</kbd> attribute
+				to decide wether to check POST or GET).</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<i>None</i>
 					</td>
 				</tr>
 				<tr>
