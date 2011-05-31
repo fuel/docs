@@ -86,7 +86,10 @@
 				</tr>
 				<tr>
 					<th>Throws</th>
-					<td><kbd>FileAccessException</kbd> when creation fails or is not not permited.</td>
+					<td>
+						<kbd>FileAccessException</kbd> when the file already exists.
+						<kbd>InvalidPathException</kbd> when the basepath in not valid or not writable.
+					</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -146,7 +149,10 @@
 				</tr>
 				<tr>
 					<th>Throws</th>
-					<td><kbd>FileAccessException</kbd> when creation fails</td>
+					<td>
+						<kbd>InvalidPathException</kbd> when the basepath does not exists or is not writable.
+						<kbd>FileAccessException</kbd> when the basepath is not writable.
+					</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -197,9 +203,16 @@
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>int|string - returns the number of bytes when $as_string was set to false or the file's contents
-					as a string when it was set to true.</td>
+					<td>
+						int|string - returns the number of bytes when $as_string was set to false or the file's
+						contents as a string when it was set to true.
+					</td>
 				</tr>
+				<tr>
+					<th>Throws</th>
+					<td><kbd>InvalidPathException</kbd> when the file does not exists.</td>
+				</tr>
+				
 				<tr>
 					<th>Example</th>
 					<td>
@@ -262,6 +275,13 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					with filename as value.</td>
 				</tr>
 				<tr>
+					<th>Throws</th>
+					<td>
+						<kbd>InvalidPathException</kbd> when the path not a directory.
+						<kbd>FileAccessException</kbd> when the path is not readable.
+					</td>
+				</tr>
+				<tr>
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>File::read_dir(DOCROOT);</code></pre>
@@ -319,7 +339,10 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 				</tr>
 				<tr>
 					<th>Throws</th>
-					<td><kbd>FileAccessException</kbd> when creation fails</td>
+					<td>
+						<kbd>InvalidPathException</kbd> when the basepath not a directory or is not writable.
+						<kbd>FileAccessException</kbd> when there is no write access.
+					</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -379,7 +402,10 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 				</tr>
 				<tr>
 					<th>Throws</th>
-					<td><kbd>FileAccessException</kbd> when the file does not exist</td>
+					<td>
+						<kbd>InvalidPathException</kbd> when the basepath not a directory or is not writable.
+						<kbd>FileAccessException</kbd> when the file does not exist.
+					</td>
 				</tr>
 				<tr>
 					<th>Example</th>

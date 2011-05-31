@@ -77,12 +77,59 @@ $area = \File::factory($config);</code></pre>
 
 // Now get the area
 
-$area = \File::factory('my_area');
+$area = \File::instance('my_area');
 				</code></pre>
 				
 				<h3>Usage</h3>
 				
-				<p>To be written.</p>
+				<p>
+					There are 2 ways to use area's in the File class. To use area's in a static context, supply a
+					File_Area instance or identifier to the function you're calling.
+				</p>
+				
+				<pre class="php"><code>// Get the area
+$area = File::instance('my_area');
+
+
+// Now read the contents of a directory
+try
+{
+	$dir =  File::read_dir('somedir', 0, null, $area);
+}
+catch(\FileAccessException $e)
+{
+	// Operation failed
+}
+</code></pre>
+				
+				<p>Or like so:</p>
+				
+				<pre class="php"><code>
+// Read the contents of a directory
+try
+{
+	$dir =  File::read_dir('somedir', 0, null, 'my_area');
+}
+catch(\FileAccessException $e)
+{
+	// Operation failed
+}
+</code></pre>
+
+				<p>Another way is to call the functions directly from the area itself.</p>
+				
+				<pre class="php"><code>// Get the area
+$area = File::instance('my_area');
+
+try
+{
+	$dir =  $area->read_dir('somedir', 0, null);
+}
+catch(\FileAccessException $e)
+{
+	// Operation failed
+}
+</code></pre>
 				
 			</article>
 
