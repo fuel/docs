@@ -349,8 +349,8 @@ DB::update('users')->where('id', '=', 1)->set(array(
 	'some_column' => DB::expr('DEFAULT'),
 ))->execute();
 
-// SELECT COUNT(*) FROM `users`
-$result = DB::select(DB:expr('COUNT(*)'))->from('users')->execute();
+// SELECT COUNT(*) as count FROM `users`
+$count = DB::select(DB::expr('COUNT(*) as count'))->from('users')->as_object()->execute()->current()->count;
 </code></pre>
 		
 		</article>
