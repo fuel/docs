@@ -36,7 +36,7 @@
 
 		<p>You call a module controller method using the <a href="../classes/request.html">Request</a> class:</p>
 		<pre class="php"><code>// fetch the output of a controller
-$widget = Request::factory('mycontroller/mymethod/parms', false)->execute();
+$widget = Request::factory('mycontroller/mymethod/parms')->execute();
 echo $widget;
 
 // or fetch the output of a module
@@ -44,8 +44,9 @@ $widget = Request::factory('mymodule/mycontroller/mymethod/parms', false)->execu
 echo $widget;
 </code></pre>
 		<p class="note">
-			Note that you have to use '<strong>false</strong>' as second parameter to the factory() call, to prevent your URI to be routed.
-			If you don't, and you request a non-routable URI, you will end up with a 404 error!
+			By default, all requests made are processed by Fuel's routing engine. If you want to request something that isn't routeable
+			(for example because you don't want a browser to request it) you should pass '<strong>false</strong>' as second parameter
+			to the factory() call. If you don't you will end up with a 404 error when you execute the request!
 		</p>
 
 		<p>Loading views in HMVC request is the same as in normal requests and controller accessed by HMVC request are also approuchable via the browser. In same cases, for example widgets, are not suppose to accessed through the browser. In those cases you'll want to check if the request is made through HMVC or the browser. The following expample shows you how to check for a HMVC request:</p>
