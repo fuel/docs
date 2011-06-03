@@ -26,9 +26,10 @@
 	<section id="content">
 		<h2>Date Class</h2>
 
-		<p>The Date class is a set of helper functions for working with dates.</p>
+		<p>The Date class is a set of helper functions for working with dates, contrary to PHP's DateTime class the
+		Fuel Date class has full support for i18n.</p>
 
-		<article>
+		<article id="method_factory">
 			<h4>factory($timestamp = null, $timezone = null)</h4>
 			<p>The <strong>factory</strong> method returns a new date object.</p>
 			<table class="method">
@@ -83,7 +84,7 @@ Fuel\Core\Date Object
 			</table>
 		</article>
 
-		<article>
+		<article id="method_time">
 			<h4>time($timezone = null)</h4>
 			<p>The <strong>time</strong> method returns the current time in the given timezone as a Date object.</p>
 			<table class="method">
@@ -123,13 +124,13 @@ Fuel\Core\Date Object
 			</table>
 		</article>
 
-		<article>
+		<article id="method_create_from_string">
 			<h4>create_from_string($input, $pattern_key = 'local')</h4>
 			<p>The <strong>create_from_string</strong> creates a Date object from a named date string format</p>
 
-			<p class="note">This function uses <kbd>strptime()</kbd> for internationalization purposes. That method
-				isn't available on Windows hosts however, on those <kbd>strtotime()</kbd> is used instead and the
-				pattern is ignored.</p>
+			<p class="note">This function uses <a href="http://www.php.net/manual/en/function.strptime.php" target="_blank">strptime()</a>
+				for i18n purposes. That method isn't available on Windows hosts however, on those <kbd>strtotime()</kbd>
+				is used instead and the pattern is ignored.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -180,7 +181,7 @@ Fuel\Core\Date Object
 			</table>
 		</article>
 
-		<article>
+		<article id="method_range_to_array">
 			<h4>range_to_array($start, $end, $interval = '+1 Day')</h4>
 			<p>The <strong>range_to_array</strong> converts a range of dates into an array of date objects</p>
 			<table class="method">
@@ -263,7 +264,7 @@ Array
 			</table>
 		</article>
 
-		<article>
+		<article id="method_date_in_month">
 			<h4>days_in_month($month, $year = null)</h4>
 			<p>The <strong>days_in_month</strong> returns the number of days in any given month, in the year specified</p>
 			<table class="method">
@@ -310,7 +311,7 @@ echo Date::days_in_month(2,2000); // 29
 			</table>
 		</article>
 
-		<article>
+		<article id="method_time_ago">
 			<h4>time_ago($timestamp)</h4>
 			<p>The <strong>time_ago</strong> method returns a formatted time difference.</p>
 			<table class="method">
@@ -350,9 +351,14 @@ echo Date::days_in_month(2,2000); // 29
 			</table>
 		</article>
 
-		<article>
+		<article id="method_format">
 			<h4>format($pattern_key = 'local')</h4>
-			<p>The <strong>formatted</strong> method returns a formatted date as specified by the pattern key</p>
+			<p>The <strong>formatted</strong> method returns a formatted date as specified by the pattern key. The
+				patterns are defined in the <kbd>fuel/core/config/date.php</kbd> config file - you can add your own
+				by creating a similar file in <kbd>app/config</kbd>.</p>
+
+			<p class="note">This method uses patterns for the <a href="http://www.php.net/manual/en/function.strftime.php" target="_blank">strftime()</a>
+				function instead of <kbd>date()</kbd> to allow for i18n.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -390,7 +396,7 @@ echo Date::days_in_month(2,2000); // 29
 			</table>
 		</article>
 
-		<article>
+		<article id="method_get_timestamp">
 			<h4>get_timestamp()</h4>
 			<p>The <strong>get_timestamp</strong> method returns the Date object's timestamp</p>
 			<table class="method">
@@ -413,7 +419,7 @@ echo Date::days_in_month(2,2000); // 29
 			</table>
 		</article>
 
-		<article>
+		<article id="method_get_timezone">
 			<h4>get_timezone()</h4>
 			<p>The <strong>get_timezone</strong> method returns the Date object's timezone</p>
 			<table class="method">
@@ -436,7 +442,7 @@ echo Date::days_in_month(2,2000); // 29
 			</table>
 		</article>
 
-		<article>
+		<article id="method_set_timezone">
 			<h4>set_timezone($timezone)</h4>
 			<p>The <strong>set_timezone</strong> method sets the Date object's timezone</p>
 			<table class="method">
