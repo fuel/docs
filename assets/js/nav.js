@@ -74,7 +74,8 @@ var nav = {
 			"File": {
 				"Introduction":	"classes/file/intro.html",
 				"Usage":		"classes/file/usage.html",
-				"Advanced":		"classes/file/advanced.html"
+				"Advanced":		"classes/file/advanced.html",
+				"Handlers":		"classes/file/handlers.html",
 			},
 			"Form":			"classes/form.html",
 			"Format":		"classes/format.html",
