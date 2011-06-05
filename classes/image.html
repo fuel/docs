@@ -30,7 +30,7 @@
 			The Image class is used to easily add common manipulations to an image such as resizing, cropping, and so on.
 		</p>
 
-		<h5>Limitations</h5>
+		<h5 id="limitations">Limitations</h5>
 
 		<p>
 			The Image class has a few limitations that should be made aware of. First off, the GD library handles transparency quite badly.
@@ -41,7 +41,7 @@
 			Using multiple transformations in GD can result in abnormal results.
 		</p>
 
-		<h5>Configuration</h5>
+		<h5 id="configuration">Configuration</h5>
 
 		<p>The Image class accepts the following configuration options. Copy the file from <strong>fuel/core/config/image.php</strong> to <strong>app/config/image.png</strong></p>
 		<table class="config">
@@ -128,7 +128,7 @@
 			</tbody>
 		</table>
 
-		<h5>Presets</h5>
+		<h5 id="presets">Presets</h5>
 
 		<p>
 			Presets are a feature in the Image class that allow defining of a set of tasks in the config, and call that preset. An example is:
@@ -162,7 +162,7 @@ Image::load('filename.gif')->preset('mypreset', 'watermark.gif');
 		</code></pre>
 
 		<article>
-			<h4>factory($config = array())</h4>
+			<h4 id="factory">factory($config = array())</h4>
 			<p>The <strong>factory</strong> method creates a new Image_Driver instance.</p>
 			<table class="method">
 				<tbody>
@@ -212,7 +212,7 @@ $image
 
 
 		<article>
-			<h4>config($index, $value = null)</h4>
+			<h4 id="method_config">config($index, $value = null)</h4>
 			<p>Changes the value of a configuration option.</p>
 			<table class="method">
 				<tbody>
@@ -264,7 +264,7 @@ Image::load('filename.gif')
 		</article>
 
 		<article>
-			<h4>load($filename, $return_data = false)</h4>
+			<h4 id="method_load">load($filename, $return_data = false)</h4>
 			<p>The <strong>load</strong> method attempts to load an image for editing.</p>
 			<table class="method">
 				<tbody>
@@ -311,7 +311,7 @@ Image::load('filename.gif')
 		</article>
 
 		<article>
-			<h4>crop($x1, $y1, $x2, $y2)</h4>
+			<h4 id="method_crop">crop($x1, $y1, $x2, $y2)</h4>
 			<p>Crops the image using coordinates or percentages.</p>
 			<table class="method">
 				<tbody>
@@ -384,7 +384,7 @@ Image::load('filename.gif')
 		</article>
 
 		<article>
-			<h4>resize($width, $height = null, $keepar = true, $pad = false)</h4>
+			<h4 id="method_resize">resize($width, $height = null, $keepar = true, $pad = false)</h4>
 			<p>Resizes the image. If the width or height is null, it will resize retaining the original aspect ratio.</p>
 			<table class="method">
 				<tbody>
@@ -457,8 +457,9 @@ Image::load('filename.gif')
 				</tbody>
 			</table>
 		</article>
+		
 		<article>
-			<h4>crop_resize($width, $height = null)</h4>
+			<h4 id="method_crop_resize">crop_resize($width, $height = null)</h4>
 			<p>Resizes the image and crops it to fit the given width and height.</p>
 			<table class="method">
 				<tbody>
@@ -509,7 +510,7 @@ Image::load('filename.gif')
 		</article>
 
 		<article>
-			<h4>rotate($degrees)</h4>
+			<h4 id="method_rotate">rotate($degrees)</h4>
 			<p>Rotates the image clockwise.</p>
 			<table class="method">
 				<tbody>
@@ -562,7 +563,7 @@ Image::load('filename')
 		</article>
 
 		<article>
-			<h4>watermark($filename, $position, $padding = 5)</h4>
+			<h4 id="method_watermark">watermark($filename, $position, $padding = 5)</h4>
 			<p>Adds a watermark to the image.</p>
 			<table class="method">
 				<tbody>
@@ -628,7 +629,7 @@ Image::load('filename.gif')
 		</article>
 
 		<article>
-			<h4>border($size, $color = null)</h4>
+			<h4 id="method_border">border($size, $color = null)</h4>
 			<p>Adds a border to the image..</p>
 			<table class="method">
 				<tbody>
@@ -685,7 +686,7 @@ Image::load('filename.gif')
 		</article>
 
 		<article>
-			<h4>mask($maskimage)</h4>
+			<h4 id="method_mask">mask($maskimage)</h4>
 			<p>Applies a mask to the image by blending the alpha channel of the mask with those of the loaded image.</p>
 			<table class="method">
 				<tbody>
@@ -730,7 +731,7 @@ Image::load('filename.gif')
 		</article>
 
 		<article>
-			<h4>rounded($radius, $sides = null, $antialias = null)</h4>
+			<h4 id="method_rounded">rounded($radius, $sides = null, $antialias = null)</h4>
 			<p>Applies rounded corners to the image.</p>
 			<table class="method">
 				<tbody>
@@ -795,7 +796,7 @@ Image::load('filename.gif')
 		</article>
 
 		<article>
-			<h4>save($filename, $permissions = null)</h4>
+			<h4 id="method_save">save($filename, $permissions = null)</h4>
 			<p>Saves the image, and optionally attempts to set permissions.</p>
 			<table class="method">
 				<tbody>
@@ -854,7 +855,7 @@ Image::load('filename.gif')
 		</article>
 
 		<article>
-			<h4>save_pa($prepend, $append = null, $extension = null, $permissions = null)</h4>
+			<h4 id="method_save_pa">save_pa($prepend, $append = null, $extension = null, $permissions = null)</h4>
 			<p>Saves the image to the same location with a prepended and/or appended filename, and optionally attempts to set permissions.</p>
 			<table class="method">
 				<tbody>
@@ -917,7 +918,7 @@ Image::load('filename.gif')
 		</article>
 
 		<article>
-			<h4>output($filetype)</h4>
+			<h4 id="method_output">output($filetype)</h4>
 			<p>Outputs the image directly and sets headers.</p>
 			<table class="method">
 				<tbody>

@@ -29,7 +29,7 @@
 		<p>The FTP class allows you to upload, download, move and mirror files with remote servers over the FTP protocol.</p>
 
 		<section>
-			<h2>Configuration</h2>
+			<h2 id="configuration">Configuration</h2>
 
 			<p>The FTP class is configured through the <kbd>fuel/core/config/ftp.php</kbd> configuration file. It is already populated with a default configuration group. You can override this configuration and add new groups by copying this config file to your application config directory, and modify that file as needed.</p>
 			<p>The following configuration settings can be defined:</p>
@@ -103,7 +103,7 @@
 
 
 		<article>
-			<h4>factory()</h4>
+			<h4 id="method_factory">factory()</h4>
 			<p>The <strong>factory</strong> method is used to create a new instance of the FTP class and can either reference a different config group
 				or be passed an array of <a href="config.html">configuration options</a>.</p>
 			<table class="method">
@@ -174,7 +174,7 @@ else
 		</article>
 
 		<article>
-			<h4>change_dir($path = '')</h4>
+			<h4 id="method_change_dir">change_dir($path = '')</h4>
 			<p>The <strong>change_dir</strong> changes the "current directory".</p>
 			<table class="method">
 				<tbody>
@@ -215,7 +215,7 @@ $ftp->change_dir('/public_html/some/path/');</code></pre>
 		</article>
 
 		<article>
-			<h4>mkdir($path, $permissions = null)</h4>
+			<h4 id="method_mkdir">mkdir($path, $permissions = null)</h4>
 			<p>The <strong>mkdir</strong> method is used to create a new directory on the remote server.</p>
 			<table class="method">
 				<tbody>
@@ -261,7 +261,7 @@ $ftp->mkdir('/public_html/uploads/', 0777);</code></pre>
 		</article>
 
 		<article>
-			<h4>upload($local_path, $remote_path, $mode = 'auto', $permissions = null)</h4>
+			<h4 id="method_upload">upload($local_path, $remote_path, $mode = 'auto', $permissions = null)</h4>
 			<p>Upload a file or directory from the local server to the remote server.</p>
 			<table class="method">
 				<tbody>
@@ -319,7 +319,7 @@ $ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 
 		</article>
 
 		<article>
-			<h4>download($remote_path, $local_path, $mode = 'auto')</h4>
+			<h4 id="method_download">download($remote_path, $local_path, $mode = 'auto')</h4>
 			<p>Download a file or directory from the remote server to the local server.</p>
 			<table class="method">
 				<tbody>
@@ -373,7 +373,7 @@ $ftp->download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii'
 		</article>
 
 		<article>
-			<h4>mirror($local_path, $remote_path)</h4>
+			<h4 id="method_mirror">mirror($local_path, $remote_path)</h4>
 			<p>
 				Recursively reads a local folder and everything it contains (including sub-folders) and creates a mirror via FTP based on it. Whatever the
 				directory structure of the original file path will be recreated on the server.

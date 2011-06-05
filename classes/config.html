@@ -33,7 +33,7 @@
 		<p>A config group is simply a way to scope config options.  This avoids naming collisions.  All config files (db.php, routes.php, etc.) are loaded into groups of the same name, with the exception of the main <kbd>config.php</kbd> file.</p>
 
 		<article>
-			<h4>get($item, $default = null)</h4>
+			<h4 id="method_get">get($item, $default = null)</h4>
 			<p>The <strong>get</strong> method returns the desired config item.  If the item does not exist then <kbd>$default</kbd> is returned.  If the item you are retrieving is a group, then the entire group is returned.</p>
 			<table class="method">
 				<tbody>
@@ -98,7 +98,7 @@ $dev_host = Config::get('db.dev.connection.hostname');</code></pre>
 		</article>
 
 		<article>
-			<h4>set($item, $value)</h4>
+			<h4 id="method_set">set($item, $value)</h4>
 			<p>The <strong>set</strong> method Sets a given <kbd>$item</kbd> to <kbd>$value</kbd>.  <kbd>$item</kbd> can be dot (<kbd>.</kbd>) separated, just like <kbd>get()</kbd>.</p>
 			<table class="method">
 				<tbody>
@@ -153,7 +153,7 @@ Config::set('blog.items_to_display', 5);</code></pre>
 		</article>
 
 		<article>
-			<h4>load($file, $group = null)</h4>
+			<h4 id="method_load">load($file, $group = null)</h4>
 			<p>The <strong>load</strong> method reads in a config file into the system.  It searches through the config directories for the requested file.  You can optionally group the config files to avoid naming collisions.</p>
 			<table class="method">
 				<tbody>
@@ -208,7 +208,7 @@ Config::load('foo::custom', 'bar');</code></pre>
 		</article>
 
 		<article>
-			<h4>save($file, $config = null)</h4>
+			<h4 id="method_save">save($file, $config = null)</h4>
 			<p>The <strong>save</strong> method saves a config file into the system.  It searches through the config directories for the requested file.  If no existing file is found, the config file is created in the APPPATH config directory.</p>
 			<table class="method">
 				<tbody>
