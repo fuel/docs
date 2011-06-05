@@ -30,11 +30,66 @@
 			the same time use the <a href="fieldset.html">Fieldset</a> class instead.</p>
 
 		<ul>
+			<li><a href="#config">Configuration</a></li>
 			<li><a href="#usage">Usage</a></li>
 			<li><a href="#rules">Validation rules</a></li>
 			<li><a href="#errors">Error messages</a></li>
 			<li><a href="#methods">All methods</a></li>
 		</ul>
+
+		<article>
+			<h3><a name="config">Configuration</a></h3>
+
+			<p>Optionally, the validation class can be configured through the global application configuration file, <strong>app/config/config.php</strong>. Define a section called '<strong>validation</strong>', in which the following settings can be defined:</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Variable</th>
+						<th>Type</th>
+						<th>Default</th>
+						<th class="description">Description</th>
+					</tr>
+					<tr>
+						<th><kbd>no_errors</kbd></th>
+						<td>string</td>
+						<td><pre class="php"><code>''</code></pre></td>
+						<td>String to return if no validation errors were discovered.</td>
+					</tr>
+					<tr>
+						<th><kbd>open_list</kbd></th>
+						<td>string</td>
+						<td><pre class="php"><code>'&lt;ul&gt;'</code></pre></td>
+						<td>String to be prepended to the list of errors. Usually this is some form of HTML to format the list. By default, it's formatted as an unordered list.</td>
+					</tr>
+					<tr>
+						<th><kbd>close_list</kbd></th>
+						<td>string</td>
+						<td><pre class="php"><code>'&lt;/ul&gt;'</code></pre></td>
+						<td>String to be appended to the list of errors.</td>
+					</tr>
+					<tr>
+						<th><kbd>open_error</kbd></th>
+						<td>string</td>
+						<td><pre class="php"><code>'&lt;li&gt;'</code></pre></td>
+						<td>String to be prepended to each individual error message.</td>
+					</tr>
+					<tr>
+						<th><kbd>close_error</kbd></th>
+						<td>string</td>
+						<td><pre class="php"><code>'&lt;/li&gt;'</code></pre></td>
+						<td>String to be appended to each individual error message.</td>
+					</tr>
+					<tr>
+						<th><kbd>quote_label</kbd></th>
+						<td>boolean</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>If true, and the label of the validated field contains spaces, the label will be enclosed in double quotes for enhanced readability.</td>
+					</tr>
+				</tbody>
+			</table>
+			<p>If one or more of these values are missing from the global configuration, the class will use the defaults as defined in this table.</p>
+
+		</article>
 
 		<article>
 			<h3><a name="usage">Usage</a></h3>
