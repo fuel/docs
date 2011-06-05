@@ -91,7 +91,7 @@ $file->rename('textfile');
 			<p>
 				The file handlers handles the basic interaction with files. Each example assumes the <strong>
 				$handler</strong> var is the fetched handers. Want to know how to get the handler?
-				Look at the <a href="#usage">section</a>.
+				Look at the <a href="#usage">usage section</a>.
 			</p>
 			
 			<article>
@@ -494,6 +494,359 @@ $modified_at = $handler->get_time();
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>$file_size = $handler->get_size();
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+		</section>
+		
+		<section>
+			
+			<h3 id="directory_handler">Directory handler</h3>
+			
+			<p>
+				The directory handler handles the basic interaction with directories. Each example assumes the <strong>
+				$handler</strong> var is the fetched handers. Want to know how to get the handler?
+				Look at the <a href="#usage">usage section</a>.
+			</p>
+			
+			<article>
+				<h4 id="method_directory_factory">factory($path, $config = array(), $area = null, $content = array())</h4>
+				<p>The <strong>factory</strong> method returns a new File_Handler_Directory object.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$path</kbd></th>
+										<td><em>required</em></td>
+										<td>path to the directory</td>
+									</tr>
+									<tr>
+										<th><kbd>$config</kbd></th>
+										<td><em>array()</em></td>
+										<td>optional config array</td>
+									</tr>
+									<tr>
+										<th><kbd>$area</kbd></th>
+										<td><em>null</em></td>
+										<td>File_Area instance</td>
+									</tr>
+									<tr>
+										<th><kbd>$content</kbd></th>
+										<td><em>array</em></td>
+										<td><em>the content of the directory</em></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns a new File_Handler_File object.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$handler = File_Handler_Dirctory::factory('path/to/dir');
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 id="method_directory_read">read($depth = 0, $filters = null)</h4>
+				<p>The <strong>read</strong> method is an shortcut to <a href="usage.html#method_read_dir">File::read_dir</a>.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$depth</kbd></th>
+										<td><em>0</em></td>
+										<td>depth to recurse directory, 1 is only current and 0 or smaller is unlimited</td>
+									</tr>
+									<tr>
+										<th><kbd>$filters</kbd></th>
+										<td><em>null</em></td>
+										<td>array of partial regexes or non-array for default</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns directory contents in an array</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$cir_content = $handler->read();
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 id="method_directory_rename">rename($new_name)</h4>
+				<p>The <strong>rename</strong> method is an shortcut to <a href="usage.html#method_rename_dir">File::rename_dir</a>.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$new_name</kbd></th>
+										<td><em>required</em></td>
+										<td>the new directory name</td>
+									</tr>
+
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean, result form <em>rename()</em></td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$handler->rename('new_name');
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 id="method_directory_move">move($new_path)</h4>
+				<p>The <strong>move</strong> method is an shortcut to <a href="usage.html#method_move">File::move</a>.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$new_path</kbd></th>
+										<td><em>required</em></td>
+										<td>path to new directory, must be valid</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean, result form <em>rename()</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$handler->move(DOCROOT.'/new/parent/directory/');
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 id="method_directory_copy">copy($new_path)</h4>
+				<p>The <strong>copy</strong> method is an shortcut to <a href="usage.html#method_copy_dir">File::copy_dir</a>.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$new_path</kbd></th>
+										<td><em>required</em></td>
+										<td>path to directory to copy to, must be valid</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean, result form <em>copy()</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$handler->copy(DOCROOT.'/directory/');
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+						
+			<article>
+				<h4 id="method_directory_delete">delete($recursive = true, $delete_top = true)</h4>
+				<p>The <strong>delete</strong> method is an shortcut to <a href="usage.html#method_delete_dir">File::delete_dir</a>.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$recursive</kbd></th>
+										<td><em>true</em></td>
+										<td>whether to also delete contents of subdirectories</td>
+									</tr>
+									<tr>
+										<th><kbd>$delete_top</kbd></th>
+										<td><em>true</em></td>
+										<td>whether to delete the parent dir itself when empty</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>true on success</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$handler->delete();
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 id="method_directory_get_permissions">get_permissions()</h4>
+				<p>The <strong>get_permissions</strong> method is an shortcut to <a href="usage.html#method_get_permissions">File::get_permissions</a>.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>The octal directory permissions</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$permissions = $handler->get_permissions();
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 id="method_directory_get_time">get_time($type = 'modified')</h4>
+				<p>The <strong>get_time</strong> method is an shortcut to <a href="usage.html#method_get_time">File::get_time</a>.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$type</kbd></th>
+										<td><em>'modified'</em></td>
+										<td>What time needs to be returned. Can only be <strong>created</strong> or <strong>modified</strong>.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>The directory's created or modified timestamp</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$created_at = $handler->get_time('created');
+
+$modified_at = $handler->get_time('modified');
+// or short
+$modified_at = $handler->get_time();
 </code></pre>
 							</td>
 						</tr>
