@@ -114,7 +114,8 @@ Array
 			<h4>Results</h4>
 			<p>
 				Executing a select query will generate a result object containing the requested database records.
-				By default the result is fetched as objects. Here is an exaple how to influence this behaviour.
+				By default the result is fetched as associative arrays. Here is an exaple how to influence this
+				behaviour.
 			</p>
 			<pre class="php"><code>// Will fetch the result as an associative array.
 $result = DB::select('id','name')->from('users')->as_assoc()->execute();
@@ -123,7 +124,7 @@ $result = DB::select('id','name')->from('users')->as_assoc()->execute();
 $result = DB::select('id','name')->from('users')->as_object()->execute();
 
 // Will fetch the result as an Model_Users object.
-$result = DB::select('id','name')->from('users')->as_object('Model_Users')->execute();
+$result = DB::select()->from('users')->as_object('Model_Users')->execute();
 			</code></pre>	
 			<p>Want to know how many records you have fetched? It's dead simple!</p>
 			<pre class="php"><code>
@@ -350,7 +351,15 @@ DB::update('users')->where('id', '=', 1)->set(array(
 ))->execute();
 
 // SELECT COUNT(*) FROM `users`
-$result = DB::select(DB:expr('COUNT(*)'))->from('users')->execute();
+$result = DB::select(DB::expr('COUNT(*) as count'))->from('users')->execute();
+
+// Get the current/first result
+$result_arr = $result->current();
+
+// Get the number of rows
+$count = $result_arr['count'];
+
+
 </code></pre>
 		
 		</article>
