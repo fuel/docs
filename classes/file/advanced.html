@@ -83,25 +83,10 @@ $area = \File::instance('my_area');
 				<h3 id="area_usage">Usage</h3>
 
 				<p>
-					There are 2 ways to use areas in the File class. To use areas in a static context, supply a
-					File_Area instance or identifier to the function you're calling.
+					There are 2 ways to use areas in the File class. <br />
+					The first is to use areas in a static context, supply a File_Area instance or identifier to the
+					function you're calling.
 				</p>
-
-				<pre class="php"><code>// Get the area
-$area = File::instance('my_area');
-
-// Now read the contents of a directory
-try
-{
-	$dir = File::read_dir('somedir', 0, null, $area);
-}
-catch(\FileAccessException $e)
-{
-	// Operation failed
-}
-</code></pre>
-
-				<p>Or like so:</p>
 
 				<pre class="php"><code>// Read the contents of a directory
 try
@@ -114,7 +99,7 @@ catch(\FileAccessException $e)
 }
 </code></pre>
 
-				<p>Another way is to call the functions directly from the area itself.</p>
+				<p>The second way is to call the functions directly from the area itself.</p>
 
 				<pre class="php"><code>// Get the area
 $area = File::instance('my_area');
