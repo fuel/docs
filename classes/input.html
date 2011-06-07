@@ -49,7 +49,7 @@
 							<tr>
 								<th><kbd>$index</kbd></th>
 								<td><i>Required</i></td>
-								<td>The key in the $_COOKIE array.</td>
+								<td>The key in the $_COOKIE array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
@@ -66,7 +66,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Input::cookie('foo', 'bar');</code></pre>
+						<pre><code class="php">Input::cookie('foo', 'bar');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -111,7 +111,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Input::delete('foo', 'bar');</code></pre>
+						<pre><code class="php">Input::delete('foo', 'bar');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -139,7 +139,7 @@
 							<tr>
 								<th><kbd>$index</kbd></th>
 								<td><i>required</i></td>
-								<td>The key in the $_GET array, or <kbd>null</kbd> for the entire array.</td>
+								<td>The key in the $_GET array, or <kbd>null</kbd> for the entire array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
@@ -156,7 +156,11 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Input::get('foo', 'bar');</code></pre>
+						<pre><code class="php">Input::get('foo', 'bar');
+
+// You can go multiple levels deep as well.
+// This will return $_GET['somevar']['foo']['bar']
+Input::get('somevar.foo.bar');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -184,7 +188,7 @@
 							<tr>
 								<th><kbd>$index</kbd></th>
 								<td><i>required</i></td>
-								<td>The key in the $_POST array, or <kbd>null</kbd> for the entire array.</td>
+								<td>The key in the $_POST array, or <kbd>null</kbd> for the entire array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
@@ -201,7 +205,11 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Input::post('foo', 'bar');</code></pre>
+						<pre><code class="php">Input::post('foo', 'bar');
+
+// You can go multiple levels deep as well.
+// This will return $_POST['somevar']['foo']['bar']
+Input::post('somevar.foo.bar');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -229,7 +237,7 @@
 							<tr>
 								<th><kbd>$index</kbd></th>
 								<td><i>required</i></td>
-								<td>The key in the $_GET or $_POST array.</td>
+								<td>The key in the $_GET or $_POST array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
@@ -246,7 +254,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Input::get_post('foo', 'bar');</code></pre>
+						<pre><code class="php">Input::get_post('foo', 'bar');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -273,7 +281,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Input::is_ajax(); // false</code></pre>
+						<pre><code class="php">Input::is_ajax(); // false</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -300,7 +308,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Input::method(); // "GET"</code></pre>
+						<pre><code class="php">Input::method(); // "GET"</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -327,7 +335,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Input::protocol(); // "HTTP"</code></pre>
+						<pre><code class="php">Input::protocol(); // "HTTP"</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -372,7 +380,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Input::put('foo', 'bar');</code></pre>
+						<pre><code class="php">Input::put('foo', 'bar');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -399,7 +407,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>echo Input::real_ip(); // 73.194.37.104</code></pre>
+						<pre><code class="php">echo Input::real_ip(); // 73.194.37.104</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -444,7 +452,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre><code>Input::server('HTTP_HOST'); // "localhost:8080"</code></pre>
+						<pre><code class="php">Input::server('HTTP_HOST'); // "localhost:8080"</code></pre>
 					</td>
 				</tr>
 				</tbody>
