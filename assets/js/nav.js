@@ -107,7 +107,10 @@ var nav = {
 				"Usage":			"classes/upload/usage.html"
 			},
 			"Uri":			"classes/uri.html",
-			"Validation":	"classes/validation.html",
+			"Validation": {
+				"Introduction": "classes/validation/validation.html",
+				"Methods": "classes/validation/methods.html"
+			},
 			"View":			"classes/view.html"
 		},
 		"Oil": {
