@@ -33,7 +33,7 @@
 			Active Record Pattern</a>, but was also influenced by other systems.</p>
 
 		<section>
-			<h2>CRUD: Create, Read, Update and Delete</h2>
+			<h2 id="crud">CRUD: Create, Read, Update and Delete</h2>
 
 			<p>Once you've configured your Model it's time to start creating, reading, updating and deleting entries
 				in your database.</p>
@@ -82,7 +82,7 @@ $entry = Model_Article::find(array(2, 5));</code></pre>
 
 				<p>In this example it will return either an instance of Model_Article or null when the ID wasn't found.</p>
 
-				<h3>Find first/last</h3>
+				<h3 id="find_first_last">Find first/last</h3>
 
 				<pre class="php"><code>// find the first entry
 $entry = Model_Article::find('first');
@@ -92,7 +92,7 @@ $entry = Model_Article::find('last', array('order_by' => 'date'));</code></pre>
 
 				<p>In this example it will return either an instance of Model_Article or null when the ID wasn't found.</p>
 
-				<h3>Find all</h3>
+				<h3 id="find_all">Find all</h3>
 
 				<pre class="php"><code>// find all articles
 $entry = Model_Article::find('all');
@@ -105,7 +105,7 @@ $entry = Model_Article::find('last', array(
 
 				<p>In this example it will always return an array of instances of Model_Article.</p>
 
-				<h3>Find using method chaining</h3>
+				<h3 id="find_chaining">Find using method chaining</h3>
 
 				<p>When you use the <kbd>find()</kbd> method without properties it will return an Orm\Query object
 					which you can use, and possibly reuse to find entries.</p>
@@ -165,13 +165,13 @@ $entry->delete();</code></pre>
 							<td>string <kbd>$column</kbd>, [string <kbd>$operator</kbd>,] mixed <kbd>$value</kbd></td>
 							<td>
 								<pre class="php"><code>// Single where
-Model_Article::find()->where('id', 4);
-Model_Article::find('all', array('where' => array('category_id', 5)));
+Model_Article::find()-&gt;where('id', 4);
+Model_Article::find('all', array('where' =&gt; array('category_id', 5)));
 
 // Multiple where usage examples
-Model_Article::find()->where('id', 4)->where('category_id', '>', 1);
-Model_Article::find()->where(array('id' => 4, 'category_id' => 6));
-Model_Article::find('all', array('where' => array(array('category_id', 5), array('publish', '<', time()))));</code></pre>
+Model_Article::find()-&gt;where('id', 4)->where('category_id', '&gt;', 1);
+Model_Article::find()-&gt;where(array('id' => 4, 'category_id' =&gt; 6));
+Model_Article::find('all', array('where' => array(array('category_id', 5), array('publish', '&lt;', time()))));</code></pre>
 							</td>
 						</tr>
 						<tr>

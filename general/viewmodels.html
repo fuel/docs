@@ -29,7 +29,7 @@
 
 			<p>ViewModels are optional; if you don't need them, you can use <a href="views.html">Views</a>.</p>
 
-			<h3>What is a ViewModel?</h3>
+			<h3 id="what_is_a_viewmodel">What is a ViewModel?</h3>
 
 			<p>A ViewModel is a class that contains the logic that is needed to generate your views. When the controller
 			is done with your user input and is done with whatever actions it needed to take, it turns execution over to
@@ -37,7 +37,7 @@
 			but can contain Database calls and any other retrieval or preparation operations needed to generate the View's
 			data.</p>
 
-			<h2>Creating a ViewModel</h2>
+			<h2 id="creating_viewmodels">Creating a ViewModel</h2>
 
 			<p>First we'll create an empty ViewModel in <kbd>app/classes/view/index.php</kbd>:</p>
 
@@ -83,7 +83,7 @@
 
 			<p>And you're done.</p>
 
-			<h2>Passing functions to views</h2>
+			<h2 id="functions">Passing functions to views</h2>
 
 			<p>To pass a View specific function from your ViewModel to your View you use Closures:</p>
 
@@ -101,7 +101,7 @@ $echo_upper('this string'); // Outputs: "THIS STRING"</code></pre>
 		</article>
 
 		<article>
-			<h2>Security</h2>
+			<h2 id="security">Security</h2>
 
 			<p>It works the same as with View, this means that anything set on the ViewModel will be output encoded as
 				long as you don't switch that off. You can use the same <kbd>set($name, $value, $encode)</kbd> method
@@ -110,9 +110,9 @@ $echo_upper('this string'); // Outputs: "THIS STRING"</code></pre>
 		</article>
 
 		<article>
-			<h2>Advanced usage</h2>
+			<h2 id="advanced">Advanced usage</h2>
 
-			<h3>More methods</h3>
+			<h3 id="more_methods">More methods</h3>
 
 			<p>If there are different ways of parsing the same View you can add multiple methods to the ViewModel other
 			than the default view() method. To use those you need to add the method's name as the second parameter to the
@@ -121,12 +121,12 @@ $echo_upper('this string'); // Outputs: "THIS STRING"</code></pre>
 			<pre><code>// will call other_method() upon the ViewModel from the above example
 ViewModel::factory('Index', 'other_method');</code></pre>
 
-			<h3>Before and after methods</h3>
+			<h3 id="before_after">Before and after methods</h3>
 
 			<p>If you need to have some data added for all the methods in the ViewModel you can add a <kbd>before()</kbd>
 			or <kbd>after()</kbd> method just like you can with Controllers.</p>
 
-			<h3>Changing the template</h3>
+			<h3 id="changing_template">Changing the template</h3>
 
 			<p>By default the <kbd>$this->_template</kbd> gets a View object assigned to it. You can replace this object by
 			making your own <kbd>set_template()</kbd> method in the ViewModel and setting the <kbd>$this->_template</kbd> to
