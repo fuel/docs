@@ -33,7 +33,7 @@
 			Active Record Pattern</a>, but was also influenced by other systems.</p>
 
 		<section>
-			<h2>Creating Models</h2>
+			<h2 id="creation">Creating Models</h2>
 
 			<p>Creating a model takes little time, the convention is to use the <kbd>Model_</kbd> prefix and thus place
 				them in <kbd>app/classes/model/</kbd> but you are free to use whatever name you choose.</p>
@@ -48,7 +48,7 @@
 	protected static $_properties = array('id', 'title', 'contents', 'publish');
 }</code></pre>
 
-			<h2>Configuration</h2>
+			<h2 id="config">Configuration</h2>
 
 			<p>You can add static properties to the Model to configure it. As we've seen there are none required but
 				setting <kbd>$_properties</kbd> is encouraged. All these can be both <kbd>public</kbd> and
@@ -56,7 +56,7 @@
 				Note that all configuration properties are prefixed with a single underscore to prevent collisions with
 				your column names.</p>
 
-			<h3>protected static $_table_name</h3>
+			<h3 id="table_name">protected static $_table_name</h3>
 
 			<p>When this isn't set the <kbd>Model_</kbd> prefix is removed from the classname and the classname is
 				pluralized. Thus "Model_Article" expects table "articles". If you don't follow this convention you can
@@ -66,7 +66,7 @@
 	protected static $_table_name = 'myarticles';
 }</code></pre>
 
-			<h3>protected static $_primary_key</h3>
+			<h3 id="primary_key">protected static $_primary_key</h3>
 
 			<p>By default this is set to <kbd>array('id')</kbd>, if you use another column name or multiple primary
 				keys you need to set this property.</p>
@@ -75,16 +75,16 @@
 	protected static $_primary_key = array('aid');
 }</code></pre>
 
-			<h3>protected static $_properties</h3>
+			<h3 id="propperties">protected static $_properties</h3>
 
 			<p>There's already a simple example above of adding all model properties, they can also be configured by
 			using the columnname as the key and setting options like type, label & validation.</p>
 
-			<h3>protected static $_has_one, $_belongs_to, $_has_many, $_many_many, $_many_through</h3>
+			<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many, $_many_through</h3>
 
 			<p>Relating models to each other is explained in <a href="relations/intro.html">Relating Models</a></p>
 
-			<h3>protected static $_connection</h3>
+			<h3 id="connection">protected static $_connection</h3>
 
 			<p>By default this property does not exist and Model::connection() returns <kbd>null</kbd>, but you can set
 			it to any other database name configured in <kbd>app/config/db.php</kbd>. Note however that relations don't
@@ -94,7 +94,7 @@
 	protected static $_connection = 'articles_database';
 }</code></pre>
 
-			<h3>protected static $_observers</h3>
+			<h3 id="observers">protected static $_observers</h3>
 
 			<p>Adding observers is explained in <a href="observers/intro.html">Observers</a></p>
 		</section>
