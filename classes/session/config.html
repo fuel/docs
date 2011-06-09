@@ -67,7 +67,8 @@
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
 							If true, the IP address stored in the session cookie will be compared with the client IP address as reported by the webserver.
-							In case of a mismatch, the session is discarded.
+							In case of a mismatch, the session is discarded. This function uses both the clients real IP address and the public IP address,
+							so that users behind proxy servers can be uniquely identified (if the proxy reveils this information).
 						</td>
 					</tr>
 					<tr>
