@@ -461,17 +461,17 @@ Upload::register('before', function (&amp;$file) {
 				case "png":
 				case "gif":
 					// store these in the images subdirectory
-					$file['path'] .= 'images/';
+					$file['saved_to'] .= 'images/';
 				break;
 
 				case "css":
 					// store these in the css subdirectory
-					$file['path'] .= 'css/';
+					$file['saved_to'] .= 'css/';
 				break;
 
 				case "js":
 					// store these in the javascript subdirectory
-					$file['path'] .= 'js/';
+					$file['saved_to'] .= 'js/';
 				break;
 
 				default:
@@ -601,7 +601,7 @@ Upload::save( 1 );
 
 // save all validated files, and to an alternate location
 $arr = Upload::get_files();
-Upload::save(DOCROOT.'assets', $arr );
+Upload::save(DOCROOT.'assets', array_keys($arr) );
 
 // process any errors on these files
 foreach ( Upload::get_errors() as $key => $file )
