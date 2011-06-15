@@ -56,15 +56,17 @@
 	$this->response->body = View::factory('test/name_to_upper', $data);
 }</code></pre>
 
-		<p>If we call this method using: <kdb>www.yoursite.com/example/name_to_upper/fuel/php</kbd>, it will return the view <kbd>test/name_to_upper</kbd>. "Fuel" and "PHP" will be passed along as values <var>$name_1</var> and <var>$name_2</var> in the <var>$data</var> array. </p>
+		<p>If we call this method using: <kbd>www.yoursite.com/example/name_to_upper/fuel/php</kbd>, it will return the view <kbd>test/name_to_upper</kbd>. "Fuel" and "PHP" will be passed along as values <var>$name_1</var> and <var>$name_2</var> in the <var>$data</var> array. </p>
 
 		<h4>Controller in a subdirectory</h4>
 
 		<p>You can also put a controller in a subdirectory, like <kbd>fuel/app/classes/controller/subdir/test.php</kbd>. In this case, the controller must include the dirname in the classname like this: <var>Controller_Subdir_Test</var>. </p>
 
-		<p class="note"><strong>Please Note:</strong> Only 1 level of subdirectories is currently supported.</p>
+		<p>Only 1 level of subdirectories is auto-detected, if you want to go deeper you need to use routes to rewrite the subdirectory to a controller name (which uses underscores instead of slashes).</p>
 
 		<h3>Special controller methods</h3>
+
+		<p class="note">Don't overwrite the class constructor <kbd>__construct()</kbd>, use <kbd>before()</kbd> instead. Unless you have studied the base Controller from the Core first and understand how it must be extended not to break Fuel.</p>
 
 		<article>
 			<h4>action_index()</h4>
