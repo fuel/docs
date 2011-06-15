@@ -31,7 +31,7 @@
 		<p>A Template Controller is an extension of the Base Controller which has template support built in using some pre-defined before() and after() methods. Basically it can be used to wrap
 		your view in a layout with a header, footer, sidebar, etc.</p>
 
-		<p class="note"><strong>Please note:</strong> if you have a before() method in your template controller you
+		<p class="note"><strong>Please note:</strong> if you have a before() method in your template controller extension you
 			<strong>must</strong> add <kbd>parent::before();</kbd> to that method or the <kbd>$this->template</kbd> will
 			not be available.</p>
 
@@ -43,7 +43,7 @@
 
 	public function action_index()
 	{
-        $data = array();	
+        $data = array();
 		$this->template->title = 'Example Page';
 		$this->template->content = View::factory('test/index', $data);
 	}
