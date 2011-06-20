@@ -30,7 +30,7 @@
 			It allows you to store variables on the server using a variety of storage solutions, and recall these variables on the next page request.</p>
 
 		<section>
-			<h2>Configuration</h2>
+			<h2 id="configuration">Configuration</h2>
 
 			<p>The session class is configured through the fuel/core/config/session.php configuration file. It is already populated with a default configuration. You can override this configuration by copying this config file to your application config directory, and modify that file as needed.</p>
 			<p>The following global configuration values can be defined:</p>
@@ -67,7 +67,8 @@
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
 							If true, the IP address stored in the session cookie will be compared with the client IP address as reported by the webserver.
-							In case of a mismatch, the session is discarded.
+							In case of a mismatch, the session is discarded. This function uses both the clients real IP address and the public IP address,
+							so that users behind proxy servers can be uniquely identified (if the proxy reveils this information).
 						</td>
 					</tr>
 					<tr>
@@ -230,7 +231,7 @@
 			<p>For each of the session storage drivers, a separate configuration section exists. This section contains the driver specific parameters, and you can use it to override global parameters for that specific storage driver.</p>
 
 			<section>
-				<h5>Cookie driver configuration</h5>
+				<h5 id="cookie_driver_config">Cookie driver configuration</h5>
 
 				<p>The cookie driver doesn't use any server based storage. Instead, all session variables will be stored in the cookie that is sent to the browser after each request. Use this only if you don't have to store much data, as the maximum payload size of a cookie is 4Kb, which you will reach quite quickly, due to the overhead of array serialization and encryption.</p>
 
@@ -254,7 +255,7 @@
 			</section>
 
 			<section>
-				<h5>File driver configuration</h5>
+				<h5 id="file_driver_config">File driver configuration</h5>
 
 				<p>Specific driver configuration:</p>
 				<table class="config">
@@ -288,7 +289,7 @@
 			</section>
 
 			<section>
-				<h5>Database session configuration</h5>
+				<h5 id="db_driver_config">Database session configuration</h5>
 
 				<p>Specific driver configuration:</p>
 				<table class="config">
@@ -322,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   `session_id` varchar(40) NOT NULL,
   `previous_id` varchar(40) NOT NULL,
   `user_agent` text NOT NULL,
-  `ip_address` varchar(16) NOT NULL DEFAULT '',
+  `ip_hash` char(32) NOT NULL DEFAULT '',
   `created` int(10) unsigned NOT NULL DEFAULT '0',
   `updated` int(10) unsigned NOT NULL DEFAULT '0',
   `payload` longtext NOT NULL,
@@ -344,7 +345,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 			</section>
 
 			<section>
-				<h5>Memcached session configuration</h5>
+				<h5 id="memcache_driver_config">Memcached session configuration</h5>
 
 				<p>Specific driver configuration:</p>
 				<table class="config">
@@ -385,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 			</section>
 
 			<section>
-				<h5>Redis session configuration</h5>
+				<h5 id="redis_driver_config">Redis session configuration</h5>
 
 				<p>Specific driver configuration:</p>
 				<table class="config">

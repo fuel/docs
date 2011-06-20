@@ -31,7 +31,7 @@
 			It allows you to filter uploads in various ways, define what the destination filenames should look like, or filter on size or length of the filename.
 		</p>
 
-		<h3>Uploaded files array</h3>
+		<h3 id="uploaded_files_array">Uploaded files array</h3>
 
 		<p>Information of every uploaded file is stored in a multidimensional array within the Upload class.
 			For every file, an array is defined with the following fields:
@@ -161,7 +161,7 @@
 			</tbody>
 		</table>
 
-		<h3>Defined error constants</h3>
+		<h3 id="error_constants">Defined error constants</h3>
 
 		<p>The Upload class defines the following error constants:</p>
 
@@ -283,7 +283,7 @@
 		</table>
 
 		<article>
-			<h4>is_valid()</h4>
+			<h4 id="method_is_valid">is_valid()</h4>
 			<p>The <strong>is_valid</strong> can be used to check if there are any uploaded files present that have been validated.</p>
 			<table class="method">
 				<tbody>
@@ -302,8 +302,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php">
-<code>// do we have any uploaded files to save?
+						<pre class="php"><code>// do we have any uploaded files to save?
 if ( Upload::is_valid() )
 {
 	Upload::save();
@@ -316,7 +315,7 @@ if ( Upload::is_valid() )
 		</article>
 
 		<article>
-			<h4>get_files($index = null)</h4>
+			<h4 id="method_get_files">get_files($index = null)</h4>
 			<p>The <strong>get_files</strong> method returns a multi-dimensional array with all files uploaded that have an error status = Upload::UPLOAD_ERR_OK.</p>
 			<table class="method">
 				<tbody>
@@ -363,7 +362,7 @@ foreach( Upload::get_files() as $file )
 		</article>
 
 		<article>
-			<h4>get_errors($index = null)</h4>
+			<h4 id="method_get_errors">get_errors($index = null)</h4>
 			<p>The <strong>get_files</strong> method returns a multi-dimensional array with all files uploaded that have an error status != Upload::UPLOAD_ERR_OK.</p>
 			<table class="method">
 				<tbody>
@@ -410,7 +409,7 @@ foreach( Upload::get_errors() as $file )
 		</article>
 
 		<article>
-			<h4>register($event, $callback)</h4>
+			<h4 id="method_register">register($event, $callback)</h4>
 			<p>
 				The <strong>register</strong> method allows you to register callbacks for specific upload events,
 				and allow you to add your own code to the <strong>process()</strong> and <strong>save()</strong> methods.
@@ -450,8 +449,7 @@ foreach( Upload::get_errors() as $file )
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php">
-<code>// register a before callback using a closure
+						<pre class="php"><code>// register a before callback using a closure
 Upload::register('before', function (&amp;$file) {
 		if ($file['error'] == Upload::UPLOAD_ERR_OK)
 		{
@@ -461,17 +459,17 @@ Upload::register('before', function (&amp;$file) {
 				case "png":
 				case "gif":
 					// store these in the images subdirectory
-					$file['path'] .= 'images/';
+					$file['saved_to'] .= 'images/';
 				break;
 
 				case "css":
 					// store these in the css subdirectory
-					$file['path'] .= 'css/';
+					$file['saved_to'] .= 'css/';
 				break;
 
 				case "js":
 					// store these in the javascript subdirectory
-					$file['path'] .= 'js/';
+					$file['saved_to'] .= 'js/';
 				break;
 
 				default:
@@ -499,7 +497,7 @@ Upload::register('before', function (&amp;$file) {
 		</article>
 
 		<article>
-			<h4>process($config = array())</h4>
+			<h4 id="method_process">process($config = array())</h4>
 			<p>
 				The <strong>process</strong> method processes the information about all uploaded files,
 				normalizes the different permutations of form field names that can be used,
@@ -548,7 +546,7 @@ Upload::process( array('max_size' => 10240, 'auto_rename' => false, 'overwrite' 
 		</article>
 
 		<article>
-			<h4>save( ... )</h4>
+			<h4 id="method_save">save( ... )</h4>
 			<p>The <strong>save</strong> method saves all validated files uploaded to the path specified.</p>
 			<table class="method">
 				<tbody>
@@ -601,7 +599,7 @@ Upload::save( 1 );
 
 // save all validated files, and to an alternate location
 $arr = Upload::get_files();
-Upload::save(DOCROOT.'assets', $arr );
+Upload::save(DOCROOT.'assets', array_keys($arr) );
 
 // process any errors on these files
 foreach ( Upload::get_errors() as $key => $file )

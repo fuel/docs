@@ -35,7 +35,7 @@
 		<article id="included_observers">
 			<h2>Observers: Included observers</h2>
 
-			<h3>Observer_Self</h3>
+			<h3 id="os_self">Observer_Self</h3>
 
 			<p>While not exactly good practice, in some cases it's probably cleanest to just have the event method with
 				your model. That's where the Observer_Self comes in, it checks if you model has a method named after
@@ -49,7 +49,7 @@ protected static $_observers = array('Orm\\Observer_Self');
 // But if you only observe some events you can optimize by only adding those
 protected static $_observers = array('Orm\\Observer_Self' => array('after_save', 'before_insert'));</code></pre>
 
-			<h3>Observer_CreatedAt</h3>
+			<h3 id="os_created">Observer_CreatedAt</h3>
 
 			<p>This observer acts only upon <kbd>before_insert</kbd> and expects your model to have a
 				<kbd>created_at</kbd> property which will be set to the Unix timestamp when saving for the first time.</p>
@@ -68,7 +68,7 @@ Orm\Observer_CreatedAt::$mysql_timestamp = true;
 // Use property called just "created" instead of "created_at"
 Orm\Observer_CreatedAt::$property = 'created';</code></pre>
 
-			<h3>Observer_UpdatedAt</h3>
+			<h3 id="os_updated">Observer_UpdatedAt</h3>
 
 			<p>This observer acts only upon <kbd>before_save</kbd> and expects your model to have a
 				<kbd>updated_at</kbd> property which will be set to the Unix timestamp when saving (also during the
@@ -83,7 +83,7 @@ protected static $_observers = array('Orm\\Observer_UpdatedAt' => array('before_
 			<p>You can change a <kbd>$mysql_timestamp</kbd> and <kbd>$property</kbd> value on this observer just like
 				on the CreatedAt observer.</p>
 
-			<h3>Observer_Validation</h3>
+			<h3 id="os_validation">Observer_Validation</h3>
 
 			<p>To be written.</p>
 
@@ -93,7 +93,7 @@ protected static $_observers = array('Orm\\Observer_Validation');
 // But adding it just for before_insert is enough
 protected static $_observers = array('Orm\\Observer_Validation' => array('before_save'));</code></pre>
 
-			<h3>Observer_Typing</h3>
+			<h3 id="os_typing">Observer_Typing</h3>
 
 			<p>This is for 2 things: type enforcement for input and type casting for output from the DB. That means
 				that when you're saving the Typing observer will try to cast the input value to the expected type and
