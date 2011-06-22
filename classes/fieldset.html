@@ -37,7 +37,7 @@
 
 		<article>
 			<h4 id="method_factory">factory($name = 'default', $config = array())</h4>
-			<p>The <strong>factory</strong> method returns a new Fieldset instance. Note: there can only be one instance per <kdb>$name<kbd>.</p>
+			<p>The <strong>factory</strong> method returns a new Fieldset instance. Note: there can only be one instance per <kdb>$name</kbd>.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -721,8 +721,30 @@
 				</tbody>
 			</table>
 		</article>
+		
+		<article>
+			<h2 id="create_forms_orm">Creating Forms with ORM Models</h2>
+			
+			<p>The Fieldset class can be used to create forms from ORM models. The following example will build a form based on the fields specified in <kbd>$_properties</kbd> of your model. In the example, $article is
+			an instance of Model_Article.</p>
+			
+			<pre class="php"><code>echo Fieldset::factory('article')->add_model($article)->populate($article, true)->build();</code></pre>
+			
+			<p>If you do not wish every property of the model to be on your form, you can define the form manually:</p>
+			
+			<pre class="php"><code>$fieldset = Fieldset::factory('article')->add_model($article, null, null);
 
-		<p>More examples to be written.</p>
+$fieldset->add('name', 'Article Name', array('type' => 'text'));
+$fieldset->add('url', 'Article\'s URL', array('type' => 'text'));
+$fieldset->add('submit', ' ', array('value' => 'Submit', 'type' => 'submit'));
+
+$fieldset->populate($article, TRUE);
+
+echo $fieldset->build();
+</code></pre>
+		</article>
+		
+		<p><strong>More examples to be written.</strong></p>
 
 	</section>
 
