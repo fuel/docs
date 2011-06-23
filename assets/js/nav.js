@@ -26,6 +26,7 @@ var nav = {
 				"Template":		"general/controllers/template.html",
 				"Rest":			"general/controllers/rest.html"
 			},
+			"404 handling":		"general/404.html",
 			"Models":			"general/models.html",
 			"Views":			"general/views.html",
 			"ViewModels":		"general/viewmodels.html",
