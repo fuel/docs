@@ -114,7 +114,14 @@
 					<th>error</th>
 					<td>integer</td>
 					<td>
-						The error detected when uploading the file or when validating the uploaded file. If zero, there were no errors.
+						Code of the error detected when uploading the file or when validating the uploaded file. If zero, there were no errors.
+					</td>
+				</tr>
+				<tr>
+					<th>message</th>
+					<td>string</td>
+					<td>
+						The error message.
 					</td>
 				</tr>
 			</tbody>
@@ -281,6 +288,37 @@
 				</tr>
 			</tbody>
 		</table>
+
+		<h3 id="usage_example">Usage example</h3>
+
+<pre class="php"><code>// Custom configuration for this upload
+$config = array(
+	'path' => DOCROOT.DS.'files',
+	'randomize' => true,
+	'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
+);
+
+// process the uploaded files in $_FILES
+Upload::process($config);
+
+// if there are any valid files
+if (Upload::is_valid())
+{
+	// save them according to the config
+	Upload::save();
+
+	// call a model method to update the database
+	Model_uploads::add(Upload::get_files());
+}
+
+// and process any errors
+foreach (Upload::get_errors() as $file)
+{
+	// $file is an array with all file information,
+	// $file['error'] contains the error number
+	// $file['message'] contains the error message
+}
+</code></pre>
 
 		<article>
 			<h4 id="method_is_valid">is_valid()</h4>
