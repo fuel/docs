@@ -79,6 +79,26 @@
 
 			<p>There's already a simple example above of adding all model properties, they can also be configured by
 			using the columnname as the key and setting options like type, label & validation.</p>
+			
+			<pre class="php"><code>class Model_Article extends Orm\Model {
+	protected static $_properties = array(
+		'id' => array('type' => 'int'),
+		'name' => array(
+			'type' => 'varchar',
+			'label' => 'Article Name',
+			'validation' => array('required', 'min_length' => array(3), 'max_length' => array(20))
+		),
+		'url' => array(
+			'type' => 'varchar',
+			'label' => 'Web Address',
+			'validation' => array('required', 'valid_url')
+		),
+		'created_at' => array('type' => 'int', 'label' => 'Created At'),
+		'updated_at' => array('type' => 'int', 'label' => 'Updated At')
+	);
+)</code></pre>
+
+			<p>Use of the validation rules shown here to do before save validation is shown in LINK HERE</p>
 
 			<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many, $_many_through</h3>
 
