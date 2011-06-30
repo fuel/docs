@@ -34,10 +34,8 @@
 				comes with a DBUtil class to perform database operations such as creating databases,
 				adding fields and much more.
 			</p>
-			
-			<p>
-				<em>Please note that not all features are supported by every driver.</em>
-			</p>
+
+			<p class="note">Please note that not all features are supported by every driver.</p>
 		</section>
 
 		<section>
@@ -50,12 +48,28 @@
 			<p>
 				Database configurations are formated like so:
 			</p>
-			<pre><code>'dev' => array(
+			<pre><code>// a MySQL driver configuration
+'development' => array(
 	'type'           => 'mysqli',
 	'connection'     => array(
 		'hostname'       => 'localhost',
 		'port'           => '3306',
 		'database'       => 'fuel_db',
+		'username'       => 'your_username',
+		'password'       => 'y0uR_p@ssW0rd',
+		'persistent'     => false,
+	),
+	'table_prefix'   => '',
+	'charset'        => 'utf8',
+	'caching'        => false,
+	'profiling'      => false,
+),
+
+// a PDO driver configuration
+'production' => array(
+	'type'           => 'pdo',
+	'connection'     => array(
+		'dsn'            => 'mysql:host=localhost;dbname=fuel_db',
 		'username'       => 'your_username',
 		'password'       => 'y0uR_p@ssW0rd',
 		'persistent'     => false,
