@@ -36,6 +36,10 @@
 	'total_items' => 10,
 	'per_page' => 5,
 	'uri_segment' => 3,
+	'template' => array(
+		'wrapper_start' => '<div class="my-pagination"> ',
+		'wrapper_end' => ' </div>',
+	),
 );
 
 // Config::set('pagination', $config); // you can use this too!
@@ -112,6 +116,14 @@ $this->render('welcome/index', $data);</code></pre>
 							The number of items per page.
 						</td>
 					</tr>
+					<tr>
+						<th>template</th>
+						<td>array</td>
+						<td><pre class="php"><code></code></pre></td>
+						<td>
+							Associative array containing the HTML markup to create the pagination elements (see Global Config Array section for the list of array keys w/ default values).
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</section>
@@ -125,6 +137,20 @@ $this->render('welcome/index', $data);</code></pre>
 	'uri_segment' => 2,
 	'total_items' => 10,
 	'per_page' => 20,
+	'template' => array(
+		'wrapper_start' => '<div class="pagination"> ',
+		'wrapper_end' => ' </div>',
+		'page_start' => '<span class="page-links"> ',
+		'page_end' => ' </span>',
+		'previous_start' => '<span class="previous"> ',
+		'previous_end' => ' </span>',
+		'previous_mark' => '&laquo; ',
+		'next_start' => '<span class="next"> ',
+		'next_end' => ' </span>',
+		'next_mark' => ' &raquo;',
+		'active_start' => '<span class="active"> ',
+		'active_end' => ' </span>',
+	),
 ));</code></pre>
 			</article>
 
@@ -166,6 +192,10 @@ $this->render('welcome/index', $data);</code></pre>
 	'uri_segment' => 2,
 	'total_items' => 10,
 	'per_page' => 20,
+	'template' => array(
+		'wrapper_start' => '<div class="my-pagination-class"> ',
+		'wrapper_end'   => ' </div>',
+	),
 ));</code></pre>
 						</td>
 					</tr>
