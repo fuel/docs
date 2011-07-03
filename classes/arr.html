@@ -28,6 +28,75 @@
 
 		<p>The arr class is a set of helper functions for working with arrays.</p>
 
+		<article id="method_assoc_to_keyval">
+			<h4>assoc_to_keyval($assoc = null, $key_field = null, $val_field = null)</h4>
+			<p>The <strong>assoc_to_keyval</strong> method turns a multi-dimensional array into a key=>val array.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$assoc</kbd></th>
+								<td><i>Required</i></td>
+								<td>The array to transform.</td>
+							</tr>
+							<tr>
+								<th><kbd>$key_field</kbd></th>
+								<td><i>Required</i></td>
+								<td>The associative array field to map as the key.</td>
+							</tr>
+							<tr>
+								<th><kbd>$val_field</kbd></th>
+								<td><i>Required</i></td>
+								<td>The associative array field to map as the value.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>array</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+<pre class="php"><code>$people = array(
+	array(
+		"name" => "Jack",
+		"age" => 21
+	),
+	array(
+		"name" => "Jill",
+		"age" => 23
+	)
+);
+
+print_r( Arr::assoc_to_keyval($people, 'name', 'age') );
+
+// Returns
+Array
+(
+	["Jack"] => 21
+	["Jill"] => 23
+)
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
 		<article>
 			<h4 id="method_average">average($array = null)</h4>
 			<p>The <strong>average</strong> method takes all values of an array and returns the average value.</p>
@@ -67,7 +136,6 @@
 				</tbody>
 			</table>
 		</article>
-
 
 		<article id="method_flatten_assoc">
 			<h4>flatten_assoc($array, $glue = ':', $reset = true)</h4>
