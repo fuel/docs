@@ -346,6 +346,47 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 					</tr>
 				</tbody>
 			</table>
+			<p>When using the valid string rule, you should pass flags from the above table as an array:</p>
+			<p><pre class="php"><code>$val->add('password', 'Password')->add_rule('valid_string', array('numeric', 'dots'));</code></pre></p>
+			<p>There is also a set of alias properties which can be passed as a string: </p>
+			<p><pre class="php"><code>$val->add('password', 'Password')->add_rule('valid_string', 'all');</code></pre></p>
+			<p>The alias properties are as follows:</p>
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Flag</th>
+						<th>Alias</th>
+					</tr>
+					<tr>
+						<th>alpha</th>
+						<td>array('alpha', 'utf8')</td>
+					</tr>
+					<tr>
+						<th>alpha_numeric</th>
+						<td>array('alpha', 'utf8', 'numeric')</td>
+					</tr>
+					<tr>
+						<th>url_safe</th>
+						<td>array('alpha', 'numeric', 'dashes')</td>
+					</tr>
+					<tr>
+						<th>integer</th>
+						<td>array('numeric')</td>
+					</tr>
+					<tr>
+						<th>float</th>
+						<td>array('numeric', 'dots')</td>
+					</tr>
+					<tr>
+						<th>all</th>
+						<td>array('alpha', 'utf8', 'numeric', 'spaces', 'newlines', 'tabs', 'punctuation', 'dashes')</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<p>
+			
+			</p>
 		</article>
 
 		<article>
