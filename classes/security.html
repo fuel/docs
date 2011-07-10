@@ -28,6 +28,82 @@
 
 		<p>The security class allows you to have CSRF protection in your application.</p>
 
+		<section>
+			<h2>Configuration</h2>
+
+			<p>
+				The security class is configured through the security section of the <kbd>app/config/config.php</kbd> configuration file.
+			</p>
+			<p>The following security configuration settings can be defined:</p>
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Param</th>
+						<th>Type</th>
+						<th>Default</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>csrf_autoload</th>
+						<td>boolean</td>
+						<td><pre class="php"><code>true</code></pre></td>
+						<td>
+							When true, load and check the CSRF token using check_token() automatically.
+						</td>
+					</tr>
+					<tr>
+						<th>csrf_token_key</th>
+						<td>string</td>
+						<td><pre class="php"><code>'fuel_csrf_token'</code></pre></td>
+						<td>
+							Name used for the CSRF token cookie, and the name of the form field containing the token.
+						</td>
+					</tr>
+					<tr>
+						<th>csrf_expiration</th>
+						<td>integer</td>
+						<td><pre class="php"><code>0</code></pre></td>
+						<td>
+							Random value used in the Hash-based Message Authentication Code (HMAC) routines. Make sure you set this to something unique and random!
+						</td>
+					</tr>
+					<tr>
+						<th>uri_filter</th>
+						<td>array</td>
+						<td><pre class="php"><code>array('htmlentities')</code></pre></td>
+						<td>
+							Array of callable items (PHP functions, object methods, static class methods) used to filter the URI. By default, it uses PHP's htmlentities internal function.
+						</td>
+					</tr>
+					<tr>
+						<th>input_filter</th>
+						<td>array</td>
+						<td><pre class="php"><code>array()</code></pre></td>
+						<td>
+							Array of callable items (PHP functions, object methods, static class methods) used to filter $_GET, $_POST and $_COOKIE. By default, no input filters are defined.
+						</td>
+					</tr>
+					<tr>
+						<th>auto_encode_view_data</th>
+						<td>boolean</td>
+						<td><pre class="php"><code>true</code></pre></td>
+						<td>
+							When true, all variables passed on to view objects are automatically encoded.
+						</td>
+					</tr>
+					<tr>
+						<th>whitelisted_classes</th>
+						<td>array</td>
+						<td><pre class="php"><code>array('stdClass', 'Fuel\\Core\\View',<br /> 'Fuel\\Core\\ViewModel', 'Closure')</code></pre></td>
+						<td>
+							When auto encoding of view variables is enabled, you can run into issues when passing objects to the view. Classes defined in this
+							array will be exempt from auto encoding.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
 		<article>
 			<h4 id="method_check_token">check_token($value = null)</h4>
 			<p>The <strong>check_token</strong> method allows you to check the CSRF token.<br />
