@@ -400,6 +400,21 @@ echo $val->errors('username')->get_message('The field :label must be filled out 
 					</tr>
 				</tbody>
 			</table>
+
+			<h3>Naming callback/closure rules</h3>
+
+			<p>Full callback rules or closures can be named as well, by default their names will be:</p>
+			<ul>
+				<li><strong>Closure:</strong> "closure"</li>
+				<li><strong>array($class, $method):</strong> "$class:$method"</li>
+				<li><strong>array($object, $method):</strong> get_class($object).":$method"</li>
+			</ul>
+
+			<p>If you want to give them custom names instead you can do that like this:</p>
+
+			<pre class="php"><code>// Add a rule which checks if the input is odd, the expected message name will be 'validation.odd'
+$field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
+</code></pre>
 		</article>
 
 		<article>
