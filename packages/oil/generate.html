@@ -126,6 +126,22 @@ class Create_posts {
 		\DBUtil::drop_table('posts');
 	}
 }</code></pre>
+			<h3>Running Migrations</h3>
+
+			<p>
+				The following commands illustrate how to use the refine command to run useful migration tasks, assuming that the system is currently at migration 5. The migrate task can be given parameters to move directly to a given version, or just up/down by a single version.
+			</p>
+
+			<pre class="cli">$ php oil refine migrate -v
+Currently on migration: 5.
+$ php oil refine migrate version=4
+Migrated to version: 4.
+$ php oil refine migrate version=5
+Migrated to version: 5.
+$ php oil refine migrate:down
+Migrated to version: 4.
+$ php oil refine migrate:up
+Migrated to version: 5.</pre>
 
 			<h3 id="migrations">Migrations</h3>
 
