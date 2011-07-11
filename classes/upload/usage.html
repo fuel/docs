@@ -635,6 +635,9 @@ Upload::save();
 // save only the first uploaded file
 Upload::save( 0 );
 
+// save the first, second and fourth uploaded file
+Upload::save( 0, 1, 3 );
+
 // save all validated files, and to an alternate location
 $arr = Upload::get_files();
 Upload::save(DOCROOT.'assets', array_keys($arr) );
