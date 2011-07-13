@@ -89,6 +89,11 @@ var nav = {
 			"Lang":			"classes/lang.html",
 			"Log":	    	"classes/log.html",
 			"Migrate":		"classes/migrate.html",
+			"Mongo_Db": {
+				"Introduction":	"classes/mongo/introduction.html",
+				"Methods":		"classes/mongo/methods.html"
+				//"Usage":		"classes/mongo/usage.html"
+			},
 			"Pagination":	"classes/pagination.html",
 			// "Profiler":	"todo.html",
 			"Redis":		"classes/redis.html",

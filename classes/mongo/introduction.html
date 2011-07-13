@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Mongo_DB Class - Introduction - Fuel Documentation</title>
+	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('classes', '../../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>Fuel Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+	
+		<h2>Mongo_Db class</h2>
+		
+		<h3 id="intro">Introduction</h3>
+		<p>
+			The Mongo_Db class provides methods to interact with
+			<a href="http://www.mongodb.org/" target="_blank">Mongo databases</a>.
+		</p>
+		<p>
+			Besides providing the normal insert, select, delete and update functionality it has some management
+			methods to help you with database utility operations.
+		</p>
+		
+		<h3 id="config">Configuration</h3>
+		
+		<p>
+			For every Mongo database connection there must be a config in mongo array in <em>epp/config/db.php</em>.
+			Configuration options and explaination are listed below. Every config requires to contain a hostname
+			and database name.
+		</p>
+		
+		<table class="config">
+			<tbody>
+				<tr class="header">
+					<th>Param</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<th>hostname</th>
+					<td>string</td>
+					<td>yes</td>
+					<td>the hostname</td>
+				</tr>
+				<tr>
+					<th>database</th>
+					<td>string</td>
+					<td>yes</td>
+					<td>the database name</td>
+				</tr>
+				<tr>
+					<th>port</th>
+					<td>number</td>
+					<td>no</td>
+					<td>the port to use in the connection</td>
+				</tr>
+				<tr>
+					<th>username</th>
+					<td>string</td>
+					<td>no</td>
+					<td>username used for authentication, ignored if no password has been set</td>
+				</tr>
+				<tr>
+					<th>password</th>
+					<td>string</td>
+					<td>no</td>
+					<td>password used for authentication, ignored if no password has been set</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<p>Example config:</p>
+		
+		<pre class="php"><code>// Inside app/config/db.php
+		
+	'mongo' => array(
+		// This group is used when no instance name has been provided.
+		'default' => array(
+			'hostname' => 'localhost',
+			'database' => 'mongo_fuel',
+		),
+		
+		// List your own groups below.
+		'my_mongo_connection' => array(
+			'hostname' => 'localhost',
+			'database' => 'my_db',
+			'username' => 'user',
+			'password' => 'p@s$w0rD',
+		),
+	),
+</code></pre>
+
+		<p>Once you have your setting in place you can start using MongoDB.</p>
+		
+		<p class="note">
+			In order to use MongoDB this must be available on your server. To see if you have mongo
+			support on you server, look for the Mongo section in your <em>phpinfo()</em> or ask you hosting company.
+		</p>
+		
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>

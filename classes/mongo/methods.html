@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Mongo_DB Class - Methods - Fuel Documentation</title>
+	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('classes', '../../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>Fuel Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+		<h2>Mongo_Db Class Methods</h2>
+
+		<p>
+			The Mongo_Db class allowes you to interact with MongoDB databases. While in some cases it's
+			simular to interacting with databases like MySQL there are some distinct differences.
+		</p>
+
+
+		<article>
+			<h4 id="method_instance">instance($name = 'default')</h4>
+			<p>
+				The <strong>istance</strong> method returns a new Mongo_Db instance. Use the $name parameter
+				to specify which configuration and database to use.
+			</p>
+			<p class="note">
+				By default <strong>$name</strong> is <em>'default'</em> which requires you to have a default configuration in you
+				db.php config file. <a href="introduction.html#config">Read more about Mongo_Db configuration.</a>
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$collection</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>'default'</code></pre></td>
+								<td>The name of the config group to use.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>A new Mongo_Db instance</td>
+				</tr>
+				<tr>
+					<th>Throws</th>
+					<td>Mongo_DbException, when no config if found for the given instance name.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get the default group
+$mongodb = \Mongo_Db::instance();
+
+// Get a custom group
+$mongodb = \Mongo_Db::instance('my_group');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_get">get($collection = "")</h4>
+			<p>
+				The <strong>get</strong> method returns the result from a collection.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$collection</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The collection name.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>A stdClass object containing the result arrays.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+
+$result = $mongodb->get('users');
+foreach($result as $user)
+{
+	// Do something with $user
+}
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_get_where">get_where($collection = "", $where = array(), $limit = 99999)</h4>
+			<p>
+				The <strong>get_where</strong> method returns the result from a collection. In addition to that you can supply
+				an array for conditioning the result and provide a limit.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$collection</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The collection name.</td>
+							</tr>
+							<tr>
+								<th><kbd>$where</kbd></th>
+								<td><em>array</em></td>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>An array of where statements.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>A stdClass object containing the result arrays.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+
+// Get the first 10 result where 'active' is "yes"
+$result = $mongodb->get_where('users', array(
+	'active' => 'yes',
+), 10);
+
+foreach($result as $user)
+{
+	// Do something with $user
+}
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_select">select($includes = array(), $excludes = array())</h4>
+			<p>
+				The <strong>select</strong> method sets which fields to include or which to exclude during the query process.
+			</p>
+			<p class="note">
+				In order to use the exclude array the includes array must be empty.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$includes</kbd></th>
+								<td><em>array</em></td>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>Array of fields to include</td>
+							</tr>
+							<tr>
+								<th><kbd>$where</kbd></th>
+								<td><em>array</em></td>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>Array of fields to exclude</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+// Just select these fields
+$mongodb->select(array(
+	'name',
+	'surname',
+	'email',
+));
+$users = $mongodb->get('users');
+
+// Or use the exclude array
+
+$mongodb = \Mongo_Db::instance();
+// Just select these fields
+$mongodb->select(array(), array(
+	'not_this',
+	'or_this',
+));
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_where">where($wheres = array())</h4>
+			<p>
+				The <strong>where</strong> method sets the 'where is equal to' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$wheres</kbd></th>
+								<td><em>array</em></td>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>An array of associative array with the field as the key and the value as the search criteria.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance.
+$mongodb = \Mongo_Db::instance();
+
+$mongodb->where(array(
+	'name' => 'John',
+	'surname' => 'Doe,
+));
+
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_or_where">or_where($wheres = array())</h4>
+			<p>
+				The <strong>or_where</strong> method sets the 'or where is equal to' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$wheres</kbd></th>
+								<td><em>array</em></td>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>An array of associative array with the field as the key and the value as the search criteria.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where(array(
+	'name' => 'John',
+	'surname' => 'Doe,
+))->or_where(array(
+	'name' => 'Jim',
+));
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4 id="method_where_in">where_in($field = "", $in = array())</h4>
+			<p>
+				The <strong>where_in</strong> method sets the 'where in' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The field to query.</td>
+							</tr>
+							<tr>
+								<th><kbd>$in</kbd></th>
+								<td><em>array</em></td>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>An array of possible values.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where_in('name', array(
+	'John', 'James', 'Frank', 'Dave',
+));
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_where_in_all">where_in_all($field = "", $in = array())</h4>
+			<p>
+				The <strong>where_in_all</strong> method sets the 'all where in' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The field to query.</td>
+							</tr>
+							<tr>
+								<th><kbd>$in</kbd></th>
+								<td><em>array</em></td>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>An array of possible values.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where_in_all('name', array(
+	'John', 'James', 'Frank', 'Dave',
+));
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_where_not_in">where_not_in($field = "", $in = array())</h4>
+			<p>
+				The <strong>where_not_in</strong> method sets the 'where not in' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The field to query.</td>
+							</tr>
+							<tr>
+								<th><kbd>$in</kbd></th>
+								<td><em>array</em></td>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>An array of possible values.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where_not_in('name', array(
+	'John', 'James', 'Frank', 'Dave',
+));
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_where_gt">where_gt($field = "", $x)</h4>
+			<p>
+				The <strong>where_gt</strong> method sets the 'where greater than' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The field to query.</td>
+							</tr>
+							<tr>
+								<th><kbd>$x</kbd></th>
+								<td><em>mixed</em></td>
+								<td><strong>required</strong></td>
+								<td>The value to compare it to.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where_gt('age', 12);
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_where_gte">where_gte($field = "", $x)</h4>
+			<p>
+				The <strong>where_gte</strong> method sets the 'where greater than or equal to' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The field to query.</td>
+							</tr>
+							<tr>
+								<th><kbd>$x</kbd></th>
+								<td><em>mixed</em></td>
+								<td><strong>required</strong></td>
+								<td>The value to compare it to.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where_gte('age', 18);
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_where_lt">where_lt($field = "", $x)</h4>
+			<p>
+				The <strong>where_lt</strong> method sets the 'where lower than' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The field to query.</td>
+							</tr>
+							<tr>
+								<th><kbd>$x</kbd></th>
+								<td><em>mixed</em></td>
+								<td><strong>required</strong></td>
+								<td>The value to compare it to.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where_lt('age', 120);
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_where_lte">where_lte($field = "", $x)</h4>
+			<p>
+				The <strong>where_lte</strong> method sets the 'where lower than or equal to' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The field to query.</td>
+							</tr>
+							<tr>
+								<th><kbd>$x</kbd></th>
+								<td><em>mixed</em></td>
+								<td><strong>required</strong></td>
+								<td>The value to compare it to.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where_lt('age', 120);
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_where_between">where_between($field = "", $x)</h4>
+			<p>
+				The <strong>where_between</strong> method sets the 'where between' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The field to query.</td>
+							</tr>
+							<tr>
+								<th><kbd>$x</kbd></th>
+								<td><em>mixed</em></td>
+								<td><strong>required</strong></td>
+								<td>The low value to compare it to.</td>
+							</tr>
+							<tr>
+								<th><kbd>$y</kbd></th>
+								<td><em>mixed</em></td>
+								<td><strong>required</strong></td>
+								<td>The high value to compare it to.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where_between('age', 10, 20);
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_where_between_ne">where_between_ne($field = "", $x)</h4>
+			<p>
+				The <strong>where_between_ne</strong> method sets the 'where between and not equal to' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The field to query.</td>
+							</tr>
+							<tr>
+								<th><kbd>$x</kbd></th>
+								<td><em>mixed</em></td>
+								<td><strong>required</strong></td>
+								<td>The low value to compare it to.</td>
+							</tr>
+							<tr>
+								<th><kbd>$y</kbd></th>
+								<td><em>mixed</em></td>
+								<td><strong>required</strong></td>
+								<td>The high value to compare it to.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where_between_ne('age', 10, 20);
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_ne">where_between_ne($field = "", $x)</h4>
+			<p>
+				The <strong>where_ne</strong> method sets the 'where not equal to' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The field to query.</td>
+							</tr>
+							<tr>
+								<th><kbd>$x</kbd></th>
+								<td><em>mixed</em></td>
+								<td><strong>required</strong></td>
+								<td>The low value to compare it to.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where_ne('name', 'Allerd');
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_like">where_like($field = '', $value = '', $flags = 'i', $enable_start_wildcard = true, $enable_end_wildcard = true)</h4>
+			<p>
+				The <strong>where_ne</strong> method sets the 'where not equal to' statement.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$field</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The field to query.</td>
+							</tr>
+							<tr>
+								<th><kbd>$value</kbd></th>
+								<td><em>mixed</em></td>
+								<td><pre class="php"><code>''</code></pre></td>
+								<td>The value to compare it to.</td>
+							</tr>
+							<tr>
+								<th><kbd>$flags</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>'i'</code></pre></td>
+								<td>
+									Allows you to set typical regular expression flags:
+									<ul>
+										<li>i = case insensitive</li>
+										<li>m = multiline</li>
+										<li>x = can contain comments</li>
+										<li>l = locale</li>
+										<li>s = dotall, "." matches everything, including newlines</li>
+										<li>u = match unicode</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th><kbd>$enable_start_wildcard</kbd></th>
+								<td><em>bool</em></td>
+								<td><pre class="php"><code>false</code></pre></td>
+								<td>When set to <em>true</em> the beginning of the string must match.</td>
+							</tr>
+							<tr>
+								<th><kbd>$enable_end_wildcard</kbd></th>
+								<td><em>bool</em></td>
+								<td><pre class="php"><code>false</code></pre></td>
+								<td>When set to <em>true</em> the ending of the string must match.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>The currenct Mongo_Db instance.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+$mongodb->where_like('name', 'fran', 'im', true);
+$users = $mongodb->get('users');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>
