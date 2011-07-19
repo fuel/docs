@@ -64,13 +64,15 @@ var nav = {
 				"Usage":          	  "classes/database/usage.html",
 				"DB class":       	  "classes/database/db.html",
 				"DBUtil class":   	  "classes/database/dbutil.html",
-				"Query Building":		"classes/database/qb.html",
-				"Query Builder Insert":	"todo.html", //"classes/database/qb_insert.html",
-				"Query Builder Select":	"todo.html", //"classes/database/qb_select.html",
-				"Query Builder Update":	"todo.html", //"classes/database/qb_update.html",
-				"Query Builder Delete":	"todo.html", //"classes/database/qb_delete.html",
-				"Query Builder Where":	"todo.html", //"classes/database/qb_where.html"
-				"Query Builder Join":	"todo.html" //"classes/database/qb_join.html"
+				"Query Building":	{
+					"Introduction":			"classes/database/qb.html",
+					"Insert builder":	"todo.html", //"classes/database/qb_insert.html",
+					"Select builder":	"todo.html", //"classes/database/qb_select.html",
+					"Update builder":	"todo.html", //"classes/database/qb_update.html",
+					"Delete builder":	"todo.html", //"classes/database/qb_delete.html",
+					"Where builder":	"todo.html", //"classes/database/qb_where.html"
+					"Join builder":		"todo.html" //"classes/database/qb_join.html"
+				}
 			},
 			"Date":			"classes/date.html",
 			"Debug":		"classes/debug.html",
