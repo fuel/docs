@@ -67,7 +67,7 @@ var nav = {
 				"Query Building":	{
 					"Introduction":			"classes/database/qb.html",
 					"Insert builder":	"todo.html", //"classes/database/qb_insert.html",
-					"Select builder":	"todo.html", //"classes/database/qb_select.html",
+					"Select builder":	"classes/database/qb_select.html",
 					"Update builder":	"todo.html", //"classes/database/qb_update.html",
 					"Delete builder":	"todo.html", //"classes/database/qb_delete.html",
 					"Where builder":	"todo.html", //"classes/database/qb_where.html"
