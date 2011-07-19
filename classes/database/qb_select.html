@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Database - Query Builder Where - Fuel Documentation</title>
+	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('classes', '../../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>Fuel Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+		<h2 id="introduction">Query_Builder_Select class (extends <a href="qb_where.html">Query_Builder_Where</a></h2>
+		
+		<p>
+			The Query_Builder_Where class handles all the select operations for the query building process. It extends the
+			Query_Builder_Where class, so all the methods are inherrited.
+		</p>
+		
+		<h2 id="methods">Methods</h2>
+
+		<article>
+			<h4 id="method_distinct">distinct($value = true)</h4>
+			<p>The <strong>distinct</strong> method sets whether to select distinct values.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>bool</em></td>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>set to false if you don't want to select distinct values</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('name')->from('users');
+
+// Set it to distinct
+$query->distinct();
+
+// SELECT DISTINCT `name` FROM `users`
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_select">select($columns = null)</h4>
+			<p>The <strong>select</strong> method appends columns to select.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$columns</kbd></th>
+									<td><em>mixed</em></td>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>column name or array($column, $alias)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('name')->from('users');
+
+// Append other columns to select
+$query->select('surname', 'email');
+
+// Supply an array to use an alias
+$query->select(
+	array('is_active', 'active'),
+	'birthdate'
+);
+
+// SELECT `surname`, `email`, `is_active` as active, `birthdate` FROM `users`
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_select_array">select_array(array $columns)</h4>
+			<p>The <strong>select_array</strong> method appends columns to select.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$columns</kbd></th>
+									<td><em>array</em></td>
+									<td><em>required</em></td>
+									<td>an array containing column names</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('name')->from('users');
+
+// Append other columns to select
+$query->select('surname', 'email');
+
+// Supply an array to use an alias
+$query->select_array(array(
+	array('is_active', 'active'),
+	'birthdate'
+));
+
+// SELECT `surname`, `email`, `is_active` as active, `birthdate` FROM `users ...
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4 id="method_from">from($tables)</h4>
+			<p>The <strong>from</strong> method appends tables to select from.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$tables</kbd></th>
+									<td><em>mixed</em></td>
+									<td><em>required</em></td>
+									<td>table names or array($table, $alias)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select()->from('users');
+
+// Append tables to select from
+$query->from(
+	'admins',
+	array('comments', 'cmmnts')
+);
+
+// SELECT * FROM `users`, `admins`, `comments` cmmnts
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_join">join($table, $type = null)</h4>
+			<p>The <strong>join</strong> method appends tables to join.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$table</kbd></th>
+									<td><em>mixed</em></td>
+									<td><em>required</em></td>
+									<td>table name or array($table, $alias)</td>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><em>mixed</em></td>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>join type (LEFT, RIGHT, INNER, etc)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select()->from('users');
+
+// Join a table
+$query->join('profiles');
+
+// SELECT * FROM `users` JOIN `profiles`
+
+// or...
+
+$query = DB::select()->from('users');
+
+// Join another table
+$query->join('pictures', 'RIGHT OUTER');
+
+// SELECT * FROM `users` RIGHT OUTER JOIN `pictures`
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_on">on($c1, $op, $c2)</h4>
+			<p>The <strong>on</strong> method adds "ON ..." conditions for the last created JOIN statement.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$c1</kbd></th>
+									<td><em>mixed</em></td>
+									<td><em>required</em></td>
+									<td>table name or array($table, $alias)</td>
+								</tr>
+								<tr>
+									<th><kbd>$op</kbd></th>
+									<td><em>string</em></td>
+									<td><em>required</em></td>
+									<td>logical operator</td>
+								</tr>
+								<tr>
+									<th><kbd>$c2</kbd></th>
+									<td><em>mixed</em></td>
+									<td><em>required</em></td>
+									<td>table name or array($table, $alias)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select()->from('users');
+
+// Join a table
+$query->join('profiles');
+$query->on('users.id', '=', 'profiles.user_id');
+
+// SELECT * FROM `users` JOIN `profiles` ON `users`.`id` = `profiles`.`user_id`
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_group_by">group_by($columns)</h4>
+			<p>The <strong>group_by</strong> method creates a "GROUP BY ..." filter.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$columns</kbd></th>
+									<td><em>mixed</em></td>
+									<td><em>required</em></td>
+									<td>table name</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select()->from('articles');
+
+// Group by 'genre'
+$query->group_by('genre', 'category');
+
+// SELECT * FROM `articles` GROUP BY `genre`, `category`
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+				
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>
