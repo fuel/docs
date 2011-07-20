@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Database - Query Builder Where - Fuel Documentation</title>
+	<title>Database - Query Builder Select - Fuel Documentation</title>
 	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
 	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="../../assets/js/nav.js"></script>
@@ -63,7 +63,7 @@
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						<td>Returns the current instance.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -112,7 +112,7 @@ $query->distinct();
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						<td>Returns the current instance.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -167,7 +167,7 @@ $query->select(
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						<td>Returns the current instance.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -222,7 +222,7 @@ $query->select_array(array(
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						<td>Returns the current instance.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -280,7 +280,7 @@ $query->from(
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						<td>Returns the current instance.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -350,7 +350,7 @@ $query->join('pictures', 'RIGHT OUTER');
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						<td>Returns the current instance.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -400,7 +400,7 @@ $query->on('users.id', '=', 'profiles.user_id');
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						<td>Returns the current instance.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -412,6 +412,291 @@ $query = DB::select()->from('articles');
 $query->group_by('genre', 'category');
 
 // SELECT * FROM `articles` GROUP BY `genre`, `category`
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_having">having($column, $op, $value = NULL)</h4>
+			<p>The <strong>having</strong> method is an alias for <a href="#method_and_having">and_having</a>.</p>
+		</article>
+		
+		<article>
+			<h4 id="method_and_having">and_having($column, $op, $value = NULL)</h4>
+			<p>The <strong>and_having</strong> method appends a "AND HAVING" statement.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$column</kbd></th>
+									<td><em>string</em></td>
+									<td><em>required</em></td>
+									<td>Column name or array($column, $alias) or object</td>
+								</tr>
+								<tr>
+									<th><kbd>$op</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Logic operator: =, !=, IN, BETWEEN and LIKE.</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Column value</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the current instance.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('*')->from('users');
+
+// Set the first HAVING statement
+$query->having('name', '!=', 'John');
+
+// and append a new condition
+$query->and_having('surname', '=', 'Doe');
+
+// Resulting in: SELECT * FROM `users` HAVING `name` != "John" AND `surname` = "Doe"
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_having_open">having_open()</h4>
+			<p>The <strong>having_open</strong> method is an alias for <a href="#method_and_having_open">and_having_open</a>.</p>
+		</article>
+		
+		<article>
+			<h4 id="method_and_having_open">and_having_open()</h4>
+			<p>The <strong>and_having_open</strong> method opens an SQL closure and appends it using AND.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<em>None</em>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the current instance.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('*')->from('users');
+
+// Set a HAVING statement
+$query->having('name', '=', 'john')
+
+// Open a closure
+$query->and_having_open();
+
+// SELECT * FROM `users` HAVING `name` = "John" AND (
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_or_having_open">or_having_open()</h4>
+			<p>The <strong>or_having_open</strong> method opens an SQL closure and appends it using OR.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<em>None</em>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the current instance.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('*')->from('users');
+
+// Set a HAVING statement
+$query->having('name', '=', 'john')
+
+// Open a closure
+$query->or_having_open();
+
+// SELECT * FROM `users` HAVING `name` = "John" OR (
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_having_close">having_close()</h4>
+			<p>The <strong>having_close</strong> method is an alias for <a href="#method_and_having_close">and_having_close</a>.</p>
+		</article>
+
+		<article>
+			<h4 id="method_and_having_close">and_having_close()</h4>
+			<p>The <strong>and_having_close</strong> method closes an SQL closure.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<em>None</em>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the current instance.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('*')->from('users');
+
+// Open a closure
+$query->and_having_open();
+
+// Set a HAVING statement
+$query->having('name', '=', 'john');
+
+$query->and_having_close();
+// SELECT * FROM `users` HAVING (`name` = "John")
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_and_having_close">and_having_close()</h4>
+			<p>The <strong>and_having_close</strong> method closes an SQL closure.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<em>None</em>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the current instance.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('*')->from('users');
+
+// Set a HAVING statement
+$query->having('email', 'like', '%@example.com');
+
+// Open a closure
+$query->and_having_open();
+
+// Set a HAVING statement
+$query->having('name', '=', 'John');
+$query->or_where('surname', 'Doe');
+
+$query->and_having_close();
+// SELECT * FROM `users` HAVING `email` LIKE "%example.com" AND (`name` = "John" OR `surname` = "Doe")
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_or_having_close">or_having_close()</h4>
+			<p>The <strong>or_having_close</strong> method closes an SQL closure.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<em>None</em>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the current instance.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('*')->from('users');
+
+// Set a HAVING statement
+$query->having('email', 'like', '%@example.com');
+
+// Open a closure
+$query->or_having_open();
+
+// Set a HAVING statement
+$query->having('name', '=' 'John');
+$query->and_having('surname', '=', 'Doe');
+
+$query->or_having_close();
+// SELECT * FROM `users` HAVING `email` LIKE "%example.com" OR (`name` = "John" AND `surname` = "Doe")
 </code></pre>
 						</td>
 					</tr>
