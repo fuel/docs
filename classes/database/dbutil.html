@@ -409,7 +409,7 @@ catch(\Database_Exception $e)
 		
 		<article>
 			<h4 id="method_add_fields">add_fields($table, $fields)</h4>
-			<p>The <strong>modify_fields</strong> method adds fields to a table.</p>
+			<p>The <strong>add_fields</strong> method adds fields to a table.</p>
 			<table class="method">
 				<tbody>
 					<tr>
@@ -506,6 +506,126 @@ catch(\Database_Exception $e)
 	'name' => array('constraint' => 100, 'type' => 'varchar', 'charset' => 'utf8_general_ci'),
 	'title' => array('constraint' => 50, 'type' => 'varchar', 'default' => 'mrs.'),
 ));
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_add_fk">add_fk($table, $fields)</h4>
+			<p>The <strong>add_fk</strong> method adds foreign key constraints and its corresponding indexes to a table.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$table</kbd></th>
+									<td><em>required</em></td>
+									<td>the table name</td>
+								</tr>
+								<tr>
+									<th><kbd>$params</kbd></th>
+									<td><em>required</em></td>
+									<td>array containing the foreign key constraints parameters (it can add multiple foreign key constraints in one method call)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the number of affected rows.</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>\Database_Exception on failure</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>\DBUtil::add_fk('users', array(
+	'fk_users_countries' => array(
+		'field' => 'user_country'
+		'references' => array(
+			'table' => 'countries',
+			'field' => 'id_country'
+		),
+		'on_delete' => 'cascade',
+		'on_update' => 'cascade'
+	),
+	'fk_users_statuses' => array(
+		'field' => 'user_status'
+		'references' => array(
+			'table' => 'statuses',
+			'field' => 'id_status'
+		),
+		'on_delete' => 'no action',
+		'on_update' => 'no action'
+	)
+));
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_drop_fk">drop_fk($table, $fields)</h4>
+			<p>The <strong>drop_fk</strong> method drops foreign key constraints and its corresponding indexes from a table.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$table</kbd></th>
+									<td><em>required</em></td>
+									<td>the table name</td>
+								</tr>
+								<tr>
+									<th><kbd>$params</kbd></th>
+									<td><em>required</em></td>
+									<td>string or array containing the foreign key constraints identifiers to be dropped</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the number of affected rows.</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>\Database_Exception on failure</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>\DBUtil::drop_fk('users', array('fk_users_countries', 'fk_users_statuses'));
+\DBUtil::drop_fk('users', 'fk_users_genders');
 </code></pre>
 						</td>
 					</tr>
