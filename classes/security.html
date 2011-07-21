@@ -201,7 +201,7 @@
 		</article>
 
 		<article>
-			<h4 id="method_clean">clean($value, $filters)</h4>
+			<h4 id="method_clean">clean($value, $filters = null)</h4>
 			<p>The <strong>clean</strong> method allows you clean data using the filters provided.</p>
 			<table class="method">
 				<tbody>
@@ -242,7 +242,7 @@
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>// first strip tags, convert html entities in the remaining data, and finish it off using our special cleaning solution
-$filters = array('strip_tags', 'html_entities', '\\cleaners\\soap::clean');
+$filters = array('strip_tags', 'htmlentities', '\\cleaners\\soap::clean');
 $text = Security::clean($text, $filters);</code></pre>
 					</td>
 				</tr>
@@ -335,8 +335,8 @@ $text = Security::xss_clean($text);</code></pre>
 		<article>
 			<h4 id="method_htmlentities">htmlentities($value)</h4>
 			<p>
-				The <strong>htmlentities</strong> method allows you to escape HTML entities. This method operates identical to PHP's htmlentities() function
-				but supports array's and objects as well.
+				The <strong>htmlentities</strong> method allows you to turn HTML characters into their entity equivalent. This method operates identical to PHP's htmlentities() function
+				but supports arrays and objects as well.
 			</p>
 			<table class="method">
 				<tbody>
