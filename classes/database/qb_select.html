@@ -27,7 +27,7 @@
 		<h2 id="introduction">Query_Builder_Select class (extends <a href="qb_where.html">Query_Builder_Where</a></h2>
 		
 		<p>
-			The Query_Builder_Where class handles all the select operations for the query building process. It extends the
+			The Query_Builder_Select class handles all the select operations for the query building process. It extends the
 			Query_Builder_Where class, so all the methods are inherrited.
 		</p>
 		
@@ -697,6 +697,155 @@ $query->and_having('surname', '=', 'Doe');
 
 $query->or_having_close();
 // SELECT * FROM `users` HAVING `email` LIKE "%example.com" OR (`name` = "John" AND `surname` = "Doe")
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_offset">offset($number)</h4>
+			<p>The <strong>offset</strong> method sets row number to start from when selecting/updating/deleting.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$number</kbd></th>
+									<td><em>int</em></td>
+									<td><em>required</em></td>
+									<td>The row number to start from</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the current instance</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('*')->from('users');
+
+// Set the limit
+$query->limit(10);
+
+$query->offset(5);
+
+// SELECT * FROM `users` LIMIT 10 OFFSET 5
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_compile">compile(\Database_Connection$db)</h4>
+			<p>The <strong>compile</strong> method returns the select SQL query as a string.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$db</kbd></th>
+									<td><em>object</em></td>
+									<td><em>required</em></td>
+									<td>A database connection</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the SQL query as a string.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('*')->from('users');
+
+// Set the limit and offset
+$query->limit(10);
+$query->offset(5);
+
+// Get the database connection
+$connection = Database_Connection::instance();
+
+// Get the sql query
+$sql = $query->compile($connection);
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_reset">reset()</h4>
+			<p>The <strong>reset</strong> method resets all values of the current instance.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<em>None</em>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the current instance.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// prepare a select statement
+$query = DB::select('*')->from('users');
+
+// Set some conditions
+$query->where('name', 'bob');
+$query->where('surname', 'unknown');
+
+// Reset it
+$query->reset();
+
+// Set the new values
+$query->select('email')->from('admins')->where('role', 'superadmin');
+
+// The SQL query will now be:
+// SELECT `email` FROM `admins` WHERE `role` = "superadmins"
 </code></pre>
 						</td>
 					</tr>

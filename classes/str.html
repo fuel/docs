@@ -30,7 +30,7 @@
 
 		<article>
 			<h4 id="method_increment">increment($str, $first = 1)</h4>
-			<p>The <strong>increment</strong> method allows you to append a number to the end of a string an increment that number if it already exists.</p>
+			<p>The <strong>increment</strong> method allows you to append a number to the end of a string or increment that number if it already exists.</p>
 			<table class="method">
 				<tbody>
 					<tr>
@@ -48,7 +48,7 @@
 								</tr>
 								<tr>
 									<th><kbd>$string</kbd></th>
-									<td><i>required</i></td>
+									<td><em>required</em></td>
 									<td>The string to increment.</td>
 								</tr>
 								<tr>
@@ -101,7 +101,7 @@ Str::increment($string, 3); // returns filename_3
 								</tr>
 								<tr>
 									<th><kbd>$type</kbd></th>
-									<td><i>alnum</i></td>
+									<td><em>alnum</em></td>
 									<td>The type of string to generate. Your choices are alnum, numeric, nozero, alpha, distinct, hexdec, unique, and sha1.</td>
 								</tr>
 								<tr>
@@ -176,12 +176,12 @@ Str::random('sha1');
 								</tr>
 								<tr>
 									<th><kbd>$string</kbd></th>
-									<td><i>required</i></td>
+									<td><em>required</em></td>
 									<td>The string to truncate.</td>
 								</tr>
 								<tr>
 									<th><kbd>$limit</kbd></th>
-									<td><i>required</i></td>
+									<td><em>required</em></td>
 									<td>The number of characters to allow in the string.</td>
 								</tr>
 								<tr>
@@ -238,7 +238,7 @@ Str::truncate($string, 15, '...Read More'); // returns Lorem ipsum dol...Read Mo
 								</tr>
 								<tr>
 									<th><kbd>*$args</kbd></th>
-									<td><i>required</i></td>
+									<td><em>required</em></td>
 									<td>As many arguements as you need to alternate</td>
 								</tr>
 							</table>
@@ -264,6 +264,55 @@ echo $alt(); // outputs 'one'
 				</tbody>
 			</table>
 		</article>
+
+		<article>
+			<h4 id="method_lower">lower($str, $encoding = null)</h4>
+			<p>The <strong>lower</strong> method converts all characters to lowercase.  It is equivalent to PHP's strtolower() for your specific character encoding.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$string</kbd></th>
+									<td><em>string</em></td>
+									<td><em>Required</em></td>
+									<td>The input string.</td>
+								</tr>
+								<tr>
+									<th><kbd>$encoding</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The character encoding.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Str::lower('User Data'); // returns 'user data'</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+        
 	</section>
 
 	<section id="footer">

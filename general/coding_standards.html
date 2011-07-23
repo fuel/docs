@@ -193,6 +193,39 @@ switch ($var)
 	break;
 }</code></pre>
 
+		<h5 id="alternative_if">Alternative if statments</h5>
+
+		<p>In some cases a full if statement is a bit much code for a simple conditional assignment or function
+			call. In those cases you can use PHP's execution logic to use a shorter boolean-operator based syntax.
+			Using <kbd>and</kbd> means the second part only gets evaluated if the first part were true, using
+			<kbd>or</kbd> means the second part only gets executed if the first part were false.<br />
+			Don't use this when both if and else are needed, just in cases like single conditional statements.</p>
+
+		<pre class="php"><code>// instead of if (isset($var)) { Config::set('var', $var); }
+isset($var) and Config::set('var', $var);
+
+// instead of if ( ! isset($var)) { $var = Config::get('var'); }
+isset($var) or $var = Config::get('var');
+
+// DON'T DO THIS
+Uri::segment(3) and $var = Uri::segment(3);
+Uri::segment(3) or $var = 'default';
+
+// This is better:
+if (Uri::segment(3))
+{
+	$var = Uri::segment(3);
+}
+else
+{
+	$var = 'default';
+}
+
+// Or this:
+$var = Uri::segment(3) ? Uri::segment(3) : 'default';
+// Or actually this:
+$var = Uri::segment(3) ?: 'default';</code></pre>
+
 		<h3 id="comparison_logical">Comparisons, Logical operators</h3>
 
 		<p>Comparing function/method returns and variables should be type aware, for example some functions may return
@@ -242,6 +275,10 @@ $other_var  = ''; // do each on its own line</code></pre>
 $array['my_index'] = 'something';
 for ($i = 0; $i < $max; $i++)</code></pre>
 
+		<h5 id="quotation">String quotation</h5>
+
+		<p>Single quotes are preferred over double quotes.</p>
+
 		<h5 id="concatenation">Concatenation</h5>
 
 		<p>String concatenation should not contain spaces around the joined parts</p>
@@ -255,10 +292,10 @@ $string = 'my string ' . $var . ' the rest of my string';</code></pre>
 		<h5 id="operators">Operators</h5>
 
 <pre class="php"><code>$var = 'something';
-if ($var == 'something') //space before and after operator
-$var++; // no space before
-++$var; //no space after
-$var = $some_var + $other_var; //space before and after operator</code></pre>
+if ($var == 'something') //space before and after logical operator
+$var = $some_var + $other_var; //space before and after math operator
+$var++; // no space before increment
+++$var; //no space after increment</code></pre>
 
 	</section>
 

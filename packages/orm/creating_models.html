@@ -75,11 +75,18 @@
 	protected static $_primary_key = array('aid');
 }</code></pre>
 
+			<p class="note">The primary key must be a real primary key: unique and unchanging. Don't use it for other
+				purposes (like a foreign key in a one-one relation) as well, that won't work as the PK can't be
+				changed. The Orm won't check this, and while it might seem to work at first glance: you'll get
+				into trouble.<br />
+				It is not required for the PK to be auto_increment (though preferred) and you can specify the PK
+				yourself, but only the first time. Once it's set, it's set.</p>
+
 			<h3 id="propperties">protected static $_properties</h3>
 
 			<p>There's already a simple example above of adding all model properties, they can also be configured by
 			using the columnname as the key and setting options like type, label & validation.</p>
-			
+
 			<pre class="php"><code>class Model_Article extends Orm\Model {
 	protected static $_properties = array(
 		'id' => array('type' => 'int'),

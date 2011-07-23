@@ -138,6 +138,62 @@ echo $output;</code></pre>
 		</article>
 
 		<article>
+			<h4 id="method_parent">parent()</h4>
+			<p>The <strong>Request</strong> that created this Request.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Request Object or null when it's the main request</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// get the parent of the current active Request
+$parent = Request::active()->parent();</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4 id="method_children">children()</h4>
+			<p>The <strong>Request</strong> objects that were created during this Request.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Array of Fuel\Core\Request Objects</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// get the Requests that were created during the main Request
+$children = Request::main()->children();</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
 			<h4 id="method_show_404">show_404($return = false)</h4>
 			<p>The <strong>show_404</strong> method will display or return the application's 404 page. If none is configured in your config routes.php, the Fuel default 404 page will be used instead. If the configured 404 route is incorrect, an error will be thrown.</p>
 			<table class="method">
