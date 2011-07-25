@@ -35,7 +35,35 @@
 		<section>
 			<h2 id="many_many">Relations: Many to Many</h2>
 
-			<p>To be written.</p>
+			<p>Specifies a many-to-many relationship to another model. The target model will have the same type of
+				relationship in the other direction. To allow for these relations you need a table in between with just
+				the 2 IDs from both sides of the relation as dual-primary key.</p>
+
+			<h4>Keeping values with the relationship</h4>
+
+			<p>If you need to save values with the relationship table you don't want to use ManyMany but create a model
+				in between instead which belongs to both sides of what you would otherwise call the ManyMany
+				relationship. It is described under "<a href="intro.html#usage_nested_rels">Usage with nested
+				relationships</a> how you can fetch all this.</p>
+
+			<h3>Example</h3>
+
+			<p>Let's say we have a model <kbd>Model_Post</kbd> and it <em>has many and belongs to many</em>
+				<kbd>Model_User</kbd>s. The ID of the Model_Post is along with the ID of the Model_User in a table
+				called <kbd>posts_users</kbd> (default order is alphabetical). That table has just 2 columns:
+				<kbd>post_id</kbd> and <kbd>user_id</kbd> which are together the primary key of that table.<br />
+				If you keep to the defaults all you need to do is add <kbd>'users'</kbd> to the
+				<kbd>$_many_many</kbd> static property of the Model_Post:</p>
+
+			<pre class="php"><code>protected static $_many_many = array('users'));</code></pre>
+
+			<p>And you need to add a table like this one to your SQL:</p>
+
+			<pre class="sql"><code>CREATE TABLE IF NOT EXISTS `posts_users` (
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`post_id`,`user_id`)
+);</code></pre>
 
 			<h3>Full config example with defaults as values</h3>
 
