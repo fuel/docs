@@ -46,6 +46,39 @@
 				relationship. It is described under "<a href="intro.html#usage_nested_rels">Usage with nested
 				relationships</a> how you can fetch all this.</p>
 
+			<h3>Configuration Options</h3>
+
+			<p>ManyMany relations have three additional configuration options compared to the others. All of these
+				are still optional when using the most common naming conventions.</p>
+
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Option</th>
+						<th>Default</th>
+						<th>Notes</th>
+					</tr>
+					<tr>
+						<th>table_through</th>
+						<td>Calculated from model_to and model_from alphabetically ordered</td>
+						<td>This is the table that connects the 2 models and has both their IDs in it. For 2 models
+							like Model_User and Model_Post it will be named posts_users by default (both plural).</td>
+					</tr>
+					<tr>
+						<th>key_through_from</th>
+						<td>Calculated from the current model name</td>
+						<td>The key that matches the current model's primary key. If your current model is Model_Post
+							this will be post_id by default</td>
+					</tr>
+					<tr>
+						<th>key_through_to</th>
+						<td>Calculated from the related model name</td>
+						<td>The key that matches the related model's primary key. If your related model is Model_User
+							this will be user_id by default</td>
+					</tr>
+				</tbody>
+			</table>
+
 			<h3>Example</h3>
 
 			<p>Let's say we have a model <kbd>Model_Post</kbd> and it <em>has many and belongs to many</em>
