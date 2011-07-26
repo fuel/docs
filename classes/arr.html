@@ -28,6 +28,61 @@
 
 		<p>The arr class is a set of helper functions for working with arrays.</p>
 
+		<article id="method_to_assoc">
+			<h4>to_assoc($arr)</h4>
+			<p>The <strong>to_assoc</strong> method turns a non-associative array into an associative array if it has an even number of segments.  If it has an odd number of segments it returns <kbd>null</kbd>.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$arr</kbd></th>
+								<td><i>Required</i></td>
+								<td>The array to convert.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>array|null</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+<pre class="php"><code>$arr = array('foo', 'bar', 'baz', 'yay');
+$array = Arr::to_assoc($arr);
+/*
+Result:
+array(
+    'foo' => 'bar',
+    'baz' => 'yay',
+)
+*/
+
+$arr = array('foo', 'bar', 'baz');
+$array = Arr::to_assoc($arr);
+/*
+Result:
+null
+*/</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
 		<article id="method_assoc_to_keyval">
 			<h4>assoc_to_keyval($assoc = null, $key_field = null, $val_field = null)</h4>
 			<p>The <strong>assoc_to_keyval</strong> method turns a multi-dimensional array into a key=>val array.</p>
