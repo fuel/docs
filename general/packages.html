@@ -72,17 +72,20 @@
 			Use the bootstrap to add the package namespace (to global if you wish). And add the classes for better perfomance.
 		</p>
 
-		<pre class="php"><code>// Add namespace
-Autoloader::add_namespace('Mypackage', __DIR__.'/');
+		<pre class="php"><code>// Add namespace, necessary if you want the autoloader to be able to find classes
+Autoloader::add_namespace('Mypackage', __DIR__.'/classes/');
 
 // Add as core namespace
 Autoloader::add_core_namespace('Mypackage');
 
-// Add as core namespace and prefix to overwrite core classes.
+// Add as core namespace (classes are aliased to global, thus useable without namespace prefix)
+// Set the second arguement to <kbd>true</kbd> to prefix and be able to overwrite core classes
 Autoloader::add_core_namespace('Mypackage', true);
 
-// And add the classes
-
+// And add the classes, this is usefull for:
+// - optimization: no path searching is necessary
+// - it's required to be able to use as a core namespace
+// - if you want to break the autoloader's path search rules
 Autoloader::add_classes(array(
 	'Mypackage\\Classname' => __DIR__.'/classes/classname.php',
 	'Mypackage\\Anotherclass' => __DIR__.'/classes/anotherclass.php',

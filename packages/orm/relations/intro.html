@@ -50,7 +50,7 @@
 
 			<h3>Basic config</h3>
 
-			<pre class="php"><code>$_has_many = array('comments');</code></pre>
+			<pre class="php"><code>protected static $_has_many = array('comments');</code></pre>
 
 			<p>This example, if specified in <kbd>Model_Article</kbd>, enables fetching of an array of
 				<kbd>Model_Comment</kbd> objects which have the field <kbd>article_id</kbd> matching the primary key of
@@ -58,7 +58,7 @@
 
 			<h3>Fully configured</h3>
 
-			<pre class="php"><code>$_has_many = array('comments' => array(
+			<pre class="php"><code>protected static $_has_many = array('comments' => array(
 	'model_to' => 'Model_Fancy_Comment',
 	'key_from' => 'article_id',
 	'key_to' => 'parent_article_id',

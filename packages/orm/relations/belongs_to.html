@@ -35,12 +35,23 @@
 		<section>
 			<h2 id="belongs_to">Relations: Belongs To</h2>
 
-			<p>Has the primary key of the relation keps in its table, belongs to 1 related object.</p>
+			<p>Has the primary key of the relation keps in its table, belongs to 1 related object. This is the other
+				side of a <a href="has_one.html">HasOne</a> or <a href="has_many.html">HasMany</a> relation.</p>
+
+			<h3>Example</h3>
+
+			<p>Let's say we have a model <kbd>Model_Comment</kbd> and it <em>belongs to</em> a <kbd>Model_Post</kbd>
+				(which in turn <em>has many</em> comments) the ID of the Model_Post is saved with the Model_Comment
+				instance in its own table. This means the <kbd>comments</kbd> table will have a column
+				<kbd>post_id</kbd> (or something else you configure). If you keep to the defaults all you need to do
+				is add <kbd>'post'</kbd> to the <kbd>$_belongs_to</kbd> static property of the Model_Comment:</p>
+
+			<pre class="php"><code>protected static $_belongs_to = array('post'));</code></pre>
 
 			<h3>Full config example with defaults as values</h3>
 
 			<pre class="php"><code>// in a Model_Comment which belong to a post
-$_belongs_to = array(
+protected static $_belongs_to = array(
 	'post' => array(
 		'key_from' => 'comment_id',
 		'model_to' => 'Model_Post',

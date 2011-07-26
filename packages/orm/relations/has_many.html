@@ -35,13 +35,25 @@
 		<section>
 			<h2 id="has_many">Relations: Has Many</h2>
 
-			<p>Specifies a one-to-many relationship to another model. The target model must include a "Belongs To"
-				reference to the current model to allow the inverse relationship.</p>
+			<p>Specifies a one-to-many relationship to another model. The target model must include a
+				"<a href="belongs_to.html">Belongs To</a>" reference to the current model to allow the inverse
+				relationship.</p>
+
+			<h3>Example</h3>
+
+			<p>Let's say we have a model <kbd>Model_Post</kbd> and it <em>has many</em> <kbd>Model_Comment</kbd>s
+				(which in turn <em>belong to</em> the post). The ID of the Model_Post is saved with the Model_Comment
+				instance in its own table. This means the <kbd>comments</kbd> table will have a column
+				<kbd>post_id</kbd> (or something else you configure), while the posts table won't mention the comments.
+				If you keep to the defaults all you need to do is add <kbd>'comments'</kbd> to the
+				<kbd>$_has_many</kbd> static property of the Model_User:</p>
+
+			<pre class="php"><code>protected static $_has_many = array('comments'));</code></pre>
 
 			<h3>Full config example with defaults as values</h3>
 
 			<pre class="php"><code>// in a Model_Post which has many comments
-$_has_many = array(
+protected static $_has_many = array(
 	'comments' => array(
 		'key_from' => 'id',
 		'model_to' => 'Model_Comment',

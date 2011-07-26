@@ -35,13 +35,25 @@
 		<section>
 			<h2 id="has_one">Relations: Has One</h2>
 
-			<p>Specifies a one-to-one relationship to another model. The target model must include a "Belongs To"
-				reference to the current model to allow the inverse relationship.</p>
+			<p>Specifies a one-to-one relationship to another model. The target model must include a
+				"<a href="belongs_to.html">Belongs To</a>" reference to the current model to allow the inverse
+				relationship.</p>
+
+			<h3>Example</h3>
+
+			<p>Let's say we have a model <kbd>Model_User</kbd> and it <em>has one</em> a <kbd>Model_Profile</kbd>
+				(which in turn <em>belongs to</em> the user). The ID of the Model_User is saved with the Model_Profile
+				instance in its own table. This means the <kbd>profiles</kbd> table will have a column
+				<kbd>user_id</kbd> (or something else you configure), while the user table won't mention the profile.
+				If you keep to the defaults all you need to do is add <kbd>'profile'</kbd> to the
+				<kbd>$_has_one</kbd> static property of the Model_User:</p>
+
+			<pre class="php"><code>protected static $_has_one = array('profile'));</code></pre>
 
 			<h3>Full config example with defaults as values</h3>
 
 			<pre class="php"><code>// in a Model_User which has one profile
-$_has_one = array(
+protected static $_has_one = array(
 	'profile' => array(
 		'key_from' => 'id',
 		'model_to' => 'Model_Profile',
