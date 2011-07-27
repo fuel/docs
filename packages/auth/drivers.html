@@ -79,10 +79,11 @@ class Auth_Login_MyDriver extends \Auth\Auth_Login_Driver {
 abstract public function get_user_id();</code></pre>
 
 			<p>
-				The code above show you the get_user_id function that every driver should have.
-				Like in all classes you extend that have abstract functions these function must be defined in the extended class.
+				The code above show you the <em>get_user_id</em> function that every driver should have.
+				Like in all classes you extend that have abstract functions, these functions must be defined in the extended class.
 				The return type of this function is provided in the comment, in this case <em>array(driver_id, user_id)</em>.
-				In order to get your driver to work alongside other drivers make sure you return the right values or your driver breaks.
+				In order to get your driver to work alongside other drivers make sure you return the right values or your driver
+				breaks protocol.
 			</p>
 			
 			<p>
@@ -103,6 +104,19 @@ public function get_user_id()
 
 	return array($this->id, (int) $this->user['id']);
 }
+</code></pre>
+
+			<p>
+				Once you have everything in place for the new driver. Replace or add it to the auth <a href="intro.html#configuration">config</a>.
+			</p>
+			
+			<pre class="php"><code>// Inside config/auth.php
+			
+// Add it as a driver
+'driver' => array('SimpleAuth', 'MyDriver'),
+
+// or replace the SimpleAuth driver
+'driver' => array('MyDriver'),
 </code></pre>
 			
 		</section>
