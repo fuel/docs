@@ -493,13 +493,15 @@ $view->bind(array(
 							<table class="parameters">
 								<tr>
 									<th>Param</th>
+									<th>Type</th>
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
 								<tr>
 									<th><kbd>$file</kbd></th>
+									<td><em>string</em></td>
 									<td><em>null</em></td>
-									<td class="description">the view filename</td>
+									<td class="description">the view filename without the extension</td>
 								</tr>
 							</table>
 						</td>
@@ -520,6 +522,53 @@ $html = View::factory('path/to/view')->render();
 // or
 
 $html = View::factory()->set_filename('path/to/view')->render();
+</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<h3 id="procedural_helpers">Procedural helpers</h3>
+		
+		<article>
+			<h4 id="function_render">render($view, $data = array())</h4>
+			<p>The <strong>render</strong> function is an alias for <a href="#method_render">View::render</a>.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$view</kbd></th>
+									<td><em>string</em></td>
+									<td><em>required</em></td>
+									<td class="description">the view filename without the extension</td>
+								</tr>
+								<tr>
+									<th><kbd>$data</kbd></th>
+									<td><em>array</em></td>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td class="description">an array of data to be passed to the view</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><strong>string, the result from <a href="#method_render">View::render</a></strong></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$html = render('path/to/view', $data_array);
 </code></pre>
 						</td>
 					</tr>
