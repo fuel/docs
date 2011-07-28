@@ -29,6 +29,56 @@
 		<p>The Uri class allows you to interact with the URI.</p>
 
 		<article>
+			<h4 id="method_base">base($include_index = true)</h4>
+			<p>
+				The <strong>base</strong> method return  the base URL, excluding the index_file when <strong>$include_index</strong>
+				is set to <em>false</em>.
+			</p>
+			<p class="note">
+				Please note: <strong>$include_index</strong> will be ignored if index_file is not set app/config/config.php
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$include_index</kbd></th>
+								<td><pre class="php"><code>true</code></pre></td>
+								<td>Wether to append the index to the returned url.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string, the base url with optional index file appended</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>echo Uri::base();
+// http://localhost/index.php
+
+echo Uri::base(false);
+// http://localhost/</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
 			<h4 id="method_create">create($uri = null, $variables = array(), $get_variables = array())</h4>
 			<p>The <strong>create</strong> method allows you to create a URL with the given URI, including the base URL.</p>
 			<table class="method">
