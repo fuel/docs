@@ -192,6 +192,76 @@ Array
 			</table>
 		</article>
 
+		<article id="method_flatten">
+			<h4>flatten($array, $glue = ':', $reset = true)</h4>
+			<p>The <strong>flatten</strong> method flattens a multi-dimensional array (both associative and indexed) down into a 1 dimensional array.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$array</kbd></th>
+								<td><em>required</em></td>
+								<td>The array to flatten.</td>
+							</tr>
+							<tr>
+								<th><kbd>$glue</kbd></th>
+								<td><pre class="php"><code>:</code></pre></td>
+								<td>The string used to glue the keys together with</td>
+							</tr>
+							<tr>
+								<th><kbd>$reset</kbd></th>
+								<td><pre class="php"><code>true</code></pre></td>
+								<td>Should we create a new array of values instead of merging them into the last array created by <strong>flatten</strong>?</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>array</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+<pre class="php"><code>$indexed = array(
+	array(
+		"a"
+	),
+	array(
+		"b"
+	),
+	array(
+		"c"
+	),
+);
+
+print_r( Arr::flatten($indexed, '_') );
+
+// Returns
+Array
+(
+	[0_0] => a
+	[0_1] => b
+	[0_2] => c
+)</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
 		<article id="method_flatten_assoc">
 			<h4>flatten_assoc($array, $glue = ':', $reset = true)</h4>
 			<p>The <strong>flatten_assoc</strong> method flattens a multi-dimensional associative array down into a 1 dimensional associative array.</p>
@@ -274,7 +344,7 @@ Array
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_filter_prefixed">filter_prefixed($array, $prefix = 'prefix_', $remove_prefix = true)</h4>
 			<p>The <strong>filter_prefixed</strong> method filters the array on a prefix. It returns an array where the key starts with the specified prefix.</p>
@@ -349,7 +419,7 @@ Array
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_filter_keys">filter_keys($array, $keys, $remove = false)</h4>
 			<p>The <strong>filter_keys</strong> method filters a given array to a set of keys. It returns an array that contains only the items whose keys are in the <kbd>$keys</kbd> array. Can also remove the specified <kbd>$keys</kbd> from an array.</p>
@@ -475,7 +545,7 @@ Array
 		"city" => "Pittsburgh",
 		"state" => "PA",
 		"country" => "US"
-	)		 
+	)
 );
 
 echo Arr::element($person, "name", "Unknown Name");
@@ -542,7 +612,7 @@ echo Arr::element($person, "location.city", "Unknown City");
 // Add one value
 Arr::insert($people, "Humpty", 0 );
 print_r( $people );
-// Returns 
+// Returns
 Array
 (
 	[0] => Humpty
@@ -715,7 +785,7 @@ Array
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_sort">sort($array, $key, $order = 'asc', $sort_flags = SORT_REGULAR)</h4>
 			<p>The <strong>sort</strong> method sorts a multi-dimensional array by its values.</p>
@@ -818,9 +888,9 @@ array(
 				</tbody>
 			</table>
 		</article>
-		
+
 		<h3 id="procedural_helpers">Procedural helpers</h3>
-		
+
 		<article>
 			<h4 id="function_in_arrayi">in_arrayi($needle, $haystack)</h4>
 			<p>The <strong>sort</strong> function is a case-insensitive version of in_array.</p>
