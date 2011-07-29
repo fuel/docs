@@ -219,3 +219,6 @@ function generate_nav(path, links)
 	});
 	return html;
 }
+
+// IE8 fix for displaying the sections correctly.
+var dummy_section = document.createElement('section');

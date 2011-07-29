@@ -75,7 +75,7 @@
 						<tr>
 							<th>driver</th>
 							<td>string|array</td>
-							<td><pre class="php"><code>array('simpleauth')</code></pre></td>
+							<td><pre class="php"><code>array('SimpleAuth')</code></pre></td>
 							<td>
 								Login drivers to load, the first will also be the default returned by Auth::instance().
 							</td>
@@ -89,8 +89,35 @@
 								this makes it possible to login in multiple ways at the same time.
 							</td>
 						</tr>
+						<tr>
+							<th>salt</th>
+							<td>string</td>
+							<td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
+							<td>
+								The salt used for password hashing.
+							</td>
+						</tr>
 					</tbody>
 				</table>
+				
+				<p>Your auth config file should look like this:</p>
+				
+				<pre class="php"><code>&lt;?php
+
+return array(
+	// The drivers
+	'driver' => array('SimpleAuth'),
+	
+	// Set to true to allow multiple logins
+	'verify_multiple_logins' => true,
+	
+	// Use your own salt for security reasons
+	'salt' => 'Th1s=mY0Wn_$@|+',
+);
+
+/* End of file auth.php */
+</code></pre>
+				
 			</section>
 
 		</section>

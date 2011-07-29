@@ -77,6 +77,12 @@ RewriteRule ^(.*)$ index.php?/$1 [L]
 # Notice the ? after index.php
 </pre>
 
+			<p>Some fcgi installations require a variant of this solution:</p>
+
+			<pre>
+RewriteRule ^(.*)$ index.php?$1 [L]
+# Notice the fact that the slash has been removed after the ?
+</pre>
 		</article>
 
 		<article>
@@ -104,7 +110,7 @@ RewriteRule ^(.*)$ index.php?/$1 [L]
 			<p>In some cases you have to create the directory first:</p>
 
 			<pre class="cli">$ sudo mkdir /var/mysql
-	$ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</pre>
+$ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</pre>
 
 		</article>
 

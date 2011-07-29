@@ -172,49 +172,6 @@
 		</article>
 		
 		<article>
-			<h4 id="method_instance">instance($instance = null)</h4>
-			<p>Returns a specific instance, or the default instance (is created if necessary).</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tbody>
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$instance</kbd></th>
-									<td><pre class="php"><code>null</code></pre></td>
-									<td>Identifier of the fieldset instance you want to retrieve</td>
-								</tr>
-							</tbody>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>\Fieldset Object<br />
-					or <kbd>false</kbd> if the specified instance doesn't exist.</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>$article_form = Fieldset::instance('article');</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
 			<h4 id="method_add">add($name, $label = '', array $attributes = array(), array $rules = array())</h4>
 			<p>Creates a Fieldset_Field instance and adds it to the current Fieldset.</p>
 			<table class="method">
@@ -588,7 +545,7 @@ $article_form->set_config('key', 'value');</code></pre>
 		
 		<article>
 			<h4 id="method_input">input($field = null)</h4>
-			<p>Alias for $this->validation()->input(). Gets an array of validated input value(s) from either POST data or given input. See <a href="validation.html#usage">Validation</a>.</p>
+			<p>Alias for $this->validation()->input(). Gets an array of validated input value(s) from either POST data or given input. See <a href="validation/validation.html#usage">Validation</a>.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -630,7 +587,7 @@ $article_form->set_config('key', 'value');</code></pre>
 		
 		<article>
 			<h4 id="method_validated">validated($field = null)</h4>
-			<p>Alias for $this->validation()->validated(). Gets an array of input value(s) that passed validation. See <a href="validation.html#usage">Validation</a>.</p>
+			<p>Alias for $this->validation()->validated(). Gets an array of input value(s) that passed validation. See <a href="validation/validation.html#usage">Validation</a>.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -672,7 +629,7 @@ $article_form->set_config('key', 'value');</code></pre>
 		
 		<article>
 			<h4 id="method_errors">errors($field = null)</h4>
-			<p>Alias for $this->validation()->errors(). Gets an array of input value(s) that did not pass validation. See <a href="validation.html#usage">Validation</a>.</p>
+			<p>Alias for $this->validation()->errors(). Gets an array of input value(s) that did not pass validation. See <a href="validation/validation.html#usage">Validation</a>.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -705,7 +662,7 @@ $article_form->set_config('key', 'value');</code></pre>
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>$validated_values = $article_form->validated();</code></pre>
+						<pre class="php"><code>$errors = $article_form->errors();</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -714,7 +671,7 @@ $article_form->set_config('key', 'value');</code></pre>
 		
 		<article>
 			<h4 id="method_show_errors">show_errors(Array $config = array())</h4>
-			<p>Alias for $this->validation()->show_errors(). Returns all errors in a list or with set markup from the $config parameter. See <a href="validation.html#usage">Validation</a>.</p>
+			<p>Alias for $this->validation()->show_errors(). Returns all errors in a list or with set markup from the $config parameter. See <a href="validation/validation.html#usage">Validation</a>.</p>
 			<table class="method">
 				<tbody>
 				<tr>
