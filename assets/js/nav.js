@@ -26,6 +26,7 @@ var nav = {
 				"Template":		"general/controllers/template.html",
 				"Rest":			"general/controllers/rest.html"
 			},
+			"404 handling":		"general/404.html",
 			"Models":			"general/models.html",
 			"Views":			"general/views.html",
 			"ViewModels":		"general/viewmodels.html",
@@ -59,10 +60,18 @@ var nav = {
 			"Cookie":		"classes/cookie.html",
 			"Crypt":		"classes/crypt.html",
 			"Database": {
-				"Introduction":     "classes/database/introduction.html",
-				"Usage":            "classes/database/usage.html",
-				"DB class":         "classes/database/db.html",
-				"DBUtil class":     "classes/database/dbutil.html"
+				"Introduction":   	  "classes/database/introduction.html",
+				"Usage":          	  "classes/database/usage.html",
+				"DB class":       	  "classes/database/db.html",
+				"DBUtil class":   	  "classes/database/dbutil.html",
+				"Query Building":	{
+					"Introduction":			"classes/database/qb.html",
+					"Insert builder":	"todo.html", //"classes/database/qb_insert.html",
+					"Select builder":	"classes/database/qb_select.html",
+					"Update builder":	"classes/database/qb_update.html",
+					"Delete builder":	"classes/database/qb_delete.html",
+					"Where builder":	"classes/database/qb_where.html"
+				}
 			},
 			"Date":			"classes/date.html",
 			"Debug":		"classes/debug.html",
@@ -88,6 +97,11 @@ var nav = {
 			"Lang":			"classes/lang.html",
 			"Log":	    	"classes/log.html",
 			"Migrate":		"classes/migrate.html",
+			"Mongo_Db": {
+				"Introduction":	"classes/mongo/introduction.html",
+				"Methods":		"classes/mongo/methods.html"
+				//"Usage":		"classes/mongo/usage.html"
+			},
 			"Pagination":	"classes/pagination.html",
 			// "Profiler":	"todo.html",
 			"Redis":		"classes/redis.html",
@@ -107,7 +121,10 @@ var nav = {
 				"Usage":			"classes/upload/usage.html"
 			},
 			"Uri":			"classes/uri.html",
-			"Validation":	"classes/validation.html",
+			"Validation": {
+				"Introduction": "classes/validation/validation.html",
+				"Methods": "classes/validation/methods.html"
+			},
 			"View":			"classes/view.html"
 		},
 		"Oil": {
@@ -202,3 +219,6 @@ function generate_nav(path, links)
 	});
 	return html;
 }
+
+// IE8 fix for displaying the sections correctly.
+var dummy_section = document.createElement('section');

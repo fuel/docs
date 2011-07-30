@@ -37,13 +37,14 @@
 		</article>
 
 		<article>
-			<h4>set_header($name, $value)</h4>
+			<h4 id="method_set_header">set_header($name, $value)</h4>
 			<p>The <strong>set_header</strong> method allows set custom HTTP headers.</p>
+			<p class="note">This function must calles from within a controller method as the response object is one of the controller's propperties.</p>
 			<table class="method">
 				<tbody>
 				<tr>
 					<th class="legend">Static</th>
-					<td>Yes</td>
+					<td>No</td>
 				</tr>
 				<tr>
 					<th>Parameters</th>
@@ -75,19 +76,19 @@
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>// We'll be outputting a PDF
-Response::set_header('Content-Type', 'application/pdf');
+$this->response->set_header('Content-Type', 'application/pdf');
 
 // It will be called downloaded.pdf
-Response::set_header('Content-Disposition', 'attachment; filename="downloaded.pdf"');
+$this->response->set_header('Content-Disposition', 'attachment; filename="downloaded.pdf"');
 
 // Set no cache
-Response::set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
-Response::set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
-Response::set_header('Pragma', 'no-cache');
+$this->response->set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
+$this->response->set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
+$this->response->set_header('Pragma', 'no-cache');
 
 // More examples
-Response::set_header('Content-Language', 'en');
-Response::set_header('Content-Type', 'text/html; charset=utf-8');</code></pre>
+$this->response->set_header('Content-Language', 'en');
+$this->response->set_header('Content-Type', 'text/html; charset=utf-8');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -95,13 +96,14 @@ Response::set_header('Content-Type', 'text/html; charset=utf-8');</code></pre>
 		</article>
 
 		<article>
-			<h4>send_headers()</h4>
+			<h4 id="method_send_headers">send_headers()</h4>
 			<p>The <strong>send_headers</strong> method sends the set headers out to the browser, including the HTTP status of the request.</p>
+			<p class="note">This function must calles from within a controller method as the response object is one of the controller's propperties.</p>
 			<table class="method">
 				<tbody>
 				<tr>
 					<th class="legend">Static</th>
-					<td>Yes</td>
+					<td>No</td>
 				</tr>
 				<tr>
 					<th>Parameters</th>
@@ -114,7 +116,7 @@ Response::set_header('Content-Type', 'text/html; charset=utf-8');</code></pre>
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>Response::send_headers();</code></pre>
+						<pre class="php"><code>$this->response->send_headers();</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -123,7 +125,7 @@ Response::set_header('Content-Type', 'text/html; charset=utf-8');</code></pre>
 		</article>
 
 		<article>
-			<h4>redirect($url = '', $method = 'location', $redirect_code = 302)</h4>
+			<h4 id="method_redirect">redirect($url = '', $method = 'location', $redirect_code = 302)</h4>
 			<p>The <strong>redirect</strong> method offers different methods of redirecting to a new URL.</p>
 			<table class="method">
 				<tbody>

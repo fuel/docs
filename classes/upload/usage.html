@@ -31,7 +31,7 @@
 			It allows you to filter uploads in various ways, define what the destination filenames should look like, or filter on size or length of the filename.
 		</p>
 
-		<h3>Uploaded files array</h3>
+		<h3 id="uploaded_files_array">Uploaded files array</h3>
 
 		<p>Information of every uploaded file is stored in a multidimensional array within the Upload class.
 			For every file, an array is defined with the following fields:
@@ -114,7 +114,14 @@
 					<th>error</th>
 					<td>integer</td>
 					<td>
-						The error detected when uploading the file or when validating the uploaded file. If zero, there were no errors.
+						Code of the error detected when uploading the file or when validating the uploaded file. If zero, there were no errors.
+					</td>
+				</tr>
+				<tr>
+					<th>message</th>
+					<td>string</td>
+					<td>
+						The error message.
 					</td>
 				</tr>
 			</tbody>
@@ -161,7 +168,7 @@
 			</tbody>
 		</table>
 
-		<h3>Defined error constants</h3>
+		<h3 id="error_constants">Defined error constants</h3>
 
 		<p>The Upload class defines the following error constants:</p>
 
@@ -282,9 +289,40 @@
 			</tbody>
 		</table>
 
+		<h3 id="usage_example">Usage example</h3>
+
+<pre class="php"><code>// Custom configuration for this upload
+$config = array(
+	'path' => DOCROOT.DS.'files',
+	'randomize' => true,
+	'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
+);
+
+// process the uploaded files in $_FILES
+Upload::process($config);
+
+// if there are any valid files
+if (Upload::is_valid())
+{
+	// save them according to the config
+	Upload::save();
+
+	// call a model method to update the database
+	Model_uploads::add(Upload::get_files());
+}
+
+// and process any errors
+foreach (Upload::get_errors() as $file)
+{
+	// $file is an array with all file information,
+	// $file['error'] contains the error number
+	// $file['message'] contains the error message
+}
+</code></pre>
+
 		<article>
-			<h4>is_valid()</h4>
-			<p>The <strong>is_valid</strong> can be used to check if there are any uploaded files present that have been validated.</p>
+			<h4 id="method_is_valid">is_valid()</h4>
+			<p>The <strong>is_valid</strong> method can be used to check if there are any uploaded files present that have been validated.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -302,8 +340,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php">
-<code>// do we have any uploaded files to save?
+						<pre class="php"><code>// do we have any uploaded files to save?
 if ( Upload::is_valid() )
 {
 	Upload::save();
@@ -316,7 +353,7 @@ if ( Upload::is_valid() )
 		</article>
 
 		<article>
-			<h4>get_files($index = null)</h4>
+			<h4 id="method_get_files">get_files($index = null)</h4>
 			<p>The <strong>get_files</strong> method returns a multi-dimensional array with all files uploaded that have an error status = Upload::UPLOAD_ERR_OK.</p>
 			<table class="method">
 				<tbody>
@@ -363,7 +400,7 @@ foreach( Upload::get_files() as $file )
 		</article>
 
 		<article>
-			<h4>get_errors($index = null)</h4>
+			<h4 id="method_get_errors">get_errors($index = null)</h4>
 			<p>The <strong>get_files</strong> method returns a multi-dimensional array with all files uploaded that have an error status != Upload::UPLOAD_ERR_OK.</p>
 			<table class="method">
 				<tbody>
@@ -410,7 +447,7 @@ foreach( Upload::get_errors() as $file )
 		</article>
 
 		<article>
-			<h4>register($event, $callback)</h4>
+			<h4 id="method_register">register($event, $callback)</h4>
 			<p>
 				The <strong>register</strong> method allows you to register callbacks for specific upload events,
 				and allow you to add your own code to the <strong>process()</strong> and <strong>save()</strong> methods.
@@ -450,8 +487,7 @@ foreach( Upload::get_errors() as $file )
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php">
-<code>// register a before callback using a closure
+						<pre class="php"><code>// register a before callback using a closure
 Upload::register('before', function (&amp;$file) {
 		if ($file['error'] == Upload::UPLOAD_ERR_OK)
 		{
@@ -461,17 +497,17 @@ Upload::register('before', function (&amp;$file) {
 				case "png":
 				case "gif":
 					// store these in the images subdirectory
-					$file['path'] .= 'images/';
+					$file['saved_to'] .= 'images/';
 				break;
 
 				case "css":
 					// store these in the css subdirectory
-					$file['path'] .= 'css/';
+					$file['saved_to'] .= 'css/';
 				break;
 
 				case "js":
 					// store these in the javascript subdirectory
-					$file['path'] .= 'js/';
+					$file['saved_to'] .= 'js/';
 				break;
 
 				default:
@@ -496,10 +532,16 @@ Upload::register('before', function (&amp;$file) {
 				If the callback function returns an integer, it is assumed to be an update of the uploaded file's error code.
 				All other return values are ignored.
 			</p>
+
+			<p class="note">
+				<strong>Note:</strong> if you alter the contents of the <strong>$file</strong> array in your callback, you have to make sure that the
+				information is still valid, as the Upload class won't perform it's checks again. The only exception to this rule is the '<strong>saved_to</strong>' path,
+				which will be checked and created if required after the callback has been executed.
+			</p>
 		</article>
 
 		<article>
-			<h4>process($config = array())</h4>
+			<h4 id="method_process">process($config = array())</h4>
 			<p>
 				The <strong>process</strong> method processes the information about all uploaded files,
 				normalizes the different permutations of form field names that can be used,
@@ -548,7 +590,7 @@ Upload::process( array('max_size' => 10240, 'auto_rename' => false, 'overwrite' 
 		</article>
 
 		<article>
-			<h4>save( ... )</h4>
+			<h4 id="method_save">save( ... )</h4>
 			<p>The <strong>save</strong> method saves all validated files uploaded to the path specified.</p>
 			<table class="method">
 				<tbody>
@@ -568,12 +610,12 @@ Upload::process( array('max_size' => 10240, 'auto_rename' => false, 'overwrite' 
 							<tr>
 								<th><kbd>$integer</kbd></th>
 								<td><i>optional</i></td>
-								<td>Key of the files array returned by <strong>get_files()</strong>. This allows you so save an individual file from a set of uploaded files.</td>
+								<td>Key of the files array returned by <strong>get_files()</strong>. This allows you to save an individual file from a set of uploaded files.</td>
 							</tr>
 							<tr>
 								<th><kbd>$array</kbd></th>
 								<td><i>optional</i></td>
-								<td>Array of keys of the files array returned by <strong>get_files()</strong>. This allows you so save a selection of files from a set of uploaded files.</td>
+								<td>Array of keys of the files array returned by <strong>get_files()</strong>. This allows you to save a selection of files from a set of uploaded files.</td>
 							</tr>
 							<tr>
 								<th><kbd>$string</kbd></th>
@@ -597,11 +639,14 @@ Upload::process( array('max_size' => 10240, 'auto_rename' => false, 'overwrite' 
 Upload::save();
 
 // save only the first uploaded file
-Upload::save( 1 );
+Upload::save( 0 );
+
+// save the first, second and fourth uploaded file
+Upload::save( 0, 1, 3 );
 
 // save all validated files, and to an alternate location
 $arr = Upload::get_files();
-Upload::save(DOCROOT.'assets', $arr );
+Upload::save(DOCROOT.'assets', array_keys($arr) );
 
 // process any errors on these files
 foreach ( Upload::get_errors() as $key => $file )

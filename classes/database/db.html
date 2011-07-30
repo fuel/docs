@@ -27,10 +27,10 @@
 		<h2>DB Class</h2>
 
 		<p>The DB class allows you to build and execute database queries and fetch the result.</p>
-		
+
 		<article>
 			<h4 id="method_query">query($query)</h4>
-			<p>The <strong>query</strong> method returns an new Database_Query object.</p>
+			<p>The <strong>query</strong> method returns a new Database_Query object.</p>
 			<table class="method">
 				<tbody>
 					<tr>
@@ -69,7 +69,7 @@ $query = DB::query('SELECT * FROM `users`');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_last_query">last_query()</h4>
 			<p>The <strong>last_query</strong> method returns the last executed SQL query.</p>
@@ -114,10 +114,10 @@ echo DB::last_query();
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 				<h4 id="method_select">select()</h4>
-				<p>The <strong>select</strong> method returns an new Database_Query_Builder_Select object.</p>
+				<p>The <strong>select</strong> method returns a new Database_Query_Builder_Select object.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -159,10 +159,10 @@ $query = DB::select('id', 'name');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_select_array">select_array($colmns)</h4>
-			<p>The <strong>select_array</strong> method returns an new Database_Query_Builder_Select object.</p>
+			<p>The <strong>select_array</strong> method returns a new Database_Query_Builder_Select object.</p>
 			<table class="method">
 				<tbody>
 					<tr>
@@ -204,10 +204,10 @@ $query = DB::select_array(array('id', 'name'));
 				</tbody>
 			</table>
 		</article>
-			
+
 		<article>
 			<h4 id="method_insert">insert($table = null, $columns = array())</h4>
-			<p>The <strong>insert</strong> method returns an new Database_Query_Builder_Insert object.</p>
+			<p>The <strong>insert</strong> method returns a new Database_Query_Builder_Insert object.</p>
 			<table class="method">
 				<tbody>
 					<tr>
@@ -254,10 +254,10 @@ $query = DB::insert('table_name', array('id', 'name'));
 				</tbody>
 			</table>
 		</article>
-	
+
 		<article>
 			<h4 id="method_update">update($table = null)</h4>
-			<p>The <strong>update</strong> method returns an new Database_Query_Builder_Update object.</p>
+			<p>The <strong>update</strong> method returns a new Database_Query_Builder_Update object.</p>
 			<table class="method">
 				<tbody>
 					<tr>
@@ -296,10 +296,10 @@ $query = DB::update('table_name');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_delete">delete($table = null)</h4>
-			<p>The <strong>insert</strong> method returns an new Database_Query_Builder_Delete object.</p>
+			<p>The <strong>insert</strong> method returns a new Database_Query_Builder_Delete object.</p>
 			<table class="method">
 				<tbody>
 					<tr>
@@ -338,10 +338,10 @@ $query = DB::delete('table_name');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_expr">expr($expression)</h4>
-			<p>The <strong>expr</strong> method returns an new Database_Expression object.</p>
+			<p>The <strong>expr</strong> method returns a new Database_Expression object.</p>
 			<table class="method">
 				<tbody>
 					<tr>
@@ -380,7 +380,7 @@ $query = DB::expr('COUNT(table_name.table_column)');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_quote">quote($string, $db = null)</h4>
 			<p>The <strong>quote</strong> method returns a quoted string for an SQL query.</p>
@@ -430,7 +430,7 @@ $query = DB::quote("'something's quoted'", $db_connection);
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_quote_identifier">quote_identifier($string, $db)</h4>
 			<p>The <strong>quote_identifier</strong> method returns a quoted string for an SQL query.</p>
@@ -482,7 +482,7 @@ print_r(DB::quote_identifier(array('users.name')));
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_quote_table">quote_table($string, $db = null)</h4>
 			<p>The <strong>quote_table</strong> method returns a quoted string for an SQL query.</p>
@@ -534,7 +534,7 @@ print_r(DB::quote_identifier(array('users')));
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_table_prefix">table_prefix($table, $db = null)</h4>
 			<p>The <strong>table_prefix</strong> method returns the table name with the configured prefix.
@@ -582,7 +582,7 @@ print_r(DB::table_prefix('table_name'));
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_escape">escape($string, $db = null)</h4>
 			<p>The <strong>escape</strong> method returns a escaped string for an SQL query.</p>
@@ -629,7 +629,7 @@ print_r(DB::escape('or *\' "'));
 				</tbody>
 			</table>
 		</article>
-			
+
 		<article>
 			<h4 id="method_list_columns">list_columns($table, $like = null, $db = null)</h4>
 			<p>The <strong>list_columns</strong> method return a lists all of the columns in a table.
@@ -683,30 +683,30 @@ Array
 		[min] => -2147483648
 		[max] => 2147483647
 		[column_name] => id
-		[column_default] => 
+		[column_default] =>
 		[data_type] => int
-		[is_nullable] => 
+		[is_nullable] =>
 		[ordinal_position] => 1
 		[display] => 255
-		[comment] => 
+		[comment] =>
 		[extra] => auto_increment
 		[key] => PRI
 		[privileges] => select,insert,update,references
 	)
-	
+
 	[name] => Array
 	(
 		[type] => string
 		[column_name] => name
-		[column_default] => 
+		[column_default] =>
 		[data_type] => varchar
-		[is_nullable] => 
+		[is_nullable] =>
 		[ordinal_position] => 3
 		[character_maximum_length] => 255
 		[collation_name] => utf8_unicode_ci
-		[comment] => 
-		[extra] => 
-		[key] => 
+		[comment] =>
+		[extra] =>
+		[key] =>
 		[privileges] => select,insert,update,references
 	)
 )
@@ -720,15 +720,15 @@ Array
 	(
 		[type] => string
 		[column_name] => name
-		[column_default] => 
+		[column_default] =>
 		[data_type] => varchar
-		[is_nullable] => 
+		[is_nullable] =>
 		[ordinal_position] => 3
 		[character_maximum_length] => 255
 		[collation_name] => utf8_unicode_ci
-		[comment] => 
-		[extra] => 
-		[key] => 
+		[comment] =>
+		[extra] =>
+		[key] =>
 		[privileges] => select,insert,update,references
 	)
 )
@@ -740,7 +740,7 @@ print_r(DB::list_columns('users','%name%'));
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_list_tables">list_tables($like = null, $db = null</h4>
 			<p>The <strong>list_tables</strong> method return a lists all of the tables in a database.
@@ -805,7 +805,7 @@ DB::list_tables('%sessions%');
 				</tbody>
 			</table>
 		</article>
-	
+
 		<article>
 			<h4 id="method_datatypes">datatype($type, $db = null)</h4>
 			<p>The <strong>datatype</strong> method returns a normalized array describing the SQL data type.</p>
@@ -858,7 +858,7 @@ DB::datatype('char');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_count_records">count_records($table, $db = null)</h4>
 			<p>The <strong>count_records</strong> method returns the number of records in a table.</p>
@@ -905,7 +905,7 @@ DB::count_records('users');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_count_last_query">count_last_query($db = null)</h4>
 			<p>The <strong>count_last_query</strong> method returns the number of records in the last query, without LIMIT or OFFSET applied.</p>
@@ -943,14 +943,14 @@ DB::count_records('users');
 $limited_result = DB::select()->from('users')->where('active', '=', 'yes')->limit(10)->execute();
 
 // SELECT count(*) as count FROM `users` WHERE `active` = "yes";
-DB::count_records('users');
+DB::count_last_query();
 </code></pre>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_set_charset">set_charset($charset, $db)</h4>
 			<p>The <strong>set_charset</strong> method sets the connection character set. This is called automatically by [static::connect].</p>
@@ -995,7 +995,7 @@ DB::count_records('users');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_transactional">transactional($use_trans = true, $db = null)</h4>
 			<p>The <strong>transactional</strong> method sets the Database instance to use transactions.</p>
@@ -1040,7 +1040,7 @@ DB::count_records('users');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_start_transaction">start_transaction($db = null)</h4>
 			<p>The <strong>start_transaction</strong> method begins a transaction on an instance.</p>
@@ -1080,7 +1080,7 @@ DB::count_records('users');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_commit_transaction">commit_transaction($db = null)</h4>
 			<p>The <strong>commit_transaction</strong> method commits all pending transactional queries.</p>
@@ -1120,7 +1120,7 @@ DB::count_records('users');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_rollback_transaction">rollback_transaction($db = null)</h4>
 			<p>The <strong>rollback_transaction</strong> method rolls back all pending transactional queries.</p>

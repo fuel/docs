@@ -37,14 +37,14 @@
 		</ul>
 
 		<section>
-			<h2><a name="login_drivers">Basic Usage of Login drivers</a></h2>
+			<h2 id="login_drivers">Basic Usage of Login drivers</h2>
 
 			<p>The Auth class works mainly with one or more login drivers and offers a set of 2 methods for all other
 			drivers. One getting a driver instance and a second answering whether a loaded driver of that type
 			validates. Below are first the methods for checking and getting the drivers.</p>
 
 			<article>
-				<h4>check($specific = null)</h4>
+				<h4 id="method_check">check($specific = null)</h4>
 				<p>Checks either all loaded Login drivers or just those specified as the parameter.</p>
 				<table class="method">
 					<tbody>
@@ -93,7 +93,7 @@ Auth::check(array('simpleauth', 'twitter'));</code></pre>
 			</article>
 
 			<article>
-				<h4>instance($instance = null)</h4>
+				<h4 id="method_instance">instance($instance = null)</h4>
 				<p>Retrieves a loaded driver, when drivers are set in config the first driver will also be the default.</p>
 				<table class="method">
 					<tbody>
@@ -136,13 +136,13 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 				</table>
 			</article>
 
-			<h3>Driver methods</h3>
+			<h3 id="driver_methods">Driver methods</h3>
 
 			<p>The methods below should be available on all Auth drivers in at least the way described here, but will
 			often have specific parameters added for their implementation.</p>
 
 			<article>
-				<h4>get_user_array(Array $additional_fields = array())</h4>
+				<h4 id="method_get_user_array">get_user_array(Array $additional_fields = array())</h4>
 				<p>Returns an array describing the current logged in user, always includes at least a screenname and
 				an emailaddress. Additional fields can be configured in the driver config or requested through the
 				$additional_fields array, but they must have a get_user_<em>fieldname</em>() method within the driver
@@ -185,7 +185,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 			</article>
 
 			<article>
-				<h4>login()</h4>
+				<h4 id="method_login">login()</h4>
 				<p>Must be implemented specific to the driver to login the user.</p>
 				<table class="method">
 					<tbody>
@@ -212,7 +212,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 			</article>
 
 			<article>
-				<h4>logout()</h4>
+				<h4 id="method_logout">logout()</h4>
 				<p>Must be implemented specific to the driver to logout the user, and work without parameters.</p>
 				<table class="method">
 					<tbody>
@@ -239,7 +239,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 			</article>
 
 			<article>
-				<h4>get_email()</h4>
+				<h4 id="method_get_email">get_email()</h4>
 				<p>Fetches the current logged in user's emailaddress.</p>
 				<table class="method">
 					<tbody>
@@ -266,7 +266,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 			</article>
 
 			<article>
-				<h4>get_screen_name()</h4>
+				<h4 id="method_get_screen_name">get_screen_name()</h4>
 				<p>Fetches the current logged in user's screen name.</p>
 				<table class="method">
 					<tbody>
@@ -295,14 +295,14 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 		</section>
 
 		<section>
-			<h2><a name="group_drivers">Basic Usage of Group drivers</a></h2>
+			<h2 id="group_drivers">Basic Usage of Group drivers</h2>
 
 			<p>(to be written)</p>
 
 		</section>
 
 		<section>
-			<h2><a name="acl_drivers">Basic Usage of ACL drivers</a></h2>
+			<h2 id="acl_drivers">Basic Usage of ACL drivers</h2>
 
 			<p>(to be written)</p>
 

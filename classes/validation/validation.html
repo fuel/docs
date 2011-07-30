@@ -2,14 +2,14 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Validation Class - Fuel Documentation</title>
-	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<title>Validation Class - Introduction - Fuel Documentation</title>
+	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			show_nav('classes', '../');
+			show_nav('classes', '../../');
 		});
 		hljs.tabReplace = '    ';
 		hljs.initHighlightingOnLoad();
@@ -27,14 +27,14 @@
 		<h2>Validation Class</h2>
 
 		<p>The Validation class helps you validate user input, if you want to create a form &amp; its validation at
-			the same time use the <a href="fieldset.html">Fieldset</a> class instead.</p>
+			the same time use the <a href="../fieldset.html">Fieldset</a> class instead.</p>
 
 		<ul>
 			<li><a href="#config">Configuration</a></li>
 			<li><a href="#usage">Usage</a></li>
 			<li><a href="#rules">Validation rules</a></li>
 			<li><a href="#errors">Error messages</a></li>
-			<li><a href="#methods">All methods</a></li>
+			<li><a href="methods.html">Methods</a></li>
 		</ul>
 
 		<article>
@@ -174,7 +174,7 @@ $val->run(array('password' => 'whatever'), true);</code></pre>
 $val->add('email', 'Email address')->add_rule('match_value', 'me@mydomain.com', true)->add_rule('valid_email');
 $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_email');</code></pre>
 
-			<h4>Rules table</h4>
+			<h4 id="rules_table">Rules table</h4>
 			<table class="config">
 				<tbody>
 					<tr class="header">
@@ -291,7 +291,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 				</tbody>
 			</table>
 
-			<h4>Valid string rule</h4>
+			<h4 id="valid_string_rule">Valid string rule</h4>
 			<p>Validates whether a string adheres to the conditions set by the $flags parameter. The accepted flags
 			are:</p>
 			<table class="config">
@@ -400,6 +400,21 @@ echo $val->errors('username')->get_message('The field :label must be filled out 
 					</tr>
 				</tbody>
 			</table>
+
+			<h3>Naming callback/closure rules</h3>
+
+			<p>Full callback rules or closures can be named as well, by default their names will be:</p>
+			<ul>
+				<li><strong>Closure:</strong> "closure"</li>
+				<li><strong>array($class, $method):</strong> "$class:$method"</li>
+				<li><strong>array($object, $method):</strong> get_class($object).":$method"</li>
+			</ul>
+
+			<p>If you want to give them custom names instead you can do that like this:</p>
+
+			<pre class="php"><code>// Add a rule which checks if the input is odd, the expected message name will be 'validation.odd'
+$field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
+</code></pre>
 		</article>
 
 		<article>
@@ -441,12 +456,6 @@ $val->add_model('Model_User');</code></pre>
         You need the '_validation_' prefix for a method to be used in validation.
         </p>
         </article>
-
-        <article>
-			<h3><a name="methods">All methods</a></h3>
-
-			<p>To be written.</p>
-		</article>
 
 	</section>
 

@@ -146,7 +146,7 @@ try
 catch (\CacheNotFoundException $e)
 {
 	/*
-		Catching the CacheNotFoundException exception will catch 
+		Catching the CacheNotFoundException exception will catch
 		both CacheNotFoundException and CacheExpiredException.
 		Use this when cathing the exception.
 	*/
@@ -241,6 +241,70 @@ Cache::delete_all();
 
 // Delete the subdirectory "test" of file
 Cache::delete_all('test', 'file');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_call">call($identifier, $callback, $args = array(), $expiration = null, $dependencies = array())</h4>
+				<p>Cache the result of any callable function or method.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$identifier</kbd></th>
+									<td><i>string</i></td>
+									<td>Name of the cache</td>
+								</tr>
+								<tr>
+									<th><kbd>$callback</kbd></th>
+									<td><i>mixed</i></td>
+									<td>Any valid PHP callback</td>
+								</tr>
+								<tr>
+									<th><kbd>$args</kbd></th>
+									<td><i>array</i></td>
+									<td>Any arguments for the callback</td>
+								</tr>
+								<tr>
+									<th><kbd>$expiration</kbd></th>
+									<td><i>int</i></td>
+									<td>Amount of seconds until the cache expires. null will make it never expire, false
+									makes it use the default expiration set in config.</td>
+								</tr>
+								<tr>
+									<th><kbd>$dependencies</kbd></th>
+									<td><i>array</i></td>
+									<td>Array of identifiers this cache depends on, this cache expires if one of those
+									is newer or doesn't exist anymore.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Cache the result of a model find
+Cache::call('article_something', array('Model_Article', 'find'), array("all", array( 'where' => array('something' => $something) ));
+</code></pre>
 						</td>
 					</tr>
 					</tbody>

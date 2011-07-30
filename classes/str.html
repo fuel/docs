@@ -27,10 +27,10 @@
 		<h2>Str Class</h2>
 
 		<p>The str class is a set of methods to help with the manipulation of strings.</p>
-		
+
 		<article>
-			<h4>increment($str, $first = 1)</h4>
-			<p>The <strong>increment</strong> method allows you to append a number to the end of a string an increment that number if it already exists.</p>
+			<h4 id="method_increment">increment($str, $first = 1)</h4>
+			<p>The <strong>increment</strong> method allows you to append a number to the end of a string or increment that number if it already exists.</p>
 			<table class="method">
 				<tbody>
 					<tr>
@@ -48,7 +48,7 @@
 								</tr>
 								<tr>
 									<th><kbd>$string</kbd></th>
-									<td><i>required</i></td>
+									<td><em>required</em></td>
 									<td>The string to increment.</td>
 								</tr>
 								<tr>
@@ -80,9 +80,9 @@ Str::increment($string, 3); // returns filename_3
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
-			<h4>random($type = 'alnum', $length = 8)</h4>
+			<h4 id="method_random">random($type = 'alnum', $length = 8)</h4>
 			<p>The <strong>random</strong> method generates a random string based on the type given.</p>
 			<table class="method">
 				<tbody>
@@ -101,7 +101,7 @@ Str::increment($string, 3); // returns filename_3
 								</tr>
 								<tr>
 									<th><kbd>$type</kbd></th>
-									<td><i>alnum</i></td>
+									<td><em>alnum</em></td>
 									<td>The type of string to generate. Your choices are alnum, numeric, nozero, alpha, distinct, hexdec, unique, and sha1.</td>
 								</tr>
 								<tr>
@@ -155,9 +155,9 @@ Str::random('sha1');
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
-			<h4>truncate($string, $limit, $continuation = '...', $is_html = false)</h4>
+			<h4 id="method_truncate">truncate($string, $limit, $continuation = '...', $is_html = false)</h4>
 			<p>The <strong>truncate</strong> method allows you to limit characters and provide a continuation string without breaking html.</p>
 			<table class="method">
 				<tbody>
@@ -176,12 +176,12 @@ Str::random('sha1');
 								</tr>
 								<tr>
 									<th><kbd>$string</kbd></th>
-									<td><i>required</i></td>
+									<td><em>required</em></td>
 									<td>The string to truncate.</td>
 								</tr>
 								<tr>
 									<th><kbd>$limit</kbd></th>
-									<td><i>required</i></td>
+									<td><em>required</em></td>
 									<td>The number of characters to allow in the string.</td>
 								</tr>
 								<tr>
@@ -215,6 +215,104 @@ Str::truncate($string, 15, '...Read More'); // returns Lorem ipsum dol...Read Mo
 				</tbody>
 			</table>
 		</article>
+
+		<article>
+			<h4 id="method_alternator">alternator(*$args)</h4>
+			<p>Returns a closure that will alternate the values you've passed to this method as arguements, unless you
+				call the closure with <kbd>false</kbd> as arguement - in which case it will just return the value
+				without moving to the next and return the same value on the next call.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>*$args</kbd></th>
+									<td><em>required</em></td>
+									<td>As many arguements as you need to alternate</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Closure</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$alt = Str::alternator('one', 'two', 'three', 'four');
+echo $alt(); // outputs 'one'
+echo $alt(); // outputs 'two'
+echo $alt(false); // outputs 'three', but doens't move to the next as you can see in the next call
+echo $alt(); // outputs 'three'
+echo $alt(); // outputs 'four'
+echo $alt(); // outputs 'one'
+// etc...</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4 id="method_lower">lower($str, $encoding = null)</h4>
+			<p>The <strong>lower</strong> method converts all characters to lowercase.  It is equivalent to PHP's strtolower() for your specific character encoding.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$string</kbd></th>
+									<td><em>string</em></td>
+									<td><em>Required</em></td>
+									<td>The input string.</td>
+								</tr>
+								<tr>
+									<th><kbd>$encoding</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The character encoding.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Str::lower('User Data'); // returns 'user data'</code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+        
 	</section>
 
 	<section id="footer">

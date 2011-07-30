@@ -212,7 +212,7 @@
 					<th>Throws</th>
 					<td><kbd>InvalidPathException</kbd> when the file does not exists.</td>
 				</tr>
-				
+
 				<tr>
 					<th>Example</th>
 					<td>
@@ -416,7 +416,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_rename">rename($path, $new_path, $area = null)</h4>
 			<p>Rename directory or file.</p>
@@ -474,7 +474,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_rename_dir">rename_dir($path, $new_path, $area = null)</h4>
 			<p>Alias for File::rename</p>
@@ -532,7 +532,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_copy">copy($path, $new_path, $area = null)</h4>
 			<p>Copy's a file.</p>
@@ -592,7 +592,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_copy_dir">copy_dir($path, $new_path, $area = null)</h4>
 			<p>Copy's a directory.</p>
@@ -651,7 +651,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_delete">delete($path, $area = null)</h4>
 			<p>Deletes a file.</p>
@@ -704,7 +704,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_delete_dir">delete_dir($path, $recursive = true, $delete_top = true, $area = null)</h4>
 			<p>Deletes a file.</p>
@@ -768,7 +768,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_open_file">open_file($path, $lock = true, $area = null)</h4>
 			<p>Opens a file and locks it.</p>
@@ -826,7 +826,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_close_file">close_file($resource, $area = null)</h4>
 			<p>Closes a file and unlocks it.</p>
@@ -874,7 +874,7 @@ File::close_file($resource);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_get">get($path, $config = array(), $area = null)</h4>
 			<p>Fetches a file handler for the given file. <a href="handlers.html">Read more about handlers.</a></p>
@@ -932,7 +932,7 @@ File::close_file($resource);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_get_url">get_url($path, $config = array(), $area = null)</h4>
 			<p>Retrieves the public url to a file. A url must be set in the base config or in the area config of the used area.</p>
@@ -991,7 +991,7 @@ File::close_file($resource);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_get_permissions">get_permissions($path, $area = null)</h4>
 			<p>Retrieves the octal permissions for a file or directory.</p>
@@ -1045,7 +1045,7 @@ File::close_file($resource);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_get_time">get_time($path, $type = 'modified', $area = null)</h4>
 			<p>Retrieves the octal permissions for a file or directory.</p>
@@ -1103,7 +1103,7 @@ File::close_file($resource);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_get_size">get_size($path, $type = 'modified', $area = null)</h4>
 			<p>Retrieves size in bytes for a file.</p>
@@ -1152,6 +1152,125 @@ File::close_file($resource);</code></pre>
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>$filesize = File::get_size(DOCROOT.'/my_dir/text.txt');</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4 id="method_file_info">file_info($path, $area = null)</h4>
+			<p>Retrieves an array of information about the specified file.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$path</kbd></th>
+								<td><em>required</em></td>
+								<td>path to the file </td>
+							</tr>
+							<tr>
+								<th><kbd>$area</kbd></th>
+								<td><kbd>null</kbd></td>
+								<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
+								usage</a> for more information)</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>
+						An array with file information items. The array will contain path, filename and extension information,
+						the file size and permissions, the creation and last modified timestamps, the detected mime-type and
+						the file's characterset.
+					</td>
+				</tr>
+				<tr>
+					<th>Throws</th>
+					<td>
+						<kbd>InvalidPathException</kbd> when the file is not found.
+						<kbd>InvalidArgumentException</kbd> when the file info could be determined.
+					</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>$filesize = File::file_info(DOCROOT.'/my_dir/text.txt');</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4 id="method_download">download($path, $name = null, $mime = null, $area = null)</h4>
+			<p>Download a file.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$path</kbd></th>
+								<td><em>required</em></td>
+								<td>Path to the file</td>
+							</tr>
+							<tr>
+								<th><kbd>$name</kbd></th>
+								<td><kbd>null</kbd></td>
+								<td>Override the file's default filename</td>
+							</tr>
+							<tr>
+								<th><kbd>$mime</kbd></th>
+								<td><kbd>null</kbd></td>
+								<td>Override the file's default mimetype</td>
+							</tr>
+							<tr>
+								<th><kbd>$area</kbd></th>
+								<td><kbd>null</kbd></td>
+								<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
+								usage</a> for more information)</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>n/a - this method exits after initiating the download.</td>
+				</tr>
+				<tr>
+					<th>Throws</th>
+					<td>
+						<kbd>FileAccessException</kbd> when the file could not be opened for read.
+					</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>File::download(DOCROOT.'/my_dir/text.txt', 'newfile.txt');</code></pre>
 					</td>
 				</tr>
 				</tbody>

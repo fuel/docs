@@ -872,6 +872,107 @@ echo Html::ol($items, $attr);</code></pre>
 			</table>
 		</article>
 
+		<h3 id="procedural_helpers">Procedural helpers</h3>
+		
+		<article>
+			<h4 id="function_html_tag">html_tag($tag, $attr = array(), $content = false)</h4>
+			<p>The <strong>html_tag</strong> function generates a html.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$tag</kbd></th>
+								<td><em>string</em></td>
+								<td><em>required</em></td>
+								<td>the value to search for</td>
+							</tr>
+							<tr>
+								<th><kbd>$attr</kbd></th>
+								<td><em>array</em></td>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>array of attributes</td>
+							</tr>
+							<tr>
+								<th><kbd>$content</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>false</code></pre></td>
+								<td>the content wrapped in the tag</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>echo html_tag('a', array(
+	'href' => 'http://somedomain.com/',
+	'class' => 'my_class'
+), 'Link title');
+
+// &lt;a href="http://somedomain.com/" class="my_class"&gt;Link title&lt;/a&gt;</code></pre>
+
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="function_array_to_attr">array_to_attr($attr)</h4>
+			<p>The <strong>array_to_attr</strong> function generates a attributes string.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$attr</kbd></th>
+								<td><em>array</em></td>
+								<td><em>required</em></td>
+								<td>an array of attributes</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>echo array_to_attr(array(
+	'href' => 'http://somedomain.com/',
+	'class' => 'my_class'
+));
+
+// href="http://somedomain.com/" class="my_class"</code></pre>
+
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
 
 	</section>
 

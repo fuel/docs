@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>404 handling - Fuel Documentation</title>
+	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('general', '../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>Fuel Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+		<h2>The 404 page</h2>
+
+		<h3 id="intro">Introduction</h3>
+		<p>
+			As you all (should) know <a href="http://en.wikipedia.org/wiki/Error_404">404</a> handling is a very
+			important part in the development process. Not only does it show the user that the page he/she/it
+			requested is not available. It also a way to informs machines (browsers and such) about what's going
+			on by profiding a 404 status header.
+		</p>
+		
+		<h3 id="config">Configuration</h3>
+		
+		<p>
+			The 404 route is set in <em>app/config/routes.php</em> and must point to the controller/method
+			that handles the 404 pages. <a href="routing.html">Read more about it in the routing section.</a>
+		</p>
+		
+		<h3 id="404_handling">404 handling</h3>
+		
+		<p>
+			When a request is made and after the router looked for possible matches and there is no match, the 404
+			handling comes into play. By default the <strong>_404_</strong> route points to <em>welcome/404</em>,
+			let's take a look at that method:
+		</p>
+		
+		<pre class="php"><code>// Inside Controller_Welcome
+
+/**
+ * The 404 action for the application.
+ * 
+ * @access  public
+ * @return  void
+ */
+public function action_404()
+{
+	$messages = array('Aw, crap!', 'Bloody Hell!', 'Uh Oh!', 'Nope, not here.', 'Huh?');
+	$data['title'] = $messages[array_rand($messages)];
+
+	// Set a HTTP 404 output header
+	$this->response->status = 404;
+	$this->response->body = View::factory('welcome/404', $data);
+}</code></pre>
+
+		<p>
+			Here you can see what's going on inside the 404 handler. As you can see it's a normal controller action.
+			What's nice about this is that it allowes you to show whatever content you like on the page. You can
+			load your own views with data fetched from a database.
+		</p>
+		
+		<p class="note">
+			Note that Fuel doesn't set the 404 status, your action must contain <strong>$this->response->status = 404;</strong>
+			in order to send the correct status header.
+		</p>
+		
+		<h3 id="catch_all">Catch all</h3>
+		
+		<p>
+			Because Fuel doesn't set the 404 response status, you can use it as a catch all function.
+			You might have have a page model that can fetch the page from a database by uri.
+			Here is an example to illustrate the possibilities:
+		</p>
+		
+		<pre class="php"><code>// Inside your 404 controller
+
+public function action_my404()
+{
+	$original_uri = \Uri::detect();
+	$result = \DB::select()->from('pages')->where('uri', $original_uri)->execute();
+	if(count($result) === 1)
+	{
+		// display that page in whatever way you like
+	}
+	else
+	{
+		// display your general 404 page
+		$messages = array('Aw, crap!', 'Bloody Hell!', 'Uh Oh!', 'Nope, not here.', 'Huh?');
+		$data['title'] = $messages[array_rand($messages)];
+		$this->response->status = 404;
+		$this->response->body = View::factory('welcome/404', $data);
+	}
+}
+</code></pre>
+
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>
