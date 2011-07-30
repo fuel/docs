@@ -50,6 +50,23 @@
 
 			<pre class="php"><code>protected static $_has_many = array('comments'));</code></pre>
 
+			<p>Below are examples for establishing and breaking has-many relations:</p>
+
+			<pre class="php"><code>// both main and related object are new:
+$post = new Model_Post();
+$post->comments[] = new Model_Comment();
+$post->save();
+
+// both main and related object already exist
+$post = Model_Post::find(1);
+$post->comments[6] = Model_Comment::find(6); // assigning it to comments[6] is not required but recommended
+$post->save();
+
+// break the relationship established above
+$post = Model_Post::find(1);
+unset($post->comments[6]);
+$post->save();</code></pre>
+
 			<h3>Full config example with defaults as values</h3>
 
 			<pre class="php"><code>// in a Model_Post which has many comments
