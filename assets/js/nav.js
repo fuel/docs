@@ -19,28 +19,29 @@ var nav = {
 			"Troubleshooting":		"installation/troubleshooting.html"
 		},
 		"General": {
-			"Model-View-Controller":	"general/mvc.html",
-			"HMVC Requests":	"general/hmvc.html",
+			"Classes": {
+				"Introduction":		"general/classes.html",
+				"Extending Core":	"general/extending_core.html"
+			},
+			"Coding Standards":	"general/coding_standards.html",
+			"Configuration":	"general/configuration.html",
 			"Controllers": {
 				"Base" :		"general/controllers/base.html",
 				"Template":		"general/controllers/template.html",
 				"Rest":			"general/controllers/rest.html"
 			},
-			"404 handling":		"general/404.html",
+			"HMVC Requests":	"general/hmvc.html",
+			"Modules":			"general/modules.html",
 			"Models":			"general/models.html",
+			"Model-View-Controller":	"general/mvc.html",
+			"Migrations":		"general/migrations.html",
 			"Views":			"general/views.html",
 			"ViewModels":		"general/viewmodels.html",
 			"Routing":			"general/routing.html",
-			"Classes": {
-				"Introduction":		"general/classes.html",
-				"Extending Core":	"general/extending_core.html"
-			},
-			"Modules":			"general/modules.html",
 			"Packages":			"general/packages.html",
 			"Security":			"general/security.html",
 			"Tasks":			"general/tasks.html",
-			"Migrations":		"general/migrations.html",
-			"Coding Standards":	"general/coding_standards.html"
+			"404 handling":		"general/404.html",
 		},
 		"Classes": {
 			"Agent": {
