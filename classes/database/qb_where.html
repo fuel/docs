@@ -264,46 +264,6 @@ $query->or_where_open();
 			<h4 id="method_where_close">where_close()</h4>
 			<p>The <strong>where_close</strong> method is an alias for <a href="#method_and_where_close">and_where_close</a>.</p>
 		</article>
-
-		<article>
-			<h4 id="method_and_where_close">and_where_close()</h4>
-			<p>The <strong>and_where_close</strong> method closes an SQL closure.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<em>None</em>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare a select statement
-$query = DB::select('*')->from('users');
-
-// Open a closure
-$query->and_where_open();
-
-// Set a where statement
-$query->where('name', 'john');
-
-$query->and_where_close();
-// SELECT * FROM `users` WHERE (`name` = "John")
-</code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
 		
 		<article>
 			<h4 id="method_and_where_close">and_where_close()</h4>
@@ -341,7 +301,8 @@ $query->where('name', 'John');
 $query->or_where('surname', 'Doe');
 
 $query->and_where_close();
-// SELECT * FROM `users` WHERE `email` LIKE "%example.com" AND (`name` = "John" OR `surname` = "Doe")
+// SELECT * FROM `users`
+// WHERE `email` LIKE "%example.com" AND (`name` = "John" OR `surname` = "Doe")
 </code></pre>
 						</td>
 					</tr>
