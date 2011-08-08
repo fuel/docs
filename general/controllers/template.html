@@ -31,15 +31,41 @@
 		<p>A Template Controller is an extension of the Base Controller which has template support built in using some pre-defined before() and after() methods. Basically it can be used to wrap
 		your view in a layout with a header, footer, sidebar, etc.</p>
 
-		<p class="note"><strong>Please note:</strong> if you have a before() method in your template controller extension you
-			<strong>must</strong> add <kbd>parent::before();</kbd> to that method or the <kbd>$this->template</kbd> will
-			not be available.</p>
-
 		<h3>Using the template controller</h3>
 
 		<p>Like all Controllers you create a class in the <kbd>fuel/app/classes/controller</kbd> directory. They need to extend the <kbd>Controller_Template</kbd> class and are prefixed by default by "Controller_". Below is an example of the controller "example": </p>
 
+		<p class="note"><strong>Please note:</strong> by default, all methods of a class that extends Controller_Template will use the template.
+		<br />However, it is possible to <a href="#omit_methods">omit methods</a> from the template.</p>
+		
 <pre><code>class Controller_Example extends Controller_Template {
+
+	public function action_index()
+	{
+        $data = array();
+		$this->template->title = 'Example Page';
+		$this->template->content = View::factory('test/index', $data);
+	}
+}</code></pre>
+
+		<h3>Using the template controller with before()</h3>
+		
+		<p class="note"><strong>Please note:</strong> if you have a before() method in your template controller extension you
+			<strong>must</strong> add <kbd>parent::before();</kbd> to that method or the <kbd>$this->template</kbd> will
+			not be available. <strong>Make before() compatible</strong> with that of the Controller_Template: use <kbd>before($data = null)</kbd> instead of just before().</p>
+
+		
+<pre><code>class Controller_Example extends Controller_Template {
+
+	/**
+	 * Make before() compatible with Controller_Template by adding $data = null as a parameter
+	 */
+	public function before($data = null)
+	{
+		parent::before() // Without this line, templating won't work!
+		
+		// do stuff
+	}
 
 	public function action_index()
 	{
@@ -92,6 +118,51 @@
         $this->template->content = View::factory('test/index', $data);
     }
 }</code></pre>
+
+	<h3 id="omit_methods">Omit methods from the Template Controller</h3>
+	
+	<p>
+		By default, all methods of a class that extends Controller_Template will use the template.<br />
+		If you want to omit methods from the template, you will have to set <kbd>$this->auto_render = false</kbd> in before()
+	</p>
+	
+	<p class="note">
+		<strong>Please note:</strong> <kbd>$this->auto_render = false</kbd> must come <strong>after</strong> <kbd>parent::before()</kbd>.
+	</p>
+	
+	<p>
+		If you want to <strong>use the template</strong> layout, you will have to write <kbd>$this->response->body = $this->template;</kbd>
+		<br />If you <strong>don't</strong> want to <strong>use the template</strong> layout, write <kbd>$this->response->body = View::factory('test/index', $data);</kbd>
+	</p>
+
+	<pre><code>class Controller_Example extends Controller_Template {
+
+    public $template = 'template_admin';
+
+	public function before($data = null)
+	{
+		parent::before() // Without this line, templating won't work!
+		
+		$this->auto_render = false // Do not autorender templates	
+	}
+	
+	public function action_index()
+    {
+        $this->template->title = 'Example Page';
+        $this->template->content = View::factory('test/index', $data);
+		
+		$this->response->body = $this->template; // show content in template
+    }
+	
+	public function action_example()
+    {
+		$data['title']	= "Example Page";
+		$data['content'] = "Don't show me in the template";
+
+        $this->response->body = View::factory('index/test', $data); // show content without template
+    }
+}</code></pre>
+	
 	</section>
 
 	<section id="footer">
@@ -100,6 +171,6 @@
 			&copy; 2010 - 2011 Fuel Development Team
 		</p>
 	</section>
-
+	
 </body>
 </html>
