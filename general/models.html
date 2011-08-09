@@ -26,28 +26,28 @@
 	<section id="content">
 		<h2>Models</h2>
 
-		<h3>What are models?</h3>
+		<h3>What Are Models?</h3>
 
 		<p>
-			Whenever data needs to be retrieved, manipulated or deleted this should always be done by a model. A Model is a representation of some kind of
-			data and has the methods to change them. For example: you never put SQL queries in a Controller, those are put in the Model and the Controller will
-			call upon the Model to execute the queries. This way if your database changes you won't need to change all your Controllers but just the Model that acts upon it.
+			Whenever data needs to be retrieved, manipulated or deleted this should always be done by a model. A model is a representation of some kind of
+			data and has the methods to change them. For example, you never put SQL queries in a controller. Those are put in the Model and the controller will
+			call upon the model to execute the queries. This way if your database changes you won't need to change all your controllers but just the Model that acts upon it.
 		</p>
 
-		<h3 id="using_models">How are Models used?</h3>
+		<h3 id="using_models">How Are Models Used?</h3>
 
 		<p>
-			In Fuel a Model is essentially just a <a href="classes.html" title="Class Documentation">Class</a> like any other. They do nothing more than a library, but the Model_ prefix
-			helps to differentiate it from other classes. To do something useful with a Model you will need to use other classes.
+			In Fuel a model is essentially just a <a href="classes.html" title="Class Documentation">class</a> like any other. They do nothing more than a library, but the Model_ prefix
+			helps to differentiate it from other classes. To do something useful with a model you will need to use other classes.
 		</p>
 
-		<h2>Writing your own models</h2>
+		<h2>Writing Your Own Models</h2>
 
 		<p>While models can be used with any type of data storage we'll focus here on usage with SQL because that's the
 			most common usage. Almost always your models will have at least all <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete" target="_blank">CRUD</a>
 			methods: create, read, update, delete (or variations on those). In Fuel your models don't need to extend
-			anything by default, though you can of course create your own base model or use Fuel's
-			<a href="#orm_models">Orm package</a>.</p>
+			anything by default, though you can, of course, create your own base model or use Fuel's
+			<a href="#orm_models">ORM package</a>.</p>
 
 		<h3 id="writing_queries">Writing SQL Queries</h3>
 
@@ -65,9 +65,9 @@
 
 		<p>See more about native SQL queries and using the Query Builder in the <a href="../classes/database/db.html">DB class</a> documentation.</p>
 
-		<h2 id="orm_models">Using the Orm to create models</h2>
+		<h2 id="orm_models">Using the ORM to Create Models</h2>
 
-		<p>One possible way of creating models is by using the <a href="../packages/orm/intro.html">Orm Package</a>, which adds a lot of functionality out-of-the-box to your models. There's an example of its usage below.</p>
+		<p>One possible way of creating models is by using the <a href="../packages/orm/intro.html">ORM Package</a>, which adds a lot of functionality out-of-the-box to your models. There's an example of its usage below.</p>
 
 		<pre class="php"><code>// find all articles
 $entry = Model_Article::find('all');
@@ -78,7 +78,7 @@ $entry = Model_Article::find('last', array(
     'order_by' => array('date', 'desc')
 ));</code></pre>
 
-		<p>See more about working with ORM in the <a href="../packages/orm/intro.html">Orm Package</a> documentation.</p>
+		<p>See more about working with ORM in the <a href="../packages/orm/intro.html">ORM Package</a> documentation.</p>
 
 	</section>
 

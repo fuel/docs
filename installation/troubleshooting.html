@@ -28,7 +28,7 @@
 
 		<h2>Troubleshooting</h2>
 
-		<p>Fuel supports a wide variety of configurations. Sometimes the configuration needs some work in order to work properly. Listed below are a couple of scenario's that may pop up when setting up Fuel on your machine.</p>
+		<p>Fuel supports a wide variety of configurations, but sometimes the configuration needs some work in order to function properly. Listed below are some scenarios that may pop up when setting up Fuel on your machine.</p>
 
 		<p>When your problem is not listed below or is listed but no proper solution is provided, please report this at the issue tracker ( http://dev.fuel.com ).</p>
 
@@ -36,7 +36,7 @@
 
 			<h3 id="syntax_error_clean_install">Syntax errors with clean installation</h3>
 
-			<pre>Parse error: syntax error, unexpected T_FUNCTION, expecting ')' in /Users/info/Sites/fiuel/public/index.php on line 9</pre>
+			<pre>Parse error: syntax error, unexpected T_FUNCTION, expecting ')' in /Users/info/Sites/fuel/public/index.php on line 9</pre>
 
 			<h4>Happens When...</h4>
 
@@ -44,9 +44,9 @@
 
 			<h4>Solution</h4>
 
-			<p>Check the phpinfo(); in a seperate testfile and see if you're running 5.3 or higher. More info on <a href="http://fuelphp.com/docs/requirements.html" title="Requirements - Fuel Documentation">requirements</a> is here.</p>
+			<p>Check the phpinfo(); in a separate test file and check to see if you are running 5.3 or higher. More info on system requirements is located  <a href="http://fuelphp.com/docs/requirements.html" title="Requirements - Fuel Documentation">here</a>.</p>
 
-			<p>When developing locally, update your server to the latest version of PHP 5.3. If you are not developing locally you'll need to ask your hosting company. Versions of PHP below 5.3 have lost support not just by us, but <a href="http://www.php.net/archive/2011.php#id2011-03-17-1" title="PHP: News Archive - 2011">by PHP themselves</a>.</p>
+			<p>When developing locally, update your server to the latest version of PHP 5.3. If you are not developing locally you will need to ask your hosting company. Versions of PHP below 5.3 have lost support not just by us, but <a href="http://www.php.net/archive/2011.php#id2011-03-17-1" title="PHP: News Archive - 2011">by PHP themselves</a>.</p>
 
 		</article>
 
@@ -56,11 +56,11 @@
 
 			<h4>Happens When...</h4>
 
-			<p>On some php installations it's needed to add a questionmark in the .htaccess after <em>index.php</em></p>
+			<p>On some php installations you will need to add a question mark in the .htaccess after <em>index.php</em></p>
 
 			<h4>Solution</h4>
 
-			<p>Add the questionmark like so:</p>
+			<p>Add the question mark like so:</p>
 
 			<pre># Turn on URL rewriting
 RewriteEngine On
@@ -81,12 +81,7 @@ RewriteRule ^(.*)$ index.php?/$1 [L]
 
 			<pre>
 RewriteRule ^(.*)$ index.php?$1 [L]
-# Notice the fact that the slash has been removed after the ?
-
-#Other possible setups:
-
-RewriteRule ^(.*)$ /index.php/$1 [L]
-# Notice the leading slash added before index.php
+# Notice that the slash has been removed after the ?
 </pre>
 		</article>
 
@@ -129,7 +124,7 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</pre>
 
 			<h4>Happens When...</h4>
 
-			<p>Working with ORM models when not connection via mysql.</p>
+			<p>Working with ORM models when not connected via mysql.</p>
 
 			<h4>Solution</h4>
 
@@ -139,7 +134,7 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</pre>
 
 			<pre class="php"><code>protected static $_properties = array('id', 'title', 'contents', 'publish');</code></pre>
 
-			<p>Or set the change the db type to "mysql" in APPATH/config/db.php</p>
+			<p>Or change the db type to "mysql" in APPATH/config/db.php</p>
 
 		</article>
 
@@ -149,9 +144,9 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</pre>
 
 			<h4>Solution</h4>
 
-			<p>That is because Asset class uses relative path to index.php.</p>
+			<p>The reason for this is that the Asset class uses a relative path to index.php.</p>
 
-			<p>To fix that you have to modify the app/config/asset.php to set the correct path. Notice in index.php that a constant named DOCROOT is being defined:</p>
+			<p>To fix this you have to modify the app/config/asset.php to set the correct path. Notice in index.php that a constant named DOCROOT is being defined:</p>
 
 			<pre class="php"><code>define('DOCROOT', __DIR__.DIRECTORY_SEPARATOR);</code></pre>
 
