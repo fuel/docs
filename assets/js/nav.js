@@ -151,7 +151,7 @@ var nav = {
 			},
 			"Writing drivers":	"packages/auth/drivers.html"
 		},
-		"Orm Package": {
+		"ORM Package": {
 			"Introduction":		"packages/orm/intro.html",
 			"Creating Models":	"packages/orm/creating_models.html",
 			"CRUD":				"packages/orm/crud.html",
