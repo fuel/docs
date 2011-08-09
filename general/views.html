@@ -26,13 +26,13 @@
 	<section id="content">
 		<h2>Views</h2>
 
-		<h3 id="what_is_a_view">What is a view?</h3>
+		<h3 id="what_is_a_view">What is a View?</h3>
 
 		<p>Views are files that present data to the browser. These files enable the separation of logic and presentation for your application. Views are typically html, javascript, or css but can contain variables passed into them from the controller.</p>
 
-		<h3>Creating a view</h3>
+		<h3>Creating a View</h3>
 
-		<p>In Fuel, Views are located in the fuel/app/views directory. Views can be located in subdirectories. Views are named by their directory path from the fuel/app/views and the file name. So a view file located fuel/app/views/user/join.php would be named user/join.</p>
+		<p>In Fuel, views are located in the fuel/app/views directory. Views can be located in subdirectories. Views are named by their directory path from the fuel/app/views and the file name. So a view file located at fuel/app/views/user/join.php would be named user/join.</p>
 
 		<p>Example:</p>
 
@@ -46,7 +46,7 @@
 &lt;/html&gt;
 </code></pre>
 
-		<h3 id="using_views">Using views</h3>
+		<h3 id="using_views">Using Views</h3>
 
 		<p>Views in the Fuel framework are very flexible. You can create a single view and nest views within other views. This can be done multiple ways.</p>
 
@@ -94,29 +94,28 @@
 
 		<h2 id="security">Security</h2>
 
-		<p>By default Views use output encoding to sanitize anything you pass to them using Security::htmlentities().
+		<p>By default views use output encoding to sanitize anything you pass to them using Security::htmlentities().
 			If you want to pass something unfiltered you can use the method <kbd>set($name, $value, false)</kbd>.</p>
 
-		<pre><code>class Controller_Example extends Controller {
+		<pre class="php"><code>class Controller_Example extends Controller {
 
 	public function action_index()
 	{
 		$view = \View::factory('example');
 
-		// add it unfiltered just like you added
-		// add it filtered, outputs: &amp;lt;strong&amp;gt;not bold because filtered&amp;lt;/strong&amp;gt;
+		//add it filtered, outputs: &amp;lt;strong&amp;gt;not bold because filtered&amp;lt;/strong&amp;gt;
 		$view->title = '&lt;strong&gt;not bold because filtered&lt;/strong&gt;';
 
-		// add it unfiltered just like you added
+		//add it unfiltered 
 		$view->set('title', '&lt;strong&gt;not bold because filtered&lt;/strong&gt;', false);
 	}
 }</code></pre>
 
-		<p>If you don't want your View to work like this change the public static property <kbd>View::$auto_encode</kbd>
+		<p>If you don't want your view to work like this change the public static property <kbd>View::$auto_encode</kbd>
 		and set it to false. Now anything will be added unfiltered, if you do want some values filtered you can use
 		<kbd>set($name, $value, true)</kbd>.</p>
 
-		<p><strong>Note on objects:</strong> Unless the passed object is of the type View, ViewModel or Closure it is
+		<p><strong>NOTE ON OBJECTS:</strong> Unless the passed object is of the type View, ViewModel or Closure it is
 		expected to have a __toString() method and forced to be a string when output filtering is enabled. If you want
 		to pass it anyway you need to use <kbd>set($name, $value, false)</kbd>, but don't forget to filter what you
 		use!<br />

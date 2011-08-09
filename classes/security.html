@@ -193,7 +193,49 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>echo Security::js_fetch_token();</code></pre>
+						<pre class="php"><code>// output the javascript function
+echo Security::js_fetch_token();
+
+// you can now use the generated function in the javascript code on your page
+&lt;script type="text/javascript"&gt;
+	var current_token = fuel_csrf_token();
+&lt;/script&gt;
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4 id="method_js_set_token">js_set_token()</h4>
+			<p>The <strong>js_set_token</strong> method allows you to produce JavaScript fuel_set_csrf_token() function that will set the current CSRF token field in the form when called. Use this on an onsubmit of a form, to update the hidden token field in the form with the current value of the csrf cookie.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>None</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// output the javascript function
+echo Security::js_set_token();
+
+// you use the function generated as an onsubmit function, like so.
+// do NOT forget the 'this' parameter, so the function knows which form to update!
+&lt;form onsubmit="fuel_set_csrf_token(this);"&gt;
+	&lt;!-- do your stuff here --&gt;
+&lt;/form&gt;
+</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -379,9 +421,9 @@ $text = Security::htmlentities($text);</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<h3 id="procedural_helpers">Procedural helpers</h3>
-		
+
 		<article>
 			<h4 id="function_e">e($string)</h4>
 			<p>The <strong>e</strong> function is an alias for <a href="#method_htmlentities">Security::htmlentities</a>.</p>

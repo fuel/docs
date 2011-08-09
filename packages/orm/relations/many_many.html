@@ -98,6 +98,23 @@
   PRIMARY KEY (`post_id`,`user_id`)
 );</code></pre>
 
+			<p>Below are examples for establishing and breaking has-many relations:</p>
+
+			<pre class="php"><code>// both main and related object are new:
+$post = new Model_Post();
+$post->users[] = new Model_User();
+$post->save();
+
+// both main and related object already exist
+$user = Model_User::find(8);
+$user->posts[1] = Model_Post::find(1);
+$user->save();
+
+// break the relationship established above
+$post = Model_Post::find(1);
+unset($post->users[8]);
+$post->save();</code></pre>
+
 			<h3>Full config example with defaults as values</h3>
 
 			<pre class="php"><code>// in a Model_Post which has and belongs to many Users

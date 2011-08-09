@@ -47,7 +47,7 @@
 
 		<h3 id="basics">Basic Routing</h3>
 
-		<p>The route on the left is matched the request URI and if it is matched then the request is routed to the URI on the right.</p>
+		<p>The route on the left is checked against the request URI and if it is matched then the request is routed to the URI on the right.</p>
 
 		<p>This allows you to do things like the following:</p>
 
@@ -61,13 +61,13 @@
 		<h3 id="slightly_advanced">Slightly Advanced Routing</h3>
 
 		<p>You can include any regex into your routes.	The left side is matched against the
-		requests URI, and the right side is the replacement for the left, so you can use
+		request's URI, and the right side is the replacement for the left, so you can use
 		backreferences in the right side from the regex on the left.  There are also a few
-		special statements that allow you match anything, or just a segment:</p>
+		special statements that allow you to match anything, or just a segment:</p>
 
 		<ul>
 			<li>:any - This matches anything from that point on in the URI</li>
-			<li>:segment - This matches only 1 segment in the URI, but that segment can be anything</li>
+			<li>:segment - This matches only one segment in the URI, but that segment can be anything</li>
 		</ul>
 
 		<p>Here are some examples:</p>
@@ -89,8 +89,8 @@
     'blog/:year/:month/:id' => 'blog/entry', // Routes /blog/2010/11/entry_name to /blog/entry
 );</code></pre>
 
-		<p>In the above example it would catch the following <kbd>/blog/2010/11/entry_name</kbd>.  It would then
-		route that request to your 'entry' action in your 'blog' controller.  There, the named params
+		<p>In the above example, it would catch the following <kbd>/blog/2010/11/entry_name</kbd>.  It would then
+		route that request to your 'entry' action in your 'blog' controller.  There, the named parameters
 		will be available like this:</p>
 
 		<pre class="php"><code>$this->param('year');
@@ -98,7 +98,7 @@ $this->param('month');
 $this->param('id');</code></pre>
 
 
-		<h3 id="http_verb">HTTP verb based routing</h3>
+		<h3 id="http_verb">HTTP Verb Based Routing</h3>
 
 		<p>You can route your URLs to controllers and actions based on the HTTP verb used to call them.
 		This makes it quick and easy to make RESTful controllers.</p>

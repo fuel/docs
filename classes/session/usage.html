@@ -160,8 +160,8 @@ Session::set('array', array('varA', 'varB', 'varC' => array('val1', 'val2'));
 							</tr>
 							<tr>
 								<th><kbd>$variable</kbd></th>
-								<td><i>required</i></td>
-								<td>Name of the session variable to get.</td>
+								<td><i>optional</i></td>
+								<td>Name of the session variable to get. If not specified, all session variables are returned.</td>
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
@@ -191,7 +191,9 @@ $arr = Session::get('array');
 
 // or get a specific key from the array
 $arr = Session::get('array.varC');
-</code></pre>
+
+// get all session variables
+$vars = Session::get();</code></pre>
 					</td>
 				</tr>
 				</tbody>
