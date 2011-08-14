@@ -109,6 +109,47 @@
 		</article>
 
 		<article>
+			<h4 id="method_words_to_upper">words_to_upper($class)</h4>
+			<p>The <strong>words_to_upper</strong> method uppercases the first letter of each word in a classname with
+				the words separated by underscores.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$class</kbd></th>
+								<td><i>Required</i></td>
+								<td>The classname.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>echo Inflector::words_to_upper('fuel_users'); // returns Fuel_Users</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
 			<h4 id="method_classify">classify($table_name)</h4>
 			<p>The <strong>classify</strong> method allows you to convert a table name to a class name.</p>
 			<table class="method">
@@ -130,6 +171,11 @@
 								<th><kbd>$table_name</kbd></th>
 								<td><i>Required</i></td>
 								<td>The table name.</td>
+							</tr>
+							<tr>
+								<th><kbd>$singularize</kbd></th>
+								<td><pre class="php"><code>true</code></pre></td>
+								<td>Whether the $tablename is singularized before its words are uppercased.</td>
 							</tr>
 						</table>
 					</td>
