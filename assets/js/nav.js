@@ -41,7 +41,7 @@ var nav = {
 			"Packages":			"general/packages.html",
 			"Security":			"general/security.html",
 			"Tasks":			"general/tasks.html",
-			"404 handling":		"general/404.html",
+			"404 Handling":		"general/404.html",
 		},
 		"Classes": {
 			"Agent": {
@@ -67,11 +67,11 @@ var nav = {
 				"DBUtil class":   	  "classes/database/dbutil.html",
 				"Query Building":	{
 					"Introduction":			"classes/database/qb.html",
-					"Insert builder":	"todo.html", //"classes/database/qb_insert.html",
-					"Select builder":	"classes/database/qb_select.html",
-					"Update builder":	"classes/database/qb_update.html",
-					"Delete builder":	"classes/database/qb_delete.html",
-					"Where builder":	"classes/database/qb_where.html"
+					"Insert builder":		"classes/database/qb_insert.html",
+					"Select builder":		"classes/database/qb_select.html",
+					"Update builder":		"classes/database/qb_update.html",
+					"Delete builder":		"classes/database/qb_delete.html",
+					"Where builder":		"classes/database/qb_where.html"
 				}
 			},
 			"Date":			"classes/date.html",
