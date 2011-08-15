@@ -26,13 +26,17 @@
 	<section id="content">
 		<h2>Views</h2>
 
-		<h3 id="what_is_a_view">What is a View?</h3>
+		<h3 id="what_is_a_view">What is a view?</h3>
 
-		<p>Views are files that present data to the browser. These files enable the separation of logic and presentation for your application. Views are typically html, javascript, or css but can contain variables passed into them from the controller.</p>
+		<p>
+			Views are files that present data to the browser. These files enable the separation of logic and presentation for your application. Views are typically html, javascript, or css, but can contain variables passed into them from the controller.
+		</p>
 
-		<h3>Creating a View</h3>
+		<h3>Creating a view</h3>
 
-		<p>In Fuel, views are located in the fuel/app/views directory. Views can be located in subdirectories. Views are named by their directory path from the fuel/app/views and the file name. So a view file located at fuel/app/views/user/join.php would be named user/join.</p>
+		<p>
+			In Fuel, views are located in the fuel/app/views directory. Views can also be located in subdirectories. Views are named by their directory path from the fuel/app/views and the file name. So a view file located at fuel/app/views/user/join.php would be named user/join.
+		</p>
 
 		<p>Example:</p>
 
@@ -46,7 +50,7 @@
 &lt;/html&gt;
 </code></pre>
 
-		<h3 id="using_views">Using Views</h3>
+		<h3 id="using_views">Using views</h3>
 
 		<p>Views in the Fuel framework are very flexible. You can create a single view and nest views within other views. This can be done multiple ways.</p>
 
@@ -94,8 +98,10 @@
 
 		<h2 id="security">Security</h2>
 
-		<p>By default views use output encoding to sanitize anything you pass to them using Security::htmlentities().
-			If you want to pass something unfiltered you can use the method <kbd>set($name, $value, false)</kbd>.</p>
+		<p>
+			By default views use output encoding to sanitize anything you pass to them using Security::htmlentities().
+			If you want to pass something unfiltered you can use the method <kbd>set($name, $value, false)</kbd>.
+		</p>
 
 		<pre class="php"><code>class Controller_Example extends Controller {
 
@@ -111,23 +117,27 @@
 	}
 }</code></pre>
 
-		<p>If you don't want your view to work like this change the public static property <kbd>View::$auto_encode</kbd>
-		and set it to false. Now anything will be added unfiltered, if you do want some values filtered you can use
-		<kbd>set($name, $value, true)</kbd>.</p>
+		<p>
+			If you do not want your view to work like this change the public static property <kbd>View::$auto_encode</kbd>
+			and set it to false. Now anything will be added unfiltered, if you do want some values filtered you can use
+			<kbd>set($name, $value, true)</kbd>.
+		</p>
 
-		<p><strong>NOTE ON OBJECTS:</strong> Unless the passed object is of the type View, ViewModel or Closure it is
-		expected to have a __toString() method and forced to be a string when output filtering is enabled. If you want
-		to pass it anyway you need to use <kbd>set($name, $value, false)</kbd>, but don't forget to filter what you
-		use!<br />
-		View &amp; ViewModels are expected to contain HTML and take care of their own filtering, which is why they're
-		not sanitized. Closures cannot be sanitized, and you should take care to ensure this is done within them if
-		necessary.</p>
+		<p class="note">
+			<strong>NOTE ON OBJECTS:</strong> Unless the passed object is of the type <kbd>View</kbd>, <kbd>ViewModel</kbd> or <kbd>Closure</kbd> it is
+			expected to have a __toString() method and forced to be a string when output filtering is enabled. If you want
+			to pass it anyway you need to use <kbd>set($name, $value, false)</kbd>, but do not forget to filter what you
+			use!<br /><br />
+			View and ViewModels are expected to contain HTML and take care of their own filtering, which is why they are
+			not sanitized. Closures cannot be sanitized, and you should take care to ensure this is done within them if
+			necessary.
+		</p>
 
-		<h2>Nesting Views</h2>
+		<h2>Nesting views</h2>
 
 		<p>Views can also be nested, meaning views can contain other views. This can be done multiple ways.</p>
 
-		<h3>Example Views</h3>
+		<h3>Example views</h3>
 
 		<p>fuel/app/views/layout.php</p>
 

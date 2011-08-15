@@ -25,7 +25,7 @@
 
 	<section id="content">
 
-		<h2>HMVC Requests</h2>
+		<h2>HMVC requests</h2>
 
 		<p>
 			HMVC requests are a great way to separate logic and re-use controller logic in multiple places.
@@ -45,11 +45,13 @@ echo $widget;
 </code></pre>
 		<p class="note">
 			By default, all requests made are processed by Fuel's routing engine. If you want to request something that is not routable
-			(for example because you don't want a browser to request it) you should pass '<strong>false</strong>' as second parameter
-			to the factory() call. If you don't you will end up with a 404 error when you execute the request!
+			(for example because you do not want a browser to request it) you should pass '<strong>false</strong>' as second parameter
+			to the factory() call. If you do not you will end up with a 404 error when you execute the request!
 		</p>
 
-		<p>Loading views in a HMVC request is the same as in normal requests and controllers accessed by a HMVC request are also approachable via the browser. In some cases, for example widgets, are not suppose to accessed through the browser. In those cases you'll want to check if the request is made through HMVC or the browser. The following example shows you how to check for a HMVC request:</p>
+		<p>
+			Loading views in an HMVC request is the same as in normal requests, and controllers accessed by an HMVC request are also approachable via the browser. In some cases (for example, widgets) browser access should not be allowed. In those cases you will want to check if the request is made through HMVC or the browser. The following example shows you how to check for an HMVC request:
+		</p>
 
 		<pre class="php"><code>&lt;?php
 
@@ -63,17 +65,17 @@ class Controller_Widget extends Controller {
 		}
 		else
 		{
-			// this is a HMVC request
+			// this is an HMVC request
 		}
 	}
 
 }</code></pre>
 
-		<h3>404 During HMVC Requests</h3>
+		<h3>404 during HMVC requests</h3>
 
 		<p>
-			When a 404 occurs during a HMVC request a Request404Exception is thrown. If uncaught it will trigger
-			a full 404 message using <kbd>Request::show_404()</kbd>. But you can prevent this and handle the 404
+			When a 404 occurs during an HMVC request a Request404Exception is thrown. If uncaught it will trigger
+			a full 404 message using <kbd>Request::show_404()</kbd>, but you can prevent this and handle the 404
 			yourself:
 		</p>
 
@@ -87,12 +89,12 @@ catch (Request404Exception $e)
 }
 </code></pre>
 
-		<h3>Traversing Request Instances</h3>
+		<h3>Traversing request instances</h3>
 
-		<p>If you want to access other Requests you can traverse them using two methods:
-			<kbd>$request->parent()</kbd> and <kbd>$request->children</kbd>. The parent is the Request during
-			which the current Request was created (null for the main Request). The children are all the Requests
-			created during the current Request.</p>
+		<p>If you want to access other requests you can traverse them using two methods:
+			<kbd>$request->parent()</kbd> and <kbd>$request->children</kbd>. The parent is the request during
+			which the current request was created (null for the main request). The children are all the requests
+			created during the current request.</p>
 	</section>
 
 	<section id="footer">

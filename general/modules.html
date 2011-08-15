@@ -26,27 +26,29 @@
 	<section id="content">
 		<h2>Modules</h2>
 
-		<h3>What is a Module?</h3>
+		<h3>What is a module?</h3>
 
 		<p>
 			A module is a group of independent MVC elements. The use of modules allows for re-usability and encapsulation of your code.
 			A module typically resides within an application subdirectory named <strong>modules</strong>.
-			It is suggested to take advantage of modules whenever you're working on a large project,
+			It is suggested to take advantage of modules whenever you are working on a large project,
 			of which you believe its code-base will be more than just a few lines of code.
 			It will help you to keep things neatly in order.
 		</p>
 
 		<p>
-			A module can operate independently, for example, a blog module or an album module. You can route directly to the module controllers, without having to access any global code.
-			Modules can also be used in a true HMVC context, where controllers call other controllers, which will produce (a part of) the result needed to generate the result of the page request.
+			A module can operate independently, for example, a blog module or an album module. You can route directly to the module controllers 
+			without having to access any global code. Modules can also be used in a true HMVC context, where controllers call other controllers 
+			in order to produce (a part of) the result needed to generate the result of the page request.
 		</p>
 
-		<h3 id="module_config">Module Configuration</h3>
+		<h3 id="module_config">Module configuration</h3>
 
 		<p>
 			To be able to use modules, you will have to tell Fuel where your modules are stored.
-			By default, this is in the modules folder of your application. You use the 'modules_path' setting in your applications config.php file to define your module path.
-			You can also define multiple paths. If you do, they will be searched in the sequence you have defined them.
+			By default, this is in the modules folder of your application. You use the 'modules_path' setting in your application's config.php 
+			file to define your module path. You can also define multiple paths. If you do, they will be searched in the sequence you have 
+			defined them.
 		</p>
 
 		<pre><code>/**
@@ -59,13 +61,13 @@
 	APPPATH.'..'.DS.'globalmods'.DS	// path to our global modules
 ),
 </code></pre>
-		<p>When you define your paths, make sure they end with DS, the Fuel platform independent directory separator.</p>
+		<p>When you define your paths, make sure they end with DS. The DS constant is the Fuel platform independent directory separator.</p>
 
-		<h3 id="module_namespace">Module Namespace</h3>
+		<h3 id="module_namespace">Module namespace</h3>
 
 		<p>
 			One of the problems often encountered when working with independently developed code are class name collisions. 
-			For example, a lot of modules come with an admin controller. To avoid collisions, in Fuel every module lives 
+			For example, a lot of modules come with an admin controller. To avoid collisions, every module lives 
 			in its own PHP namespace, which <strong><u>must</u></strong> be named identical to the folder name of the module.
 		</p>
 
@@ -82,15 +84,15 @@ class Controller_Widget {
 }
 </code></pre>
 
-		<h3 id="folder_structure">Module Folder Structure</h3>
+		<h3 id="folder_structure">Module folder structure</h3>
 
 		<p>
 			You start creating a module by creating a folder for your new module in the modules folder you have defined in the configuration.
-			The folders name determines the name of the module, and the name of the namespace for the classes in the module.
-			This name is also used in the URI if you want to route to the module's controllers, or as part of the <a href="../classes/request.html">Request</a> in case of an HMVC call.
+			The folder's name determines the name of the module and the name of the namespace for the classes in the module.
+			This name is also used in the URI if you want to route to the module's controllers, or as part of the <a href="../classes/request.html">request</a> in the case of an HMVC call.
 		</p>
 		<p>
-			As a module can be viewed as a self contained part of the application, you'll notice that the module folder structure is very familiar.
+			As a module can be viewed as a self contained part of the application, you will notice that the module folder structure is very familiar.
 			It is the same as the structure of the application folder. The following folder structure is supported for a module:
 		</p>
 		<ul style="margin-top:-20px">
@@ -108,25 +110,25 @@ class Controller_Widget {
 
 		<p style="margin-top:-20px">At the time of writing, tasks and migrations are not yet supported within a module.</p>
 
-		<h3 id="module_routing">Module Routing</h3>
+		<h3 id="module_routing">Module routing</h3>
 
 		<p>
-			When you use modules in routed mode, you can add custom routes to your module by including a <b>routes.php</b> in your modules config folder.
+			When you use modules in routed mode, you can add custom routes to your module by including a <b>routes.php</b> file in your modules config folder.
 			These routes will be loaded when Fuel detects that the first URI segment refers to a module, and only the routes of that module will be loaded.
 		</p>
 
 		<p>
 			This implies that module routes cannot be used to define routes for global routing or routes for other modules.
 			In other words, the left side should always include the current module as first URI segment.
-			For the right side you can use anything described in the sections above. It's perfectly fine to have a module
+			For the right side you can use anything described in the sections above. It is perfectly fine to have a module
 			route to an app controller or another module.
 		</p>
 
-		<h3 id="modules_and_hmvc">Modules and HMVC Requests</h3>
+		<h3 id="modules_and_hmvc">Modules and HMVC requests</h3>
 
 		<p>
 			Besides using modules as a way of separating logically independent parts of your application,
-			you can also use module controllers in an HMVC context, where one of your application's controllers calls one of more module controllers
+			you can also use module controllers in an HMVC context, where one of your application's controllers calls one or more module controllers
 			to create the final result of the URI requested.
 		</p>
 		
@@ -134,7 +136,7 @@ class Controller_Widget {
 			Read the <a href="./hmvc.html">HMVC requests docs</a> to find out more.
 		</p>
 		
-		<h3 id="static_calls">Using Static Calls</h3>
+		<h3 id="static_calls">Using static calls</h3>
 
 		<p>
 			It is also possible to call static methods in a module class.
@@ -156,7 +158,7 @@ class Controller_Widget {
 	'modules'	=> array('mymodule'),
 </code></pre>
 
-		<p>You can also add the module manually at runtime, before you use any of the static methods:</p>
+		<p>You can also add the module manually at runtime before you use any of the static methods:</p>
 
 		<pre><code class="php">// add the module Mymodule to Fuel
 Fuel::add_module('mymodule');

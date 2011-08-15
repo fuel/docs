@@ -28,16 +28,19 @@
 
 		<h3>What is a Template Controller?</h3>
 
-		<p>A Template Controller is an extension of the Base Controller which has template support built in using some pre-defined before() and after() methods. Basically, it can be used to wrap
-		your view in a layout with a header, footer, sidebar, etc.</p>
+		<p>
+			A Template Controller is an extension of the Base Controller which has template support built in using some pre-defined before() and after() methods. Basically, it can be used to wrap your view in a layout with a header, footer, sidebar, etc.
+		</p>
 
-		<p class="note"><strong>Please note:</strong> if you have a before() method in your template controller extension you
-			<strong>must</strong> add <kbd>parent::before();</kbd> to that method or the <kbd>$this->template</kbd> will
-			not be available.</p>
+		<p class="note">
+			<strong>Please note:</strong> if you have a before() method in your template controller extension you <strong>must</strong> add <kbd>parent::before();</kbd> to that method or the <kbd>$this->template</kbd> will not be available.
+		</p>
 
 		<h3>Using the Template Controller</h3>
 
-		<p>Like all controllers, you create a class in the <kbd>fuel/app/classes/controller</kbd> directory. They need to extend the <kbd>Controller_Template</kbd> class and are prefixed by default by "Controller_". Below is an example of the controller "example": </p>
+		<p>
+			Like all controllers, you create a class in the <kbd>fuel/app/classes/controller</kbd> directory. They need to extend the <kbd>Controller_Template</kbd> class and are prefixed by default by "Controller_". Below is an example of the controller "example": 
+		</p>
 
 <pre><code>class Controller_Example extends Controller_Template {
 
@@ -53,7 +56,7 @@
 
 		<p>
 			The template file is a great place to call up your JS, CSS, etc, structure your HTML and call view partials. It allows you to give your output
-			structure. It is just a view file so, by default, the Template Controller will look here: <kbd>fuel/app/views/template.php</kbd>.
+			structure. It is just a view file so, by default, the Template Controller will reside here: <kbd>fuel/app/views/template.php</kbd>.
 		</p>
 
 <pre><code>&lt;!DOCTYPE html>
@@ -75,11 +78,11 @@
 &lt;/body>
 &lt;/html></code></pre>
 
-        <h3>Changing the Default Template File</h3>
+        <h3>Changing the default template file</h3>
 
         <p>
             You can easily change the default <kbd>APPPATH/views/template.php</kbd> file to something different.<br/>
-            You must set the public variable <kbd>$template</kbd> (note: you don't need .php extension here) to something different, example:
+            You must set the public variable <kbd>$template</kbd> (note: you don't need .php extension here) to something different. For example:
         </p>
 
 <pre><code>class Controller_Example extends Controller_Template {

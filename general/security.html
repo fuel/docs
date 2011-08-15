@@ -38,7 +38,7 @@
 			<li><a href="#sql">SQL injection</a></li>
 		</ul>
 		<p>
-			By default, Fuel doesn't filter POST and GET variables on input, and encodes everything on output.
+			By default, Fuel does not filter POST and GET variables on input, and encodes everything on output.
 			Fuel also encodes the URI to prevent nasty surprises when using URI segments, and escapes everything going into the database.
 		</p>
 		<p>
@@ -47,7 +47,7 @@
 		</p>
 
 		<article id="output">
-			<h2>Output Encoding</h2>
+			<h2>Output encoding</h2>
 
 			<p>
 				By default, Fuel favours output encoding to input filtering. The reason behind this is twofold:
@@ -55,23 +55,21 @@
 			<ol>
 				<li>No matter where your data originates, and wether or not it is filtered, output encoding will make it harmless
 				when it is send to the client.</li>
-				<li>It also means all input is stored in raw and unaltered form, so that no matter
+				<li>It also means that all input is stored in raw and unaltered form, so that no matter
 				what happens, you will always have access to the original data.</li>
 			</ol>
 			<p>
-				It also means you don't run into trouble when you need data in its unaltered form. One common example is the
+				It also means you do not run into trouble when you need data in its unaltered form. One common example is the
 				data produced by html editors like TinyMCE or ckeditor, used in lots of application for enduser content editing.
 				In such cases you might want to run <a href="#xss">XSS Filtering</a> on these input variables to filter out
-				any nasty surprises that might have crept in, since this is a typical example of data you don't want
+				any nasty surprises that might have crept in, since this is a typical example of data you do not want
 				to encode on output either.
 			</p>
 			<p>
-				Since output encoding can only happen on strings, you have to pay attention to objects you want to pass to your views.
+				Since output encoding can only happen on strings, you have to pay attention to the objects you want to pass to your views.
 				Either make sure your object contains a <strong>__toString()</strong> method on which the encoding can take place, add your object class
-				to the class whitelist in the security configuration (don't forget the namespace!), or pass it to the view with the <strong>$encode</strong>
-				flag set to false.
-				You can also use the <a href="../classes/view.html#method_auto_encode">auto_encode</a> method to temporarily disable automatic output encoding
-				on a per-view basis.
+				to the class whitelist in the security configuration (do not forget the namespace!), or pass it to the view with the <strong>$encode</strong>
+				flag set to false. You can also use the <a href="../classes/view.html#method_auto_encode">auto_encode</a> method to temporarily disable automatic output encoding on a per-view basis.
 			</p>
 			<p>
 				See the section on <a href="views.html#security">view security</a> to see how this is implemented for views.
@@ -79,7 +77,7 @@
 		</article>
 
 		<article id="csrf">
-			<h2>CSRF Protection</h2>
+			<h2>CSRF protection</h2>
 			<p>
 				Cross-site request forgery, also known as a one-click attack or session riding and abbreviated as CSRF, is a type of malicious exploit
 				of a website whereby unauthorized commands are transmitted from a user that the website trusts. Unlike cross-site scripting (XSS),
@@ -89,8 +87,7 @@
 			</p>
 			<p>
 				For example, one user, Bob, might be browsing a chat forum where another user, Mallory, has posted a message.
-				Suppose that Mallory has crafted an HTML image element that references an action on Bob's bank's website (rather than, for example, an image file).
-				If Bob's bank keeps his authentication information in a cookie, and if the cookie hasn't expired, then the attempt by Bob's browser to
+				Suppose that Mallory has crafted an HTML image element that references an action on Bob's bank's website (rather than, for example, an image file). If Bob's bank keeps his authentication information in a cookie, and if the cookie has not expired, then the attempt by Bob's browser to
 				load the image will submit the withdrawal form with his cookie, thus authorizing a transaction without Bob's approval.
 				<span style="float:right;font-style:italic;"><a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">source: wikipedia</a></span>
 			</p>
@@ -133,7 +130,7 @@ if ($_POST)
 		</article>
 
 		<article id="xss">
-			<h2>XSS Filtering</h2>
+			<h2>XSS filtering</h2>
 			<p>
 				Fuel provides XSS filtering using the <a href="http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/">HTMLawed</a> library,
 				a very fast and highly configurable library. By default it runs in safe and balanced mode.
@@ -154,7 +151,7 @@ if ($_POST)
 		</article>
 
 		<article id="input">
-			<h2>Input Filtering</h2>
+			<h2>Input filtering</h2>
 			<p>
 				Although not enabled by default, you can configure Fuel to filter all input ($_GET, $_POST and $_COOKIE) on every page request.
 				To do so, configure the functions or methods to be used to filter them in the applications config/config.php file.
@@ -174,7 +171,7 @@ if ($_POST)
 		</article>
 
 		<article id="sql">
-			<h2>SQL Injection</h2>
+			<h2>SQL injection</h2>
 			<p>
 				SQL injection is a code injection technique that exploits a security vulnerability occurring in the database layer of an application
 				(like queries). The vulnerability is present when user input is either incorrectly filtered for string literal escape characters
