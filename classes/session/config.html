@@ -26,13 +26,13 @@
 	<section id="content">
 		<h2>Session Class</h2>
 
-		<p>The session class allows you to maintain state for your application in the stateless environment of the web.
+		<p>The Session class allows you to maintain state for your application in the stateless environment of the web.
 			It allows you to store variables on the server using a variety of storage solutions, and recall these variables on the next page request.</p>
 
 		<section>
 			<h2 id="configuration">Configuration</h2>
 
-			<p>The session class is configured through the fuel/core/config/session.php configuration file. It is already populated with a default configuration. You can override this configuration by copying this config file to your application config directory, and modify that file as needed.</p>
+			<p>The Session class is configured through the fuel/core/config/session.php configuration file. It is already populated with a default configuration. You can override this configuration by copying this config file to your application config directory, and modify that file as needed.</p>
 			<p>The following global configuration values can be defined:</p>
 			<table class="config">
 				<tbody>
@@ -133,7 +133,7 @@
 						<td>
 							Flash variables are identified in the session by the flash id and the session variable name.
 							You can use this flash id as a session variable namespace, to avoid variable name collisions,
-							or to make sure session variables from a module don't interfere with variables used in the application.
+							or to make sure session variables from a module do not interfere with variables used in the application.
 						</td>
 					</tr>
 					<tr>
@@ -233,7 +233,7 @@
 			<section>
 				<h5 id="cookie_driver_config">Cookie driver configuration</h5>
 
-				<p>The cookie driver doesn't use any server based storage. Instead, all session variables will be stored in the cookie that is sent to the browser after each request. Use this only if you don't have to store much data, as the maximum payload size of a cookie is 4Kb, which you will reach quite quickly, due to the overhead of array serialization and encryption.</p>
+				<p>The cookie driver does not use any server based storage. Instead, all session variables will be stored in the cookie that is sent to the browser after each request. Use this only if you do not have to store much data, as the maximum payload size of a cookie is 4Kb, which you will reach quite quickly, due to the overhead of array serialization and encryption.</p>
 
 				<p>Specific driver configuration:</p>
 				<table class="config">
@@ -338,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   UNIQUE KEY `PREVIOUS` (`previous_id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 </pre><br />
-								Note that the sessions table has a unique index on both the session_id and the previous_id columns. This is both to speed up the query (which is always by id), and to make sure no duplicate id's are inserted.
+								Note that the sessions table has a unique index on both the session_id and the previous_id columns. This is both to speed up the query (which is always by id), and to make sure no duplicate IDs are inserted.
 							</td>
 						</tr>
 						<tr>
@@ -384,7 +384,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 )
 </code></pre>
 							</td>
-							<td>Array containing a list of available memcached servers, as defined by <a href="http://php.net/manual/en/memcached.addservers.php">http://php.net/manual/en/memcached.addservers.php</a>. If you don't specify this parameter, it will default to a single memcached server, running on the local machine, and the listening to default port.
+							<td>Array containing a list of available memcached servers, as defined by <a href="http://php.net/manual/en/memcached.addservers.php">http://php.net/manual/en/memcached.addservers.php</a>. If you do not specify this parameter, it will default to a single memcached server, running on the local machine, and the listening to default port.
 
 							</td>
 						</tr>

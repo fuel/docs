@@ -33,7 +33,7 @@
 				Aside from the basic static <a href="usage.html">usage</a> of the File class there are also more
 				complex options available. The first are <strong>areas</strong> which are basically basepaths it
 				cannot act outside of and have some configuration options. And when using the File class's methods
-				on an area they will return objects wrapping directories &amp; files.
+				on an area they will return objects wrapping directories and files.
 			</p>
 
 			<article>
@@ -49,7 +49,7 @@
 				<h3 id="area_config">Configuration</h3>
 				<p>
 					By default file areas have unlimited access through all directories. There are two ways to set
-					these configuration values. The quickest way is to pass an array intro the
+					these configuration values. The quickest way is to pass an array into the
 					File::factory method.
 				</p>
 
@@ -62,8 +62,8 @@ $area = \File::factory($config);</code></pre>
 
 				<p>
 					A more centralized way is by defining an area (or more) inside you File config file. To do so,
-					copy <em>core/config/file.php</em> into <em>app/config/file.php</em> (or create a new one) and
-					define your area inside the <em>'areas'</em> array. Now you can get the area by supplying the
+					copy <kbd>core/config/file.php</kbd> into <kbd>app/config/file.php</kbd> (or create a new one) and
+					define your area inside the <kbd>'areas'</kbd> array. Now you can get the area by supplying the
 					string identifier to the File::factory method.
 				</p>
 
@@ -83,9 +83,7 @@ $area = \File::instance('my_area');
 				<h3 id="area_usage">Usage</h3>
 
 				<p>
-					There are 2 ways to use areas in the File class. <br />
-					The first is to use areas in a static context, supply a File_Area instance or identifier to the
-					function you're calling.
+					There are 2 ways to use areas in the File class. The first is to use areas in a static context, supply a File_Area instance or identifier to the function you are calling:
 				</p>
 
 				<pre class="php"><code>// Read the contents of a directory
@@ -99,7 +97,7 @@ catch(\FileAccessException $e)
 }
 </code></pre>
 
-				<p>The second way is to call the functions directly from the area itself.</p>
+				<p>The second way is to call the functions directly from the area itself:</p>
 
 				<pre class="php"><code>// Get the area
 $area = File::instance('my_area');

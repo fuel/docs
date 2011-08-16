@@ -26,7 +26,7 @@
 	<section id="content">
 		<h2>Validation Class</h2>
 
-		<p>The Validation class helps you validate user input, if you want to create a form &amp; its validation at
+		<p>The Validation class helps you validate user input. If you want to create a form and its validation at
 			the same time use the <a href="../fieldset.html">Fieldset</a> class instead.</p>
 
 		<ul>
@@ -59,7 +59,7 @@
 						<th><kbd>open_list</kbd></th>
 						<td>string</td>
 						<td><pre class="php"><code>'&lt;ul&gt;'</code></pre></td>
-						<td>String to be prepended to the list of errors. Usually this is some form of HTML to format the list. By default, it's formatted as an unordered list.</td>
+						<td>String to be prepended to the list of errors. Usually this is some form of HTML to format the list. By default, it is formatted as an unordered list.</td>
 					</tr>
 					<tr>
 						<th><kbd>close_list</kbd></th>
@@ -94,7 +94,7 @@
 		<article>
 			<h3><a name="usage">Usage</a></h3>
 
-			<p>To start validation you need to create an object, this can be the default object named "default" or
+			<p>To start validation, you need to create an object. This can be the default object named "default" or
 			you can name it if you need multiple validation objects.</p>
 
 			<pre class="php"><code>// Use default
@@ -104,7 +104,7 @@ $val = Validation::factory();
 $val = Validation::factory('my_validation');</code></pre>
 
 			<p>After having it instantiated you can start adding fields to it. This works exactly like the when using
-			the Fieldset class, however here we'll only document the preferred usage.</p>
+			the Fieldset class, however here we will only document the preferred usage.</p>
 
 			<pre class="php"><code>$val = Validation::factory('my_validation');
 
@@ -156,10 +156,10 @@ $input = $val->input();
 // all these methods can also get just the value for a single field
 $var = $val->validated('username');</code></pre>
 
-			<p>Validation can also run partially, in that case even required fields are ignored when they're not in
+			<p>Validation can also run partially, in that case even required fields are ignored when they are not in
 			POST or the input given to run(). One does this by setting the 2nd parameter of run to true.</p>
 
-			<pre class="php"><code>// this will only validate the password when username isn't present in post
+			<pre class="php"><code>// this will only validate the password when username is not present in post
 $val->run(array('password' => 'whatever'), true);</code></pre>
 		</article>
 
@@ -352,7 +352,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 			<h3><a name="errors">Error messages</a></h3>
 
 			<p class="note">Errors are returned as Validation_Error objects which you can work with for more flexible
-			output, if you don't need that just cast the Validation_Error object to a string to get the error message.</p>
+			output. If you don't need that just cast the Validation_Error object to a string to get the error message.</p>
 
 			<p>Error messages are set using a language file "validation.php" which is loaded automatically.</p>
 
@@ -420,7 +420,7 @@ $field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
 		<article>
             <h3><a name="methods">Extending Validation class</a></h3>
 
-            <p>There are few approaches to extend the validation class:</p>
+            <p>There are few approaches to extend the Validation class:</p>
 
             <p>1. To extend the core class like described in the <a href="../general/extending_core.html">Extending Core Classes</a></p>
 
@@ -452,7 +452,7 @@ $val->add_field('username', 'Your username', 'trim|strip_tags|required|unique[us
 $val->add_model('Model_User');</code></pre>
 
         <p class="note">
-        <strong>Note: </strong>
+        <strong>NOTE: </strong>
         You need the '_validation_' prefix for a method to be used in validation.
         </p>
         </article>

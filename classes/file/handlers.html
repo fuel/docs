@@ -64,9 +64,9 @@
 $file = \File::get(DOCROOT.'/here_is_my/textfile.txt');
 </code></pre>
 
-			<p>Now we've got the file handler, we can use it's methods to get something done.</p>
+			<p>Now that we have the file handler, we can use its methods to get something done.</p>
 
-			<pre class="code"><code>// Let's rename rename it.
+			<pre class="code"><code>// Let us rename rename it.
 $file->rename('new_name');
 
 // Get the file's content
@@ -77,8 +77,8 @@ $file->rename('textfile');
 </code></pre>
 
 			<p>
-				As you can see in the example above, when renaming the file you don't need to refetch the handler.
-				You can reuse the same object over and over, untill you delete the file or unset the var.
+				As you can see in the example above, when renaming the file you do not need to refetch the handler.
+				You can reuse the same object over and over until you delete the file or unset the variable.
 			</p>
 
 
@@ -89,8 +89,8 @@ $file->rename('textfile');
 			<h2 id="file_handler">File handler</h2>
 
 			<p>
-				The file handlers handles the basic interaction with files. Each example assumes the <strong>
-				$handler</strong> var is the fetched handers. Want to know how to get the handler?
+				The File handler handles the basic interaction with files. Each example assumes that the <strong>
+				$handler</strong> variable is the fetched handler. Want to know how to get the handler?
 				Look at the <a href="#usage">usage section</a>.
 			</p>
 
@@ -508,8 +508,8 @@ $modified_at = $handler->get_time();
 			<h2 id="directory_handler">Directory handler</h2>
 
 			<p>
-				The directory handler handles the basic interaction with directories. Each example assumes the <strong>
-				$handler</strong> var is the fetched handers. Want to know how to get the handler?
+				The Directory Handler handles the basic interaction with directories. Each example assumes that the <strong>
+				$handler</strong> variable is the fetched handler. Want to know how to get the handler?
 				Look at the <a href="#usage">usage section</a>.
 			</p>
 
@@ -571,7 +571,7 @@ $modified_at = $handler->get_time();
 
 			<article>
 				<h4 id="method_directory_read">read($depth = 0, $filters = null)</h4>
-				<p>The <strong>read</strong> method is an shortcut to <a href="usage.html#method_read_dir">File::read_dir</a>.</p>
+				<p>The <strong>read</strong> method is a shortcut to <a href="usage.html#method_read_dir">File::read_dir</a>.</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -617,7 +617,7 @@ $modified_at = $handler->get_time();
 
 			<article>
 				<h4 id="method_directory_rename">rename($new_name)</h4>
-				<p>The <strong>rename</strong> method is an shortcut to <a href="usage.html#method_rename_dir">File::rename_dir</a>.</p>
+				<p>The <strong>rename</strong> method is a shortcut to <a href="usage.html#method_rename_dir">File::rename_dir</a>.</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -659,7 +659,7 @@ $modified_at = $handler->get_time();
 
 			<article>
 				<h4 id="method_directory_move">move($new_path)</h4>
-				<p>The <strong>move</strong> method is an shortcut to <a href="usage.html#method_move">File::move</a>.</p>
+				<p>The <strong>move</strong> method is a shortcut to <a href="usage.html#method_move">File::move</a>.</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -700,7 +700,7 @@ $modified_at = $handler->get_time();
 
 			<article>
 				<h4 id="method_directory_copy">copy($new_path)</h4>
-				<p>The <strong>copy</strong> method is an shortcut to <a href="usage.html#method_copy_dir">File::copy_dir</a>.</p>
+				<p>The <strong>copy</strong> method is a shortcut to <a href="usage.html#method_copy_dir">File::copy_dir</a>.</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -741,7 +741,7 @@ $modified_at = $handler->get_time();
 
 			<article>
 				<h4 id="method_directory_delete">delete($recursive = true, $delete_top = true)</h4>
-				<p>The <strong>delete</strong> method is an shortcut to <a href="usage.html#method_delete_dir">File::delete_dir</a>.</p>
+				<p>The <strong>delete</strong> method is a shortcut to <a href="usage.html#method_delete_dir">File::delete_dir</a>.</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -787,7 +787,7 @@ $modified_at = $handler->get_time();
 
 			<article>
 				<h4 id="method_directory_get_permissions">get_permissions()</h4>
-				<p>The <strong>get_permissions</strong> method is an shortcut to <a href="usage.html#method_get_permissions">File::get_permissions</a>.</p>
+				<p>The <strong>get_permissions</strong> method is a shortcut to <a href="usage.html#method_get_permissions">File::get_permissions</a>.</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -811,7 +811,7 @@ $modified_at = $handler->get_time();
 
 			<article>
 				<h4 id="method_directory_get_time">get_time($type = 'modified')</h4>
-				<p>The <strong>get_time</strong> method is an shortcut to <a href="usage.html#method_get_time">File::get_time</a>.</p>
+				<p>The <strong>get_time</strong> method is a shortcut to <a href="usage.html#method_get_time">File::get_time</a>.</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -862,7 +862,7 @@ $modified_at = $handler->get_time();
 
 			<p>
 				As mentioned before Fuel comes with two predefined handlers. One for directories and one for
-				files. By writing your own handlers you can alter the behaviour and add functionalities by
+				files. By writing your own handlers you can alter the behaviour and add functionality by
 				filetype. For instance, when dealing with csv files you might want to auto-parse them when
 				reading, or be able to fetch a image object from image files.
 			</p>
@@ -895,10 +895,10 @@ class File_Handler_XML extends \File_Handler_File {
 			<h4 id="writing_handlers_adding">Adding them...</h4>
 
 			<p>
-				File handlers can be assigned by adding them in the file config.
+				File handlers can be assigned by adding them in <kbd>/app/config/file.php</kbd>.
 				By adding them to the base config all files from a certain extension wil be fetched as the
 				desired handler. You can also assign handlers on an area basis by adding them to the area config
-				you'd like to use them in.
+				you would like to use them in.
 			</p>
 
 			<pre class="php"><code>// In app/config/file.php

@@ -26,7 +26,7 @@
 	<section id="content">
 		<h2>Session Class</h2>
 
-		<p>The session class allows you to maintain state for your application in the stateless environment of the web.
+		<p>The Session class allows you to maintain state for your application in the stateless environment of the web.
 			It allows you to store variables on the server using a variety of storage solutions, and recall these variables on the next page request.</p>
 
 		<h3 id="manual_loading">Manual loading</h3>
@@ -108,7 +108,7 @@ $session = Session::factory( array('driver' => 'memcached', 'expiration_time' =>
 			</table>
 
 			<p class="note">
-				<kbd>Please note:</kbd> when you want to use multiple session drivers at the same time, the <kbd>cookie_name</kbd> for each of these driver instances must be unique.
+				<kbd>PLEASE NOTE:</kbd> When you want to use multiple session drivers at the same time, the <kbd>cookie_name</kbd> for each of these driver instances must be unique.
 				If you attempt to load a driver using a <kbd>cookie_name</kbd> that is already in use, and the instance using it uses the same driver as you are trying to load, that instance is reused.
 				If the instance is using a different driver, an exception is thrown.
 			</p>
@@ -118,7 +118,7 @@ $session = Session::factory( array('driver' => 'memcached', 'expiration_time' =>
 		<h2>Using sessions with Flash</h2>
 
 		<p>
-			One of the problems with using Flash objects in websites, is that when they interact with your web application, they don't send the cookies
+			One of the problems with using Flash objects in websites is that, when they interact with your web application, they do not send the cookies
 			back that have been stored in the browser. Due to this problem, it is difficult to make them aware of the session state of the application.
 		</p>
 
@@ -148,10 +148,10 @@ if (document.cookie.length>0)
 return "";
 }
 
-// we're using jquery and uploadify in this example, and we're passing
+// we are using jquery and uploadify in this example, and we are passing
 // the fuel cookie (called 'fuelcid' here) in the scriptData as 'fuelcid'
 
-// Note: when generating this code, don't hardcode the cookie name, but
+// Note: When generating this code, do not hardcode the cookie name, but
 // instead get the cookie name from the session configuration file.
 
 $(function()
@@ -192,11 +192,11 @@ $(function()
 		<p>
 			This is especially true when it comes to concurrency.
 			For web-based application, you will have concurrency if you use multiple asynchronous ajax calls on your webpages,
-			or if you allow a browser to have multiple windows open to the same application (which, lets face it, is something you can't prevent).
+			or if you allow a browser to have multiple windows open to the same application (which, lets face it, is something you cannot prevent).
 		</p>
 		<p>
 			Something else you need to know is that by default, the session class will rotate (or regenerate) the session id on a regular basis,
-			to prevent session hijacking due to session id fixation (someone stealing your session cookie and use it to take over your session).
+			to prevent session hijacking due to session ID fixation (someone stealing your session cookie and use it to take over your session).
 			You can control the rotation time using a configuration setting, or even disable it, but from a security point of view that is a bad idea.
 			Take these two together, and you have a potential disaster on your hands!
 		</p>
@@ -209,7 +209,7 @@ $(function()
 			(you will get a different ID, because session IDs are generated using a randomized algorithm)<br />
 		</p>
 		<p>
-			Now we have a problem. The session class tries to update the stored session with key ID-A to ID-C, but it can't find that session.
+			Now we have a problem. The session class tries to update the stored session with key ID-A to ID-C, but it cannot find that session.
 			Remember, it had been updated from ID-A to ID-B by the first ajax call! So it decides the session is invalid, create a new and empty
 			session, and return that cookie to the browser. Now your valid cookie is overwritten by the new and empty session cookie.
 			Result: you have lost the session.
@@ -220,9 +220,9 @@ $(function()
 		<p>
 			Fuel's session class contains two mechanisms to detect and mitigate this problem.
 			Every session key store contains two session IDs: the current ID and the previous ID.
-			If a request comes in just after the session id has been rotated, the correct session can be located using the previous session id stored in the key store.
-			And it case of a session id mismatch which could not be recovered using the previous id, no updated cookie will be sent back to the browser.
-			The result is that you lose the session data of that request, but you don't lose the session itself.
+			If a request comes in just after the session id has been rotated, the correct session can be located using the previous session ID stored in the key store.
+			And, in case of a session ID mismatch which could not be recovered using the previous ID, no updated cookie will be sent back to the browser.
+			The result is that you lose the session data of that request, but you do not lose the session itself.
 		</p>
 
 	</section>

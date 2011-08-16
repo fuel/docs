@@ -27,8 +27,8 @@
 		<h2>Mongo_Db Class Methods</h2>
 
 		<p>
-			The Mongo_Db class allowes you to interact with MongoDB databases. While in some cases it's
-			simular to interacting with databases like MySQL there are some distinct differences.
+			The Mongo_Db class allows you to interact with MongoDB databases. While in some cases it is
+			similar to interacting with databases like MySQL, there are some distinct differences.
 		</p>
 		
 		<p class="note">
@@ -323,7 +323,7 @@ $mongodb = \Mongo_Db::instance();
 
 $mongodb->where(array(
 	'name' => 'John',
-	'surname' => 'Doe,
+	'surname' => 'Doe',
 ));
 
 $users = $mongodb->get('users');
@@ -375,7 +375,7 @@ $users = $mongodb->get('users');
 $mongodb = \Mongo_Db::instance();
 $mongodb->where(array(
 	'name' => 'John',
-	'surname' => 'Doe,
+	'surname' => 'Doe',
 ))->or_where(array(
 	'name' => 'Jim',
 ));
@@ -892,7 +892,7 @@ $users = $mongodb->get('users');
 		</article>
 		
 		<article>
-			<h4 id="method_ne">where_between_ne($field = "", $x)</h4>
+			<h4 id="method_ne">where_ne($field = "", $x)</h4>
 			<p>
 				The <strong>where_ne</strong> method sets the 'where not equal to' statement.
 			</p>
@@ -946,9 +946,9 @@ $users = $mongodb->get('users');
 		</article>
 		
 		<article>
-			<h4 id="method_like">where_like($field = '', $value = '', $flags = 'i', $enable_start_wildcard = true, $enable_end_wildcard = true)</h4>
+			<h4 id="method_like">like($field = '', $value = '', $flags = 'i', $enable_start_wildcard = true, $enable_end_wildcard = true)</h4>
 			<p>
-				The <strong>where_ne</strong> method sets the 'where not equal to' statement.
+				The <strong>like</strong> method sets the 'like' statement.
 			</p>
 			<table class="method">
 				<tbody>
@@ -1018,7 +1018,7 @@ $users = $mongodb->get('users');
 					<td>
 						<pre class="php"><code>// Get an instance
 $mongodb = \Mongo_Db::instance();
-$mongodb->where_like('name', 'fran', 'im', true);
+$mongodb->like('name', 'fran', 'im', true);
 $users = $mongodb->get('users');
 </code></pre>
 					</td>
@@ -1133,7 +1133,7 @@ $users = $mongodb->get('users');
 		<article>
 			<h4 id="method_offset">offset($x = 0)</h4>
 			<p>
-				The <strong>offset</strong> method sets the number of items skip.
+				The <strong>offset</strong> method sets the number of items to skip.
 			</p>
 			<table class="method">
 				<tbody>
@@ -1364,7 +1364,7 @@ $bool = $mongodb->where('id', $an_id)->update('users', array(
 		<article>
 			<h4 id="method_update_all">update_all($collection = "", $data = array())</h4>
 			<p>
-				The <strong>update</strong> method updates all records in a given collection.
+				The <strong>update_all</strong> method updates all records in a given collection.
 			</p>
 			<table class="method">
 				<tbody>
@@ -1700,7 +1700,7 @@ $mongodb->remove_index('first_name');
 		<article>
 			<h4 id="method_remove_all_indexes">remove_all_indexes($collection = "")</h4>
 			<p>
-				The <strong>remove_index</strong> method removes al indexes from a collection.
+				The <strong>remove_all_indexes</strong> method removes all indexes from a collection.
 			</p>
 			<table class="method">
 				<tbody>
@@ -1748,7 +1748,7 @@ $mongodb->remove_all_indexes('my_collection');
 		<article>
 			<h4 id="method_list_indexes">list_indexes($collection = "")</h4>
 			<p>
-				The <strong>remove_index</strong> method returns an array of index names for this collection.
+				The <strong>list_indexes</strong> method returns an array of index names for this collection.
 			</p>
 			<table class="method">
 				<tbody>

@@ -25,8 +25,20 @@
 
 	<section id="content">
 		<h2>Date Class</h2>
+<!-- 
+The possessive of an acronym plural has the apostrophe after the s.
 
-		<p>The Date class is a set of helper functions for working with dates, contrary to PHP's DateTime class the
+PBXs' 
+VLANs' 
+NICs' 
+PCs' 
+
+The only time we accept an 's is when the acronym is separated with
+periods. For example, Ph.D.'s."
+
+@source		http://answers.google.com/answers/threadview?id=499296
+ -->
+		<p>The Date class is a set of helper functions for working with dates. Contrary to PHPs' DateTime class the
 		Fuel Date class has full support for i18n.</p>
 
 		<article id="method_factory">
@@ -126,10 +138,10 @@ Fuel\Core\Date Object
 
 		<article id="method_create_from_string">
 			<h4>create_from_string($input, $pattern_key = 'local')</h4>
-			<p>The <strong>create_from_string</strong> creates a Date object from a named date string format</p>
+			<p>The <strong>create_from_string</strong> creates a Date object from a named date string format.</p>
 
 			<p class="note">This function uses <a href="http://www.php.net/manual/en/function.strptime.php" target="_blank">strptime()</a>
-				for i18n purposes. That method isn't available on Windows hosts however, on those <kbd>strtotime()</kbd>
+				for i18n purposes. That method is not available on Windows hosts however, on those <kbd>strtotime()</kbd>
 				is used instead and the pattern is ignored.</p>
 			<table class="method">
 				<tbody>
@@ -353,7 +365,7 @@ echo Date::days_in_month(2,2000); // 29
 
 		<article id="method_format">
 			<h4>format($pattern_key = 'local')</h4>
-			<p>The <strong>formatted</strong> method returns a formatted date as specified by the pattern key. The
+			<p>The <strong>format</strong> method returns a formatted date as specified by the pattern key. The
 				patterns are defined in the <kbd>fuel/core/config/date.php</kbd> config file - you can add your own
 				by creating a similar file in <kbd>app/config</kbd>.</p>
 

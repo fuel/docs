@@ -26,7 +26,7 @@
 	<section id="content">
 		<h2>Security Class</h2>
 
-		<p>The security class allows you to have CSRF protection in your application.</p>
+		<p>The Security class allows you to have CSRF protection in your application.</p>
 
 		<section>
 			<h2>Configuration</h2>
@@ -72,7 +72,20 @@
 						<td>array</td>
 						<td><pre class="php"><code>array('htmlentities')</code></pre></td>
 						<td>
-							Array of callable items (PHP functions, object methods, static class methods) used to filter the URI. By default, it uses PHP's htmlentities internal function.
+<!-- 
+The possessive of an acronym plural has the apostrophe after the s.
+
+PBXs' 
+VLANs' 
+NICs' 
+PCs' 
+
+The only time we accept an 's is when the acronym is separated with
+periods. For example, Ph.D.'s."
+
+@source		http://answers.google.com/answers/threadview?id=499296
+ -->
+							Array of callable items (PHP functions, object methods, static class methods) used to filter the URI. By default, it uses PHPs' htmlentities internal function.
 						</td>
 					</tr>
 					<tr>
@@ -209,7 +222,7 @@ echo Security::js_fetch_token();
 
 		<article>
 			<h4 id="method_js_set_token">js_set_token()</h4>
-			<p>The <strong>js_set_token</strong> method allows you to produce JavaScript fuel_set_csrf_token() function that will set the current CSRF token field in the form when called. Use this on an onsubmit of a form, to update the hidden token field in the form with the current value of the csrf cookie.</p>
+			<p>The <strong>js_set_token</strong> method allows you to produce JavaScript fuel_set_csrf_token() function that will set the current CSRF token field in the form when called. Use this on an onsubmit of a form, to update the hidden token field in the form with the current value of the CSRF cookie.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -376,8 +389,21 @@ $text = Security::xss_clean($text);</code></pre>
 
 		<article>
 			<h4 id="method_htmlentities">htmlentities($value)</h4>
+<!-- 
+The possessive of an acronym plural has the apostrophe after the s.
+
+PBXs' 
+VLANs' 
+NICs' 
+PCs' 
+
+The only time we accept an 's is when the acronym is separated with
+periods. For example, Ph.D.'s."
+
+@source		http://answers.google.com/answers/threadview?id=499296
+ -->
 			<p>
-				The <strong>htmlentities</strong> method allows you to turn HTML characters into their entity equivalent. This method operates identical to PHP's htmlentities() function
+				The <strong>htmlentities</strong> method allows you to turn HTML characters into their entity equivalent. This method operates identical to PHPs' htmlentities() function
 				but supports arrays and objects as well.
 			</p>
 			<table class="method">
@@ -409,7 +435,7 @@ $text = Security::xss_clean($text);</code></pre>
 				</tr>
 				<tr>
 					<th>Throws</th>
-					<td><strong>RuntimeException</strong>, in case an object has been passed that can't be cast as string.</td>
+					<td><strong>RuntimeException</strong>, in case an object has been passed that cannot be cast as string.</td>
 				</tr>
 				<tr>
 					<th>Example</th>
