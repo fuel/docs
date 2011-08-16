@@ -90,7 +90,7 @@ public function action_404()
 
 public function action_my404()
 {
-	$original_uri = \Uri::detect();
+	$original_uri = \Input::detect_uri();
 	$result = \DB::select()->from('pages')->where('uri', $original_uri)->execute();
 	if(count($result) === 1)
 	{
