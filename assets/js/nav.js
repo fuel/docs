@@ -67,7 +67,7 @@ var nav = {
 				"DBUtil class":   	  "classes/database/dbutil.html",
 				"Query Building":	{
 					"Introduction":			"classes/database/qb.html",
-					"Insert builder":	"todo.html", //"classes/database/qb_insert.html",
+					"Insert builder":	"classes/database/qb_insert.html",
 					"Select builder":	"classes/database/qb_select.html",
 					"Update builder":	"classes/database/qb_update.html",
 					"Delete builder":	"classes/database/qb_delete.html",
@@ -145,6 +145,7 @@ var nav = {
 				"ACL":			"packages/auth/types/acl.html"
 			},
 			"SimpleAuth": {
+				"Introduction":	"packages/auth/simpleauth/intro.html",
 				"Login":		"packages/auth/simpleauth/login.html",
 				"Groups":		"packages/auth/simpleauth/groups.html",
 				"ACL":			"packages/auth/simpleauth/acl.html"

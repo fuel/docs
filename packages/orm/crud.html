@@ -99,8 +99,10 @@ $entry = Model_Article::find('all');
 
 // find all articles from category 1 order descending by date
 $entry = Model_Article::find('all', array(
-	'where' => array('category_id', 1),
-	'order_by' => array('date' => 'desc')
+	'where' =&gt; array(
+		array('category_id', 1),
+	),
+	'order_by' =&gt; array('date' =&gt; 'desc'),
 ));</code></pre>
 
 				<p>In this example it will always return an array of instances of Model_Article.</p>
@@ -166,12 +168,12 @@ $entry->delete();</code></pre>
 							<td>
 								<pre class="php"><code>// Single where
 Model_Article::find()-&gt;where('id', 4);
-Model_Article::find('all', array('where' =&gt; array('category_id', 5)));
+Model_Article::find('all', array('where' =&gt; array('category_id' => 5)));
 
 // Multiple where usage examples
-Model_Article::find()-&gt;where('id', 4)->where('category_id', '&gt;', 1);
-Model_Article::find()-&gt;where(array('id' => 4, 'category_id' =&gt; 6));
-Model_Article::find('all', array('where' => array(array('category_id', 5), array('publish', '&lt;', time()))));</code></pre>
+Model_Article::find()-&gt;where('id', 4)->where('category_id', '>', 1);
+Model_Article::find()-&gt;where(array('id' => 4, 'category_id' => 6));
+Model_Article::find('all', array('where' => array(array('category_id', '=', 5), array('publish', '<', time()))));</code></pre>
 							</td>
 						</tr>
 						<tr>

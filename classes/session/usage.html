@@ -60,7 +60,7 @@
 							</tr>
 							<tr>
 								<th><kbd>$instance</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>Cookiename (as defined in config/session.php) that identifies the required session instance.</td>
 							</tr>
 						</table>
@@ -106,12 +106,12 @@ $session = Session::instance('myappcookie');
 							</tr>
 							<tr>
 								<th><kbd>$name</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>Name of the session variable to set.</td>
 							</tr>
 							<tr>
 								<th><kbd>$value</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>
 									The session variables value.<br />
 									This can be any data type, but pay attention when storing objects in the session, as session data is serialized, and there are restrictions to serializing an object.
@@ -160,12 +160,12 @@ Session::set('array', array('varA', 'varB', 'varC' => array('val1', 'val2'));
 							</tr>
 							<tr>
 								<th><kbd>$variable</kbd></th>
-								<td><i>required</i></td>
-								<td>Name of the session variable to get.</td>
+								<td><pre class="php"><code>null</code></pre></td>
+								<td>Name of the session variable to get. If not specified, all session variables are returned.</td>
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>Default value to return in case the requested variable does not exist. If no default is given, the method will return <kbd>null</kbd>.</td>
 							</tr>
 						</table>
@@ -191,7 +191,9 @@ $arr = Session::get('array');
 
 // or get a specific key from the array
 $arr = Session::get('array.varC');
-</code></pre>
+
+// get all session variables
+$vars = Session::get();</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -218,7 +220,7 @@ $arr = Session::get('array.varC');
 							</tr>
 							<tr>
 								<th><kbd>$variable</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>Name of the session variable to delete.</td>
 							</tr>
 						</table>
@@ -264,12 +266,12 @@ Session::delete('array.varC');
 							</tr>
 							<tr>
 								<th><kbd>$name</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>Name of the session flash variable to set.</td>
 							</tr>
 							<tr>
 								<th><kbd>$value</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>
 									The session flash variables value.<br />
 									This can be any data type, but pay attention when storing objects in the session, as session data is serialized, and there are restrictions to serializing an object.
@@ -318,12 +320,12 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 							</tr>
 							<tr>
 								<th><kbd>$variable</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>Name of the session variable to get.</td>
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>Default value to return in case the requested variable does not exist. If no default is given, the method will return <kbd>null</kbd>.</td>
 							</tr>
 						</table>
@@ -366,7 +368,7 @@ $step = Session::get_flash('step');
 							</tr>
 							<tr>
 								<th><kbd>$variable</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>Name of the flash variable to keep.</td>
 							</tr>
 						</table>
@@ -409,7 +411,7 @@ Session::keep_flash('step');
 							</tr>
 							<tr>
 								<th><kbd>$variable</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>Name of the flash variable to delete.</td>
 							</tr>
 						</table>
