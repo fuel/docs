@@ -27,9 +27,9 @@
 		<h2>Orm</h2>
 
 		<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-			Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-			to esteblish relations between those objects.<br />
-			It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
+			Relational Mapper</a> which does two things: It maps your database table rows to objects and it allows you
+			to esteblish relations between those objects.
+			It follows closely to the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
 			Active Record Pattern</a>, but was also influenced by other systems.</p>
 
 		<h2 id="intro">Relations: Introduction</h2>
@@ -72,13 +72,14 @@
 				actions performed on the current object should be cascaded to the target. It will return an array of
 				<kbd>Model_Fancy_Comment</kbd> object where the comment's <kbd>parent_article_id</kbd> field
 				corresponds to the current object's <kbd>article_id</kbd>. When saving an object the operation is
-				also performed on its loaded relations, deleting isn't cascaded by default but can be if you switch
+				also performed on its loaded relations, deleting is not cascaded by default but can be if you switch
 				this on.</p>
 
-			<p class="note">There is a limitation when fetching relations and limiting their output: you can't use
-				complex where statements on the main object. That are queries using parenthesis for nesting conditions
-				using <kbd>where_open()</kbd>. Normal (non-nested) where queries can be applied without problems.<br />
-				Technically it works like this: to limit the output the query on the base model's
+			<p class="note">There is a limitation when fetching relations and limiting their output: You cannot use
+				complex where statements on the main object. That is, queries using parenthesis for nesting conditions
+				using <kbd>where_open()</kbd>. Normal (non-nested) where queries can be applied without any problems.
+				<br /><br />
+				Technically it works like this: To limit the output the query on the base model's
 				table is actually a subquery with a limit set on it. Any of those nested where conditions are applied
 				on the result of the subquery and further joined relations.</p>
 
@@ -132,7 +133,7 @@
 							<kbd>where</kbd> must be an array of arrays containing
 							<kbd>array(field, compare, value)</kbd>. <kbd>order_by</kbd> contains an array of fields or
 							associative <kbd>field => direction</kbd>.<br />
-							<strong>Note:</strong> these are always used and cannot be turned off.</td>
+							<strong>NOTE:</strong> These are always used and cannot be turned off.</td>
 					</tr>
 				</tbody>
 			</table>
@@ -142,7 +143,7 @@
 			<h2>Usage</h2>
 
 			<p>The Orm allows for both eager and lazy-loading of relationships. Eager loading means that some (or all)
-				relations are fetched in the original query. Lazy loading means that the relations aren't fetched until
+				relations are fetched in the original query. Lazy loading means that the relations are not fetched until
 				you request them.</p>
 
 			<pre class="php"><code>// eager loading, using joins:
@@ -151,7 +152,7 @@ $post = Model_Post::find('all', array('related' => array('comments')));
 $post = Model_Post::find()->related('comments')->get();
 // $post->comments is available without any further querying after this
 
-// or use lazy loading, it won't use joins but query a relation once requested
+// or use lazy loading, it will not use joins but query a relation once requested
 // first get a "post", 1 query without join
 $post = Model_Post::find('first');
 // now request the comments (not yet loaded), which will do another query without join automaticly
@@ -159,8 +160,8 @@ $comments = $post->comments;</code></pre>
 
 			<h3 id="usage_rel_conditions">Usage with where/order_by conditions</h3>
 
-			<p>You can also additional conditions when fetching with the Orm. Note though that would also mean the
-				data retrieved will only be valid to the conditions with which you fetched them.<br />
+			<p>You can also use additional conditions when fetching with the Orm. Note though that would also mean that the
+				data retrieved will only be valid to the conditions with which you fetched them.
 				Additional conditions are only possible with eager loading, though with lazy loading any default
 				conditions (see config table below) will be used of course.</p>
 
@@ -200,7 +201,7 @@ $post = Model_Post::query()->related('articles')
 				and order_by conditions, some are exemplified below.</p>
 
 			<p class="note">Note that the order matters here, if you want to fetch the relations of a relation you must
-				load the "parent" relation before it's relation. Otherwise an exception will be thrown.</p>
+				load the "parent" relation before its relation. Otherwise an exception will be thrown.</p>
 
 			<pre class="php"><code>// using array querying
 $post = Model_Post::find('first', array(
@@ -247,7 +248,7 @@ $post = Model_Post::query()
 
 			<ul>
 				<li><a href="belongs_to.html">Belongs To</a><br />
-					Has the primary key of the relation keps in its table, belongs to 1 related object.</li>
+					Has the primary key of the relation kept in its table, belongs to 1 related object.</li>
 				<li><a href="has_one.html">Has One</a><br />
 					Has its primary key saved in one other row of another table (which belongs to this), has 1
 					related object.</li>
@@ -255,7 +256,7 @@ $post = Model_Post::query()
 					Has its primary key saved in many other rows of another table (which belong to this one), has
 					many related objects.</li>
 				<li><a href="many_many.html">Many to Many</a><br />
-					Have their primary keys saved in a table in between which keeps pairs of primary keys from both
+					Have their primary keys saved in a table in between (look-up table), which keeps pairs of primary keys from both
 					tables. Have and belong to many objects.</li>
 			</ul>
 		</article>

@@ -27,9 +27,9 @@
 		<h2>Orm</h2>
 
 		<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-			Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-			to esteblish relations between those objects.<br />
-			It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
+			Relational Mapper</a> which does two things: It maps your database table rows to objects and it allows you
+			to esteblish relations between those objects.
+			It follows closely to the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
 			Active Record Pattern</a>, but was also influenced by other systems.</p>
 
 		<section>
@@ -43,8 +43,8 @@
 			<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
 
 			<p class="note">The above only works with the MySQL and MySQLi drivers because it needs to fetch the model
-				properties from the database. It is however not very efficient and thus discouraged to use it this way
-				because you'll always need that one extra query per model just to fetch the columnnames.</p>
+				properties from the database. It is, however, not very efficient and thus discouraged to use it this way
+				because you will always need that one extra query per model just to fetch the column names.</p>
 
 			<pre class="php"><code>class Model_Article extends Orm\Model {
 	protected static $_properties = array('id', 'title', 'contents', 'publish');
@@ -52,16 +52,16 @@
 
 			<h2 id="config">Configuration</h2>
 
-			<p>You can add static properties to the Model to configure it. As we've seen there are none required but
+			<p>You can add static properties to the Model to configure it. As we have seen there are none required but
 				setting <kbd>$_properties</kbd> is encouraged. All these can be both <kbd>public</kbd> and
-				<kbd>protected</kbd> but may NOT be <kbd>private</kbd>.<br />
+				<kbd>protected</kbd> but may NOT be <kbd>private</kbd>.<br /><br />
 				Note that all configuration properties are prefixed with a single underscore to prevent collisions with
 				your column names.</p>
 
 			<h3 id="table_name">protected static $_table_name</h3>
 
-			<p>When this isn't set the <kbd>Model_</kbd> prefix is removed from the classname and the classname is
-				pluralized. Thus "Model_Article" expects table "articles". If you don't follow this convention you can
+			<p>When this is not set the <kbd>Model_</kbd> prefix is removed from the classname and the classname is
+				pluralized. Thus "Model_Article" expects table "articles". If you do not follow this convention you can
 				change it by setting the <kbd>$table_name</kbd> property.</p>
 
 			<pre class="php"><code>class Model_Article extends Orm\Model {
@@ -70,24 +70,24 @@
 
 			<h3 id="primary_key">protected static $_primary_key</h3>
 
-			<p>By default this is set to <kbd>array('id')</kbd>, if you use another column name or multiple primary
+			<p>By default this is set to <kbd>array('id')</kbd>. If you use another column name or multiple primary
 				keys you need to set this property.</p>
 
 			<pre class="php"><code>class Model_Article extends Orm\Model {
 	protected static $_primary_key = array('aid');
 }</code></pre>
 
-			<p class="note">The primary key must be a real primary key: unique and unchanging. Don't use it for other
-				purposes (like a foreign key in a one-one relation) as well, that won't work as the PK can't be
-				changed. The Orm won't check this, and while it might seem to work at first glance: you'll get
+			<p class="note">The primary key must be a real primary key; unique and unchanging. Do not use it for other
+				purposes (like a foreign key in a one-one relation) as well, that will not work as the PK cannot be
+				changed. The Orm will not check this, and while it might seem to work at first glance, you will get
 				into trouble.<br />
 				It is not required for the PK to be auto_increment (though preferred) and you can specify the PK
-				yourself, but only the first time. Once it's set, it's set.</p>
+				yourself, but only the first time. Once it is set, it is set.</p>
 
 			<h3 id="propperties">protected static $_properties</h3>
 
-			<p>There's already a simple example above of adding all model properties, they can also be configured by
-			using the columnname as the key and setting options like type, label & validation.</p>
+			<p>There is already a simple example above of adding all model properties. They can also be configured by
+			using the column name as the key and setting options like type, label and validation.</p>
 
 			<pre class="php"><code>class Model_Article extends Orm\Model {
 	protected static $_properties = array(
@@ -108,7 +108,7 @@
 	);
 )</code></pre>
 
-			<p>Use of the validation rules shown here to do before save validation is shown in LINK HERE</p>
+			<p>Use of the validation rules shown here to do before save validation are listed in the <a href="validation/validation.html">Validation</a> class.</p>
 
 			<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many, $_many_through</h3>
 
@@ -117,7 +117,7 @@
 			<h3 id="connection">protected static $_connection</h3>
 
 			<p>By default this property does not exist and Model::connection() returns <kbd>null</kbd>, but you can set
-			it to any other database name configured in <kbd>app/config/db.php</kbd>. Note however that relations don't
+			it to any other database name configured in <kbd>app/config/db.php</kbd>. Note, however, that relations do not
 			work across connections.</p>
 
 			<pre class="php"><code>class Model_Article extends Orm\Model {

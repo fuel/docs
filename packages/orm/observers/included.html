@@ -27,9 +27,9 @@
 		<h2>Orm</h2>
 
 		<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-			Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-			to establish relations between those objects.<br />
-			It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
+			Relational Mapper</a> which does two things: It maps your database table rows to objects and it allows you
+			to establish relations between those objects.
+			It follows closely to the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
 			Active Record Pattern</a>, but was also influenced by other systems.</p>
 
 		<article id="included_observers">
@@ -37,8 +37,8 @@
 
 			<h3 id="os_self">Observer_Self</h3>
 
-			<p>While not exactly good practice, in some cases it's probably cleanest to just have the event method with
-				your model. That's where the Observer_Self comes in, it checks if you model has a method named after
+			<p>While not exactly good practice, in some cases it is probably cleanest to just have the event method with
+				your model. That is where the Observer_Self comes in; it checks if you model has a method named after
 				the event and prefixed with <kbd>_event_</kbd>. For example for the <kbd>after_save</kbd> event you need
 				to add a public method <kbd>_event_after_save()</kbd> to your model so it can have the observer call on
 				the model itself.</p>
@@ -212,19 +212,19 @@ echo $fieldset->build();</code></pre>
 
 			<h3 id="os_typing">Observer_Typing</h3>
 
-			<p>This is for 2 things: type enforcement for input and type casting for output from the DB. That means
-				that when you're saving the Typing observer will try to cast the input value to the expected type and
-				throw an exception when it can't. And when you're retrieving DB data, normally it would all be strings
-				(even integers and floats) but with the typing observer those will be cast to their scalar type.</p>
+			<p>This is for two things: Type enforcement for input and type casting for output from the DB. That means
+				that when you are saving, the Typing observer will try to cast the input value to the expected type and
+				throw an exception when it cannot. And when you are retrieving DB data, normally it would all be strings
+				(even integers and floats) but with the Typing observer those will be cast to their scalar type.</p>
 
-			<p>In addition to the above the Typing observer also adds support for serialized & json fields. Both should
+			<p>In addition to the above, the Typing observer also adds support for serialized and json fields. Both should
 				be string type fields ("text" preferably) but will have their value encoded for saving (using
 				<kbd>serialize()</kbd> or <kbd>json_encode()</kbd>) and decoded when retrieving from the DB (using
 				<kbd>unserialize()</kbd> or <kbd>json_decode()</kbd>).</p>
 
-			<p class="note">The Observer_Typing isn't meant as an alternative to validation, don't try to use it as
+			<p class="note">The Observer_Typing is not meant as an alternative to validation. Do not try to use it as
 				such. Neither are the exceptions thrown by this observer meant to be read by the visitor of your site,
-				they're meant to help you debug your code.</p>
+				they are meant to help you debug your code.</p>
 
 			<pre class="php"><code>// Just add the Observer
 protected static $_observers = array('Orm\\Observer_Typing');

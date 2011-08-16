@@ -34,7 +34,7 @@
 			<h2 id="writing_drivers">Writing your own drivers</h2>
 			
 			<p>
-				Writing drivers can be done in two ways. Either by extending the Auth driver classes
+				Writing drivers can be done in two ways: Either by extending the Auth driver classes
 				to create a new driver from scratch or extending the SimpleAuth classes and changing them where needed.
 			</p>
 			
@@ -48,7 +48,7 @@
 				<li>Acl (Auth_Acl_Driver).</li>
 			</ul>
 			
-			<h3 id="extending">Extending auth classes.</h3>
+			<h3 id="extending">Extending auth classes</h3>
 			
 			<p>Extend these classes like so:</p>
 			
@@ -63,7 +63,7 @@ class Auth_Login_MyDriver extends \Auth\Auth_Login_Driver {
 /* End of file mydriver.php */
 </code></pre>
 
-			<h3 id="implementing_function">Implementing functions.</h3>
+			<h3 id="implementing_function">Implementing functions</h3>
 			
 			<p>
 				When extending the Auth driver classes take note on the expected return values of each function that needs to be implemented.
@@ -79,7 +79,7 @@ class Auth_Login_MyDriver extends \Auth\Auth_Login_Driver {
 abstract public function get_user_id();</code></pre>
 
 			<p>
-				The code above show you the <em>get_user_id</em> function that every driver should have.
+				The code above shows you the <em>get_user_id</em> function that every driver should have.
 				Like in all classes you extend that have abstract functions, these functions must be defined in the extended class.
 				The return type of this function is provided in the comment, in this case <em>array(driver_id, user_id)</em>.
 				In order to get your driver to work alongside other drivers make sure you return the right values or your driver

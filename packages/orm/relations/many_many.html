@@ -27,9 +27,9 @@
 		<h2>Orm</h2>
 
 		<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-			Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-			to esteblish relations between those objects.<br />
-			It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
+			Relational Mapper</a> which does two things: It maps your database table rows to objects and it allows you
+			to esteblish relations between those objects.
+			It follows closely to the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
 			Active Record Pattern</a>, but was also influenced by other systems.</p>
 
 		<section>
@@ -37,11 +37,11 @@
 
 			<p>Specifies a many-to-many relationship to another model. The target model will have the same type of
 				relationship in the other direction. To allow for these relations you need a table in between with just
-				the 2 IDs from both sides of the relation as dual-primary key.</p>
+				the two IDs from both sides of the relation as dual-primary key.</p>
 
 			<h4>Keeping values with the relationship</h4>
 
-			<p>If you need to save values with the relationship table you don't want to use ManyMany but create a model
+			<p>If you need to save values with the relationship table you do not want to use ManyMany but create a model
 				in between instead which belongs to both sides of what you would otherwise call the ManyMany
 				relationship. It is described under "<a href="intro.html#usage_nested_rels">Usage with nested
 				relationships</a> how you can fetch all this.</p>
@@ -61,7 +61,7 @@
 					<tr>
 						<th>table_through</th>
 						<td>Calculated from model_to and model_from alphabetically ordered</td>
-						<td>This is the table that connects the 2 models and has both their IDs in it. For 2 models
+						<td>This is the table that connects the two models and has both their IDs in it. For two models
 							like Model_User and Model_Post it will be named posts_users by default (both plural).</td>
 					</tr>
 					<tr>
@@ -81,9 +81,9 @@
 
 			<h3>Example</h3>
 
-			<p>Let's say we have a model <kbd>Model_Post</kbd> and it <em>has many and belongs to many</em>
+			<p>Let us say we have a model <kbd>Model_Post</kbd> and it <em>has many and belongs to many</em>
 				<kbd>Model_User</kbd>s. The ID of the Model_Post is along with the ID of the Model_User in a table
-				called <kbd>posts_users</kbd> (default order is alphabetical). That table has just 2 columns:
+				called <kbd>posts_users</kbd> (default order is alphabetical). That table has just two columns:
 				<kbd>post_id</kbd> and <kbd>user_id</kbd> which are together the primary key of that table.<br />
 				If you keep to the defaults all you need to do is add <kbd>'users'</kbd> to the
 				<kbd>$_many_many</kbd> static property of the Model_Post:</p>

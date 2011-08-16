@@ -27,16 +27,16 @@
 		<h2>Orm</h2>
 
 		<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-			Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-			to esteblish relations between those objects.<br />
-			It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
+			Relational Mapper</a> which does two things: It maps your database table rows to objects and it allows you
+			to esteblish relations between those objects.
+			It follows closely to the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
 			Active Record Pattern</a>, but was also influenced by other systems.</p>
 
 		<article id="creating_observers">
 			<h2>Observers: Creating your own</h2>
 
 			<p>You can add any class as an observer by adding the full classname (namespace included) to the Observers
-				property of your model. There's 2 ways of creating classes that can be used as observers:</p>
+				property of your model. There are two ways of creating classes that can be used as observers:</p>
 
 			<h3>Extend the Orm\Observer class</h3>
 
@@ -52,14 +52,14 @@
 	}
 }</code></pre>
 
-			<p class="note">Extensions of the type Orm\Observer are singletons by default, as such you can't use a
-				method <kbd>instance()</kbd> or property <kbd>$_instance</kbd> or it won't work anymore. Because of this
+			<p class="note">Extensions of the type Orm\Observer are singletons by default, as such you cannot use a
+				method <kbd>instance()</kbd> or property <kbd>$_instance</kbd> or it will not work anymore. Because of this
 				methods may be both static or non-static.</p>
 
 			<h3>Have an orm_notify() method</h3>
 
 			<p>When you extend the <kbd>Orm\Observer</kbd> class it inherits an <kbd>orm_notify()</kbd> method that
-				will check if there's a method that matches the event and call it when possible. But you can use any
+				will check if there is a method that matches the event and call it when possible. But you can use any
 				class as an observer as long as it has an <kbd>orm_notify()</kbd> method. That will be called on events
 				and be passed the event name and a Model instance.</p>
 
