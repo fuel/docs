@@ -235,7 +235,8 @@ $children = Request::main()->children();</code></pre>
 
 		<article>
 			<h4 id="method_main">main()</h4>
-			<p>The <strong>main</strong> method returns the main Request instance (the one created by the initial page request).</p>
+			<p>The <strong>main</strong> method returns the main Request instance (the one created by the initial
+				page request).</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -258,6 +259,10 @@ $children = Request::main()->children();</code></pre>
 				</tr>
 				</tbody>
 			</table>
+
+			<p class="note">This is the first executed Request instance, not necessarily the root parent of the
+				current Request. That might be the case for example if the main Request 404s and you create a new
+				Request after that (which is what happens in the <kbd>_404_</kbd> route).</p>
 		</article>
 
 		<article>
