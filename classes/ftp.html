@@ -142,13 +142,13 @@
 					<th>Example</th>
 					<td>
 <pre class="php"><code>// Connect to the default server
-$ftp = Ftp::factory();
+$ftp = Ftp::forge();
 
 // Connect to a predefined server defined in config/ftp.php
-$ftp2 = Ftp::factory('image-storage');
+$ftp2 = Ftp::forge('image-storage');
 
 // Connect to a server on-the-fly
-$ftp3 = Ftp::factory(array(
+$ftp3 = Ftp::forge(array(
 	'hostname'		=>		'myspace.com',
 	'username'		=>		'',
 	'password'		=>		'',
@@ -413,7 +413,7 @@ $ftp->download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii'
 				<tr>
 					<th>Example</th>
 					<td>
-<pre class="php"><code>$ftp = Ftp::factory();
+<pre class="php"><code>$ftp = Ftp::forge();
 
 $ftp->connect($config);
 

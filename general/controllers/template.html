@@ -44,7 +44,7 @@
 	{
         $data = array();
 		$this->template->title = 'Example Page';
-		$this->template->content = View::factory('test/index', $data);
+		$this->template->content = View::forge('test/index', $data);
 	}
 }</code></pre>
 
@@ -71,7 +71,7 @@
 	{
         $data = array();
 		$this->template->title = 'Example Page';
-		$this->template->content = View::factory('test/index', $data);
+		$this->template->content = View::forge('test/index', $data);
 	}
 }</code></pre>
 
@@ -115,7 +115,7 @@
     public function action_index()
     {
         $this->template->title = 'Example Page';
-        $this->template->content = View::factory('test/index', $data);
+        $this->template->content = View::forge('test/index', $data);
     }
 }</code></pre>
 
@@ -132,7 +132,7 @@
 	
 	<p>
 		If you want to <strong>use the template</strong> layout, you will have to write <kbd>$this->response->body = $this->template;</kbd>
-		<br />If you <strong>don't</strong> want to <strong>use the template</strong> layout, write <kbd>$this->response->body = View::factory('test/index', $data);</kbd>
+		<br />If you <strong>don't</strong> want to <strong>use the template</strong> layout, write <kbd>$this->response->body = View::forge('test/index', $data);</kbd>
 	</p>
 
 	<pre><code>class Controller_Example extends Controller_Template {
@@ -149,7 +149,7 @@
 	public function action_index()
     {
         $this->template->title = 'Example Page';
-        $this->template->content = View::factory('test/index', $data);
+        $this->template->content = View::forge('test/index', $data);
 		
 		$this->response->body = $this->template; // show content in template
     }
@@ -159,7 +159,7 @@
 		$data['title']	= "Example Page";
 		$data['content'] = "Don't show me in the template";
 
-        $this->response->body = View::factory('index/test', $data); // show content without template
+        $this->response->body = View::forge('index/test', $data); // show content without template
     }
 }</code></pre>
 	

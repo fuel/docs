@@ -98,15 +98,15 @@
 			you can name it if you need multiple validation objects.</p>
 
 			<pre class="php"><code>// Use default
-$val = Validation::factory();
+$val = Validation::forge();
 
 // ... or name it
-$val = Validation::factory('my_validation');</code></pre>
+$val = Validation::forge('my_validation');</code></pre>
 
 			<p>After having it instantiated you can start adding fields to it. This works exactly like the when using
 			the Fieldset class, however here we'll only document the preferred usage.</p>
 
-			<pre class="php"><code>$val = Validation::factory('my_validation');
+			<pre class="php"><code>$val = Validation::forge('my_validation');
 
 // Add a field for username, give it the label "Your username" and make it required
 $val->add('username', 'Your username')->add_rule('required');
@@ -124,7 +124,7 @@ $val->add('password', 'Your password')->add_rule('required')
 			closures or parameters other then strings.</p>
 
 			<pre class="php"><code>// The same fields as the example above
-$val = Validation::factory('my_validation');
+$val = Validation::forge('my_validation');
 $val->add_field('username', 'Your username', 'required');
 $val->add_field('password', 'Your password', 'required|min_length[3]|max_length[10]');</code></pre>
 
@@ -442,13 +442,13 @@ class Myvalidation {
 }
 
 // and call it like:
-$val = Validation::factory();
+$val = Validation::forge();
 $val->add_callable('myvalidation'); // here we add the class to load rules from
 
 $val->add_field('username', 'Your username', 'trim|strip_tags|required|unique[users.username]');</code></pre>
 
         <p>3. Calling callbacks from a model. It works like a method described above, but we only need to call it in other way:</p>
-<pre class="php"><code>$val = Validation::factory();
+<pre class="php"><code>$val = Validation::forge();
 $val->add_model('Model_User');</code></pre>
 
         <p class="note">

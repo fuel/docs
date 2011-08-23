@@ -75,7 +75,7 @@
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>$article_form = Fieldset::factory('article');</code></pre>
+						<pre class="php"><code>$article_form = Fieldset::forge('article');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -318,7 +318,7 @@ $title_field = $article_form->field('article_title');</code></pre>
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>$article_form = Fieldset::factory('article');
+						<pre class="php"><code>$article_form = Fieldset::forge('article');
 $article_form->add_model('Model_Article');</code></pre>
 					</td>
 				</tr>
@@ -719,11 +719,11 @@ $article_form->set_config('key', 'value');</code></pre>
 				form based on the fields specified in <kbd>$_properties</kbd> of your model. In the example, $article
 				is an instance of Model_Article.</p>
 
-			<pre class="php"><code>echo Fieldset::factory('article')->add_model($article)->populate($article, true)->build();</code></pre>
+			<pre class="php"><code>echo Fieldset::forge('article')->add_model($article)->populate($article, true)->build();</code></pre>
 
 			<p>If you do not wish every property of the model to be on your form, you can define the form manually:</p>
 
-			<pre class="php"><code>$fieldset = Fieldset::factory('article');
+			<pre class="php"><code>$fieldset = Fieldset::forge('article');
 
 // If you have specific validation methods on the model you need this for validation
 $fieldset->add_callable($article, null, null);

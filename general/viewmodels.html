@@ -65,7 +65,7 @@
 
 			<p>And last we'll call the ViewModel from the controller:</p>
 
-			<pre><code>ViewModel::factory('Index');</code></pre>
+			<pre><code>ViewModel::forge('Index');</code></pre>
 
 			<p>Now we have everything setup there is still no data passed to the view. That still needs to get a
 			<kbd>$title</kbd> string and <kbd>$articles</kbd> array passed to it. This we do by adding a view() method
@@ -116,10 +116,10 @@ $echo_upper('this string'); // Outputs: "THIS STRING"</code></pre>
 
 			<p>If there are different ways of parsing the same View you can add multiple methods to the ViewModel other
 			than the default view() method. To use those you need to add the method's name as the second parameter to the
-			<kbd>ViewModel::factory()</kbd> method:</p>
+			<kbd>ViewModel::forge()</kbd> method:</p>
 
 			<pre><code>// will call other_method() upon the ViewModel from the above example
-ViewModel::factory('Index', 'other_method');</code></pre>
+ViewModel::forge('Index', 'other_method');</code></pre>
 
 			<h3 id="before_after">Before and after methods</h3>
 

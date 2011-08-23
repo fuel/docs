@@ -36,11 +36,11 @@
 
 		<p>You call a module controller method using the <a href="../classes/request.html">Request</a> class:</p>
 		<pre class="php"><code>// fetch the output of a controller
-$widget = Request::factory('mycontroller/mymethod/parms')->execute();
+$widget = Request::forge('mycontroller/mymethod/parms')->execute();
 echo $widget;
 
 // or fetch the output of a module
-$widget = Request::factory('mymodule/mycontroller/mymethod/parms', false)->execute();
+$widget = Request::forge('mymodule/mycontroller/mymethod/parms', false)->execute();
 echo $widget;
 </code></pre>
 		<p class="note">
@@ -79,7 +79,7 @@ class Controller_Widget extends Controller {
 
 		<pre class="php"><code>try
 {
-	\Request::factory('this_will_fail');
+	\Request::forge('this_will_fail');
 }
 catch (Request404Exception $e)
 {

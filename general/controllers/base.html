@@ -39,7 +39,7 @@
 	public function action_index()
 	{
 		$data['css'] = Asset::css(array('reset.css','960.css','main.css'));
-		$this->response->body = View::factory('test/index', $data);
+		$this->response->body = View::forge('test/index', $data);
 	}
 }</code></pre>
 
@@ -53,7 +53,7 @@
 {
 	$data['name_1'] = strtoupper($name_1);
 	$data['name_2'] = strtoupper($name_2);
-	$this->response->body = View::factory('test/name_to_upper', $data);
+	$this->response->body = View::forge('test/name_to_upper', $data);
 }</code></pre>
 
 		<p>If we call this method using: <kbd>www.yoursite.com/example/name_to_upper/fuel/php</kbd>, it will return the view <kbd>test/name_to_upper</kbd>. "Fuel" and "PHP" will be passed along as values <var>$name_1</var> and <var>$name_2</var> in the <var>$data</var> array. </p>
