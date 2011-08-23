@@ -35,8 +35,10 @@
 		<section>
 			<h2 id="creation">Creating Models</h2>
 
-			<p>Creating a model takes little time, the convention is to use the <kbd>Model_</kbd> prefix and thus place
-				them in <kbd>app/classes/model/</kbd> but you are free to use whatever name you choose.</p>
+			<p>Creating a model takes little time, the convention is to use the <kbd>Model_</kbd> 
+				prefix for the class (eg Model_Article using the filename article.php) and thus 
+				place them in <kbd>app/classes/model/</kbd> but you are free to use 
+				whatever name you choose.</p>
 
 			<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
 
@@ -93,7 +95,8 @@
 		'name' => array(
 			'type' => 'varchar',
 			'label' => 'Article Name',
-			'validation' => array('required', 'min_length' => array(3), 'max_length' => array(20))
+			'validation' => array('required', 'min_length' => array(3), 'max_length' => array(20)),
+			'default' => 'New article'
 		),
 		'url' => array(
 			'type' => 'varchar',

@@ -946,9 +946,9 @@ $users = $mongodb->get('users');
 		</article>
 		
 		<article>
-			<h4 id="method_like">where_like($field = '', $value = '', $flags = 'i', $enable_start_wildcard = true, $enable_end_wildcard = true)</h4>
+			<h4 id="method_like">like($field = '', $value = '', $flags = 'i', $enable_start_wildcard = true, $enable_end_wildcard = true)</h4>
 			<p>
-				The <strong>where_ne</strong> method sets the 'where not equal to' statement.
+				The <strong>like</strong> method a sets a 'like' statement.
 			</p>
 			<table class="method">
 				<tbody>
@@ -1018,7 +1018,7 @@ $users = $mongodb->get('users');
 					<td>
 						<pre class="php"><code>// Get an instance
 $mongodb = \Mongo_Db::instance();
-$mongodb->where_like('name', 'fran', 'im', true);
+$mongodb->like('name', 'fran', 'im', true);
 $users = $mongodb->get('users');
 </code></pre>
 					</td>

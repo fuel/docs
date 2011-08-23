@@ -29,8 +29,37 @@
 		<p>The input class allows you to access HTTP parameters, load server variables and user agent details.</p>
 
 		<article>
+			<h4 id="method_detect_uri">detect_uri()</h4>
+			<p>The <strong>detect_uri</strong> method detects the current URI to build the correct string.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>None</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Example URL: http://localhost/controller/method
+echo Input::detect_uri(); // returns controller/method</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
 			<h4 id="method_cookie">cookie($index, $default = null)</h4>
-			<p>The <strong>cookie</strong> method allows you to read $_COOKIE variables.</p>
+			<p>The <strong>cookie</strong> method allows you to read $_COOKIE variables. Call without params to fetch the
+			full cookie array.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -48,7 +77,7 @@
 							</tr>
 							<tr>
 								<th><kbd>$index</kbd></th>
-								<td><i>Required</i></td>
+								<td><i>optional</i></td>
 								<td>The key in the $_COOKIE array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
 							</tr>
 							<tr>
@@ -75,7 +104,7 @@
 
 		<article>
 			<h4 id="method_delete">delete($index, $default = null)</h4>
-			<p>The <strong>delete</strong> method allows you to read parameters from php://input stream when called via DELETE.</p>
+			<p>The <strong>delete</strong> method allows you to read parameters from php://input stream when called via DELETE. Call without params to fetch the full array.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -93,7 +122,7 @@
 							</tr>
 							<tr>
 								<th><kbd>$index</kbd></th>
-								<td><i>required</i></td>
+								<td><i>optional</i></td>
 								<td>The key in the php://input stream.</td>
 							</tr>
 							<tr>
@@ -119,8 +148,54 @@
 		</article>
 
 		<article>
+			<h4 id="method_put">put($index, $default = null)</h4>
+			<p>The <strong>put</strong> method allows you to read parameters from php://input stream when called via PUT.
+			Call without params to fetch the full array.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$index</kbd></th>
+								<td><i>optional</i></td>
+								<td>The key in the php://input stream.</td>
+							</tr>
+							<tr>
+								<th><kbd>$default</kbd></th>
+								<td><i>optional</i></td>
+								<td>What value should be returned if the array item is not found?</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>mixed</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre><code class="php">Input::put('foo', 'bar');</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
 			<h4 id="method_get">get($index, $default = null)</h4>
-			<p>The <strong>get</strong> method allows you to read $_GET variables.</p>
+			<p>The <strong>get</strong> method allows you to read $_GET variables. Call without params to fetch the full array.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -139,7 +214,7 @@
 							<tr>
 								<th><kbd>$index</kbd></th>
 								<td><i>required</i></td>
-								<td>The key in the $_GET array, or <kbd>null</kbd> for the entire array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
+								<td>The key in the $_GET array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
@@ -169,7 +244,7 @@ Input::get('somevar.foo.bar');</code></pre>
 
 		<article>
 			<h4 id="method_post">post($index, $default = null)</h4>
-			<p>The <strong>post</strong> method allows you to read $_POST variables.</p>
+			<p>The <strong>post</strong> method allows you to read $_POST variables. Call without params to fetch the full array.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -187,8 +262,8 @@ Input::get('somevar.foo.bar');</code></pre>
 							</tr>
 							<tr>
 								<th><kbd>$index</kbd></th>
-								<td><i>required</i></td>
-								<td>The key in the $_POST array, or <kbd>null</kbd> for the entire array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
+								<td><i>optional</i></td>
+								<td>The key in the $_POST array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
@@ -343,51 +418,6 @@ Input::post('somevar.foo.bar');</code></pre>
 		</article>
 
 		<article>
-			<h4 id="method_put">put($index, $default = null)</h4>
-			<p>The <strong>put</strong> method allows you to read parameters from php://input stream when called via PUT.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$index</kbd></th>
-								<td><i>required</i></td>
-								<td>The key in the php://input stream.</td>
-							</tr>
-							<tr>
-								<th><kbd>$default</kbd></th>
-								<td><i>optional</i></td>
-								<td>What value should be returned if the array item is not found?</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>mixed</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre><code class="php">Input::put('foo', 'bar');</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
 			<h4 id="method_ip">ip()</h4>
 			<p>The <strong>ip</strong> method returns the public IP address of the user. If the user operates from behind a proxy server, the IP address of that server is returned.</p>
 			<table class="method">
@@ -443,7 +473,8 @@ Input::post('somevar.foo.bar');</code></pre>
 
 		<article>
 			<h4 id="method_server">server($index, $default = null)</h4>
-			<p>The <strong>server</strong> method allows you to read parameters from the $_SERVER array with default values.</p>
+			<p>The <strong>server</strong> method allows you to read parameters from the $_SERVER array with default
+				values. Call without params to fetch the full array.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -461,7 +492,7 @@ Input::post('somevar.foo.bar');</code></pre>
 							</tr>
 							<tr>
 								<th><kbd>$index</kbd></th>
-								<td><i>required</i></td>
+								<td><i>optional</i></td>
 								<td>The key in the $_SERVER array.</td>
 							</tr>
 							<tr>

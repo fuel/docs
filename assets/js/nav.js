@@ -19,28 +19,29 @@ var nav = {
 			"Troubleshooting":		"installation/troubleshooting.html"
 		},
 		"General": {
-			"Model-View-Controller":	"general/mvc.html",
-			"HMVC Requests":	"general/hmvc.html",
+			"Classes": {
+				"Introduction":		"general/classes.html",
+				"Extending Core":	"general/extending_core.html"
+			},
+			"Coding Standards":	"general/coding_standards.html",
+			"Configuration":	"general/configuration.html",
 			"Controllers": {
 				"Base" :		"general/controllers/base.html",
 				"Template":		"general/controllers/template.html",
 				"Rest":			"general/controllers/rest.html"
 			},
-			"404 handling":		"general/404.html",
+			"HMVC Requests":	"general/hmvc.html",
+			"Modules":			"general/modules.html",
 			"Models":			"general/models.html",
+			"Model-View-Controller":	"general/mvc.html",
+			"Migrations":		"general/migrations.html",
 			"Views":			"general/views.html",
 			"ViewModels":		"general/viewmodels.html",
 			"Routing":			"general/routing.html",
-			"Classes": {
-				"Introduction":		"general/classes.html",
-				"Extending Core":	"general/extending_core.html"
-			},
-			"Modules":			"general/modules.html",
 			"Packages":			"general/packages.html",
 			"Security":			"general/security.html",
 			"Tasks":			"general/tasks.html",
-			"Migrations":		"general/migrations.html",
-			"Coding Standards":	"general/coding_standards.html"
+			"404 handling":		"general/404.html",
 		},
 		"Classes": {
 			"Agent": {
@@ -66,7 +67,7 @@ var nav = {
 				"DBUtil class":   	  "classes/database/dbutil.html",
 				"Query Building":	{
 					"Introduction":			"classes/database/qb.html",
-					"Insert builder":	"todo.html", //"classes/database/qb_insert.html",
+					"Insert builder":	"classes/database/qb_insert.html",
 					"Select builder":	"classes/database/qb_select.html",
 					"Update builder":	"classes/database/qb_update.html",
 					"Delete builder":	"classes/database/qb_delete.html",
@@ -144,6 +145,7 @@ var nav = {
 				"ACL":			"packages/auth/types/acl.html"
 			},
 			"SimpleAuth": {
+				"Introduction":	"packages/auth/simpleauth/intro.html",
 				"Login":		"packages/auth/simpleauth/login.html",
 				"Groups":		"packages/auth/simpleauth/groups.html",
 				"ACL":			"packages/auth/simpleauth/acl.html"

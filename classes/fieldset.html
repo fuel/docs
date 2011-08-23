@@ -81,7 +81,7 @@
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_instance">instance($instance = null)</h4>
 			<p>Returns a specific instance, or the default instance (is created if necessary).</p>
@@ -124,7 +124,7 @@
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_validation">validation()</h4>
 			<p>Gets the Validation instance for the current Fieldset. Creates the Validation instance if it doesn't already exist.</p>
@@ -147,7 +147,7 @@
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_form">form()</h4>
 			<p>Gets the Form instance for the current Fieldset. Creates the Form instance if it doesn't already exist.</p>
@@ -170,7 +170,7 @@
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_add">add($name, $label = '', array $attributes = array(), array $rules = array())</h4>
 			<p>Creates a Fieldset_Field instance and adds it to the current Fieldset.</p>
@@ -227,7 +227,7 @@
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_field">field($name = null)</h4>
 			<p>Gets one or all Fieldset_Field instances for the current Fieldset.</p>
@@ -271,10 +271,11 @@ $title_field = $article_form->field('article_title');</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article id="method_add_model">
 			<h4>add_model($class, $instance = null, $method = 'set_form_fields')</h4>
-			<p>Add a model's fields. The model must have a method <kbd>set_form_fields()</kbd> that takes this Fieldset instance and adds fields to it.</p>
+			<p>Add a model's fields. The model must have a method <kbd>set_form_fields()</kbd> that takes this Fieldset instance and adds fields to it.<br />
+				<kbd>Orm\Model</kbd> have support this build in.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -324,7 +325,7 @@ $article_form->add_model('Model_Article');</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_set_config">set_config($config, $value = null)</h4>
 			<p>Sets a config value on the fieldset.</p>
@@ -375,7 +376,7 @@ $article_form->set_config('key', 'value');</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article id="method_get_config">
 			<h4>get_config($key = null, $default = null)</h4>
 			<p>Get the configuration array or one or more config values by key.</p>
@@ -422,7 +423,7 @@ $article_form->set_config('key', 'value');</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_populate">populate($input, $repopulate = false)</h4>
 			<p>Set initial field values to the given input, optionally set it to repopulate after that as well.</p>
@@ -464,13 +465,13 @@ $article_form->set_config('key', 'value');</code></pre>
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>$article_form->repopulate($model);</code></pre>
+						<pre class="php"><code>$article_form->populate($model);</code></pre>
 					</td>
 				</tr>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_repopulate">repopulate()</h4>
 			<p>Set all field values to the input send by a form submission (uses the form <kbd>method</kbd> attribute
@@ -500,7 +501,7 @@ $article_form->set_config('key', 'value');</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_build">build($action = null)</h4>
 			<p>Alias for $this->form()->build() for this fieldset. Generates the HTML form markup. See <a href="form.html">Form</a>.</p>
@@ -542,7 +543,7 @@ $article_form->set_config('key', 'value');</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_input">input($field = null)</h4>
 			<p>Alias for $this->validation()->input(). Gets an array of validated input value(s) from either POST data or given input. See <a href="validation/validation.html#usage">Validation</a>.</p>
@@ -584,7 +585,7 @@ $article_form->set_config('key', 'value');</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_validated">validated($field = null)</h4>
 			<p>Alias for $this->validation()->validated(). Gets an array of input value(s) that passed validation. See <a href="validation/validation.html#usage">Validation</a>.</p>
@@ -626,7 +627,7 @@ $article_form->set_config('key', 'value');</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_errors">errors($field = null)</h4>
 			<p>Alias for $this->validation()->errors(). Gets an array of input value(s) that did not pass validation. See <a href="validation/validation.html#usage">Validation</a>.</p>
@@ -668,7 +669,7 @@ $article_form->set_config('key', 'value');</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h4 id="method_show_errors">show_errors(Array $config = array())</h4>
 			<p>Alias for $this->validation()->show_errors(). Returns all errors in a list or with set markup from the $config parameter. See <a href="validation/validation.html#usage">Validation</a>.</p>
@@ -710,29 +711,33 @@ $article_form->set_config('key', 'value');</code></pre>
 				</tbody>
 			</table>
 		</article>
-		
+
 		<article>
 			<h2 id="create_forms_orm">Creating Forms with ORM Models</h2>
-			
-			<p>The Fieldset class can be used to create forms from ORM models. The following example will build a form based on the fields specified in <kbd>$_properties</kbd> of your model. In the example, $article is
-			an instance of Model_Article.</p>
-			
-			<pre class="php"><code>echo Fieldset::factory('article')->add_model($article)->populate($article, true)->build();</code></pre>
-			
-			<p>If you do not wish every property of the model to be on your form, you can define the form manually:</p>
-			
-			<pre class="php"><code>$fieldset = Fieldset::factory('article')->add_model($article, null, null);
 
+			<p>The Fieldset class can be used to create forms from ORM models. The following example will build a
+				form based on the fields specified in <kbd>$_properties</kbd> of your model. In the example, $article
+				is an instance of Model_Article.</p>
+
+			<pre class="php"><code>echo Fieldset::factory('article')->add_model($article)->populate($article, true)->build();</code></pre>
+
+			<p>If you do not wish every property of the model to be on your form, you can define the form manually:</p>
+
+			<pre class="php"><code>$fieldset = Fieldset::factory('article');
+
+// If you have specific validation methods on the model you need this for validation
+$fieldset->add_callable($article, null, null);
+
+// Add the fields
 $fieldset->add('name', 'Article Name', array('type' => 'text'));
 $fieldset->add('url', 'Article\'s URL', array('type' => 'text'));
 $fieldset->add('submit', ' ', array('value' => 'Submit', 'type' => 'submit'));
 
-$fieldset->populate($article, TRUE);
-
-echo $fieldset->build();
-</code></pre>
+// Populate with your $article instance and second param is true to use POST
+// to overwrite those values when available
+$fieldset->populate($article, true);</code></pre>
 		</article>
-		
+
 		<p><strong>More examples to be written.</strong></p>
 
 	</section>

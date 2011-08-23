@@ -272,7 +272,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					<th>Returns</th>
 					<td>array - a natural-case sorted array with subdirectories on top. Directories have a string key
 					with array value (or false when not read because of $depth limitation) and files are int indexed
-					with filename as value.</td>
+					with filename as value. All directories are suffixed with a directory separator.</td>
 				</tr>
 				<tr>
 					<th>Throws</th>
@@ -1048,7 +1048,7 @@ File::close_file($resource);</code></pre>
 
 		<article>
 			<h4 id="method_get_time">get_time($path, $type = 'modified', $area = null)</h4>
-			<p>Retrieves the octal permissions for a file or directory.</p>
+			<p>Retrieves the created or modified time of a file or directory.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -1097,7 +1097,7 @@ File::close_file($resource);</code></pre>
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>$permissions = File::get_time(DOCROOT.'/my_dir/text.txt', 'created);</code></pre>
+						<pre class="php"><code>$permissions = File::get_time(DOCROOT.'/my_dir/text.txt', 'created');</code></pre>
 					</td>
 				</tr>
 				</tbody>
