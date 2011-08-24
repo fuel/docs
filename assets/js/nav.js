@@ -11,6 +11,7 @@ var nav = {
 			"Home":			"index.html",
 			"Requirements":	"requirements.html",
 			"License":		"license.html",
+			"Contribute":	"contribute.html",
 			"Credits":		"credits.html"
 		},
 		"Installation": {
