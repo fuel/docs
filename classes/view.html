@@ -134,7 +134,7 @@
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Will create a View object for APPPATH/
-$view = View::factory('path/to/view', array(
+$view = View::forge('path/to/view', array(
 	'menu' => $menu,
 	'articles' => $articles,
 	'footer_links' => $footer_links,
@@ -179,7 +179,7 @@ $view = View::factory('path/to/view', array(
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$view = View::factory('path/to/view', array(
+							<pre class="php"><code>$view = View::forge('path/to/view', array(
 	'menu' => $menu,
 	'articles' => $articles,
 	'footer_links' => $footer_links,
@@ -193,7 +193,7 @@ $view->auto_encode(false);
 
 // or chain it
 
-$view = View::factory('path/to/view', array(
+$view = View::forge('path/to/view', array(
 	'menu' => $menu,
 	'articles' => $articles,
 	'footer_links' => $footer_links,
@@ -513,15 +513,15 @@ $view->bind(array(
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$html = View::factory()->render('path/to/view');
+							<pre class="php"><code>$html = View::forge()->render('path/to/view');
 
 // or
 
-$html = View::factory('path/to/view')->render();
+$html = View::forge('path/to/view')->render();
 
 // or
 
-$html = View::factory()->set_filename('path/to/view')->render();
+$html = View::forge()->set_filename('path/to/view')->render();
 </code></pre>
 						</td>
 					</tr>

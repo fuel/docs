@@ -66,19 +66,19 @@
 	public function action_action1()
 	{
 		$this->template->title = 'Posts &raquo Action1';
-		$this->template->content = View::factory('posts/action1');
+		$this->template->content = View::forge('posts/action1');
 	}
 
 	public function action_action2()
 	{
 		$this->template->title = 'Posts &raquo Action2';
-		$this->template->content = View::factory('posts/action2');
+		$this->template->content = View::forge('posts/action2');
 	}
 
 	public function action_action3()
 	{
 		$this->template->title = 'Posts &raquo Action3';
-		$this->template->content = View::factory('posts/action3');
+		$this->template->content = View::forge('posts/action3');
 	}
 
 }
@@ -200,7 +200,7 @@ Migrated to latest version: 3.
 	{
 		$data['monkeys'] = Model_Monkey::find('all');
 		$this->template->title = "Monkeys";
-		$this->template->content = View::factory('monkeys/index', $data);
+		$this->template->content = View::forge('monkeys/index', $data);
 	}
 
 	public function action_view($id = null)
@@ -208,14 +208,14 @@ Migrated to latest version: 3.
 		$data['monkey'] = Model_Monkey::find($id);
 
 		$this->template->title = "Monkey";
-		$this->template->content = View::factory('monkeys/view', $data);
+		$this->template->content = View::forge('monkeys/view', $data);
 	}
 
 	public function action_create($id = null)
 	{
 		if ($_POST)
 		{
-			$monkey = Model_Monkey::factory(array(
+			$monkey = Model_Monkey::forge(array(
 				'name' => Input::post('name'),
 				'description' => Input::post('description'),
 			));
@@ -235,7 +235,7 @@ Migrated to latest version: 3.
 		}
 
 		$this->template->title = "Monkeys";
-		$this->template->content = View::factory('monkeys/create');
+		$this->template->content = View::forge('monkeys/create');
 	}
 
 	public function action_edit($id = null)
@@ -266,7 +266,7 @@ Migrated to latest version: 3.
 		}
 
 		$this->template->title = "Monkeys";
-		$this->template->content = View::factory('monkeys/edit');
+		$this->template->content = View::forge('monkeys/edit');
 	}
 
 	public function action_delete($id = null)

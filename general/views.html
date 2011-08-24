@@ -71,14 +71,14 @@
 	$data['title'] = 'Home';
 
 	//assign the view to browser output
-	$this->response->body = View::factory('home/index', $data);
+	$this->response->body = View::forge('home/index', $data);
 }</code></pre>
 
 		<p><strong>Method 2 (using example view above):</strong></p>
 
 <pre><code>class Controller_Home extends Controller {
 	//create the view
-	$view = View::factory('home/index');
+	$view = View::forge('home/index');
 
 	//assign variables for the view
 	$view->username = 'Joe14';
@@ -101,7 +101,7 @@
 
 	public function action_index()
 	{
-		$view = \View::factory('example');
+		$view = \View::forge('example');
 
 		// add it unfiltered just like you added
 		// add it filtered, outputs: &amp;lt;strong&amp;gt;not bold because filtered&amp;lt;/strong&amp;gt;
@@ -170,7 +170,7 @@
 	public function action_index()
 	{
 		//create the view
-		$view = View::factory('layout');
+		$view = View::forge('layout');
 
 		//assign variables
 		$view->username = 'Joe14';
@@ -178,10 +178,10 @@
 		$view->site_title = 'My Website';
 
 		//assign views as variables
-		$view->head = View::factory('head');
-		$view->header = View::factory('header');
-		$view->content = View::factory('content');
-		$view->footer = View::factory('footer');
+		$view->head = View::forge('head');
+		$view->header = View::forge('header');
+		$view->content = View::forge('content');
+		$view->footer = View::forge('footer');
 
 		//assign to browser output
 		$this->response->body = $view;
@@ -201,13 +201,13 @@
 		$data['username'] = 'Joe14';
 
 		//assign views as variables
-		$data['head'] = View::factory('head', $data)->render();
-		$data['header'] = View::factory('header', $data)->render();
-		$data['content'] = View::factory('content', $data)->render();
-		$data['footer'] = View::factory('footer', $data)->render();
+		$data['head'] = View::forge('head', $data)->render();
+		$data['header'] = View::forge('header', $data)->render();
+		$data['content'] = View::forge('content', $data)->render();
+		$data['footer'] = View::forge('footer', $data)->render();
 
 		//assign to browser output
-		$this->output = View::factory('layout', $data);
+		$this->output = View::forge('layout', $data);
 	}
 }</code></pre>
 

@@ -106,7 +106,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
     {
         $data['articles'] = Model_Article::find('all');
         $this->template->title = "Articles";
-        $this->template->content = View::factory('articles/index', $data);
+        $this->template->content = View::forge('articles/index', $data);
     }
 
     public function action_view($id = false)
@@ -117,12 +117,12 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
         }
 
         $this->template->title = "Article";
-        $this->template->content = View::factory('articles/view', $data);
+        $this->template->content = View::forge('articles/view', $data);
     }
 
     public function action_create()
     {
-        $article = Model_Article::factory();
+        $article = Model_Article::forge();
 
         if (Input::method() == 'POST')
 		{
@@ -143,7 +143,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 
         $this->template->set_global('article', $article, false);
         $this->template->title = "Articles";
-        $this->template->content = View::factory('articles/create');
+        $this->template->content = View::forge('articles/create');
     }
 
     public function action_edit($id = false)
@@ -171,7 +171,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 
         $this->template->set_global('article', $article, false);
         $this->template->title = "Articles";
-        $this->template->content = View::factory('articles/edit');
+        $this->template->content = View::forge('articles/edit');
     }
 
     public function action_delete($id = null)
@@ -200,7 +200,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 	echo $fs->show_errors();
 }
 
-$fieldset = Fieldset::factory('article')->add_model($article, null, null);
+$fieldset = Fieldset::forge('article')->add_model($article, null, null);
 
 $fieldset->add('name', 'Article Name', array('type' => 'text'));
 $fieldset->add('url', 'Article\'s URL', array('type' => 'text'));
