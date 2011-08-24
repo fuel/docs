@@ -83,7 +83,7 @@
 					<td>
 						<pre class="php">
 <code>// instantiate a database session
-$session = Session::factory('db');
+$session = Session::forge('db');
 
 // get the counter from the session
 $counter = $session->get('counter');
@@ -100,7 +100,7 @@ $session->set('counter', $counter);
 // no need to explicitly write, Fuel will take care of that...
 
 // you can also load a driver with settings that will override the defaults in the config file
-$session = Session::factory( array('driver' => 'memcached', 'expiration_time' => 3600, 'memcached' = array('cookie_name' => 'appcookie')) );
+$session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3600, 'memcached' = array('cookie_name' => 'appcookie')) );
 </code></pre>
 					</td>
 				</tr>

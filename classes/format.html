@@ -67,7 +67,7 @@
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>$array = array('foo' => 'bar');
-print_r( Format::factory( $array ) );
+print_r( Format::forge( $array ) );
 
 // Returns
 Fuel\Core\Format Object
@@ -118,7 +118,7 @@ Fuel\Core\Format Object
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
-print_r( Format::factory( $json_string, 'json' )->to_array() );
+print_r( Format::forge( $json_string, 'json' )->to_array() );
 
 // Returns
 Array
@@ -177,7 +177,7 @@ Array
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
-print_r( Format::factory( $array )->to_xml() );
+print_r( Format::forge( $array )->to_xml() );
 
 // Returns
 // &lt;?xml version="1.0" encoding="utf-8"?&gt;
@@ -209,7 +209,7 @@ print_r( Format::factory( $array )->to_xml() );
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
-print_r( Format::factory( $json_string, 'json' )->to_csv() );
+print_r( Format::forge( $json_string, 'json' )->to_csv() );
 
 // Returns
 //
@@ -238,7 +238,7 @@ print_r( Format::factory( $json_string, 'json' )->to_csv() );
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
-print_r( Format::factory( $array )->to_json() );
+print_r( Format::forge( $array )->to_json() );
 
 // Returns
 // {"foo":"bar","baz":"qux"}</code>
@@ -266,7 +266,7 @@ print_r( Format::factory( $array )->to_json() );
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
-print_r( Format::factory( $array )->to_serialized() );
+print_r( Format::forge( $array )->to_serialized() );
 
 // Returns
 // a:2:{s:3:"foo";s:3:"bar";s:3:"baz";s:3:"qux";}</code>
@@ -294,7 +294,7 @@ print_r( Format::factory( $array )->to_serialized() );
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>$array = array (1, 2, array ("a", "b", "c"));
-echo Format::factory( $array )->to_php();
+echo Format::forge( $array )->to_php();
 
 // Returns
 "array (

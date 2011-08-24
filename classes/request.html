@@ -67,7 +67,7 @@
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>// create the request object for the admin controller, login method
-$request = Request::factory('admin/login');
+$request = Request::forge('admin/login');
 
 // note that this only creates the object, it does not execute the request!</code></pre>
 					</td>
@@ -97,7 +97,7 @@ $request = Request::factory('admin/login');
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>// create and execute the request object for the admin controller, login method
-$request = Request::factory('admin/login')->execute();</code></pre>
+$request = Request::forge('admin/login')->execute();</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -125,11 +125,11 @@ $request = Request::factory('admin/login')->execute();</code></pre>
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>// execute the request, fetch the response, and display it
-$response = Request::factory('admin/login')->execute()->response();
+$response = Request::forge('admin/login')->execute()->response();
 echo $response;
 
 // The Request object contains a __toString() method as an alternative way to fetch the output
-$output = Request::factory('admin/login')->execute();
+$output = Request::forge('admin/login')->execute();
 echo $output;</code></pre>
 					</td>
 				</tr>
