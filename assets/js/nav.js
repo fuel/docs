@@ -169,6 +169,9 @@ var nav = {
 				"Included observers":	"packages/orm/observers/included.html",
 				"Writing your own":		"packages/orm/observers/creating.html"
 			}
+		},
+		"Parser Package": {
+			"Introduction":		"packages/parser/intro.html"
 		}
 };
 
