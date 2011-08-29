@@ -101,16 +101,19 @@ $session = Session::instance('myappcookie');
 						<table class="parameters">
 							<tr>
 								<th>Param</th>
+								<th>Type</th>
 								<th>Default</th>
 								<th class="description">Description</th>
 							</tr>
 							<tr>
 								<th><kbd>$name</kbd></th>
+								<td><em>string|array</em></td>
 								<td><em>required</em></td>
-								<td>Name of the session variable to set.</td>
+								<td>Name of the session variable to set or associative array of values.</td>
 							</tr>
 							<tr>
 								<th><kbd>$value</kbd></th>
+								<td><em>mixed</em></td>
 								<td><pre class="php"><code>null</code></pre></td>
 								<td>
 									The session variables value.<br />
@@ -133,6 +136,15 @@ Session::set('userid', $userid);
 
 // you can also store more complex values
 Session::set('array', array('varA', 'varB', 'varC' => array('val1', 'val2'));
+
+// you can also use an array to set multiple values at the same time
+Session::set(array(
+	'userid' => $userid,
+	'has_cookies' => function()
+	{
+		return (bool) \Cookie::get('has_them', false);
+	}
+));
 </code></pre>
 					</td>
 				</tr>
