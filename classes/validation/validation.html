@@ -354,9 +354,14 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 			<p class="note">Errors are returned as Validation_Error objects which you can work with for more flexible
 			output, if you don't need that just cast the Validation_Error object to a string to get the error message.</p>
 
-			<p>Error messages are set using a language file "validation.php" which is loaded automatically.</p>
+			<p>Error messages are set using a language file "validation.php" which is loaded automatically. You can create your own validation.php in fuel/lang/&lt;lang&gt;/validation.php which will override the default error messages define in the core validation language file. For example:</p>
+			<pre class="php"><code>//fuel/app/lang/en/validation.php
+return array(
+	'required' => 'Custom message',
+	'unique' => 'The field :label is not unique'
+);</code></pre>
 
-			<p>There are 2 ways of manipulating the error messages during validation.</p>
+		  <p>There are two ways of manipulating the error messages during validation.</p>
 
 			<pre class="php"><code>// change a rule per validation object
 $val->set_message('required', 'The field :label is required.');
@@ -428,7 +433,7 @@ $field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
             <pre class="php"><code>// app/classes/myvalidation.php
 class Myvalidation {
 
-    public function _validation_unique($val, $options)
+    public static function _validation_unique($val, $options)
     {
         list($table, $field) = explode('.', $options);
 
