@@ -115,6 +115,146 @@ $session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3
 
 		</article>
 
+		<article>
+			<h4 id="method_rotate">rotate()</h4>
+			<p>
+				The <strong>rotate</strong> method allows you to manually force a rotation of the session id. You can use this as an extra security measure, for example when the security level of the current user is modified.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th>Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						None
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>void</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php">
+<code>// instantiate a database session
+$session = Session::forge('db');
+
+// force a rotation of the session id
+$session->rotate();
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+
+		</article>
+
+		<article>
+			<h4 id="method_get_config">get_config()</h4>
+			<p>
+				The <strong>get_config</strong> method allows retrieve a session driver configuration item.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th>Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th>Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$name</kbd></th>
+								<td><i>required</i></td>
+								<td>
+									Name of the session configuration variable.
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>mixed, the value requested, or null of the requested variable does not exist.</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php">
+<code>// instantiate a database session
+$session = Session::forge('db');
+
+// get the defined session cookie name
+$cookiename = $session->get_config('cookie_name');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+
+		</article>
+
+		<article>
+			<h4 id="method_set_config">set_config()</h4>
+			<p>
+				The <strong>set_config</strong> method allows alter a session driver configuration item at runtime.
+			</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th>Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th>Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$name</kbd></th>
+								<td><i>required</i></td>
+								<td>
+									Name of the session configuration variable.
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>void</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php">
+<code>// instantiate a database session
+$session = Session::forge('db');
+
+// set the expiration time for this session  to 2 hours
+$session->set_config('expiration_time', 7200);
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+
+		</article>
+
 		<h2>Using sessions with Flash</h2>
 
 		<p>
