@@ -26,24 +26,39 @@
 	<section id="content">
 		<h2>Controllers</h2>
 
-		<h3>What is a controller?</h3>
+		<h3 id="what_is_a_controller">What is a controller?</h3>
 
-		<p>Controllers are classes that can be reached through the URL and take care of handling the request. A controller calls models and other classes to fetch the information. Finally, it will pass everything to a view for output. If a URL like www.yoursite.com/example/index is requested, the first segment ("example") will be the controller that is called and the second segment ("index") will be the method of that controller that is called.</p>
+		<p>
+			Controllers are classes that can be reached through the URL and take care of handling the request.
+			A controller calls models and other classes to fetch the information. Finally, it will pass everything
+			to a view for output. If a URL like www.yoursite.com/example/index is requested, the first segment
+			("example") will be the controller that is called and the second segment ("index") will be the method
+			of that controller that is called.
+		</p>
 
-		<h3>Creating a controller</h3>
+		<h3 id="creating_a_controller">Creating a controller</h3>
 
-		<p>In Fuel, Controllers are put in the <kbd>fuel/app/classes/controller</kbd> directory. They should, optionally, extend the <kbd>Controller</kbd> class and be prefixed with <kbd>"Controller_"</kbd>. Below is an example of the controller "example": </p>
+		<p>
+			In Fuel, Controllers are put in the <kbd>fuel/app/classes/controller</kbd> directory. They should,
+			optionally, extend the <kbd>Controller</kbd> class and be prefixed with <kbd>"Controller_"</kbd>.
+			Below is an example of the controller "example":
+		</p>
 
-<pre class="php"><code>class Controller_Example extends Controller {
+		<pre class="php"><code>class Controller_Example extends Controller {
 
 	public function action_index()
 	{
 		$data['css'] = Asset::css(array('reset.css','960.css','main.css'));
-		$this->response->body = View::forge('test/index', $data);
+		return Response::forge(View::forge('welcome/index'));
 	}
 }</code></pre>
 
-		<p>Methods that can be requested through the URL are prefixed with <kbd>"action_"</kbd>. This means that you're not limited by PHP's constructs on which name you might use (example: method "list" isn't allowed, "action_list" is no problem). But this also means you can give your controller public methods that can be used from other classes but are not routable.</p>
+		<p>
+			Methods that can be requested through the URL are prefixed with <kbd>"action_"</kbd>. This means
+			that you're not limited by PHP's constructs on which name you might use (example: method "list"
+			isn't allowed, "action_list" is no problem). But this also means you can give your controller public
+			methods that can be used from other classes but are not routable.
+		</p>
 
 		<h4 id="more_parameters">Using more parameters from the URL</h4>
 
@@ -53,64 +68,107 @@
 {
 	$data['name_1'] = strtoupper($name_1);
 	$data['name_2'] = strtoupper($name_2);
-	$this->response->body = View::forge('test/name_to_upper', $data);
+	return View::forge('test/name_to_upper', $data);
 }</code></pre>
 
-		<p>If we call this method using: <kbd>www.yoursite.com/example/name_to_upper/fuel/php</kbd>, it will return the view <kbd>test/name_to_upper</kbd>. "Fuel" and "PHP" will be passed along as values <var>$name_1</var> and <var>$name_2</var> in the <var>$data</var> array. </p>
+		<p>
+			If we call this method using: <kbd>www.yoursite.com/example/name_to_upper/fuel/php</kbd>, it will
+			return the view <kbd>test/name_to_upper</kbd>. "Fuel" and "PHP" will be passed along as values
+			<var>$name_1</var> and <var>$name_2</var> in the <var>$data</var> array.
+		</p>
 
-		<h4>Controller in a Sub-Directories</h4>
+		<h4 id="controller_in_subdir">Controller in a Sub-Directories</h4>
 
-		<p>You can also put a controller in a subdirectory, like <kbd>fuel/app/classes/controller/subdir/test.php</kbd>. In this case, the controller must include the dirname in the classname like this: <var>Controller_Subdir_Test</var>. </p>
+		<p>
+			You can also put a controller in a subdirectory, like
+			<kbd>fuel/app/classes/controller/subdir/test.php</kbd>. In this case, the controller must include
+			the dirname in the classname like this: <var>Controller_Subdir_Test</var>.
+		</p>
 
-		<p>Unlimited nested sub-directories are supported, so <kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd>. would have a class name of <var>Controller_Subdir1_Subdir2_Subdir3_Test</var>.</p>
+		<p>
+			Unlimited nested sub-directories are supported, so
+			<kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd>. would have a class name of
+			<var>Controller_Subdir1_Subdir2_Subdir3_Test</var>.
+		</p>
 
-		<h3>Special controller methods</h3>
+		<h3 id="special_methods">Special controller methods</h3>
 
-		<p class="note">Don't overwrite the class constructor <kbd>__construct()</kbd>, use <kbd>before()</kbd> instead. Unless you have studied the base Controller from the Core first and understand how it must be extended not to break Fuel.</p>
+		<p class="note">
+			Don't overwrite the class constructor <kbd>__construct()</kbd>, use <kbd>before()</kbd> instead.
+			Unless you have studied the base Controller from the Core first and understand how it must be extended
+			not to break Fuel.
+		</p>
 
 		<article>
-			<h4>action_index()</h4>
-			<p>This method will be called if the controller is called without a second parameter. In the above example <kbd>www.yoursite.com/example/index</kbd> will be the same as <kbd>www.yoursite.com/example</kbd>.</p>
+			<h4 id="action_index">action_index()</h4>
+			<p>
+				This method will be called if the controller is called without a second parameter. In the above
+				example <kbd>www.yoursite.com/example/index</kbd> will be the same as
+				<kbd>www.yoursite.com/example</kbd>.
+			</p>
 		</article>
 
 		<article>
-			<h4>before()</h4>
-			<p>This method will be executed <strong>before</strong> the method from the URL is called on your controller, even if that method turns out not to exist.</p>
+			<h4 id="before">before()</h4>
+			<p>
+				This method will be executed <strong>before</strong> the method from the URL is called on your
+				controller, even if that method turns out not to exist.
+			</p>
 		</article>
 
 		<article>
-			<h4>after()</h4>
-			<p>This method will be executed <strong>after</strong> the method from the URL was called successfully, this will not be called if the method turns out not to exist.</p>
+			<h4 id="after">after()</h4>
+			<p>
+				This method will be executed <strong>after</strong> the method from the URL was called successfully,
+				this will not be called if the method turns out not to exist.
+			</p>
 		</article>
 
 		<article>
-			<h4>router($method, $params)</h4>
-			<p>This method will take over the internal routing of the controller. Once the controller is loaded, the router() method will be called and use the <var>$method</var> that is being passed in, instead of the default method. It will also pass in <var>$params</var>, in an array, to that <var>$method</var>. The before() and after() methods will still work as expected.</p>
+			<h4 id="router">router($method, $params)</h4>
+			<p>
+				This method will take over the internal routing of the controller. Once the controller is loaded,
+				the router() method will be called and use the <var>$method</var> that is being passed in, instead
+				of the default method. It will also pass in <var>$params</var>, in an array, to that
+				<var>$method</var>. The before() and after() methods will still work as expected.
+			</p>
 		</article>
 
-		<h3>Special controller properties</h3>
+		<h3 id="special_propperties">Special controller properties</h3>
 
 		<article>
-			<h4>$request</h4>
-			<p>This property holds the Request object. It should not be overwritten. It should be used to get information about the current request. It should be thought of as read-only.</p>
+			<h4 id="request">$request</h4>
+			<p>
+				This property holds the Request object. It should not be overwritten. It should be used to get
+				information about the current request. It should be thought of as read-only.
+			</p>
 		</article>
 
 		<article>
-			<h4>$response</h4>
-			<p>This property holds the Reponse object. To output something, add it to the <kbd>$this->response->body</kbd> property.</p>
+			<h4 id="response">$response</h4>
+			<p>
+				This property holds the Reponse object. To output something, add it to the
+				<kbd>$this->response->body</kbd> property.
+			</p>
 		</article>
 
-		<h3>Extending other controllers</h3>
+		<h3 id="extending_other_controllers">Extending other controllers</h3>
 
-		<p>Thanks to the autoloader, you can extend other controllers without writing anything more than its name in the class definition:
-
-<pre class="php"><code>class Controller_Example extends Controller_Welcome {
+		<p>
+			Thanks to the autoloader, you can extend other controllers without writing anything more than its
+			name in the class definition:
+		</p>
+		
+		<pre class="php"><code>class Controller_Example extends Controller_Welcome {
 
 	// your methods
 
 }</code></pre>
 
-		<p>This may sound strange at first, but extending controllers allows you to share methods and create base controllers really easily.</p>
+		<p>
+			This may sound strange at first, but extending controllers allows you to share methods and create base
+			controllers really easily.
+		</p>
 
 		<h3>Creating Base Controllers</h3>
 
@@ -120,7 +178,7 @@
 			that checks to see if the user is logged in as an admin. Then all other controllers in your admin panel will extend this and automatically be secured.
 		</p>
 
-<pre class="php"><code>class Controller_Admin extends Controller {
+		<pre class="php"><code>class Controller_Admin extends Controller {
 
 	public function before()
 	{
@@ -140,9 +198,12 @@
 	}
 }</code></pre>
 
-		<p>That code will go in <kbd>fuel/app/classes/controller/admin.php</kbd> and all of your other controllers should go in <kbd>fuel/app/classes/controller/admin/</kbd>, like this one:</p>
+		<p>
+			That code will go in <kbd>fuel/app/classes/controller/admin.php</kbd> and all of your other controllers
+			should go in <kbd>fuel/app/classes/controller/admin/</kbd>, like this one:
+		</p>
 
-<pre class="php"><code>class Controller_Admin_User extends Controller_Admin {
+		<pre class="php"><code>class Controller_Admin_User extends Controller_Admin {
 
 	public function action_index()
 	{
