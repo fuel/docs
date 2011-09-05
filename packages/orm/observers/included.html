@@ -138,6 +138,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 			catch (Orm\ValidationFailed $e)
 			{
                 Session::set_flash('notice', 'Could not create article #' . $article->id);
+				$this->template->set_global('validation_errors', $e->getMessage(), false);
             }
         }
 
@@ -166,6 +167,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
             }
 			catch (Orm\ValidationFailed $e) {
                 Session::set_flash('notice', 'Could not update article #' . $id);
+				$this->template->set_global('validation_errors', $e->getMessage(), false);
             }
         }
 
@@ -195,12 +197,13 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 			<p>This can be effectively used with the <a href="../../../classes/fieldset.html">FieldSet</a> class to provide CRUD forms for a model. In the following example, the create and edit forms are
 				defined in a common view however you can just as easily define it in the model and obtain an instance of it in the view using <kbd>Fieldset::instance</kbd>.</p>
 			
-			<pre class="php"><code>if ($fs = Fieldset::instance(get_class($article)))
-{
-	echo $fs->show_errors();
-}
+			<pre class="php"><code>$fieldset = Fieldset::forge()->add_model($article);
+$fieldset->populate($article);
 
-$fieldset = Fieldset::forge('article')->add_model($article, null, null);
+if (isset($validation_errors))
+{
+     echo $validation_errors;
+}
 
 $fieldset->add('name', 'Article Name', array('type' => 'text'));
 $fieldset->add('url', 'Article\'s URL', array('type' => 'text'));
