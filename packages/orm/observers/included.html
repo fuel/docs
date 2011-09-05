@@ -113,7 +113,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 	{
 		if (!$data['article'] = Model_Article::find($id))
 		{
-			Request::show_404();
+			throw new Request404Exception();
 		}
 
 		$this->template->title = "Article";
