@@ -102,105 +102,109 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 			
 			<pre class="php"><code>class Controller_Articles extends Controller_Template {
 
-    public function action_index()
-    {
-        $data['articles'] = Model_Article::find('all');
-        $this->template->title = "Articles";
-        $this->template->content = View::forge('articles/index', $data);
-    }
+	public function action_index()
+	{
+		$this->template->title = "Articles";
+		$this->template->content = View::forge('articles/index');
+		$this->template->content->articles = Model_Article::find('all');
+	}
 
-    public function action_view($id = false)
-    {
-        if (!$data['article'] = Model_Article::find($id))
+	public function action_view($id = false)
+	{
+		if (!$article = Model_Article::find($id))
 		{
-            Request::show_404();
-        }
+			throw new Request404Exception();
+		}
 
-        $this->template->title = "Article";
-        $this->template->content = View::forge('articles/view', $data);
-    }
+		$this->template->title = "Article";
+		$this->template->content = View::forge('articles/view');
+		$this->template->content->article = $article;
+	}
 
-    public function action_create()
-    {
-        $article = Model_Article::forge();
+	public function action_create()
+	{
+		$article = Model_Article::forge();
 
-        if (Input::method() == 'POST')
+		if (Input::method() == 'POST')
 		{
-            $article->name = Input::post('name');
-            $article->url = Input::post('url');
+			$article->name = Input::post('name');
+			$article->url = Input::post('url');
 
-            try
+			try
 			{
-                $article->save();
-                Session::set_flash('notice', 'Created article #' . $article->id);
-                Response::redirect('articles');
-            }
+				$article->save();
+				Session::set_flash('notice', 'Created article #' . $article->id);
+				Response::redirect('articles');
+			}
 			catch (Orm\ValidationFailed $e)
 			{
-                Session::set_flash('notice', 'Could not create article #' . $article->id);
-            }
-        }
+				Session::set_flash('notice', 'Could not create article #' . $article->id);
+				$this->template->set_global('validation_errors', $e->getMessage(), false);
+			}
+		}
 
-        $this->template->set_global('article', $article, false);
-        $this->template->title = "Articles";
-        $this->template->content = View::forge('articles/create');
-    }
+		$this->template->set_global('article', $article, false);
+		$this->template->title = "Articles";
+		$this->template->content = View::forge('articles/create');
+	}
 
-    public function action_edit($id = false)
-    {
-        if (!$article = Model_Article::find($id))
+	public function action_edit($id = false)
+	{
+		if (!$article = Model_Article::find($id))
 		{
-            Request::show_404();
-        }
+			throw new Request404Exception();
+		}
 
-        if (Input::method() == 'POST')
+		if (Input::method() == 'POST')
 		{
-            $article->name = Input::post('name');
-            $article->url = Input::post('url');
+			$article->name = Input::post('name');
+			$article->url = Input::post('url');
 
-            try
+			try
 			{
-                $article->save();
-                Session::set_flash('notice', 'Updated article #' . $id);
-                Response::redirect('articles');
-            }
+				$article->save();
+				Session::set_flash('notice', 'Updated article #' . $id);
+				Response::redirect('articles');
+			}
 			catch (Orm\ValidationFailed $e) {
-                Session::set_flash('notice', 'Could not update article #' . $id);
-            }
-        }
+				Session::set_flash('notice', 'Could not update article #' . $id);
+				$this->template->set_global('validation_errors', $e->getMessage(), false);
+			}
+		}
 
-        $this->template->set_global('article', $article, false);
-        $this->template->title = "Articles";
-        $this->template->content = View::forge('articles/edit');
-    }
+		$this->template->set_global('article', $article, false);
+		$this->template->title = "Articles";
+		$this->template->content = View::forge('articles/edit');
+	}
 
-    public function action_delete($id = null)
-    {
-        if ($article = Model_Article::find($id))
-        {
-            $article->delete();
+	public function action_delete($id = null)
+	{
+		if ($article = Model_Article::find($id))
+		{
+			$article->delete();
 
-            Session::set_flash('notice', 'Deleted article #' . $id);
-        }
-        else
-        {
-            Session::set_flash('notice', 'Could not delete article #' . $id);
-        }
+			Session::set_flash('notice', 'Deleted article #' . $id);
+		}
+		else
+		{
+			Session::set_flash('notice', 'Could not delete article #' . $id);
+		}
 
-        Response::redirect('articles');
-    }
+		Response::redirect('articles');
+	}
 
 }</code></pre>
 
 			<p>This can be effectively used with the <a href="../../../classes/fieldset.html">FieldSet</a> class to provide CRUD forms for a model. In the following example, the create and edit forms are
 				defined in a common view however you can just as easily define it in the model and obtain an instance of it in the view using <kbd>Fieldset::instance</kbd>.</p>
 			
-			<pre class="php"><code>if ($fs = Fieldset::instance(get_class($article)))
-{
-	echo $fs->show_errors();
-}
+			<pre class="php"><code>$fieldset = Fieldset::forge()->add_model($article);
+$fieldset->populate($article);
 
-$fieldset = Fieldset::forge('article')->add_model($article, null, null);
+if (isset($validation_errors))
+{
+	echo $validation_errors;
+}
 
 $fieldset->add('name', 'Article Name', array('type' => 'text'));
 $fieldset->add('url', 'Article\'s URL', array('type' => 'text'));
