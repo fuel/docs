@@ -104,7 +104,8 @@ var nav = {
 				"Methods":		"classes/mongo/methods.html"
 				//"Usage":		"classes/mongo/usage.html"
 			},
-			"Package":			"classes/package.html",
+			"Num":			"classes/num.html",
+			"Package":		"classes/package.html",
 			"Pagination":	"classes/pagination.html",
 			// "Profiler":	"todo.html",
 			"Redis":		"classes/redis.html",
