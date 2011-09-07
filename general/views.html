@@ -71,7 +71,7 @@
 	$data['title'] = 'Home';
 
 	//assign the view to browser output
-	$this->response->body = View::forge('home/index', $data);
+	return View::forge('home/index', $data);
 }</code></pre>
 
 		<p><strong>Method 2 (using example view above):</strong></p>
@@ -89,7 +89,7 @@
 	$view->set('title', 'Home');
 
 	//assign the view to browser output
-	$this->response->body = $view;
+	return $view;
 }</code></pre>
 
 		<h2 id="security">Security</h2>
@@ -109,6 +109,8 @@
 
 		// add it unfiltered just like you added
 		$view->set('title', '&lt;strong&gt;not bold because filtered&lt;/strong&gt;', false);
+		
+		return $view;
 	}
 }</code></pre>
 
@@ -169,10 +171,10 @@
 
 	public function action_index()
 	{
-		//create the view
+		// create the view
 		$view = View::forge('layout');
 
-		//assign variables
+		// assign variables
 		$view->username = 'Joe14';
 		$view->set('title', 'Home');
 		$view->site_title = 'My Website';
@@ -183,8 +185,8 @@
 		$view->content = View::forge('content');
 		$view->footer = View::forge('footer');
 
-		//assign to browser output
-		$this->response->body = $view;
+		// assign to browser output
+		return $view;
 	}
 }</code></pre>
 
@@ -207,7 +209,7 @@
 		$data['footer'] = View::forge('footer', $data)->render();
 
 		//assign to browser output
-		$this->output = View::forge('layout', $data);
+		return View::forge('layout', $data);
 	}
 }</code></pre>
 
