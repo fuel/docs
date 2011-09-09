@@ -26,6 +26,7 @@ var nav = {
 			},
 			"Coding Standards":	"general/coding_standards.html",
 			"Configuration":	"general/configuration.html",
+			"Constants":		"general/constants.html",
 			"Controllers": {
 				"Base" :		"general/controllers/base.html",
 				"Template":		"general/controllers/template.html",
