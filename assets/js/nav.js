@@ -26,6 +26,7 @@ var nav = {
 			},
 			"Coding Standards":	"general/coding_standards.html",
 			"Configuration":	"general/configuration.html",
+			"Constants":		"general/constants.html",
 			"Controllers": {
 				"Base" :		"general/controllers/base.html",
 				"Template":		"general/controllers/template.html",
@@ -104,6 +105,8 @@ var nav = {
 				"Methods":		"classes/mongo/methods.html"
 				//"Usage":		"classes/mongo/usage.html"
 			},
+			"Num":			"classes/num.html",
+			"Package":		"classes/package.html",
 			"Pagination":	"classes/pagination.html",
 			// "Profiler":	"todo.html",
 			"Redis":		"classes/redis.html",

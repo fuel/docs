@@ -64,6 +64,8 @@
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
 							Array of allowed file extensions. If empty or not defined, all file extensions are allowed.
+							Extensions need to be defined in lower case only. If a file is uploaded in upper case, it's extension
+							will be matched against the whitelist in lower case.
 						</td>
 					</tr>
 					<tr>
@@ -72,6 +74,8 @@
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
 							Array of disallowed file extensions. If empty or not defined, all file extensions are allowed.
+							Extensions need to be defined in lower case only. If a file is uploaded in upper case, it's extension
+							will be matched against the blacklist in lower case.
 						</td>
 					</tr>
 					<tr>
@@ -202,6 +206,19 @@
 						<td><pre class="php"><code>0</code></pre></td>
 						<td>
 							The maximum length of a filename. This is measured on the filename as it will be saved, after all filename options have been processed. To disable the maximum size limit, set this parameter to zero.
+						</td>
+					</tr>
+					<tr>
+						<th>new_name</th>
+						<td>string</td>
+						<td><em>none</em></td>
+						<td>
+							<p>
+								The new filename. This is setting is not set in the default config, but is supplied to the <em>Upload::process</em> config. The new name will not overwrite the prefix and suffix.
+							</p>
+							<p class="note" style="margin-bottom: 0;">
+								<strong>Note:</strong> When uploading multiple files, the auto_rename setting must be set to true when supplying a new name.
+							</p>
 						</td>
 					</tr>
 				</tbody>
