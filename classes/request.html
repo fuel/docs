@@ -26,7 +26,7 @@
 	<section id="content">
 		<h2>Request Class</h2>
 
-		<p>The Request class processes URI requests. It is used by Fuel in index.php to process the users URI request, and you need it to generates request in an HMVC context.</p>
+		<p>The Request class processes URI requests. It is used by Fuel in index.php to process the users URI request, and you need it to generate requests in an HMVC context.</p>
 
 		<article>
 			<h4 id="method_factory">factory($uri = null, $route = true)</h4>
@@ -67,7 +67,7 @@
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>// create the request object for the admin controller, login method
-$request = Request::factory('admin/login');
+$request = Request::forge('admin/login');
 
 // note that this only creates the object, it does not execute the request!</code></pre>
 					</td>
@@ -97,7 +97,7 @@ $request = Request::factory('admin/login');
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>// create and execute the request object for the admin controller, login method
-$request = Request::factory('admin/login')->execute();</code></pre>
+$request = Request::forge('admin/login')->execute();</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -125,11 +125,11 @@ $request = Request::factory('admin/login')->execute();</code></pre>
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>// execute the request, fetch the response, and display it
-$response = Request::factory('admin/login')->execute()->response();
+$response = Request::forge('admin/login')->execute()->response();
 echo $response;
 
 // The Request object contains a __toString() method as an alternative way to fetch the output
-$output = Request::factory('admin/login')->execute();
+$output = Request::forge('admin/login')->execute();
 echo $output;</code></pre>
 					</td>
 				</tr>
@@ -138,8 +138,64 @@ echo $output;</code></pre>
 		</article>
 
 		<article>
+			<h4 id="method_parent">parent()</h4>
+			<p>The <strong>Request</strong> that created this Request.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Fuel\Core\Request Object or null when it's the main request</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// get the parent of the current active Request
+$parent = Request::active()->parent();</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4 id="method_children">children()</h4>
+			<p>The <strong>Request</strong> objects that were created during this Request.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>No</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>Array of Fuel\Core\Request Objects</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// get the Requests that were created during the main Request
+$children = Request::main()->children();</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
 			<h4 id="method_show_404">show_404($return = false)</h4>
-			<p>The <strong>show_404</strong> method will display or return the applications 404 page. If none is configured in your config routes.php, the Fuel default 404 page will be used instead. If the configured 404 route is incorrect, an error will be thrown.</p>
+			<p>The <strong>show_404</strong> method will display or return the application's 404 page. If none is configured in your config routes.php, the Fuel default 404 page will be used instead. If the configured 404 route is incorrect, an error will be thrown.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -179,7 +235,8 @@ echo $output;</code></pre>
 
 		<article>
 			<h4 id="method_main">main()</h4>
-			<p>The <strong>main</strong> method returns the main Request instance (the one created by the initial page request).</p>
+			<p>The <strong>main</strong> method returns the main Request instance (the one created by the initial
+				page request).</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -202,6 +259,10 @@ echo $output;</code></pre>
 				</tr>
 				</tbody>
 			</table>
+
+			<p class="note">This is the first executed Request instance, not necessarily the root parent of the
+				current Request. That might be the case for example if the main Request 404s and you create a new
+				Request after that (which is what happens in the <kbd>_404_</kbd> route).</p>
 		</article>
 
 		<article>

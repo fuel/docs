@@ -60,7 +60,7 @@
 							</tr>
 							<tr>
 								<th><kbd>$instance</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>Cookiename (as defined in config/session.php) that identifies the required session instance.</td>
 							</tr>
 						</table>
@@ -101,17 +101,20 @@ $session = Session::instance('myappcookie');
 						<table class="parameters">
 							<tr>
 								<th>Param</th>
+								<th>Type</th>
 								<th>Default</th>
 								<th class="description">Description</th>
 							</tr>
 							<tr>
 								<th><kbd>$name</kbd></th>
-								<td><i>required</i></td>
-								<td>Name of the session variable to set.</td>
+								<td><em>string|array</em></td>
+								<td><em>required</em></td>
+								<td>Name of the session variable to set or associative array of values.</td>
 							</tr>
 							<tr>
 								<th><kbd>$value</kbd></th>
-								<td><i>optional</i></td>
+								<td><em>mixed</em></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>
 									The session variables value.<br />
 									This can be any data type, but pay attention when storing objects in the session, as session data is serialized, and there are restrictions to serializing an object.
@@ -122,7 +125,7 @@ $session = Session::instance('myappcookie');
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>void</td>
+					<td>FuelCoreSession_Driver - is chainable</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -133,6 +136,18 @@ Session::set('userid', $userid);
 
 // you can also store more complex values
 Session::set('array', array('varA', 'varB', 'varC' => array('val1', 'val2'));
+
+// you can also use an array to set multiple values at the same time
+Session::set(array(
+	'userid' => $userid,
+	'has_cookies' => function()
+	{
+		return (bool) \Cookie::get('has_them', false);
+	}
+));
+
+// You can also chain on calls to set values
+Session::set('userid', $userid)->set('foo', 'bar');
 </code></pre>
 					</td>
 				</tr>
@@ -160,12 +175,12 @@ Session::set('array', array('varA', 'varB', 'varC' => array('val1', 'val2'));
 							</tr>
 							<tr>
 								<th><kbd>$variable</kbd></th>
-								<td><i>required</i></td>
-								<td>Name of the session variable to get.</td>
+								<td><pre class="php"><code>null</code></pre></td>
+								<td>Name of the session variable to get. If not specified, all session variables are returned.</td>
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>Default value to return in case the requested variable does not exist. If no default is given, the method will return <kbd>null</kbd>.</td>
 							</tr>
 						</table>
@@ -191,7 +206,9 @@ $arr = Session::get('array');
 
 // or get a specific key from the array
 $arr = Session::get('array.varC');
-</code></pre>
+
+// get all session variables
+$vars = Session::get();</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -218,7 +235,7 @@ $arr = Session::get('array.varC');
 							</tr>
 							<tr>
 								<th><kbd>$variable</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>Name of the session variable to delete.</td>
 							</tr>
 						</table>
@@ -226,7 +243,7 @@ $arr = Session::get('array.varC');
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>void</td>
+					<td>FuelCoreSession_Driver - is chainable</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -264,12 +281,12 @@ Session::delete('array.varC');
 							</tr>
 							<tr>
 								<th><kbd>$name</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>Name of the session flash variable to set.</td>
 							</tr>
 							<tr>
 								<th><kbd>$value</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>
 									The session flash variables value.<br />
 									This can be any data type, but pay attention when storing objects in the session, as session data is serialized, and there are restrictions to serializing an object.
@@ -280,7 +297,7 @@ Session::delete('array.varC');
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>void</td>
+					<td>FuelCoreSession_Driver - is chainable</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -318,12 +335,12 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 							</tr>
 							<tr>
 								<th><kbd>$variable</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>Name of the session variable to get.</td>
 							</tr>
 							<tr>
 								<th><kbd>$default</kbd></th>
-								<td><i>optional</i></td>
+								<td><pre class="php"><code>null</code></pre></td>
 								<td>Default value to return in case the requested variable does not exist. If no default is given, the method will return <kbd>null</kbd>.</td>
 							</tr>
 						</table>
@@ -366,7 +383,7 @@ $step = Session::get_flash('step');
 							</tr>
 							<tr>
 								<th><kbd>$variable</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>Name of the flash variable to keep.</td>
 							</tr>
 						</table>
@@ -374,7 +391,7 @@ $step = Session::get_flash('step');
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>void</td>
+					<td>FuelCoreSession_Driver - is chainable</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -409,7 +426,7 @@ Session::keep_flash('step');
 							</tr>
 							<tr>
 								<th><kbd>$variable</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>Name of the flash variable to delete.</td>
 							</tr>
 						</table>
@@ -417,7 +434,7 @@ Session::keep_flash('step');
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>void</td>
+					<td>FuelCoreSession_Driver - is chainable</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -447,7 +464,7 @@ Session::delete_flash('userid');
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>void</td>
+					<td>FuelCoreSession_Driver - is chainable</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -477,7 +494,7 @@ Session::create();
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>void</td>
+					<td>FuelCoreSession_Driver - is chainable</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -507,7 +524,7 @@ Session::destroy();
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>void</td>
+					<td>FuelCoreSession_Driver - is chainable</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -537,7 +554,7 @@ Session::read();
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>void</td>
+					<td>FuelCoreSession_Driver - is chainable</td>
 				</tr>
 				<tr>
 					<th>Example</th>

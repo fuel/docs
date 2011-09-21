@@ -188,7 +188,7 @@
 							<pre class="php">
 	<code>array(
 		'cookie_name'    => 'fueldid',
-		'database'       => 'dev',
+		'database'       => 'development',
 		'table'          => 'sessions',
 		'gc_probability' => 5
 	 )</code></pre>
@@ -309,8 +309,15 @@
 						<tr>
 							<th>database</th>
 							<td>string</td>
-							<td><pre class="php"><code>'dev'</code></pre></td>
-							<td>Name of the database which is going to be used to store the session data. This is the name defined in the application database configuration file, app/config/db.php. If not defined or not found, the default active database will be selected.</td>
+							<td><pre class="php"><code>null</code></pre></td>
+							<td>
+								Name of the database which is going to be used to store the session data. This is the name defined in the application database configuration file, app/config/db.php. If not defined, or set to null, the current active database will be selected.
+								<br /><br />
+								<p class="note">
+									Note that if you use multiple databases, it is not wise to use null here, as your application flow determines what the active database is at any given time.
+									Either use <strong>Config::get('environment')</strong> to use the configured current environment, or use a named database configuration.
+								</p>
+							</td>
 						</tr>
 						<tr>
 							<th>table</th>

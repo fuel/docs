@@ -30,7 +30,7 @@
 		
 		<h2>Managing functions</h2>
 		
-		<p>DBUtil allows you to create, rename, alter and drop databases field</p>
+		<p>DBUtil allows you to create, rename, alter and drop database fields.</p>
 		
 		<article>
 			<h4 id="method_create_database">create_database($database, charset = null)</h4>
@@ -98,7 +98,7 @@ DBUtil::create_database('new_database', 'utf8_unicode_ci');
 					</tr>
 				</tbody>
 			</table>
-			<p>If no charset is profided it wil fall back to the charset of the active db group.</p>
+			<p>If no charset is provided it will fall back to the charset of the active db group.</p>
 		</article>
 		
 		<article>
@@ -246,7 +246,7 @@ catch(\Database_Exception $e)
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Returns the number of affected.</td>
+						<td>Returns the number of affected rows.</td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -368,7 +368,7 @@ catch(\Database_Exception $e)
 								</tr>
 								<tr>
 									<th><kbd>charset</kbd></th>
-									<td>field charst</td>
+									<td>field charset</td>
 								</tr>
 								<tr>
 									<th><kbd>unsigned</kbd></th>
@@ -454,6 +454,55 @@ catch(\Database_Exception $e)
 	'twitter_name' => array('constraint' => 100, 'type' => 'varchar'),
 ));
 </code></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_drop_fields">drop_fields($table, $fields)</h4>
+			<p>The <strong>drop_fields</strong> method drops fields from a table.</p>
+			<table class="method">
+				<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$table</kbd></th>
+									<td><em>required</em></td>
+									<td>string of the table name</td>
+								</tr>
+								<tr>
+									<th><kbd>$fields</kbd></th>
+									<td><em>required</em></td>
+									<td>string or array containing fields</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Returns the number of affected rows.</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>\Database_Exception on failure</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>\DBUtil::drop_fields('users', 'surname');</code></pre>
 						</td>
 					</tr>
 				</tbody>

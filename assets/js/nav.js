@@ -11,6 +11,7 @@ var nav = {
 			"Home":			"index.html",
 			"Requirements":	"requirements.html",
 			"License":		"license.html",
+			"Contribute":	"contribute.html",
 			"Credits":		"credits.html"
 		},
 		"Installation": {
@@ -19,27 +20,30 @@ var nav = {
 			"Troubleshooting":		"installation/troubleshooting.html"
 		},
 		"General": {
-			"Model-View-Controller":	"general/mvc.html",
-			"HMVC Requests":	"general/hmvc.html",
+			"Classes": {
+				"Introduction":		"general/classes.html",
+				"Extending Core":	"general/extending_core.html"
+			},
+			"Coding Standards":	"general/coding_standards.html",
+			"Configuration":	"general/configuration.html",
+			"Constants":		"general/constants.html",
 			"Controllers": {
 				"Base" :		"general/controllers/base.html",
 				"Template":		"general/controllers/template.html",
 				"Rest":			"general/controllers/rest.html"
 			},
+			"HMVC Requests":	"general/hmvc.html",
+			"Modules":			"general/modules.html",
 			"Models":			"general/models.html",
+			"Model-View-Controller":	"general/mvc.html",
+			"Migrations":		"general/migrations.html",
 			"Views":			"general/views.html",
 			"ViewModels":		"general/viewmodels.html",
 			"Routing":			"general/routing.html",
-			"Classes": {
-				"Introduction":		"general/classes.html",
-				"Extending Core":	"general/extending_core.html"
-			},
-			"Modules":			"general/modules.html",
 			"Packages":			"general/packages.html",
 			"Security":			"general/security.html",
 			"Tasks":			"general/tasks.html",
-			"Migrations":		"general/migrations.html",
-			"Coding Standards":	"general/coding_standards.html"
+			"404 handling":		"general/404.html",
 		},
 		"Classes": {
 			"Agent": {
@@ -59,10 +63,18 @@ var nav = {
 			"Cookie":		"classes/cookie.html",
 			"Crypt":		"classes/crypt.html",
 			"Database": {
-				"Introduction":     "classes/database/introduction.html",
-				"Usage":            "classes/database/usage.html",
-				"DB class":         "classes/database/db.html",
-				"DBUtil class":     "classes/database/dbutil.html"
+				"Introduction":   	  "classes/database/introduction.html",
+				"Usage":          	  "classes/database/usage.html",
+				"DB class":       	  "classes/database/db.html",
+				"DBUtil class":   	  "classes/database/dbutil.html",
+				"Query Building":	{
+					"Introduction":			"classes/database/qb.html",
+					"Insert builder":	"classes/database/qb_insert.html",
+					"Select builder":	"classes/database/qb_select.html",
+					"Update builder":	"classes/database/qb_update.html",
+					"Delete builder":	"classes/database/qb_delete.html",
+					"Where builder":	"classes/database/qb_where.html"
+				}
 			},
 			"Date":			"classes/date.html",
 			"Debug":		"classes/debug.html",
@@ -88,6 +100,13 @@ var nav = {
 			"Lang":			"classes/lang.html",
 			"Log":	    	"classes/log.html",
 			"Migrate":		"classes/migrate.html",
+			"Mongo_Db": {
+				"Introduction":	"classes/mongo/introduction.html",
+				"Methods":		"classes/mongo/methods.html"
+				//"Usage":		"classes/mongo/usage.html"
+			},
+			"Num":			"classes/num.html",
+			"Package":		"classes/package.html",
 			"Pagination":	"classes/pagination.html",
 			// "Profiler":	"todo.html",
 			"Redis":		"classes/redis.html",
@@ -130,6 +149,7 @@ var nav = {
 				"ACL":			"packages/auth/types/acl.html"
 			},
 			"SimpleAuth": {
+				"Introduction":	"packages/auth/simpleauth/intro.html",
 				"Login":		"packages/auth/simpleauth/login.html",
 				"Groups":		"packages/auth/simpleauth/groups.html",
 				"ACL":			"packages/auth/simpleauth/acl.html"
@@ -152,6 +172,9 @@ var nav = {
 				"Included observers":	"packages/orm/observers/included.html",
 				"Writing your own":		"packages/orm/observers/creating.html"
 			}
+		},
+		"Parser Package": {
+			"Introduction":		"packages/parser/intro.html"
 		}
 };
 
@@ -205,3 +228,6 @@ function generate_nav(path, links)
 	});
 	return html;
 }
+
+// IE8 fix for displaying the sections correctly.
+var dummy_section = document.createElement('section');

@@ -28,15 +28,17 @@
 
 		<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
 			Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-			to esteblish relations between those objects.<br />
+			to establish relations between those objects.<br />
 			It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
 			Active Record Pattern</a>, but was also influenced by other systems.</p>
 
 		<section>
 			<h2 id="creation">Creating Models</h2>
 
-			<p>Creating a model takes little time, the convention is to use the <kbd>Model_</kbd> prefix and thus place
-				them in <kbd>app/classes/model/</kbd> but you are free to use whatever name you choose.</p>
+			<p>Creating a model takes little time, the convention is to use the <kbd>Model_</kbd> 
+				prefix for the class (eg Model_Article using the filename article.php) and thus 
+				place them in <kbd>app/classes/model/</kbd> but you are free to use 
+				whatever name you choose.</p>
 
 			<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
 
@@ -75,10 +77,38 @@
 	protected static $_primary_key = array('aid');
 }</code></pre>
 
+			<p class="note">The primary key must be a real primary key: unique and unchanging. Don't use it for other
+				purposes (like a foreign key in a one-one relation) as well, that won't work as the PK can't be
+				changed. The Orm won't check this, and while it might seem to work at first glance: you'll get
+				into trouble.<br />
+				It is not required for the PK to be auto_increment (though preferred) and you can specify the PK
+				yourself, but only the first time. Once it's set, it's set.</p>
+
 			<h3 id="propperties">protected static $_properties</h3>
 
 			<p>There's already a simple example above of adding all model properties, they can also be configured by
 			using the columnname as the key and setting options like type, label & validation.</p>
+
+			<pre class="php"><code>class Model_Article extends Orm\Model {
+	protected static $_properties = array(
+		'id' => array('type' => 'int'),
+		'name' => array(
+			'type' => 'varchar',
+			'label' => 'Article Name',
+			'validation' => array('required', 'min_length' => array(3), 'max_length' => array(20)),
+			'default' => 'New article'
+		),
+		'url' => array(
+			'type' => 'varchar',
+			'label' => 'Web Address',
+			'validation' => array('required', 'valid_url')
+		),
+		'created_at' => array('type' => 'int', 'label' => 'Created At'),
+		'updated_at' => array('type' => 'int', 'label' => 'Updated At')
+	);
+)</code></pre>
+
+			<p>Use of the validation rules shown here to do before save validation is shown in LINK HERE</p>
 
 			<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many, $_many_through</h3>
 

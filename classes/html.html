@@ -26,73 +26,15 @@
 	<section id="content">
 		<h2>Html Class</h2>
 
-		<p>The html class is an html wrapper for nearly all html tags.</p>
+		<p>The Html class is an HTML wrapper for nearly all HTML tags.</p>
 
 		<h5>Doctypes</h5>
 
 		<p>We have included a configuration file located at <kbd>fuel/core/config/doctypes.php</kbd> which has all the doctypes.</p>
 
 		<article>
-			<h4 id="method_h">h($content = '', $num = 1, $attr = false)</h4>
-			<p>The <strong>h</strong> method returns an html heading tag. As you might be aware off the html heading tags come in 6 variations from h1 to h6.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th>Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$content</kbd></th>
-								<td><i>required</i></td>
-								<td>Content to be found between the heading tags.</td>
-							</tr>
-							<tr>
-								<th><kbd>$num</kbd></th>
-								<td><strong>1</strong></td>
-								<td>Designated number of the heading tag, if no value is supplied, will default to 1.</td>
-							</tr>
-							<tr>
-								<th><kbd>$attr</kbd></th>
-								<td><strong>false</strong></td>
-								<td>Array of attributes to be applied to the heading tag. Content to be found between the heading tags.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>String containing the correctly formated heading tags with its content(and attributes if supplied).</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>//returns &lt;h1&gt;Example&lt;/h1&gt;
-echo Html::h('Example');
-
-//returns &lt;h2 id="h2" class="sample" style="color:red;"&gt;Some other example&lt;/h2&gt;
-echo Html::h('Some other example', '2', array('id' => 'h2', 'class' => 'sample', 'style' => 'color:red'));
-
-//returns &lt;h3 id="sample" class="sample" style="color:blue;"&gt;Variable!&lt;/h3&gt;
-$attributes = array('id' => 'sample', 'class' => 'sample', 'style' => 'color:blue');
-echo Html::h('Variable!', '3', $attributes);</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
 			<h4 id="method_anchor">anchor($href, $text, $attributes = array())</h4>
-			<p>The <strong>anchor</strong> method returns an html anchor tag.</p>
+			<p>The <strong>anchor</strong> method returns an HTML anchor tag.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -128,7 +70,7 @@ echo Html::h('Variable!', '3', $attributes);</code></pre>
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>String containing the correctly formated anchor tag (and attributes if supplied).</td>
+					<td>String containing the correctly formatted anchor tag (and attributes if supplied).</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -149,7 +91,7 @@ echo Html::anchor('example', 'Example', array('id' => 'a1', 'class' => 'sample',
 
 		<article>
 			<h4 id="method_mail_to">mail_to($email, $text, $subject = null, $attr = array())</h4>
-			<p>The <strong>mail_to</strong> method returns an html anchor tag with mailto as target.</p>
+			<p>The <strong>mail_to</strong> method returns an HTML anchor tag with mailto as the target.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -211,7 +153,7 @@ echo Html:::mail_to('name@domain.com', 'Name', null, array('id' => 'a2', 'class'
 
 		<article>
 			<h4 id="method_mail_to_safe">mail_to_safe($email, $text, $subject = null, $attr = array())</h4>
-			<p>The <strong>mail_to_safe</strong> method returns javascript code that produces an html anchor tag with mailto as target.</p>
+			<p>The <strong>mail_to_safe</strong> method returns JavaScript code that produces an HTML anchor tag with mailto as target.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -252,7 +194,7 @@ echo Html:::mail_to('name@domain.com', 'Name', null, array('id' => 'a2', 'class'
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>String containing the correctly formated anchor tag (and attributes if supplied).</td>
+					<td>String containing the correctly formatted anchor tag (and attributes if supplied).</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -265,189 +207,6 @@ echo Html:::mail_to('name@domain.com', 'Name', null, array('id' => 'a2', 'class'
 //	document.write('&lt;a href="' + 'mail' + 'to:' + user + at + server + '"&gtName&lt;/a&gt');
 //&lt;/script&gt
 echo Html::mail_to_safe('name@domain.com', 'Name');</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_br">br($num = 1, $attr = false)</h4>
-			<p>The <strong>br</strong> method returns an html break tag.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th>Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$num</kbd></th>
-								<td><strong>1</strong></td>
-								<td>Number of times the break tag should be outputted. If no value is given will default to 1.</td>
-							</tr>
-							<tr>
-								<th><kbd>$attr</kbd></th>
-								<td><strong>false</strong></td>
-								<td>Array of attributes to be applied to the break tag.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>String containing the correctly formated break tags with its attributes if supplied.</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>//returns &lt;br /&gt;
-echo Html::br();
-
-//returns &lt;br id="example" class="sample" style="color:red;" /&gt;&lt;br id="h2" class="sample" style="color:red;" /&gt;
-echo Html::br('2', array('id' => 'example', 'class' => 'sample', 'style' => 'color:red'));
-</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_hr">hr($attr = false)</h4>
-			<p>The <strong>hr</strong> method returns an html ruler tag.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th>Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$attr</kbd></th>
-								<td><strong>false</strong></td>
-								<td>Array of attributes to be applied to the ruler tag.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>String containing the correctly formated ruler tag with its attributes if supplied.</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>//returns &lt;hr /&gt;
-echo Html::hr();
-
-//returns &lt;hr id="example" class="sample" style="color:red;" /&gt;
-echo Html::hr(array('id' => 'example', 'class' => 'sample', 'style' => 'color:red'));
-</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_title">title($content = '')</h4>
-			<p>The <strong>title</strong> method returns an html title tag.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th>Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$content</kbd></th>
-								<td><i>required</i></td>
-								<td>Content to be found between the title tags.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>String containing the correctly formated title tag with its content.</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>//returns &lt;title&gt;Some Title!&lt;/title&gt;
-echo Html::title('Some title!');
-
-//returns &lt;title&gt;&lt;/title&gt;
-echo Html::title('');</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_nbs">nbs($num = 1)</h4>
-			<p>The <strong>nbs</strong> method returns ascii code for non-breaking whitespaces.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th>Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$num</kbd></th>
-								<td><strong>1</strong></td>
-								<td>Number of non-breaking spaces to be outputted.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>String containing the correctly formated ascii code for non-breaking whitespaces.</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>//returns &amp;nbsp;
-echo Html::nbs();
-
-//returns &amp;nbsp;&amp;nbsp;
-echo Html::nbs(2);</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -487,7 +246,7 @@ echo Html::nbs(2);</code></pre>
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>String containing the correctly formated image tag.</td>
+					<td>String containing the correctly formatted image tag.</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -496,7 +255,7 @@ echo Html::nbs(2);</code></pre>
 echo Html::img('path/to/image.png');
 
 //returns &lt;img src="http://example.com/path/to/image.png" alt="Alt Message" class="myclass" /&gt;
-echo Html::img('path/to/image.png', array("alt" => "Alt Message", class => "myclass"));
+echo Html::img('path/to/image.png', array("alt" => "Alt Message", 'class' => "myclass"));
 </code></pre>
 					</td>
 				</tr>
@@ -590,7 +349,7 @@ echo Html::meta($meta);</code></pre>
 							<tr>
 								<th><kbd>$type</kbd></th>
 								<td>'xhtml1-trans'</td>
-								<td>Type of html doctype tag to be outputted.<br />Accepted Values: <kbd>xhtml11</kbd>, <kbd>xhtml1-strict</kbd>, <kbd>xhtml1-trans</kbd>, <kbd>xhtml1-frame</kbd>, <kbd>html5</kbd>, <kbd>html4-strict</kbd>, <kbd>html4-trans</kbd>, <kbd>html4-frame</kbd></td>
+								<td>Type of HTML doctype tag to be outputted.<br />Accepted Values: <kbd>xhtml11</kbd>, <kbd>xhtml1-strict</kbd>, <kbd>xhtml1-trans</kbd>, <kbd>xhtml1-frame</kbd>, <kbd>html5</kbd>, <kbd>html4-strict</kbd>, <kbd>html4-trans</kbd>, <kbd>html4-frame</kbd></td>
 							</tr>
 						</table>
 					</td>
@@ -607,55 +366,6 @@ echo Html::doctype();
 
 //returns &lt;!DOCTYPE html&gt;
 echo Html::doctype('html5');</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_header">header($content, $attr = false)</h4>
-			<p>The <strong>header</strong> method returns a div tag with the id of header. When used along with the Html::doctype('html5') method will default to a header tag.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th>Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$content</kbd></th>
-								<td><i>required</i></td>
-								<td>Content to be found between the tags.</td>
-							</tr>
-							<tr>
-								<th><kbd>$attr</kbd></th>
-								<td><strong>array()</strong></td>
-								<td>Array of attributes to be applied to the tag.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>String containing the correctly formated header or div tag.</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>//if html5 is set returns &lt;header&gt;Oh Yeah baby.&lt;/header&gt;
-echo Html::header('Oh Yeah baby');
-
-//without html5 returns &lt;div id="header"&gt;Oh Yeah baby.&lt;/div&gt;
-echo Html::header('Oh Yeah baby');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -695,7 +405,7 @@ echo Html::header('Oh Yeah baby');</code></pre>
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>String containing the correctly formated audio tag with its sources.</td>
+					<td>String containing the correctly formatted audio tag with its sources.</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -713,7 +423,7 @@ echo Html::audio(array('../sounds/beep.mp3','../sounds/frog.mp4'));</code></pre>
 
 		<article>
 			<h4 id="method_ul">ul($list, $style = false)</h4>
-			<p>The <strong>ul</strong> method returns correctly formated single or multi-level unordered list.</p>
+			<p>The <strong>ul</strong> method returns a correctly formatted single or multi-level unordered list.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -782,7 +492,7 @@ echo Html::ul($items, $attr);
 $items = array(
 	'colors' => array('blue', 'red', 'green'),
 	'sky',
-	'tools' => array('screw driver','hammer')
+	'tools' => array('screwdriver','hammer')
 );
 $attr = array('class' => 'order');
 echo Html::ul($items, $attr);</code></pre>
@@ -794,7 +504,7 @@ echo Html::ul($items, $attr);</code></pre>
 
 		<article>
 			<h4 id="method_ol">ol($list, $style = false)</h4>
-			<p>The <strong>ol</strong> method returns correctly formated single or multi-level ordered list.</p>
+			<p>The <strong>ol</strong> method returns a correctly formatted single or multi-level ordered list.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -813,7 +523,7 @@ echo Html::ul($items, $attr);</code></pre>
 							<tr>
 								<th><kbd>$list</kbd></th>
 								<td><i>required</i></td>
-								<td>Array containing single or multi-level items to be outputed as list items.</td>
+								<td>Array containing single or multi-level items to be outputted as list items.</td>
 							</tr>
 							<tr>
 								<th><kbd>$style</kbd></th>
@@ -872,6 +582,107 @@ echo Html::ol($items, $attr);</code></pre>
 			</table>
 		</article>
 
+		<h3 id="procedural_helpers">Procedural helpers</h3>
+		
+		<article>
+			<h4 id="function_html_tag">html_tag($tag, $attr = array(), $content = false)</h4>
+			<p>The <strong>html_tag</strong> function generates an HTML tag based on the attributes provided..</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$tag</kbd></th>
+								<td><em>string</em></td>
+								<td><em>required</em></td>
+								<td>the value to search for</td>
+							</tr>
+							<tr>
+								<th><kbd>$attr</kbd></th>
+								<td><em>array</em></td>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>array of attributes</td>
+							</tr>
+							<tr>
+								<th><kbd>$content</kbd></th>
+								<td><em>string</em></td>
+								<td><pre class="php"><code>false</code></pre></td>
+								<td>the content wrapped in the tag</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>echo html_tag('a', array(
+	'href' => 'http://somedomain.com/',
+	'class' => 'my_class'
+), 'Link title');
+
+// &lt;a href="http://somedomain.com/" class="my_class"&gt;Link title&lt;/a&gt;</code></pre>
+
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="function_array_to_attr">array_to_attr($attr)</h4>
+			<p>The <strong>array_to_attr</strong> function generates an attributes string.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$attr</kbd></th>
+								<td><em>array</em></td>
+								<td><em>required</em></td>
+								<td>an array of attributes</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>echo array_to_attr(array(
+	'href' => 'http://somedomain.com/',
+	'class' => 'my_class'
+));
+
+// href="http://somedomain.com/" class="my_class"</code></pre>
+
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
 
 	</section>
 

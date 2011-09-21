@@ -27,7 +27,7 @@
 		<h2>Validation Class</h2>
 
 		<p>The Validation class helps you validate user input, if you want to create a form &amp; its validation at
-			the same time use the <a href="fieldset.html">Fieldset</a> class instead.</p>
+			the same time use the <a href="../fieldset.html">Fieldset</a> class instead.</p>
 
 		<ul>
 			<li><a href="#config">Configuration</a></li>
@@ -98,15 +98,15 @@
 			you can name it if you need multiple validation objects.</p>
 
 			<pre class="php"><code>// Use default
-$val = Validation::factory();
+$val = Validation::forge();
 
 // ... or name it
-$val = Validation::factory('my_validation');</code></pre>
+$val = Validation::forge('my_validation');</code></pre>
 
 			<p>After having it instantiated you can start adding fields to it. This works exactly like the when using
 			the Fieldset class, however here we'll only document the preferred usage.</p>
 
-			<pre class="php"><code>$val = Validation::factory('my_validation');
+			<pre class="php"><code>$val = Validation::forge('my_validation');
 
 // Add a field for username, give it the label "Your username" and make it required
 $val->add('username', 'Your username')->add_rule('required');
@@ -124,7 +124,7 @@ $val->add('password', 'Your password')->add_rule('required')
 			closures or parameters other then strings.</p>
 
 			<pre class="php"><code>// The same fields as the example above
-$val = Validation::factory('my_validation');
+$val = Validation::forge('my_validation');
 $val->add_field('username', 'Your username', 'required');
 $val->add_field('password', 'Your password', 'required|min_length[3]|max_length[10]');</code></pre>
 
@@ -400,6 +400,21 @@ echo $val->errors('username')->get_message('The field :label must be filled out 
 					</tr>
 				</tbody>
 			</table>
+
+			<h3>Naming callback/closure rules</h3>
+
+			<p>Full callback rules or closures can be named as well, by default their names will be:</p>
+			<ul>
+				<li><strong>Closure:</strong> "closure"</li>
+				<li><strong>array($class, $method):</strong> "$class:$method"</li>
+				<li><strong>array($object, $method):</strong> get_class($object).":$method"</li>
+			</ul>
+
+			<p>If you want to give them custom names instead you can do that like this:</p>
+
+			<pre class="php"><code>// Add a rule which checks if the input is odd, the expected message name will be 'validation.odd'
+$field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
+</code></pre>
 		</article>
 
 		<article>
@@ -427,13 +442,13 @@ class Myvalidation {
 }
 
 // and call it like:
-$val = Validation::factory();
+$val = Validation::forge();
 $val->add_callable('myvalidation'); // here we add the class to load rules from
 
 $val->add_field('username', 'Your username', 'trim|strip_tags|required|unique[users.username]');</code></pre>
 
         <p>3. Calling callbacks from a model. It works like a method described above, but we only need to call it in other way:</p>
-<pre class="php"><code>$val = Validation::factory();
+<pre class="php"><code>$val = Validation::forge();
 $val->add_model('Model_User');</code></pre>
 
         <p class="note">

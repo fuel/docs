@@ -118,7 +118,7 @@ Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 							</tr>
 							<tr>
 								<th><kbd>$msg</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>The message for the info log entry.</td>
 							</tr>
 							<tr>
@@ -163,7 +163,7 @@ Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 							</tr>
 							<tr>
 								<th><kbd>$msg</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>The message for the info log entry.</td>
 							</tr>
 							<tr>
@@ -208,7 +208,7 @@ Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 							</tr>
 							<tr>
 								<th><kbd>$msg</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>The message for the info log entry.</td>
 							</tr>
 							<tr>
@@ -253,12 +253,12 @@ Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 							</tr>
 							<tr>
 								<th><kbd>$level</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>A custom Level.</td>
 							</tr>
 							<tr>
 								<th><kbd>$msg</kbd></th>
-								<td><i>required</i></td>
+								<td><em>required</em></td>
 								<td>The message for the info log entry.</td>
 							</tr>
 							<tr>
@@ -276,12 +276,62 @@ Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 				<tr>
 					<th>Example</th>
 					<td>
-						<pre class="php"><code>// and finally, we create a log entry with a custom $level<br/>Log::write('Link', 'More info on http://fuelphp.com/')</code></pre>
+						<pre class="php"><code>// and finally, we create a log entry with a custom $level
+Log::write('Link', 'More info on http://fuelphp.com/')</code></pre>
 					</td>
 				</tr>
 				</tbody>
 			</table>
 		</article>
+		
+		<h3 id="procedural_helpers">Procedural helpers</h3>
+		
+		<article>
+			<h4 id="function_logger">logger($level, $msg, $method = null)</h4>
+			<p>The <strong>logger</strong> function is an alias for <a href="#method_write">Log::write</a>.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$level</kbd></th>
+								<td><em>required</em></td>
+								<td>A custom Level.</td>
+							</tr>
+							<tr>
+								<th><kbd>$msg</kbd></th>
+								<td><em>required</em></td>
+								<td>The message for the info log entry.</td>
+							</tr>
+							<tr>
+								<th><kbd>$method</kbd></th>
+								<td><pre class="php"><code>null</code></pre></td>
+								<td>Information about the method which created the log entry.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>void</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>logger(\Fuel::L_INFO, 'My Message', 'SomeMethod');</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
 	</section>
 
 	<section id="footer">

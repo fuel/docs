@@ -153,7 +153,48 @@ Config::set('blog.items_to_display', 5);</code></pre>
 		</article>
 
 		<article>
-			<h4 id="method_load">load($file, $group = null)</h4>
+			<h4 id="method_delete">delete($item)</h4>
+			<p>The <strong>delete</strong> method removes a given <kbd>$item</kbd>.  <kbd>$item</kbd> can be dot (<kbd>.</kbd>) separated, just like <kbd>set()</kbd> and <kbd>get()</kbd> .</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$item</kbd></th>
+								<td><i>required</i></td>
+								<td>The name of the item to set.  Groups and multi-dimensional arrays can be set by separating the levels by a dot (<kbd>.</kbd>).  If <kbd>$item</kbd> does not exist it will be created.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>void</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Remove a configuration item using dot notation
+Config::delete('blog.items_to_display');</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4 id="method_load">load($file, $group = null, $reload = false, $overwrite = false)</h4>
 			<p>The <strong>load</strong> method reads in a config file into the system.  It searches through the config directories for the requested file.  You can optionally group the config files to avoid naming collisions.</p>
 			<table class="method">
 				<tbody>
@@ -179,6 +220,16 @@ Config::set('blog.items_to_display', 5);</code></pre>
 								<th><kbd>$group</kbd></th>
 								<td><kbd>null</kbd></td>
 								<td>(Optional) A group name to use.  If set to <kbd>true</kbd> then a group of the same name as <kbd>$file</kbd> will be created.  If this is not set or is <kbd>null</kbd> then the loaded config will be merged with the root config.</td>
+							</tr>
+							<tr>
+								<th><kbd>$reload</kbd></th>
+								<td><kbd>false</kbd></td>
+								<td>(Optional) If set to <kbd>true</kbd> a reload of the requested configuration is forced, erasing cached configuration items related to the config file to be loaded.</td>
+							</tr>
+							<tr>
+								<th><kbd>$overwrite</kbd></th>
+								<td><kbd>false</kbd></td>
+								<td>(Optional) If set to <kbd>true</kbd> the loaded configuration items will be merged with the items already loaded in a non-recursive manner, with will overwrite array values in a multidimensional array, rather then merging them.</td>
 							</tr>
 						</table>
 					</td>

@@ -24,9 +24,9 @@
 	<div id="main-nav"></div>
 
 	<section id="content">
-		<h2>Language Class</h2>
+		<h2>Lang Class</h2>
 
-		<p>The language class allows you to set language variables using language files in your application.</p>
+		<p>The Lang class allows you to set language variables using language files in your application.</p>
 
 		<article>
 			<h4 id="method_load">load($file, $group = null)</h4>
@@ -83,8 +83,8 @@ Lang:load('example', 'test');
 // Outputs Plop
 $this->output = Lang::line('test.test.something');
 
-// Will load the given file from the module 'foo' into the 'bar' group.
-Lang:load('foo\\example', 'bar');</code></pre>
+// Will load the example language file from the module 'foo' into the 'bar' group.
+Lang:load('foo::example', 'bar');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -92,8 +92,8 @@ Lang:load('foo\\example', 'bar');</code></pre>
 		</article>
 
 		<article>
-			<h4 id="method_line">line($line, $params = array())</h4>
-			<p>The <strong>line</strong> method allows you to get a specific line from the language file.</p>
+			<h4 id="method_get">get($line, $params = array())</h4>
+			<p>The <strong>get</strong> method allows you to get a specific line from the language file.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -124,16 +124,16 @@ Lang:load('foo\\example', 'bar');</code></pre>
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>string</td>
+					<td>mixed. String if found, or false if not found</td>
 				</tr>
 				<tr>
 					<th>Example</th>
 					<td>
 						<pre class="php"><code>// Outputs Hello world
-$this->output = Lang::line('hello', array('name' => 'world');
+$this->output = Lang::get('hello', array('name' => 'world');
 
 // Outputs Plop
-$this->output = Lang::line('test.something');</code></pre>
+$this->output = Lang::get('test.something');</code></pre>
 					</td>
 				</tr>
 				</tbody>
@@ -178,7 +178,7 @@ $this->output = Lang::line('test.something');</code></pre>
 				</tr>
 				<tr>
 					<th>Returns</th>
-					<td>boolean</td>
+					<td>void</td>
 				</tr>
 				<tr>
 					<th>Example</th>
@@ -192,6 +192,53 @@ Lang:set('hello', 'Ahoy!', 'test');
 // Will also work as above
 Lang::load('test', 'test);
 Lang::set('hello', 'Ahoy!');</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<h3 id="procedural_helpers">Procedural helpers</h3>
+
+		<article>
+			<h4 id="function___">__($string, $params = array())</h4>
+			<p>The <strong>__</strong> function is an alias for <a href="#method_line">Lang::line</a>.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$string</kbd></th>
+								<td><i>required</i></td>
+								<td>The desired line's identifier.</td>
+							</tr>
+							<tr>
+								<th><kbd>$parameters</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>Sets an array of parameter that might be passed to the line.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string, result from <a href="#method_line">Lang::line</a></td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Outputs Hello world
+$this->output = __('hello', array('name' => 'world');
+
+// Outputs Plop
+$this->output = __('test.something');</code></pre>
 					</td>
 				</tr>
 				</tbody>

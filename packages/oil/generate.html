@@ -66,19 +66,19 @@
 	public function action_action1()
 	{
 		$this->template->title = 'Posts &raquo Action1';
-		$this->template->content = View::factory('posts/action1');
+		$this->template->content = View::forge('posts/action1');
 	}
 
 	public function action_action2()
 	{
 		$this->template->title = 'Posts &raquo Action2';
-		$this->template->content = View::factory('posts/action2');
+		$this->template->content = View::forge('posts/action2');
 	}
 
 	public function action_action3()
 	{
 		$this->template->title = 'Posts &raquo Action3';
-		$this->template->content = View::factory('posts/action3');
+		$this->template->content = View::forge('posts/action3');
 	}
 
 }
@@ -126,8 +126,28 @@ class Create_posts {
 		\DBUtil::drop_table('posts');
 	}
 }</code></pre>
+			<h3 id="running_migrations">Running Migrations</h3>
 
-			<h3 id="migrations">Migrations</h3>
+			<p>
+				The following commands illustrate how to use the refine command to run useful migration tasks, assuming that the system is currently at migration 5. The migrate task can be given parameters to move directly to a given version, or just up/down by a single version.
+			</p>
+
+			<pre class="cli">$ php oil refine migrate -v
+	Currently on migration: 5.
+
+$ php oil refine migrate version=4
+	Migrated to version: 4.
+
+$ php oil refine migrate version=5
+	Migrated to version: 5.
+
+$ php oil refine migrate:down
+	Migrated to version: 4.
+
+$ php oil refine migrate:up
+	Migrated to version: 5.</pre>
+
+			<h3 id="migrations">Generating Migrations</h3>
 
 			<p>
 				You can generate migrations without creating a model. This could be used to rename a table, or add fields to a table in a way that is easy to deploy in other environments.
@@ -137,7 +157,7 @@ class Create_posts {
 	Building magic migration: rename_table
 	Created migration: APPPATH/migrations/002_rename_table_users_to_accounts.php</pre>
 
-			<h3>Magic Migrations</h3>
+			<h3 id="magic_migrations">Magic Migrations</h3>
 			<p>There are a number of "magic" migrations which automatically build you a migration based on a prefix to your migration name.</p>
 			<pre class="cli">$ php oil generate migration create_users name:text email:string[50] password:string[125]
 $ php oil generate migration rename_table_users_to_accounts
@@ -180,7 +200,7 @@ Migrated to latest version: 3.
 	{
 		$data['monkeys'] = Model_Monkey::find('all');
 		$this->template->title = "Monkeys";
-		$this->template->content = View::factory('monkeys/index', $data);
+		$this->template->content = View::forge('monkeys/index', $data);
 	}
 
 	public function action_view($id = null)
@@ -188,14 +208,14 @@ Migrated to latest version: 3.
 		$data['monkey'] = Model_Monkey::find($id);
 
 		$this->template->title = "Monkey";
-		$this->template->content = View::factory('monkeys/view', $data);
+		$this->template->content = View::forge('monkeys/view', $data);
 	}
 
 	public function action_create($id = null)
 	{
 		if ($_POST)
 		{
-			$monkey = Model_Monkey::factory(array(
+			$monkey = Model_Monkey::forge(array(
 				'name' => Input::post('name'),
 				'description' => Input::post('description'),
 			));
@@ -215,7 +235,7 @@ Migrated to latest version: 3.
 		}
 
 		$this->template->title = "Monkeys";
-		$this->template->content = View::factory('monkeys/create');
+		$this->template->content = View::forge('monkeys/create');
 	}
 
 	public function action_edit($id = null)
@@ -246,7 +266,7 @@ Migrated to latest version: 3.
 		}
 
 		$this->template->title = "Monkeys";
-		$this->template->content = View::factory('monkeys/edit');
+		$this->template->content = View::forge('monkeys/edit');
 	}
 
 	public function action_delete($id = null)
