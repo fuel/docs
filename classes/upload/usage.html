@@ -322,7 +322,7 @@ foreach (Upload::get_errors() as $file)
 
 		<article>
 			<h4 id="method_is_valid">is_valid()</h4>
-			<p>The <strong>is_valid</strong> method can be used to check if there are any uploaded files present that have been validated.</p>
+			<p>The <strong>is_valid</strong> method can be used to check if there are any uploaded files present that have passed the upload validation.</p>
 			<table class="method">
 				<tbody>
 				<tr>
@@ -444,6 +444,10 @@ foreach( Upload::get_errors() as $file )
 				</tr>
 				</tbody>
 			</table>
+			<p class="note">
+				Note that all upload fields in your form are submitted, even if they are optional. For fields that are left empty, the
+				uploaded files array will have an empty file entry, with an error code of <strong>Upload::UPLOAD_ERR_NO_FILE</strong>. When processing
+				errors, check the error code first, before trying to use any of the other fields in the returned array.</p>
 		</article>
 
 		<article>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Package Class - Fuel Documentation</title>
+	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
+	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../assets/js/nav.js"></script>
+	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			show_nav('classes', '../');
+		});
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+
+	<header>
+		<h1>Fuel Documentation</h1>
+	</header>
+
+	<div id="main-nav"></div>
+
+	<section id="content">
+		<h2>Package Class</h2>
+
+		<p>The <kbd>Package</kbd> class allows you to easily load, unload, check if a package is loaded, or get all packages loaded.</p>
+
+		<article>
+			<h4 id="method_load">load($package, $path = null)</h4>
+			<p>The <strong>load</strong> method allows you to load one or more packages at runtime.  If the package cannot be found a <kbd>PackageNotFoundException</kbd> will be thrown.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$package</kbd></th>
+								<td><i>required</i></td>
+								<td>Name of the package to be loaded, or an array of packages and package paths.</td>
+							</tr>
+							<tr>
+								<th><kbd>$path</kbd></th>
+								<td><code>PKGPATH</code></td>
+								<td>Name of the package to be loaded, or an array of packages and package paths.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td><i>void</i></td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// load the orm package
+Package::load('orm');
+
+// load the parser package from a specific directory
+Package::load('parser', '/path/to/packages/dir/');
+
+// load multiple packages from a single package installation
+Package::load( array('First' => PKGPATH.'my'.DS.'first'.DS, 'Last' => PKGPATH.'my'.DS.'last'.DS) );
+
+// load the non-existent package
+Package::load('awesome'); // Throws a PackageNotFoundException
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4 id="method_unload">unload($package)</h4>
+			<p>The <strong>unload</strong> method allows you to unload a package at runtime.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$package</kbd></th>
+								<td><i>required</i></td>
+								<td>Name of the package to be unload.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td><i>void</i></td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// unload the orm package
+Package::unload('orm');
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+
+		<article>
+			<h4 id="method_unload">loaded($package = null)</h4>
+			<p>The <strong>loaded</strong> method allows you to check if a package is currently loaded.  If no package name is given then all loaded packages are returned.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$package</kbd></th>
+								<td><kbd>null</kbd></td>
+								<td>Name of the package to be check.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td><kbd>bool|array</kbd></td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// Check if the orm package is loaded
+$loaded = Package::loaded('orm');
+
+// Get all loaded packages
+$loaded = Package::loaded();
+/*
+Returns something like:
+array(
+    'orm' => '/path/to/orm',
+    'parser' => '/path/to/parser',
+)
+*/
+</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+	</section>
+
+	<section id="footer">
+		<p>
+			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
+			&copy; 2010 - 2011 Fuel Development Team
+		</p>
+	</section>
+
+</body>
+</html>
