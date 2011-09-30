@@ -438,6 +438,90 @@ echo Form::close();</code></pre>
 				</tbody>
 			</table>
 		</article>
+		
+		<article>
+			<h4 id="method_open">fieldset_open($attributes = array(), $legend = null)</h4>
+			<p>Create a fieldset open tag.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>
+						<table class="parameters">
+							<tr>
+								<th>Param</th>
+								<th>Default</th>
+								<th class="description">Description</th>
+							</tr>
+							<tr>
+								<th><kbd>$attributes</kbd></th>
+								<td><pre class="php"><code>array()</code></pre></td>
+								<td>An array of settings; may use the key of 'legend' to set the fieldset's legend attribute.
+								The attribute's values will be used as html tag properties.</td>
+							</tr>
+							<tr>
+								<th><kbd>$legend</kbd></th>
+								<td><pre class="php"><code>string</code></pre></td>
+								<td>String to be used for the legend fieldset option</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// returns &lt;fieldset &gt;
+echo Form::fieldset_open();
+
+// returns &lt;fieldset class="example-class" id="example-id"&gt;
+echo Form::fieldset_open(array('class' => 'example-class', 'id' => 'example-id'));
+
+// returns &lt;fieldset class="example-class" id="example-id"&gt;&lt;legend&gt;Custom Legend&lt;/legend&gt;
+echo Form::fieldset_open(array('class' => 'example-class', 'id' => 'example-id'), 'Custom Legend');
+
+// returns &lt;fieldset class="example-class" id="example-id"&gt;&lt;legend&gt;Custom Legend&lt;/legend&gt;
+echo Form::fieldset_open(array('class' => 'example-class', 'id' => 'example-id', 'legend' => 'Custom Legend'));</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
+		
+		<article>
+			<h4 id="method_close">fieldset_close()</h4>
+			<p>Create a fieldset close tag.</p>
+			<table class="method">
+				<tbody>
+				<tr>
+					<th class="legend">Static</th>
+					<td>Yes</td>
+				</tr>
+				<tr>
+					<th>Parameters</th>
+					<td>(none)</td>
+				</tr>
+				<tr>
+					<th>Returns</th>
+					<td>string</td>
+				</tr>
+				<tr>
+					<th>Example</th>
+					<td>
+						<pre class="php"><code>// returns &lt;/fieldset&gt;
+echo Form::fieldset_close();</code></pre>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</article>
 
 
 		<h2 id="create_forms_oop">Create forms in an OOP way using fieldsets</h2>
