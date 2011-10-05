@@ -37,7 +37,7 @@
 		</article>
 
 		<article>
-			<h4 id="method_set_header">set_header($name, $value)</h4>
+			<h4 id="method_set_header">set_header($name, $value, $replace)</h4>
 			<p>The <strong>set_header</strong> method allows set custom HTTP headers.</p>
 			<p class="note">This function must calles from within a controller method as the response object is one of the controller's propperties.</p>
 			<table class="method">
@@ -64,6 +64,12 @@
 								<th><kbd>$value</kbd></th>
 								<td><i>Required</i></td>
 								<td>The string that needs to be added to the HTTP header.</td>
+							</tr>
+							<tr>
+								<th><kbd>$replace</kbd></th>
+								<td><pre class="php"><code>true</code></pre></td>
+								<td>All headers will replace any previous value for the same name by default. If you set
+									this parameter to <kbd>false</kbd> the header won't overwrite and can't be overwritten.</td>
 							</tr>
 						</table>
 					</td>
