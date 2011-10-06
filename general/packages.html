@@ -1,61 +1,79 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Packages - Fuel Documentation</title>
-	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('general', '../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../';
 	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Packages - General - Fuel Documentation</title>
 </head>
 <body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
 
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-
-		<h2>Packages</h2>
-
-		<p>
-			When it comes to organizing, reuse and share your code, packages are a great way to allow you to do this.
-			They can contain all sorts of code like models, third-party libraries, configs and so on.
-			Packages also allow you to extend the core without messing up you app/classes directory.
-			To clearify what packages are, here are the "is" and "is not" on packages.
-		</p>
-
-		<h4 id="they_are">Packages...</h4>
-		<ul>
-			<li>are a great way to organize your code,</li>
-			<li>supply a place to keep third party libraries,</li>
-			<li>allow you to extend other packages without messing with someone's code,</li>
-			<li>a place to extend fuel without messing with core files.</li>
-		</ul>
-
-		<h4 id="they_are_not">But..</h4>
-		<ul>
-			<li>packages do not map to the URL,</li>
-			<li>and are not approachable through HMVC requests</li>
-		</ul>
-
-		<h3 id="installing">Installing packages</h3>
-		<p>Installing packages can be done manually and through <a href="../packages/oil/package.html">oil</a>. To install manually download the packa source and place in into your package directory (default in fuel/packages).</p>
-		<p class="note">To actualy be able to use your it you must either always_load it in <em>app/config/config.php</em> or use <a href="../classes/fuel.html#method_add_package">Fuel::add_package()</a>.</p>
-
-		<h3 id="creation">Creating packages</h3>
-		<p>To help people understand what you are doing it's best to stucture your package like so:</p>
-
-		<pre>/packages
+			<h2>Packages</h2>
+	
+			<p>
+				When it comes to organizing, reuse and share your code, packages are a great way to allow you to do this.
+				They can contain all sorts of code like models, third-party libraries, configs and so on.
+				Packages also allow you to extend the core without messing up you app/classes directory.
+				To clearify what packages are, here are the "is" and "is not" on packages.
+			</p>
+	
+			<h4 id="they_are">Packages...</h4>
+			<ul>
+				<li>are a great way to organize your code,</li>
+				<li>supply a place to keep third party libraries,</li>
+				<li>allow you to extend other packages without messing with someone's code,</li>
+				<li>a place to extend fuel without messing with core files.</li>
+			</ul>
+	
+			<h4 id="they_are_not">But..</h4>
+			<ul>
+				<li>packages do not map to the URL,</li>
+				<li>and are not approachable through HMVC requests</li>
+			</ul>
+	
+			<h3 id="installing">Installing packages</h3>
+			<p>Installing packages can be done manually and through <a href="../packages/oil/package.html">oil</a>. To install manually download the packa source and place in into your package directory (default in fuel/packages).</p>
+			<p class="note">To actualy be able to use your it you must either always_load it in <em>app/config/config.php</em> or use <a href="../classes/fuel.html#method_add_package">Fuel::add_package()</a>.</p>
+	
+			<h3 id="creation">Creating packages</h3>
+			<p>To help people understand what you are doing it's best to stucture your package like so:</p>
+	
+			<pre><code>/packages
     /package
         /bootstrap.php
         /classes
@@ -65,14 +83,14 @@
         /config
             /packageconfig.php
         /and_so_on
-</pre>
-
-		<p>
-			Every package is expected to have a <em>bootstrap.php</em> located at the base of the package.
-			Use the bootstrap to add the package namespace (to global if you wish). And add the classes for better perfomance.
-		</p>
-
-		<pre class="php"><code>// Add namespace, necessary if you want the autoloader to be able to find classes
+</code></pre>
+	
+			<p>
+				Every package is expected to have a <em>bootstrap.php</em> located at the base of the package.
+				Use the bootstrap to add the package namespace (to global if you wish). And add the classes for better perfomance.
+			</p>
+	
+			<pre class="php"><code>// Add namespace, necessary if you want the autoloader to be able to find classes
 Autoloader::add_namespace('Mypackage', __DIR__.'/classes/');
 
 // Add as core namespace
@@ -91,29 +109,28 @@ Autoloader::add_classes(array(
 	'Mypackage\\Anotherclass' => __DIR__.'/classes/anotherclass.php',
 ));
 </code></pre>
-
-		<p>Once you have your classes in place you can now start using them.</p>
-
-		<p class="note">Note: if package namespaces aren't aliased to global you must supply the it:</p>
-
-		<pre class="php"><code>// If aliased to global just use
+	
+			<p>Once you have your classes in place you can now start using them.</p>
+	
+			<p class="note">Note: if package namespaces aren't aliased to global you must supply the it:</p>
+	
+			<pre class="php"><code>// If aliased to global just use
 $instance = new Myclass;
 
 // When not aliased to global
 $instance = new Mynamespace\Myclass;
 </code></pre>
+	
+			<h3 id="fuelcells">The future of packages, fuel cells...</h3>
+			<p>Comming soon...</p>
 
-		<h3 id="fuelcells">The future of packages, fuel cells...</h3>
-		<p>Comming soon...</p>
+		</div>
 
-	</section>
-
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>

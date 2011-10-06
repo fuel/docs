@@ -1,85 +1,103 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Constants - Fuel Documentation</title>
-	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('general', '../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../';
 	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Constants - General - Fuel Documentation</title>
 </head>
 <body>
-
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-		<h2>Constants</h2>
-
-		<p>
-			Fuel has four constants in the global namespace to direct you to important directories. Fuel uses them internally to locate classes and other files.
-			These contants are set in <em>public/index.php</em>.
-		</p>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
 		
-		<p class="note">
-			<strong>Note:</strong> When you move any of fuel's prime folders (app, core, public, packages) be sure to update you index.php to direct fuel to the right paths.
-		</p>
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+	
+			<h2>Constants</h2>
+	
+			<p>
+				Fuel has four constants in the global namespace to direct you to important directories. Fuel uses them internally to locate classes and other files.
+				These contants are set in <em>public/index.php</em>.
+			</p>
+			
+			<p class="note">
+				<strong>Note:</strong> When you move any of fuel's prime folders (app, core, public, packages) be sure to update you index.php to direct fuel to the right paths.
+			</p>
+	
+			<table class="config valign">
+				<tbody>
+					<tr class="header">
+						<th>Key</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>APPPATH</th>
+						<td>
+							Path to the application directory (<em>/path/to/fuel/app</em>).
+							This is where you application directories and code reside.
+						</td>
+					</tr>
+					<tr>
+						<th>COREPATH</th>
+						<td>
+							Path to the core directory (<em>/path/to/fuel/core</em>).
+							This is where all the Fuel classes live.
+						</td>
+					</tr>
+					<tr>
+						<th>DOCROOT</th>
+						<td>
+							Path to the public directory (<em>/path/to/public</em>).
+							This is where index.php resides. Everything accessible to user lives and is accessible via the browser).
+						</td>
+					</tr>
+					<tr>
+						<th>PKGPATH</th>
+						<td>
+							Path to the packages directory (<em>/path/to/fuel/packages</em>).
+							This is where your packages are installed (when installed through oil).
+						</td>
+					</tr>
+				</tbody>
+			</table>
 
-		<table class="config">
-			<tbody>
-				<tr class="header">
-					<th>Key</th>
-					<th>Description</th>
-				</tr>
-				<tr>
-					<th>APPPATH</th>
-					<td>
-						Path to the application directory (<em>/path/to/fuel/app</em>).
-						This is where you application directories and code reside.
-					</td>
-				</tr>
-				<tr>
-					<th>COREPATH</th>
-					<td>
-						Path to the core directory (<em>/path/to/fuel/core</em>).
-						This is where all the Fuel classes live.
-					</td>
-				</tr>
-				<tr>
-					<th>DOCROOT</th>
-					<td>
-						Path to the public directory (<em>/path/to/public</em>).
-						This is where index.php resides. Everything accessible to user lives and is accessible via the browser).
-					</td>
-				</tr>
-				<tr>
-					<th>PKGPATH</th>
-					<td>
-						Path to the packages directory (<em>/path/to/fuel/packages</em>).
-						This is where your packages are installed (when installed through oil).
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		</div>
 
-	</section>
-
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>
