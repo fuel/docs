@@ -455,6 +455,18 @@ $val->add_model('Model_User');</code></pre>
         <strong>Note: </strong>
         You need the '_validation_' prefix for a method to be used in validation.
         </p>
+
+		<p>
+			It can be useful to use <a href="methods.html#method_active">Validation::active()</a>
+			and <a href="methods.html#method_active_field">Validation::active_field()</a>
+			to get the currently active validation instance and field currently being validated, respectively.
+		</p>
+
+		<p>For example, in the above you could do:</p>
+		<pre class="php"><code>public function _validation_unique($val, $options)
+{
+	Validation::active()->set_message('unique', 'The field :label must be unique, but :value has already been used');
+...</code></pre>
         </article>
 
 	</section>

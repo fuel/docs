@@ -94,7 +94,8 @@ Auth::check(array('simpleauth', 'twitter'));</code></pre>
 
 			<article>
 				<h4 id="method_instance">instance($instance = null)</h4>
-				<p>Retrieves a loaded driver, when drivers are set in config the first driver will also be the default.</p>
+				<p>Retrieves a loaded driver, when multiple drivers are set in config the first driver will also be the
+					default.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -297,14 +298,224 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 		<section>
 			<h2 id="group_drivers">Basic Usage of Group drivers</h2>
 
-			<p>(to be written)</p>
+			<p>Group drivers are for assigning users to user groups.</p>
+
+			<article>
+				<h4 id="method_member">member($group, $specific = null)</h4>
+				<p>Checks if user is a member of the given group in either all loaded Group drivers or just those
+					specified as the 2nd parameter.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$group</kbd></th>
+									<td><i>required</i></td>
+									<td>group id</td>
+								</tr>
+								<tr>
+									<th><kbd>$specific</kbd></th>
+									<td><i>null</i></td>
+									<td>null to check all or one ore more driver id's (single string or array of strings)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool, whether one of the (given) drivers had the current user registered as a member</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+	<pre class="php"><code>if ( ! Auth::member(100))
+{
+	Response::redirect('no_admin');
+}
+
+// specific driver
+Auth::member(1, 'simplegroup');
+
+// Multiple drivers
+Auth::check(0, array('simplegroup', 'genericgroup'));</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_group">group($instance = null)</h4>
+				<p>Retrieves a loaded group driver, when multiple drivers are set in config the first driver will also
+					be the default.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$instance</kbd></th>
+									<td><i>null</i></td>
+									<td>null to fetch the default driver, or a driver id to get a specific one</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Auth_Group_Driver</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+	<pre class="php"><code>Auth::group()->get_name();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 
 		</section>
 
 		<section>
 			<h2 id="acl_drivers">Basic Usage of ACL drivers</h2>
 
-			<p>(to be written)</p>
+			<p>Group drivers are for assigning users to user groups.<br />
+				ACL uses input of a location and required rights on that location as input for the checking of rights,
+				what that exactly means is up to you. There are 2 common ways in which these are implemented:</p>
+
+			<ul>
+				<li><strong>Location = Controller, Rights = Methods</strong><br />
+					In this scenario you could have a <kbd>Controller_Articles</kbd> with methods like
+					<kbd>action_list()</kbd> and <kbd>action_create()</kbd> which you could check using:
+					<kbd>Auth::has_access('articles.list');</kbd></li>
+				<li><strong>Location = Model, Rights = specific operations</strong><br />
+					In this scenario you could have a <kbd>Model_Article</kbd> and before allowing any operation within
+					the model you first check if the user has the required CRUD rights:
+					<kbd>Auth::has_access('article.[read,update]');</kbd></li>
+			</ul>
+
+			<p>These are but examples, it's up to you how you interpret and use these.</p>
+
+			<article>
+				<h4 id="method_has_access">has_access($condition, $specific = null)</h4>
+				<p>Checks if user is has access for the given condition in either all loaded Acl drivers or just those
+					specified as the 2nd parameter.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$condition</kbd></th>
+									<td><i>required</i></td>
+									<td>takes a location and the required rights on the location as either a string or
+										an array</td>
+								</tr>
+								<tr>
+									<th><kbd>$specific</kbd></th>
+									<td><i>null</i></td>
+									<td>null to check all or one ore more driver id's (single string or array of strings)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool, whether the user gets access to all given rights in the given location from the loaded
+							(or specified) ACL drivers.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+	<pre class="php"><code>// check if user is allowed to comment
+if ( ! Auth::has_access('comments.create'))
+{
+	Response::redirect('no_admin');
+}
+
+// check if user can also update & delete comments
+Auth::has_access('comments.[update,delete]');
+
+// The same with an array instead of a string
+Auth::has_access(array('comments', array('update', 'delete')));</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_acl">acl($instance = null)</h4>
+				<p>Retrieves a loaded ACL driver, when multiple drivers are set in config the first driver will also
+					be the default.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$instance</kbd></th>
+									<td><i>null</i></td>
+									<td>null to fetch the default driver, or a driver id to get a specific one</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Auth_Acl_Driver</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+	<pre class="php"><code>Auth::acl();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 
 		</section>
 

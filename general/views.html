@@ -109,7 +109,7 @@
 
 		// add it unfiltered just like you added
 		$view->set('title', '&lt;strong&gt;not bold because filtered&lt;/strong&gt;', false);
-		
+
 		return $view;
 	}
 }</code></pre>
@@ -125,6 +125,19 @@
 		View &amp; ViewModels are expected to contain HTML and take care of their own filtering, which is why they're
 		not sanitized. Closures cannot be sanitized, and you should take care to ensure this is done within them if
 		necessary.</p>
+
+		<h2>Lazy rendering</h2>
+
+		<p>
+			When instantiating a view object, only the environment needed to generate output is setup. The view file is not
+			being read, no variables will be interpreted, and no output will be rendered.
+		</p>
+		<p>
+			This only happens when you explicitly call the <strong>render()</strong> method on the view object or when you
+			cast the view object to a string (which happens automatically when you echo it). This means no views are processed
+			until it's absolutely needed, it also means that Fuel doesn't keep rendered views in memory until it is time to
+			send them to the browser.
+		</p>
 
 		<h2>Nesting Views</h2>
 
@@ -165,7 +178,7 @@
 	&amp;copy; Copyright &lt;?php echo date(&#x27;Y&#x27;);?&gt; &lt;?php echo $site_title; ?&gt;
 &lt;/div&gt;</code></pre>
 
-		<h3 id="method_one">Method 1 (using example views above):</h3>
+		<h3 id="method_one">Method 1 (using example views above and lazy rendering):</h3>
 
 <pre><code>class Controller_Home extends Controller {
 
@@ -174,23 +187,23 @@
 		// create the view
 		$view = View::forge('layout');
 
-		// assign variables
-		$view->username = 'Joe14';
-		$view->set('title', 'Home');
-		$view->site_title = 'My Website';
+		// assign global variables so all views have access to them
+		$view->set_global('username', 'Joe14');
+		$view->set_global('title', 'Home');
+		$view->set_global('site_title', 'My Website');
 
-		//assign views as variables
+		//assign views as variables, lazy rendering
 		$view->head = View::forge('head');
 		$view->header = View::forge('header');
 		$view->content = View::forge('content');
 		$view->footer = View::forge('footer');
 
-		// assign to browser output
+		// return the view object to the Request
 		return $view;
 	}
 }</code></pre>
 
-		<h3 id="method_two">Method 2 (using example views above):</h3>
+		<h3 id="method_two">Method 2 (using example views above and forced rendering):</h3>
 
 <pre><code>class Controller_Home extends Controller {
 
@@ -202,14 +215,15 @@
 		$data['site_title'] = 'My Website';
 		$data['username'] = 'Joe14';
 
-		//assign views as variables
-		$data['head'] = View::forge('head', $data)->render();
-		$data['header'] = View::forge('header', $data)->render();
-		$data['content'] = View::forge('content', $data)->render();
-		$data['footer'] = View::forge('footer', $data)->render();
+		//assign views as variables, forced rendering
+		$views = array();
+		$views['head'] = View::forge('head', $data)->render();
+		$views['header'] = View::forge('header', $data)->render();
+		$views['content'] = View::forge('content', $data)->render();
+		$views['footer'] = View::forge('footer', $data)->render();
 
-		//assign to browser output
-		return View::forge('layout', $data);
+		// return the rendered HTML to the Request
+		return View::forge('layout', $views)->render();
 	}
 }</code></pre>
 
