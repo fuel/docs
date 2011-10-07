@@ -7,6 +7,7 @@
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
+		var class_prefix = "Auth::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
 	<title>Usage - Auth Package - Fuel Documentation</title>
@@ -62,7 +63,7 @@
 				validates. Below are first the methods for checking and getting the drivers.</p>
 
 				<article>
-					<h4 id="method_check">check($specific = null)</h4>
+					<h4 id="method_check" class="method">check($specific = null)</h4>
 					<p>Checks either all loaded Login drivers or just those specified as the parameter.</p>
 					<table class="method">
 						<tbody>
@@ -111,7 +112,7 @@ Auth::check(array('simpleauth', 'twitter'));</code></pre>
 				</article>
 
 				<article>
-					<h4 id="method_instance">instance($instance = null)</h4>
+					<h4 id="method_instance" class="method">instance($instance = null)</h4>
 					<p>Retrieves a loaded driver, when multiple drivers are set in config the first driver will also be the
 						default.</p>
 					<table class="method">
@@ -161,7 +162,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 				often have specific parameters added for their implementation.</p>
 
 				<article>
-					<h4 id="method_get_user_array">get_user_array(Array $additional_fields = array())</h4>
+					<h4 id="method_get_user_array" class="method" data-class="Auth_Login_Driver">get_user_array(Array $additional_fields = array())</h4>
 					<p>Returns an array describing the current logged in user, always includes at least a screenname and
 					an emailaddress. Additional fields can be configured in the driver config or requested through the
 					$additional_fields array, but they must have a get_user_<em>fieldname</em>() method within the driver
@@ -204,7 +205,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 				</article>
 
 				<article>
-					<h4 id="method_login">login()</h4>
+					<h4 id="method_login" class="method" data-class="Auth_Login_Driver">login()</h4>
 					<p>Must be implemented specific to the driver to login the user.</p>
 					<table class="method">
 						<tbody>
@@ -231,7 +232,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 				</article>
 
 				<article>
-					<h4 id="method_logout">logout()</h4>
+					<h4 id="method_logout" class="method" data-class="Auth_Login_Driver">logout()</h4>
 					<p>Must be implemented specific to the driver to logout the user, and work without parameters.</p>
 					<table class="method">
 						<tbody>
@@ -258,7 +259,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 				</article>
 
 				<article>
-					<h4 id="method_get_email">get_email()</h4>
+					<h4 id="method_get_email" class="method" data-class="Auth_Login_Driver">get_email()</h4>
 					<p>Fetches the current logged in user's emailaddress.</p>
 					<table class="method">
 						<tbody>
@@ -285,7 +286,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 				</article>
 
 				<article>
-					<h4 id="method_get_screen_name">get_screen_name()</h4>
+					<h4 id="method_get_screen_name" class="method" data-class="Auth_Login_Driver">get_screen_name()</h4>
 					<p>Fetches the current logged in user's screen name.</p>
 					<table class="method">
 						<tbody>
@@ -319,7 +320,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 				<p>Group drivers are for assigning users to user groups.</p>
 
 				<article>
-					<h4 id="method_member">member($group, $specific = null)</h4>
+					<h4 id="method_member" class="method">member($group, $specific = null)</h4>
 					<p>Checks if user is a member of the given group in either all loaded Group drivers or just those
 						specified as the 2nd parameter.</p>
 					<table class="method">
@@ -374,7 +375,7 @@ Auth::check(0, array('simplegroup', 'genericgroup'));</code></pre>
 				</article>
 
 				<article>
-					<h4 id="method_group">group($instance = null)</h4>
+					<h4 id="method_group" class="method">group($instance = null)</h4>
 					<p>Retrieves a loaded group driver, when multiple drivers are set in config the first driver will also
 						be the default.</p>
 					<table class="method">
@@ -437,7 +438,7 @@ Auth::check(0, array('simplegroup', 'genericgroup'));</code></pre>
 				<p>These are but examples, it's up to you how you interpret and use these.</p>
 
 				<article>
-					<h4 id="method_has_access">has_access($condition, $specific = null)</h4>
+					<h4 id="method_has_access" class="method">has_access($condition, $specific = null)</h4>
 					<p>Checks if user is has access for the given condition in either all loaded Acl drivers or just those
 						specified as the 2nd parameter.</p>
 					<table class="method">
@@ -495,7 +496,7 @@ Auth::has_access(array('comments', array('update', 'delete')));</code></pre>
 				</article>
 
 				<article>
-					<h4 id="method_acl">acl($instance = null)</h4>
+					<h4 id="method_acl" class="method">acl($instance = null)</h4>
 					<p>Retrieves a loaded ACL driver, when multiple drivers are set in config the first driver will also
 						be the default.</p>
 					<table class="method">
