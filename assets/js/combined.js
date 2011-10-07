@@ -317,7 +317,7 @@ function setup()
 	
 	var target = $(location.hash.replace('#/','#'))[0];
 	if (target) {
-	    $.scrollTo(target, { speed:500, offset: -20 });
+	    $.scrollTo(target, { speed:0, offset: -20 });
 	}
 	
 	var $methods = $('h4.method');
