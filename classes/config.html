@@ -1,76 +1,96 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Config Class - Fuel Documentation</title>
-	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('classes', '../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../';
+		var class_prefix = "Config::";
 	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Config - Classes - Fuel Documentation</title>
 </head>
 <body>
-
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-		<h2>Config Class</h2>
-
-		<p>The Config class handles nearly all configuration options in Fuel.  You use this class whenever you need to load in a config file, get a value or set a value.</p>
-
-		<h5>Config Groups</h5>
-
-		<p>A config group is simply a way to scope config options.  This avoids naming collisions.  All config files (db.php, routes.php, etc.) are loaded into groups of the same name, with the exception of the main <kbd>config.php</kbd> file.</p>
-
-		<article>
-			<h4 id="method_get">get($item, $default = null)</h4>
-			<p>The <strong>get</strong> method returns the desired config item.  If the item does not exist then <kbd>$default</kbd> is returned.  If the item you are retrieving is a group, then the entire group is returned.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$item</kbd></th>
-								<td><i>required</i></td>
-								<td>The name of the item to retrieve.  Groups and multi-dimensional arrays can be accessed by separating the levels by a dot (<kbd>.</kbd>)</td>
-							</tr>
-							<tr>
-								<th><kbd>$default</kbd></th>
-								<td><kbd>null</kbd></td>
-								<td>(Optional) The default value to return if <kbd>$item</kbd> is not found.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>Either <kbd>$item</kbd>, or <kbd>$default</kbd> if <kbd>$item</kbd> does not exist.  If <kbd>$item</kbd> is a group than an <kbd>array</kbd> containing the entire group.</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>// Outputs the current language set in config.php
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+			
+			<h2>Config Class</h2>
+	
+			<p>The Config class handles nearly all configuration options in Fuel.  You use this class whenever you need to load in a config file, get a value or set a value.</p>
+	
+			<h3 id="config_groups">Config Groups</h3>
+	
+			<p>A config group is simply a way to scope config options.  This avoids naming collisions.  All config files (db.php, routes.php, etc.) are loaded into groups of the same name, with the exception of the main <kbd>config.php</kbd> file.</p>
+	
+			<article>
+				<h4 class="method" id="method_get">get($item, $default = null)</h4>
+				<p>The <strong>get</strong> method returns the desired config item.  If the item does not exist then <kbd>$default</kbd> is returned.  If the item you are retrieving is a group, then the entire group is returned.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$item</kbd></th>
+									<td><i>required</i></td>
+									<td>The name of the item to retrieve.  Groups and multi-dimensional arrays can be accessed by separating the levels by a dot (<kbd>.</kbd>)</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>(Optional) The default value to return if <kbd>$item</kbd> is not found.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Either <kbd>$item</kbd>, or <kbd>$default</kbd> if <kbd>$item</kbd> does not exist.  If <kbd>$item</kbd> is a group than an <kbd>array</kbd> containing the entire group.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Outputs the current language set in config.php
 echo Config::get('language');
 
 // By default a non-existent item will return null
@@ -91,51 +111,51 @@ $active_db = Config::get('db.active');
 // You can go multiple levels deep as well.
 // This will fetch the hostname of the 'dev' db group
 $dev_host = Config::get('db.dev.connection.hostname');</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_set">set($item, $value)</h4>
-			<p>The <strong>set</strong> method Sets a given <kbd>$item</kbd> to <kbd>$value</kbd>.  <kbd>$item</kbd> can be dot (<kbd>.</kbd>) separated, just like <kbd>get()</kbd>.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$item</kbd></th>
-								<td><i>required</i></td>
-								<td>The name of the item to set.  Groups and multi-dimensional arrays can be set by separating the levels by a dot (<kbd>.</kbd>).  If <kbd>$item</kbd> does not exist it will be created.</td>
-							</tr>
-							<tr>
-								<th><kbd>$value</kbd></th>
-								<td><i>required</i></td>
-								<td>The value to set <kbd>$item</kbd> to.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>This method always returns <kbd>true</kbd>.</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>// Sets the current language
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_set">set($item, $value)</h4>
+				<p>The <strong>set</strong> method Sets a given <kbd>$item</kbd> to <kbd>$value</kbd>.  <kbd>$item</kbd> can be dot (<kbd>.</kbd>) separated, just like <kbd>get()</kbd>.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$item</kbd></th>
+									<td><i>required</i></td>
+									<td>The name of the item to set.  Groups and multi-dimensional arrays can be set by separating the levels by a dot (<kbd>.</kbd>).  If <kbd>$item</kbd> does not exist it will be created.</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><i>required</i></td>
+									<td>The value to set <kbd>$item</kbd> to.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>This method always returns <kbd>true</kbd>.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Sets the current language
 Config::set('language', 'en');
 
 // Sets the active db connection
@@ -146,102 +166,102 @@ Config::set('items_to_display', 5);
 
 // You can also use dots to create custom groups and items
 Config::set('blog.items_to_display', 5);</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_delete">delete($item)</h4>
-			<p>The <strong>delete</strong> method removes a given <kbd>$item</kbd>.  <kbd>$item</kbd> can be dot (<kbd>.</kbd>) separated, just like <kbd>set()</kbd> and <kbd>get()</kbd> .</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$item</kbd></th>
-								<td><i>required</i></td>
-								<td>The name of the item to set.  Groups and multi-dimensional arrays can be set by separating the levels by a dot (<kbd>.</kbd>).  If <kbd>$item</kbd> does not exist it will be created.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>void</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>// Remove a configuration item using dot notation
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_delete">delete($item)</h4>
+				<p>The <strong>delete</strong> method removes a given <kbd>$item</kbd>.  <kbd>$item</kbd> can be dot (<kbd>.</kbd>) separated, just like <kbd>set()</kbd> and <kbd>get()</kbd> .</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$item</kbd></th>
+									<td><i>required</i></td>
+									<td>The name of the item to set.  Groups and multi-dimensional arrays can be set by separating the levels by a dot (<kbd>.</kbd>).  If <kbd>$item</kbd> does not exist it will be created.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Remove a configuration item using dot notation
 Config::delete('blog.items_to_display');</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_load">load($file, $group = null, $reload = false, $overwrite = false)</h4>
-			<p>The <strong>load</strong> method reads in a config file into the system.  It searches through the config directories for the requested file.  You can optionally group the config files to avoid naming collisions.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$file</kbd></th>
-								<td><i>required</i></td>
-								<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed). You can prefix this with a namespace to load a config file from a loaded package or module.</td>
-							</tr>
-							<tr>
-								<th><kbd>$group</kbd></th>
-								<td><kbd>null</kbd></td>
-								<td>(Optional) A group name to use.  If set to <kbd>true</kbd> then a group of the same name as <kbd>$file</kbd> will be created.  If this is not set or is <kbd>null</kbd> then the loaded config will be merged with the root config.</td>
-							</tr>
-							<tr>
-								<th><kbd>$reload</kbd></th>
-								<td><kbd>false</kbd></td>
-								<td>(Optional) If set to <kbd>true</kbd> a reload of the requested configuration is forced, erasing cached configuration items related to the config file to be loaded.</td>
-							</tr>
-							<tr>
-								<th><kbd>$overwrite</kbd></th>
-								<td><kbd>false</kbd></td>
-								<td>(Optional) If set to <kbd>true</kbd> the loaded configuration items will be merged with the items already loaded in a non-recursive manner, with will overwrite array values in a multidimensional array, rather then merging them.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>An <kbd>array</kbd> containing the configuration that has been loaded.  If the config file has already been loaded then it will return <kbd>false</kbd></td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>// This merges the "custom" config file in with the root config.
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_load">load($file, $group = null, $reload = false, $overwrite = false)</h4>
+				<p>The <strong>load</strong> method reads in a config file into the system.  It searches through the config directories for the requested file.  You can optionally group the config files to avoid naming collisions.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$file</kbd></th>
+									<td><i>required</i></td>
+									<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed). You can prefix this with a namespace to load a config file from a loaded package or module.</td>
+								</tr>
+								<tr>
+									<th><kbd>$group</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>(Optional) A group name to use.  If set to <kbd>true</kbd> then a group of the same name as <kbd>$file</kbd> will be created.  If this is not set or is <kbd>null</kbd> then the loaded config will be merged with the root config.</td>
+								</tr>
+								<tr>
+									<th><kbd>$reload</kbd></th>
+									<td><kbd>false</kbd></td>
+									<td>(Optional) If set to <kbd>true</kbd> a reload of the requested configuration is forced, erasing cached configuration items related to the config file to be loaded.</td>
+								</tr>
+								<tr>
+									<th><kbd>$overwrite</kbd></th>
+									<td><kbd>false</kbd></td>
+									<td>(Optional) If set to <kbd>true</kbd> the loaded configuration items will be merged with the items already loaded in a non-recursive manner, with will overwrite array values in a multidimensional array, rather then merging them.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>An <kbd>array</kbd> containing the configuration that has been loaded.  If the config file has already been loaded then it will return <kbd>false</kbd></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// This merges the "custom" config file in with the root config.
 Config::load('custom');
 
 // This loads the "custom" config file in a group named "custom".
@@ -252,51 +272,51 @@ Config::load('custom', 'foo');
 
 // This loads the "custom" config from a module called foo in a group named "bar"
 Config::load('foo::custom', 'bar');</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_save">save($file, $config = null)</h4>
-			<p>The <strong>save</strong> method saves a config file into the system.  It searches through the config directories for the requested file.  If no existing file is found, the config file is created in the APPPATH config directory.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$file</kbd></th>
-								<td><i>required</i></td>
-								<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed). You can prefix this with a namespace to load a config file from a loaded package or module.</td>
-							</tr>
-							<tr>
-								<th><kbd>$config</kbd></th>
-								<td><i>required</i></td>
-								<td>If this is a string, it specifies a group name to save. If it is an array, it is assumed to contain the configuration to be saved.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td><kbd>true</kbd> if the config was saved, <kbd>false</kbd> if an error occurred</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>// This loads the "custom" config file in a group named "foo".
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_save">save($file, $config = null)</h4>
+				<p>The <strong>save</strong> method saves a config file into the system.  It searches through the config directories for the requested file.  If no existing file is found, the config file is created in the APPPATH config directory.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$file</kbd></th>
+									<td><i>required</i></td>
+									<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed). You can prefix this with a namespace to load a config file from a loaded package or module.</td>
+								</tr>
+								<tr>
+									<th><kbd>$config</kbd></th>
+									<td><i>required</i></td>
+									<td>If this is a string, it specifies a group name to save. If it is an array, it is assumed to contain the configuration to be saved.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><kbd>true</kbd> if the config was saved, <kbd>false</kbd> if an error occurred</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// This loads the "custom" config file in a group named "foo".
 Config::load('custom', 'foo');
 
 // update some config item
@@ -306,21 +326,20 @@ Config::set('foo.key', $value);
 Config::save('custom', 'foo');
 
 // save the updated config group 'bar' to config file 'custom' in the module 'foo'
-Config::save('foo::custom', 'bar');
-</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-	</section>
+Config::save('foo::custom', 'bar');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+		
+		</div>
 
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>
