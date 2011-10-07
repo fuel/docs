@@ -1,75 +1,94 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Models - Fuel Documentation</title>
-	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('general', '../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../';
 	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Models - General - Fuel Documentation</title>
 </head>
 <body>
-
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-		<h2>Models</h2>
-
-		<h3>What are models?</h3>
-
-		<p>
-			Whenever data needs to be retrieved, manipulated or deleted this should always be done by a model. A Model is a representation of some kind of
-			data and has the methods to change them. For example: you never put SQL queries in a Controller, those are put in the Model and the Controller will
-			call upon the Model to execute the queries. This way if your database changes you won't need to change all your Controllers but just the Model that acts upon it.
-		</p>
-
-		<h3 id="using_models">How are Models used?</h3>
-
-		<p>
-			In Fuel a Model is essentially just a <a href="classes.html" title="Class Documentation">Class</a> like any other. They do nothing more than a library, but the Model_ prefix
-			helps to differentiate it from other classes. To do something useful with a Model you will need to use other classes.
-		</p>
-
-		<h2>Writing your own models</h2>
-
-		<p>While models can be used with any type of data storage we'll focus here on usage with SQL because that's the
-			most common usage. Almost always your models will have at least all <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete" target="_blank">CRUD</a>
-			methods: create, read, update, delete (or variations on those). In Fuel your models don't need to extend
-			anything by default, though you can of course create your own base model or use Fuel's
-			<a href="#orm_models">Orm package</a>.</p>
-
-		<h3 id="writing_queries">Writing SQL Queries</h3>
-
-		<p>You can use the <a href="../classes/database/db.html">DB class</a> to build queries with native SQL like so:</p>
-
-		<pre class="php"><code>DB::query('SELECT * FROM users WHERE id = 5');</code></pre>
-
-		<h3 id="use_query_builder">Using the Query Builder</h3>
-
-		<p>When it comes to escaping data, working with data in arrays or making an application portable over multiple database engines, you might find native
-			SQL to be rather cumbersome. Using the Query Builder methods in the DB Class you can abstract writing native SQL:
-		</p>
-
-		<pre class="php"><code>DB::select('title, content')->from('articles')->execute()->get();</code></pre>
-
-		<p>See more about native SQL queries and using the Query Builder in the <a href="../classes/database/db.html">DB class</a> documentation.</p>
-
-		<h2 id="orm_models">Using the Orm to create models</h2>
-
-		<p>One possible way of creating models is by using the <a href="../packages/orm/intro.html">Orm Package</a>, which adds a lot of functionality out-of-the-box to your models. There's an example of its usage below.</p>
-
-		<pre class="php"><code>// find all articles
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+		
+			<h2>Models</h2>
+	
+			<h3>What are models?</h3>
+	
+			<p>
+				Whenever data needs to be retrieved, manipulated or deleted this should always be done by a model. A Model is a representation of some kind of
+				data and has the methods to change them. For example: you never put SQL queries in a Controller, those are put in the Model and the Controller will
+				call upon the Model to execute the queries. This way if your database changes you won't need to change all your Controllers but just the Model that acts upon it.
+			</p>
+	
+			<h3 id="using_models">How are Models used?</h3>
+	
+			<p>
+				In Fuel a Model is essentially just a <a href="classes.html" title="Class Documentation">Class</a> like any other. They do nothing more than a library, but the Model_ prefix
+				helps to differentiate it from other classes. To do something useful with a Model you will need to use other classes.
+			</p>
+	
+			<h3 id="writing_own_models">Writing your own models</h3>
+	
+			<p>While models can be used with any type of data storage we'll focus here on usage with SQL because that's the
+				most common usage. Almost always your models will have at least all <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete" target="_blank">CRUD</a>
+				methods: create, read, update, delete (or variations on those). In Fuel your models don't need to extend
+				anything by default, though you can of course create your own base model or use Fuel's
+				<a href="#orm_models">Orm package</a>.</p>
+	
+			<h3 id="writing_queries">Writing SQL Queries</h3>
+	
+			<p>You can use the <a href="../classes/database/db.html">DB class</a> to build queries with native SQL like so:</p>
+	
+			<pre class="php"><code>DB::query('SELECT * FROM users WHERE id = 5');</code></pre>
+	
+			<h3 id="use_query_builder">Using the Query Builder</h3>
+	
+			<p>When it comes to escaping data, working with data in arrays or making an application portable over multiple database engines, you might find native
+				SQL to be rather cumbersome. Using the Query Builder methods in the DB Class you can abstract writing native SQL:
+			</p>
+	
+			<pre class="php"><code>DB::select('title, content')->from('articles')->execute()->get();</code></pre>
+	
+			<p>See more about native SQL queries and using the Query Builder in the <a href="../classes/database/db.html">DB class</a> documentation.</p>
+	
+			<h3 id="orm_models">Using the Orm to create models</h3>
+	
+			<p>One possible way of creating models is by using the <a href="../packages/orm/intro.html">Orm Package</a>, which adds a lot of functionality out-of-the-box to your models. There's an example of its usage below.</p>
+	
+			<pre class="php"><code>// find all articles
 $entry = Model_Article::find('all');
 
 // find all articles from category 1 order descending by date
@@ -77,17 +96,16 @@ $entry = Model_Article::find('last', array(
     'where' => array('category_id', 1),
     'order_by' => array('date', 'desc')
 ));</code></pre>
+	
+			<p>See more about working with ORM in the <a href="../packages/orm/intro.html">Orm Package</a> documentation.</p>
+		
+		</div>
 
-		<p>See more about working with ORM in the <a href="../packages/orm/intro.html">Orm Package</a> documentation.</p>
-
-	</section>
-
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>

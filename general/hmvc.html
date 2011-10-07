@@ -1,41 +1,59 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>HMVC requests - Fuel Documentation</title>
-	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('general', '../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../';
 	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>HMCV Requests - General - Fuel Documentation</title>
 </head>
 <body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
 
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-
-		<h2>HMVC requests</h2>
-
-		<p>
-			HMVC requests are a great way to separate logic and re-use controller logic in multiple places.
-			One common use of this is when you use a theme or template engine to generate your pages,
-			where every page is divided into sections, and sections are populated by widgets.
-			By using modules to produce the widget output, you can create a highly modular application, with easy to re-use components.
-		</p>
-
-		<p>You call a module controller method using the <a href="../classes/request.html">Request</a> class:</p>
-		<pre class="php"><code>// fetch the output of a controller
+			<h2>HMVC requests</h2>
+	
+			<p>
+				HMVC requests are a great way to separate logic and re-use controller logic in multiple places.
+				One common use of this is when you use a theme or template engine to generate your pages,
+				where every page is divided into sections, and sections are populated by widgets.
+				By using modules to produce the widget output, you can create a highly modular application, with easy to re-use components.
+			</p>
+	
+			<p>You call a module controller method using the <a href="../classes/request.html">Request</a> class:</p>
+			<pre class="php"><code>// fetch the output of a controller
 $widget = Request::forge('mycontroller/mymethod/parms')->execute();
 echo $widget;
 
@@ -43,15 +61,15 @@ echo $widget;
 $widget = Request::forge('mymodule/mycontroller/mymethod/parms', false)->execute();
 echo $widget;
 </code></pre>
-		<p class="note">
-			By default, all requests made are processed by Fuel's routing engine. If you want to request something that isn't routeable
-			(for example because you don't want a browser to request it) you should pass '<strong>false</strong>' as second parameter
-			to the factory() call. If you don't you will end up with a 404 error when you execute the request!
-		</p>
-
-		<p>Loading views in HMVC request is the same as in normal requests and controller accessed by HMVC request are also approuchable via the browser. In some cases, for example widgets, are not suppose to accessed through the browser. In those cases you'll want to check if the request is made through HMVC or the browser. The following example shows you how to check for a HMVC request:</p>
-
-		<pre class="php"><code>&lt;?php
+			<p class="note">
+				By default, all requests made are processed by Fuel's routing engine. If you want to request something that isn't routeable
+				(for example because you don't want a browser to request it) you should pass '<strong>false</strong>' as second parameter
+				to the factory() call. If you don't you will end up with a 404 error when you execute the request!
+			</p>
+	
+			<p>Loading views in HMVC request is the same as in normal requests and controller accessed by HMVC request are also approuchable via the browser. In some cases, for example widgets, are not suppose to accessed through the browser. In those cases you'll want to check if the request is made through HMVC or the browser. The following example shows you how to check for a HMVC request:</p>
+	
+			<pre class="php"><code>&lt;?php
 
 class Controller_Widget extends Controller {
 
@@ -68,16 +86,16 @@ class Controller_Widget extends Controller {
 	}
 
 }</code></pre>
-
-		<h3>404 during HMVC requests</h3>
-
-		<p>
-			When a 404 occurs during a HMVC request a Request404Exception is thrown. If uncaught it will trigger
-			a full 404 message using <kbd>Request::show_404()</kbd>. But you can prevent this and handle the 404
-			yourself:
-		</p>
-
-		<pre class="php"><code>try
+	
+			<h3>404 during HMVC requests</h3>
+	
+			<p>
+				When a 404 occurs during a HMVC request a Request404Exception is thrown. If uncaught it will trigger
+				a full 404 message using <kbd>Request::show_404()</kbd>. But you can prevent this and handle the 404
+				yourself:
+			</p>
+	
+			<pre class="php"><code>try
 {
 	\Request::forge('this_will_fail');
 }
@@ -86,21 +104,21 @@ catch (Request404Exception $e)
 	// deal with it
 }
 </code></pre>
+	
+			<h3>Traversing Request instances</h3>
+	
+			<p>If you want to access other Requests you can traverse them using two methods:
+				<kbd>$request->parent()</kbd> and <kbd>$request->children</kbd>. The parent is the Request during
+				which the current Request was created (null for the main Request). The children are all the Requests
+				created during the current Request.</p>
+		
+		</div>
 
-		<h3>Traversing Request instances</h3>
-
-		<p>If you want to access other Requests you can traverse them using two methods:
-			<kbd>$request->parent()</kbd> and <kbd>$request->children</kbd>. The parent is the Request during
-			which the current Request was created (null for the main Request). The children are all the Requests
-			created during the current Request.</p>
-	</section>
-
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>

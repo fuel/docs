@@ -1,54 +1,72 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Rest Controller - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('general', '../../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../../';
 	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Rest Controller - General - Fuel Documentation</title>
 </head>
 <body>
-
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
 	
-		<h2 id="rest_controller">Rest Controller</h2>
-
-		<h3 id="what_is_rest">What is a Rest controller?</h3>
-
-		<p>
-			A Rest Controller is an extension of the Base Controller which has RESTful support built in.
-			This will allow you to build API's with ease.
-		</p>
-
-		<p class="note">
-			<strong>Please note:</strong> if you have a <kbd>before()</kbd> or <kbd>router</kbd> method in
-			your REST controller extension you <strong>must</strong> call the parent method
-			<kbd>parent::before()</kbd> (or router) for it to keep working properly.
-		</p>
-
-		<h3 id="usage">Using the Rest controller</h3>
-
-		<p>
-			Like all Controllers you create a class in the <kbd>fuel/app/classes/controller</kbd> directory.
-			They need to extend the <kbd>Controller_Rest</kbd> class and are prefixed by default by "Controller_".
-			Below is an example of the controller "test":
-		</p>
-
-		<pre class="php"><code>class Controller_Test extends Controller_Rest {
+			<h2 id="rest_controller">Rest Controller</h2>
+	
+			<h3 id="what_is_rest">What is a Rest controller?</h3>
+	
+			<p>
+				A Rest Controller is an extension of the Base Controller which has RESTful support built in.
+				This will allow you to build API's with ease.
+			</p>
+	
+			<p class="note">
+				<strong>Please note:</strong> if you have a <kbd>before()</kbd> or <kbd>router</kbd> method in
+				your REST controller extension you <strong>must</strong> call the parent method
+				<kbd>parent::before()</kbd> (or router) for it to keep working properly.
+			</p>
+	
+			<h3 id="usage">Using the Rest controller</h3>
+	
+			<p>
+				Like all Controllers you create a class in the <kbd>fuel/app/classes/controller</kbd> directory.
+				They need to extend the <kbd>Controller_Rest</kbd> class and are prefixed by default by "Controller_".
+				Below is an example of the controller "test":
+			</p>
+	
+			<pre class="php"><code>class Controller_Test extends Controller_Rest {
 
 	public function get_list()
 	{
@@ -61,94 +79,93 @@
 		));
 	}
 }</code></pre>
-
-		<p>This controller method "list" is called by the following URL:</p>
-
-		<pre>http://localhost/test/list.json?foo=bar</pre>
-
-		<p>You'll notice that instead of the usual "action_" prefix the Rest Controller uses the HTTP method as a prefix. The HTTP methods that Rest Controller supports are the following:</p>
-		
-		<table class="config">
-			<tbody>
-				<tr class="header">
-					<th>HTTP Method</th>
-					<th>Description</th>
-				</tr>
-				<tr>
-					<th>GET</th>
-					<td>
-						Used to fetch information about an existing resource. This is used by browsers when you
-						enter a URL and hit go, or when you click on a link, so it perfect for fetching information
-						on one of your REST resources (like user).
-					</td>
-				</tr>
-				<tr>
-					<th>POST</th>
-					<td>
-						Used to update an existing resource with information. Browsers use this to submit most
-						types of forms on the Internet, although some use GET as well by submitting the form action
-						with a query string containing the field data.
-					</td>
-				</tr>
-				<tr>
-					<th>PUT</th>
-					<td>
-						Less commonly used and not supported by most browsers, PUT is used to create a new resource.
-					</td>
-				</tr>
-				<tr>
-					<th>DELETE</th>
-					<td>
-						Also not used by many browsers, this HTTP verb rather obviously is used to delete a resource.
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<h3 id="output">Output</h3>
-
-<pre><code>{
+	
+			<p>This controller method "list" is called by the following URL:</p>
+	
+			<pre>http://localhost/test/list.json?foo=bar</pre>
+	
+			<p>You'll notice that instead of the usual "action_" prefix the Rest Controller uses the HTTP method as a prefix. The HTTP methods that Rest Controller supports are the following:</p>
+			
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>HTTP Method</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>GET</th>
+						<td>
+							Used to fetch information about an existing resource. This is used by browsers when you
+							enter a URL and hit go, or when you click on a link, so it perfect for fetching information
+							on one of your REST resources (like user).
+						</td>
+					</tr>
+					<tr>
+						<th>POST</th>
+						<td>
+							Used to update an existing resource with information. Browsers use this to submit most
+							types of forms on the Internet, although some use GET as well by submitting the form action
+							with a query string containing the field data.
+						</td>
+					</tr>
+					<tr>
+						<th>PUT</th>
+						<td>
+							Less commonly used and not supported by most browsers, PUT is used to create a new resource.
+						</td>
+					</tr>
+					<tr>
+						<th>DELETE</th>
+						<td>
+							Also not used by many browsers, this HTTP verb rather obviously is used to delete a resource.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+	
+			<h3 id="output">Output</h3>
+	
+			<pre class="javascript"><code>{
 	"foo":"bar",
 	"baz":[1,50,219],
 	"empty":null
 }</code></pre>
-
-		<p>
-			This is output as json because a file extension was defined in the URL. By default responses will be
-			formatted as XML or whichever format is set in <kbd>fuel/core/config/rest.php</kbd>.
-		</p>
-
-		<h3 id="formats">Supported Formats</h3>
-
-		<ul>
-			<li><strong>xml</strong> – almost any programming language can read XML</li>
-			<li><strong>json</strong> – useful for JavaScript and increasingly PHP apps.</li>
-			<li><strong>csv</strong> – open with spreadsheet programs</li>
-			<li><strong>html</strong> – a simple HTML table</li>
-
-			<li><strong>php</strong> – Representation of PHP code that can be eval()’ed</li>
-			<li><strong>serialize</strong> – Serialized data that can be unserialized in PHP</li>
-		</ul>
-
-
-		<h3 id="special_methods">Special controller methods</h3>
-
-		<article>
-			<h4 id="response">response($data = array(), $http_code = 200)</h4>
+	
 			<p>
-				This method is used to send your response data through the formatting and output logic. You can
-				optionally set a status code as the 2nd parameter.
+				This is output as json because a file extension was defined in the URL. By default responses will be
+				formatted as XML or whichever format is set in <kbd>fuel/core/config/rest.php</kbd>.
 			</p>
-		</article>
+	
+			<h3 id="formats">Supported Formats</h3>
+	
+			<ul>
+				<li><strong>xml</strong> – almost any programming language can read XML</li>
+				<li><strong>json</strong> – useful for JavaScript and increasingly PHP apps.</li>
+				<li><strong>csv</strong> – open with spreadsheet programs</li>
+				<li><strong>html</strong> – a simple HTML table</li>
+	
+				<li><strong>php</strong> – Representation of PHP code that can be eval()’ed</li>
+				<li><strong>serialize</strong> – Serialized data that can be unserialized in PHP</li>
+			</ul>
+	
+	
+			<h3 id="special_methods">Special controller methods</h3>
+	
+			<article>
+				<h4 id="response">response($data = array(), $http_code = 200)</h4>
+				<p>
+					This method is used to send your response data through the formatting and output logic. You can
+					optionally set a status code as the 2nd parameter.
+				</p>
+			</article>
 
-	</section>
+		</div>
 
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>

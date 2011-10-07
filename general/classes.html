@@ -1,60 +1,77 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Classes - Fuel Documentation</title>
-	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('general', '../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../';
 	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Classes - General - Fuel Documentation</title>
 </head>
 <body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+		
+			<h2>Classes</h2>
+	
+			<h3 id="what_is_a_class">What is a class?</h3>
+	
+			<p>A class is just a normal PHP class. It doesn't need to extend anything or follow any conventions other than the naming convention which is the same as all other classes in Fuel.</p>
+	
+			<pre class="php"><code>class Session</code></pre>
+	
+			<p>That will be loaded from app/classes/session.php.</p>
+	
+			<h3 id="loading_classes">Loading Classes</h3>
+	
+			<p>Unlike some other frameworks classes do not need to be loaded manually. They will be auto-loaded when you refer to them in your code (Controllers, Models, etc).</p>
+	
+			<h3 id="classes_subdirectories">Classes in a sub-directory</h3>
+	
+			<p>Just like <a href="controllers/base.html">Controllers</a>, classes must be lower-case with first-letter upper case, while underscores will put the class into a sub-directory.</p>
+	
+			<pre class="php"><code>Class Session_Driver</code></pre>
+	
+			<p>That will be loaded from app/classes/session/driver.php</p>
 
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
+		</div>
 
-	<div id="main-nav"></div>
-
-	<section id="content">
-		<h2>Classes</h2>
-
-		<h3 id="what_is_a_class">What is a class?</h3>
-
-		<p>A class is just a normal PHP class. It doesn't need to extend anything or follow any conventions other than the naming convention which is the same as all other classes in Fuel.</p>
-
-		<pre><code>class Session</code></pre>
-
-		<p>That will be loaded from app/classes/session.php.</p>
-
-		<h3 id="loading_classes">Loading Classes</h3>
-
-		<p>Unlike some other frameworks classes do not need to be loaded manually. They will be auto-loaded when you refer to them in your code (Controllers, Models, etc).</p>
-
-		<h3 id="classes_subdirectories">Classes in a sub-directory</h3>
-
-		<p>Just like <a href="controllers/base.html">Controllers</a>, classes must be lower-case with first-letter upper case, while underscores will put the class into a sub-directory.</p>
-
-		<pre><code>Class Session_Driver</code></pre>
-
-		<p>That will be loaded from app/classes/session/driver.php</p>
-
-
-	</section>
-
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>
