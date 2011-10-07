@@ -1,147 +1,167 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>FTP Class - Fuel Documentation</title>
-	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('classes', '../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../';
+		var class_prefix = "Ftp::";
 	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Ftp - Classes - Fuel Documentation</title>
 </head>
 <body>
-
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-		<h2>FTP Class</h2>
-
-		<p>The FTP class allows you to upload, download, move and mirror files with remote servers over the FTP protocol.</p>
-
-		<section>
-			<h2 id="configuration">Configuration</h2>
-
-			<p>The FTP class is configured through the <kbd>fuel/core/config/ftp.php</kbd> configuration file. It is already populated with a default configuration group. You can override this configuration and add new groups by copying this config file to your application config directory, and modify that file as needed.</p>
-			<p>The following configuration settings can be defined:</p>
-			<table class="config">
-				<tbody>
-					<tr class="header">
-						<th>Param</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th>Description</th>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+		
+			<h2>Ftp Class</h2>
+	
+			<p>The FTP class allows you to upload, download, move and mirror files with remote servers over the FTP protocol.</p>
+	
+			<section>
+				<h3 id="configuration">Configuration</h3>
+	
+				<p>The FTP class is configured through the <kbd>fuel/core/config/ftp.php</kbd> configuration file. It is already populated with a default configuration group. You can override this configuration and add new groups by copying this config file to your application config directory, and modify that file as needed.</p>
+				<p>The following configuration settings can be defined:</p>
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<th>hostname</th>
+							<td>string</td>
+							<td><pre class="php"><code>'localhost'</code></pre></td>
+							<td>
+								IP or domain name of the FTP server to connect with.
+							</td>
+						</tr>
+						<tr>
+							<th>username</th>
+							<td>string</td>
+							<td><pre class="php"><code>''</code></pre></td>
+							<td>
+								Optional: Name of the user to connect with, if login is required.
+							</td>
+						</tr>
+						<tr>
+							<th>password</th>
+							<td>string</td>
+							<td><pre class="php"><code>''</code></pre></td>
+							<td>
+								Optional: Name of the password to connect with, if login is required.
+							</td>
+						</tr>
+						<tr>
+							<th>port</th>
+							<td>integer</td>
+							<td><pre class="php"><code>21</code></pre></td>
+							<td>
+								The port number your FTP server responds to. Most servers use 21.
+							</td>
+						</tr>
+						<tr>
+							<th>passive</th>
+							<td>boolean</td>
+							<td><pre class="php"><code>true</code></pre></td>
+							<td>
+								Whether to use passive mode. Passive is set automatically by default.
+							</td>
+						</tr>
+						<tr>
+							<th>ssl_mode</th>
+							<td>boolean</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								Use FTPS mode which is slightly more secure than usual FTP. (Note: this is not SFTP).
+							</td>
+						</tr>
+						<tr>
+							<th>debug</th>
+							<td>boolean</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								Whether to enable debugging to display error messages.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+	
+	
+			<article>
+				<h4 class="method" id="method_factory">factory()</h4>
+				<p>The <strong>factory</strong> method is used to create a new instance of the FTP class and can either reference a different config group
+					or be passed an array of <a href="config.html">configuration options</a>.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>hostname</th>
-						<td>string</td>
-						<td><pre class="php"><code>'localhost'</code></pre></td>
+						<th>Parameters</th>
 						<td>
-							IP or domain name of the FTP server to connect with.
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$config</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>The name of the config group to use, or a configuration array.</td>
+								</tr>
+								<tr>
+									<th><kbd>$connect</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>Automatically connect to this server.</td>
+								</tr>
+							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>username</th>
-						<td>string</td>
-						<td><pre class="php"><code>''</code></pre></td>
-						<td>
-							Optional: Name of the user to connect with, if login is required.
-						</td>
+						<th>Returns</th>
+						<td>Ftp object</td>
 					</tr>
 					<tr>
-						<th>password</th>
-						<td>string</td>
-						<td><pre class="php"><code>''</code></pre></td>
+						<th>Example</th>
 						<td>
-							Optional: Name of the password to connect with, if login is required.
-						</td>
-					</tr>
-					<tr>
-						<th>port</th>
-						<td>integer</td>
-						<td><pre class="php"><code>21</code></pre></td>
-						<td>
-							The port number your FTP server responds to. Most servers use 21.
-						</td>
-					</tr>
-					<tr>
-						<th>passive</th>
-						<td>boolean</td>
-						<td><pre class="php"><code>true</code></pre></td>
-						<td>
-							Whether to use passive mode. Passive is set automatically by default.
-						</td>
-					</tr>
-					<tr>
-						<th>ssl_mode</th>
-						<td>boolean</td>
-						<td><pre class="php"><code>false</code></pre></td>
-						<td>
-							Use FTPS mode which is slightly more secure than usual FTP. (Note: this is not SFTP).
-						</td>
-					</tr>
-					<tr>
-						<th>debug</th>
-						<td>boolean</td>
-						<td><pre class="php"><code>false</code></pre></td>
-						<td>
-							Whether to enable debugging to display error messages.
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</section>
-
-
-		<article>
-			<h4 id="method_factory">factory()</h4>
-			<p>The <strong>factory</strong> method is used to create a new instance of the FTP class and can either reference a different config group
-				or be passed an array of <a href="config.html">configuration options</a>.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$config</kbd></th>
-								<td><pre class="php"><code>'default'</code></pre></td>
-								<td>The name of the config group to use, or a configuration array.</td>
-							</tr>
-							<tr>
-								<th><kbd>$connect</kbd></th>
-								<td><pre class="php"><code>true</code></pre></td>
-								<td>Automatically connect to this server.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>Ftp object</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>// Connect to the default server
+							<pre class="php"><code>// Connect to the default server
 $ftp = Ftp::forge();
 
 // Connect to a predefined server defined in config/ftp.php
@@ -167,273 +187,272 @@ else
 {
 	exit('You tried and that is the main thing.);
 }</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_change_dir">change_dir($path = '')</h4>
-			<p>The <strong>change_dir</strong> changes the "current directory".</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>No</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$path</kbd></th>
-								<td><pre class="php"><code>''</code></pre></td>
-								<td>Remote path to move to.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>boolean</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>// Move to /user/phil/public_html/some/path/
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_change_dir">change_dir($path = '')</h4>
+				<p>The <strong>change_dir</strong> changes the "current directory".</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$path</kbd></th>
+									<td><pre class="php"><code>''</code></pre></td>
+									<td>Remote path to move to.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Move to /user/phil/public_html/some/path/
 $ftp->change_dir('/public_html/some/path/');</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_mkdir">mkdir($path, $permissions = null)</h4>
-			<p>The <strong>mkdir</strong> method is used to create a new directory on the remote server.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>No</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$path</kbd></th>
-								<td><i>Required</i></td>
-								<td>Remote directory to create.</td>
-							</tr>
-							<tr>
-								<th><kbd>$permissions</kbd></th>
-								<td><pre class="php"><code>null</code></pre></td>
-								<td>If set the permissions will be applied to the directory.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>boolean</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>// Make a write-able uploads folder
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_mkdir">mkdir($path, $permissions = null)</h4>
+				<p>The <strong>mkdir</strong> method is used to create a new directory on the remote server.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$path</kbd></th>
+									<td><i>Required</i></td>
+									<td>Remote directory to create.</td>
+								</tr>
+								<tr>
+									<th><kbd>$permissions</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>If set the permissions will be applied to the directory.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Make a write-able uploads folder
 $ftp->mkdir('/public_html/uploads/', 0777);</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_upload">upload($local_path, $remote_path, $mode = 'auto', $permissions = null)</h4>
-			<p>Upload a file or directory from the local server to the remote server.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>No</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$local_path</kbd></th>
-								<td><pre class="php"><code>'default'</code></pre></td>
-								<td>Local server path.</td>
-							</tr>
-							<tr>
-								<th><kbd>$remote_path</kbd></th>
-								<td><pre class="php"><code>true</code></pre></td>
-								<td>Remote server path.</td>
-							</tr>
-							<tr>
-								<th><kbd>$mode</kbd></th>
-								<td><pre class="php"><code>'auto'</code></pre></td>
-								<td>
-									Options are <kbd>ascii</kbd>, <kbd>binary</kbd>, and <kbd>auto</kbd> (the default).
-									If <kbd>auto</kbd> is used it will base the mode on the file extension of the source file.</td>
-							</tr>
-							<tr>
-								<th><kbd>$permissions</kbd></th>
-								<td><pre class="php"><code>null</code></pre></td>
-								<td>If set the permissions will be applied to the directory.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>boolean</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>// Upload myfile.html
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_upload">upload($local_path, $remote_path, $mode = 'auto', $permissions = null)</h4>
+				<p>Upload a file or directory from the local server to the remote server.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$local_path</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>Local server path.</td>
+								</tr>
+								<tr>
+									<th><kbd>$remote_path</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>Remote server path.</td>
+								</tr>
+								<tr>
+									<th><kbd>$mode</kbd></th>
+									<td><pre class="php"><code>'auto'</code></pre></td>
+									<td>
+										Options are <kbd>ascii</kbd>, <kbd>binary</kbd>, and <kbd>auto</kbd> (the default).
+										If <kbd>auto</kbd> is used it will base the mode on the file extension of the source file.</td>
+								</tr>
+								<tr>
+									<th><kbd>$permissions</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>If set the permissions will be applied to the directory.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Upload myfile.html
 $ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 0775)</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_download">download($remote_path, $local_path, $mode = 'auto')</h4>
-			<p>Download a file or directory from the remote server to the local server.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>No</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$remote_path</kbd></th>
-								<td><pre class="php"><code>true</code></pre></td>
-								<td>Remote server path.</td>
-							</tr>
-							<tr>
-								<th><kbd>$local_path</kbd></th>
-								<td><pre class="php"><code>'default'</code></pre></td>
-								<td>Local server path.</td>
-							</tr>
-							<tr>
-								<th><kbd>$mode</kbd></th>
-								<td><pre class="php"><code>'auto'</code></pre></td>
-								<td>
-									Options are <kbd>ascii</kbd>, <kbd>binary</kbd>, and <kbd>auto</kbd> (the default).
-									If <kbd>auto</kbd> is used it will base the mode on the file extension of the source file.
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>boolean</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>// Download myotherfile.html
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_download">download($remote_path, $local_path, $mode = 'auto')</h4>
+				<p>Download a file or directory from the remote server to the local server.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$remote_path</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>Remote server path.</td>
+								</tr>
+								<tr>
+									<th><kbd>$local_path</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>Local server path.</td>
+								</tr>
+								<tr>
+									<th><kbd>$mode</kbd></th>
+									<td><pre class="php"><code>'auto'</code></pre></td>
+									<td>
+										Options are <kbd>ascii</kbd>, <kbd>binary</kbd>, and <kbd>auto</kbd> (the default).
+										If <kbd>auto</kbd> is used it will base the mode on the file extension of the source file.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Download myotherfile.html
 $ftp->download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii')</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_mirror">mirror($local_path, $remote_path)</h4>
-			<p>
-				Recursively reads a local folder and everything it contains (including sub-folders) and creates a mirror via FTP based on it. Whatever the
-				directory structure of the original file path will be recreated on the server.
-			</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>No</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$local_path</kbd></th>
-								<td><pre class="php"><code>'default'</code></pre></td>
-								<td>Local server path.</td>
-							</tr>
-							<tr>
-								<th><kbd>$remote_path</kbd></th>
-								<td><pre class="php"><code>true</code></pre></td>
-								<td>Remote server path.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>boolean</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>$ftp = Ftp::forge();
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_mirror">mirror($local_path, $remote_path)</h4>
+				<p>
+					Recursively reads a local folder and everything it contains (including sub-folders) and creates a mirror via FTP based on it. Whatever the
+					directory structure of the original file path will be recreated on the server.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$local_path</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>Local server path.</td>
+								</tr>
+								<tr>
+									<th><kbd>$remote_path</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>Remote server path.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$ftp = Ftp::forge();
 
 $ftp->connect($config);
 
 $ftp->mirror('/path/to/myfolder/', '/public_html/myfolder/');
 
 $ftp->close();</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 
-	</section>
+		</div>
 
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>
