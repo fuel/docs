@@ -2,57 +2,75 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Orm - Relations - Has One - Fuel Documentation</title>
-	<link href="../../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../../assets/js/highlight.pack.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('ormpackage', '../../../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../../../';
 	</script>
+	<script src="./../../../assets/js/combined.js"></script>
+	<title>Has One - Relations - Orm Package - Fuel Documentation</title>
 </head>
 <body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
 
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
 
-	<div id="main-nav"></div>
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
 
-	<section id="content">
-		<h2>Orm</h2>
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
 
-		<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-			Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-			to establish relations between those objects.<br />
-			It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
-			Active Record Pattern</a>, but was also influenced by other systems.</p>
+		<div id="main">
+			<h2>Orm</h2>
 
-		<section>
-			<h2 id="has_one">Relations: Has One</h2>
+			<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
+				Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
+				to establish relations between those objects.<br />
+				It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
+				Active Record Pattern</a>, but was also influenced by other systems.</p>
 
-			<p>Specifies a one-to-one relationship to another model. The target model must include a
-				"<a href="belongs_to.html">Belongs To</a>" reference to the current model to allow the inverse
-				relationship.</p>
+			<section>
+				<h2 id="has_one">Relations: Has One</h2>
 
-			<h3>Example</h3>
+				<p>Specifies a one-to-one relationship to another model. The target model must include a
+					"<a href="belongs_to.html">Belongs To</a>" reference to the current model to allow the inverse
+					relationship.</p>
 
-			<p>Let's say we have a model <kbd>Model_User</kbd> and it <em>has one</em> a <kbd>Model_Profile</kbd>
-				(which in turn <em>belongs to</em> the user). The ID of the Model_User is saved with the Model_Profile
-				instance in its own table. This means the <kbd>profiles</kbd> table will have a column
-				<kbd>user_id</kbd> (or something else you configure), while the user table won't mention the profile.
-				If you keep to the defaults all you need to do is add <kbd>'profile'</kbd> to the
-				<kbd>$_has_one</kbd> static property of the Model_User:</p>
+				<h3>Example</h3>
 
-			<pre class="php"><code>protected static $_has_one = array('profile');</code></pre>
+				<p>Let's say we have a model <kbd>Model_User</kbd> and it <em>has one</em> a <kbd>Model_Profile</kbd>
+					(which in turn <em>belongs to</em> the user). The ID of the Model_User is saved with the Model_Profile
+					instance in its own table. This means the <kbd>profiles</kbd> table will have a column
+					<kbd>user_id</kbd> (or something else you configure), while the user table won't mention the profile.
+					If you keep to the defaults all you need to do is add <kbd>'profile'</kbd> to the
+					<kbd>$_has_one</kbd> static property of the Model_User:</p>
 
-			<p>Below are examples for establishing and breaking has-one relations:</p>
+				<pre class="php"><code>protected static $_has_one = array('profile');</code></pre>
 
-			<pre class="php"><code>// both main and related object are new:
+				<p>Below are examples for establishing and breaking has-one relations:</p>
+
+				<pre class="php"><code>// both main and related object are new:
 $user = new Model_User();
 $user->profile = new Model_Profile();
 $user->save();
@@ -67,9 +85,9 @@ $user = Model_User::find(6);
 $user->profile = null;
 $user->save();</code></pre>
 
-			<h3>Full config example with defaults as values</h3>
+				<h3>Full config example with defaults as values</h3>
 
-			<pre class="php"><code>// in a Model_User which has one profile
+				<pre class="php"><code>// in a Model_User which has one profile
 protected static $_has_one = array(
 	'profile' => array(
 		'key_from' => 'id',
@@ -79,16 +97,15 @@ protected static $_has_one = array(
 		'cascade_delete' => false,
 	)
 );</code></pre>
-		</section>
+			</section>
 
-	</section>
+		</div>
 
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>
