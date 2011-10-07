@@ -1,74 +1,98 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Database - Query Builder Insert - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('classes', '../../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../../';
+		var class_prefix = 'Query_Builder_Insert::';
 	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Query Builder Insert - Classes - Fuel Documentation</title>
 </head>
 <body>
-
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-		<h2 id="introduction">Query_Builder_Insert class (extends <a href="qb_where.html">Query_Builder_Where</a>)</h2>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
 		
-		<p>
-			The Query_Builder_Insert class handles all the insert operations for the query building process. It extends the
-			Query_Builder_Where class, so all the methods are inherrited.
-		</p>
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
 		
-		<h2 id="methods">Methods</h2>
-
-		<article>
-			<h4 id="method_table">table($table)</h4>
-			<p>The <strong>table</strong> method sets/changes the table to insert into.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$table</kbd></th>
-									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>the table name</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the current instance.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare an insert statement
+		<div id="main">
+		
+			<h2 id="introduction">Query_Builder_Insert class</h2>
+			
+			<p>
+				(extends <a href="qb_where.html">Query_Builder_Where</a>)
+			</p>
+			
+			<p>
+				The Query_Builder_Insert class handles all the insert operations for the query building process. It extends the
+				Query_Builder_Where class, so all the methods are inherrited.
+			</p>
+			
+			<h2 id="methods">Methods</h2>
+	
+			<article>
+				<h4 class="method" id="method_table">table($table)</h4>
+				<p>The <strong>table</strong> method sets/changes the table to insert into.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$table</kbd></th>
+										<td><em>string</em></td>
+										<td><em>required</em></td>
+										<td>the table name</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare an insert statement
 $query = DB::insert('users');
 
 // Update the table to insert into
@@ -76,48 +100,48 @@ $query->table('admins');
 
 // INSERT INTO `admins` ...
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4 id="method_columns">columns(array $columns)</h4>
-			<p>The <strong>columns</strong> method sets/changes the columns to insert.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$columns</kbd></th>
-									<td><em>array</em></td>
-									<td><em>required</em></td>
-									<td>an array of column names</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the current instance.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare an insert statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_columns">columns(array $columns)</h4>
+				<p>The <strong>columns</strong> method sets/changes the columns to insert.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$columns</kbd></th>
+										<td><em>array</em></td>
+										<td><em>required</em></td>
+										<td>an array of column names</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare an insert statement
 $query = DB::insert('users');
 
 // Set the columns
@@ -129,48 +153,48 @@ $query->columns(array(
 
 // INSERT INTO `users` (`name`, `surname`, `email`) 
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_values">values(array $values)</h4>
-			<p>The <strong>values</strong> method appends the values to insert.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$values</kbd></th>
-									<td><em>array</em></td>
-									<td><em>required</em></td>
-									<td>list of values</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the current instance.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare an insert statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_values">values(array $values)</h4>
+				<p>The <strong>values</strong> method appends the values to insert.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$values</kbd></th>
+										<td><em>array</em></td>
+										<td><em>required</em></td>
+										<td>list of values</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare an insert statement
 $query = DB::insert('users');
 
 // Set the columns
@@ -190,48 +214,48 @@ $query->values(array(
 
 // INSERT INTO `users` (`name`, `surname`, `email`) VALUES ("John", "Doe", "john@doe.com")
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4 id="method_set">set(array $pairs)</h4>
-			<p>The <strong>set</strong> method sets the columns and appends the values to insert.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$pairs</kbd></th>
-									<td><em>array</em></td>
-									<td><em>required</em></td>
-									<td>associative array of columns and values</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the current instance.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare an insert statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_set">set(array $pairs)</h4>
+				<p>The <strong>set</strong> method sets the columns and appends the values to insert.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$pairs</kbd></th>
+										<td><em>array</em></td>
+										<td><em>required</em></td>
+										<td>associative array of columns and values</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare an insert statement
 $query = DB::insert('users');
 
 // Set the columns and vales
@@ -243,48 +267,48 @@ $query->set(array(
 
 // INSERT INTO `users` (`name`, `surname`, `email`) VALUES ("John", "Doe", "john@doe.com")
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4 id="method_compile">compile(\Database_Connection$db)</h4>
-			<p>The <strong>limit</strong> method returns the insert SQL query as a string.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$db</kbd></th>
-									<td><em>object</em></td>
-									<td><em>required</em></td>
-									<td>A database connection</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the SQL query as a string.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare an insert statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_compile">compile(\Database_Connection$db)</h4>
+				<p>The <strong>limit</strong> method returns the insert SQL query as a string.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><em>object</em></td>
+										<td><em>required</em></td>
+										<td>A database connection</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the SQL query as a string.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare an insert statement
 $query = DB::select('*')->from('users');
 
 // Set the limit and offset
@@ -297,35 +321,35 @@ $connection = Database_Connection::instance();
 // Get the sql query
 $sql = $query->compile($connection);
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4 id="method_reset">reset()</h4>
-			<p>The <strong>reset</strong> method resets all values of the current instance.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<em>None</em>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the current instance.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare an insert statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_reset">reset()</h4>
+				<p>The <strong>reset</strong> method resets all values of the current instance.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<em>None</em>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare an insert statement
 $query = DB::insert('users');
 
 // Set some values
@@ -346,20 +370,19 @@ $query->table('admins')->set(array(
 // The SQL query will now be:
 // INSERT INTO `admins` (`name`, `surname`) VALUES ("Mark", "Hendriks")
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
 				
-	</section>
+		</div>
 
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>
