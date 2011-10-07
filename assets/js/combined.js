@@ -500,6 +500,7 @@ panes.auth = {
 	}
 };
 
+/*
 panes.email = {
 	"Email Package": {
 		"Introduction": "packages/email/intro.html",
@@ -511,6 +512,7 @@ panes.email = {
 		}
 	}
 };
+*/
 
 panes.orm = {
 	"Orm Package": {

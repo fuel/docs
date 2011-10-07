@@ -1,45 +1,58 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Oil utility - Console - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('oil', '../../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../../';
 	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Console - Oil Package - Fuel Documentation</title>
 </head>
 <body>
-
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-		<h2>Oil utility</h2>
-
-		<p>The Oil utility is a special package command can be used in several ways to facilitate quick development, help with
-		testing your application and for running <a href="../../general/tasks.html">Tasks</a>.</p>
-
-		<section>
-
-			<h2 id="console">Console</h2>
-
-			<p>
-				The console is the quickest way to test out new classes, models and quick code without even having to open up an IDE.
-				The shell is interactive but due to limitations in PHP it's not quite as interactive as the bash shell unless you
-				enable the readline extension. Either way it works, readline just makes it better.
-			</p>
-
-			<pre class="cli">$ php oil console
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+			<section>
+	
+				<h2 id="console">Console</h2>
+	
+				<p>
+					The console is the quickest way to test out new classes, models and quick code without even having to open up an IDE.
+					The shell is interactive but due to limitations in PHP it's not quite as interactive as the bash shell unless you
+					enable the readline extension. Either way it works, readline just makes it better.
+				</p>
+	
+				<pre class="cli"><code>$ php oil console
 Fuel 1.0.0-dev - PHP 5.3.3 (cli) (Aug 22 2010 19:27:08) [Darwin]
 >>> "Hello World!"
 Hello World!
@@ -52,18 +65,17 @@ Hello World!
 ["foo","bar"]
 >>> $monkey = Model_Monkey::find('first');
 >>> $monkey->title
-Bobby the Gibbon</pre>
+Bobby the Gibbon</code></pre>
+	
+			</section>
 
-		</section>
+		</div>
 
-	</section>
-
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>

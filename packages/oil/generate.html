@@ -1,67 +1,81 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Oil utility - Generate - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('oil', '../../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../../';
 	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Generate - Oil Package - Fuel Documentation</title>
 </head>
 <body>
-
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-		<h2>Oil utility</h2>
-
-		<p>The Oil utility is a special package command can be used in several ways to facilitate quick development, help with
-		testing your application and for running <a href="../../general/tasks.html">Tasks</a>.</p>
-
-		<section>
-
-			<h2 id="generate">Generate</h2>
-
-			<p>
-				Code Generation can be used to speed up development times by building much of the repetitive code for you. This
-				is entirely optionally - like all of oil - and all code can be edited however you like afterwards. You can generate the following items:
-			</p>
-
-			<ul>
-				<li><a href="#controllers">Controllers</a></li>
-				<li><a href="#models">Models</a></li>
-				<li><a href="#views">Views</a></li>
-				<li><a href="#migrations">Migrations</a></li>
-				<li><a href="#scaffolding">Scaffolding</a></li>
-			</ul>
-
-			<h3 id="controllers">Controllers</h3>
-
-			<p>
-				To generate a skeleton <a href="../../general/controllers/base.html">Controller</a> with actions and views
-				predefined, use the following command:
-			</p>
-
-			<pre class="cli">$ php oil g controller posts action1 action2 action3
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+			
+			<section>
+	
+				<h2 id="generate">Generate</h2>
+	
+				<p>
+					Code Generation can be used to speed up development times by building much of the repetitive code for you. This
+					is entirely optionally - like all of oil - and all code can be edited however you like afterwards. You can generate the following items:
+				</p>
+	
+				<ul>
+					<li><a href="#controllers">Controllers</a></li>
+					<li><a href="#models">Models</a></li>
+					<li><a href="#views">Views</a></li>
+					<li><a href="#migrations">Migrations</a></li>
+					<li><a href="#scaffolding">Scaffolding</a></li>
+				</ul>
+	
+				<h3 id="controllers">Controllers</h3>
+	
+				<p>
+					To generate a skeleton <a href="../../general/controllers/base.html">Controller</a> with actions and views
+					predefined, use the following command:
+				</p>
+	
+				<pre class="cli"><code>$ php oil g controller posts action1 action2 action3
 	Created view: APPPATH/views/posts/action1.php
 	Created view: APPPATH/views/posts/action2.php
 	Created view: APPPATH/views/posts/action3.php
-	Created controller: APPPATH/classes/controller/posts.php</pre>
-
-			<p>This will produce a controller that looks like this:</p>
-
-			<pre class="php"><code>class Controller_Posts extends Controller_Template {
+	Created controller: APPPATH/classes/controller/posts.php</code></pre>
+	
+				<p>This will produce a controller that looks like this:</p>
+	
+				<pre class="php"><code>class Controller_Posts extends Controller_Template {
 
 	public function action_action1()
 	{
@@ -84,28 +98,28 @@
 }
 
 /* End of file posts.php */</code></pre>
-
-			<h3 id="models">Models</h3>
-
-			<p>
-				Generate a simple <a href="../../general/controllers/base.html">Model</a> by listing fields and have
-				the <a href="../../general/migrations.html">Migration</a> automatically created for you to match:
-			</p>
-
-			<pre class="cli">$ php oil g model post title:varchar[50] body:text user_id:int created_at:datetime
+	
+				<h3 id="models">Models</h3>
+	
+				<p>
+					Generate a simple <a href="../../general/controllers/base.html">Model</a> by listing fields and have
+					the <a href="../../general/migrations.html">Migration</a> automatically created for you to match:
+				</p>
+	
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int created_at:datetime
 	Created model: APPPATH/classes/model/post.php
-	Created migration: APPPATH/migrations/001_create_posts.php</pre>
+	Created migration: APPPATH/migrations/001_create_posts.php</code></pre>
 
-			<p>That will create a simple Model that uses <a href="../orm/intro.html">Orm</a>, so make sure the package is enabled in your config file. It will look like this:</p>
+				<p>That will create a simple Model that uses <a href="../orm/intro.html">Orm</a>, so make sure the package is enabled in your config file. It will look like this:</p>
 
-			<pre class="php"><code>class Model_Post extends Orm\Model { }
+				<pre class="php"><code>class Model_Post extends Orm\Model { }
 
 /* End of file post.php */
 </code></pre>
-
-			<p>Not very exciting, but the migration is the useful part here:</p>
-
-			<pre class="php"><code>namespace Fuel\Migrations;
+	
+				<p>Not very exciting, but the migration is the useful part here:</p>
+	
+				<pre class="php"><code>namespace Fuel\Migrations;
 
 class Create_posts {
 
@@ -126,13 +140,13 @@ class Create_posts {
 		\DBUtil::drop_table('posts');
 	}
 }</code></pre>
-			<h3 id="running_migrations">Running Migrations</h3>
-
-			<p>
-				The following commands illustrate how to use the refine command to run useful migration tasks, assuming that the system is currently at migration 5. The migrate task can be given parameters to move directly to a given version, or just up/down by a single version.
-			</p>
-
-			<pre class="cli">$ php oil refine migrate -v
+				<h3 id="running_migrations">Running Migrations</h3>
+	
+				<p>
+					The following commands illustrate how to use the refine command to run useful migration tasks, assuming that the system is currently at migration 5. The migrate task can be given parameters to move directly to a given version, or just up/down by a single version.
+				</p>
+	
+				<pre class="cli"><code>$ php oil refine migrate -v
 	Currently on migration: 5.
 
 $ php oil refine migrate version=4
@@ -145,37 +159,37 @@ $ php oil refine migrate:down
 	Migrated to version: 4.
 
 $ php oil refine migrate:up
-	Migrated to version: 5.</pre>
-
-			<h3 id="migrations">Generating Migrations</h3>
-
-			<p>
-				You can generate migrations without creating a model. This could be used to rename a table, or add fields to a table in a way that is easy to deploy in other environments.
-			</p>
-
-			<pre class="cli">$ php oil generate migration rename_table_users_to_accounts
+	Migrated to version: 5.</code></pre>
+	
+				<h3 id="migrations">Generating Migrations</h3>
+	
+				<p>
+					You can generate migrations without creating a model. This could be used to rename a table, or add fields to a table in a way that is easy to deploy in other environments.
+				</p>
+	
+				<pre class="cli"><code>$ php oil generate migration rename_table_users_to_accounts
 	Building magic migration: rename_table
-	Created migration: APPPATH/migrations/002_rename_table_users_to_accounts.php</pre>
-
-			<h3 id="magic_migrations">Magic Migrations</h3>
-			<p>There are a number of "magic" migrations which automatically build you a migration based on a prefix to your migration name.</p>
-			<pre class="cli">$ php oil generate migration create_users name:text email:string[50] password:string[125]
+	Created migration: APPPATH/migrations/002_rename_table_users_to_accounts.php</code></pre>
+	
+				<h3 id="magic_migrations">Magic Migrations</h3>
+				<p>There are a number of "magic" migrations which automatically build you a migration based on a prefix to your migration name.</p>
+				<pre class="cli"><code>$ php oil generate migration create_users name:text email:string[50] password:string[125]
 $ php oil generate migration rename_table_users_to_accounts
 $ php oil generate migration add_bio_to_accounts bio:text
 $ php oil generate migration rename_field_name_to_username
 $ php oil generate migration drop_accounts
-</pre>
-			<p>Note: Be careful when naming your migrations that you don't begin with any keywords by accident.</p>
-
-			<h3 id="scaffolding">Scaffolding</h3>
-
-			<p>
-				Scaffolding is the really exciting part of Oil's code generation. This approach is heavily borrowed from Rails who have done
-				a great job with it. The idea is that you create not only the MVC skeletons and migrations, but populate them with default CRUD code
-				so the code will actually work after writing the command.
-			</p>
-
-			<pre class="cli">$ php oil g scaffold monkey name:string description:text
+</code></pre>
+				<p>Note: Be careful when naming your migrations that you don't begin with any keywords by accident.</p>
+	
+				<h3 id="scaffolding">Scaffolding</h3>
+	
+				<p>
+					Scaffolding is the really exciting part of Oil's code generation. This approach is heavily borrowed from Rails who have done
+					a great job with it. The idea is that you create not only the MVC skeletons and migrations, but populate them with default CRUD code
+					so the code will actually work after writing the command.
+				</p>
+	
+				<pre class="cli"><code>$ php oil g scaffold monkey name:string description:text
 	Created model: APPPATH/classes/model/monkey.php
 	Created migration: APPPATH/migrations/003_create_monkeys.php
 	Created controller: APPPATH/classes/controller/monkeys.php
@@ -187,14 +201,14 @@ $ php oil generate migration drop_accounts
 
 $ php oil refine migrate
 Migrated to latest version: 3.
-</pre>
-
-			<p>
-				As you can see lots of code is generated by this command including a command that is executed in the second command.
-				The controller looks like this:
-			</p>
-
-			<pre class="php"><code>class Controller_Monkeys extends Controller_Template {
+</code></pre>
+	
+				<p>
+					As you can see lots of code is generated by this command including a command that is executed in the second command.
+					The controller looks like this:
+				</p>
+	
+				<pre class="php"><code>class Controller_Monkeys extends Controller_Template {
 
 	public function action_index()
 	{
@@ -291,17 +305,16 @@ Migrated to latest version: 3.
 
 /* End of file monkeys.php */
 </code></pre>
+	
+			</section>
 
-		</section>
+		</div>
 
-	</section>
-
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>

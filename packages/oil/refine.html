@@ -1,47 +1,61 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Oil utility - Refine - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('oil', '../../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../../';
 	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Generate - Oil Package - Fuel Documentation</title>
 </head>
 <body>
-
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-		<h2>Oil utility</h2>
-
-		<p>The Oil utility is a special package command can be used in several ways to facilitate quick development, help with
-		testing your application and for running <a href="../../general/tasks.html">Tasks</a>.</p>
-
-		<section>
-
-			<h2 id="refine">Refine</h2>
-
-			<p>
-				Refine is a tool that lets you run tasks. The idea behind the name is you "refine" Oil to make Fuel. You can read more
-				specifically about <a href="../../general/tasks.html">Tasks</a> to see how they are made and what they can be used for.
-			</p>
-
-
-			<p>An example task can be found here <kbd>fuel/app/tasks/</kbd> called robots.</p>
-
-			<pre class="cli">$ php oil refine robots
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+			
+			<section>
+	
+				<h2 id="refine">Refine</h2>
+	
+				<p>
+					Refine is a tool that lets you run tasks. The idea behind the name is you "refine" Oil to make Fuel. You can read more
+					specifically about <a href="../../general/tasks.html">Tasks</a> to see how they are made and what they can be used for.
+				</p>
+	
+	
+				<p>An example task can be found here <kbd>fuel/app/tasks/</kbd> called robots.</p>
+	
+				<pre class="cli"><code>$ php oil refine robots
 
 					"KILL ALL HUMANS!"
 			          _____     /
@@ -63,24 +77,23 @@
 			      /   \   /   \
 			     |_____| |_____|
 			     |HHHHH| |HHHHH|
-</pre>
+</code></pre>
+	
+				<p>
+					Not the most useful example in the world, but it works as a useful example. But you can use
+					the <a href="../../classes/cli.html">Cli class</a> to make things more interactive or just run basic model
+					interaction for cron jobs.
+				</p>
+	
+			</section>
 
+		</div>
+
+		<footer>
 			<p>
-				Not the most useful example in the world, but it works as a useful example. But you can use
-				the <a href="../../classes/cli.html">Cli class</a> to make things more interactive or just run basic model
-				interaction for cron jobs.
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
 			</p>
-
-		</section>
-
-	</section>
-
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		</footer>
+	</div>
 </body>
 </html>
