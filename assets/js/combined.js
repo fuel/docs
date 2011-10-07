@@ -164,7 +164,16 @@ function method_list($methods)
 {
 	var list = [];
 	$methods.each(function(){
-		list.push('<a href="#/'+$(this).attr('id')+'">'+class_prefix+$(this).text().split('(')[0]+"()</a>");
+		var prefix = $(this).attr('data-class');
+		if(typeof prefix == 'undefined')
+		{
+			prefix = class_prefix;
+		}
+		else if(prefix.length > 0)
+		{
+			prefix = prefix + '::';
+		}
+		list.push('<a href="#/'+$(this).attr('id')+'">'+prefix+$(this).text().split('(')[0]+"()</a>");
 	});
 	$('footer').append('<div id="methods"><a href="#" id="methods_handle">method list</a><div id="method_list">'+list.join('')+'</div></div>');
 	$('#methods_handle').click(function(e){
