@@ -298,8 +298,34 @@ protected static $_observers = array('Orm\\Observer_Typing' => array('before_sav
 					</tr>
 				</tbody>
 			</table>
-		</article>
+			
+			<h3 id="os_slug">Observer_Slug</h3>
+			
+			<p>
+				This observer creates a unique url safe slug for your model. It works only upon <kbd>before_insert</kbd>
+				and expects your model to have a <kbd>title</kbd> (to create the slug) and a <kbd>slug</kbd> (to save it) property.
+			</p>
 
+			<pre class="php"><code>// Just add the Observer
+protected static $_observers = array('Orm\\Observer_Slug');
+
+// But adding it just for before_insert is enough
+protected static $_observers = array('Orm\\Observer_Slug' => array('before_insert'));</code></pre>
+
+			<p>
+				You can change the default properties used to create and save the slug.
+			</p>
+			
+			<pre class="php"><code>// Use "name" instead of "title" as source property. This property will be passed to \Inflector::friendly_title()
+Orm\Observer_Slug::$source = 'name';
+
+// Use property called "url_name" instead of "slug"
+Orm\Observer_Slug::$property = 'url_name';</code></pre>
+			
+			<p>
+				The Observer creates the <kbd>slug</kbd> from the <kbd>title</kbd> using <a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a> and adds an index, if the slug already exists.
+			</p>
+		</article>
 	</section>
 
 	<section id="footer">
@@ -308,6 +334,5 @@ protected static $_observers = array('Orm\\Observer_Typing' => array('before_sav
 			&copy; 2010 - 2011 Fuel Development Team
 		</p>
 	</section>
-
 </body>
 </html>
