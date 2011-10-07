@@ -1,34 +1,54 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Agent Class - Usage - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('classes', '../../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = '../../';
+		var class_prefix = "Agent::";
 	</script>
+	<script src="../../assets/js/combined.js"></script>
+	<title>Agent - Classes - Fuel Documentation</title>
 </head>
 <body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
 
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
+			<h2>Agent Class</h2>
 
-	<div id="main-nav"></div>
+			<p>The agent class allows you to retrieve information about browser type, version, platform or operating system, etc, based on the clients User Agent string.</p>
 
-	<section id="content">
-		<h2>Agent Class</h2>
-
-		<p>The agent class allows you to retrieve information about browser type, version, platform or operating system, etc, based on the clients User Agent string.</p>
-
-		<section>
+			<section>
 			<h2>Usage</h2>
 
 			<article>
@@ -64,12 +84,11 @@
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Check if the users browser accepts iso-8859-1
+<pre class="php"><code>// Check if the users browser accepts iso-8859-1
 if (Agent::accepts_charset('iso-8859-1'))
 {
 	echo "Yes, the browser accepts this characterset!";
-}
-	</code></pre>
+}</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -109,12 +128,11 @@ if (Agent::accepts_charset('iso-8859-1'))
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Check if the users browser accepts Flemish (Belgian Dutch)
+<pre class="php"><code>// Check if the users browser accepts Flemish (Belgian Dutch)
 if (Agent::accepts_language('nl_BE'))
 {
 	echo "Yes, the browser is configured for the Flemish language!";
-}
-	</code></pre>
+}</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -141,7 +159,7 @@ if (Agent::accepts_language('nl_BE'))
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Process based on the browser name
+<pre class="php"><code>// Process based on the browser name
 switch (Agent::browser())
 {
 	case 'Firefox':
@@ -186,7 +204,7 @@ switch (Agent::browser())
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Process based on the browser platform
+<pre class="php"><code>// Process based on the browser platform
 switch (Agent::platform())
 {
 	case 'Win95':
@@ -248,12 +266,12 @@ switch (Agent::platform())
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Check if an old Internet Explorer version is used
+<pre class="php"><code>// Check if an old Internet Explorer version is used
 if (Agent::browser() == 'Microsoft Internet Explorer' and Agent::version() &lt; 7)
 {
 	echo "Sorry, no support for outdated browsers!";
 }
-	</code></pre>
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -280,13 +298,13 @@ if (Agent::browser() == 'Microsoft Internet Explorer' and Agent::version() &lt; 
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Check if the users browser accepts iso-8859-1
+<pre class="php"><code>// Check if the users browser accepts iso-8859-1
 $sets = Agent::charsets();
 if (in_array('iso-8859-1', $sets))
 {
 	echo "Yes, the browser accepts this characterset!";
 }
-	</code></pre>
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -313,13 +331,13 @@ if (in_array('iso-8859-1', $sets))
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Check if the users browser accepts Flemish (Belgian Dutch)
+<pre class="php"><code>// Check if the users browser accepts Flemish (Belgian Dutch)
 $lang = Agent::languages();
 if (in_array('nl_BE', $lang))
 {
 	echo "Yes, the browser is configured for the Flemish language!";
 }
-	</code></pre>
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -346,7 +364,7 @@ if (in_array('nl_BE', $lang))
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Get the browser properties
+<pre class="php"><code>// Get the browser properties
 $properties = Agent::properties();
 
 /**
@@ -422,12 +440,12 @@ $properties = Agent::properties();
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Check if the browser supports cookies
+<pre class="php"><code>// Check if the browser supports cookies
 if (Agent::property('Cookies') === true)
 {
 	echo "Yes, the browser supports Cookies!";
 }
-	</code></pre>
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -454,7 +472,7 @@ if (Agent::property('Cookies') === true)
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Load a platform specific view
+<pre class="php"><code>// Load a platform specific view
 if (Agent::is_mobile())
 {
 	$content = View::forge('mobile\viewname');
@@ -489,7 +507,7 @@ else
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Load a crawler specific view (note: this is frowned upon!)
+<pre class="php"><code>// Load a crawler specific view (note: this is frowned upon!)
 if (Agent::is_robot())
 {
 	$content = View::forge('robot\viewname');
@@ -506,14 +524,13 @@ else
 
 		</section>
 
-	</section>
+		</div>
 
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>
