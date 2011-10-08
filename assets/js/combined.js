@@ -224,10 +224,10 @@ var max_navtable_height = 0;
 				opened = true;
 				$('#toc_handle').triggerHandler('close');
 				$('#search_clear').click();
-				//$google.fadeOut(300);
 				$('#header').stop().animate({
 					'margin-top': -50
 				}, 300);
+				$(window).scrollTo(0, 400);
 			}
 			else
 			{
@@ -240,7 +240,6 @@ var max_navtable_height = 0;
 					height: 0
 				}, 300);
 				opened = false;
-				//$google.fadeIn(300);
 				$('#header').stop().animate({
 					'margin-top': 0
 				}, 300);
