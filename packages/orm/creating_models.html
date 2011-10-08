@@ -114,19 +114,26 @@
 			'type' => 'varchar',
 			'label' => 'Article Name',
 			'validation' => array('required', 'min_length' => array(3), 'max_length' => array(20)),
-			'default' => 'New article'
+			'form' => array('type' => 'text'),
+			'default' => 'New article',
 		),
-		'url' => array(
+		'gender' => array(
 			'type' => 'varchar',
-			'label' => 'Web Address',
-			'validation' => array('required', 'valid_url')
+			'label' => 'Gender',
+			'form' => array('type' => 'select', 'options' => array('m' => 'Male', 'f' => 'Female')),
+			'validation' => array('required'),
 		),
 		'created_at' => array('type' => 'int', 'label' => 'Created At'),
 		'updated_at' => array('type' => 'int', 'label' => 'Updated At')
 	);
 )</code></pre>
 
-				<p>Use of the validation rules shown here to do before save validation is shown in LINK HERE</p>
+				<p>Form attributes can be passed in the form of an array as shown in the example.</p>
+
+				<p>Validation rules can be passed as either just the rule: <kbd>array('required')</kbd> or as the rule
+					with an array of params: <kbd>array('min_length' => array(3))</kbd> both are shown in the example
+					above. A full explanation of the Validation class and it's rule can be found under
+					<a href="../../classes/validation/validation.html">Core</a>.</p>
 
 				<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many, $_many_through</h3>
 
