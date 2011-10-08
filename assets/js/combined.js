@@ -215,7 +215,7 @@ var max_navtable_height = 0;
 			if(opened == false)
 			{
 				update_height();
-				$nav.animate({
+				$nav.stop().animate({
 					height: height
 				}, 300, function(){
 					$(this).removeAttr('style');
@@ -224,8 +224,8 @@ var max_navtable_height = 0;
 				opened = true;
 				$('#toc_handle').triggerHandler('close');
 				$('#search_clear').click();
-				$google.fadeOut(300);
-				$('#header').animate({
+				//$google.fadeOut(300);
+				$('#header').stop().animate({
 					'margin-top': -50
 				}, 300);
 			}
@@ -236,12 +236,12 @@ var max_navtable_height = 0;
 					overflow: 'hidden'
 				});
 				$active.css('position', 'relative');
-				$nav.animate({
+				$nav.stop().animate({
 					height: 0
 				}, 300);
 				opened = false;
-				$google.fadeIn(300);
-				$('#header').animate({
+				//$google.fadeIn(300);
+				$('#header').stop().animate({
 					'margin-top': 0
 				}, 300);
 			}
@@ -439,7 +439,6 @@ panes.core = {
 		"Mongo_Db": {
 			"Introduction":	"classes/mongo/introduction.html",
 			"Methods":		"classes/mongo/methods.html"
-			//"Usage":		"classes/mongo/usage.html"
 		},
 		"Num":			"classes/num.html",
 		"Package":		"classes/package.html",
@@ -501,6 +500,7 @@ panes.auth = {
 };
 
 /*
+DONT REMOVE THIS
 panes.email = {
 	"Email Package": {
 		"Introduction": "packages/email/intro.html",
