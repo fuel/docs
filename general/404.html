@@ -50,7 +50,7 @@
 				As you all (should) know <a href="http://en.wikipedia.org/wiki/Error_404">404</a> handling is a very
 				important part in the development process. Not only does it show the user that the page he/she/it
 				requested is not available. It also a way to informs machines (browsers and such) about what's going
-				on by profiding a 404 status header.
+				on by providing a 404 status header.
 			</p>
 			
 			<h3 id="config">Configuration</h3>
@@ -59,6 +59,16 @@
 				The 404 route is set in <em>app/config/routes.php</em> and must point to the controller/method
 				that handles the 404 pages. <a href="routing.html">Read more about it in the routing section.</a>
 			</p>
+			
+			<h3 id="throw">Throwing a 404</h3>
+			
+			<p>
+				There may be times when one needs to throw a 404 error, such as when handling the routing yourself. 
+				This is simply done by throwing a <kbd>Request404Exception</kbd>. Fuel will <kbd>exit</kbd> for 
+				you once it has run the 404 page.
+			</p>
+			
+			<pre class="php"><code>throw new Request404Exception;</code></pre>
 			
 			<h3 id="404_handling">404 handling</h3>
 			
