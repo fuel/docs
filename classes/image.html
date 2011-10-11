@@ -211,9 +211,12 @@ Image::load('filename.gif')->preset('mypreset', 'watermark.gif');</code></pre>
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$image = Image::forge(
+							<pre class="php"><code>$image = Image::forge();
+
+// Or with optional config
+$image = Image::forge(array(
 	'quality' => 80
-);
+));
 $image
 	->load('image.png')
 	->output('image.jpeg');</code></pre>
