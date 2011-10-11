@@ -64,7 +64,8 @@
 					properties from the database. It is however not very efficient and thus discouraged to use it this way
 					because you'll always need that one extra query per model just to fetch the columnnames.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model {
+				<pre class="php"><code>class Model_Article extends Orm\Model
+{
 	protected static $_properties = array('id', 'title', 'contents', 'publish');
 }</code></pre>
 
@@ -82,7 +83,8 @@
 					pluralized. Thus "Model_Article" expects table "articles". If you don't follow this convention you can
 					change it by setting the <kbd>$table_name</kbd> property.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model {
+				<pre class="php"><code>class Model_Article extends Orm\Model
+{
 	protected static $_table_name = 'myarticles';
 }</code></pre>
 
@@ -91,7 +93,8 @@
 				<p>By default this is set to <kbd>array('id')</kbd>, if you use another column name or multiple primary
 					keys you need to set this property.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model {
+				<pre class="php"><code>class Model_Article extends Orm\Model
+{
 	protected static $_primary_key = array('aid');
 }</code></pre>
 
@@ -107,7 +110,8 @@
 				<p>There's already a simple example above of adding all model properties, they can also be configured by
 				using the columnname as the key and setting options like type, label & validation.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model {
+				<pre class="php"><code>class Model_Article extends Orm\Model
+{
 	protected static $_properties = array(
 		'id' => array('type' => 'int'),
 		'name' => array(
@@ -145,7 +149,8 @@
 				it to any other database name configured in <kbd>app/config/db.php</kbd>. Note however that relations don't
 				work across connections.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model {
+				<pre class="php"><code>class Model_Article extends Orm\Model
+{
 	protected static $_connection = 'articles_database';
 }</code></pre>
 
