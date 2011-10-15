@@ -116,7 +116,7 @@
 
 				<pre class="php"><code>namespace Model;
 
-use \Model_Crud
+use \Model_Crud;
 
 class Post extends Model_Crud { 
 	
@@ -161,7 +161,13 @@ class Create_posts
 
 				<p>That will create a simple Model that uses <a href="../orm/intro.html">Orm</a>, so make sure the package is enabled in your config file. It will look like this:</p>
 
-				<pre class="php"><code>class Model_Post extends Orm\Model { 
+				<pre class="php"><code>&lt;php
+
+namespace Model;
+
+use \Orm\Model;
+
+class Post extends Orm\Model { 
 	
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array('before_insert'),
@@ -201,7 +207,13 @@ class Create_posts
 				<p>Add <code>--no-timestamp</code> to exclude the created/updated fields and observers.</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --orm --no-timestamp</code></pre>
-				<pre class="php"><code>class Model_Post extends Orm\Model { 
+				<pre class="php"><code>&lt;php
+
+namespace Model;
+
+use \Orm\Model;
+
+class Post extends Orm\Model { 
 
 }
 
@@ -302,14 +314,14 @@ Migrated to latest version: 3.
 
 	public function action_index()
 	{
-		$data['monkeys'] = Model_Monkey::find('all');
+		$data['monkeys'] = Model\Monkey::find('all');
 		$this->template->title = "Monkeys";
 		$this->template->content = View::forge('monkeys/index', $data);
 	}
 
 	public function action_view($id = null)
 	{
-		$data['monkey'] = Model_Monkey::find($id);
+		$data['monkey'] = Model\Monkey::find($id);
 
 		$this->template->title = "Monkey";
 		$this->template->content = View::forge('monkeys/view', $data);
@@ -319,7 +331,7 @@ Migrated to latest version: 3.
 	{
 		if ($_POST)
 		{
-			$monkey = Model_Monkey::forge(array(
+			$monkey = Model\Monkey::forge(array(
 				'name' => Input::post('name'),
 				'description' => Input::post('description'),
 			));
@@ -344,7 +356,7 @@ Migrated to latest version: 3.
 
 	public function action_edit($id = null)
 	{
-		$monkey = Model_Monkey::find($id);
+		$monkey = Model\Monkey::find($id);
 
 		if ($_POST)
 		{
@@ -375,7 +387,7 @@ Migrated to latest version: 3.
 
 	public function action_delete($id = null)
 	{
-		$monkey = Model_Monkey::find($id);
+		$monkey = Model\Monkey::find($id);
 
 		if ($monkey and $monkey->delete())
 		{
