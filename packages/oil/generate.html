@@ -196,7 +196,39 @@ class Create_posts
 	}
 }</code></pre>
 				
-				<p class="note"><strong>Note:</strong> Add <code>--no-timestamp</code> to removes;<br />1. Default observers from Model.<br />2. Default fields `created_at` and `updated_at` from Migration</p>
+				<h4>Generating Model Without Timestamp Option</h4>
+
+				<p>Add <code>--no-timestamp</code> to exclude the created/updated fields and observers.</p>
+
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --orm --no-timestamp</code></pre>
+				<pre class="php"><code>class Model_Post extends Orm\Model { 
+
+}
+
+/* End of file post.php */
+</code></pre>
+
+				<pre class="php"><code>namespace Fuel\Migrations;
+
+class Create_posts
+{
+
+	function up()
+	{
+		\DBUtil::create_table('posts', array(
+			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
+			'title' => array('constraint' => 50, 'type' => 'varchar'),
+			'body' => array('type' => 'text'),
+			'user_id' => array('constraint' => 11, 'type' => 'int'),
+		), array('id'));
+	}
+
+	function down()
+	{
+		\DBUtil::drop_table('posts');
+	}
+}</code></pre>
+
 				<h3 id="running_migrations">Running Migrations</h3>
 	
 				<p>
