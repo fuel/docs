@@ -66,89 +66,22 @@
 			<p>That will be loaded from app/classes/session/driver.php</p>
 
 			<article>
-				<h2 id="loading_behaviors">Loading behaviors</h2>
+				<h2 id="init_method">Initializing your class</h2>
 
 				<p>It is possible to have Fuel's autoloader perform certain automated tasks once a class is loaded,
-					sort of like what <code>__construct()</code> does for instances of a class. You can assign these
-					behaviors by making a class implement specific interfaces.</p>
+					sort of like what <code>__construct()</code> does for instances of a class. You do this by adding
+					a public static <code>_init()</code> method to the class.</p>
 
-				<h2>Included behaviors</h2>
-
-				<h3>Autoload_Behavior_Init</h3>
-
-				<p>This will make an <code>_init()</code> method be called automatically upon loading the class.</p>
-
-				<pre class="php"><code>class Example implements Autoload_Behavior_Init {
+				<pre class="php"><code>class Example {
 	public static function _init()
 	{
 		// this is called upon loading the class
 	}
 }</code></pre>
 
-				<h3>Autoload_Behavior_Config</h3>
-
-				<p>Load a config file based on the classname or a public static property <code>$_autoload_config</code>.
-					It will be loaded under it's name, thus with <code>true</code> as the second param of
-					<code>Config::load()</code>.</p>
-
-				<pre class="php"><code>class Example implements Autoload_Behavior_Config {
-	// will either load a config file based on the (denamespaced) classname ("example") or if set:
-	// public static $_autoload_config = 'something_other_than_example';
-}</code></pre>
-
-				<h3>Autoload_Behavior_Lang</h3>
-
-				<p>Load a lang file based on the classname or a public static property <code>$_autoload_lang</code>.
-					It will be loaded under it's name, thus with <code>true</code> as the second param of
-					<code>Lang::load()</code>.</p>
-
-				<pre class="php"><code>class Example implements Autoload_Behavior_Lang {
-	// will either load a lang file based on the (denamespaced) classname ("example") or if set:
-	// public static $_autoload_lang = 'something_other_than_example';
-}</code></pre>
-
-				<h2>Creating your own behaviors</h2>
-
-				<p>Behaviors exist of an interface and adding the behavior callback or closure to the Autoloader.
-					Behaviors don't need to be added in config as they can be autoloaded as interfaces (during which
-					they're also added to the Autoloader). Let's look at an example, the Config behavior from the
-					Core (at <kbd>fuel/core/classes/autoload/behavior/config.php</kbd> like any normal class):</p>
-
-				<pre class="php"><code>namespace Fuel\Core;
-
-/**
- * Interface for config autoloading behavior
- */
-interface Autoload_Behavior_Config {}
-
-/**
- * Register the interface as a behavior
- */
-\Autoloader::add_behavior('Fuel\\Core\\Autoload_Behavior_Config', function($class, $requested_class) {
-	if (property_exists($class, '_autoload_config'))
-	{
-		\Config::load($class::$_autoload_config, true);
-	}
-	else
-	{
-		$file = strtolower(\Inflector::denamespace($class));
-		\Config::load($file, true);
-	}
-});
-</code></pre>
-
-				<p>First the interface is defined (<code>Fuel\Core\Autoload_Behavior_Config</code>) and after that
-					the <code>Autoloader::add_behavior()</code> method is called with the <strong>full
-					classname</strong> (including the namespace) and given a Closure which will be called when a class
-					extending the interface is called. That closure is given the class that is currently being loaded,
-					and the class that was called when Autoloading began. Those may differ for example when you called
-					your own extension of the <code>Cache</code> class, it will need to load
-					<code>Fuel\Core\Cache</code> before it can finish loading your extension. In such a case
-					<code>$class</code> will be <code>"Fuel\Core\Cache"</code> during the loading of that class, but
-					<code>$requested_class</code> will be <code>"Cache"</code>.</p>
-
-				<p class="note">When extending this from your app you of course don't include the namespace definition
-					at the top and don't include it when registering it with the Autoloader.</p>
+				<p class="note">If a loaded class has its own <code>_init()</code> method and a parent must be loaded
+					alongside it, that parent's init method isn't called unless you call it using
+					<code>parent::_init();</code></p>
 			</article>
 
 		</div>
