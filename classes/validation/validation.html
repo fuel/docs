@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -19,35 +19,35 @@
 					<strong>Fuel, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Validation Class</h2>
-	
+
 			<p>The Validation class helps you validate user input, if you want to create a form &amp; its validation at
 				the same time use the <a href="../fieldset.html">Fieldset</a> class instead.</p>
-	
+
 			<ul>
 				<li><a href="#config">Configuration</a></li>
 				<li><a href="#usage">Usage</a></li>
@@ -55,10 +55,10 @@
 				<li><a href="#errors">Error messages</a></li>
 				<li><a href="methods.html">Methods</a></li>
 			</ul>
-	
+
 			<article>
 				<h3 id="config">Configuration</h3>
-	
+
 				<p>Optionally, the validation class can be configured through the global application configuration file, <strong>app/config/config.php</strong>. Define a section called '<strong>validation</strong>', in which the following settings can be defined:</p>
 				<table class="method">
 					<tbody>
@@ -107,24 +107,24 @@
 					</tbody>
 				</table>
 				<p>If one or more of these values are missing from the global configuration, the class will use the defaults as defined in this table.</p>
-	
+
 			</article>
-	
+
 			<article>
 				<h3 id="usage">Usage</h3>
-	
+
 				<p>To start validation you need to create an object, this can be the default object named "default" or
 				you can name it if you need multiple validation objects.</p>
-	
+
 				<pre class="php"><code>// Use default
 $val = Validation::forge();
 
 // ... or name it
 $val = Validation::forge('my_validation');</code></pre>
-	
+
 				<p>After having it instantiated you can start adding fields to it. This works exactly like the when using
 				the Fieldset class, however here we'll only document the preferred usage.</p>
-	
+
 				<pre class="php"><code>$val = Validation::forge('my_validation');
 
 // Add a field for username, give it the label "Your username" and make it required
@@ -134,22 +134,22 @@ $val->add('username', 'Your username')->add_rule('required');
 $val->add('password', 'Your password')->add_rule('required')
     ->add_rule('min_length', 3)
     ->add_rule('max_length', 10);</code></pre>
-	
+
 				<p>The first parameter of the add_rule() method can contain PHP native function names, any valid PHP
 				callback and Closures in addition to the provided validation methods. The method will get the value to
 				be validated as its first argument and any further arguments can be given to the add_rule() method.</p>
-	
+
 				<p>We also provide a shorter syntax which is very limited in comparison. It will not accept array-callbacks,
 				closures or parameters other then strings.</p>
-	
+
 				<pre class="php"><code>// The same fields as the example above
 $val = Validation::forge('my_validation');
 $val->add_field('username', 'Your username', 'required');
 $val->add_field('password', 'Your password', 'required|min_length[3]|max_length[10]');</code></pre>
-	
+
 				<p>Once all the fields have been added you can run your validation. This will default to $_POST input, but
 				can be extended and overwritten when given an input array.</p>
-	
+
 				<pre class="php"><code>// run validation on just post
 if ($val->run())
 {
@@ -162,9 +162,9 @@ else
 
 // alternative to above, overwriting the username in post, password will still be sought in post
 if ($val->run(array('username' => 'something')))</code></pre>
-	
+
 				<p>When validation is ran there are three methods available for information about the input:</p>
-	
+
 				<pre class="php"><code>// get an array of successfully validated fields => value pairs
 $vars = $val->validated();
 // get an array of validation errors as field => error pairs
@@ -174,25 +174,25 @@ $input = $val->input();
 
 // all these methods can also get just the value for a single field
 $var = $val->validated('username');</code></pre>
-	
+
 				<p>Validation can also run partially, in that case even required fields are ignored when they're not in
 				POST or the input given to run(). One does this by setting the 2nd parameter of run to true.</p>
-	
+
 				<pre class="php"><code>// this will only validate the password when username isn't present in post
 $val->run(array('password' => 'whatever'), true);</code></pre>
 			</article>
-	
+
 			<article>
 				<h3 id="rules">Validation rules</h3>
-	
+
 				<p>Note that all methods (even min_length) will also return true on empty input. To also require the field
 				you must add the rule "required" as well.</p>
-	
+
 				<p>All these rules can be used like below:</p>
 				<pre class="php"><code>// example normal usage with rule without and one with params
 $val->add('email', 'Email address')->add_rule('match_value', 'me@mydomain.com', true)->add_rule('valid_email');
 $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_email');</code></pre>
-	
+
 				<h4 id="rules_table">Rules table</h4>
 				<table class="config">
 					<tbody>
@@ -309,7 +309,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 						</tr>
 					</tbody>
 				</table>
-	
+
 				<h4 id="valid_string_rule">Valid string rule</h4>
 				<p>Validates whether a string adheres to the conditions set by the $flags parameter. The accepted flags
 				are:</p>
@@ -366,28 +366,28 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h3 id="errors">Error messages</h3>
-	
+
 				<p class="note">Errors are returned as Validation_Error objects which you can work with for more flexible
 				output, if you don't need that just cast the Validation_Error object to a string to get the error message.</p>
-	
+
 				<p>Error messages are set using a language file "validation.php" which is loaded automatically.</p>
-	
+
 				<p>There are 2 ways of manipulating the error messages during validation.</p>
-	
-				<pre class="php"><code>// change a rule per validation object
+
+				<pre class="php"><code>// change the error message for a specific validation object
 $val->set_message('required', 'The field :label is required.');
 
-// or per error
+// or change the message for a specific field, no matter the actual error
 echo $val->errors('username')->get_message('The field :label must be filled out before auth is attempted.');
 // Outputs "The field Your username must be filled out before auth is attempted." when validation for username
 // failed, or nothing when not yet validated or validation succeeded.</code></pre>
-	
+
 				<p>As you may have noticed the error messages accept a couple of variables that are replaced by the
 				field's properties. Below is a list of the available variables:</p>
-	
+
 				<table class="config">
 					<tbody>
 						<tr class="header">
@@ -419,30 +419,30 @@ echo $val->errors('username')->get_message('The field :label must be filled out 
 						</tr>
 					</tbody>
 				</table>
-	
+
 				<h3>Naming callback/closure rules</h3>
-	
+
 				<p>Full callback rules or closures can be named as well, by default their names will be:</p>
 				<ul>
 					<li><strong>Closure:</strong> "closure"</li>
 					<li><strong>array($class, $method):</strong> "$class:$method"</li>
 					<li><strong>array($object, $method):</strong> get_class($object).":$method"</li>
 				</ul>
-	
+
 				<p>If you want to give them custom names instead you can do that like this:</p>
-	
+
 				<pre class="php"><code>// Add a rule which checks if the input is odd, the expected message name will be 'validation.odd'
 $field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
 </code></pre>
 			</article>
-	
+
 			<article>
 	            <h3 id="methods">Extending Validation class</h3>
-	
+
 	            <p>There are few approaches to extend the validation class:</p>
-	
+
 	            <p>1. To extend the core class like described in the <a href="../general/extending_core.html">Extending Core Classes</a></p>
-	
+
 	            <p>2. To create a class in <b>app/classes/myvalidation.php</b> (for example)</p>
 	            <pre class="php"><code>// app/classes/myvalidation.php
 class Myvalidation
@@ -466,22 +466,22 @@ $val = Validation::forge();
 $val->add_callable('myvalidation'); // here we add the class to load rules from
 
 $val->add_field('username', 'Your username', 'trim|strip_tags|required|unique[users.username]');</code></pre>
-	
+
 	        <p>3. Calling callbacks from a model. It works like a method described above, but we only need to call it in other way:</p>
 			<pre class="php"><code>$val = Validation::forge();
 $val->add_model('Model_User');</code></pre>
-	
+
 	        <p class="note">
 	        <strong>Note: </strong>
 	        You need the '_validation_' prefix for a method to be used in validation.
 	        </p>
-	
+
 			<p>
 				It can be useful to use <a href="methods.html#method_active">Validation::active()</a>
 				and <a href="methods.html#method_active_field">Validation::active_field()</a>
 				to get the currently active validation instance and field currently being validated, respectively.
 			</p>
-	
+
 			<p>For example, in the above you could do:</p>
 			<pre class="php"><code>public function _validation_unique($val, $options)
 {
