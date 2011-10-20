@@ -52,7 +52,7 @@
 				<li><a href="#config">Configuration</a></li>
 				<li><a href="#usage">Usage</a></li>
 				<li><a href="#rules">Validation rules</a></li>
-				<li><a href="#errors">Error messages</a></li>
+				<li><a href="errors.html">Validation Errors</a></li>
 				<li><a href="methods.html">Methods</a></li>
 			</ul>
 
@@ -365,75 +365,6 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 						</tr>
 					</tbody>
 				</table>
-			</article>
-
-			<article>
-				<h3 id="errors">Error messages</h3>
-
-				<p class="note">Errors are returned as Validation_Error objects which you can work with for more flexible
-				output, if you don't need that just cast the Validation_Error object to a string to get the error message.</p>
-
-				<p>Error messages are set using a language file "validation.php" which is loaded automatically.</p>
-
-				<p>There are 2 ways of manipulating the error messages during validation.</p>
-
-				<pre class="php"><code>// change the error message for a specific validation object
-$val->set_message('required', 'The field :label is required.');
-
-// or change the message for a specific field, no matter the actual error
-echo $val->errors('username')->get_message('The field :label must be filled out before auth is attempted.');
-// Outputs "The field Your username must be filled out before auth is attempted." when validation for username
-// failed, or nothing when not yet validated or validation succeeded.</code></pre>
-
-				<p>As you may have noticed the error messages accept a couple of variables that are replaced by the
-				field's properties. Below is a list of the available variables:</p>
-
-				<table class="config">
-					<tbody>
-						<tr class="header">
-							<th>Variable</th>
-							<th>Description</th>
-						</tr>
-						<tr>
-							<th>:field</th>
-							<td>Will be substituted by the field's name.</td>
-						</tr>
-						<tr>
-							<th>:label</th>
-							<td>Will be substituted by the field's label.</td>
-						</tr>
-						<tr>
-							<th>:value</th>
-							<td>Will be substituted by the field's value which could not be validated.</td>
-						</tr>
-						<tr>
-							<th>:rule</th>
-							<td>Will be substituted by the rule that failed. The included rules will be just their name,
-							others will be the string callback or classname:method (which will also be the key for which
-							you must add a validation rule if you want to).</td>
-						</tr>
-						<tr>
-							<th>:param:1</th>
-							<td>Will be replaced by the first additional parameter's value, :param:2 will be the second,
-							etc.</td>
-						</tr>
-					</tbody>
-				</table>
-
-				<h3>Naming callback/closure rules</h3>
-
-				<p>Full callback rules or closures can be named as well, by default their names will be:</p>
-				<ul>
-					<li><strong>Closure:</strong> "closure"</li>
-					<li><strong>array($class, $method):</strong> "$class:$method"</li>
-					<li><strong>array($object, $method):</strong> get_class($object).":$method"</li>
-				</ul>
-
-				<p>If you want to give them custom names instead you can do that like this:</p>
-
-				<pre class="php"><code>// Add a rule which checks if the input is odd, the expected message name will be 'validation.odd'
-$field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
-</code></pre>
 			</article>
 
 			<article>
