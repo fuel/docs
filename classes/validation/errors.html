@@ -123,7 +123,8 @@ echo $val->errors('username')->get_message('The field :label must be filled out 
 
 				<p>If you want to give them custom names instead you can do that like this:</p>
 
-				<pre class="php"><code>// Add a rule which checks if the input is odd, the expected message name will be 'validation.odd'
+				<pre class="php"><code>// Add a rule which checks if the input is odd
+// It can either use ->set_message('odd', ':label is not odd.') or use a lang key 'validation.odd'
 $field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
 </code></pre>
 			</section>
