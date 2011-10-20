@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,43 +20,43 @@
 					<strong>Fuel, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2>Upload Class</h2>
-	
+
 			<p>
 				The upload class allows to securely process files that have been uploaded to the application.
 				It allows you to filter uploads in various ways, define what the destination filenames should look like, or filter on size or length of the filename.
 			</p>
-	
+
 			<h3 id="uploaded_files_array">Uploaded files array</h3>
-	
+
 			<p>Information of every uploaded file is stored in a multidimensional array within the Upload class.
 				For every file, an array is defined with the following fields:
 			</p>
-	
+
 			<table class="config">
 				<tbody>
 					<tr class="header">
@@ -132,31 +132,31 @@
 					</tr>
 					<tr>
 						<th>error</th>
-						<td>integer</td>
+						<td>boolean</td>
 						<td>
-							Code of the error detected when uploading the file or when validating the uploaded file. If zero, there were no errors.
+							If true, the upload has failed, and the errors array contains why.
 						</td>
 					</tr>
 					<tr>
-						<th>message</th>
-						<td>string</td>
+						<th>errors</th>
+						<td>array</td>
 						<td>
-							The error message.
+							An array of arrays, each with two values. 'error', containing the error code, and 'message', containing the error text.
 						</td>
 					</tr>
 				</tbody>
 			</table>
-	
+
 			<p>
 				Note that mime-type will always contain the most specific type. So if the browser claims it's an MS-Word document, but the mime-type
 				is determined as being "application/octet-stream", the browser's mime-type is used, even if this may be wrong or unexpected!
 				For example, a Microsoft .xlsx file might be detected as being "application/zip".
 			</p>
-	
+
 			<p>
 				After you have called the save() method, this array structure is expanded with two extra fields, giving you information about what was actually saved.
 			</p>
-	
+
 			<table class="config">
 				<tbody>
 					<tr class="header">
@@ -179,19 +179,19 @@
 						</td>
 					</tr>
 					<tr>
-						<th>error</th>
-						<td>integer</td>
+						<th>errors</th>
+						<td>array</td>
 						<td>
-							The error field will be updated after calling save() to indicate any errors encountered when trying to save the file.
+							The errors array (and the error boolean) will be updated after calling save() to indicate any errors encountered when trying to save the file.
 						</td>
 					</tr>
 				</tbody>
 			</table>
-	
+
 			<h3 id="error_constants">Defined error constants</h3>
-	
+
 			<p>The Upload class defines the following error constants:</p>
-	
+
 			<table class="config">
 				<tbody>
 					<tr class="header">
@@ -308,7 +308,7 @@
 					</tr>
 				</tbody>
 			</table>
-	
+
 			<h3 id="usage_example">Usage example</h3>
 			<pre class="php"><code>// Custom configuration for this upload
 $config = array(
@@ -334,11 +334,11 @@ if (Upload::is_valid())
 foreach (Upload::get_errors() as $file)
 {
 	// $file is an array with all file information,
-	// $file['error'] contains the error number
-	// $file['message'] contains the error message
+	// $file['errors'] contains an array of all error occurred
+	// each array element is an an array containing 'error' and 'message'
 }
 </code></pre>
-	
+
 			<article>
 				<h4 class="method" id="method_is_valid">is_valid()</h4>
 				<p>The <strong>is_valid</strong> method can be used to check if there are any uploaded files present that have passed the upload validation.</p>
@@ -370,10 +370,10 @@ if ( Upload::is_valid() )
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get_files">get_files($index = null)</h4>
-				<p>The <strong>get_files</strong> method returns a multi-dimensional array with all files uploaded that have an error status = Upload::UPLOAD_ERR_OK.</p>
+				<p>The <strong>get_files</strong> method returns a multi-dimensional array with all files uploaded that have an error value of <strong>false</strong>.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -392,8 +392,8 @@ if ( Upload::is_valid() )
 								<tr>
 									<th><kbd>$index</kbd></th>
 									<td><i>optional</i></td>
-									<td>index number of the file in the uploaded files array. If not specified, or the index refers to a file with
-									an error status other than UPLOAD_ERR_OK, an array with all validated files is returned.</td>
+									<td>index number of the file in the uploaded files array. If not specified, an array with all validated files is returned.
+									If the index number is invalid, or if the index refers to a file with an error status of <strong>true</strong>, an exception is thrown.</td>
 								</tr>
 							</table>
 						</td>
@@ -416,10 +416,10 @@ foreach( Upload::get_files() as $file )
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get_errors">get_errors($index = null)</h4>
-				<p>The <strong>get_files</strong> method returns a multi-dimensional array with all files uploaded that have an error status != Upload::UPLOAD_ERR_OK.</p>
+				<p>The <strong>get_files</strong> method returns a multi-dimensional array with all files uploaded that have an error status of <strong>true</strong>.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -438,8 +438,8 @@ foreach( Upload::get_files() as $file )
 								<tr>
 									<th><kbd>$index</kbd></th>
 									<td><i>optional</i></td>
-									<td>index number of the file in the uploaded files array. If not specified, or the index refers to a file with
-									an error status UPLOAD_ERR_OK, an array with all files in error is returned.</td>
+									<td>index number of the file in the uploaded files array. If not specified, an array with all invalid files is returned.
+									If the index number is invalid, or if the index refers to a file with an error status of <strong>false</strong>, an exception is thrown.</td>
 								</tr>
 							</table>
 						</td>
@@ -466,7 +466,7 @@ foreach( Upload::get_errors() as $file )
 					uploaded files array will have an empty file entry, with an error code of <strong>Upload::UPLOAD_ERR_NO_FILE</strong>. When processing
 					errors, check the error code first, before trying to use any of the other fields in the returned array.</p>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_register">register($event, $callback)</h4>
 				<p>
@@ -553,14 +553,14 @@ Upload::register('before', function (&amp;$file) {
 					If the callback function returns an integer, it is assumed to be an update of the uploaded file's error code.
 					All other return values are ignored.
 				</p>
-	
+
 				<p class="note">
 					<strong>Note:</strong> if you alter the contents of the <strong>$file</strong> array in your callback, you have to make sure that the
 					information is still valid, as the Upload class won't perform it's checks again. The only exception to this rule is the '<strong>saved_to</strong>' path,
 					which will be checked and created if required after the callback has been executed.
 				</p>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_process">process($config = array())</h4>
 				<p>
@@ -608,7 +608,7 @@ Upload::process( array('max_size' => 10240, 'auto_rename' => false, 'overwrite' 
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_save">save( ... )</h4>
 				<p>The <strong>save</strong> method saves all validated files uploaded to the path specified.</p>
@@ -670,7 +670,7 @@ Upload::save(DOCROOT.'assets', array_keys($arr) );
 // process any errors on these files
 foreach ( Upload::get_errors() as $key => $file )
 {
-	// process the error code here
+	// process the errors here
 }
 </code></pre>
 						</td>
