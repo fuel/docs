@@ -128,12 +128,12 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 	{
 		$this->template->title = "Articles";
 		$this->template->content = View::forge('articles/index');
-		$this->template->content->articles = Model_Article::find('all');
+		$this->template->content->articles = Model\Article::find('all');
 	}
 
 	public function action_view($id = false)
 	{
-		if ( ! $article = Model_Article::find($id))
+		if ( ! $article = Model\Article::find($id))
 		{
 			throw new Request404Exception();
 		}
@@ -145,7 +145,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 
 	public function action_create()
 	{
-		$article = Model_Article::forge();
+		$article = Model\Article::forge();
 
 		if (Input::method() == 'POST')
 		{
@@ -172,7 +172,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 
 	public function action_edit($id = false)
 	{
-		if (!$article = Model_Article::find($id))
+		if (!$article = Model\Article::find($id))
 		{
 			throw new Request404Exception();
 		}
@@ -202,7 +202,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 
 	public function action_delete($id = null)
 	{
-		if ($article = Model_Article::find($id))
+		if ($article = Model\Article::find($id))
 		{
 			$article->delete();
 

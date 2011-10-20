@@ -17,7 +17,7 @@
 			<div class="table">
 				<h1>
 					<strong>Fuel, a PHP 5.3 Framework</strong>
-					Documentation
+					Docnumentation
 				</h1>
 
 				<form id="google_search">
@@ -72,7 +72,9 @@
 					When the Observer is in the same namespace as the Model and prefixed with <kbd>Observer_</kbd> you can
 					leave out the "Observer_" prefix. In all other cases you have to provide the full classname.</p>
 	
-				<pre class="php"><code>class Model_Article
+				<pre class="php"><code>namespace Model;
+
+class Article extends \Orm\Model
 {
 	protected static $_observers = array(
 		'example', // will call Observer_Example class for all events

@@ -56,7 +56,7 @@
 			<h3 id="using_models">How are Models used?</h3>
 	
 			<p>
-				In Fuel a Model is essentially just a <a href="classes.html" title="Class Documentation">Class</a> like any other. They do nothing more than a library, but the Model_ prefix
+				In Fuel a Model is essentially just a <a href="classes.html" title="Class Documentation">Class</a> like any other. They do nothing more than a library, but the Model_ prefix or Model namespace 
 				helps to differentiate it from other classes. To do something useful with a Model you will need to use other classes.
 			</p>
 	
@@ -89,10 +89,10 @@
 			<p>One possible way of creating models is by using the <a href="../packages/orm/intro.html">Orm Package</a>, which adds a lot of functionality out-of-the-box to your models. There's an example of its usage below.</p>
 	
 			<pre class="php"><code>// find all articles
-$entry = Model_Article::find('all');
+$entry = Model\Article::find('all');
 
 // find all articles from category 1 order descending by date
-$entry = Model_Article::find('last', array(
+$entry = Model\Article::find('last', array(
     'where' => array('category_id', 1),
     'order_by' => array('date', 'desc')
 ));</code></pre>

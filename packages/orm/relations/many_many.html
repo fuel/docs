@@ -80,18 +80,18 @@
 							<th>table_through</th>
 							<td>Calculated from model_to and model_from alphabetically ordered</td>
 							<td>This is the table that connects the 2 models and has both their IDs in it. For 2 models
-								like Model_User and Model_Post it will be named posts_users by default (both plural).</td>
+								like Model\User and Model\Post it will be named posts_users by default (both plural).</td>
 						</tr>
 						<tr>
 							<th>key_through_from</th>
 							<td>Calculated from the current model name</td>
-							<td>The key that matches the current model's primary key. If your current model is Model_Post
+							<td>The key that matches the current model's primary key. If your current model is Model\Post
 								this will be post_id by default</td>
 						</tr>
 						<tr>
 							<th>key_through_to</th>
 							<td>Calculated from the related model name</td>
-							<td>The key that matches the related model's primary key. If your related model is Model_User
+							<td>The key that matches the related model's primary key. If your related model is Model\User
 								this will be user_id by default</td>
 						</tr>
 					</tbody>
@@ -99,12 +99,12 @@
 
 				<h3>Example</h3>
 
-				<p>Let's say we have a model <kbd>Model_Post</kbd> and it <em>has many and belongs to many</em>
-					<kbd>Model_User</kbd>s. The ID of the Model_Post is along with the ID of the Model_User in a table
+				<p>Let's say we have a model <kbd>Model\Post</kbd> and it <em>has many and belongs to many</em>
+					<kbd>Model\User</kbd>s. The ID of the Model\Post is along with the ID of the Model\User in a table
 					called <kbd>posts_users</kbd> (default order is alphabetical). That table has just 2 columns:
 					<kbd>post_id</kbd> and <kbd>user_id</kbd> which are together the primary key of that table.<br />
 					If you keep to the defaults all you need to do is add <kbd>'users'</kbd> to the
-					<kbd>$_many_many</kbd> static property of the Model_Post:</p>
+					<kbd>$_many_many</kbd> static property of the Model\Post:</p>
 
 				<pre class="php"><code>protected static $_many_many = array('users'));</code></pre>
 
@@ -119,23 +119,23 @@
 				<p>Below are examples for establishing and breaking has-many relations:</p>
 
 				<pre class="php"><code>// both main and related object are new:
-$post = new Model_Post();
-$post->users[] = new Model_User();
+$post = new Model\Post();
+$post->users[] = new Model\User();
 $post->save();
 
 // both main and related object already exist
-$user = Model_User::find(8);
-$user->posts[1] = Model_Post::find(1);
+$user = Model\User::find(8);
+$user->posts[1] = Model\Post::find(1);
 $user->save();
 
 // break the relationship established above
-$post = Model_Post::find(1);
+$post = Model\Post::find(1);
 unset($post->users[8]);
 $post->save();</code></pre>
 
 				<h3>Full config example with defaults as values</h3>
 
-				<pre class="php"><code>// in a Model_Post which has and belongs to many Users
+				<pre class="php"><code>// in a Model\Post which has and belongs to many Users
 // = multiple posts per user and multiple users (authors) per post
 protected static $_many_many = array(
 	'users' => array(
@@ -143,7 +143,7 @@ protected static $_many_many = array(
 		'key_through_from' => 'post_id', // column 1 from the table in between, should match a posts.id
 		'table_through' => 'posts_users', // both models plural without prefix in alphabetical order
 		'key_through_to' => 'user_id', // column 2 from the table in between, should match a users.id
-		'model_to' => 'Model_User',
+		'model_to' => 'Model\User',
 		'key_to' => 'id',
 		'cascade_save' => true,
 		'cascade_delete' => false,

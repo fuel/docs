@@ -70,14 +70,14 @@
 
 				<pre class="php"><code>protected static $_has_many = array('comments');</code></pre>
 
-				<p>This example, if specified in <kbd>Model_Article</kbd>, enables fetching of an array of
-					<kbd>Model_Comment</kbd> objects which have the field <kbd>article_id</kbd> matching the primary key of
+				<p>This example, if specified in <kbd>Model\Article</kbd>, enables fetching of an array of
+					<kbd>Model\Comment</kbd> objects which have the field <kbd>article_id</kbd> matching the primary key of
 					a given Article instance through the property <kbd>comments</kbd>.</p>
 
 				<h3>Fully configured</h3>
 
 				<pre class="php"><code>protected static $_has_many = array('comments' => array(
-	'model_to' => 'Model_Fancy_Comment',
+	'model_to' => 'Model\Fancy_Comment',
 	'key_from' => 'article_id',
 	'key_to' => 'parent_article_id',
 	'cascade_save' => true,
@@ -88,7 +88,7 @@
 				<p>In the basic example, Orm automatically assumes the model name and field mapping. This example
 					explicitly specifies the class name of the target model, the fields used to relate them, and whether
 					actions performed on the current object should be cascaded to the target. It will return an array of
-					<kbd>Model_Fancy_Comment</kbd> object where the comment's <kbd>parent_article_id</kbd> field
+					<kbd>Model\Fancy_Comment</kbd> object where the comment's <kbd>parent_article_id</kbd> field
 					corresponds to the current object's <kbd>article_id</kbd>. When saving an object the operation is
 					also performed on its loaded relations, deleting isn't cascaded by default but can be if you switch
 					this on.</p>
@@ -114,9 +114,9 @@
 						<tr>
 							<th>model_to</th>
 							<td>Calculated from alias</td>
-							<td>If specified, must the the full class name of the target model (ex. <kbd>Model_Comment</kbd>).<br />
-								By default, this value is formed by prepending 'Model_' to the singular form of the alias
-								(ex. 'comments' becomes 'Model_Comment'), it is also expected to be in the same namespace as
+							<td>If specified, must the the full class name of the target model (ex. <kbd>Model\Comment</kbd>).<br />
+								By default, this value is formed by prepending 'Model\' to the singular form of the alias
+								(ex. 'comments' becomes 'Model\Comment'), it is also expected to be in the same namespace as
 								the current model.</td>
 						</tr>
 						<tr>
@@ -127,7 +127,7 @@
 						<tr>
 							<th>key_to</th>
 							<td>Calculated from the current model name</td>
-							<td>By default, a relationship from a <kbd>Model_Article</kbd> to many <kbd>Model_Comment</kbd>s
+							<td>By default, a relationship from a <kbd>Model\Article</kbd> to many <kbd>Model\Comment</kbd>s
 								would use the field <kbd>article_id</kbd> in the comments table</td>
 						</tr>
 						<tr>
@@ -164,14 +164,14 @@
 					you request them.</p>
 
 				<pre class="php"><code>// eager loading, using joins:
-$post = Model_Post::find('all', array('related' => array('comments')));
+$post = Model\Post::find('all', array('related' => array('comments')));
 // or
-$post = Model_Post::find()->related('comments')->get();
+$post = Model\Post::find()->related('comments')->get();
 // $post->comments is available without any further querying after this
 
 // or use lazy loading, it won't use joins but query a relation once requested
 // first get a "post", 1 query without join
-$post = Model_Post::find('first');
+$post = Model\Post::find('first');
 // now request the comments (not yet loaded), which will do another query without join automatically
 $comments = $post->comments;</code></pre>
 
@@ -183,7 +183,7 @@ $comments = $post->comments;</code></pre>
 					conditions (see config table below) will be used of course.</p>
 
 				<pre class="php"><code>// using array querying
-$post = Model_Post::find('first', array(
+$post = Model\Post::find('first', array(
 	'related' => array(
 		'articles' => array(
 			'order_by' => array('id' => 'desc'),
@@ -196,7 +196,7 @@ $post = Model_Post::find('first', array(
 ));
 
 // using method chaining
-$post = Model_Post::query()->related('articles', array(
+$post = Model\Post::query()->related('articles', array(
 	'order_by' => array('id' => 'desc'),
 	'where' => array(
 		array('publish_date', '>', time()),
@@ -205,7 +205,7 @@ $post = Model_Post::query()->related('articles', array(
 )->get_one();
 
 // but the same can also be done by prefixing the relation name to the column:
-$post = Model_Post::query()->related('articles')
+$post = Model\Post::query()->related('articles')
 	->order_by('articles.id', 'desc')
 	->where('articles.publish_date', '>', time())
 	->where('articles.published', 1)
@@ -221,7 +221,7 @@ $post = Model_Post::query()->related('articles')
 					load the "parent" relation before it's relation. Otherwise an exception will be thrown.</p>
 
 				<pre class="php"><code>// using array querying
-$post = Model_Post::find('first', array(
+$post = Model\Post::find('first', array(
 	'related' => array(
 		'articles' => array(
 			'related' => array(
@@ -238,7 +238,7 @@ $post = Model_Post::find('first', array(
 ));
 
 // using only method chaining
-$post = Model_Post::query()
+$post = Model\Post::query()
 	->related('articles')
 	->related('articles.user')
 	->related('articles.user.profile')
@@ -247,7 +247,7 @@ $post = Model_Post::query()
 	->get_one();
 
 // or combine array & method chaining
-$post = Model_Post::query()
+$post = Model\Post::query()
 	->related('articles', array(
 		'related' => array('user' => array(
 			'where' => array('active' => 1),

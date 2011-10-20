@@ -53,18 +53,22 @@
 			<section>
 				<h2 id="creation">Creating Models</h2>
 
-				<p>Creating a model takes little time, the convention is to use the <kbd>Model_</kbd>
-					prefix for the class (eg Model_Article using the filename article.php) and thus
+				<p>Creating a model takes little time, the convention is to use the <kbd>Model</kbd> namespace 
+					for the class (eg Model\Article using the filename article.php) and thus
 					place them in <kbd>app/classes/model/</kbd> but you are free to use
 					whatever name you choose.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
+				<pre class="php"><code>namespace Model;
+
+class Article extends \Orm\Model {}</code></pre>
 
 				<p class="note">The above only works with the MySQL and MySQLi drivers because it needs to fetch the model
 					properties from the database. It is however not very efficient and thus discouraged to use it this way
 					because you'll always need that one extra query per model just to fetch the columnnames.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model
+				<pre class="php"><code>namespace Model;
+
+class Article extends \Orm\Model
 {
 	protected static $_properties = array('id', 'title', 'contents', 'publish');
 }</code></pre>
@@ -79,11 +83,13 @@
 
 				<h3 id="table_name">protected static $_table_name</h3>
 
-				<p>When this isn't set the <kbd>Model_</kbd> prefix is removed from the classname and the classname is
-					pluralized. Thus "Model_Article" expects table "articles". If you don't follow this convention you can
+				<p>When <kbd>Model</kbd> namespace is removed from the classname and the classname is
+					pluralized. Thus "Model\Article" expects table "articles". If you don't follow this convention you can
 					change it by setting the <kbd>$table_name</kbd> property.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model
+				<pre class="php"><code>namespace Model;
+
+class Article extends \Orm\Model
 {
 	protected static $_table_name = 'myarticles';
 }</code></pre>
@@ -93,7 +99,9 @@
 				<p>By default this is set to <kbd>array('id')</kbd>, if you use another column name or multiple primary
 					keys you need to set this property.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model
+				<pre class="php"><code>namespace Model;
+
+class Article extends \Orm\Model
 {
 	protected static $_primary_key = array('aid');
 }</code></pre>
@@ -110,7 +118,9 @@
 				<p>There's already a simple example above of adding all model properties, they can also be configured by
 				using the columnname as the key and setting options like type, label & validation.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model
+				<pre class="php"><code>namespace Model;
+
+class Article extends \Orm\Model
 {
 	protected static $_properties = array(
 		'id' => array('data_type' => 'int'),
@@ -149,7 +159,9 @@
 				it to any other database name configured in <kbd>app/config/db.php</kbd>. Note however that relations don't
 				work across connections.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model
+				<pre class="php"><code>namespace Model;
+
+class Article extends \Orm\Model
 {
 	protected static $_connection = 'articles_database';
 }</code></pre>
