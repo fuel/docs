@@ -1,67 +1,87 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Arr Class - Fuel Documentation</title>
-	<link href="../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('classes', '../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../';
+		var class_prefix = "Arr::";
 	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Arr - Classes - Fuel Documentation</title>
 </head>
 <body>
-
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-		<h2>Arr Class</h2>
-
-		<p>The arr class is a set of helper functions for working with arrays.</p>
-
-		<article id="method_to_assoc">
-			<h4>to_assoc($arr)</h4>
-			<p>The <strong>to_assoc</strong> method turns a non-associative array into an associative array if it has an even number of segments.  If it has an odd number of segments it returns <kbd>null</kbd>.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$arr</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to convert.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>array|null</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>$arr = array('foo', 'bar', 'baz', 'yay');
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+		
+			<h2>Arr Class</h2>
+	
+			<p>The arr class is a set of helper functions for working with arrays.</p>
+	
+			<article>
+				<h4 class="method" id="method_to_assoc">to_assoc($arr)</h4>
+				<p>The <strong>to_assoc</strong> method turns a non-associative array into an associative array if it has an even number of segments.  If it has an odd number of segments it returns <kbd>null</kbd>.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$arr</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to convert.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array|null</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$arr = array('foo', 'bar', 'baz', 'yay');
 $array = Arr::to_assoc($arr);
 /*
 Result:
@@ -77,56 +97,56 @@ $array = Arr::to_assoc($arr);
 Result:
 null
 */</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article id="method_assoc_to_keyval">
-			<h4>assoc_to_keyval($assoc = null, $key_field = null, $val_field = null)</h4>
-			<p>The <strong>assoc_to_keyval</strong> method turns a multi-dimensional array into a key=>val array.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$assoc</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to transform.</td>
-							</tr>
-							<tr>
-								<th><kbd>$key_field</kbd></th>
-								<td><em>required</em></td>
-								<td>The associative array field to map as the key.</td>
-							</tr>
-							<tr>
-								<th><kbd>$val_field</kbd></th>
-								<td><em>required</em></td>
-								<td>The associative array field to map as the value.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>array</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>$people = array(
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_assoc_to_keyval" class="method">assoc_to_keyval($assoc = null, $key_field = null, $val_field = null)</h4>
+				<p>The <strong>assoc_to_keyval</strong> method turns a multi-dimensional array into a key=>val array.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$assoc</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to transform.</td>
+								</tr>
+								<tr>
+									<th><kbd>$key_field</kbd></th>
+									<td><em>required</em></td>
+									<td>The associative array field to map as the key.</td>
+								</tr>
+								<tr>
+									<th><kbd>$val_field</kbd></th>
+									<td><em>required</em></td>
+									<td>The associative array field to map as the value.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$people = array(
 	array(
 		"name" => "Jack",
 		"age" => 21
@@ -146,96 +166,96 @@ Array
 	["Jill"] => 23
 )
 </code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_average">average($array = null)</h4>
-			<p>The <strong>average</strong> method takes all values of an array and returns the average value.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$array</kbd></th>
-								<td><em>required</em></td>
-								<td>Array of values to average.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>array</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>echo Arr::average(array('1', 2, 4, '8')); // Outputs 3.75</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article id="method_flatten">
-			<h4>flatten($array, $glue = ':', $reset = true)</h4>
-			<p>The <strong>flatten</strong> method flattens a multi-dimensional array (both associative and indexed) down into a 1 dimensional array.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$array</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to flatten.</td>
-							</tr>
-							<tr>
-								<th><kbd>$glue</kbd></th>
-								<td><pre class="php"><code>:</code></pre></td>
-								<td>The string used to glue the keys together with</td>
-							</tr>
-							<tr>
-								<th><kbd>$reset</kbd></th>
-								<td><pre class="php"><code>true</code></pre></td>
-								<td>Should we create a new array of values instead of merging them into the last array created by <strong>flatten</strong>?</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>array</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>$indexed = array(
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_average" class="method">average($array = null)</h4>
+				<p>The <strong>average</strong> method takes all values of an array and returns the average value.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>Array of values to average.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>echo Arr::average(array('1', 2, 4, '8')); // Outputs 3.75</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_flatten" class="method">flatten($array, $glue = ':', $reset = true)</h4>
+				<p>The <strong>flatten</strong> method flattens a multi-dimensional array (both associative and indexed) down into a 1 dimensional array.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to flatten.</td>
+								</tr>
+								<tr>
+									<th><kbd>$glue</kbd></th>
+									<td><pre class="php"><code>:</code></pre></td>
+									<td>The string used to glue the keys together with</td>
+								</tr>
+								<tr>
+									<th><kbd>$reset</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>Should we create a new array of values instead of merging them into the last array created by <strong>flatten</strong>?</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$indexed = array(
 	array(
 		"a"
 	),
@@ -256,56 +276,56 @@ Array
 	[0_1] => b
 	[0_2] => c
 )</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article id="method_flatten_assoc">
-			<h4>flatten_assoc($array, $glue = ':', $reset = true)</h4>
-			<p>The <strong>flatten_assoc</strong> method flattens a multi-dimensional associative array down into a 1 dimensional associative array.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$array</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to flatten.</td>
-							</tr>
-							<tr>
-								<th><kbd>$glue</kbd></th>
-								<td><pre class="php"><code>:</code></pre></td>
-								<td>The string used to glue the keys together with</td>
-							</tr>
-							<tr>
-								<th><kbd>$reset</kbd></th>
-								<td><pre class="php"><code>true</code></pre></td>
-								<td>Should we create a new array of values instead of merging them into the last array created by <strong>flatten_assoc</strong>?</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>array</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>$people = array(
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_flatten_assoc" class="method">flatten_assoc($array, $glue = ':', $reset = true)</h4>
+				<p>The <strong>flatten_assoc</strong> method flattens a multi-dimensional associative array down into a 1 dimensional associative array.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to flatten.</td>
+								</tr>
+								<tr>
+									<th><kbd>$glue</kbd></th>
+									<td><pre class="php"><code>:</code></pre></td>
+									<td>The string used to glue the keys together with</td>
+								</tr>
+								<tr>
+									<th><kbd>$reset</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>Should we create a new array of values instead of merging them into the last array created by <strong>flatten_assoc</strong>?</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$people = array(
 	array(
 		"name" => "Jack",
 		"age" => 21
@@ -339,56 +359,56 @@ Array
 	[1:age] => 23
 )
 </code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_filter_prefixed">filter_prefixed($array, $prefix = 'prefix_', $remove_prefix = true)</h4>
-			<p>The <strong>filter_prefixed</strong> method filters the array on a prefix. It returns an array where the key starts with the specified prefix.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$array</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to filter.</td>
-							</tr>
-							<tr>
-								<th><kbd>$prefix</kbd></th>
-								<td><pre class="php"><code>prefix_</code></pre></td>
-								<td>The string used to filter on</td>
-							</tr>
-							<tr>
-								<th><kbd>$remove_prefix</kbd></th>
-								<td><pre class="php"><code>true</code></pre></td>
-								<td>Remove or keep the prefix in the array key?</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>array</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>$arr = array(
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_filter_prefixed" class="method">filter_prefixed($array, $prefix = 'prefix_', $remove_prefix = true)</h4>
+				<p>The <strong>filter_prefixed</strong> method filters the array on a prefix. It returns an array where the key starts with the specified prefix.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to filter.</td>
+								</tr>
+								<tr>
+									<th><kbd>$prefix</kbd></th>
+									<td><pre class="php"><code>prefix_</code></pre></td>
+									<td>The string used to filter on</td>
+								</tr>
+								<tr>
+									<th><kbd>$remove_prefix</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>Remove or keep the prefix in the array key?</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$arr = array(
 	"user_name" => "John",
 	"user_surname" => "Lastname",
 	"project_name" => "Fuel",
@@ -414,56 +434,56 @@ Array
 	[project_type] => Framework
 )
 </code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_filter_keys">filter_keys($array, $keys, $remove = false)</h4>
-			<p>The <strong>filter_keys</strong> method filters a given array to a set of keys. It returns an array that contains only the items whose keys are in the <kbd>$keys</kbd> array. Can also remove the specified <kbd>$keys</kbd> from an array.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$array</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to filter.</td>
-							</tr>
-							<tr>
-								<th><kbd>$keys</kbd></th>
-								<td><em>required</em></td>
-								<td>Array of keys to filter the above array with.</td>
-							</tr>
-							<tr>
-								<th><kbd>$remove</kbd></th>
-								<td><pre class="php"><code>false</code></pre></td>
-								<td>If true, removes the <kbd>$keys</kbd> from the <kbd>$array</kbd> instead of fetching them.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>array</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-<pre class="php"><code>$arr = array(
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_filter_keys" class="method">filter_keys($array, $keys, $remove = false)</h4>
+				<p>The <strong>filter_keys</strong> method filters a given array to a set of keys. It returns an array that contains only the items whose keys are in the <kbd>$keys</kbd> array. Can also remove the specified <kbd>$keys</kbd> from an array.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to filter.</td>
+								</tr>
+								<tr>
+									<th><kbd>$keys</kbd></th>
+									<td><em>required</em></td>
+									<td>Array of keys to filter the above array with.</td>
+								</tr>
+								<tr>
+									<th><kbd>$remove</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>If true, removes the <kbd>$keys</kbd> from the <kbd>$array</kbd> instead of fetching them.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$arr = array(
 	"user_name" => "John",
 	"user_surname" => "Lastname",
 	"project_name" => "Fuel",
@@ -489,56 +509,56 @@ Array
 	[project_type] => Framework
 )
 </code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_get">get($array, $key, $default = false)</h4>
-			<p>The <strong>get</strong> method returns the element of the given array using dot-notation, or a default if it is not set.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$array</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to access</td>
-							</tr>
-							<tr>
-								<th><kbd>$key</kbd></th>
-								<td><em>required</em></td>
-								<td>The key requested in $array. If <strong>null</strong> is passed as key, the entire array is returned.</td>
-							</tr>
-							<tr>
-								<th><kbd>$default</kbd></th>
-								<td><pre class="php"><code>false</code></pre></td>
-								<td>The value to be returned if the requested key does not exist</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>mixed. If you pass an array of keys, the return value will be an array with the result of all requested keys.</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>$person = array(
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_get" class="method">get($array, $key, $default = false)</h4>
+				<p>The <strong>get</strong> method returns the element of the given array using dot-notation, or a default if it is not set.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to access</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td>The key requested in $array. If <strong>null</strong> is passed as key, the entire array is returned.</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>The value to be returned if the requested key does not exist</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed. If you pass an array of keys, the return value will be an array with the result of all requested keys.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$person = array(
 	"name" => "Jack",
 	"age" => "21",
 	"location" => array(
@@ -557,57 +577,57 @@ echo Arr::get($person, "job", "Unknown job");
 // This method can also dive into arrays by using a dot to separate between keys
 echo Arr::get($person, "location.city", "Unknown City");
 // Returns "Pittsburgh"</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_set">set(&amp;$array, $key, $value = false)</h4>
-			<p>The <strong>set</strong> method sets the element of the given array using dot-notation.<br />
-			<u>WARNING</u>: The original array is edited by reference</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$array</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to access</td>
-							</tr>
-							<tr>
-								<th><kbd>$key</kbd></th>
-								<td><em>required</em></td>
-								<td>The key requested in $array. If no key is passed, or <strong>null</strong> is passed as key value, the array is unset. If you pass an array of key -> value pairs, all the values in the array will be set.</td>
-							</tr>
-							<tr>
-								<th><kbd>$value</kbd></th>
-								<td><pre class="php"><code>null</code></pre></td>
-								<td>The value to be set. Ignored if $key is an array.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>void</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>$person = array(
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_set" class="method">set(&amp;$array, $key, $value = false)</h4>
+				<p>The <strong>set</strong> method sets the element of the given array using dot-notation.<br />
+				<u>WARNING</u>: The original array is edited by reference</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to access</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td>The key requested in $array. If no key is passed, or <strong>null</strong> is passed as key value, the array is unset. If you pass an array of key -> value pairs, all the values in the array will be set.</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The value to be set. Ignored if $key is an array.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$person = array(
 	"name" => "Jack",
 	"age" => "21",
 	"location" => array(
@@ -626,52 +646,52 @@ Arr::set($person, "location.city", "Philadelphia");
 
 // or set multiple values in one go
 Arr::set($person, array("name" => "John", "location.city" => "Philadelphia"));</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_delete">delete(&amp;$array, $key)</h4>
-			<p>The <strong>delete</strong> method the element of the given array using dot-notation.<br />
-			<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$array</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to access</td>
-							</tr>
-							<tr>
-								<th><kbd>$key</kbd></th>
-								<td><em>required</em></td>
-								<td>The key requested in $array. If no key is passed, or <strong>null</strong> is passed as key value, the array is unset.</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>mixed, <strong>true</strong> if the key was deleted, <strong>false</strong> if the key didn't exist. If you pass an array of keys, the return value will be an array with the result of all requested deletes.</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>$person = array(
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_delete" class="method">delete(&amp;$array, $key)</h4>
+				<p>The <strong>delete</strong> method the element of the given array using dot-notation.<br />
+				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to access</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td>The key requested in $array. If no key is passed, or <strong>null</strong> is passed as key value, the array is unset.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed, <strong>true</strong> if the key was deleted, <strong>false</strong> if the key didn't exist. If you pass an array of keys, the return value will be an array with the result of all requested deletes.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$person = array(
 	"name" => "Jack",
 	"age" => "21",
 	"location" => array(
@@ -691,57 +711,57 @@ $result = Arr::delete($person, "location.city");
 // or delete multiple values in one go
 $result = Arr::delete($person, array("name", "location.doesnotexist"));
 // deleted $person['name'], returns array('name' => true, 'location.doesnotexist' => false)</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_insert">insert(Array &amp;$original, $value, $pos)</h4>
-			<p>The <strong>insert</strong> method is mainly an array_splice alias with added error checking <br />
-			<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$original</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to use</td>
-							</tr>
-							<tr>
-								<th><kbd>$value</kbd></th>
-								<td><em>required</em></td>
-								<td>The value(s) to insert</td>
-							</tr>
-							<tr>
-								<th><kbd>$pos</kbd></th>
-								<td><em>required</em></td>
-								<td>The numeric position at which to insert, negative to count from the end backwards</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>boolean</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>$people = array("Jack", "Jill");
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_insert" class="method">insert(Array &amp;$original, $value, $pos)</h4>
+				<p>The <strong>insert</strong> method is mainly an array_splice alias with added error checking <br />
+				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$original</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to use</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>required</em></td>
+									<td>The value(s) to insert</td>
+								</tr>
+								<tr>
+									<th><kbd>$pos</kbd></th>
+									<td><em>required</em></td>
+									<td>The numeric position at which to insert, negative to count from the end backwards</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$people = array("Jack", "Jill");
 
 // Add one value
 Arr::insert($people, "Humpty", 0 );
@@ -788,58 +808,58 @@ Array
 )
 
 </code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_insert_after_key">insert_after_key(Array &amp;$original, $value, $key)</h4>
-			<p>The <strong>insert_after_key</strong> method adds an element to an array after the key specified <br />
-			<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$original</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to use</td>
-							</tr>
-							<tr>
-								<th><kbd>$value</kbd></th>
-								<td><em>required</em></td>
-								<td>The value(s) to insert</td>
-							</tr>
-							<tr>
-								<th><kbd>$key</kbd></th>
-								<td><em>required</em></td>
-								<td>The key after which to insert</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>boolean</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>$people = array("Jack", "Jill");
-
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_insert_after_key" class="method">insert_after_key(Array &amp;$original, $value, $key)</h4>
+				<p>The <strong>insert_after_key</strong> method adds an element to an array after the key specified <br />
+				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$original</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to use</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>required</em></td>
+									<td>The value(s) to insert</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td>The key after which to insert</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$people = array("Jack", "Jill");
+	
 Arr::insert_after_key($people, "Humpty", 1 );
 print_r( $people );
 
@@ -851,57 +871,57 @@ Array
 	[2] => Humpty
 )
 </code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_insert_after_value">insert_after_value(Array &amp;$original, $value, $search)</h4>
-			<p>The <strong>insert_after_value</strong> method adds an element to an array after the value specified <br />
-			<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$original</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to use</td>
-							</tr>
-							<tr>
-								<th><kbd>$value</kbd></th>
-								<td><em>required</em></td>
-								<td>The value(s) to insert</td>
-							</tr>
-							<tr>
-								<th><kbd>$search</kbd></th>
-								<td><em>required</em></td>
-								<td>The value after which to insert</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>boolean</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>$people = array("Jack", "Jill");
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_insert_after_value" class="method">insert_after_value(Array &amp;$original, $value, $search)</h4>
+				<p>The <strong>insert_after_value</strong> method adds an element to an array after the value specified <br />
+				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$original</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to use</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>required</em></td>
+									<td>The value(s) to insert</td>
+								</tr>
+								<tr>
+									<th><kbd>$search</kbd></th>
+									<td><em>required</em></td>
+									<td>The value after which to insert</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$people = array("Jack", "Jill");
 
 Arr::insert_after_value($people, "Humpty", "Jack" );
 print_r( $people );
@@ -914,61 +934,61 @@ Array
 	[2] => Jill
 )
 </code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article>
-			<h4 id="method_sort">sort($array, $key, $order = 'asc', $sort_flags = SORT_REGULAR)</h4>
-			<p>The <strong>sort</strong> method sorts a multi-dimensional array by its values.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th class="legend">Static</th>
-					<td>Yes</td>
-				</tr>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$array</kbd></th>
-								<td><em>required</em></td>
-								<td>The array to sort</td>
-							</tr>
-							<tr>
-								<th><kbd>$key</kbd></th>
-								<td><em>required</em></td>
-								<td>The key requested to sort by in $array.</td>
-							</tr>
-							<tr>
-								<th><kbd>$order</kbd></th>
-								<td><pre class="php"><code>'asc'</code></pre></td>
-								<td>The order (asc or desc).</td>
-							</tr>
-							<tr>
-								<th><kbd>$sort_flags</kbd></th>
-								<td><pre class="php"><code>SORT_REGULAR</code></pre></td>
-								<td>The php sort type flags (<a href="http://php.net/manual/en/function.sort.php">http://php.net/manual/en/function.sort.php</a>)</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>mixed</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code>$data = array(
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="method_sort" class="method">sort($array, $key, $order = 'asc', $sort_flags = SORT_REGULAR)</h4>
+				<p>The <strong>sort</strong> method sorts a multi-dimensional array by its values.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to sort</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td>The key requested to sort by in $array.</td>
+								</tr>
+								<tr>
+									<th><kbd>$order</kbd></th>
+									<td><pre class="php"><code>'asc'</code></pre></td>
+									<td>The order (asc or desc).</td>
+								</tr>
+								<tr>
+									<th><kbd>$sort_flags</kbd></th>
+									<td><pre class="php"><code>SORT_REGULAR</code></pre></td>
+									<td>The php sort type flags (<a href="http://php.net/manual/en/function.sort.php">http://php.net/manual/en/function.sort.php</a>)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$data = array(
 	array(
 		'info' => array(
 			'pet' => array(
@@ -1017,72 +1037,69 @@ array(
 		),
 	),
 );</code></pre>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<h3 id="procedural_helpers">Procedural helpers</h3>
-
-		<article>
-			<h4 id="function_in_arrayi">in_arrayi($needle, $haystack)</h4>
-			<p>The <strong>in_arrayi</strong> function is a case-insensitive version of in_array.</p>
-			<table class="method">
-				<tbody>
-				<tr>
-					<th>Parameters</th>
-					<td>
-						<table class="parameters">
-							<tr>
-								<th>Param</th>
-								<th>Type</th>
-								<th>Default</th>
-								<th class="description">Description</th>
-							</tr>
-							<tr>
-								<th><kbd>$needle</kbd></th>
-								<td><em>string</em></td>
-								<td><em>required</em></td>
-								<td>the value to search for</td>
-							</tr>
-							<tr>
-								<th><kbd>$haystrack</kbd></th>
-								<td><em>array</em></td>
-								<td><em>required</em></td>
-								<td>the array to search in</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<th>Returns</th>
-					<td>bool</td>
-				</tr>
-				<tr>
-					<th>Example</th>
-					<td>
-						<pre class="php"><code></code></pre>$bool = in_arrayi('This', array('something','tHis'));
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<h3 id="procedural_helpers">Procedural helpers</h3>
+	
+			<article>
+				<h4 id="function_in_arrayi" class="method" data-class="">in_arrayi($needle, $haystack)</h4>
+				<p>The <strong>in_arrayi</strong> function is a case-insensitive version of in_array.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$needle</kbd></th>
+									<td><em>string</em></td>
+									<td><em>required</em></td>
+									<td>the value to search for</td>
+								</tr>
+								<tr>
+									<th><kbd>$haystrack</kbd></th>
+									<td><em>array</em></td>
+									<td><em>required</em></td>
+									<td>the array to search in</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$bool = in_arrayi('This', array('something','tHis'));
 // Will result in $bool == true
 
 $bool = in_arrayi('Thi', array('something','tHis'));
-// Will result in $bool == false
+// Will result in $bool == false</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 
+		</div>
 
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</article>
-
-	</section>
-
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>

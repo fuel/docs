@@ -2,141 +2,170 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Orm - Creating Models - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('ormpackage', '../../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../../';
 	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Creating models - Orm Package - Fuel Documentation</title>
 </head>
 <body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
 
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
 
-	<div id="main-nav"></div>
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
 
-	<section id="content">
-		<h2>Orm</h2>
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
 
-		<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-			Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-			to establish relations between those objects.<br />
-			It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
-			Active Record Pattern</a>, but was also influenced by other systems.</p>
+		<div id="main">
+			<h2>Orm</h2>
 
-		<section>
-			<h2 id="creation">Creating Models</h2>
+			<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
+				Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
+				to establish relations between those objects.<br />
+				It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
+				Active Record Pattern</a>, but was also influenced by other systems.</p>
 
-			<p>Creating a model takes little time, the convention is to use the <kbd>Model_</kbd> 
-				prefix for the class (eg Model_Article using the filename article.php) and thus 
-				place them in <kbd>app/classes/model/</kbd> but you are free to use 
-				whatever name you choose.</p>
+			<section>
+				<h2 id="creation">Creating Models</h2>
 
-			<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
+				<p>Creating a model takes little time, the convention is to use the <kbd>Model_</kbd>
+					prefix for the class (eg Model_Article using the filename article.php) and thus
+					place them in <kbd>app/classes/model/</kbd> but you are free to use
+					whatever name you choose.</p>
 
-			<p class="note">The above only works with the MySQL and MySQLi drivers because it needs to fetch the model
-				properties from the database. It is however not very efficient and thus discouraged to use it this way
-				because you'll always need that one extra query per model just to fetch the columnnames.</p>
+				<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
 
-			<pre class="php"><code>class Model_Article extends Orm\Model {
+				<p class="note">The above only works with the MySQL and MySQLi drivers because it needs to fetch the model
+					properties from the database. It is however not very efficient and thus discouraged to use it this way
+					because you'll always need that one extra query per model just to fetch the columnnames.</p>
+
+				<pre class="php"><code>class Model_Article extends Orm\Model
+{
 	protected static $_properties = array('id', 'title', 'contents', 'publish');
 }</code></pre>
 
-			<h2 id="config">Configuration</h2>
+				<h2 id="config">Configuration</h2>
 
-			<p>You can add static properties to the Model to configure it. As we've seen there are none required but
-				setting <kbd>$_properties</kbd> is encouraged. All these can be both <kbd>public</kbd> and
-				<kbd>protected</kbd> but may NOT be <kbd>private</kbd>.<br />
-				Note that all configuration properties are prefixed with a single underscore to prevent collisions with
-				your column names.</p>
+				<p>You can add static properties to the Model to configure it. As we've seen there are none required but
+					setting <kbd>$_properties</kbd> is encouraged. All these can be both <kbd>public</kbd> and
+					<kbd>protected</kbd> but may NOT be <kbd>private</kbd>.<br />
+					Note that all configuration properties are prefixed with a single underscore to prevent collisions with
+					your column names.</p>
 
-			<h3 id="table_name">protected static $_table_name</h3>
+				<h3 id="table_name">protected static $_table_name</h3>
 
-			<p>When this isn't set the <kbd>Model_</kbd> prefix is removed from the classname and the classname is
-				pluralized. Thus "Model_Article" expects table "articles". If you don't follow this convention you can
-				change it by setting the <kbd>$table_name</kbd> property.</p>
+				<p>When this isn't set the <kbd>Model_</kbd> prefix is removed from the classname and the classname is
+					pluralized. Thus "Model_Article" expects table "articles". If you don't follow this convention you can
+					change it by setting the <kbd>$table_name</kbd> property.</p>
 
-			<pre class="php"><code>class Model_Article extends Orm\Model {
+				<pre class="php"><code>class Model_Article extends Orm\Model
+{
 	protected static $_table_name = 'myarticles';
 }</code></pre>
 
-			<h3 id="primary_key">protected static $_primary_key</h3>
+				<h3 id="primary_key">protected static $_primary_key</h3>
 
-			<p>By default this is set to <kbd>array('id')</kbd>, if you use another column name or multiple primary
-				keys you need to set this property.</p>
+				<p>By default this is set to <kbd>array('id')</kbd>, if you use another column name or multiple primary
+					keys you need to set this property.</p>
 
-			<pre class="php"><code>class Model_Article extends Orm\Model {
+				<pre class="php"><code>class Model_Article extends Orm\Model
+{
 	protected static $_primary_key = array('aid');
 }</code></pre>
 
-			<p class="note">The primary key must be a real primary key: unique and unchanging. Don't use it for other
-				purposes (like a foreign key in a one-one relation) as well, that won't work as the PK can't be
-				changed. The Orm won't check this, and while it might seem to work at first glance: you'll get
-				into trouble.<br />
-				It is not required for the PK to be auto_increment (though preferred) and you can specify the PK
-				yourself, but only the first time. Once it's set, it's set.</p>
+				<p class="note">The primary key must be a real primary key: unique and unchanging. Don't use it for other
+					purposes (like a foreign key in a one-one relation) as well, that won't work as the PK can't be
+					changed. The Orm won't check this, and while it might seem to work at first glance: you'll get
+					into trouble.<br />
+					It is not required for the PK to be auto_increment (though preferred) and you can specify the PK
+					yourself, but only the first time. Once it's set, it's set.</p>
 
-			<h3 id="propperties">protected static $_properties</h3>
+				<h3 id="propperties">protected static $_properties</h3>
 
-			<p>There's already a simple example above of adding all model properties, they can also be configured by
-			using the columnname as the key and setting options like type, label & validation.</p>
+				<p>There's already a simple example above of adding all model properties, they can also be configured by
+				using the columnname as the key and setting options like type, label & validation.</p>
 
-			<pre class="php"><code>class Model_Article extends Orm\Model {
+				<pre class="php"><code>class Model_Article extends Orm\Model
+{
 	protected static $_properties = array(
-		'id' => array('type' => 'int'),
+		'id' => array('data_type' => 'int'),
 		'name' => array(
-			'type' => 'varchar',
+			'data_type' => 'varchar',
 			'label' => 'Article Name',
 			'validation' => array('required', 'min_length' => array(3), 'max_length' => array(20)),
-			'default' => 'New article'
+			'form' => array('data_type' => 'text'),
+			'default' => 'New article',
 		),
-		'url' => array(
-			'type' => 'varchar',
-			'label' => 'Web Address',
-			'validation' => array('required', 'valid_url')
+		'gender' => array(
+			'data_type' => 'varchar',
+			'label' => 'Gender',
+			'form' => array('data_type' => 'select', 'options' => array('m' => 'Male', 'f' => 'Female')),
+			'validation' => array('required'),
 		),
-		'created_at' => array('type' => 'int', 'label' => 'Created At'),
-		'updated_at' => array('type' => 'int', 'label' => 'Updated At')
+		'created_at' => array('data_type' => 'int', 'label' => 'Created At'),
+		'updated_at' => array('data_type' => 'int', 'label' => 'Updated At')
 	);
 )</code></pre>
 
-			<p>Use of the validation rules shown here to do before save validation is shown in LINK HERE</p>
+				<p>Form attributes can be passed in the form of an array as shown in the example.</p>
 
-			<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many, $_many_through</h3>
+				<p>Validation rules can be passed as either just the rule: <kbd>array('required')</kbd> or as the rule
+					with an array of params: <kbd>array('min_length' => array(3))</kbd> both are shown in the example
+					above. A full explanation of the Validation class and it's rule can be found under
+					<a href="../../classes/validation/validation.html">Core</a>.</p>
 
-			<p>Relating models to each other is explained in <a href="relations/intro.html">Relating Models</a></p>
+				<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many, $_many_through</h3>
 
-			<h3 id="connection">protected static $_connection</h3>
+				<p>Relating models to each other is explained in <a href="relations/intro.html">Relating Models</a></p>
 
-			<p>By default this property does not exist and Model::connection() returns <kbd>null</kbd>, but you can set
-			it to any other database name configured in <kbd>app/config/db.php</kbd>. Note however that relations don't
-			work across connections.</p>
+				<h3 id="connection">protected static $_connection</h3>
 
-			<pre class="php"><code>class Model_Article extends Orm\Model {
+				<p>By default this property does not exist and Model::connection() returns <kbd>null</kbd>, but you can set
+				it to any other database name configured in <kbd>app/config/db.php</kbd>. Note however that relations don't
+				work across connections.</p>
+
+				<pre class="php"><code>class Model_Article extends Orm\Model
+{
 	protected static $_connection = 'articles_database';
 }</code></pre>
 
-			<h3 id="observers">protected static $_observers</h3>
+				<h3 id="observers">protected static $_observers</h3>
 
-			<p>Adding observers is explained in <a href="observers/intro.html">Observers</a></p>
-		</section>
+				<p>Adding observers is explained in <a href="observers/intro.html">Observers</a></p>
+			</section>
 
-	</section>
+		</div>
 
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>

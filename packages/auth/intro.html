@@ -2,134 +2,151 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Auth package - Introduction - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('authpackage', '../../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../../';
 	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Introduction - Auth Package - Fuel Documentation</title>
 </head>
 <body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
 
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
 
-	<div id="main-nav"></div>
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
 
-	<section id="content">
-		<h2>Auth package</h2>
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
 
-		<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
-		write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
-		consistent.</p>
+		<div id="main">
+			<h2>Auth package</h2>
 
-		<section>
-			<h2 id="intro">Introduction</h2>
-
-			<p>Creating an Auth package that will suit everyone or every implementation is impossible. As a framework
-			we don't want to force how you do Auth, but we do want to facilitate you creating your own or using the
-			work of others. This is where the Auth package comes in, which of course includes a simple implementation to
-			get you going.</p>
-
-			<p>The interface contains 3 types of drivers (which can be extended to more types): login, groups &amp; ACL.
-			The login drivers handle a user login and can handle multiple login drivers at the same time. For example
-			one could make it possible for users to login through Twitter and their own native users at the same time
-			using 2 login drivers.<br />
-			As a next step you could group those 2 types of logins using a group driver that doesn't care about the
-			type of login you're using. And last but not least you can use an Acl driver to give specific rights to
-			those groups.</p>
-
-			<p>The above is just an example of how you might use it, not how you <em>have</em> to use it. Read on in
-			the next section to understand which methods are part of the generic interface and which will be driver
-			specific: <a href="usage.html">Basic Usage</a></p>
+			<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
+			write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
+			consistent.</p>
 
 			<section>
-				<h3 id="install">Installation</h3>
+				<h2 id="intro">Introduction</h2>
 
-				<p>The Auth package is included in the Fuel download. All you need to do is enable it in your config.</p>
-				<pre class="php"><code>'packages' => array(
-    'auth',
+				<p>Creating an Auth package that will suit everyone or every implementation is impossible. As a framework
+				we don't want to force how you do Auth, but we do want to facilitate you creating your own or using the
+				work of others. This is where the Auth package comes in, which of course includes a simple implementation to
+				get you going.</p>
+
+				<p>The interface contains 3 types of drivers (which can be extended to more types): login, groups &amp; ACL.
+				The login drivers handle a user login and can handle multiple login drivers at the same time. For example
+				one could make it possible for users to login through Twitter and their own native users at the same time
+				using 2 login drivers.<br />
+				As a next step you could group those 2 types of logins using a group driver that doesn't care about the
+				type of login you're using. And last but not least you can use an Acl driver to give specific rights to
+				those groups.</p>
+
+				<p>The above is just an example of how you might use it, not how you <em>have</em> to use it. Read on in
+				the next section to understand which methods are part of the generic interface and which will be driver
+				specific: <a href="usage.html">Basic Usage</a></p>
+
+				<section>
+					<h3 id="install">Installation</h3>
+
+					<p>The Auth package is included in the Fuel download. All you need to do is enable it in your config.</p>
+					<pre class="php"><code>'packages' => array(
+	'auth',
 ),</code></pre>
-			</section>
+				</section>
 
-			<section>
-				<h3 id="configuration">Configuration</h3>
+				<section>
+					<h3 id="configuration">Configuration</h3>
 
-				<p>Auth can be configured in a config/auth.php file and takes the following keys:</p>
+					<p>Auth can be configured in a config/auth.php file and takes the following keys:</p>
 
-				<table class="config">
-					<tbody>
-						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
-						</tr>
-						<tr>
-							<th>driver</th>
-							<td>string|array</td>
-							<td><pre class="php"><code>array('SimpleAuth')</code></pre></td>
-							<td>
-								Login drivers to load, the first will also be the default returned by Auth::instance().
-							</td>
-						</tr>
-						<tr>
-							<th>verify_multiple_logins</th>
-							<td>bool</td>
-							<td><pre class="php"><code>false</code></pre></td>
-							<td>
-								Whether checking for login continues after one driver has validated a login successfully,
-								this makes it possible to login in multiple ways at the same time.
-							</td>
-						</tr>
-						<tr>
-							<th>salt</th>
-							<td>string</td>
-							<td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
-							<td>
-								The salt used for password hashing.
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				
-				<p>Your auth config file should look like this:</p>
-				
-				<pre class="php"><code>&lt;?php
+					<table class="config">
+						<tbody>
+							<tr class="header">
+								<th>Param</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th>Description</th>
+							</tr>
+							<tr>
+								<th>driver</th>
+								<td>string|array</td>
+								<td><pre class="php"><code>array('SimpleAuth')</code></pre></td>
+								<td>
+									Login drivers to load, the first will also be the default returned by Auth::instance().
+								</td>
+							</tr>
+							<tr>
+								<th>verify_multiple_logins</th>
+								<td>bool</td>
+								<td><pre class="php"><code>false</code></pre></td>
+								<td>
+									Whether checking for login continues after one driver has validated a login successfully,
+									this makes it possible to login in multiple ways at the same time.
+								</td>
+							</tr>
+							<tr>
+								<th>salt</th>
+								<td>string</td>
+								<td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
+								<td>
+									The salt used for password hashing.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p>Your auth config file should look like this:</p>
+
+					<pre class="php"><code>&lt;?php
 
 return array(
 	// The drivers
 	'driver' => array('SimpleAuth'),
-	
+
 	// Set to true to allow multiple logins
 	'verify_multiple_logins' => true,
-	
+
 	// Use your own salt for security reasons
 	'salt' => 'Th1s=mY0Wn_$@|+',
 );
 
 /* End of file auth.php */
 </code></pre>
-				
+
+				</section>
+
 			</section>
 
-		</section>
+		</div>
 
-	</section>
-
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>

@@ -1,102 +1,122 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Database - Query Builder Where - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('classes', '../../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../../';
+		var class_prefix = 'Query_Builder_Where::';
 	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Query Builder Where - Classes - Fuel Documentation</title>
 </head>
 <body>
-
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
-
-	<div id="main-nav"></div>
-
-	<section id="content">
-		<h2 id="introduction">Query_Builder_Where class</h2>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
 		
-		<p>
-			The <strong>Query_Builder_Where</strong> class handles the conditioning and limiting logic for quiry building.
-			Every kind of where statement (including BETWEEN and IN etc...) is handled here. This class is not instantiated (it's
-			abstract) but extended by other classes that share the same functions. There classes are:
-		</p>
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
 		
-		<ul>
-			<li><a href="qb_select.html">Query_Builder_Select</a></li>
-			<li><a href="qb_update.html">Query_Builder_Update</a></li>
-			<li><a href="qb_delete.html">Query_Builder_Delete</a></li>
-		</ul>
-		
-		<p id="returned_instance" class="note">
-			<strong>Please note:</strong> Since Query_Builder_Where is get extended by the classes listed above, the "current instance" returned will be one of those.
-		</p>
-		
-		<h2 id="methods">Methods</h2>
-		
-		<article>
-			<h4 id="method_where">where()</h4>
-			<p>The <strong>where</strong> method is an alias for <a href="#method_and_where">and_where</a>.</p>
-		</article>
-
-		<article>
-			<h4 id="method_and_where">and_where($column, $op = null, $value = null)</h4>
-			<p>The <strong>and_where</strong> method appends a WHERE statement.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$column</kbd></th>
-									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>Column name or array($column, $alias) or object</td>
-								</tr>
-								<tr>
-									<th><kbd>$op</kbd></th>
-									<td><em>string</em></td>
-									<td><pre class="php"><code>null</code></pre></td>
-									<td>Logic operator: =, !=, IN, BETWEEN and LIKE. If none is profided this will fallback to '='</td>
-								</tr>
-								<tr>
-									<th><kbd>$value</kbd></th>
-									<td><em>string</em></td>
-									<td><pre class="php"><code>null</code></pre></td>
-									<td>Column value</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare a select statement
+		<div id="main">
+			
+			<h2 id="introduction">Query_Builder_Where class</h2>
+			
+			<p>
+				The <strong>Query_Builder_Where</strong> class handles the conditioning and limiting logic for quiry building.
+				Every kind of where statement (including BETWEEN and IN etc...) is handled here. This class is not instantiated (it's
+				abstract) but extended by other classes that share the same functions. There classes are:
+			</p>
+			
+			<ul>
+				<li><a href="qb_select.html">Query_Builder_Select</a></li>
+				<li><a href="qb_update.html">Query_Builder_Update</a></li>
+				<li><a href="qb_delete.html">Query_Builder_Delete</a></li>
+			</ul>
+			
+			<p id="returned_instance" class="note">
+				<strong>Please note:</strong> Since Query_Builder_Where is get extended by the classes listed above, the "current instance" returned will be one of those.
+			</p>
+			
+			<h3 id="methods">Methods</h3>
+			
+			<article>
+				<h4 class="method" id="method_where">where()</h4>
+				<p>The <strong>where</strong> method is an alias for <a href="#method_and_where">and_where</a>.</p>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_and_where">and_where($column, $op = null, $value = null)</h4>
+				<p>The <strong>and_where</strong> method appends a WHERE statement.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$column</kbd></th>
+										<td><em>string</em></td>
+										<td><em>required</em></td>
+										<td>Column name or array($column, $alias) or object</td>
+									</tr>
+									<tr>
+										<th><kbd>$op</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Logic operator: =, !=, IN, BETWEEN and LIKE. If none is provided this will fallback to '='</td>
+									</tr>
+									<tr>
+										<th><kbd>$value</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Column value</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
 // Set the first where statement
@@ -107,60 +127,60 @@ $query->and_where('surname', 'Doe');
 
 // Resulting in: SELECT * FROM `users` WHERE `name` != "John" AND `surname` = "Doe"
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4 id="method_or_where">or_where($column, $op = null, $value = null)</h4>
-			<p>The <strong>or_where</strong> method appends an OR WHERE statement.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$column</kbd></th>
-									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>Column name or array($column, $alias) or object</td>
-								</tr>
-								<tr>
-									<th><kbd>$op</kbd></th>
-									<td><em>string</em></td>
-									<td><pre class="php"><code>null</code></pre></td>
-									<td>Logic operator: =, !=, IN, BETWEEN. If none is profided this will fallback to '='</td>
-								</tr>
-								<tr>
-									<th><kbd>$value</kbd></th>
-									<td><em>string</em></td>
-									<td><pre class="php"><code>null</code></pre></td>
-									<td>Column value</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare a select statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_or_where">or_where($column, $op = null, $value = null)</h4>
+				<p>The <strong>or_where</strong> method appends an OR WHERE statement.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$column</kbd></th>
+										<td><em>string</em></td>
+										<td><em>required</em></td>
+										<td>Column name or array($column, $alias) or object</td>
+									</tr>
+									<tr>
+										<th><kbd>$op</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Logic operator: =, !=, IN, BETWEEN. If none is provided this will fallback to '='</td>
+									</tr>
+									<tr>
+										<th><kbd>$value</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Column value</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
 // Set the first where statement
@@ -171,40 +191,40 @@ $query->or_where('surname', 'Doe');
 
 // Resulting in: SELECT * FROM `users` WHERE `name` != "John" OR `surname` = "Doe"
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4 id="method_where_open">where_open()</h4>
-			<p>The <strong>where_open</strong> method is an alias for <a href="#method_and_where_open">and_where_open</a>.</p>
-		</article>
-		
-		<article>
-			<h4 id="method_and_where_open">and_where_open()</h4>
-			<p>The <strong>and_where_open</strong> method opens an SQL closure and appends it using AND.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<em>None</em>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare a select statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_where_open">where_open()</h4>
+				<p>The <strong>where_open</strong> method is an alias for <a href="#method_and_where_open">and_where_open</a>.</p>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_and_where_open">and_where_open()</h4>
+				<p>The <strong>and_where_open</strong> method opens an SQL closure and appends it using AND.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<em>None</em>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
 // Set a where statement
@@ -215,35 +235,35 @@ $query->and_where_open();
 
 // SELECT * FROM `users` WHERE `name` = "John" AND (
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4 id="method_or_where_open">or_where_open()</h4>
-			<p>The <strong>or_where_open</strong> method opens an SQL closure and appends it using OR.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<em>None</em>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare a select statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_or_where_open">or_where_open()</h4>
+				<p>The <strong>or_where_open</strong> method opens an SQL closure and appends it using OR.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<em>None</em>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
 // Set a where statement
@@ -254,40 +274,40 @@ $query->or_where_open();
 
 // SELECT * FROM `users` WHERE `name` = "John" OR (
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4 id="method_where_close">where_close()</h4>
-			<p>The <strong>where_close</strong> method is an alias for <a href="#method_and_where_close">and_where_close</a>.</p>
-		</article>
-		
-		<article>
-			<h4 id="method_and_where_close">and_where_close()</h4>
-			<p>The <strong>and_where_close</strong> method closes an SQL closure.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<em>None</em>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare a select statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_where_close">where_close()</h4>
+				<p>The <strong>where_close</strong> method is an alias for <a href="#method_and_where_close">and_where_close</a>.</p>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_and_where_close">and_where_close()</h4>
+				<p>The <strong>and_where_close</strong> method closes an SQL closure.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<em>None</em>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
 // Set a where statement
@@ -304,35 +324,35 @@ $query->and_where_close();
 // SELECT * FROM `users`
 // WHERE `email` LIKE "%example.com" AND (`name` = "John" OR `surname` = "Doe")
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4 id="method_or_where_close">or_where_close()</h4>
-			<p>The <strong>or_where_close</strong> method closes an SQL closure.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<em>None</em>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare a select statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_or_where_close">or_where_close()</h4>
+				<p>The <strong>or_where_close</strong> method closes an SQL closure.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<em>None</em>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
 // Set a where statement
@@ -348,54 +368,54 @@ $query->and_where('surname', 'Doe');
 $query->or_where_close();
 // SELECT * FROM `users` WHERE `email` LIKE "%example.com" OR (`name` = "John" AND `surname` = "Doe")
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4 id="method_order_by">order_by($column, $direction = NULL)</h4>
-			<p>The <strong>order_by</strong> method sets the order for the result/execution.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$column</kbd></th>
-									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>Column name</td>
-								</tr>
-								<tr>
-									<th><kbd>$direction</kbd></th>
-									<td><em>string</em></td>
-									<td><em>null</em></td>
-									<td>Can be set to <em>'asc'</em> or <em>'desc'</em>. Ommit for </td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare a select statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_order_by">order_by($column, $direction = NULL)</h4>
+				<p>The <strong>order_by</strong> method sets the order for the result/execution.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$column</kbd></th>
+										<td><em>string</em></td>
+										<td><em>required</em></td>
+										<td>Column name</td>
+									</tr>
+									<tr>
+										<th><kbd>$direction</kbd></th>
+										<td><em>string</em></td>
+										<td><em>null</em></td>
+										<td>Can be set to <em>'asc'</em> or <em>'desc'</em>. Ommit for </td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
 // Set the order by
@@ -405,48 +425,48 @@ $query->order_by('surname', 'desc');
 
 // SELECT * FROM `users` ORDER BY `name`, `email` ASC, `surname DESC
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-		
-		<article>
-			<h4 id="method_limit">limit($number)</h4>
-			<p>The <strong>limit</strong> method limits the number of rows selected/affected.</p>
-			<table class="method">
-				<tbody>
-					<tr>
-						<th>Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$number</kbd></th>
-									<td><em>int</em></td>
-									<td><em>required</em></td>
-									<td>The number of rows</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>Returns the <a href="#returned_instance">current instance</a>.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// prepare a select statement
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+			
+			<article>
+				<h4 class="method" id="method_limit">limit($number)</h4>
+				<p>The <strong>limit</strong> method limits the number of rows selected/affected.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$number</kbd></th>
+										<td><em>int</em></td>
+										<td><em>required</em></td>
+										<td>The number of rows</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
 // Set the limit
@@ -454,20 +474,19 @@ $query->limit(10);
 
 // SELECT * FROM `users` LIMIT 10
 </code></pre>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
 		
-	</section>
+		</div>
 
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
-
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>

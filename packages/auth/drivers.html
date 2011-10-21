@@ -2,59 +2,78 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Auth package - Introduction - Fuel Documentation</title>
-	<link href="../../assets/css/main.css" media="screen" rel="stylesheet" />
-	<script type="text/javascript" src="../../assets/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../assets/js/nav.js"></script>
-	<script type="text/javascript" src="../../assets/js/highlight.pack.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(function() {
-			show_nav('authpackage', '../../');
-		});
-		hljs.tabReplace = '    ';
-		hljs.initHighlightingOnLoad();
+		var path = './../../';
 	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Writing your own drivers - Auth Package - Fuel Documentation</title>
 </head>
 <body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>Fuel, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
 
-	<header>
-		<h1>Fuel Documentation</h1>
-	</header>
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
 
-	<div id="main-nav"></div>
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
 
-	<section id="content">
-		<h2>Auth package</h2>
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
 
-		<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
-		write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
-		consistent.</p>
+		<div id="main">
+			<h2>Auth package</h2>
 
-		<section>
-			<h2 id="writing_drivers">Writing your own drivers</h2>
-			
-			<p>
-				Writing drivers can be done in two ways. Either by extending the Auth driver classes
-				to create a new driver from scratch or extending the SimpleAuth classes and changing them where needed.
-			</p>
-			
-			<p>
-				An Auth driver consists of three types of classes working together. These are:
-			</p>
-			
-			<ul>
-				<li>Login (Auth_Login_Driver).</li>
-				<li>Group (Auth_Group_Driver).</li>
-				<li>Acl (Auth_Acl_Driver).</li>
-			</ul>
-			
-			<h3 id="extending">Extending auth classes.</h3>
-			
-			<p>Extend these classes like so:</p>
-			
-			<pre class="php"><code>&lt;?php
+			<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
+			write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
+			consistent.</p>
 
-class Auth_Login_MyDriver extends \Auth\Auth_Login_Driver {
+			<section>
+				<h2 id="writing_drivers">Writing your own drivers</h2>
+
+				<p>
+					Writing drivers can be done in two ways. Either by extending the Auth driver classes
+					to create a new driver from scratch or extending the SimpleAuth classes and changing them where needed.
+				</p>
+
+				<p>
+					An Auth driver consists of three types of classes working together. These are:
+				</p>
+
+				<ul>
+					<li>Login (Auth_Login_Driver).</li>
+					<li>Group (Auth_Group_Driver).</li>
+					<li>Acl (Auth_Acl_Driver).</li>
+				</ul>
+
+				<h3 id="extending">Extending auth classes.</h3>
+
+				<p>Extend these classes like so:</p>
+
+				<pre class="php"><code>&lt;?php
+
+class Auth_Login_MyDriver extends \Auth\Auth_Login_Driver
+{
 
 	// Implement all the needed functions and variables defined in the driver class.
 
@@ -63,14 +82,14 @@ class Auth_Login_MyDriver extends \Auth\Auth_Login_Driver {
 /* End of file mydriver.php */
 </code></pre>
 
-			<h3 id="implementing_function">Implementing functions.</h3>
-			
-			<p>
-				When extending the Auth driver classes take note on the expected return values of each function that needs to be implemented.
-				Every method supplies an example so you know what needs to be returned. Here is an example:
-			</p>
-			
-			<pre class="php"><code>/**
+				<h3 id="implementing_function">Implementing functions.</h3>
+
+				<p>
+					When extending the Auth driver classes take note on the expected return values of each function that needs to be implemented.
+					Every method supplies an example so you know what needs to be returned. Here is an example:
+				</p>
+
+				<pre class="php"><code>/**
  * Get User Identifier of the current logged in user
  * in the form: array(driver_id, user_id)
  *
@@ -78,19 +97,19 @@ class Auth_Login_MyDriver extends \Auth\Auth_Login_Driver {
  */
 abstract public function get_user_id();</code></pre>
 
-			<p>
-				The code above show you the <em>get_user_id</em> function that every driver should have.
-				Like in all classes you extend that have abstract functions, these functions must be defined in the extended class.
-				The return type of this function is provided in the comment, in this case <em>array(driver_id, user_id)</em>.
-				In order to get your driver to work alongside other drivers make sure you return the right values or your driver
-				breaks protocol.
-			</p>
-			
-			<p>
-				Here is that same function but then the implementation from the SimpleAuth driver.
-			</p>
-			
-			<pre class="php"><code>/**
+				<p>
+					The code above show you the <em>get_user_id</em> function that every driver should have.
+					Like in all classes you extend that have abstract functions, these functions must be defined in the extended class.
+					The return type of this function is provided in the comment, in this case <em>array(driver_id, user_id)</em>.
+					In order to get your driver to work alongside other drivers make sure you return the right values or your driver
+					breaks protocol.
+				</p>
+
+				<p>
+					Here is that same function but then the implementation from the SimpleAuth driver.
+				</p>
+
+				<pre class="php"><code>/**
  * Get the user's ID
  *
  * @return  Array  containing this driver's ID & the user's ID
@@ -106,29 +125,28 @@ public function get_user_id()
 }
 </code></pre>
 
-			<p>
-				Once you have everything in place for the new driver. Replace or add it to the auth <a href="intro.html#configuration">config</a>.
-			</p>
-			
-			<pre class="php"><code>// Inside config/auth.php
-			
+				<p>
+					Once you have everything in place for the new driver. Replace or add it to the auth <a href="intro.html#configuration">config</a>.
+				</p>
+
+				<pre class="php"><code>// Inside config/auth.php array
+
 // Add it as a driver
 'driver' => array('SimpleAuth', 'MyDriver'),
 
 // or replace the SimpleAuth driver
 'driver' => array('MyDriver'),
 </code></pre>
-			
-		</section>
 
-	</section>
+			</section>
 
-	<section id="footer">
-		<p>
-			<a href="http://fuelphp.com">Fuel</a> is released under the MIT license.<br />
-			&copy; 2010 - 2011 Fuel Development Team
-		</p>
-	</section>
+		</div>
 
+		<footer>
+			<p>
+				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
 </body>
 </html>
