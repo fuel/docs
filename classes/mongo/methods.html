@@ -1369,7 +1369,7 @@ $insert_id = $mongodb->insert('users', array(
 $mongodb = \Mongo_Db::instance();
 
 // Update a user
-$bool = $mongodb->where('id', $an_id)->update('users', array(
+$bool = $mongodb->where(array('id' => $an_id))->update('users', array(
 	'name' => 'John',
 	'surname' => 'Doe',
 	'email' => 'john@doe.com',
