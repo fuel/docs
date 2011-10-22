@@ -53,7 +53,7 @@
 	
 			<h3 id="class_constants">Class constants</h3>
 	
-			<p style="margin-bottom:10px;">Environment constants. These are used in your config.php to define the application environment:</p>
+			<p style="margin-bottom:10px;">Environment constants. These are used in your config.php to define the application environment. They can also be used to detect the environment and respond accordingly in your app:</p>
 			<table class="config">
 				<tbody>
 					<tr class="header">
@@ -92,6 +92,19 @@
 						<td><pre class="php"><code>'production'</code></pre></td>
 						<td>
 							Identifies the PRODUCTION environment.
+						</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td colspan="3">
+							<!-- needed to override the max-width to make it look proper -->
+							<pre class="php" ><code style="max-width: 600px !important;">if( Fuel::$env == Fuel::DEVELOPMENT ){
+	// Only show debug messages in a development environment 
+	echo "Debug message that only appears in a development environment";
+
+	// Set the logging level to full in development
+	Config::set('log_threshold', Fuel::L_ALL);
+}							</code></pre>
 						</td>
 					</tr>
 				</tbody>
@@ -369,7 +382,7 @@ $paths = Fuel::get_paths();
 	
 			<article>
 				<h4 class="method" id="method_load">load($file)</h4>
-				<p>The <strong>load</strong> method loads (includes) a given file, and returns the results. This method is used for example to load configuration files, which return an array of configuration settings.</p>
+				<p>The <strong>load</strong> method loads (includes) a given file, and returns the results. This method is used, for example, to load configuration files which return an array of configuration settings.</p>
 				<table class="method">
 					<tbody>
 					<tr>
