@@ -499,20 +499,14 @@ panes.auth = {
 	}
 };
 
-/*
-DONT REMOVE THIS
+
 panes.email = {
 	"Email Package": {
-		"Introduction": "packages/email/intro.html",
-		"Usage":			"packages/email/usage.html",
-		"Driver types": {
-			"Mail":			"packages/email/drivers/mail.html",
-			"SMTP":			"packages/email/drivers/smtp.html",
-			"Sendmail":		"packages/email/drivers/sendmal.html"
-		}
+		"Introduction":		"packages/email/introduction.html",
+		"Usage":			"packages/email/usage.html"
+		//"Methods":			"packages/email/methods.html"
 	}
 };
-*/
 
 panes.orm = {
 	"Orm Package": {
