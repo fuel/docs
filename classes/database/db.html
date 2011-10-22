@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,34 +20,34 @@
 					<strong>Fuel, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>DB Class</h2>
-	
+
 			<p>The DB class allows you to build and execute database queries and fetch the result.</p>
-	
+
 			<article>
 				<h4 class="method" id="method_query">query($query)</h4>
 				<p>The <strong>query</strong> method returns a new Database_Query object.</p>
@@ -89,7 +89,7 @@ $query = DB::query('SELECT * FROM `users`');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_last_query">last_query()</h4>
 				<p>The <strong>last_query</strong> method returns the last executed SQL query.</p>
@@ -134,7 +134,7 @@ echo DB::last_query();
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 					<h4 class="method" id="method_select">select()</h4>
 					<p>The <strong>select</strong> method returns a new Database_Query_Builder_Select object.</p>
@@ -179,7 +179,7 @@ $query = DB::select('id', 'name');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_select_array">select_array($columns)</h4>
 				<p>The <strong>select_array</strong> method returns a new Database_Query_Builder_Select object.</p>
@@ -224,7 +224,7 @@ $query = DB::select_array(array('id', 'name'));
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_insert">insert($table = null, $columns = array())</h4>
 				<p>The <strong>insert</strong> method returns a new Database_Query_Builder_Insert object.</p>
@@ -274,7 +274,7 @@ $query = DB::insert('table_name', array('id', 'name'));
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_update">update($table = null)</h4>
 				<p>The <strong>update</strong> method returns a new Database_Query_Builder_Update object.</p>
@@ -316,7 +316,7 @@ $query = DB::update('table_name');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_delete">delete($table = null)</h4>
 				<p>The <strong>insert</strong> method returns a new Database_Query_Builder_Delete object.</p>
@@ -358,7 +358,7 @@ $query = DB::delete('table_name');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_expr">expr($expression)</h4>
 				<p>The <strong>expr</strong> method returns a new Database_Expression object.</p>
@@ -400,7 +400,7 @@ $query = DB::expr('COUNT(table_name.table_column)');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_quote">quote($string, $db = null)</h4>
 				<p>The <strong>quote</strong> method returns a quoted string for an SQL query.</p>
@@ -450,7 +450,7 @@ $query = DB::quote("'something's quoted'", $db_connection);
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_quote_identifier">quote_identifier($string, $db)</h4>
 				<p>The <strong>quote_identifier</strong> method returns a quoted string for an SQL query.</p>
@@ -502,7 +502,7 @@ print_r(DB::quote_identifier(array('users.name')));
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_quote_table">quote_table($string, $db = null)</h4>
 				<p>The <strong>quote_table</strong> method returns a quoted string for an SQL query.</p>
@@ -554,7 +554,7 @@ print_r(DB::quote_identifier(array('users')));
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_table_prefix">table_prefix($table, $db = null)</h4>
 				<p>The <strong>table_prefix</strong> method returns the table name with the configured prefix.
@@ -602,7 +602,7 @@ print_r(DB::table_prefix('table_name'));
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_escape">escape($string, $db = null)</h4>
 				<p>The <strong>escape</strong> method returns a escaped string for an SQL query.</p>
@@ -649,7 +649,7 @@ print_r(DB::escape('or *\' "'));
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_list_columns">list_columns($table, $like = null, $db = null)</h4>
 				<p>The <strong>list_columns</strong> method return a lists all of the columns in a table.
@@ -760,7 +760,7 @@ print_r(DB::list_columns('users','%name%'));
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_list_tables">list_tables($like = null, $db = null)</h4>
 				<p>The <strong>list_tables</strong> method return a lists all of the tables in a database.
@@ -825,7 +825,7 @@ DB::list_tables('%sessions%');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_datatypes">datatype($type, $db = null)</h4>
 				<p>The <strong>datatype</strong> method returns a normalized array describing the SQL data type.</p>
@@ -878,7 +878,7 @@ DB::datatype('char');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_count_records">count_records($table, $db = null)</h4>
 				<p>The <strong>count_records</strong> method returns the number of records in a table.</p>
@@ -925,7 +925,7 @@ DB::count_records('users');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_count_last_query">count_last_query($db = null)</h4>
 				<p>The <strong>count_last_query</strong> method returns the number of records in the last query, without LIMIT or OFFSET applied.</p>
@@ -970,7 +970,7 @@ DB::count_last_query();
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_set_charset">set_charset($charset, $db)</h4>
 				<p>The <strong>set_charset</strong> method sets the connection character set. This is called automatically by [static::connect].</p>
@@ -1015,52 +1015,7 @@ DB::count_last_query();
 					</tbody>
 				</table>
 			</article>
-	
-			<article>
-				<h4 class="method" id="method_transactional">transactional($use_trans = true, $db = null)</h4>
-				<p>The <strong>transactional</strong> method sets the Database instance to use transactions.</p>
-				<table class="method">
-					<tbody>
-						<tr>
-							<th>Static</th>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
-									</tr>
-									<tr>
-										<th><kbd>$use_trans</kbd></th>
-										<td><strong>true</strong></td>
-										<td class="description">Use tranactions TRUE/FALSE.</td>
-									</tr>
-									<tr>
-										<th><kbd>$db</kbd></th>
-										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td><em>void</em></td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>DB::transactional(FALSE);</code></pre>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_start_transaction">start_transaction($db = null)</h4>
 				<p>The <strong>start_transaction</strong> method begins a transaction on an instance.</p>
@@ -1089,7 +1044,8 @@ DB::count_last_query();
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td><em>void</em></td>
+							<td><em>bool</em> - only meaningful with PDO driver. All others always return true, but
+								throw an Exception when the SQL command fails.</td>
 						</tr>
 						<tr>
 							<th>Example</th>
@@ -1100,7 +1056,7 @@ DB::count_last_query();
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_commit_transaction">commit_transaction($db = null)</h4>
 				<p>The <strong>commit_transaction</strong> method commits all pending transactional queries.</p>
@@ -1129,7 +1085,8 @@ DB::count_last_query();
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td><em>void</em></td>
+							<td><em>bool</em> - only meaningful with PDO driver. All others always return true, but
+								throw an Exception when the SQL command fails.</td>
 						</tr>
 						<tr>
 							<th>Example</th>
@@ -1140,7 +1097,7 @@ DB::count_last_query();
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_rollback_transaction">rollback_transaction($db = null)</h4>
 				<p>The <strong>rollback_transaction</strong> method rolls back all pending transactional queries.</p>
@@ -1169,7 +1126,8 @@ DB::count_last_query();
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td><em>void</em></td>
+							<td><em>bool</em> - only meaningful with PDO driver. All others always return true, but
+								throw an Exception when the SQL command fails.</td>
 						</tr>
 						<tr>
 							<th>Example</th>
@@ -1180,7 +1138,7 @@ DB::count_last_query();
 					</tbody>
 				</table>
 			</article>
-	
+
 		</div>
 
 		<footer>
