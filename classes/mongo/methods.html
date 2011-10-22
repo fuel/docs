@@ -1479,7 +1479,7 @@ $bool = $mongodb->where('name', 'Spammer')->update_all('users', array(
 $mongodb = \Mongo_Db::instance();
 
 // Delete a user named Spammer
-$bool = $mongodb->where('name', 'Spammer')->delete('users');
+$bool = $mongodb->where(array('name' => 'Spammer'))->delete('users');
 </code></pre>
 						</td>
 					</tr>
@@ -1528,7 +1528,7 @@ $bool = $mongodb->where('name', 'Spammer')->delete('users');
 $mongodb = \Mongo_Db::instance();
 
 // Delete all users named Spammer
-$bool = $mongodb->where('name', 'Spammer')->delete_all('users');
+$bool = $mongodb->where(array('name' => 'Spammer'))->delete_all('users');
 </code></pre>
 						</td>
 					</tr>
