@@ -757,6 +757,23 @@ $fieldset->add('submit', ' ', array('value' => 'Submit', 'type' => 'submit'));
 // to overwrite those values when available
 $fieldset->populate($article, true);</code></pre>
 			</article>
+
+			<article>
+			<h2 id="modify_form_attributes">Modify Form Attributes</h2>
+				<p>Changing the attributes of the <kbd>form()</kbd> instance in the fieldset can be done in two ways. You can either provide your options in the <kbd>forge()</kbd> method's attributes array, or modify the form instance directly.</p>
+				<pre class='php'><code>// Use the form_attributes option in the attributes of the Fieldset object
+$fieldset = Fieldset::forge('article', array(
+	'form_attributes' => array( 
+		'id' => 'edit_article_form',
+		'name' => 'edit_article'
+		) 
+	) 
+);
+
+// Modify the form instance directly
+$fieldset->form->set_attribute('id', 'edit_article_form');
+				</code></pre>
+			</article>
 	
 			<p><strong>More examples to be written.</strong></p>
 
