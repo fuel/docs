@@ -63,7 +63,7 @@
 			
 			<p>This will create a folder in the directory you are in with the project name you gave.  It will then clone the repository and all submodules into that directory.</p>
 			
-			<p>Note: This will also run <kbd>$ oil refine install</kbd>, which makes the necessary directories writable.</p>
+			<p>Note: This will also run <code class="cli">$ oil refine install</code>, which makes the necessary directories writable.</p>
 	
 			<h3 id="manual">Manual Installation Instructions</h3>
 	
@@ -81,7 +81,7 @@
 						reasons.</li>
 						<li>Edit the paths in index.php to point to your app, core & packages directories.</li>
 					</ul>
-<pre>/
+<pre class="plain"><code>/
   fuel/
     app/
     core/
@@ -91,14 +91,15 @@
     assets/
     index.php
   oil
-</pre>
+</code></pre>
 				</li>
 				<li>
 					Set permissions on writable folders manually, or run:
-<pre>$ php oil refine install
+<pre class="cli"><code>$ php oil refine install
 	Made writable: APPPATH/cache
 	Made writable: APPPATH/logs
 	Made writable: APPPATH/tmp
+</code>
 </pre>
 				</li>
 			</ol>
@@ -115,7 +116,7 @@
 				is used to quickly setup new development environments without the need to restart the webserver.
 			</p>
 			<p>In that case, you need an additional .htaccess file that you need to place in your document root, which will redirect requests to the site root to your public folder, and also modifies the rewrites to include the public folder:</p>
-<pre>
+<pre class="plain"><code>
 &lt;IfModule mod_rewrite.c>
 	RewriteEngine on
 
@@ -128,6 +129,7 @@
 
 	RewriteRule ^(.*)$ index.php/$1 [L]
 &lt;/IfModule>
+</code>
 </pre>
 			
 			<h2 id="setting_the_environment">Setting the Environment</h2>
@@ -138,7 +140,7 @@
 			<p>
 				To set the environment, drop the following line into your .htaccess file.
 			</p>
-			<pre>SetEnv FUEL_ENV production</pre>
+			<pre class="plain"><code>SetEnv FUEL_ENV production</code></pre>
 			<p>
 				Available options are detailed in the <a href="../classes/fuel.html#class_constants">Class constants</a> of the Fuel Class.
 			</p>
