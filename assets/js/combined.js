@@ -413,7 +413,6 @@ panes.core = {
 		},
 		"Date":			"classes/date.html",
 		"Debug":		"classes/debug.html",
-		// "Email":		"todo.html",
 		"Event":		"classes/event.html",
 		// "Error":		"todo.html",
 		// "Exception":	"todo.html",
@@ -435,6 +434,11 @@ panes.core = {
 		"Lang":			"classes/lang.html",
 		"Log":	    	"classes/log.html",
 		"Migrate":		"classes/migrate.html",
+		"Model_Crud": {
+			"Introduction": "classes/model_crud/introduction.html"
+			//"Methods": "classes/model_crud/methods.html",
+			//"Usage": "classes/model_crud/usage.html",
+		},
 		"Mongo_Db": {
 			"Introduction":	"classes/mongo/introduction.html",
 			"Methods":		"classes/mongo/methods.html"
@@ -504,7 +508,7 @@ panes.email = {
 	"Email Package": {
 		"Introduction":		"packages/email/introduction.html",
 		"Usage":			"packages/email/usage.html"
-		//"Methods":			"packages/email/methods.html"
+		"Methods":			"packages/email/methods.html"
 	}
 };
 
