@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,38 +20,38 @@
 					<strong>Fuel, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>DBUtil Class</h2>
-	
+
 			<p>The DBUtil class allows you to manage and perform routine operations on your databases.</p>
-			
+
 			<h3 id="managing">Managing functions</h3>
-			
+
 			<p>DBUtil allows you to create, rename, alter and drop database fields.</p>
-			
+
 			<article>
 				<h4 class="method" id="method_create_database">create_database($database, charset = null)</h4>
 				<p>The <strong>create_database</strong> method creates a database.  Will throw a Database_Exception if it cannot.</p>
@@ -120,7 +120,7 @@ DBUtil::create_database('new_database', 'utf8_unicode_ci');
 				</table>
 				<p>If no charset is provided it will fall back to the charset of the active db group.</p>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_drop_database">drop_database($database)</h4>
 				<p>The <strong>drop_database</strong> method drops a database.  Will throw a Database_Exception if it cannot.</p>
@@ -176,7 +176,7 @@ catch(\Database_Exception $e)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_drop_table">drop_table($table)</h4>
 				<p>The <strong>drop_table</strong> method drops a table.  Will throw a Database_Exception if it cannot.</p>
@@ -232,7 +232,7 @@ catch(\Database_Exception $e)
 					</tbody>
 				</table>
 			</article>
-		
+
 			<article>
 				<h4 class="method" id="method_rename_table">rename_table($table, $new_table_name)</h4>
 				<p>The <strong>rename_table</strong> method renames a table.</p>
@@ -293,7 +293,7 @@ catch(\Database_Exception $e)
 					</tbody>
 				</table>
 			</article>
-		
+
 			<article>
 				<h4 class="method" id="method_create_table">create_table($table, $fields, $primary_keys = array(), $if_not_exists = true, $engine = false, $charset = null)</h4>
 				<p>The <strong>create_table</strong> method creates a table.</p>
@@ -411,7 +411,7 @@ catch(\Database_Exception $e)
 						</tr>
 					</tbody>
 				</table>
-				
+
 				<p>Default fields values are escaped by default. In some cases you might want not to escape this value. If so, you can use <a href="./db.html#method_escape">DB::escape</a>.</p>
 				<pre class="php"><code>\DBUtil::create_table('users', array(
 	'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
@@ -422,11 +422,11 @@ catch(\Database_Exception $e)
 	'password' => array('constraint' => 125, 'type' => 'varchar'),
 ), array('id'));
 </code></pre>
-				
+
 				<p>Escaping values work the same for DBUtil::add_fields and DBUtil::modify_fields</p>
-				
+
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_add_fields">add_fields($table, $fields)</h4>
 				<p>The <strong>modify_fields</strong> method adds fields to a table.</p>
@@ -479,7 +479,7 @@ catch(\Database_Exception $e)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_drop_fields">drop_fields($table, $fields)</h4>
 				<p>The <strong>drop_fields</strong> method drops fields from a table.</p>
@@ -528,7 +528,7 @@ catch(\Database_Exception $e)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_modify_fields">modify_fields($table, $fields)</h4>
 				<p>The <strong>modify_fields</strong> method alters fields in a table.</p>
@@ -581,9 +581,127 @@ catch(\Database_Exception $e)
 					</tbody>
 				</table>
 			</article>
-			
+
+			<article>
+				<h4 class="method" id="method_create_index">create_index($table, $index_columns, $index_name, $index = '')</h4>
+				<p>The <strong>create_index</strong> method allows you to create secondary indexes on a table.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$table</kbd></th>
+										<td><em>required</em></td>
+										<td>the table name</td>
+									</tr>
+									<tr>
+										<th><kbd>$index_columns</kbd></th>
+										<td><em>required</em></td>
+										<td>mixed, string or array of strings containing fields</td>
+									</tr>
+									<tr>
+										<th><kbd>$index_name</kbd></th>
+										<td><em>required</em></td>
+										<td>name of the index to be created</td>
+									</tr>
+									<tr>
+										<th><kbd>$index</kbd></th>
+										<td><em>optional</em></td>
+										<td>type of index to be created.<br />Currently supported: UNIQUE, FULLTEXT, SPATIAL, NONCLUSTERED</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the result of the database operation.</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>\Database_Exception on failure</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>\DBUtil::create_index('table', 'name');
+// produces CREATE INDEX name ON table ( `name` )
+
+\DBUtil::create_index('table', array('nameA', 'nameB'), 'name');
+// produces CREATE INDEX name ON table ( `nameA`, `nameB` )
+
+\DBUtil::create_index('table', array('nameA' => 'ASC', 'nameB'), 'name', 'fulltext');
+// produces CREATE FULLTEXT INDEX name ON table ( `nameA` ASC, `nameB` )
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_drop_index">drop_index($table, $index_name)</h4>
+				<p>The <strong>drop_index</strong> method allows you to drop a secondary index from a table.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$table</kbd></th>
+										<td><em>required</em></td>
+										<td>the table name</td>
+									</tr>
+									<tr>
+										<th><kbd>$index_name</kbd></th>
+										<td><em>required</em></td>
+										<td>name of the index to be dropped</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the result of the database operation.</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>\Database_Exception on failure</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>\DBUtil::drop_index('table', 'name');
+// produces DROP INDEX name ON table
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<h3 id="database-operations">Database operations</h3>
-						
+
 			<article>
 				<h4 class="method" id="method_truncate_table">truncate_table($table)</h4>
 				<p>The <strong>truncate_table</strong> method truncates a table.</p>
@@ -627,7 +745,7 @@ catch(\Database_Exception $e)
 					</tbody>
 				</table>
 			</article>
-		
+
 			<article>
 				<h4 class="method" id="method_analyze_table">analyze_table($table)</h4>
 				<p>The <strong>analyze_table</strong> method analyzes a table.</p>
@@ -671,7 +789,7 @@ catch(\Database_Exception $e)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_check_table">check_table($table)</h4>
 				<p>The <strong>check_table</strong> method checks a table.</p>
@@ -715,7 +833,7 @@ catch(\Database_Exception $e)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_optimize_table">optimize_table($table)</h4>
 				<p>The <strong>check_table</strong> method optimizes a table.</p>
@@ -759,7 +877,7 @@ catch(\Database_Exception $e)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_repair_table">repair_table($table)</h4>
 				<p>The <strong>check_table</strong> method repairs a table.</p>
@@ -803,7 +921,7 @@ catch(\Database_Exception $e)
 					</tbody>
 				</table>
 			</article>
-		
+
 		</div>
 
 		<footer>
