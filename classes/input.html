@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,34 +20,34 @@
 					<strong>Fuel, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2>Input Class</h2>
-	
+
 			<p>The input class allows you to access HTTP parameters, load server variables and user agent details.</p>
-	
+
 			<article>
 				<h4 class="method" id="method_uri">uri()</h4>
 				<p>The <strong>uri</strong> method detects the current URI to build the correct string.</p>
@@ -63,19 +63,19 @@
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>string</td>
+						<td>string - the current URI with forward slash prefix</td>
 					</tr>
 					<tr>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Example URL: http://localhost/controller/method
-echo Input::uri(); // returns controller/method</code></pre>
+echo Input::uri(); // returns /controller/method</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_cookie">cookie($index, $default = null)</h4>
 				<p>The <strong>cookie</strong> method allows you to read $_COOKIE variables. Call without params to fetch the
@@ -121,7 +121,7 @@ echo Input::uri(); // returns controller/method</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_delete">delete($index, $default = null)</h4>
 				<p>The <strong>delete</strong> method allows you to read parameters from php://input stream when called via DELETE. Call without params to fetch the full array.</p>
@@ -166,7 +166,7 @@ echo Input::uri(); // returns controller/method</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_put">put($index, $default = null)</h4>
 				<p>The <strong>put</strong> method allows you to read parameters from php://input stream when called via PUT.
@@ -212,7 +212,7 @@ echo Input::uri(); // returns controller/method</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get">get($index, $default = null)</h4>
 				<p>The <strong>get</strong> method allows you to read $_GET variables. Call without params to fetch the full array.</p>
@@ -261,7 +261,7 @@ Input::get('somevar.foo.bar');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_post">post($index, $default = null)</h4>
 				<p>The <strong>post</strong> method allows you to read $_POST variables. Call without params to fetch the full array.</p>
@@ -310,7 +310,7 @@ Input::post('somevar.foo.bar');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get_post">get_post($index, $default = null)</h4>
 				<p>The <strong>get_post</strong> method allows you to read from $_GET and $_POST variables, checking $_GET first.</p>
@@ -355,7 +355,7 @@ Input::post('somevar.foo.bar');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_is_ajax">is_ajax()</h4>
 				<p>The <strong>is_ajax</strong> method returns true if the controller is called via AJAX.</p>
@@ -382,7 +382,7 @@ Input::post('somevar.foo.bar');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_method">method()</h4>
 				<p>The <strong>method</strong> method returns the HTTP method used to call the controller.</p>
@@ -409,7 +409,7 @@ Input::post('somevar.foo.bar');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_protocol">protocol()</h4>
 				<p>The <strong>protocol</strong> method returns the HTTP protocol used to call the controller.</p>
@@ -436,7 +436,7 @@ Input::post('somevar.foo.bar');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_ip">ip()</h4>
 				<p>The <strong>ip</strong> method returns the public IP address of the user. If the user operates from behind a proxy server, the IP address of that server is returned.</p>
@@ -463,7 +463,7 @@ Input::post('somevar.foo.bar');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_real_ip">real_ip()</h4>
 				<p>The <strong>real_ip</strong> method returns the 'real' IP address of the user. If a proxy server is detected, it will attempt to determine the user's private IP address from the information the proxy adds to the header. If this information is not present, the public IP address is returned.</p>
@@ -490,7 +490,7 @@ Input::post('somevar.foo.bar');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_server">server($index, $default = null)</h4>
 				<p>The <strong>server</strong> method allows you to read parameters from the $_SERVER array with default
