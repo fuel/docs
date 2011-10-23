@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,32 +20,32 @@
 					<strong>Fuel, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Session Class</h2>
-	
+
 			<p>
 				The session class allows you to maintain state for your application in the stateless environment of the web.
 				It allows you to store variables on the server using a variety of storage solutions, and recall these variables on the next page request.
@@ -59,7 +59,7 @@
 				Note that if you choose not to <kbd>auto_initialize</kbd> the session, and you don't use any of the session methods, the session will not be refreshed!
 				This can cause unexpected behaviour of your application due to an expired session.
 			</p>
-	
+
 			<article>
 				<h4 class="method" id="method_instance">instance($instance = null)</h4>
 				<p>The <strong>instance</strong> method returns the default session instance, or a specific instance, identified by name.</p>
@@ -104,7 +104,7 @@ $session = Session::instance('myappcookie');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_set">set($variable, $value = null)</h4>
 				<p>The <strong>set</strong> method allows you to set a session variable.</p>
@@ -172,7 +172,7 @@ Session::set('userid', $userid)->set('foo', 'bar');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get">get($variable = null, $default = null)</h4>
 				<p>The <strong>get</strong> method allows you to retrieve stored variables from the session.</p>
@@ -231,7 +231,7 @@ $vars = Session::get();</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_delete">delete($variable)</h4>
 				<p>The <strong>delete</strong> method allows you to delete a stored session variable.</p>
@@ -276,7 +276,7 @@ Session::delete('array.varC');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_set_flash">set_flash($variable, $value = null)</h4>
 				<p>The <strong>set_flash</strong> method allows you to set a session flash variable. Flash variables have a limited lifespan. Depending on the configuration, they will be deleted after the next page request, or after they are retrieved.</p>
@@ -329,7 +329,7 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get_flash">get_flash($variable, $default = null)</h4>
 				<p>The <strong>get_flash</strong> method allows you to get a session flash variable. Flash variables have a limited lifespan. Depending on the configuration, they will be deleted after the next page request, or after they are retrieved.</p>
@@ -376,7 +376,7 @@ $step = Session::get_flash('step');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_keep_flash">keep_flash($variable)</h4>
 				<p>The <strong>keep_flash</strong> method resets a flash variable stored in the session to an 'unrequested' state. This allows you to get a flash variable, and still pass it on to the next page request.</p>
@@ -418,7 +418,7 @@ Session::keep_flash('step');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_delete_flash">delete_flash($variable)</h4>
 				<p>The <strong>delete_flash</strong> method allows you to delete a stored flash variable.</p>
@@ -460,7 +460,7 @@ Session::delete_flash('userid');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_create">create()</h4>
 				<p>The <strong>create</strong> method allows you to create a new session. If a session is already present, it will be destroyed when the new one is created.</p>
@@ -489,7 +489,7 @@ Session::create();
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_destroy">destroy()</h4>
 				<p>The <strong>destroy</strong> method allows you to destroy an existing session.</p>
@@ -518,7 +518,7 @@ Session::destroy();
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_read">read()</h4>
 				<p>The <strong>read</strong> method allows you to manually read a session. The session is automatically read when the session class is initialized, so under normal circumstances there is no need to use this method.</p>
@@ -547,7 +547,7 @@ Session::read();
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_write">write()</h4>
 				<p>The <strong>write</strong> method allows you to manually write the session. Under normal circumstances, the session is automatically written when the script ends.</p>
@@ -570,6 +570,40 @@ Session::read();
 						<td>
 							<pre class="php"><code>// write the session
 Session::write();
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_rotate">rotate()</h4>
+				<p>
+					The <strong>rotate</strong> method allows you to manually rotate the session id.
+					Under normal circumstances, the session id is automatically rotated periodically,
+					as defined in the configuration. You might want to manually rotate it as an extra
+					security measure, for example when you change the rights of the logged-in user.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>FuelCoreSession_Driver - is chainable</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// rotate the session
+Session::rotate();
 </code></pre>
 						</td>
 					</tr>
