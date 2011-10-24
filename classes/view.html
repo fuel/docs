@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,41 +20,41 @@
 					<strong>Fuel, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>View Class</h2>
-			
+
 			<p>
 				The View class acts as an object wrapper for HTML pages with embedded PHP, called "views".
 				Variables can be assigned with the view object and referenced locally within the view.
 			</p>
-			
+
 			<p>
 				<a href="../general/views.html">Read more about using views.</a>
 			</p>
-			
+
 			<article>
 				<h4 class="method" id="method_construct">__construct($file = null, $data = null, $auto_encode = null)</h4>
 				<table class="method">
@@ -101,14 +101,13 @@
 		'menu' => $menu,
 		'articles' => $articles,
 		'footer_links' => $footer_links,
-	), false);
-	</code></pre>
+	));</code></pre>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-			</article>		
-	
+			</article>
+
 			<article>
 				<h4 class="method" id="method_forge">forge($file = null, $data = null, $auto_encode = null)</h4>
 				<p>The <strong>forge</strong> method returns a new View object.</p>
@@ -157,14 +156,13 @@
 		'menu' => $menu,
 		'articles' => $articles,
 		'footer_links' => $footer_links,
-	), false);
-	</code></pre>
+	));</code></pre>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_auto_encode">auto_encode($encode = true)</h4>
 				<p>The <strong>auto_encode</strong> sets whether to encode the data or not on a View instance.</p>
@@ -203,27 +201,26 @@
 		'articles' => $articles,
 		'footer_links' => $footer_links,
 	));
-	
+
 	$view->auto_encode();
-	
+
 	// or set it to false
-	
+
 	$view->auto_encode(false);
-	
+
 	// or chain it
-	
+
 	$view = View::forge('path/to/view', array(
 		'menu' => $menu,
 		'articles' => $articles,
 		'footer_links' => $footer_links,
-	))->auto_encode();
-	</code></pre>
+	))->auto_encode();</code></pre>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_set_filename">set_filename($file)</h4>
 				<p>The <strong>set_filename</strong> allows you to set or change the view filename.</p>
@@ -258,15 +255,14 @@
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>$view = new View();
-	
-	$view->set_filename('path/to/view');
-	</code></pre>
+
+	$view->set_filename('path/to/view');</code></pre>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_set">set($key, $value = null, $encode = null)</h4>
 				<p>The <strong>set</strong> assigns a variable to a view.</p>
@@ -312,24 +308,23 @@
 							<td>
 								<pre class="php"><code>$view = new View;
 	$view->set('users', $users, false);
-	
+
 	// or set an array
-	
+
 	$view->set(array(
 		'users' => $users,
 		'articles' => $articles,
 	), null, true);
-	
+
 	// If you need HTML / Javascript passed you need to set the last param to false
 	// when output encoding is enabled.
-	$view->set('example', '&lt;h1&gt;Heading&lt;/h1&gt;', false);
-	</code></pre>
+	$view->set('example', '&lt;h1&gt;Heading&lt;/h1&gt;', false);</code></pre>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_set_global">set_global($key, $value = null, $encode = null)</h4>
 				<p>The <strong>set_global</strong> sets a variable accessible for all views.</p>
@@ -374,20 +369,19 @@
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>View::set_global('users', $users, false);
-	
+
 	// or set an array
-	
+
 	View::set_global(array(
 		'users' => $users,
 		'articles' => $articles,
-	), null, true);
-	</code></pre>
+	), null, true);</code></pre>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_bind">bind($key, $value = null)</h4>
 				<p>
@@ -433,20 +427,19 @@
 							<td>
 								<pre class="php"><code>$view = new View;
 	$view->bind('users', $users, false);
-	
+
 	// or set an array
-	
+
 	$view->bind(array(
 		'users' => $users,
 		'articles' => $articles,
-	), null, true);
-	</code></pre>
+	), null, true);</code></pre>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_bind_global">bind_global($key, $value = null)</h4>
 				<p>The <strong>bind_global</strong> assigns a global variable by reference accessible for all views.</p>
@@ -486,14 +479,13 @@
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>View::bind_global('users', $users);
-	</code></pre>
+								<pre class="php"><code>View::bind_global('users', $users);</code></pre>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</article>
-					
+
 			<article>
 				<h4 class="method" id="method_render">render($file = null)</h4>
 				<p>
@@ -533,23 +525,22 @@
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>$html = View::forge()->render('path/to/view');
-	
+
 	// or
-	
+
 	$html = View::forge('path/to/view')->render();
-	
+
 	// or
-	
-	$html = View::forge()->set_filename('path/to/view')->render();
-	</code></pre>
+
+	$html = View::forge()->set_filename('path/to/view')->render();</code></pre>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<h3 id="procedural_helpers">Procedural helpers</h3>
-			
+
 			<article>
 				<h4 id="function_render" class="method" data-class="">render($view, $data = array())</h4>
 				<p>The <strong>render</strong> function is an alias for <a href="#method_render">View::render</a>.</p>
@@ -593,7 +584,7 @@
 					</tbody>
 				</table>
 			</article>
-			
+
 		</div>
 
 		<footer>
