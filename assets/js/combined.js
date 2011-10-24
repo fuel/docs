@@ -435,8 +435,8 @@ panes.core = {
 		"Log":	    	"classes/log.html",
 		"Migrate":		"classes/migrate.html",
 		"Model_Crud": {
-			"Introduction": "classes/model_crud/introduction.html"
-			//"Methods": "classes/model_crud/methods.html",
+			"Introduction": "classes/model_crud/introduction.html",
+			"Methods": "classes/model_crud/methods.html"
 			//"Usage": "classes/model_crud/usage.html",
 		},
 		"Mongo_Db": {
