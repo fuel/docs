@@ -295,7 +295,7 @@ catch(\Database_Exception $e)
 			</article>
 
 			<article>
-				<h4 class="method" id="method_create_table">create_table($table, $fields, $primary_keys = array(), $if_not_exists = true, $engine = false, $charset = null)</h4>
+				<h4 class="method" id="method_create_table">create_table($table, $fields, $primary_keys = array(), $if_not_exists = true, $engine = false, $charset = null, $foreign_keys = array())</h4>
 				<p>The <strong>create_table</strong> method creates a table.</p>
 				<table class="method">
 					<tbody>
@@ -342,6 +342,11 @@ catch(\Database_Exception $e)
 										<td><strong>null</strong></td>
 										<td>the default charset, falls back to the active db group charset</td>
 									</tr>
+									<tr>
+										<th><kbd>$foreign_keys</kbd></th>
+										<td><strong>array()</strong></td>
+										<td>array of foreign key constraints definitions. The array keys 'key' and 'reference' are required and throw an error if missing, all others are optional.</td>
+									</tr>
 								</table>
 							</td>
 						</tr>
@@ -356,14 +361,52 @@ catch(\Database_Exception $e)
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>\DBUtil::create_table('users', array(
-	'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
-	'name' => array('type' => 'text'),
-	'email' => array('constraint' => 50, 'type' => 'varchar'),
-	'title' => array('constraint' => 50, 'type' => 'varchar', 'default' => 'mr.'),
-	'password' => array('constraint' => 125, 'type' => 'varchar'),
-), array('id'), false, 'InnoDB', 'utf8_unicode_ci');
-</code></pre>
+								<pre class="php"><code>\DBUtil::create_table(
+	'users',
+	array(
+		'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
+		'name' => array('type' => 'text'),
+		'email' => array('constraint' => 50, 'type' => 'varchar'),
+		'title' => array('constraint' => 50, 'type' => 'varchar', 'default' => 'mr.'),
+		'password' => array('constraint' => 125, 'type' => 'varchar'),
+	),
+	array('id'), false, 'InnoDB', 'utf8_unicode_ci',
+	array(
+		array(
+			'constraint' => 'constraintA',
+			'key' => 'keyA',
+			'reference' => array(
+				'table' => 'table',
+				'column' => 'field',
+			),
+			'on_update' => 'CASCADE',
+			'on_delete' => 'RESTRICT'
+		),
+		array(
+			'key' => 'keyB',
+			'reference' => array(
+				'table' => 'table',
+				'column' => array(
+					'fieldA',
+					'fieldB'
+				),
+			),
+		),
+	),
+);
+
+/* produces the following SQL statement:
+CREATE TABLE `users` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`name` text NOT NULL,
+	`email` varchar(50) NOT NULL,
+	`title` varchar(50) DEFAULT 'mr.' NOT NULL,
+	`password` varchar(125) NOT NULL,
+	PRIMARY KEY `id` (`id`),
+	CONSTRAINT constraintA FOREIGN KEY (keyA) REFERENCES table (field) ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY (keyB) REFERENCES table (fieldA, fieldB)
+) ENGINE = InnoDB  DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+*/</code></pre>
 							</td>
 						</tr>
 						<tr>
