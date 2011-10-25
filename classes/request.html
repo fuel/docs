@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,34 +20,34 @@
 					<strong>Fuel, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2>Request Class</h2>
-	
+
 			<p>The Request class processes URI requests. It is used by Fuel in index.php to process the users URI request, and you need it to generate requests in an HMVC context.</p>
-	
+
 			<article>
 				<h4 class="method" id="method_factory">factory($uri = null, $route = true)</h4>
 				<p>The <strong>factory</strong> method returns a new request object.</p>
@@ -95,7 +95,7 @@ $request = Request::forge('admin/login');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_execute">execute()</h4>
 				<p>The <strong>execute</strong> method executes a request, and stores the resulting response in the request object to be used later.</p>
@@ -123,7 +123,7 @@ $request = Request::forge('admin/login')->execute();</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_response">response()</h4>
 				<p>The <strong>response</strong> method fetches the response object of the executed request.</p>
@@ -156,7 +156,7 @@ echo $output;</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_parent">parent()</h4>
 				<p>The <strong>Request</strong> that created this Request.</p>
@@ -184,7 +184,7 @@ $parent = Request::active()->parent();</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_children">children()</h4>
 				<p>The <strong>Request</strong> objects that were created during this Request.</p>
@@ -212,11 +212,11 @@ $children = Request::main()->children();</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_show_404">show_404($return = false)</h4>
 				<p>The <strong>show_404</strong> method will display or return the application's 404 page. If none is configured in your config routes.php, the Fuel default 404 page will be used instead. If the configured 404 route is incorrect, an error will be thrown.</p>
-				<p class="note">This function is deprecated in 1.1 in favour of <kbd>Request404Exception</kbd>.</p>
+				<p class="note">This function is deprecated in 1.1 in favour of <kbd>HttpNotFoundException</kbd>.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -253,7 +253,7 @@ $children = Request::main()->children();</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_main">main()</h4>
 				<p>The <strong>main</strong> method returns the main Request instance (the one created by the initial
@@ -280,12 +280,12 @@ $children = Request::main()->children();</code></pre>
 					</tr>
 					</tbody>
 				</table>
-	
+
 				<p class="note">This is the first executed Request instance, not necessarily the root parent of the
 					current Request. That might be the case for example if the main Request 404s and you create a new
 					Request after that (which is what happens in the <kbd>_404_</kbd> route).</p>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_active">active()</h4>
 				<p>The <strong>active</strong> method returns the currently active Request instance.</p>
@@ -312,7 +312,7 @@ $children = Request::main()->children();</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_add_path">add_path($path, $prefix = false)</h4>
 				<p>The <strong>add_path</strong> method allows you to add a search path to the current request instance. The search paths are used by Fuel::find_file() to locate files within your application.</p>
@@ -358,7 +358,7 @@ Request::active()->add_path(APPPATH.'myfiles'.DS);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get_paths">get_paths()</h4>
 				<p>The <strong>get_paths</strong> method returns the defined list of search paths.</p>
