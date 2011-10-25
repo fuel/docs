@@ -151,7 +151,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 	{
 		if ( ! $article = Model_Article::find($id))
 		{
-			throw new Request404Exception();
+			throw new HttpNotFoundException();
 		}
 
 		$this->template->title = "Article";
@@ -190,7 +190,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 	{
 		if (!$article = Model_Article::find($id))
 		{
-			throw new Request404Exception();
+			throw new HttpNotFoundException();
 		}
 
 		if (Input::method() == 'POST')
