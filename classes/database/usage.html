@@ -61,6 +61,7 @@
 				<li><a href="#deleting">Deleting</a> data</li>
 				<li><a href="#joins">Joins</a></li>
 				<li><a href="#escaping">Escaping</a></li>
+				<li><a href="#caching">Caching</a></li>
 			</ul>
 	
 				
@@ -145,7 +146,7 @@ $result = DB::select('id','name')->from('users')->as_assoc()->execute();
 $result = DB::select('id','name')->from('users')->as_object()->execute();
 
 // Will fetch the result as an Model_Users object.
-$result = DB::select()->from('users')->as_object('Model_Users')->execute();
+$result = DB::select()->from('users')->Y('Model_Users')->execute();
 </code></pre>	
 				<p>Want to know how many records you have fetched? It's dead simple!</p>
 				<pre class="php"><code>
@@ -381,6 +382,30 @@ $result_arr = $result->current();
 $count = $result_arr['count'];
 </code></pre>
 			
+			</article>
+
+			<article>
+				
+				<h3 id="caching">Caching</h3>
+
+				<p>For caching queries without having to write without having to manual catch the Cache class exceptions, you can use the <em>cached</em> method to specify the amount of time (in seconds) that will be cached. You can easily pass a second optional parameter to define a <em>cache key</em> to easily handle the delete of cached queries.</p>
+
+				<pre class="php"><code>// Run a query and cache it for 1 hour
+$query = DB::query("SELECT * FROM users")->cached(3600)->execute();
+
+// If you run the exact same query the next time it will return the cached result.
+// This will happens within the 3600 seconds of the cached one, if not it will run
+// and cache another time.
+$query = DB::query("SELECT * FROM users")->cached(3600)->execute();
+
+// You can specify a key to handle the delete of cached results, useful if you
+// know that will be updated and need to delete it before it gets shown.
+$query = DB::query("SELECT * FROM users")->cached(3600, "foo_bar")->execute();
+
+// This delete the previous query from cache
+Cache::delete("foo_bar");
+</code></pre>
+
 			</article>
 
 		</div>
