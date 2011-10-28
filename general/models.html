@@ -59,6 +59,35 @@
 				In Fuel a Model is essentially just a <a href="classes.html" title="Class Documentation">Class</a> like any other. They do nothing more than a library, but the Model_ prefix
 				helps to differentiate it from other classes. To do something useful with a Model you will need to use other classes.
 			</p>
+			
+			<h3 id="creating_models">Creating a model</h3>
+
+            <pre class="php"><code>
+namespace Model;
+
+class Welcome extends Model {
+
+    public static function get_results()
+    {
+        // Database interactions
+    }
+
+}</code></pre>
+
+            <h3 id="accessing_models">Accessing a model</h3>
+
+            <pre class="php"><code>
+use \Model\Welcome;
+
+class Controller_Welcome extends Controller
+{
+    public function action_index()
+    {
+        $results = Welcome::get_results();
+    }
+}   </code></pre>
+
+
 	
 			<h3 id="writing_own_models">Writing your own models</h3>
 	
