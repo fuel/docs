@@ -408,6 +408,7 @@ $users = Model_User::find_all(10, 20);
 					<tr>
 						<th>Example</th>
 						<td>
+							<strong>Basic Usage</strong>
 							<pre class="php"><code>$users = Model_User::find(array(
 	'select' => array('id', 'name', 'email'),
 	'where' => array(
@@ -421,32 +422,19 @@ $users = Model_User::find_all(10, 20);
 	),
 	'limit' => 10,
 	'offset' => 20,
-));
-
-if($users !== null)
-{
-	foreach($user as $user)
-	{
-		// do something with $user
-	}
-}
-
-// Setting the key to use
-$users = Model_User::find(array(
+));</code></pre>
+							<hr>
+							<strong>Basic Usage with a Key</strong>
+							<pre class="php"><code>$users = Model_User::find(array(
 	'where' => array(
 		'active' => 'yes',
 		'banned' => 'no',
 	),
 	'order_by' => array('id', 'desc'),
-), 'id');
-
-foreach($users as $id => $user)
-{
-	// do something with $id or $user
-}
-
-// Using a Closure to do advanced modifications of the query.
-$users = Model_User::find(function ($query)
+), 'id');</code></pre>
+							<hr>
+							<strong>Advanced Usage with Closure</strong>
+							<pre class="php"><code>$users = Model_User::find(function ($query)
 {
 	return $query->join('roles')
 	             ->on('roles.id', '=', 'users.role_id')
