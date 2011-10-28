@@ -409,7 +409,11 @@ $query = DB::query("SELECT * FROM users")->cached(3600, "foo.bar")->execute();
 // This delete the previous query from cache
 Cache::delete("foo.bar");
 // Or delete all caches in the "foo" directory
-Cache::delete_all("foo");</code></pre>
+Cache::delete_all("foo");
+
+// By default all queries are put in a "db" directory
+// Thus to delete all query caches for which the key wasn't set manully
+Cache::delete_all("db");</code></pre>
 
 			</article>
 
