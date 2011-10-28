@@ -98,11 +98,18 @@ $result = DB::query('SELECT * FROM `users`')->execute();
 $result = DB::query('SELECT * FROM `users`', DB::SELECT)->execute();
 </code></pre>
 				<p>
-					We can also select data using <a href="./db.html#method_select">DB::select</a> or
-					<a href="./db.html#method_select_array">DB::select_array</a>.
+					We can also select data using <a href="./db.html#method_select">DB::select</a>
 				</p>
 				<pre class="php"><code>// Will execute SELECT `id`, `name` FROM `users`
 $result = DB::select('id','name')->from('users')->execute();
+</code></pre>
+				<p>
+					or use <a href="./db.html#method_select_array">DB::select_array</a> which
+					allows you to dynamically build your array of column names.
+				</p>
+				<pre class="php"><code>// Will execute SELECT `id`, `name` FROM `users`
+$colums = array('id', 'name');
+$result = DB::select_array($columns)->from('users')->execute();
 </code></pre>
 
 				<p>If you want to alias columns, use arrays instead of strings</p>
