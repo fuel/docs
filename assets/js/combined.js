@@ -227,7 +227,6 @@ var max_navtable_height = 0;
 				$('#header').stop().animate({
 					'margin-top': -50
 				}, 300);
-				$(window).scrollTo(0, 400);
 			}
 			else
 			{
