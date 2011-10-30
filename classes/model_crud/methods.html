@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,37 +20,37 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Model_Crud Methods</h2>
-			
-			<p class="note">When using the Model_Crud the class used in the examples is the extended class.</p>
-	
+
+			<p class="note">The classes used the examples are assumed to extend the Model_Crud class.</p>
+
 			<article>
 				<h4 class="method" id="method_forge">forge($data = array())</h4>
-				<p>The <strong>factory</strong> method returns a new Model_Crud instance.</p>
+				<p>The <strong>forge</strong> method returns a new Model_Crud class instance.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -98,10 +98,10 @@ $user = Model_Crud::forge(array(
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_find_by_pk">find_by_pk($value)</h4>
-				<p>The <strong>find_by_pk</strong> method finds a record and returns the first found as a model instance.</p>
+				<p>The <strong>find_by_pk</strong> method finds a record by the primary key.  Internally this uses the <a href="#method_find_one_by">find_one_by</a> method.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -129,13 +129,13 @@ $user = Model_Crud::forge(array(
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>The Model_Crud with the loaded result, <em>null</em> when not found.</td>
+						<td>A Model_Crud instance with the loaded result, <em>null</em> when not found.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Get a record where `id` = 2
-$user = \Model_User::find_by_pk(2);
+$user = Model_User::find_by_pk(2);
 
 if($user === null)
 {
@@ -152,10 +152,10 @@ else
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_find_one_by">find_one_by($column, $value = null, $operator = '=')</h4>
-				<p>The <strong>find_one_by</strong> method finds a record and returns the first found as a model instance.</p>
+				<p>The <strong>find_one_by</strong> method finds one record by the given column and value.  Internally this uses the <a href="#method_find">find</a> method.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -195,13 +195,13 @@ else
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>The Model_Crud with the loaded result, <em>null</em> when not found.</td>
+						<td>A Model_Crud instance with the loaded result, <em>null</em> when not found.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Get a record where `email` = "info@example.com"
-$user = \Model_User::find_one_by('email', 'info@example.com');
+$user = Model_User::find_one_by('email', 'info@example.com');
 
 if($user === null)
 {
@@ -218,10 +218,10 @@ else
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_find_by">find_by($column = null, $value = null, $operator = '=', $limit = null, $offset = 0)</h4>
-				<p>The <strong>find_one_by</strong> method finds a record.</p>
+				<p>The <strong>find_by</strong> method finds all records matching the column and value given.  You can optionally give an operator, limit, and offset.  Internally this uses the <a href="#method_find">find</a> method.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -278,8 +278,8 @@ else
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// SELECT * FROM `users` WHERE `email` LIKE "@example.com" LIMIT 5 OFFSET 10
-$users = \Model_User::find_by('email', '%@example.com', 'like', 5, 10);
+							<pre class="php"><code>// SELECT * FROM `users` WHERE `email` LIKE "%@example.com" LIMIT 5 OFFSET 10
+$users = Model_User::find_by('email', '%@example.com', 'like', 5, 10);
 
 // Select * FROM `users` WHERE `name` = "John" AND `surname` LIKE "%Surname%" LIMIT 10
 $users = \Model_User::find_by(array(
@@ -304,10 +304,20 @@ else
 					</tbody>
 				</table>
 			</article>
-			
+
+			<article>
+				<h4 class="method" id="method_find_by_">find_by_*($value = null)</h4>
+				<p>This is a magic method.  You can specify the column to name to find by after the <code>find_by_</code> portion of the method name.</p>
+
+				<strong>Example</strong><br>
+				<pre class="php"><code>// This is equivelent to $user = Model_User::find_by('email', 'foo@example.com');
+$user = Model_User::find_by_email('foo@example.com');
+</code></pre>
+			</article>
+
 			<article>
 				<h4 class="method" id="method_find_all">find_all($limit = null, $offset = 0)</h4>
-				<p>The <strong>find_all</strong> method finds all record with an optional limit and offset.</p>
+				<p>The <strong>find_all</strong> method finds all record with an optional limit and offset.  Internally this uses the <a href="#method_find">find</a> method.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -354,10 +364,12 @@ $users = Model_User::find_all(10, 20);
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_find">find($config = array(), $key = null)</h4>
-				<p>The <strong>find_all</strong> method finds all record with a conditions array to influence the query.</p>
+				<p>The <strong>find</strong> method finds all record with a conditions array to influence the query.</p>
+				<p>This method also accepts a <code>Closure</code> as the first argument.  When a closure is sent, it is called and sent a <code>Database_Query</code> object.  You can use this to modify the query before it is executed.  The Closure must return the modified Database_Query object.</p>
+				<p class="note">This method is used by all of the other find methods.  You should use it when creating custom finders as well.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -376,9 +388,9 @@ $users = Model_User::find_all(10, 20);
 								</tr>
 								<tr>
 									<th><kbd>$config</kbd></th>
-									<th><em>array</em></th>
+									<th><em>array|Closure</em></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>The conditions array.</td>
+									<td>The conditions array or a Closure to modify the query.</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
@@ -396,6 +408,7 @@ $users = Model_User::find_all(10, 20);
 					<tr>
 						<th>Example</th>
 						<td>
+							<strong>Basic Usage</strong>
 							<pre class="php"><code>$users = Model_User::find(array(
 	'select' => array('id', 'name', 'email'),
 	'where' => array(
@@ -409,35 +422,31 @@ $users = Model_User::find_all(10, 20);
 	),
 	'limit' => 10,
 	'offset' => 20,
-));
-
-if($users !== null)
-{
-	foreach($user as $user)
-	{
-		// do something with $user
-	}
-}
-
-$users = Model_User::find(array(
+));</code></pre>
+							<hr>
+							<strong>Basic Usage with a Key</strong>
+							<pre class="php"><code>$users = Model_User::find(array(
 	'where' => array(
 		'active' => 'yes',
 		'banned' => 'no',
 	),
 	'order_by' => array('id', 'desc'),
-), 'id');
-
-foreach($users as $id => $user)
+), 'id');</code></pre>
+							<hr>
+							<strong>Advanced Usage with Closure</strong>
+							<pre class="php"><code>$users = Model_User::find(function ($query)
 {
-	// do something with $id or $user
-}
+	return $query->join('roles')
+	             ->on('roles.id', '=', 'users.role_id')
+	             ->where('roles.name', 'admin');
+});
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_pre_find">pre_find($query)</h4>
 				<p>Replace the <strong>pre_find</strong> method to alter the query before executing.</p>
@@ -478,7 +487,7 @@ protected static function pre_find($query)
 {
 	// alter the query
 	$query->where('active', 'yes');
-	
+
 	// return the query object.
 	return $query;
 }
@@ -488,7 +497,7 @@ protected static function pre_find($query)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_post_find">post_find($result)</h4>
 				<p>Replace the <strong>post_find</strong> method to alter the result before returning.</p>
@@ -531,7 +540,7 @@ protected static function post_find($result)
 	{
 		// alter the result array
 	}
-	
+
 	// return the result
 	return $result;
 }
@@ -541,7 +550,7 @@ protected static function post_find($result)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_set">set($values)</h4>
 				<p>The <strong>set</strong> method sets an array of values to the current model instance.</p>
@@ -587,7 +596,7 @@ protected static function post_find($result)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_save">save()</h4>
 				<p>The <strong>save</strong> method inserts or updates a record.</p>
@@ -630,7 +639,7 @@ $user->save();
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_delete">delete()</h4>
 				<p>The <strong>delete</strong> method deletes a record.</p>
@@ -665,7 +674,7 @@ if($user)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_is_new">is_new($new = null)</h4>
 				<p>The <strong>is_new</strong> method checks if the record is new or sets whether it is new or not.</p>
@@ -717,7 +726,7 @@ $user->save();
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_is_frozen">is_frozen($frozen = null)</h4>
 				<p>The <strong>is_frozen</strong> method checks if the record is frozen or sets whether it is frozen or not.</p>
@@ -767,7 +776,7 @@ $user->frozen(false);
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_validation">validation()</h4>
 				<p>The <strong>validation</strong> method (creates and) returns the models validation instance.</p>
@@ -798,7 +807,7 @@ $validation_object = $user->validation();
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_to_array">to_array()</h4>
 				<p>The <strong>to_array</strong> method returns the models public vars.</p>
@@ -829,7 +838,7 @@ $user_array = $user->to_array();
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_to_array">to_array()</h4>
 				<p>The <strong>to_array</strong> method returns the models public vars.</p>
@@ -860,7 +869,7 @@ $user_array = $user->to_array();
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_pre_save">pre_save($query)</h4>
 				<p>Replace the <strong>pre_save</strong> method to alter the query before inserting.</p>
@@ -908,7 +917,7 @@ protected static function pre_save($query)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_post_save">post_save($result)</h4>
 				<p>Replace the <strong>post_save</strong> method to alter/act on the insert result.</p>
@@ -956,7 +965,7 @@ protected static function post_save($result)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_pre_update">pre_save($query)</h4>
 				<p>Replace the <strong>pre_update</strong> method to alter the query before updating.</p>
@@ -1004,7 +1013,7 @@ protected static function pre_update($query)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_post_update">post_update($result)</h4>
 				<p>Replace the <strong>post_update</strong> method to alter the update query result.</p>
@@ -1052,7 +1061,7 @@ protected static function post_update($result)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_pre_delete">pre_delete($query)</h4>
 				<p>Replace the <strong>pre_delete</strong> method to alter the query before deleting.</p>
@@ -1100,7 +1109,7 @@ protected static function pre_delete($query)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_post_delete">post_delete($result)</h4>
 				<p>Replace the <strong>post_delete</strong> method to alter the delete result.</p>
@@ -1148,7 +1157,7 @@ protected static function post_delete($result)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_pre_validate">pre_validate($data)</h4>
 				<p>Replace the <strong>pre_validate</strong> method to alter the insert/update data before validation.</p>
@@ -1196,7 +1205,7 @@ protected static function pre_validate($data)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_post_validate">post_validate($data)</h4>
 				<p>Replace the <strong>post_validate</strong> method to alter the insert/update data after validation.</p>
@@ -1244,7 +1253,7 @@ protected static function post_validate($data)
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_prep_values">prep_values($data)</h4>
 				<p>Replace the <strong>prep_values</strong> method to alter the insert/update data before validation or query execution.</p>

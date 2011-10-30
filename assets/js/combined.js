@@ -29,7 +29,7 @@ Array.max = function( array ){
 
 ;(function($){
 	$.fn.anchorify = function(){
-		var $icon = $('<a class="internal_link"> <img src="'+path+'assets/img/icon_link.gif" /></a>');
+		var $icon = $('<a class="internal_link"></a>');
 		$icon.click(function(e){
 			$.scrollTo(this, { speed:400, offset: -20 });
 		});
@@ -39,7 +39,7 @@ Array.max = function( array ){
 			{
 				var $handle = $icon.clone(true);
 				$handle.attr('href', '#/'+id);
-				$(this).append($handle);
+				$(this).html($handle.html($(this).html()));
 			}
 		});
 	}
