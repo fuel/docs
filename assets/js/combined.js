@@ -689,4 +689,5 @@ $("document").ready(function(){
 		$(this).find('.column').last().addClass('last');
 	});
 	setup();
+	
 });
