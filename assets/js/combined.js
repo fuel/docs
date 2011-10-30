@@ -690,4 +690,60 @@ $("document").ready(function(){
 	});
 	setup();
 	
+	var to_top = $('<a>', {
+		href : '#back_to_top',
+		id : 'to_top',
+		html : 'To Top',
+		click : function(e){e.preventDefault(); $(window).scrollTo(0, 400);},
+		css : {
+			'display' : 'block',
+			'width' : 60,
+			'padding':'10px ',
+			'text-align':'center',
+			'color':'#c4c4c4',
+			'background': '#484848',
+			'border-radius': '8px',
+			'position':'fixed',
+			'bottom': 50,
+			'left' : 15,
+			'border': '1px solid #e4e4e4',
+			'opacity' : 0.8,
+			'display': 'none'
+		},
+		mouseover : function(){
+			$(this).css({
+				'background':'#e4e4e4',
+				'border':'1px solid #484848',
+				'color':'#000'
+			});
+		},
+		mouseout : function(){
+			$(this).css({
+				'background':'#484848',
+				'border':'1px solid #e4e4e4',
+				'color':'#c4c4c4'
+			});
+		}
+	});
+	
+	$(window).scroll(function(){
+		
+		var scroll_top = $(window).scrollTop(),
+			limit = 70,
+			to_top = $('#to_top')
+		;
+		
+		if(scroll_top > limit && ! to_top.is(':visible'))
+		{	
+			to_top.fadeIn(200);
+		}	
+		else if(scroll_top < limit && to_top.is(':visible'))
+		{
+			to_top.fadeOut(200);
+		}
+				
+	});
+	
+	$('#container').append(to_top);
+	
 });
