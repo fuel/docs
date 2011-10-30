@@ -689,4 +689,14 @@ $("document").ready(function(){
 		$(this).find('.column').last().addClass('last');
 	});
 	setup();
+	
+	var to_top = $('<a>', {
+		href : '#back_to_top',
+		html : 'Back To Top',
+		click : function(){$(window).scrollTo(0, 400);},
+		css : {'float':'right', 'margin-right':20}
+	});
+	
+	$('footer p').css('float', 'left').after(to_top); 
+	
 });
