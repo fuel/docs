@@ -88,7 +88,7 @@
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>mixed - session object, or false in case the requested instance does not exist.</td>
+						<td>mixed - session object, or <kbd>false</kbd> in case the requested instance does not exist.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -611,6 +611,54 @@ Session::rotate();
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_key">key()</h4>
+				<p>
+					The <strong>key</strong> method allows you retrieve elements of the session key,
+					which uniquely identifies the session.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><em>optional</em></td>
+									<td>
+										Name of the key element. By default, it is set to 'session_id'.
+										Other elements that may be available are 'ip_hash', 'created', 'updated'
+										'user_agent' and 'payload'.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed - element value, or <kbd>false</kbd> if the requested element does not exist.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get the current session id
+$session_id = Session::key('session_id');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 		</div>
 
 		<footer>
