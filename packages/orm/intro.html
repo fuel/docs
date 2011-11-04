@@ -67,6 +67,33 @@
 ),</code></pre>
 			</section>
 
+			<section>
+				<h2 id="troubleshooting">Troubleshooting</h2>
+
+				<p>Some common problems and frequent questions.</p>
+
+				<h3>My relations/foreign keys aren't being saved (1)</h3>
+				<p>This happens most often when you're using the wrong type of relationship. Especially Has-one and
+					Belongs-to tend to get mixed up. Reread the examples in the docs to make sure you're using the
+					correct relation types and check if everything is configured correctly.</p>
+
+				<h3>I can't relate objects (2)</h3>
+				<p>Make sure your model is extending <code>Orm\Model</code> and not <code>Model_Crud</code>.</p>
+
+				<h3>I get an exception that my related model in a package/module can't be found</h3>
+				<p>Make sure the package or module is loaded by Fuel, otherwise the Autoloader won't be able to find
+					the class.<br />
+					And when configuring the related model <code>"model_to"</code> make sure you configure the full
+					classname, this includes the namespace <em>even if you're in that namespace</em>. Classnames in
+					strings are always taken from global context, no matter the current namespace context.</p>
+
+				<h3>I get an Orm\FrozenObject exception</h3>
+				<p>Objects can't be edited while being saved to the database, that prevents circular saving and resaving
+					already saved objects. This shouldn't happen during normal usage and is most often caused by faulty
+					configuration of relations.<br />
+					Sometimes this can be caused by a bug, especially when you're not using a stable release.</p>
+			</section>
+
 		</div>
 
 		<footer>
