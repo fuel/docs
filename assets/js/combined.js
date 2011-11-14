@@ -340,42 +340,42 @@ var pane_names = {
 
 panes.main = {
 	"Basic": {
-		"Home":			"index.html",
-		"Requirements":	"requirements.html",
-		"License":		"license.html",
-		"Contribute":	"contribute.html",
-		"Credits":		"credits.html"
+		"ホーム":			"index.html",
+		"必要条件":	"requirements.html",
+		"ライセンス":		"license.html",
+		"貢献":	"contribute.html",
+		"クレジット表示":		"credits.html"
 	},
 	"Installation": {
 		"Instructions":	"installation/instructions.html",
-		"Download":		"installation/download.html",
-		"Troubleshooting":		"installation/troubleshooting.html",
+		"ダウンロード":		"installation/download.html",
+		"トラブルシューティング":		"installation/troubleshooting.html",
 	},
 	"General": {
-		"Classes": {
-			"Introduction":		"general/classes.html",
+		"クラス": {
+			"イントロダクション":		"general/classes.html",
 			"Extending Core":	"general/extending_core.html"
 		},
 		"Coding Standards":	"general/coding_standards.html",
-		"Configuration":	"general/configuration.html",
-		"Constants":		"general/constants.html",
-		"Controllers": {
+		"設定":	"general/configuration.html",
+		"定数":		"general/constants.html",
+		"コントローラー": {
 			"Base" :		"general/controllers/base.html",
 			"Template":		"general/controllers/template.html",
 			"Rest":			"general/controllers/rest.html"
 		},
-		"Environments":		"general/environments.html",
+		"環境":		"general/environments.html",
 		"HMVC Requests":	"general/hmvc.html",
-		"Modules":			"general/modules.html",
-		"Models":			"general/models.html",
+		"モジュール":			"general/modules.html",
+		"モデル":			"general/models.html",
 		"Model-View-Controller":	"general/mvc.html",
 		"Migrations":		"general/migrations.html",
-		"Views":			"general/views.html",
-		"ViewModels":		"general/viewmodels.html",
-		"Routing":			"general/routing.html",
-		"Packages":			"general/packages.html",
-		"Security":			"general/security.html",
-		"Tasks":			"general/tasks.html",
+		"ビュー":			"general/views.html",
+		"ビューモデル":		"general/viewmodels.html",
+		"ルーティング":			"general/routing.html",
+		"パッケージ":			"general/packages.html",
+		"セキュリティ":			"general/security.html",
+		"タスク":			"general/tasks.html",
 		"404 handling":		"general/404.html",
 	}
 };
