@@ -339,24 +339,24 @@ var pane_names = {
 };
 
 panes.main = {
-	"Basic": {
+	"基本": {
 		"ホーム":			"index.html",
 		"必要条件":	"requirements.html",
 		"ライセンス":		"license.html",
 		"貢献":	"contribute.html",
 		"クレジット表示":		"credits.html"
 	},
-	"Installation": {
-		"Instructions":	"installation/instructions.html",
+	"インストール": {
+		"インストール方法":	"installation/instructions.html",
 		"ダウンロード":		"installation/download.html",
 		"トラブルシューティング":		"installation/troubleshooting.html",
 	},
-	"General": {
+	"概要": {
 		"クラス": {
 			"イントロダクション":		"general/classes.html",
-			"Extending Core":	"general/extending_core.html"
+			"Coreの拡張":	"general/extending_core.html"
 		},
-		"Coding Standards":	"general/coding_standards.html",
+		"コーディング規約":	"general/coding_standards.html",
 		"設定":	"general/configuration.html",
 		"定数":		"general/constants.html",
 		"コントローラー": {
@@ -365,18 +365,18 @@ panes.main = {
 			"Rest":			"general/controllers/rest.html"
 		},
 		"環境":		"general/environments.html",
-		"HMVC Requests":	"general/hmvc.html",
+		"HMVCリクエスト":	"general/hmvc.html",
 		"モジュール":			"general/modules.html",
 		"モデル":			"general/models.html",
 		"Model-View-Controller":	"general/mvc.html",
-		"Migrations":		"general/migrations.html",
+		"マイグレーション":		"general/migrations.html",
 		"ビュー":			"general/views.html",
 		"ビューモデル":		"general/viewmodels.html",
 		"ルーティング":			"general/routing.html",
 		"パッケージ":			"general/packages.html",
 		"セキュリティ":			"general/security.html",
 		"タスク":			"general/tasks.html",
-		"404 handling":		"general/404.html",
+		"404の処理":		"general/404.html",
 	}
 };
 
