@@ -87,7 +87,7 @@
 			<h5 id="classes">Classes</h5>
 
 			<p>Class names should use underscores to separate words, and each word in the class name should begin with a
-				capital letter. An underscore will however be converted to a directory separator during autoloading, the
+				capital letter. An underscore will, however, be converted to a directory separator during autoloading. The
 				use of camelcase is discouraged but cannot be prevented in some cases when putting the class in a
 				subdirectory makes no sense.</p>
 
@@ -114,7 +114,7 @@ core/classes/session/cookie.php</code></pre>
 
 			<p>Like class names, method names should use underscores to separate words, not CamelCase. Method names should
 				also be all lower case. Visibility should always be included (public, protected, private).<br />
-				An underscore can be used at the beginning of the name to make it clear the method is protected/private, or
+				An underscore can be used at the beginning of the name to make it clear the method is protected/private or
 				to signify it should be considered as such when you need it public.</p>
 
 			<pre class="php"><code>class Session
@@ -142,7 +142,7 @@ core/classes/session/cookie.php</code></pre>
 
 			<h5 id="variables">Variables</h5>
 
-			<p>Variable names should be concise, and contain only lower case letters and underscores. Loop iterators should
+			<p>Variable names should be concise and contain only lower case letters and underscores. Loop iterators should
 				be short, preferably a single character.</p>
 
 			<pre class="php"><code>$first_name
@@ -151,7 +151,7 @@ for ($i = 0; $i &lt; $max; $i++)</code></pre>
 
 			<h5 id="constants">Constants</h5>
 
-			<p>Constants follow the same guide lines as variables, with the exception that constants should be all upper
+			<p>Constants follow the same guide lines as variables with the exception that constants should be all upper
 				case.</p>
 
 			<pre class="php"><code>MY_CONSTANT
@@ -160,8 +160,8 @@ TEXT_DEFAULT</code></pre>
 
 			<h3 id="keywords">Keywords</h3>
 
-			<p>Keywords such as true, false, null, as, etc should be all lower case, as upper case is reserved for
-				constants. Same goes for primitive types like array, integer, string.</p>
+			<p>Keywords such as <kbd>true</kbd>, <kbd>false</kbd>, <kbd>null</kbd>, <kbd>as</kbd>, etc should be all lower case, as upper case is reserved for
+				constants. Same goes for primitive types like <kbd>array</kbd>, <kbd>integer</kbd>, <kbd>string</kbd>.</p>
 
 			<pre class="php"><code>$var = true;
 $var = false;
@@ -172,8 +172,8 @@ function my_function($arg = null)</code></pre>
 
 			<h3 id="control_structures">Control Structures</h3>
 
-			<p>The structure keywords such as if, for, foreach, while, switch should be followed by a space as should
-				parameter/argument lists and values. Braces should be placed on a new line, and break should have the same
+			<p>The structure keywords such as <kbd>if</kbd>, <kbd>for</kbd>, <kbd>foreach</kbd>, <kbd>while</kbd>, <kbd>switch</kbd> should be followed by a space as should
+				parameter/argument lists and values. Braces should be placed on a new line, and <kbd>break</kbd> should have the same
 				tab as its case.</p>
 
 			<pre class="php"><code>if ($arg === true)
@@ -212,11 +212,11 @@ switch ($var)
 
 			<h5 id="alternative_if">Alternative if statements</h5>
 
-			<p>In some cases a full if statement is a bit much code for a simple conditional assignment or function
-				call. In those cases you can use PHP's execution logic to use a shorter boolean-operator based syntax.
+			<p>In some cases, a full <kbd>if</kbd> statement is a bit too much code for a simple conditional assignment or function
+				call. In those cases, you can use PHP's execution logic to use a shorter boolean-operator based syntax.
 				Using <kbd>and</kbd> means the second part only gets evaluated if the first part were true, using
 				<kbd>or</kbd> means the second part only gets executed if the first part were false.<br />
-				Don't use this when both if and else are needed, just in cases like single conditional statements.</p>
+				Don't use this when both <kbd>if</kbd> and <kbd>else</kbd> are needed, just in cases like single conditional statements.</p>
 
 			<pre class="php"><code>// instead of if (isset($var)) { Config::set('var', $var); }
 isset($var) and Config::set('var', $var);
@@ -246,9 +246,9 @@ $var = Uri::segment(3) ?: 'default';</code></pre>
 			<h3 id="comparison_logical">Comparisons, Logical operators</h3>
 
 			<p>Comparing function/method returns and variables should be type aware, for example some functions may return
-				false, and when comparing this return the type sensitive operators such as === or !==. Additionally, use of
-				and or or is preferred over && or || for readability. In some cases this cannot be avoided and the use of
-				&& or || as its required may be used. The ! should have spaces on both sides when used.</p>
+				<kbd>false</kbd>, and when comparing this return the type sensitive operators such as <kbd>===</kbd> or <kbd>!==</kbd>. Additionally, use of
+				<kbd>and</kbd> or <kbd>or</kbd> is preferred over <kbd>&&</kbd> or <kbd>||</kbd> for readability. In some cases, this cannot be avoided and the use of
+				<kbd>&&</kbd> or <kbd>||</kbd> as its required may be used. The <kbd>!</kbd> should have spaces on both sides when used.</p>
 
 			<pre class="php"><code>if ($var == false and $other_var != 'some_value')
 if ($var === false or my_function() !== false)
@@ -280,7 +280,7 @@ if ( ! $var)</code></pre>
 
 			<h5 id="variables">Variables</h5>
 
-			<p>When initializing variables, one variable should be declared per line. To enhance code readability these
+			<p>When initializing variables, one variable should be declared per line. To enhance code readability, these
 				should each be on a separate line. Align values and comments when appropriate.</p>
 
 			<pre class="php"><code>$var        = ''; // do each on its own line
@@ -300,7 +300,7 @@ for ($i = 0; $i < $max; $i++)</code></pre>
 
 			<h5 id="concatenation">Concatenation</h5>
 
-			<p>String concatenation should not contain spaces around the joined parts</p>
+			<p>String concatenation should not contain spaces around the joined parts.</p>
 
 			<pre class="php"><code>//yes
 $string = 'my string '.$var.' the rest of my string';
