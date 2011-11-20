@@ -43,41 +43,43 @@
 
 		<div id="main">
 
-			<h2>Troubleshooting</h2>
+			<h2>トラブルシューティング</h2>
 
-			<p>Fuel supports a wide variety of configurations. Sometimes the configuration needs some work in order to work properly. Listed below are a couple of scenario's that may pop up when setting up Fuel on your machine.</p>
+            <p>Fuel はかなり多くの設定があります。ときに設定が適切に作用するにはいくつかの作業が必要です。あなたのマシンをセットアップする際に起こるかもしれないいくつかのシナリオを以下にリストアップしました。</p>
 
-			<p>When your problem is not listed below or is listed but no proper solution is provided, please report this at the issue tracker ( http://dev.fuelphp.com ).</p>
+            <p>問題が以下にリストアップされていない場合や、リストされているが適当な解決方法が提供さいれていない場合は、issue tracker ( <a href="http://dev.fuelphp.com ">http://dev.fuelphp.com</a> ) にレポートを上げてください。</p>
 
 			<article>
 
-				<h3 id="syntax_error_clean_install">Syntax errors with clean installation</h3>
+				<h3 id="syntax_error_clean_install">クリーンインストール時の構文エラー</h3>
 
 				<pre class="php"><code>Parse error: syntax error, unexpected T_FUNCTION, expecting ')' in /Users/info/Sites/fuel/public/index.php on line 9</code></pre>
 
-				<h4>Happens When...</h4>
+				<h4>いつ発生するか...</h4>
 
-				<p>When running Fuel on a PHP version prior to 5.3.</p>
+				<p>5.3 以前のバージョンの PHP で Fuel を実行した時</p>
 
-				<h4>Solution</h4>
+				<h4>解決方法</h4>
 
-				<p>Check the phpinfo(); in a separate testfile and see if you're running 5.3 or higher. More info on <a href="http://fuelphp.com/docs/requirements.html" title="Requirements - FuelPHP Documentation">requirements</a> is here.</p>
+                <p>別のテストファイルで phpinfo(); をチェックし、5.3 以上が実行されているかどうかを見ます。詳細は <a href="http://fuelphp.com/docs/requirements.html" title="Requirements - FuelPHP Documentation">動作条件</a> にあります。</p>
 
-				<p>When developing locally, update your server to the latest version of PHP 5.3. If you are not developing locally you'll need to ask your hosting company. Versions of PHP below 5.3 have lost support not just by us, but <a href="http://www.php.net/archive/2011.php#id2011-03-17-1" title="PHP: News Archive - 2011">by PHP themselves</a>.</p>
+                <p>ローカルで開発している際に、サーバを PHP 5.3 の最新のバージョンにアップデートします。
+                ローカルで開発していない場合は、ホスティング会社に尋ねる必要があります。
+                5.3 より前のバージョンは単に我々だけではなく、<a href="http://www.php.net/archive/2011.php#id2011-03-17-1" title="PHP: News Archive - 2011">PHP 自身</a> もサポートが無くなっています。</p>
 
 			</article>
 
 			<article>
 
-				<h3 id="404_install">Got it working, but the index page is a 404.</h3>
+                <h3 id="404_install">動作しているが index ページが 404 である</h3>
 
-				<h4>Happens When...</h4>
+				<h4>いつ発生するか...</h4>
 
-				<p>On some php installations it's needed to add a questionmark in the .htaccess after <em>index.php</em></p>
+                <p>php のインストールには <em>index.php</em> の後に .htaccess にクエスチョンマークを追加する必要がある場合があります。</p>
 
-				<h4>Solution</h4>
+				<h4>解決方法</h4>
 
-				<p>Add the questionmark like so:</p>
+				<p>次のようにクエスチョンマークを追加します:</p>
 
 				<pre class="plain"><code># Turn on URL rewriting
 RewriteEngine On
@@ -94,7 +96,7 @@ RewriteRule ^(.*)$ index.php?/$1 [L]
 # Notice the ? after index.php
 </code></pre>
 
-			<p>Some fcgi installations require a variant of this solution:</p>
+			<p>fcgi のインストールの場合にはいくつかの解決方法があります:</p>
 
 			<pre class="plain"><code>
 RewriteRule ^(.*)$ index.php?$1 [L]
@@ -109,27 +111,28 @@ RewriteRule ^(.*)$ /index.php/$1 [L]
 
 			<article>
 
-				<h3 id="oil_db_error">Oil cannot connect to DB but application can</h3>
+				<h3 id="oil_db_error">Oil がデータベースに接続できないがアプリケーションは動作している</h3>
 
 				<pre class="plain"><code>mysql_connect(): [2002] No such file or directory (trying to connect via unix:///var/mysql/mysql.sock) in /Users/phil/Sites/fuel/fuel/core/classes/database/mysql/connection.php on 73</code></pre>
 
-				<h4>Happens When...</h4>
+				<h4>いつ発生するか...</h4>
 
-				<p>Happens when you try to interact with the database via the command line, often when using MAMP for your MySQL server. The reason for this is that PHP-CLI is a different installation to the MAMP provided by MAMP, so PHP knows nothing of the database server.</p>
+                <p>コマンドラインでデータベースを設定しようとしたときに起こります。しばしば、MAMP で MySQL サーバを使用したときに起こります。
+                その理由は、MAMP が提供している MAMP の PHP-CLI の インストールが間違っているためです。そのため PHP はデータベースサーバが不明になります。</p>
 
-				<p>Note: Before performing the following step to fix the problem, verify the database connection via normal browser access.</p>
+                <p>注意: 問題を修正するために次のステップ実行する前に、通常のブラウザ接続してデータベース接続を修正します。</p>
 
-				<h4>Solution</h4>
+				<h4>解決方法</h4>
 
-				<p>Change "localhost" to "127.0.0.1" in your database.php</p>
+				<p>database.php 内の "localhost" を "127.0.0.1" に変更します。</p>
 
-				<strong>Failing that:</strong>
+				<strong>それが失敗する場合:</strong>
 
-				<p>Create a symlink pointing at MAMP's mysql.socket.</p>
+				<p>MAMP の mysql.socket にリンクするシンボリックリンクを作成します。</p>
 
 				<pre class="cli"><code>$ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code></pre>
 
-				<p>In some cases you have to create the directory first:</p>
+				<p>場合によっては先にディレクトリを作成する必要があります:</p>
 
 				<pre class="cli"><code>$ sudo mkdir /var/mysql
 $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code></pre>
@@ -140,39 +143,41 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 				<h3 id="orm_list_columns">Orm\Exception [ Error ]: Listing columns not failed</h3>
 
-				<h4>Error</h4>
+				<h4>エラー</h4>
 
 				<pre class="php"><code>Orm\Exception [ Error ]: Listing columns not failed, you have to set the model properties with a static $_properties setting in the model.</code></pre>
 
-				<h4>Happens When...</h4>
+				<h4>いつ発生するか...</h4>
 
-				<p>Working with ORM models when not connection via mysql.</p>
+				<p>mysql への接続していないときに ORM モデルを使用した場合</p>
 
-				<h4>Solution</h4>
+				<h4>解決方法</h4>
 
-				<p>Make sure the db config values are correct and test you database connection.</p>
+                <p>データベース設定の値が正しいか確認し、データベースへの接続をテストしてください。</p>
 
-				<p>Update the model to contain the properties.</p>
+				<p>プロパティを持つモデルを更新します。</p>
 
 				<pre class="php"><code>protected static $_properties = array('id', 'title', 'contents', 'publish');</code></pre>
 
-				<p>Or set the change the db type to "mysql" in APPATH/config/db.php</p>
+                <p>または、APPATH/config/db.php 内のデータベースの種類を "mysql" に変更します。</p>
 
 			</article>
 
 			<article>
 
-				<h3 id="assets_error">Assets do not work after changing the location of index.php</h3>
+				<h3 id="assets_error">index.php の場所を変更した後、asset が動作しな</h3>
 
-				<h4>Solution</h4>
+				<h4>解決方法</h4>
 
-				<p>That is because Asset class uses relative path to index.php.</p>
+				<p>これは Asset クラスが index.php への相対パスを使用している為です。</p>
 
-				<p>To fix that you have to modify the app/config/asset.php to set the correct path. Notice in index.php that a constant named DOCROOT is being defined:</p>
+                <p>修正するためには app/config/asset.php を正しいパスにセットするように変更しなければなりません。
+                DOCROOT という定数 が index.php 内で定義されています。</p>
 
 				<pre class="php"><code>define('DOCROOT', __DIR__.DIRECTORY_SEPARATOR);</code></pre>
 
-				<p>You can use that in app/config/asset.php. This will set the asset path back to the default folder DOCROOT/public/assets, where the subfolders for css/ img/ and js/ are located:</p>
+                <p>app/config/asset.php でこれを使用可能です。これは asset パスを 初期のフォルダ DOCROOT/public/assets に戻します。
+                そのサブフォルダには、css/, img/, js/ などが配置されています。</p>
 
 				<pre class="php"><code>'paths' => array(DOCROOT.'public/assets/'),</code></pre>
 
@@ -180,16 +185,18 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 			<article>
 
-				<h3 id="symlinks_error">Core, App or Packages can not be found after I changed a symlink</h3>
+				<h3 id="symlinks_error">シンボリックリンクを変更した後、Core, App, Packages が見つからない</h3>
 
-				<h4>Solution</h4>
+				<h4>解決方法</h4>
 
-				<p>That is because in DOCROOT/index.php, realpath() is used to deal with relative paths, which will cache path information, including the symlink.</p>
+                <p>これは DOCROOT/index.php内で、realpath() が相対パスで扱われているためです。
+                これはパス情報をキャッシュし、シンボリックリンクも含みます。</p>
 
 				<p>
-					To fix that you have to modify the DOCROOT/index.php and use clearstatcache() for each of the paths containing a symlink to
-					clear the cache. Alternatively, you can reload your	webserver to clear the path cache. You can not manually issue the
-					clearstatcache() command, since it is cached per thread, and issuing the command will only clear the cache for the current thread.
+                    これを修正するには、DOCROOT/index.php を変更し、キャッシュをクリアするシンボリックリンクを含むそれぞれのパスに
+                    clearstatcache() を使用しなければなりません。またはパスのキャッシュをクリアするためにウェブサーバをリロードすることもできます。
+                    手動では clearstatcache() コマンドを発行できません。これは、スレッドでキャッシュされ、
+                    発行されたコマンドは現在のスレッドに対してのみクリアするためです。
 				</p>
 
 			</article>
