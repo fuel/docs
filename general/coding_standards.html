@@ -43,53 +43,51 @@
 
 		<div id="main">
 
-			<h2>コーディング基準</h2>
+			<h2>コーディング標準</h2>
 
-			<p>コードフォーマッティングおよびドキュメントについてのこれらの基準は、Fuel に貢献する全ての人が従うべきです。
-				これらのガイドラインを満たさないものは、受け入れられません。</p>
+            <p>コード書式や文書の標準は Fuel に貢献するひとはすべて従う必要があります。このガイドラインを読んでいない貢献者はすべて受け入れられません。</p>
 
-			<h3 id="file_formatting">ファイルフォーマット</h3>
+			<h3 id="file_formatting">ファイル書式</h3>
 
-			<h5 id="closing_php_tag">閉じ PHP タグ</h5>
+			<h5 id="closing_php_tag">PHP タグの閉じ方</h5>
 
-			<p>PHP コードのみを含むファイルは、閉じ PHP タグ (?>) を省略すべきです。
-				つかみ所の無い、画面真っ白の多くを防ぎます。</p>
+			<p>PHP のコードだけしか含まないファイルは常に PHP の閉じタグ (?>) を省略します。
+				これは見つけにくい「死の白い画面」を避けるためです。</p>
 
 			<h5 id="indentation">インデント</h5>
 
-			<p>インデントにはタブを使います。空白は使いません。<br />
-				しかし、インデントした後の要素を整列するときは、空白を使います。タブは使いません。</p>
+			<p>すべてのインデントはスペースではなくタブを使用すべきです。<br/>
+				しかし、タブではなくスペースを使用してインデントをした後で整形します。</p>
 
-			<pre class="php"><code>		// indented 2 tabs
-		$var       = 'something';  // indented with tabs and aligned value &amp; comments
-		$variable  = 'else';       // with those above/below using spaces</code></pre>
+			<pre class="php"><code>		// ２つのタブでインデント
+		$var       = 'something';  // タブと整形された値とコメントでインデント
+		$variable  = 'else';       // スペースを使用して上下をインデント</code></pre>
 
-			<h5 id="line_endings">行末</h5>
+			<h5 id="line_endings">行の末尾</h5>
 
-			<p>行末は、Unix スタイルの LF にすべきです。</p>
+			<p>行の末尾は Unix 形式の LF にします。</p>
 
-			<h5 id="file_naming">ファイルの命名</h5>
+			<h5 id="file_naming">ファイル名</h5>
 
-			<p>ファイル名は全て小文字でなければなりません。例外はありません。</p>
+			<p>すべてのファイル名は、すべて小文字にしなければなりません。例外はありません。</p>
 
-			<h5 id="encoding">文字エンコーディング</h5>
+			<h5 id="encoding">エンコード</h5>
 
-			<p>ファイルは、文字コード UTF-8、BOM 無にすべきです。</p>
+			<p>ファイルは UTF-8 で保存し、BOM は使用しません。</p>
 
 			<h3 id="naming_conventions">命名規則</h3>
 
-			<h5 id="namespaces">名前空間</h5>
+			<h5 id="namespaces">ネームスペース</h5>
 
-			<p>コアファイルは全て Fuel\Core 名前空間に置かなければなりません。</p>
+			<p>コアクラスはすべて Fuel\Core というネームスペースにします。</p>
 
 			<pre class="php"><code>namespace Fuel\Core;</code></pre>
 
 			<h5 id="classes">クラス</h5>
 
-			<p>クラス名は、各単語をアンダースコアで区切り、単語の先頭は大文字にすべきです。
-				アンダースコアは、オートロード時にディレクトリセパレータに変換されます。The
-				キャメルケースの使用は推奨されませんが、禁止されてはいません。
-				キャメルを使うのは、例えば、サブディレクトリにクラスを置くのが意味をなさない場合、等です。</p>
+			<p>クラス名は単語の境界にアンダースコアを使用し、クラス名の各単語は大文字で始めます。
+				しかし、アンダースコアはオートロードの際にディレクトリの境界に使用されていいます。
+				キャメルケースの使用は避けてください。しかし、サブディレクトリにクラスを置くことが意味が無い場合には避けることができません。</p>
 
 			<pre class="php"><code>namespace Fuel\Core;
 
@@ -112,17 +110,17 @@ core/classes/session/cookie.php</code></pre>
 
 			<h5 id="methods">メソッド</h5>
 
-			<p>クラス名と同じように、メソッド名は各単語をアンダースコアで区切ります。キャメルケースは使いません。
-				メソッド名は全て小文字にすべきです。アクセス権 (public, protected, private) は必ず含めてください。<br />
-				名前の先頭にアンダースコアを付けることができます。メソッドが protected/private であることを明確にしたい場合や、
-				public にする必要があるが、protected/private とみなして欲しい時など、です。</p>
+			<p>クラス名同様、メソッド名は単語の境界でキャメルケースではなくアンダースコアを使用します。
+				メソッド名はすべて小文字です。スコープ (public, protected, private) は常に含めます。<br/>
+				名前の１文字目にアンダースコアをを使用できます。これはメソッドが protected/private であることを明記したり、
+				public にする必要があると考えられることを示すためです。</p>
 
 			<pre class="php"><code>class Session
 {
 
 	public static function get_flash($name, $data)
 	{
-		// Some code here
+		// ここにコードを記述する
 	}
 
 }</code></pre>
@@ -130,20 +128,20 @@ core/classes/session/cookie.php</code></pre>
 			<pre class="php"><code>class View
 {
 
-	// Array of global view data
+	// グローバルに見せる配列データ
 	protected static $_global_data = array();
 
 	protected static function capture($view_filename, array $view_data)
 	{
-		// Some code here
+		// ここにコードを記述する
 	}
 
 }</code></pre>
 
 			<h5 id="variables">変数</h5>
 
-			<p>変数名は、簡潔かつ、小文字とアンダースコアのみにすべきです。
-				ループイテレータは短くすべきで、一文字が好ましいです。</p>
+ 		<p>変数名は簡潔にし、小文字とアンダースコアだけを含むようにします。
+			ループイテレータは短く、なるべく単一文字にするようにします。</p>
 
 			<pre class="php"><code>$first_name
 $buffer
@@ -151,8 +149,7 @@ for ($i = 0; $i &lt; $max; $i++)</code></pre>
 
 			<h5 id="constants">定数</h5>
 
-			<p>定数は、変数と同様のガイドラインに従いますが、定数は全て大文字にすべきです。
-				</p>
+			<p>定数は全て大文字にすること以外は変数と同じガイドラインに従います。</p>
 
 			<pre class="php"><code>MY_CONSTANT
 TEMPLATE_PATH
@@ -160,8 +157,9 @@ TEXT_DEFAULT</code></pre>
 
 			<h3 id="keywords">キーワード</h3>
 
-			<p><kbd>true</kbd>, <kbd>false</kbd>, <kbd>null</kbd>, <kbd>as</kbd>, 等のキーワードは、全て小文字にすべきです。大文字は定数のために予約されています。
-				<kbd>array</kbd>, <kbd>integer</kbd>, <kbd>string</kbd> 等の基本型も同様です。</p>
+			<p><kbd>true</kbd>, <kbd>false</kbd>, <kbd>null</kbd>, <kbd>as</kbd> などのようなキーワードは、すべて小文字にします。
+				大文字は定数のために予約されているためです。
+				同じことが <kbd>array</kbd>, <kbd>integer</kbd>, <kbd>string</kbd> のようなプリミティブ型にも当てはまります。</p>
 
 			<pre class="php"><code>$var = true;
 $var = false;
@@ -172,9 +170,9 @@ function my_function($arg = null)</code></pre>
 
 			<h3 id="control_structures">制御構造</h3>
 
-			<p><kbd>if</kbd>, <kbd>for</kbd>, <kbd>foreach</kbd>, <kbd>while</kbd>, <kbd>switch</kbd> 等の構造キーワードの後には空白を含めるべきです。パラメータ/引数のリストと値も同じです。
-				括弧は新しい行に記述します。<kbd>break</kbd> は、case と同じ
-				タブにすべきです。</p>
+			<p><kbd>if</kbd>, <kbd>for</kbd>, <kbd>foreach</kbd>, <kbd>while</kbd>, <kbd>switch</kbd> のような制御に関するキーワードは、
+				パラメータや引数のリストまたは値にスペースを続けます。ブレースは新しい行にします。
+				<kbd>break</kbd> は case と同じインデントにします。</p>
 
 			<pre class="php"><code>if ($arg === true)
 {
@@ -210,25 +208,26 @@ switch ($var)
 	break;
 }</code></pre>
 
-			<h5 id="alternative_if">Alternative if statements</h5>
+			<h5 id="alternative_if"> もう一つの if 文</h5>
 
-			<p>単純な割り当てや関数読み込み等、完全な <kbd>if</kbd> 文が大げさな場合があるでしょう。
-				そのような場合、簡潔なブール演算構文を使用する PHP 実行ロジックを用いることができます。
-				<kbd>and</kbd> を使うと、前半が true の時のみ後半が評価されます。
-				<kbd>or</kbd> を使うと、前半が false の時のみ後半が評価されます。<br />
-				<kbd>if</kbd> と <kbd>else</kbd> の両方が必要な時は、この記法を使ってはいけません。単一の条件文の時のみ使ってください。</p>
+			<p>ある場合において、完全な <kbd>if</kbd> 文が単純な条件や関数呼び出しにしてはコードが多すぎることがあります。
+				このような場合、 より短い論理演算子構文を使用することで、PHP の実行ロジックを使用できます。
+				<kbd>and</kbd> を使用すると、最初の部分が true である場合のみ２番目の部分が実行されます。
+				<kbd>or</kbd> を使用すると、最初の部分が false である場合のみ２番目の部分が実行されます。<br/>
+				<kbd>if</kbd> や <kbd>else</kbd> が必要な場合は使用しないでください。
+				単一の条件文のような場合にのみしようしてください。</p>
 
-			<pre class="php"><code>// instead of if (isset($var)) { Config::set('var', $var); }
+            <pre class="php"><code>// if (isset($var)) { Config::set('var', $var); } の代替
 isset($var) and Config::set('var', $var);
 
-// instead of if ( ! isset($var)) { $var = Config::get('var'); }
+// if ( ! isset($var)) { $var = Config::get('var'); } の代替
 isset($var) or $var = Config::get('var');
 
-// DON'T DO THIS
+// これをしてはいけません
 Uri::segment(3) and $var = Uri::segment(3);
 Uri::segment(3) or $var = 'default';
 
-// This is better:
+// こちらのほうがいいです:
 if (Uri::segment(3))
 {
 	$var = Uri::segment(3);
@@ -238,35 +237,35 @@ else
 	$var = 'default';
 }
 
-// Or this:
+// またはこうします:
 $var = Uri::segment(3) ? Uri::segment(3) : 'default';
-// Or actually this:
+// または実際にはこうします:
 $var = Uri::segment(3) ?: 'default';</code></pre>
 
-			<h3 id="comparison_logical">比較、論理演算子</h3>
+			<h3 id="comparison_logical">比較と論理演算子</h3>
 
-			<p>関数/メソッドの戻り値と値の比較は、型を意識すべきです。
-				例えばある関数が <kbd>false</kbd> を返し得る場合、戻り値を比較する場合は型を意識するオペレータ、<kbd>===</kbd> や <kbd>!==</kbd> を使用します。
-				さらに、読みやすさの観点から、<kbd>and</kbd> や <kbd>or</kbd> の使用が好ましいです。<kbd>&&</kbd> や <kbd>||</kbd> は好ましくありませんが、
-				<kbd>&&</kbd> や <kbd>||</kbd> の使用が必須となる場合があります。<kbd>!</kbd> を使用するときは、両側に空白を置いてください。</p>
+			<p>関数/メソッドの返値や変数を比較するには型に注意します。たとえば、関数が <kbd>false</kbd> を返すときに、
+				この返値を <kbd>===</kbd> や <kbd>!==</kbd> のような型に注意した演算子を使用して比較します。
+				さらに <kbd>and</kbd> や <kbd>or</kbd> を使用することが、<kbd>&&</kbd> や <kbd>||</kbd> よりも読みやすさの観点から好ましいです。
+				場合によってはこれを避けることができないこともありますので、必要に応じて <kbd>&&</kbd> や <kbd>||</kbd> を使用します。
+				<kbd>!</kbd> を使用する場合は、両端にスペースを置くます。</p>
 
 			<pre class="php"><code>if ($var == false and $other_var != 'some_value')
 if ($var === false or my_function() !== false)
 if ( ! $var)</code></pre>
 
-			<h5 id="class_interface">クラス/インターフェース宣言</h5>
+			<h5 id="class_interface">クラス/インターフェース定義</h5>
 
-			<p>クラス/インターフェース宣言は、開き括弧を次の行に置きます。</p>
+			<p>クラス/インターフェース定義では次の行に開始ブレースを置きます:</p>
 
 			<pre class="php"><code>class Session
 {
 
 }</code></pre>
 
-			<h5 id="function_method">関数/メソッド宣言</h5>
+			<h5 id="function_method">関数/メソッド定義</h5>
 
-			<p>関数/メソッド宣言は、開き括弧を次の行に置き、
-				構造と同じインデントにします。</p>
+			<p>関数/メソッドの開始ブレースは常に次の行から始め、構文と同じインデントにします。 </p>
 
 			<pre class="php"><code>class Session
 {
@@ -280,27 +279,27 @@ if ( ! $var)</code></pre>
 
 			<h5 id="variables">変数</h5>
 
-			<p>変数を初期化するとき、一行に一つの変数にすべきです。コードを読みやすくするため、
-				行を分けるべきです。必要なら値をコメントを整列します。</p>
+			<p>変数を初期化する際に、１行に１つの変数を宣言します。コードの可読性をあげるために、各変数は別の行にします。
+			値とコメントは適切に整形します。</p>
 
 			<pre class="php"><code>$var        = ''; // do each on its own line
 $other_var  = ''; // do each on its own line</code></pre>
 
-			<h5 id="brackets_parenthesis">Brackets and Parenthesis</h5>
+			<h5 id="brackets_parenthesis">ブラケットと丸カッコ</h5>
 
-			<p>No space should come before or after the initial bracket/parenthesis. There should not be a space before closing bracket/parenthesis.</p>
+            <p>開始ブラケット/丸カッコの前後にはスペースをいれません。閉じブラケット/丸カッコの前にスペースをいれません。</p>
 
 			<pre class="php"><code>$array = array(1, 2, 3, 4);
 $array['my_index'] = 'something';
 for ($i = 0; $i < $max; $i++)</code></pre>
 
-			<h5 id="quotation">文字クォーテーション</h5>
+			<h5 id="quotation">文字列のクォート</h5>
 
-			<p>ダブルクォートよ、シングルクォートがり好ましいです。</p>
+			<p>なるべくダブルクォートよりもシングルクォートを使用します。</p>
 
 			<h5 id="concatenation">連結</h5>
 
-			<p>文字列連結は、連結されるパーツの間に空白を置かないでください。</p>
+            <p>文字列の連結は結合するパーツ間にスペースをいれません。</p>
 
 			<pre class="php"><code>//yes
 $string = 'my string '.$var.' the rest of my string';
@@ -308,13 +307,13 @@ $string = 'my string '.$var.' the rest of my string';
 //no
 $string = 'my string ' . $var . ' the rest of my string';</code></pre>
 
-			<h5 id="operators">オペレータ</h5>
+			<h5 id="operators">演算子</h5>
 
 			<pre class="php"><code>$var = 'something';
-if ($var == 'something') //space before and after logical operator
-$var = $some_var + $other_var; //space before and after math operator
-$var++; // no space before increment
-++$var; //no space after increment</code></pre>
+if ($var == 'something') //論理演算子の前後にスペースをいれる
+$var = $some_var + $other_var; //算術演算子の前後にスペースをいれる
+$var++; // 加算演算子の前にスペースをいれない
+++$var; // 加算演算子の後にスペースをいれない</code></pre>
 
 		</div>
 

@@ -43,50 +43,48 @@
 		
 		<div id="main">
 		
-			<h2>Environments</h2>
+			<h2></h2>
 			
 			<p>
-				The support of environments helps FuelPHP and your app to make decisions based on the environment setting.
-				FuelPHP itself uses the environment setting to load/overwrite additional config setting based on which
-				environment is currently active.  	
+                環境のサポートを使用すると、FuelPHP やあなたのアプリケーションは環境設定に基づいて決定されます。
+                FuelPHP 自体は環境設定を使用して、現在有効な環境に基づいてオプションの設定をロードしたり上書きしたりします。
 			</p>
 			
-			<h3 id="possible_envs">Environments list</h3>
+			<h3 id="possible_envs">環境リスト</h3>
 			
 			<p>
-				FuelPHP has four predefined environments.
+				FuelPHP は４つの定義済みの環境があります。
 			</p>
 
 			<ul>
 				<li>
 					<strong>\Fuel::DEVELOP</strong><br/>
-					The development environment.
+					開発環境
 				</li>
 				<li>
 					<strong>\Fuel::TEST</strong><br/>
-					The test environment.
+					テスト環境
 				</li>
 				<li>
 					<strong>\Fuel::STAGE</strong><br/>
-					The staging environment.
+					ステージング環境
 				</li>
 				<li>
 					<strong>\Fuel::PRODUCTION</strong><br/>
-					The production environment.
+					製品環境
 				</li>
 			</ul>
 			
-			<h3 id="setting_env">Set Your Environment</h3>
+			<h3 id="setting_env">環境をセットする</h3>
 			
 			<p>
-				Setting your environment is done by setting the <em>FUEL_ENV</em> server var or manually changing the
-				setting in <em>fuel/app/bootstrap.php</em>.
+				環境の設定は、サーバ変数 <em>FUEL_ENV</em> をセットするか、手動で <em>fuel/app/bootstrap.php</em> 内の設定を変更することで設定します。
 			</p>
 			
-			<pre class="php"><code>// Inside app/bootstrap.php
+			<pre class="php"><code>// app/bootstrap.php 内部
 			
 /**
- * Your environment.  Can be set to any of the following:
+ * あなたの環境。次のいずれかをセットすることができます:
  *
  * Fuel::DEVELOPMENT
  * Fuel::TEST
@@ -95,12 +93,12 @@
  */
 Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOPMENT);</code></pre>
 			
-			<h3 id="env_config">Environments and Config</h3>
+			<h3 id="env_config">環境と設定</h3>
 			
 			<p>
-				Based on the environment the app is set to, the Config class looks for environment-specific config files.
-				The config class will look for the same config file name in a directory that's named after the current environment.
-				Here is an example to illustrate this:
+                アプリケーションがセットされた環境に基づいて、Config クラスは指定した環境の設定ファイルを検索します。
+                Config クラスはは現在の環境名が付けられたディレクトリ内にある同じ設定ファイル名を検索します。
+                こちらがサンプルになります:
 			</p>
 			
 			<pre class="plain"><code>app/
@@ -112,14 +110,13 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOP
         stuff.php</code></pre>
 			
 			<p>
-				When your environment is set to <kbd>\Fuel::DEVELOP</kbd>, the settings from <em>stuff.php</em> are merged with <em>develop/stuff.php</em>.
-				If the environment setting is set to any other than <kbd>\Fuel::DEVELOP</kbd>, the extra config file is not loaded. The same goes
-				for any other environment setting you might use.
+				あなたの環境が <kbd>\Fuel::DEVELOP</kbd> に設定されているとき、<em>stuff.php</em> の設定は <em>develop/stuff.php</em> とマージされます。
+                環境設定が <kbd>\Fuel::DEVELOP</kbd> 以外の場合、特別な設定ファイルはロードされません。同じことが使用している環境設定についてもいえます。
 			</p>
 			
 			<p>
-				A real-life example for this is the database configuration. There are no default configuration settings (this is possibly
-				very dangerous).  There are only environment-specific config settings.
+                この実際のサンプルはデータベース設定です。デフォルトの設定はありません。（これはおそらくとても危険です）
+                環境指定の設定だけがあります。
 			</p>
 		
 		</div>
