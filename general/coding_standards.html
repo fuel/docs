@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,53 +43,53 @@
 
 		<div id="main">
 
-			<h2>Coding Standards</h2>
+			<h2>コーディング基準</h2>
 
-			<p>These standards for code formatting and documentation must be followed by anyone contributing to Fuel. Any
-				contributions that do not meet these guidelines will not be accepted.</p>
+			<p>コードフォーマッティングおよびドキュメントについてのこれらの基準は、Fuel に貢献する全ての人が従うべきです。
+				これらのガイドラインを満たさないものは、受け入れられません。</p>
 
-			<h3 id="file_formatting">File Formatting</h3>
+			<h3 id="file_formatting">ファイルフォーマット</h3>
 
-			<h5 id="closing_php_tag">Closing PHP Tag</h5>
+			<h5 id="closing_php_tag">閉じ PHP タグ</h5>
 
-			<p>Files containing only PHP code should always omit the closing PHP tag (?>). This prevents many of the
-				elusive white screens of death.</p>
+			<p>PHP コードのみを含むファイルは、閉じ PHP タグ (?>) を省略すべきです。
+				つかみ所の無い、画面真っ白の多くを防ぎます。</p>
 
-			<h5 id="indentation">Indentation</h5>
+			<h5 id="indentation">インデント</h5>
 
-			<p>All indentation should be done using real tabs, NOT spaces.<br />
-				But aligning things after the indentation should be done using spaces, NOT tabs.</p>
+			<p>インデントにはタブを使います。空白は使いません。<br />
+				しかし、インデントした後の要素を整列するときは、空白を使います。タブは使いません。</p>
 
 			<pre class="php"><code>		// indented 2 tabs
 		$var       = 'something';  // indented with tabs and aligned value &amp; comments
 		$variable  = 'else';       // with those above/below using spaces</code></pre>
 
-			<h5 id="line_endings">Line Endings</h5>
+			<h5 id="line_endings">行末</h5>
 
-			<p>Line endings should be Unix-style LF.</p>
+			<p>行末は、Unix スタイルの LF にすべきです。</p>
 
-			<h5 id="file_naming">File Naming</h5>
+			<h5 id="file_naming">ファイルの命名</h5>
 
-			<p>All file names must be all lower case. No exceptions.</p>
+			<p>ファイル名は全て小文字でなければなりません。例外はありません。</p>
 
-			<h5 id="encoding">Encoding</h5>
+			<h5 id="encoding">文字エンコーディング</h5>
 
-			<p>Files should be saved with UTF-8 encoding and the BOM should not be used.</p>
+			<p>ファイルは、文字コード UTF-8、BOM 無にすべきです。</p>
 
-			<h3 id="naming_conventions">Naming Conventions</h3>
+			<h3 id="naming_conventions">命名規則</h3>
 
-			<h5 id="namespaces">Namespaces</h5>
+			<h5 id="namespaces">名前空間</h5>
 
-			<p>All core classes must be under the Fuel\Core namespace.</p>
+			<p>コアファイルは全て Fuel\Core 名前空間に置かなければなりません。</p>
 
 			<pre class="php"><code>namespace Fuel\Core;</code></pre>
 
-			<h5 id="classes">Classes</h5>
+			<h5 id="classes">クラス</h5>
 
-			<p>Class names should use underscores to separate words, and each word in the class name should begin with a
-				capital letter. An underscore will, however, be converted to a directory separator during autoloading. The
-				use of camelcase is discouraged but cannot be prevented in some cases when putting the class in a
-				subdirectory makes no sense.</p>
+			<p>クラス名は、各単語をアンダースコアで区切り、単語の先頭は大文字にすべきです。
+				アンダースコアは、オートロード時にディレクトリセパレータに変換されます。The
+				キャメルケースの使用は推奨されませんが、禁止されてはいません。
+				キャメルを使うのは、例えば、サブディレクトリにクラスを置くのが意味をなさない場合、等です。</p>
 
 			<pre class="php"><code>namespace Fuel\Core;
 
@@ -105,17 +105,17 @@ class Session_Cookie extends Session_Driver
 
 }</code></pre>
 
-			<p>This would result in the following file path:</p>
+			<p>これは、次のようなファイルパスになります。</p>
 
 			<pre class="php"><code>core/classes/session.php
 core/classes/session/cookie.php</code></pre>
 
-			<h5 id="methods">Methods</h5>
+			<h5 id="methods">メソッド</h5>
 
-			<p>Like class names, method names should use underscores to separate words, not CamelCase. Method names should
-				also be all lower case. Visibility should always be included (public, protected, private).<br />
-				An underscore can be used at the beginning of the name to make it clear the method is protected/private or
-				to signify it should be considered as such when you need it public.</p>
+			<p>クラス名と同じように、メソッド名は各単語をアンダースコアで区切ります。キャメルケースは使いません。
+				メソッド名は全て小文字にすべきです。アクセス権 (public, protected, private) は必ず含めてください。<br />
+				名前の先頭にアンダースコアを付けることができます。メソッドが protected/private であることを明確にしたい場合や、
+				public にする必要があるが、protected/private とみなして欲しい時など、です。</p>
 
 			<pre class="php"><code>class Session
 {
@@ -140,28 +140,28 @@ core/classes/session/cookie.php</code></pre>
 
 }</code></pre>
 
-			<h5 id="variables">Variables</h5>
+			<h5 id="variables">変数</h5>
 
-			<p>Variable names should be concise and contain only lower case letters and underscores. Loop iterators should
-				be short, preferably a single character.</p>
+			<p>変数名は、簡潔かつ、小文字とアンダースコアのみにすべきです。
+				ループイテレータは短くすべきで、一文字が好ましいです。</p>
 
 			<pre class="php"><code>$first_name
 $buffer
 for ($i = 0; $i &lt; $max; $i++)</code></pre>
 
-			<h5 id="constants">Constants</h5>
+			<h5 id="constants">定数</h5>
 
-			<p>Constants follow the same guide lines as variables with the exception that constants should be all upper
-				case.</p>
+			<p>定数は、変数と同様のガイドラインに従いますが、定数は全て大文字にすべきです。
+				</p>
 
 			<pre class="php"><code>MY_CONSTANT
 TEMPLATE_PATH
 TEXT_DEFAULT</code></pre>
 
-			<h3 id="keywords">Keywords</h3>
+			<h3 id="keywords">キーワード</h3>
 
-			<p>Keywords such as <kbd>true</kbd>, <kbd>false</kbd>, <kbd>null</kbd>, <kbd>as</kbd>, etc should be all lower case, as upper case is reserved for
-				constants. Same goes for primitive types like <kbd>array</kbd>, <kbd>integer</kbd>, <kbd>string</kbd>.</p>
+			<p><kbd>true</kbd>, <kbd>false</kbd>, <kbd>null</kbd>, <kbd>as</kbd>, 等のキーワードは、全て小文字にすべきです。大文字は定数のために予約されています。
+				<kbd>array</kbd>, <kbd>integer</kbd>, <kbd>string</kbd> 等の基本型も同様です。</p>
 
 			<pre class="php"><code>$var = true;
 $var = false;
@@ -170,11 +170,11 @@ foreach ($array as $key => $value)
 public function my_function(array $array)
 function my_function($arg = null)</code></pre>
 
-			<h3 id="control_structures">Control Structures</h3>
+			<h3 id="control_structures">制御構造</h3>
 
-			<p>The structure keywords such as <kbd>if</kbd>, <kbd>for</kbd>, <kbd>foreach</kbd>, <kbd>while</kbd>, <kbd>switch</kbd> should be followed by a space as should
-				parameter/argument lists and values. Braces should be placed on a new line, and <kbd>break</kbd> should have the same
-				tab as its case.</p>
+			<p><kbd>if</kbd>, <kbd>for</kbd>, <kbd>foreach</kbd>, <kbd>while</kbd>, <kbd>switch</kbd> 等の構造キーワードの後には空白を含めるべきです。パラメータ/引数のリストと値も同じです。
+				括弧は新しい行に記述します。<kbd>break</kbd> は、case と同じ
+				タブにすべきです。</p>
 
 			<pre class="php"><code>if ($arg === true)
 {
@@ -212,11 +212,11 @@ switch ($var)
 
 			<h5 id="alternative_if">Alternative if statements</h5>
 
-			<p>In some cases, a full <kbd>if</kbd> statement is a bit too much code for a simple conditional assignment or function
-				call. In those cases, you can use PHP's execution logic to use a shorter boolean-operator based syntax.
-				Using <kbd>and</kbd> means the second part only gets evaluated if the first part were true, using
-				<kbd>or</kbd> means the second part only gets executed if the first part were false.<br />
-				Don't use this when both <kbd>if</kbd> and <kbd>else</kbd> are needed, just in cases like single conditional statements.</p>
+			<p>単純な割り当てや関数読み込み等、完全な <kbd>if</kbd> 文が大げさな場合があるでしょう。
+				そのような場合、簡潔なブール演算構文を使用する PHP 実行ロジックを用いることができます。
+				<kbd>and</kbd> を使うと、前半が true の時のみ後半が評価されます。
+				<kbd>or</kbd> を使うと、前半が false の時のみ後半が評価されます。<br />
+				<kbd>if</kbd> と <kbd>else</kbd> の両方が必要な時は、この記法を使ってはいけません。単一の条件文の時のみ使ってください。</p>
 
 			<pre class="php"><code>// instead of if (isset($var)) { Config::set('var', $var); }
 isset($var) and Config::set('var', $var);
@@ -243,30 +243,30 @@ $var = Uri::segment(3) ? Uri::segment(3) : 'default';
 // Or actually this:
 $var = Uri::segment(3) ?: 'default';</code></pre>
 
-			<h3 id="comparison_logical">Comparisons, Logical operators</h3>
+			<h3 id="comparison_logical">比較、論理演算子</h3>
 
-			<p>Comparing function/method returns and variables should be type aware, for example some functions may return
-				<kbd>false</kbd>, and when comparing this return the type sensitive operators such as <kbd>===</kbd> or <kbd>!==</kbd>. Additionally, use of
-				<kbd>and</kbd> or <kbd>or</kbd> is preferred over <kbd>&&</kbd> or <kbd>||</kbd> for readability. In some cases, this cannot be avoided and the use of
-				<kbd>&&</kbd> or <kbd>||</kbd> as its required may be used. The <kbd>!</kbd> should have spaces on both sides when used.</p>
+			<p>関数/メソッドの戻り値と値の比較は、型を意識すべきです。
+				例えばある関数が <kbd>false</kbd> を返し得る場合、戻り値を比較する場合は型を意識するオペレータ、<kbd>===</kbd> や <kbd>!==</kbd> を使用します。
+				さらに、読みやすさの観点から、<kbd>and</kbd> や <kbd>or</kbd> の使用が好ましいです。<kbd>&&</kbd> や <kbd>||</kbd> は好ましくありませんが、
+				<kbd>&&</kbd> や <kbd>||</kbd> の使用が必須となる場合があります。<kbd>!</kbd> を使用するときは、両側に空白を置いてください。</p>
 
 			<pre class="php"><code>if ($var == false and $other_var != 'some_value')
 if ($var === false or my_function() !== false)
 if ( ! $var)</code></pre>
 
-			<h5 id="class_interface">Class/Interface Declarations</h5>
+			<h5 id="class_interface">クラス/インターフェース宣言</h5>
 
-			<p>Class/interface declarations have the opening brace on the following line:</p>
+			<p>クラス/インターフェース宣言は、開き括弧を次の行に置きます。</p>
 
 			<pre class="php"><code>class Session
 {
 
 }</code></pre>
 
-			<h5 id="function_method">Function/Method Declarations</h5>
+			<h5 id="function_method">関数/メソッド宣言</h5>
 
-			<p>The function/method opening brace must always begin on a new line and have the same indentation as its
-				structure.</p>
+			<p>関数/メソッド宣言は、開き括弧を次の行に置き、
+				構造と同じインデントにします。</p>
 
 			<pre class="php"><code>class Session
 {
@@ -278,10 +278,10 @@ if ( ! $var)</code></pre>
 
 }</code></pre>
 
-			<h5 id="variables">Variables</h5>
+			<h5 id="variables">変数</h5>
 
-			<p>When initializing variables, one variable should be declared per line. To enhance code readability, these
-				should each be on a separate line. Align values and comments when appropriate.</p>
+			<p>変数を初期化するとき、一行に一つの変数にすべきです。コードを読みやすくするため、
+				行を分けるべきです。必要なら値をコメントを整列します。</p>
 
 			<pre class="php"><code>$var        = ''; // do each on its own line
 $other_var  = ''; // do each on its own line</code></pre>
@@ -294,13 +294,13 @@ $other_var  = ''; // do each on its own line</code></pre>
 $array['my_index'] = 'something';
 for ($i = 0; $i < $max; $i++)</code></pre>
 
-			<h5 id="quotation">String quotation</h5>
+			<h5 id="quotation">文字クォーテーション</h5>
 
-			<p>Single quotes are preferred over double quotes.</p>
+			<p>ダブルクォートよ、シングルクォートがり好ましいです。</p>
 
-			<h5 id="concatenation">Concatenation</h5>
+			<h5 id="concatenation">連結</h5>
 
-			<p>String concatenation should not contain spaces around the joined parts.</p>
+			<p>文字列連結は、連結されるパーツの間に空白を置かないでください。</p>
 
 			<pre class="php"><code>//yes
 $string = 'my string '.$var.' the rest of my string';
@@ -308,7 +308,7 @@ $string = 'my string '.$var.' the rest of my string';
 //no
 $string = 'my string ' . $var . ' the rest of my string';</code></pre>
 
-			<h5 id="operators">Operators</h5>
+			<h5 id="operators">オペレータ</h5>
 
 			<pre class="php"><code>$var = 'something';
 if ($var == 'something') //space before and after logical operator
