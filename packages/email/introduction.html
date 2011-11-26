@@ -42,35 +42,34 @@
 		</div>
 
 		<div id="main">
-			<h2>Email package</h2>
+			<h2>Email パッケージ</h2>
 
 			<p>
-				The Email package provides an interface for sending email using either php's mail function, sendmail
-				or SMTP. The package supports:
+				emailパッケージは、サポートされているSMTPもしくはPHPのmail関数を使って電子メールを送信するためのインタフェースを提供します。
 			</p>
 			
 			<ul>
-				<li>Plain-text mails</li>
-				<li>HTML mails, with and optional alternative body</li>
-				<li>Attachments</li>
-				<li>Inline attachments.</li>
+				<li>プレーンテキストメール</li>
+				<li>HTMLメール、と、オプションの代替本文</li>
+				<li>添付ファイル</li>
+				<li>インラインの添付ファイル</li>
 			</ul>
 			
 			<section>
 			
-				<h3 id="installation">Installation</h3>
+				<h3 id="installation">インストール</h3>
 				
 				<p>
-					The Email package is part of the official download (since version 1.1). You will have to enable the package
-					either in the app config or include it on the fly.
+					emailパッケージは、本体(1.1以降)に含まれています。
+					あなたは、設定ファイルもしくはオートロード設定で、パッケージを有効にする必要があります。
 				</p>
 				
-				<pre class="php"><code>// Inside app/config/config.php under 'always_load'
+				<pre class="php"><code>// app/config/configの'always_load'の設定
 'packages' => array(
 	'email',
 ),
 
-// Or in a controller:
+//もしくはControllerの上で...
 
 \Package::load('email');
 </code></pre>
@@ -79,24 +78,25 @@
 			
 			<section>
 			
-				<h3 id="configuration">Configuration</h3>
+				<h3 id="configuration">構成</h3>
 				
 				<p>
-					Create (or copy from the package) a config file at <em>app/config/email.php</em>. And change the settings needed.
+					app/config/email.php.をコピーもしくは新規作成してください。
+					そして設定を記載してください。
 				</p>
 				
-				<h4 id="general_config">General configuration</h4>
+				<h4 id="general_config">一般的な構成</h4>
 				
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>タイプ</th>
+							<th>デフォルト</th>
+							<th>説明</th>
 						</tr>
 						<tr>
-							<th>defaults</th>
+							<th>デフォルト</th>
 							<td>array</td>
 							<td><pre class="php"><code>array( /* default config array */ )</code></pre></td>
 							<td>
@@ -104,7 +104,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>default_setup</th>
+							<th>デフォルトのセットアップ</th>
 							<td>string</td>
 							<td><pre class="php"><code>'default'</code></pre></td>
 							<td>
@@ -112,7 +112,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>setups</th>
+							<th>セットアップ</th>
 							<td>array</td>
 							<td><pre class="php"><code>array(
 		'default' => array(),
