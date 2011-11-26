@@ -45,10 +45,10 @@
 
 		<div id="main">
 
-			<h2 id="email_class_method">Email class method</h2>
+			<h2 id="email_class_method">Email class methods</h2>
 
 			<article>
-				<h4 class="method" id="method_forge" data-class="Email::">forge($setup = null, array $config = array())</h4>
+				<h4 class="method" id="method_forge" data-class="Email">forge($setup = null, array $config = array())</h4>
 				<p>The <strong>forge</strong> returns a new Email_Driver instance based on the config or input it receives.</p>
 				<table class="method">
 					<tbody>
@@ -458,7 +458,7 @@ $email->to(array(
 
 			<article>
 				<h4 class="method" id="method_cc">cc($email, $name = false)</h4>
-				<p>The <strong>to</strong> method adds an address or an array of addresses to the <em>cc</em> recipient array.</p>
+				<p>The <strong>cc</strong> method adds an address or an array of addresses to the <em>cc</em> recipient array.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -515,7 +515,7 @@ $email->cc(array(
 
 			<article>
 				<h4 class="method" id="method_bcc">bcc($email, $name = false)</h4>
-				<p>The <strong>to</strong> method adds an address or an array of addresses to the <em>bcc</em> recipient array.</p>
+				<p>The <strong>bcc</strong> method adds an address or an array of addresses to the <em>bcc</em> recipient array.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -572,7 +572,7 @@ $email->bcc(array(
 
 			<article>
 				<h4 class="method" id="method_reply_to">reply_to($email, $name = false)</h4>
-				<p>The <strong>to</strong> method adds an address or an array of addresses to the <em>reply to</em> recipient array.</p>
+				<p>The <strong>reply_to</strong> method adds an address or an array of addresses to the <em>reply to</em> recipient array.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -629,7 +629,7 @@ $email->reply_to(array(
 
 			<article>
 				<h4 class="method" id="method_clear_recipients">clear_recipients()</h4>
-				<p>The <strong>to</strong> method empties the to, cc and bcc lists.</p>
+				<p>The <strong>clear_recipients</strong> method empties the to, cc and bcc lists.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -670,7 +670,7 @@ $email->clear_recipients();
 
 			<article>
 				<h4 class="method" id="method_clear_addresses">clear_addresses()</h4>
-				<p>The <strong>to</strong> method empties the to, cc, bcc and reply to lists.</p>
+				<p>The <strong>clear_addresses</strong> method empties the to, cc, bcc and reply to lists.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -748,7 +748,7 @@ $email->clear_to();
 			</article>
 
 			<article>
-				<h4 class="method" id="method_clear_cc">clear_to()</h4>
+				<h4 class="method" id="method_clear_cc">clear_cc()</h4>
 				<p>The <strong>clear_cc</strong> method empties the <em>cc</em> recipient list.</p>
 				<table class="method">
 					<tbody>
@@ -786,8 +786,8 @@ $email->clear_cc();
 			</article>
 
 			<article>
-				<h4 class="method" id="method_clear_bcc">clear_to()</h4>
-				<p>The <strong>clear_bcc</strong> method empties the <em>cc</em> recipient list.</p>
+				<h4 class="method" id="method_clear_bcc">clear_bcc()</h4>
+				<p>The <strong>clear_bcc</strong> method empties the <em>bcc</em> recipient list.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1024,46 +1024,6 @@ $email->attach(DOCROOT.'uploads/attach.pdf');
 
 // And empty the attachments
 $email->clear_attachments();
-</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_send">send()</h4>
-				<p>The <strong>send</strong> method sends the mail.</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<em>None</em>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>$this</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>try{
-	$email->send();
-}
-catch(\EmailSendingFailedException $e)
-{
-	// The driver could not send the mail.
-}
-catch(\EmailValidationFailedException $e)
-{
-	// One or more email addresses failed validation.
-}
 </code></pre>
 						</td>
 					</tr>
