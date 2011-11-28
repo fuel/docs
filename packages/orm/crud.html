@@ -105,8 +105,9 @@ $entry = Model_Article::find(array(2, 5));</code></pre>
 					<pre class="php"><code>// find the first entry
 $entry = Model_Article::find('first');
 
-// find the last entry added when ordered by date
-$entry = Model_Article::find('last', array('order_by' => 'date'));</code></pre>
+//Find the last entry with a particular email
+$user = Model_User::find('last', array(<br>		'where' =&gt; array('email' =&gt; 'test@test.com')<br>));
+</code></pre>
 
 					<p>In this example it will return either an instance of Model_Article or null when the ID wasn't found.</p>
 
@@ -115,10 +116,10 @@ $entry = Model_Article::find('last', array('order_by' => 'date'));</code></pre>
 					<pre class="php"><code>// find all articles
 $entry = Model_Article::find('all');
 
-// find all articles from category 1 order descending by date
-$entry = Model_Article::find('all', array(
+// find all articles from category 1 order descending by date - returns array of Model_Article
+$entries = Model_Article::find('all', array(
 	'where' =&gt; array(
-		array('category_id', 1),
+		array('category_id' =&gt; 1),
 	),
 	'order_by' =&gt; array('date' =&gt; 'desc'),
 ));</code></pre>

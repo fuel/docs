@@ -128,10 +128,9 @@ class Controller_Welcome extends Controller
 			<pre class="php"><code>// find all articles
 $entry = Model_Article::find('all');
 
-// find all articles from category 1 order descending by date
+// find a Model_Article from category 1 with the greatest primary key (id)
 $entry = Model_Article::find('last', array(
-    'where' => array('category_id', 1),
-    'order_by' => array('date', 'desc')
+    'where' => array('category_id' =&gt; 1)
 ));</code></pre>
 
 			<p>See more about working with ORM in the <a href="../packages/orm/intro.html">Orm Package</a> documentation.</p>
