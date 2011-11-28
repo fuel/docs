@@ -10,14 +10,14 @@
 		var class_prefix = "Session::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Session Usage - Classes - Fuel Documentation</title>
+	<title>Session Usage - Classes - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
 				<h1>
-					<strong>Fuel, a PHP 5.3 Framework</strong>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
 
@@ -88,7 +88,7 @@
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>mixed - session object, or false in case the requested instance does not exist.</td>
+						<td>mixed - session object, or <kbd>false</kbd> in case the requested instance does not exist.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -611,11 +611,59 @@ Session::rotate();
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_key">key()</h4>
+				<p>
+					The <strong>key</strong> method allows you retrieve elements of the session key,
+					which uniquely identifies the session.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><em>optional</em></td>
+									<td>
+										Name of the key element. By default, it is set to 'session_id'.
+										Other elements that may be available are 'ip_hash', 'created', 'updated'
+										'user_agent' and 'payload'.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed - element value, or <kbd>false</kbd> if the requested element does not exist.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get the current session id
+$session_id = Session::key('session_id');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 		</div>
 
 		<footer>
 			<p>
-				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

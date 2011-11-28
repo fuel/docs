@@ -10,14 +10,14 @@
 		var class_prefix = "Fuel::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Fuel - Classes - Fuel Documentation</title>
+	<title>Fuel - Classes - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
 				<h1>
-					<strong>Fuel, a PHP 5.3 Framework</strong>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
 
@@ -327,7 +327,7 @@ if (Upload::is_valid())
 	Upload::save();
 
 	// call a model method to update the database
-	Model_uploads::add(Upload::get_files());
+	Model_Uploads::add(Upload::get_files());
 }
 
 // and process any errors
@@ -601,7 +601,11 @@ Upload::register('before', function (&amp;$file) {
 						<td>
 							<pre class="php"><code>// process the uploaded files
 // set the max size to 10Kb, and allow overwrites of duplicate files
-Upload::process( array('max_size' => 10240, 'auto_rename' => false, 'overwrite' => true) );
+Upload::process( array(
+	'max_size' => 10240, 
+	'auto_rename' => false, 
+	'overwrite' => true
+) );
 </code></pre>
 						</td>
 					</tr>
@@ -683,7 +687,7 @@ foreach ( Upload::get_errors() as $key => $file )
 
 		<footer>
 			<p>
-				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

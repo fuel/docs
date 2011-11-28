@@ -9,14 +9,14 @@
 		var path = './../../../';
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
-	<title>Included - Observers - Orm Package - Fuel Documentation</title>
+	<title>Included - Observers - Orm Package - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
 				<h1>
-					<strong>Fuel, a PHP 5.3 Framework</strong>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
 
@@ -122,7 +122,13 @@ protected static $_observers = array(
 
 				<h4 id="os_validation">Observer_Validation</h4>
 
-				<p>This observer only acts on <kbd>before_save</kbd>. It is used to prevent the model from saving if validation rules fail. It is best used with the <a href="../../../classes/fieldset.html">FieldSet</a> class.</p>
+				<p>This observer only acts on <kbd>before_save</kbd>. It is used to prevent the model from saving if
+					validation rules fail. It uses the <a href="../../../classes/fieldset.html">Fieldset</a> class
+					and can also generate the form for you.</p>
+
+				<p class="note">The primary key(s) are not added to Validation nor to the Form as they're not editable
+					and will be auto-increment most of the time. In cases where you set it upon creation and need
+					validation you'll need to add the field manually.</p>
 
 				<p>The observer can be loaded as follows:</p>
 
@@ -132,126 +138,91 @@ protected static $_observers = array('Orm\\Observer_Validation');
 // But adding it just for before_save is enough
 protected static $_observers = array('Orm\\Observer_Validation' => array('before_save'));</code></pre>
 
-				<p>Validation rules should be defined in your model in <kbd>$_properties</kbd>. This is demonstrated in <a href="../creating_models.html#propperties">Creating Models</a>. After you have added the
-					Validation Observer, the Orm\ValidationFailed exception will be thrown when the model's data fails to validate before save. As such, you must try/catch your calls to the <kbd>save</kbd> function of a model.</p>
+				<p>Validation rules should be defined in your model in <kbd>$_properties</kbd>. This is demonstrated
+					in <a href="../creating_models.html#propperties">Creating Models</a>. After you have added the
+					Validation Observer, the Orm\ValidationFailed exception will be thrown when the model's data fails
+					to validate before save. As such, you must try/catch your calls to the <kbd>save</kbd> function of
+					a model.</p>
 
-				<p>A complete CRUD functionality/scaffolding example controller is shown below:</p>
+				<p>More extensive example functionality/scaffolding is shown below:</p>
 
-				<pre class="php"><code>class Controller_Articles extends Controller_Template
+				<pre class="php"><code>class Controller_Articles extends Controller
 {
-
-	public function action_index()
-	{
-		$this->template->title = "Articles";
-		$this->template->content = View::forge('articles/index');
-		$this->template->content->articles = Model_Article::find('all');
-	}
-
-	public function action_view($id = false)
-	{
-		if ( ! $article = Model_Article::find($id))
-		{
-			throw new HttpNotFoundException();
-		}
-
-		$this->template->title = "Article";
-		$this->template->content = View::forge('articles/view');
-		$this->template->content->article = $article;
-	}
-
 	public function action_create()
 	{
-		$article = Model_Article::forge();
-
-		if (Input::method() == 'POST')
+		$view = View::forge('articles/create');
+		if (Input::param() != array())
 		{
-			$article->name = Input::post('name');
-			$article->url = Input::post('url');
-
 			try
 			{
+				$article = Model_Article::forge();
+				$article->name = Input::param('name');
+				$article->url = Input::param('url');
 				$article->save();
-				Session::set_flash('notice', 'Created article #' . $article->id);
 				Response::redirect('articles');
 			}
 			catch (Orm\ValidationFailed $e)
 			{
-				Session::set_flash('notice', 'Could not create article #' . $article->id);
-				$this->template->set_global('validation_errors', $e->getMessage(), false);
+				$view->set('errors', $e->getMessage(), false);
 			}
 		}
-
-		$this->template->set_global('article', $article, false);
-		$this->template->title = "Articles";
-		$this->template->content = View::forge('articles/create');
+		return new Response($view);
 	}
 
 	public function action_edit($id = false)
 	{
-		if (!$article = Model_Article::find($id))
+		if ( ! ($article = Model_Article::find($id))
 		{
 			throw new HttpNotFoundException();
 		}
 
-		if (Input::method() == 'POST')
+		$view = View::forge('articles/edit');
+		if (Input::param() != array())
 		{
-			$article->name = Input::post('name');
-			$article->url = Input::post('url');
-
 			try
 			{
+				$article->name = Input::param('name');
+				$article->url = Input::param('url');
 				$article->save();
-				Session::set_flash('notice', 'Updated article #' . $id);
 				Response::redirect('articles');
 			}
 			catch (Orm\ValidationFailed $e)
 			{
-				Session::set_flash('notice', 'Could not update article #' . $id);
-				$this->template->set_global('validation_errors', $e->getMessage(), false);
+				$view->set('errors', $e->getMessage(), false);
 			}
 		}
-
-		$this->template->set_global('article', $article, false);
-		$this->template->title = "Articles";
-		$this->template->content = View::forge('articles/edit');
+		return new Response($view);
 	}
 
 	public function action_delete($id = null)
 	{
-		if ($article = Model_Article::find($id))
+		if ( ! ($article = Model_Article::find($id))
 		{
-			$article->delete();
-
-			Session::set_flash('notice', 'Deleted article #' . $id);
+			throw new HttpNotFoundException();
 		}
 		else
 		{
-			Session::set_flash('notice', 'Could not delete article #' . $id);
+			$article->delete();
 		}
-
 		Response::redirect('articles');
 	}
 
 }</code></pre>
 
-				<p>This can be effectively used with the <a href="../../../classes/fieldset.html">FieldSet</a> class to provide CRUD forms for a model. In the following example, the create and edit forms are
-					defined in a common view however you can just as easily define it in the model and obtain an instance of it in the view using <kbd>Fieldset::instance</kbd>.</p>
+				<p>As this uses the <a href="../../../classes/fieldset.html">Fieldset</a> class to perform validation,
+					it can also create forms for a model. In the following example, the create and edit forms are
+					defined in a common view however you can just as easily define it in the model and obtain an
+					instance of it in the view using <code>Fieldset::instance()</code>.</p>
 
-				<pre class="php"><code>$fieldset = Fieldset::forge()->add_model($article);
-$fieldset->populate($article);
+				<pre class="php"><code>// use an instance of Model_Article to create the form, you can also pass the classname
+$fieldset = Fieldset::forge()->add_model($article);
 
-if (isset($validation_errors))
-{
-	echo $validation_errors;
-}
+// Populate the form with values from the model instance
+// passing true will also make it use POST/PUT to repopulate after failed save
+$fieldset->populate($article, true);
 
-$fieldset->add('name', 'Article Name', array('type' => 'text'));
-$fieldset->add('url', 'Article\'s URL', array('type' => 'text'));
-$fieldset->add('submit', ' ', array('value' => 'Submit', 'type' => 'submit'));
-
-$fieldset->populate($article, TRUE);
-
-echo $fieldset->build();</code></pre>
+// The fieldset will be build as HTML when cast to string
+echo $fieldset;</code></pre>
 
 				<h4 id="os_typing">Observer_Typing</h4>
 
@@ -367,7 +338,7 @@ protected static $_observers = array('Orm\\Observer_Slug' => array('before_inser
 
 		<footer>
 			<p>
-				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

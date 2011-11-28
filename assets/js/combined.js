@@ -29,7 +29,7 @@ Array.max = function( array ){
 
 ;(function($){
 	$.fn.anchorify = function(){
-		var $icon = $('<a class="internal_link"> <img src="'+path+'assets/img/icon_link.gif" /></a>');
+		var $icon = $('<a class="internal_link"></a>');
 		$icon.click(function(e){
 			$.scrollTo(this, { speed:400, offset: -20 });
 		});
@@ -39,7 +39,7 @@ Array.max = function( array ){
 			{
 				var $handle = $icon.clone(true);
 				$handle.attr('href', '#/'+id);
-				$(this).append($handle);
+				$(this).html($handle.html($(this).html()));
 			}
 		});
 	}
@@ -212,6 +212,7 @@ var max_navtable_height = 0;
 
 		$handle.click(function(e){
 			e.preventDefault();
+			$(window).scrollTo(0, 400);
 			if(opened == false)
 			{
 				update_height();
@@ -227,7 +228,6 @@ var max_navtable_height = 0;
 				$('#header').stop().animate({
 					'margin-top': -50
 				}, 300);
-				$(window).scrollTo(0, 400);
 			}
 			else
 			{
@@ -364,6 +364,7 @@ panes.main = {
 			"Template":		"general/controllers/template.html",
 			"Rest":			"general/controllers/rest.html"
 		},
+		"Environments":		"general/environments.html",
 		"HMVC Requests":	"general/hmvc.html",
 		"Modules":			"general/modules.html",
 		"Models":			"general/models.html",
@@ -688,4 +689,5 @@ $("document").ready(function(){
 		$(this).find('.column').last().addClass('last');
 	});
 	setup();
+	
 });
