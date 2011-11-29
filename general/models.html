@@ -117,7 +117,7 @@ class Controller_Welcome extends Controller
 				SQL to be rather cumbersome. Using the Query Builder methods in the DB Class you can abstract writing native SQL:
 			</p>
 
-			<pre class="php"><code>DB::select('title, content')->from('articles')->execute()->get();</code></pre>
+			<pre class="php"><code>DB::select('title','content')->from('articles')->execute()->get('title');</code></pre>
 
 			<p>See more about native SQL queries and using the Query Builder in the <a href="../classes/database/db.html">DB class</a> documentation.</p>
 
@@ -129,7 +129,7 @@ class Controller_Welcome extends Controller
 $entry = Model_Article::find('all');
 
 // find all articles from category 1 order descending by date
-$entry = Model_Article::find('last', array(
+$entry = Model_Article::find('all', array(
     'where' => array('category_id', 1),
     'order_by' => array('date', 'desc')
 ));</code></pre>
