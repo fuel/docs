@@ -9,14 +9,14 @@
 		var path = './../../../';
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
-	<title>Introduction - Relations - Orm Package - Fuel Documentation</title>
+	<title>Introduction - Relations - Orm Package - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
 				<h1>
-					<strong>Fuel, a PHP 5.3 Framework</strong>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
 
@@ -257,6 +257,26 @@ $post = Model_Post::query()
 	->related('articles.user.profile')
 	->get_one();</code></pre>
 			</article>
+			<article id="join_types">
+				<h2>Join types</h2>
+
+				<p>By default the Orm will join relations using a 'left' join. To specify a different join you utilize the 'join_type' condition:</p>
+
+				<pre class="php"><code>
+				$post = Model_Post::find('first', array(
+    'related' => array(
+        'articles' => array(
+        	'join_type' => 'inner',
+            'order_by' => array('id' => 'desc'),
+            'where' => array(
+                array('publish_date', '>', time()),
+                array('published', '=', 1),
+        	),
+    	),
+	),
+));
+				</code></pre>
+			</article>
 
 			<article id="relation_types">
 				<h2>Relation types</h2>
@@ -282,7 +302,7 @@ $post = Model_Post::query()
 
 		<footer>
 			<p>
-				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

@@ -9,14 +9,14 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Views - General - Fuel Documentation</title>
+	<title>Views - General - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
 				<h1>
-					<strong>Fuel, a PHP 5.3 Framework</strong>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
 				
@@ -51,7 +51,7 @@
 	
 			<h3>Creating a view</h3>
 	
-			<p>In Fuel, Views are located in the fuel/app/views directory. Views can be located in subdirectories. Views are named by their directory path from the fuel/app/views and the file name. So a view file located fuel/app/views/user/join.php would be named user/join.</p>
+			<p>In FuelPHP, Views are located in the fuel/app/views directory. Views can be located in subdirectories. Views are named by their directory path from the fuel/app/views and the file name, so a view file located <em>fuel/app/views/user/join.php</em> would be named <kbd>user/join</kbd>.</p>
 	
 			<p>Example:</p>
 	
@@ -115,8 +115,8 @@
 	
 			<h3 id="security">Security</h3>
 	
-			<p>By default Views use output encoding to sanitize anything you pass to them using Security::htmlentities().
-				If you want to pass something unfiltered you can use the method <kbd>set($name, $value, false)</kbd>.</p>
+			<p>By default, Views use output encoding to sanitize anything you pass to them using Security::htmlentities().
+				If you want to pass something unfiltered, you can use the method <kbd>set($name, $value, false)</kbd>.</p>
 	
 			<pre class="php"><code>class Controller_Example extends Controller
 {
@@ -136,15 +136,15 @@
 	}
 }</code></pre>
 	
-			<p>If you don't want your View to work like this change the public static property <kbd>View::$auto_encode</kbd>
-			and set it to false. Now anything will be added unfiltered, if you do want some values filtered you can use
+			<p>If you don't want your View to work like this, change the public static property <kbd>View::$auto_encode</kbd>
+			and set it to <kbd>false</kbd>. Now anything added will be unfiltered.  If you do want some values filtered, you can use
 			<kbd>set($name, $value, true)</kbd>.</p>
 	
-			<p><strong>Note on objects:</strong> Unless the passed object is of the type View, ViewModel or Closure it is
-			expected to have a __toString() method and forced to be a string when output filtering is enabled. If you want
-			to pass it anyway you need to use <kbd>set($name, $value, false)</kbd>, but don't forget to filter what you
+			<p class="note"><strong>Note on objects:</strong> Unless the passed object is of the type View, ViewModel or Closure, it is
+			expected to have a <kbd>__toString()</kbd> method and forced to be a string when output filtering is enabled. If you want
+			to pass it anyway, you need to use <kbd>set($name, $value, false)</kbd>, but don't forget to filter what you
 			use!<br />
-			View &amp; ViewModels are expected to contain HTML and take care of their own filtering, which is why they're
+			View &amp; ViewModels are expected to contain HTML and take care of their own filtering which is why they're
 			not sanitized. Closures cannot be sanitized, and you should take care to ensure this is done within them if
 			necessary.</p>
 	
@@ -155,15 +155,15 @@
 				being read, no variables will be interpreted, and no output will be rendered.
 			</p>
 			<p>
-				This only happens when you explicitly call the <strong>render()</strong> method on the view object or when you
+				This only happens when you explicitly call the <code>render()</code> method on the view object or when you
 				cast the view object to a string (which happens automatically when you echo it). This means no views are processed
-				until it's absolutely needed, it also means that Fuel doesn't keep rendered views in memory until it is time to
+				until it's absolutely needed. It also means that Fuel doesn't keep rendered views in memory until it is time to
 				send them to the browser.
 			</p>
 	
 			<h3>Nesting Views</h3>
 	
-			<p>Views can also be nested, meaning views can contain other views. This can be done multiple ways.</p>
+			<p>Views can also be nested to contain other views. This can be done multiple ways.</p>
 	
 			<h3>Example Views</h3>
 	
@@ -257,7 +257,7 @@
 
 		<footer>
 			<p>
-				&copy; Fuel Development Team 2010-2011 - <a href="http://fuelphp.com">Fuel</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>
