@@ -42,43 +42,41 @@
 		</div>
 
 		<div id="main">
-			<h2>Parser package</h2>
+			<h2>パーサパッケージ</h2>
 
-			<p>The Parser package extends the Core View class to be able to use any type of template parser you want.</p>
+			<p>パーサパッケージは、コアのビュークラスを拡張し、任意のテンプレートパーサを使用可能にします。</p>
 
 			<section>
-				<h2 id="intro">Introduction</h2>
+				<h2 id="intro">導入</h2>
 
-				<p>The Parser package changes nothing about your the way you work with Views, but it will allow you to
-					use any template parser you want instead of PHP. The package comes with many drivers for parsers like
-					Mustache, Markdown, Twig and Smarty.</p>
+				<p>パーサパッケージは、ビューの扱い方を変更しませんが、
+					PHP の代わりに任意のテンプレートパーサを使用可能にします。パッケージには、Mustache, Markdown, Twig そして Smarty 等のパーサの
+					ドライバが同梱されています。</p>
 
-				<p>Which parser is used is chosen by the file extension of your view file. Normal views are extended
-					<kbd>.php</kbd> and will use PHP to parse the template, for these the <kbd>.php</kbd> extension may
-					also be omitted. All others have their own specific extension, for example <kbd>foo.mustache</kbd>
-					will use the Mustache driver and <kbd>foo.tpl</kbd> will use the Dwoo driver (expected extensions can
-					be changed in config).</p>
+				<p>どのパーサを使用するかは、ビューファイルのファイル拡張子で選択します。
+					標準のビューの拡張子は <kbd>.php</kbd> で、PHP を使用してテンプレートをパースします。<kbd>.php</kbd> 拡張子が省略されることもあります。
+					それ以外のパーサは独自の拡張子を持ちます。例えば、<kbd>foo.mustache</kbd>
+					は Mustache ドライバを使用し、<kbd>foo.tpl</kbd> は Dwoo ドライバを使用します(拡張子は config で変更できます)。</p>
 
 				<section>
-					<h3 id="install">Installation</h3>
+					<h3 id="install">インストール</h3>
 
-					<p>The Parser package is included in the Fuel download. To use it you must first enable it by adding
-						it to your config:</p>
+					<p>パーサパッケージは、Fuel ダウンロードに含まれています。使用するには、config に下記を追加して有効にしてください。</p>
 					<pre class="php"><code>'packages' => array(
 	'parser',
 ),</code></pre>
 
-					<p>While many drivers are included, most of the libraries are not. Only Mustache and Markdown are
-						included in the <kbd>vendor</kbd> directory of the package and work out of the box. Other parsers
-						you must download from their own website. If you want them to work without changing config they
-						are expected in <kbd>app/vendor/{Lib_name}</kbd> (where the first character of <kbd>Lib_name</kbd>
-						is capitalized.</p>
+					<p>多くのドライバが同梱されていますが、ライブラリは同梱されていない場合がほとんどです。Mustache と Markdown のみ、
+						package の <kbd>vendor</kbd> ディレクトリに同梱されており、すぐに使用可能です。他のパーサは、
+						それぞれのウェブサイトからダウンロードする必要があります。config を変更しないで動作させるには、
+						ライブラリを <kbd>app/vendor/{Lib_name}</kbd> に配置してください。
+						<kbd>Lib_name</kbd> の先頭は大文字にしてください。</p>
 				</section>
 
 				<section>
-					<h3 id="configuration">Configuration</h3>
+					<h3 id="configuration">設定</h3>
 
-					<p>Parser can be configured in a config/parser.php file and takes the following keys:</p>
+					<p>パーサは config/parser.php ファイルで設定できます。以下のキーを使用します。</p>
 
 					<table class="config">
 						<tbody>
@@ -91,9 +89,9 @@
 							<tr>
 								<th>extensions</th>
 								<td>array</td>
-								<td>(array with extensions and View class which parses them)</td>
+								<td>(拡張子、パースするビュークラス、の配列)</td>
 								<td>
-									Defines which extensions are valid and what their View driver is.
+									有効な拡張子と対応するビュードライバを定義します。
 								</td>
 							</tr>
 						</tbody>
@@ -101,13 +99,13 @@
 				</section>
 
 				<section>
-					<h3 id="runtime_configuration">Runtime Configuration</h3>
+					<h3 id="runtime_configuration">ランタイム設定</h3>
 
-					<p>All drivers have a <kbd>parser()</kbd> method that will allow you to access the current
-						Parser object. This is a convention and not a requirement and might be different on 3rd party
-						drivers.</p>
+					<p>全てのドライバは、現在のパーサオブジェクトにアクセスする <kbd>parser()</kbd> メソッドを有します。
+						これは必須条件(requiremen)ではなく規約(convention)ですので、サードパーティ製ドライバによって
+						異なることがあります。</p>
 
-					<pre class="php"><code>// Example using SimpleTags
+					<pre class="php"><code>// SimpleTags を使用する例
 $view = View::forge('example.stags');
 $view->parser()->set_delimiters('{', '}');
 
