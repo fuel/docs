@@ -76,7 +76,7 @@
 			<pre class="php"><code>public function action_login()
 {
 	$data = array();
-	if($_POST)
+	if ($_POST)
 	{
 
 		// Ok, you pressed the submit button. let's go over
@@ -85,7 +85,7 @@
 		$auth = Auth::instance();
 
 		// check the credentials. This assumes that you have the previous table created
-		if($auth->login($_POST['username'],$_POST['password']))
+		if ($auth->login($_POST['username'],$_POST['password']))
 		{
 			// credentials ok, go right in
 			Response::redirect('success_page');
