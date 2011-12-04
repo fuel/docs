@@ -97,6 +97,7 @@
 			<pre class="php"><code>return array(
     'blog/(:any)'      => 'blog/entry/$1', // Routes /blog/entry_name to /blog/entry/entry_name
     '(:segment)/about' => 'site/about/$1', // Routes /en/about to /site/about/en
+    '(\d{2})/about'    => 'site/about/$1', // Routes /12/about to /site/about/12
 );</code></pre>
 
 
@@ -137,6 +138,31 @@ $this->param('id');</code></pre>
 	        <pre class="php"><code>return array(
     'blog/(:any)' => array(array('GET', new Route('blog/show/$1'))),
 );</code></pre>
+
+			<h3 id="named_routes">Named routes and reverse routing</h3>
+
+			<p>The idea of reversed routing is like this: say you got an admin area and you have a route setup for it.
+			In your views, you would like to that admin area using an HTML anchor that links to for example 'admin/start/overview'.
+			Now you decide to move stuff around and end up moving that specific page to 'admin/overview'.
+			As a result of this you now you need to update the links in all your views...</p>
+
+			<p>When using reverse routing with these name routes you can link an anchor to a named route, so that when the route changes,
+			the links in your views will automatically follow the change</p>
+
+			<p>Example route:</p>
+
+			<pre class="php"><code>return array(
+    'admin/start/overview' => array('admin/overview', 'name' => 'admin_overview'), // add a named route for the admin/overview page
+);</code></pre>
+
+			<p>Example anchor:</p>
+
+			<pre class="php"><code>// produces &lt;a href="http://your_base_url/admin/start/overview"&gt;Overview&lt;/a&gt;
+echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
+
+			<p class="note">
+				Note that this currently only works for routes that <kbd>DO NOT</kbd> contain a regex, and only for routes defined in <kbd>app/config/routes.php</kbd>, not for module routes.
+			</p>
 
 			<h3 id="module_routing">Modules &amp; Routing</h3>
 
