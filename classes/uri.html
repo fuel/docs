@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,34 +20,34 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2>Uri Class</h2>
-	
+
 			<p>The Uri class allows you to interact with the URI.</p>
-	
+
 			<article>
 				<h4 class="method" id="method_base">base($include_index = true)</h4>
 				<p>
@@ -97,9 +97,9 @@ echo Uri::base(false);
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
-				<h4 class="method" id="method_create">create($uri = null, $variables = array(), $get_variables = array())</h4>
+				<h4 class="method" id="method_create">create($uri = null, $variables = array(), $get_variables = array(), $secure = null)</h4>
 				<p>The <strong>create</strong> method allows you to create a URL with the given URI, including the base URL.</p>
 				<table class="method">
 					<tbody>
@@ -132,6 +132,11 @@ echo Uri::base(false);
 									<td>The query string additions to the URL, its values &amp; keys can use variables from
 										the $variables array.</td>
 								</tr>
+								<tr>
+									<th><kbd>$secure</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Set to false to force http, or to true to force https on the created URL</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -149,13 +154,16 @@ echo Uri::create('controller/:some', array('some' => 'thing', 'and' => 'more'), 
 // returns http://localhost/controller/thing?what=more
 
 echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' => 'more'), array('what' => ':and'));
-// returns http://www.example.org/thing?what=more</code></pre>
+// returns http://www.example.org/thing?what=more
+
+echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' => 'more'), array('what' => ':and'), true);
+// returns https://www.example.org/thing?what=more</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_current">current()</h4>
 				<p>The <strong>current</strong> method allows you to fetch the current URL, including the base URL inside HMVC pattern.</p>
@@ -183,7 +191,7 @@ echo Uri::current(); // returns http://localhost/module/controller/method</code>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_main">main()</h4>
 				<p>The <strong>main</strong> method allows you to fetch the current URL, including the base URL.</p>
@@ -211,7 +219,7 @@ echo Uri::main(); // returns http://localhost/controller/method</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_segment">segment($segment, $default = null)</h4>
 				<p>The <strong>segment</strong> method allows you to return the desired segment, or false if it does not exist.</p>
@@ -257,7 +265,7 @@ echo Uri::segment(3); // returns param1</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_segments">segments()</h4>
 				<p>The <strong>segments</strong> method allows you to fetch the current URI segments in an array.</p>
@@ -285,7 +293,7 @@ echo Uri::segments(); // returns array(0 => 'controller', 1 => 'method')</code><
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_to_assoc">to_assoc()</h4>
 				<p>The <strong>to_assoc</strong> method takes the segments array and turns it into an associative array if the number of segments is even.  If the number of segments is odd, it returns <kbd>null</kbd>.</p>
@@ -327,7 +335,7 @@ null
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_string">string()</h4>
 				<p>The <strong>string</strong> method allows you to fetch the current URI.</p>
