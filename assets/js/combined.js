@@ -377,6 +377,7 @@ panes.main = {
 		"Security":			"general/security.html",
 		"Tasks":			"general/tasks.html",
 		"Error handling":	"general/error.html",
+		"Profiling":		"general/profiling.html",
 	}
 };
 
@@ -689,5 +690,5 @@ $("document").ready(function(){
 		$(this).find('.column').last().addClass('last');
 	});
 	setup();
-	
+
 });
