@@ -43,24 +43,24 @@
 
 		<div id="main">
 
-			<h2>The 404 page</h2>
+			<h2>Error Handling</h2>
 
 			<h3 id="intro">Introduction</h3>
 			<p>
-				As you all (should) know <a href="http://en.wikipedia.org/wiki/Error_404">404</a> handling is a very
-				important part in the development process. Not only does it show the user that the page he/she/it
-				requested is not available. It also a way to informs machines (browsers and such) about what's going
-				on by providing a 404 status header.
+				As you all (should) know <a href="http://en.wikipedia.org/wiki/Exception_handling">error handling</a>
+				is a very important part in the development process. Not only does it show the user that the page he/she/it
+				requested is not available, it also a way to informs machines (browsers and such) about what’s going
+				on by providing a HTTP error status.
 			</p>
 
-			<h3 id="config">Configuration</h3>
+			<h3 id="config">Error 404</h3>
 
 			<p>
 				The 404 route is set in <em>app/config/routes.php</em> and must point to the controller/method
 				that handles the 404 pages. <a href="routing.html">Read more about it in the routing section.</a>
 			</p>
 
-			<h3 id="throw">Throwing a 404</h3>
+			<h4 id="throw">Throwing a 404</h4>
 
 			<p>
 				There may be times when one needs to throw a 404 error, such as when handling the routing yourself.
@@ -70,7 +70,7 @@
 
 			<pre class="php"><code>throw new HttpNotFoundException;</code></pre>
 
-			<h3 id="404_handling">404 handling</h3>
+			<h4 id="404_handling">404 handling</h4>
 
 			<p>
 				When a request is made and after the router looked for possible matches and there is no match, the 404
@@ -107,7 +107,7 @@ public function action_404()
 				in order to send the correct status header.
 			</p>
 
-			<h3 id="catch_all">Catch all</h3>
+			<h4 id="catch_all">Catch all</h4>
 
 			<p>
 				Because Fuel doesn't set the 404 response status, you can use it as a catch all function.
@@ -134,8 +134,23 @@ public function action_my404()
 		$this->response->body = View::forge('welcome/404', $data);
 	}
 }</code></pre>
+			
+			<h3 id="throw_500">Throwing a 500</h3>
+			
+			<p>
+				There may be moments where your applications simply need to stop and show an error to
+				indicate that something has gone wrong on the server. Normally this is a 
+				<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error">500 Internal 
+				Server Error</a>.
+			</p>
+			
+			<p>
+				Similar to throwing a 404, one can throw a 500 error.
+			</p>
+			
+			<pre class="php"><code>throw new HttpServerErrorException;</code></pre>
 
-			</div>
+		</div>
 
 		<footer>
 			<p>
