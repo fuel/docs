@@ -690,4 +690,17 @@ $("document").ready(function(){
 	});
 	setup();
 	
+	var to_top = $('<a>', {
+		href : '#back_to_top',
+		html : 'Back To Top',
+		click : function(e){e.preventDefault(); $(window).scrollTo(0, 400);},
+		css : {
+			'position':'fixed',
+			'bottom': 50,
+			'left' : 30,
+		}
+	});
+	
+	$('#container').append(to_top);
+	
 });
