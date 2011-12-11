@@ -376,7 +376,8 @@ panes.main = {
 		"パッケージ":			"general/packages.html",
 		"セキュリティ":			"general/security.html",
 		"タスク":			"general/tasks.html",
-		"404の処理":		"general/404.html",
+		"Error handling":	"general/error.html",
+		"Profiling":		"general/profiling.html",
 	}
 };
 
@@ -689,5 +690,5 @@ $("document").ready(function(){
 		$(this).find('.column').last().addClass('last');
 	});
 	setup();
-	
+
 });
