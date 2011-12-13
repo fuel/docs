@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,40 +20,40 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Html Class</h2>
-	
+
 			<p>The Html class is an HTML wrapper for nearly all HTML tags.</p>
-	
+
 			<h3>Doctypes</h3>
-	
+
 			<p>We have included a configuration file located at <kbd>fuel/core/config/doctypes.php</kbd> which has all the doctypes.</p>
-	
+
 			<article>
-				<h4 class="method" id="method_anchor">anchor($href, $text, $attributes = array())</h4>
+				<h4 class="method" id="method_anchor">anchor($href, $text, $attributes = array(), $secure = null)</h4>
 				<p>The <strong>anchor</strong> method returns an HTML anchor tag.</p>
 				<table class="method">
 					<tbody>
@@ -85,6 +85,11 @@
 									<td><strong>false</strong></td>
 									<td>Array of attributes to be applied to the anchor tag.</td>
 								</tr>
+								<tr>
+									<th><kbd>$secure</kbd></th>
+									<td><i>null</i></td>
+									<td>Set to false to force http, or to true to force https on the created URL</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -102,13 +107,16 @@ echo Html::anchor('example', 'Example');
 echo Html::anchor('http://www.otherdomain.com/example', 'Example');
 
 //returns &lt;a href="http://www.domain.com/example" id="a1" class="sample" style="color:red;"&gt;Example&lt;/a&gt;
-echo Html::anchor('example', 'Example', array('id' => 'a1', 'class' => 'sample', 'style' => 'color:red'));</code></pre>
+echo Html::anchor('example', 'Example', array('id' => 'a1', 'class' => 'sample', 'style' => 'color:red'));
+
+//returns &lt;a href="https://www.domain.com/example" id="a1" class="sample" style="color:red;"&gt;Example&lt;/a&gt;
+echo Html::anchor('example', 'Example', array('id' => 'a1', 'class' => 'sample', 'style' => 'color:red'), true);</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_mail_to">mail_to($email, $text, $subject = null, $attr = array())</h4>
 				<p>The <strong>mail_to</strong> method returns an HTML anchor tag with mailto as the target.</p>
@@ -170,7 +178,7 @@ echo Html:::mail_to('name@domain.com', 'Name', null, array('id' => 'a2', 'class'
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_mail_to_safe">mail_to_safe($email, $text, $subject = null, $attr = array())</h4>
 				<p>The <strong>mail_to_safe</strong> method returns JavaScript code that produces an HTML anchor tag with mailto as target.</p>
@@ -232,7 +240,7 @@ echo Html::mail_to_safe('name@domain.com', 'Name');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_img">img($src, $attr = array())</h4>
 				<p>The <strong>img</strong> method returns an image tag.</p>
@@ -282,7 +290,7 @@ echo Html::img('path/to/image.png', array("alt" => "Alt Message", 'class' => "my
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_meta">meta($name, $content = '', $type = 'name')</h4>
 				<p>The <strong>meta</strong> method returns meta tag or tags if multi-level array is supplied.</p>
@@ -347,7 +355,7 @@ echo Html::meta($meta);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_doctype">doctype($type = 'xhtml1-trans')</h4>
 				<p>The <strong>doctype</strong> method returns a correctly formated doctype tag.</p>
@@ -391,7 +399,7 @@ echo Html::doctype('html5');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_audio">audio($src, $attr = false)</h4>
 				<p>The <strong>audio</strong> method requires you to set html5 as the doctype in order to be used.</p>
@@ -440,7 +448,7 @@ echo Html::audio(array('../sounds/beep.mp3','../sounds/frog.mp4'));</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_ul">ul($list, $style = false)</h4>
 				<p>The <strong>ul</strong> method returns a correctly formatted single or multi-level unordered list.</p>
@@ -521,7 +529,7 @@ echo Html::ul($items, $attr);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_ol">ol($list, $style = false)</h4>
 				<p>The <strong>ol</strong> method returns a correctly formatted single or multi-level ordered list.</p>
@@ -601,9 +609,9 @@ echo Html::ol($items, $attr);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<h3 id="procedural_helpers">Procedural helpers</h3>
-			
+
 			<article>
 				<h4 id="function_html_tag">html_tag($tag, $attr = array(), $content = false)</h4>
 				<p>The <strong>html_tag</strong> function generates an HTML tag based on the attributes provided..</p>
@@ -653,13 +661,13 @@ echo Html::ol($items, $attr);</code></pre>
 ), 'Link title');
 
 // &lt;a href="http://somedomain.com/" class="my_class"&gt;Link title&lt;/a&gt;</code></pre>
-	
+
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 id="function_array_to_attr">array_to_attr($attr)</h4>
 				<p>The <strong>array_to_attr</strong> function generates an attributes string.</p>
@@ -697,7 +705,7 @@ echo Html::ol($items, $attr);</code></pre>
 ));
 
 // href="http://somedomain.com/" class="my_class"</code></pre>
-	
+
 						</td>
 					</tr>
 					</tbody>

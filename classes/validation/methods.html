@@ -274,7 +274,124 @@ $fieldset = $val->fieldset();
 					</tbody>
 				</table>
 			</article>
-	
+
+			<article>
+				<h4 class="method" id="method_add_field">add_field($name, $label, $rules)</h4>	
+				<p>
+					The <strong>add_field</strong> method is a simpler alias for add() method which allows specifying the field name, label and rules in a single step.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$name</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>None</code></pre></td>
+										<td>The field name to assign the validation rule to.</td>
+									</tr>
+									<tr>
+										<th><kbd>$label</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>None</code></pre></td>
+										<td>Label of the field.</td>
+									</tr>
+									<tr>
+										<th><kbd>$rules</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>None</code></pre></td>
+										<td>The set of validation rules separated with vertical bar (|) with (optional) rule parameters grouped in square brackets, and separated with commas.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Fieldset_Field</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// Set rules on different types of fields
+$val->add_field('username', 'Username', 'required|trim|valid_string[alpha,lowercase,numeric]');
+$val->add_field('email', 'Email', 'required|trim|valid_email');
+$val->add_field('age', 'Age', 'valid_string[numeric]');
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_message">set_message($rule, $message)</h4>	
+				<p>
+					The <strong>set_message</strong> method overwrites the language file messages for this validation instance. It's also useful when no message is assigned to the rule you're using.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$rule</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>None</code></pre></td>
+										<td>Name of the rule to assign this message to.</td>
+									</tr>
+									<tr>
+										<th><kbd>$message</kbd></th>
+										<td><em>string | null</em></td>
+										<td><pre class="php"><code>None</code></pre></td>
+										<td>The message to display for this rule, if a string is passed, or null to revert to the language file.</td>
+									</tr>
+									<tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Validation instance</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// Overwrite the required rule message
+$val->set_message('required', 'You have to fill in your :label so you can proceed');
+// .. when done, set back the default message
+$val->set_message('required', null);
+// A message for a custom rule you created
+$val->set_message('custom_rule', 'The :label you entered is previously registered. Please choose another one');
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<p>More coming soon...</p>
 
 		</div>

@@ -376,7 +376,8 @@ panes.main = {
 		"Packages":			"general/packages.html",
 		"Security":			"general/security.html",
 		"Tasks":			"general/tasks.html",
-		"404 handling":		"general/404.html",
+		"Error handling":	"general/error.html",
+		"Profiling":		"general/profiling.html",
 	}
 };
 
@@ -689,5 +690,5 @@ $("document").ready(function(){
 		$(this).find('.column').last().addClass('last');
 	});
 	setup();
-	
+
 });

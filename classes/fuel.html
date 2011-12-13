@@ -413,6 +413,104 @@ if (Fuel::load('myfile.php'))
 				<p class="note"> Note that if the included file does NOT contain a <strong>return</strong> statement, load() will return <strong>1</strong> if the load was successful, or <strong>0</strong> if the file could not be loaded!</p>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_add_module">add_module($name)</h4>
+				<p>The <strong>add_module</strong> method registers a given module as a class prefix.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><i>required</i></td>
+									<td>Module name (lowercase prefix without underscore)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><i>string</i></td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td><strong>FuelException</strong>, in case a module with the given name does not exist.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// register the module 'mymodule'
+try
+{
+	$module_path = Fuel::add_module('mymodule');
+}
+catch (FuelException $e)
+{
+	// woops, module does not exist. do something!
+}
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_module_exists">module_exists($module)</h4>
+				<p>The <strong>module_exists</strong> method checks if a module exists. The module you want to check does not have to be added first.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$module</kbd></th>
+									<td><i>required</i></td>
+									<td>Module name (lowercase prefix without underscore)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><i>mixed</i></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// returns the path to 'mymodule'
+$module_path = Fuel::module_exists('mymodule');
+
+// returns false for an unknown module
+$module_path = Fuel::module_exists('unknown');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 		</div>
 
 		<footer>
