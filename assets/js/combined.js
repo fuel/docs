@@ -376,8 +376,8 @@ panes.main = {
 		"パッケージ":			"general/packages.html",
 		"セキュリティ":			"general/security.html",
 		"タスク":			"general/tasks.html",
-		"Error handling":	"general/error.html",
-		"Profiling":		"general/profiling.html",
+		"エラー処理":	"general/error.html",
+		"プロファイリング":		"general/profiling.html",
 	}
 };
 
