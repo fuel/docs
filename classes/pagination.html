@@ -74,7 +74,29 @@ $data['example_data'] = DB::select('id', 'value')->from('pagination')
 $data['pagination'] = Pagination::create_links();
 $this->render('welcome/index', $data);</code></pre>
 			</section>
-	
+
+			<section>
+				<h3 id="how_to">Using Model_Crud</h3>
+				<p>Another example using Model_Crud
+				<pre class="php">		
+			
+$config = array(
+	'pagination_url' => 'http://localhost/fuel/welcome/index/',
+	'total_items' => Model_User::count();
+	'per_page' => 5,
+	'uri_segment' => 3,
+	'template' => array(
+		'wrapper_start' => '&lt;div class="my-pagination"&gt; ',
+		'wrapper_end' => ' &lt;/div&gt;',
+	),
+);
+
+Pagination::set_config($config);
+
+$data['example_data'] = Model_User::find_all(Pagination::$per_page,Pagination::$offset);
+				</code></pre>
+			</section>
+
 			<section>
 				<h3 id="configuration">Configuration</h3>
 	
