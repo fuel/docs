@@ -448,7 +448,7 @@ panes.core = {
 		"Num":			"classes/num.html",
 		"Package":		"classes/package.html",
 		"Pagination":	"classes/pagination.html",
-		// "Profiler":	"todo.html",
+		"Profiler":	"classes/profiler.html",
 		"Redis":		"classes/redis.html",
 		"Request":		"classes/request.html",
 		"Response":		"classes/response.html",
