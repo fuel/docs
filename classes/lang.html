@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,36 +20,36 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Lang Class</h2>
-	
+
 			<p>The Lang class allows you to set language variables using language files in your application.</p>
-	
+
 			<article>
-				<h4 class="method" id="method_load">load($file, $group = null)</h4>
+				<h4 class="method" id="method_load">load($file, $group = null, $language = null)</h4>
 				<p>The <strong>load</strong> method allows you to load a language file.</p>
 				<table class="method">
 					<tbody>
@@ -75,6 +75,11 @@
 									<th><kbd>$group</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>Sets a language group to be used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$language</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Sets a specific language to load.</td>
 								</tr>
 							</table>
 						</td>
@@ -104,13 +109,17 @@ Lang::load('example', 'test');
 $this->output = Lang::line('test.test.something');
 
 // Will load the example language file from the module 'foo' into the 'bar' group.
-Lang:load('foo::example', 'bar');</code></pre>
+Lang:load('foo::example', 'bar');
+
+// Will load the example language file in italian.
+// If that doesn't exist, it will load the configured language
+Lang:load('foo::example', 'bar', 'it');</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get">get($line, $params = array())</h4>
 				<p>The <strong>get</strong> method allows you to get a specific line from the language file.</p>
@@ -159,7 +168,7 @@ $this->output = Lang::get('test.something');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_set">set($line, $value, $group = null)</h4>
 				<p>The <strong>set</strong> method allows you to set a specific line to the language file.</p>
@@ -217,9 +226,9 @@ Lang::set('hello', 'Ahoy!');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<h3 id="procedural_helpers">Procedural helpers</h3>
-	
+
 			<article>
 				<h4 id="function___">__($string, $params = array())</h4>
 				<p>The <strong>__</strong> function is an alias for <a href="#method_line">Lang::line</a>.</p>

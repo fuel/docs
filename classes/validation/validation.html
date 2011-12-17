@@ -52,6 +52,7 @@
 				<li><a href="#config">Configuration</a></li>
 				<li><a href="#usage">Usage</a></li>
 				<li><a href="#rules">Validation rules</a></li>
+				<li><a href="#extending_validation">Extending the Validation class</a></li>
 				<li><a href="errors.html">Validation Errors</a></li>
 				<li><a href="methods.html">Methods</a></li>
 			</ul>
@@ -368,58 +369,47 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 			</article>
 
 			<article>
-	            <h3 id="methods">Extending Validation class</h3>
-
-	            <p>There are few approaches to extend the validation class:</p>
-
-	            <p>1. To extend the core class like described in the <a href="../general/extending_core.html">Extending Core Classes</a></p>
-
-	            <p>2. To create a class in <b>app/classes/myvalidation.php</b> (for example)</p>
-	            <pre class="php"><code>// app/classes/myvalidation.php
+				<h4 id="extending_validation">Extending the Validation class</h4>
+				<p>There are few approaches to extend the validation class:</p>
+				<p>1. To extend the core class like described in the <a href="../../general/extending_core.html">Extending Core Classes</a></p>
+				<p>2. To create a class in <b>app/classes/myvalidation.php</b> (for example)</p>
+				<pre class="php"><code>// app/classes/myvalidation.php
 class Myvalidation
 {
 
-    public function _validation_unique($val, $options)
-    {
-        list($table, $field) = explode('.', $options);
+	public function _validation_unique($val, $options)
+	{
+		list($table, $field) = explode('.', $options);
 
-        $result = DB::select("LOWER (\"$field\")")
-            ->where($field, '=', Str::lower($val))
-            ->from($table)->execute();
+		$result = DB::select("LOWER (\"$field\")")
+		->where($field, '=', Str::lower($val))
+		->from($table)->execute();
 
-        return ! ($result->count() > 0);
-    }
+		return ! ($result->count() > 0);
+	}
 
 }
 
 // and call it like:
 $val = Validation::forge();
 $val->add_callable('myvalidation'); // here we add the class to load rules from
-
 $val->add_field('username', 'Your username', 'trim|strip_tags|required|unique[users.username]');</code></pre>
 
-	        <p>3. Calling callbacks from a model. It works like a method described above, but we only need to call it in other way:</p>
-			<pre class="php"><code>$val = Validation::forge();
+				<p>3. Calling callbacks from a model. It works like a method described above, but we only need to call it in other way:</p>
+				<pre class="php"><code>$val = Validation::forge();
 $val->add_model('Model_User');</code></pre>
-
-	        <p class="note">
-	        <strong>Note: </strong>
-	        You need the '_validation_' prefix for a method to be used in validation.
-	        </p>
-
-			<p>
-				It can be useful to use <a href="methods.html#method_active">Validation::active()</a>
-				and <a href="methods.html#method_active_field">Validation::active_field()</a>
-				to get the currently active validation instance and field currently being validated, respectively.
-			</p>
-
-			<p>For example, in the above you could do:</p>
-			<pre class="php"><code>public function _validation_unique($val, $options)
+				<p class="note">
+					<strong>Note: </strong>
+					You need the '_validation_' prefix for a method to be used in validation.
+				</p>
+				<p>It can be useful to use <a href="methods.html#method_active">Validation::active()</a> and <a href="methods.html#method_active_field">Validation::active_field()</a> to get the currently active validation instance and field currently being validated, respectively.</p>
+				<p>For example, in the above you could do:</p>
+				<pre class="php"><code>public function _validation_unique($val, $options)
 {
 	Validation::active()->set_message('unique', 'The field :label must be unique, but :value has already been used');
-...</code></pre>
-	        </article>
-
+...
+}</code></pre>
+			</article>
 		</div>
 
 		<footer>
