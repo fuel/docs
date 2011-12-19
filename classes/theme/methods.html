@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+		var class_prefix = "Theme::";
+	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Theme Methods - Classes - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>Theme Class Methods</h2>
+
+			<p>
+				The Theme class provides theming to your application.
+			</p>
+
+
+			<article>
+				<h4 class="method" id="method_instance">instance($name = '_default_', array $config = array())</h4>
+				<p>
+					The <strong>instance</strong> method acts as a multiton. It will return the instance identified by $name. If this
+					instance does not exist, it will create a new Theme instance, using the configuration array passed. If no
+					parameters are passed, instance will create the default Theme instance, using the default configuration
+					specified in the theme config file.
+				</p>
+
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>'_default_'</code></pre></td>
+									<td>The Theme class instance name.</td>
+								</tr>
+								<tr>
+									<th><kbd>$config</kbd></th>
+									<td><em>array</em></td>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td>The theme instance configuration. Will be ignored if the instance already exists.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>A Theme instance</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// Get a custom instance
+$theme = \Theme::instance(
+	'custom',
+	array(
+		'active' => 'custom',
+		'view_ext' => '.twig'
+	)
+);
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_forge">forge(array $config = array())</h4>
+				<p>
+					The <strong>forge</strong> method returns a new Theme instance.
+				</p>
+
+				<p class="note">
+					If no configuration is passed, the configuration is loaded from the global configuration file.
+					Note that if you pass a partial configuration, it will be merged with the defaults shown
+					in the <a href="./introduction.html#config">introduction</a>, <strong>NOT</strong> with the defaults in your configuration file!
+				</p>
+
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$config</kbd></th>
+									<td><em>array</em></td>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td>The theme instance configuration.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>A Theme instance</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get a Theme instance
+$theme = \Theme::forge(array(
+	'active' => 'custom',
+	'fallback' => 'default',
+	'view_ext' => '.html',
+));
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_view">view($view, $data = array(), $auto_filter = null)</h4>
+				<p>
+					The <strong>view</strong> method loads a view from the currently loaded theme.
+					It will try to load it from the active theme first. If it doesn't exist in the active theme, and a fallback
+					theme is defined, it will load it from the fallback theme instead.
+				</p>
+
+				<p class="note">This uses <a href="../view.html#method_forge">View::forge() </a>to return the view. This means that the Parser package is supported for views defined in themes too.</p>
+
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$view</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td class="description">The view filename. View file names should be given relative to the theme path.</td>
+								</tr>
+								<tr>
+									<th><kbd>$data</kbd></th>
+									<td><em>array</em></td>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td class="description">array of values</td>
+								</tr>
+								<tr>
+									<th><kbd>$auto_filter</kbd></th>
+									<td><em>boolean</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td class="description">set to <em>true</em> or <em>false</em> to set auto encoding, defaults to main config setting (app/config/config.php)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>A new <em>View</em> object</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>\ThemeException, when the requested view file could not be found.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// will load THEMEDIR.'/template/homepage.php' with the default settings
+$view = $theme->view('template/homepage');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_asset">asset($path)</h4>
+				<p>
+					The <strong>asset</strong> method returns the path to the asset requested in $path, relative to the <strong>DOCROOT</strong>.
+					If the path is outside the <strong>DOCROOT</strong>, the fully qualified path is returned.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$path</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The asset requested.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// will return &lt;img src="/THEMEDIR/assets/img/test.png" /&gt;
+$img = \Html::img($theme->asset('img/test.png'));
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<p class="note">Note that there is currently no support for the Asset class, given the static nature of that class.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_option">option($option, $default = null)</h4>
+				<p>
+					The <strong>option</strong> method gives you access to theme options, defined in options array of the theme.info file (if present).
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$option</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of the requested option.</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><em>mixed</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The value to return if the option is not defined.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// returns the defined color option, or 'blue' if no such option exists
+$color = $theme->option('color', 'blue');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_option">set_option($option, $value)</h4>
+				<p>
+					The <strong>set_option</strong> method allows you to set a theme option at runtime.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$option</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of the requested option.</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><em>mixed</em></td>
+									<td><strong>required</strong></td>
+									<td>The value to set.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// set the defined color option to 'blue'
+$theme->set_option('color', 'blue');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<p class="note">Note that you can set runtime values only. There is no method available to update the theme.info file.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add_path">add_path($path)</h4>
+				<p>
+					The <strong>add_path</strong> method allows you to add a theme path at runtime.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$path</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The path to a folder containing themes.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// add the 'mythemes' folder to the theme search paths
+$theme->add_path(DOCROOT.'mythemes');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add_paths">add_paths(array $paths)</h4>
+				<p>
+					The <strong>add_paths</strong> method allows you to add multiple theme paths at runtime.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$paths</kbd></th>
+									<td><em>array</em></td>
+									<td><strong>required</strong></td>
+									<td>The path to a folder containing themes.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// add the 'mythemes' folder to the theme search paths
+$theme->add_paths(
+	array(
+		DOCROOT.'mythemes'
+	),
+);
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_active">active($theme = null)</h4>
+				<p>
+					The <strong>active</strong> method allows you to set the active theme. It will return the active theme definition array.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$theme</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The name of the active theme to select. If <strong>null</strong>, it will return the current active theme.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>\ThemeException, when the requested theme could not be found.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// set the active theme to 'darkglow', and return it's definition
+$active = $theme->active('darkglow');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_fallback">fallback($theme = null)</h4>
+				<p>
+					The <strong>fallback</strong> method allows you to set the fallback theme. It will return the fallback theme definition array.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$theme</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The name of the fallback theme to select. If <strong>null</strong>, it will return the current fallback theme.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>\ThemeException, when the requested theme could not be found.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// set the fallback theme to 'basic', and return it's definition
+$fallback = $theme->fallback('basic');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_find">find($theme)</h4>
+				<p>
+					The <strong>find</strong> method will iterate over the defined search paths to find the theme requested.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$theme</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of the theme to find.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed. Returns the path to the theme if found, or <strong>false</strong> if not.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// find the 'darkglow' theme
+if ($path = $theme->find('darkglow'))
+{
+	// the theme can be found in $path
+}
+else
+{
+	// unable to find the theme
+}
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_all">all()</h4>
+				<p>
+					The <strong>all</strong> method returns an array of all themes in all theme paths, sorted alphabetically.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// fetch all installed themes
+$themes = $theme->all();
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_all_info">all_info($theme = null)</h4>
+				<p>
+					The <strong>all_info</strong> method returns the complete info array for a theme.
+					If no theme is specified, the info of the active theme is returned.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$theme</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The name of the theme.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>\ThemeException, when the requested theme could not be found.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// get the information array for the 'basic' theme.
+$info = $theme->all_info('basic');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<p class="note">
+					If no theme info file could be found, this method Throws \ThemeException if <strong>require_info_file</strong> is
+					set to <strong>true</strong>, or an empty array is returned if <strong>require_info_file</strong> is
+					set to <strong>true</strong>.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_info">info($var, $default = null, $theme = null)</h4>
+				<p>
+					The <strong>info</strong> method returns a specific variable from the theme info array.
+					If no theme is specified, the info array of the active theme is used.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$var</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of the info variable to retrieve.</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><em>mixed</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The value to return if the requested $var does not exist.</td>
+								</tr>
+								<tr>
+									<th><kbd>$theme</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The name of the theme whose info file should be searched.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>\ThemeException, when the requested theme could not be found.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// get the color defined the the 'basic' theme, and if not set, use 'blue'
+$var = $theme->info('color', 'blue', 'basic');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>
