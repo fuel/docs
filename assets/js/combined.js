@@ -460,6 +460,11 @@ panes.core = {
 			"Advanced":			"classes/session/advanced.html"
 		},
 		"Str": 			"classes/str.html",
+		"Theme": {
+			"Introduction":	"classes/theme/introduction.html",
+			"Methods":	"classes/theme/methods.html",
+			"Advanced":	"classes/theme/advanced.html"
+		},
 		// "Unzip":		"todo.html", // dont do this, needs to be cleaned up. forget it exists.
 		"Upload": {
 			"Configuration":	"classes/upload/config.html",

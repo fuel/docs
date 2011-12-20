@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Theme Introduction - Classes - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>Theme class</h2>
+
+			<h3 id="intro">Introduction</h3>
+			<p>
+				The Theme class provides theming to your application.
+			</p>
+			<p>
+				A theme will group theme templates (views) and assets, and allows you to change the look and feel of your application by
+				switching the active theme.
+			</p>
+			<p>
+				Like modules and packages, themes can be stored in multiple locations. You can define the paths to these locations in the
+				configuration file,	or add them to the theme instance at runtime. A theme is identified by it's name, which must be equal
+				to the name of the theme folder	used in one of the theme locations. If the theme is defined in multiple locations,
+				the first one found will be used.
+			</p>
+			<p>
+				Since your themes are likely to have assets (images, javascript or css files), it is advised to store your themes inside the
+				applications <strong>DOCROOT</strong> to provide easy access to these assets.
+				At this time, there is no support for the <a href="../asset.html">Asset</a> class, the <a href="./methods.html#method_asset">asset()</a> method returns a path to your
+				asset relative to the application <strong>DOCROOT</strong>, so it can be used in HTML to reference the asset.
+				It is advised to use the same folder structure for your theme assets as for your global assets, so it would be easy to switch
+				later when the Theme class will provide Asset class support.
+			</p>
+
+			<h3 id="info">Theme information</h3>
+
+			<p>
+				You can provide setup information for your theme through the theme information file.
+				This file has a fixed name for all your themes, which can be configured through the global configuration file. It also has an
+				option to make this file required.
+			</p>
+			<p>
+				The format of an information file follows the same rules as normal configuration files, and supports the same file types.
+				An information file can contain a special section called 'options'. Options can be get or set from your code, and can be used
+				to control certain characteristics of your theme, for example a color used, or a custom css filename to select a color scheme.
+			</p>
+			<p class="note">At this moment, information files are read-only. You can alter the options at runtime, but you can not write them back.</p>
+
+			<h3 id="config">Configuration</h3>
+
+			<p>
+				The Theme class is configured through the <strong>app/config/theme.php</strong> configuration file.
+				A configuration file with the defaults mentioned below is already present in fuel/core/config.
+				You can override this configuration by copying this config file to your application config directory, and modify that file as needed.
+			</p>
+
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Param</th>
+						<th>Type</th>
+						<th>Default</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>active</th>
+						<td>string</td>
+						<td><pre class="php"><code>'default'</code></pre></td>
+						<td>The active theme to use. You can select one later using the <a href="./methods.html#method_active">active()</a> method.</td>
+					</tr>
+					<tr>
+						<th>fallback</th>
+						<td>string</td>
+						<td><pre class="php"><code>'default'</code></pre></td>
+						<td>The fallback theme to use. If a view is not found in the active theme, this theme is used as a fallback. You can select one later using the <a href="./methods.html#method_fallback">fallback()</a> method.</td>
+					</tr>
+					<tr>
+						<th>paths</th>
+						<td>array</td>
+						<td><pre class="php"><code>array()</code></pre></td>
+						<td>The theme search paths. They are searched in the order given. You can add them later using the <a href="./methods.html#method_add_path">add_path()</a> or <a href="./methods.html#method_add_paths">add_paths()</a> methods.</td>
+					</tr>
+					<tr>
+						<th>assets_folder</th>
+						<td>string</td>
+						<td><pre class="php"><code>'assets'</code></pre></td>
+						<td>The folder inside the theme to be used to store assets.  This is relative to the theme's path.</td>
+					</tr>
+					<tr>
+						<th>view_ext</th>
+						<td>string</td>
+						<td><pre class="php"><code>'.html'</code></pre></td>
+						<td>The extension for theme view files.</td>
+					</tr>
+					<tr>
+						<th>info_file_name</th>
+						<td>string</td>
+						<td><pre class="php"><code>'theme.info'</code></pre></td>
+						<td>The theme info file name.</td>
+					</tr>
+					<tr>
+						<th>require_info_file</th>
+						<td>boolean</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>Whether to require a theme info file.</td>
+					</tr>
+					<tr>
+						<th>info_file_type</th>
+						<td>string</td>
+						<td><pre class="php"><code>'php'</code></pre></td>
+						<td>File type of the theme info file.  Possible values: php, ini, json and yaml.</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p>Example config:</p>
+
+			<pre class="php"><code>// Inside app/config/theme.php
+
+return array(
+	'active' => 'default',
+	'fallback' => 'default',
+	'paths' => array(
+		DOCROOT.'themes',
+	),
+	'assets_folder' => 'assets',
+	'view_ext' => '.html',
+	'info_file_name' => 'theme.info',
+	'require_info_file' => false,
+	'info_file_type' => 'php',
+);
+	</code></pre>
+
+			<p>Once you have your settings in place you can start <a href="./methods.html">using</a> the Theme class.</p>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>
