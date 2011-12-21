@@ -59,14 +59,13 @@
 
 	<pre><code>class Controller_Example extends Controller_Template
 {
-
-		public function action_index()
-		{
-	        $data = array();
-			$this->template->title = 'Example Page';
-			$this->template->content = View::forge('test/index', $data);
-		}
-	}</code></pre>
+	public function action_index()
+	{
+		$data = array();
+		$this->template->title = 'Example Page';
+		$this->template->content = View::forge('test/index', $data);
+	}
+}</code></pre>
 
 			<h3>Using the template controller with before()</h3>
 
@@ -77,24 +76,23 @@
 
 	<pre><code>class Controller_Example extends Controller_Template
 {
+	/**
+	 * Make before() compatible with Controller_Template by adding $data = null as a parameter
+	 */
+	public function before($data = null)
+	{
+		parent::before(); // Without this line, templating won't work!
 
-		/**
-		 * Make before() compatible with Controller_Template by adding $data = null as a parameter
-		 */
-		public function before($data = null)
-		{
-			parent::before(); // Without this line, templating won't work!
+		// do stuff
+	}
 
-			// do stuff
-		}
-
-		public function action_index()
-		{
-	        $data = array();
-			$this->template->title = 'Example Page';
-			$this->template->content = View::forge('test/index', $data);
-		}
-	}</code></pre>
+	public function action_index()
+	{
+		$data = array();
+		$this->template->title = 'Example Page';
+		$this->template->content = View::forge('test/index', $data);
+	}
+}</code></pre>
 
 			<h3>Example template</h3>
 
@@ -104,23 +102,23 @@
 			</p>
 
 	<pre><code>&lt;!DOCTYPE html>
-	&lt;html>
-	&lt;head>
-		&lt;meta charset="utf-8">
-		&lt;title>&lt;?php echo $title; ?>&lt;/title>
+&lt;html>
+&lt;head>
+	&lt;meta charset="utf-8">
+	&lt;title>&lt;?php echo $title; ?>&lt;/title>
 
-		&lt;?php echo Asset::css('main.css'); ?>
-	&lt;/head>
-	&lt;body>
-		&lt;div id="wrapper">
-			&lt;h1>&lt;?php echo $title; ?>&lt;/h1>
+	&lt;?php echo Asset::css('main.css'); ?>
+&lt;/head>
+&lt;body>
+	&lt;div id="wrapper">
+		&lt;h1>&lt;?php echo $title; ?>&lt;/h1>
 
-			&lt;div id="content">
-				&lt;?php echo $content; ?>
-			&lt;/div>
+		&lt;div id="content">
+			&lt;?php echo $content; ?>
 		&lt;/div>
-	&lt;/body>
-	&lt;/html></code></pre>
+	&lt;/div>
+&lt;/body>
+&lt;/html></code></pre>
 
 			<h3>Changing the default template file</h3>
 
@@ -132,14 +130,14 @@
 	<pre><code>class Controller_Example extends Controller_Template
 {
 
-		public $template = 'template_admin';
+	public $template = 'template_admin';
 
-		public function action_index()
-		{
-			$this->template->title = 'Example Page';
-			$this->template->content = View::forge('test/index', $data);
-		}
-	}</code></pre>
+	public function action_index()
+	{
+		$this->template->title = 'Example Page';
+		$this->template->content = View::forge('test/index', $data);
+	}
+}</code></pre>
 
 		<h3 id="omit_methods">Omit methods from the Template Controller</h3>
 
@@ -151,26 +149,25 @@
 
 		<pre><code>class Controller_Example extends Controller_Template
 {
+	public $template = 'template_admin';
 
-		public $template = 'template_admin';
+	public function action_index()
+	{
+		$this->template->title   = 'Example Page';
+		$this->template->content = View::forge('test/index', $data);
 
-		public function action_index()
-		{
-			$this->template->title   = 'Example Page';
-			$this->template->content = View::forge('test/index', $data);
+		// this will show content in template
+	}
 
-			// this will show content in template
-		}
+	public function action_example()
+	{
+		$data['title']   = "Example Page";
+		$data['content'] = "Don't show me in the template";
 
-		public function action_example()
-		{
-			$data['title']   = "Example Page";
-			$data['content'] = "Don't show me in the template";
-
-			// returned Response object takes precedence and will show content without template
-			return new Response(View::forge('index/test', $data));
-		}
-	}</code></pre>
+		// returned Response object takes precedence and will show content without template
+		return new Response(View::forge('index/test', $data));
+	}
+}</code></pre>
 
 		</div>
 
