@@ -51,9 +51,8 @@
 			<article>
 				<h4>Setting the Status Header</h4>
 				<p>The status header is treated as a &quot;special&quot; header in Fuel.  You do not set it as you would
-					other headers.  The status header is set as follows in the controller:</p>
-				<pre class="php"><code>$this->response->status = 404;</code></pre>
-				<p>You simply set the <kbd>$status</kbd> variable to the status number for the request.</p>
+					other headers. The status header is set as follows in the controller:</p>
+				<pre class="php"><code>$response = new Repsonse($body, 404);</code></pre>
 			</article>
 
 			<article>
@@ -101,20 +100,24 @@
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// We'll be outputting a PDF
-$this->response->set_header('Content-Type', 'application/pdf');
+							<pre class="php"><code>$response = new Response();
+
+// We'll be outputting a PDF
+$response->set_header('Content-Type', 'application/pdf');
 
 // It will be called downloaded.pdf
-$this->response->set_header('Content-Disposition', 'attachment; filename="downloaded.pdf"');
+$response->set_header('Content-Disposition', 'attachment; filename="downloaded.pdf"');
 
 // Set no cache
-$this->response->set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
-$this->response->set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
-$this->response->set_header('Pragma', 'no-cache');
+$response->set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
+$response->set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
+$response->set_header('Pragma', 'no-cache');
 
 // More examples
-$this->response->set_header('Content-Language', 'en');
-$this->response->set_header('Content-Type', 'text/html; charset=utf-8');</code></pre>
+$response->set_header('Content-Language', 'en');
+$response->set_header('Content-Type', 'text/html; charset=utf-8');
+
+return $response;</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -142,7 +145,7 @@ $this->response->set_header('Content-Type', 'text/html; charset=utf-8');</code><
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$this->response->send_headers();</code></pre>
+							<pre class="php"><code>$response->send_headers();</code></pre>
 						</td>
 					</tr>
 					</tbody>
