@@ -92,8 +92,7 @@ public function action_404()
 	$data['title'] = $messages[array_rand($messages)];
 
 	// Set a HTTP 404 output header
-	$this->response->status = 404;
-	$this->response->body = View::forge('welcome/404', $data);
+	return Response(View::forge('welcome/404', $data), 404);
 }</code></pre>
 
 			<p>
@@ -130,24 +129,23 @@ public function action_my404()
 		// display your general 404 page
 		$messages = array('Aw, crap!', 'Bloody Hell!', 'Uh Oh!', 'Nope, not here.', 'Huh?');
 		$data['title'] = $messages[array_rand($messages)];
-		$this->response->status = 404;
-		$this->response->body = View::forge('welcome/404', $data);
+		return Response(View::forge('welcome/404', $data), 404);
 	}
 }</code></pre>
-			
+
 			<h3 id="throw_500">Throwing a 500</h3>
-			
+
 			<p>
 				There may be moments where your applications simply need to stop and show an error to
-				indicate that something has gone wrong on the server. Normally this is a 
-				<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error">500 Internal 
+				indicate that something has gone wrong on the server. Normally this is a
+				<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error">500 Internal
 				Server Error</a>.
 			</p>
-			
+
 			<p>
 				Similar to throwing a 404, one can throw a 500 error.
 			</p>
-			
+
 			<pre class="php"><code>throw new HttpServerErrorException;</code></pre>
 
 		</div>
