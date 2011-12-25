@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ja">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -19,28 +19,28 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
 		
 			<h2>コントローラ</h2>
@@ -55,13 +55,13 @@
 			</p>
 	
             <h3 id="creating_a_controller">コントローラを生成する</h3>
-	
+
 			<p>
                 FuelPHP では、コントロータは <kbd>fuel/app/classes/controller</kbd> ディレクトリに置きます。
                 任意ですが <kbd>Controller</kbd> クラスを継承し、<kbd>"Controller_"</kbd> というプレフィックスを付けます。
                 以下は "example" コントローラの例です:
 			</p>
-	
+
 			<pre class="php"><code>class Controller_Example extends Controller
 {
 
@@ -71,7 +71,7 @@
 		return Response::forge(View::forge('welcome/index'));
 	}
 }</code></pre>
-	
+
 			<p>
                 URL を通じてリクエストされたメソッドは、<kbd>"action_"</kbd> というプレフィックスを付けます。
                 これは PHP のコンストラクタで使用する名前による制限を受けないことを意味します。
@@ -79,31 +79,29 @@
                 しかし、これはコントローラに公開メソッドを与えることができることも意味します。
                 このメソッドは他のクラスからも使用できますが、ルーティングできません。
 			</p>
-	
-            <h4 id="more_parameters">URL から取得したパラメータを使用する</h4>
-	
-			<p>Controller_Example で 次のようなメソッドを持っているとします: </p>
-	
+
+			<h4 id="more_parameters">Using more parameters from the URL</h4>
+
+			<p>Let say we also have the following method in our Controller_Example: </p>d
 	<pre class="php"><code>public function action_name_to_upper($name_1, $name_2)
 {
 	$data['name_1'] = strtoupper($name_1);
 	$data['name_2'] = strtoupper($name_2);
 	return View::forge('test/name_to_upper', $data);
 }</code></pre>
-	
+
 			<p>
                 <kbd>www.yoursite.com/example/name_to_upper/fuel/php</kbd> を使用してこのメソッドを呼び出す場合、
                 <kbd>test/name_to_upper</kbd> ビューを返します。"Fuel" や "PHP" は <var>$data</var> 配列内の
 				<var>$name_1</var> や <var>$name_2</var> という値として渡されます。
 			</p>
-	
-			<h4 id="controller_in_subdir">サブディレクトリのコントローラ　 </h4>
-	
+
+			<h4 id="controller_in_subdir">Controller in a Sub-Directories</h4>
 			<p>
                 <kbd>fuel/app/classes/controller/subdir/test.php</kbd> のようなサブディレクトリにコントローラを置くこともできます。
                 この場合、コントローラは次のようにクラス名にディレクトリ名を含まなければなりません: <var>Controller_Subdir_Test</var>
 			</p>
-	
+
 			<p>
                 サブディレクトリは深さに制限がありません。そのため、
                 <kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd> はクラス名が
@@ -111,13 +109,13 @@
 			</p>
 	
 			<h3 id="special_methods">特別なコントローラメソッド</h3>
-	
+
 			<p class="note">
                 クラスのコンストラクタ <kbd>__construct()</kbd> をオーバーライドしないでください。
                 代わりに <kbd>before()</kbd> メソッドを使用します。
                 まず始めにコアからベースコントローラを学習しない限り、どのように Fuel を壊さないように継承するかを理解できません。
 			</p>
-	
+
 			<article>
 				<h4 id="action_index">action_index()</h4>
 				<p>
@@ -125,7 +123,7 @@
                     上記の例では、<kbd>www.yoursite.com/example/index</kbd> は、<kbd>www.yoursite.com/example</kbd> と同じになります。
 				</p>
 			</article>
-	
+
 			<article>
 				<h4 id="before">before()</h4>
                 <p>
@@ -133,7 +131,7 @@
                     たとえメソッドが存在しない場合出あってもです。
 				</p>
 			</article>
-	
+
 			<article>
 				<h4 id="after">after($response)</h4>
 				<p>
@@ -142,7 +140,7 @@
 					<a href="#response"><var>$response</var></a> パラメータが必要です。</a>
 				</p>
 			</article>
-	
+
 			<article>
 				<h4 id="router">router($method, $params)</h4>
 				<p>
@@ -155,7 +153,7 @@
 			</article>
 	
 			<h3 id="special_propperties">特別なコントローラプロパティ</h3>
-	
+
 			<article>
 				<h4 id="request">$request</h4>
 				<p>
@@ -177,14 +175,14 @@
 			<p>
                 オートローダのお陰で、クラス定義で名前以外のものを記述しないで他のコントローラを継承できます:
 			</p>
-			
+
 			<pre class="php"><code>class Controller_Example extends Controller_Welcome
 {
 
 	// your methods
 
 }</code></pre>
-	
+
 			<p>
                 これは最初はおかしく感じるかもしれません。しかし、コントローラを継承することで、簡単にメソッドを共有し、
                 実際のベースコントローラを生成できます。
@@ -199,7 +197,7 @@
                 しかし、ユーザが管理者としてログインされているかどうかをチェックする <kbd>before()</kbd> メソッドを含むこともできます。
                 他のすべてのコントローラは管理者パネルでこれを継承し、自動的に安全になります。
 			</p>
-	
+
 			<pre class="php"><code>class Controller_Admin extends Controller
 {
 
@@ -220,12 +218,12 @@
 		// log in the user
 	}
 }</code></pre>
-	
+
 			<p>
                 このコードは <kbd>fuel/app/classes/controller/admin.php</kbd> にあり、他のコントローラはすべて
                 <kbd>fuel/app/classes/controller/admin/</kbd> にあります。次のようになります:
 			</p>
-	
+
 			<pre class="php"><code>class Controller_Admin_User extends Controller_Admin
 {
 

@@ -117,13 +117,25 @@
 
 				<pre class="php"><code>namespace Model;
 
-				<pre class="php"><code>
+				<pre class="php"><code>class Model_Post extends Orm\Model { 
 
-class Model_Post extends Orm\Model { 
+	protected static $_properties = array(
+		'id',
+		'title',
+		'body',
+		'created_at',
+		'updated_at'
+	);
 	
 	protected static $_observers = array(
-		'Orm\Observer_CreatedAt' => array('before_insert'),
-		'Orm\Observer_UpdatedAt' => array('before_save'),
+		'Orm\Observer_CreatedAt' => array(
+			'events' => array('before_insert'),
+			'mysql_timestamp' => false,
+		),
+		'Orm\Observer_UpdatedAt' => array(
+			'events' => array('before_save'),
+			'mysql_timestamp' => false,
+		),
 	);
 
 }
@@ -171,9 +183,7 @@ class Create_posts
 				<p>That will create a simple Model that uses Fuel\Core\Model_Crud. It will look like this:</p>
 >>>>>>> 7ddee7ea9948cd5c6da5c3ee367ba8b56467a7d0
 
-				<pre class="php"><code>
-
-class Model_Post extends \Model_Crud
+				<pre class="php"><code>class Model_Post extends \Model_Crud
 {
 
 	protected static $_table_name = 'posts';
