@@ -59,14 +59,6 @@
 				to the name of the theme folder	used in one of the theme locations. If the theme is defined in multiple locations,
 				the first one found will be used.
 			</p>
-			<p>
-				Since your themes are likely to have assets (images, javascript or css files), it is advised to store your themes inside the
-				applications <strong>DOCROOT</strong> to provide easy access to these assets.
-				At this time, there is no support for the <a href="../asset.html">Asset</a> class, the <a href="./methods.html#method_asset">asset()</a> method returns a path to your
-				asset relative to the application <strong>DOCROOT</strong>, so it can be used in HTML to reference the asset.
-				It is advised to use the same folder structure for your theme assets as for your global assets, so it would be easy to switch
-				later when the Theme class will provide Asset class support.
-			</p>
 
 			<h3 id="info">Theme information</h3>
 
@@ -81,6 +73,36 @@
 				to control certain characteristics of your theme, for example a color used, or a custom css filename to select a color scheme.
 			</p>
 			<p class="note">At this moment, information files are read-only. You can alter the options at runtime, but you can not write them back.</p>
+
+			<h3 id="assets">Theme assets</h3>
+
+			<p>
+				You theme is likely to have assets (images, javascript or css files). Assets have to be installed inside the <strong>DOCROOT</strong>
+				so that the browser can load them. You can elect to install the assets inside the theme directory, which implies this has to be inside
+				the <strong>DOCROOT</strong>, or have the theme files outside the <strong>DOCROOT</strong>, and the theme assets in a separate folder
+				inside the <strong>DOCROOT</strong>.
+			</p>
+			<p>
+				The following logic is used to determine the location of the theme asset files:
+				<ul>
+					<li>
+						If the theme folder is <u>inside</u> the <strong>DOCROOT</strong>, and it contains a folder with the name of the configured
+						<strong>assets_folder</strong>, this will be the URL for all your theme assets.
+					</li>
+					<li>
+						If the theme folder is <u>inside</u> the <strong>DOCROOT</strong>, and it does NOT contains a folder with the name of the configured
+						<strong>assets_folder</strong>, the <strong>assets_folder</strong> will be assumed to be the root of all your theme assets,
+						to which the name of the theme will be appended.
+					</li>
+					<li>
+						If the theme folder is <u>outside</u> the <strong>DOCROOT</strong>, the <strong>assets_folder</strong> will be assumed to be the
+						root of all your theme assets, to which the name of the theme will be appended.
+					</li>
+				</ul>
+
+				It is advised to use the same folder structure for your theme assets as for your global assets, so it would be easy to switch
+				later when the Theme class will provide Asset class support.
+			</p>
 
 			<h3 id="config">Configuration</h3>
 
