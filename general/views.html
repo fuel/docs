@@ -125,13 +125,15 @@
 	{
 		$view = \View::forge('example');
 
-		// add it unfiltered just like you added
 		// add it filtered, outputs: &amp;lt;strong&amp;gt;not bold because filtered&amp;lt;/strong&amp;gt;
 		$view->title = '&lt;strong&gt;not bold because filtered&lt;/strong&gt;';
 
 		// add it unfiltered just like you added
 		$view->set('title', '&lt;strong&gt;not bold because filtered&lt;/strong&gt;', false);
 
+		// another way to add it unfiltered just like you added
+		$view->set_safe('title', '&lt;strong&gt;not bold because filtered&lt;/strong&gt;');
+		
 		return $view;
 	}
 }</code></pre>
