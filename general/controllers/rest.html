@@ -43,13 +43,12 @@
 		
 		<div id="main">
 	
-			<h2 id="rest_controller">Rest Controller</h2>
+			<h2 id="rest_controller">Restコントローラー</h2>
 	
-			<h3 id="what_is_rest">What is a Rest controller?</h3>
+			<h3 id="what_is_rest">Restコントローラーとは?</h3>
 	
 			<p>
-				A Rest Controller is an extension of the Base Controller which has RESTful support built in.
-				This will allow you to build API's with ease.
+				Restコントローラーはベースのコントローラーを継承したもので、RESTfulなAPIを簡単に構築をすることが出来るようになります。 
 			</p>
 	
 			<p class="note">
@@ -58,12 +57,12 @@
 				<kbd>parent::before()</kbd> (or router) for it to keep working properly.
 			</p>
 	
-			<h3 id="usage">Using the Rest controller</h3>
+			<h3 id="usage">Restコントローラーを使う</h3>
 	
 			<p>
-				Like all Controllers, you create a class in the <kbd>fuel/app/classes/controller</kbd> directory.
-				They need to extend the <kbd>Controller_Rest</kbd> class and are prefixed by default by "Controller_".
-				Below is an example of the controller "test":
+				すべてのコントローラと同様に、<kbd>fuel/app/classes/controller</kbd>ディレクトリ内にクラスを作成します。
+				それらは<kbd>Controller_Rest</kbd>クラスを継承し、"Controller_"というプレフィックスを付けます。
+				以下は "test"コントローラの例です:
 			</p>
 	
 			<pre class="php"><code>class Controller_Test extends Controller_Rest
@@ -81,17 +80,17 @@
 	}
 }</code></pre>
 	
-			<p>This controller method "list" is called by the following URL:</p>
+			<p>このコントローラのメソッド"list"は、次のURLによって呼び出されます。</p>
 	
 			<pre>http://localhost/test/list.json?foo=bar</pre>
 	
-			<p>You'll notice that instead of the usual "action_" prefix the Rest Controller uses the HTTP method as a prefix. The HTTP methods that Rest Controller supports are the following:</p>
+			<p>通常の"action_"プレフィックスの代わりに接頭辞としてHTTPメソッドを使用していることがわかります。RestコントローラがサポートするHTTPメソッドは、次のとおりです。</p>
 			
 			<table class="config">
 				<tbody>
 					<tr class="header">
-						<th>HTTP Method</th>
-						<th>Description</th>
+						<th>HTTPメソッド</th>
+						<th>説明</th>
 					</tr>
 					<tr>
 						<th>GET</th>
@@ -124,7 +123,7 @@
 				</tbody>
 			</table>
 	
-			<h3 id="output">Output</h3>
+			<h3 id="output">出力</h3>
 	
 			<pre class="javascript"><code>{
 	"foo":"bar",
@@ -133,11 +132,12 @@
 }</code></pre>
 	
 			<p>
-				This is output as json because a file extension was defined in the URL. By default, responses will be
-				formatted as XML or whichever format is set in <em>fuel/core/config/rest.php</em>.
+				ファイル拡張子がURLで定義されているので、これはJSONとして出力されます。
+				デフォルトでは、XMLフォーマット出力されるか、
+				<em>fuel/core/config/rest.php</em>に設定されているフォーマットで出力されます。
 			</p>
 	
-			<h3 id="formats">Supported Formats</h3>
+			<h3 id="formats">対応フォーマット</h3>
 	
 			<ul>
 				<li><strong>xml</strong> – almost any programming language can read XML</li>
@@ -147,16 +147,17 @@
 	
 				<li><strong>php</strong> – Representation of PHP code that can be <kbd>eval()</kbd>'ed</li>
 				<li><strong>serialize</strong> – Serialized data that can be unserialized in PHP</li>
+
 			</ul>
 	
 	
-			<h3 id="special_methods">Special controller methods</h3>
+			<h3 id="special_methods">特殊なコントローラのメソッド</h3>
 	
 			<article>
 				<h4 id="response">response($data = array(), $http_code = 200)</h4>
 				<p>
-					This method is used to send your response data through the formatting and output logic. You can
-					optionally set a status code as the 2nd parameter.
+					このメソッドは、フォーマットと出力ロジックを介して応答データを送信するために使用されます。
+					必要に応じて、2番目のパラメータとしてステータスコードを設定することができます。
 				</p>
 			</article>
 
