@@ -388,7 +388,11 @@ panes.core = {
 			"Usage":			"classes/agent/usage.html",
 		},
 		"Arr":			"classes/arr.html",
-		"Asset":		"classes/asset.html",
+		"Asset": {
+			"Configuration":	"classes/asset/config.html",
+			"Usage":			"classes/asset/usage.html",
+			"Advanced":			"classes/asset/advanced.html"
+		},
 		"Autoloader":	"classes/autoloader.html",
 		"Cache": {
 			"Configuration":	"classes/cache/config.html",
