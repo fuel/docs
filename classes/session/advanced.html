@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,52 +20,52 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Session Class</h2>
-	
+
 			<p>The session class allows you to maintain state for your application in the stateless environment of the web.
 				It allows you to store variables on the server using a variety of storage solutions, and recall these variables on the next page request.</p>
-	
+
 			<h3 id="manual_loading">Manual loading</h3>
-	
+
 			<p>
 				For most cases, it is sufficient to configure the desired driver, and use the methods documented on the <a href="./usage.html">usage</a> page.
 				However, there are situations where you would like more control over the way sessions behave.
 				You might want to use a different session driver than is configured in the session configuration file.
-				Or you have a need for multiple drivers concurrently. This is where the <kbd>factory</kbd> method comes in.
+				Or you have a need for multiple drivers concurrently. This is where the <kbd>forge</kbd> method comes in.
 			</p>
 			<p>
-				The <kbd>factory</kbd> method returns an instance of the session class, using the driver defined in the configuration file or via the parameter.
+				The <kbd>forge</kbd> method returns an instance of the session class, using the driver defined in the configuration file or via the parameter.
 				You can use the methods documented on the <a href="./usage.html">usage</a> page on the object returned, using dynamic calls.
 			</p>
-	
+
 			<article>
-				<h4 class="method" id="method_factory">factory($config = array())</h4>
+				<h4 class="method" id="method_forge">forge($config = array())</h4>
 				<p>
-					The <strong>factory</strong> method allows you to manually instantiate a session driver.
+					The <strong>forge</strong> method allows you to manually instantiate a session driver.
 				</p>
 				<table class="method">
 					<tbody>
@@ -86,7 +86,7 @@
 									<th><kbd>$config</kbd></th>
 									<td><i>optional</i></td>
 									<td>
-										You can select the driver of your choice by simply passing the name of the driver to the factory method.
+										You can select the driver of your choice by simply passing the name of the driver to the forge method.
 										If you require more custom configuration, define a $config array, using the parameters documented on the <a href="./config.html">configuration</a> page.
 										Configuration settings you pass here will override the ones defined in the configuration file.
 									</td>
@@ -125,15 +125,15 @@ $session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3
 					</tr>
 					</tbody>
 				</table>
-	
+
 				<p class="note">
 					<kbd>Please note:</kbd> when you want to use multiple session drivers at the same time, the <kbd>cookie_name</kbd> for each of these driver instances must be unique.
 					If you attempt to load a driver using a <kbd>cookie_name</kbd> that is already in use, and the instance using it uses the same driver as you are trying to load, that instance is reused.
 					If the instance is using a different driver, an exception is thrown.
 				</p>
-	
+
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_rotate">rotate()</h4>
 				<p>
@@ -168,9 +168,9 @@ $session->rotate();
 					</tr>
 					</tbody>
 				</table>
-	
+
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get_config">get_config()</h4>
 				<p>
@@ -218,9 +218,9 @@ $cookiename = $session->get_config('cookie_name');
 					</tr>
 					</tbody>
 				</table>
-	
+
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_set_config">set_config()</h4>
 				<p>
@@ -268,23 +268,23 @@ $session->set_config('expiration_time', 7200);
 					</tr>
 					</tbody>
 				</table>
-	
+
 			</article>
-	
+
 			<h2>Using sessions with Flash</h2>
-	
+
 			<p>
 				One of the problems with using Flash objects in websites, is that when they interact with your web application, they don't send the cookies
 				back that have been stored in the browser. Due to this problem, it is difficult to make them aware of the session state of the application.
 			</p>
-	
+
 			<p>
 				To solve this problem, the Session class allows you to pass the cookie to the application using a POST variable.
 				You can set the name of the variable using the configuration setting 'post_cookie_name'. If the Session class finds a $_POST variable with this name,
 				it will assume it contains the session cookie, and will not use the session cookie. This allows you to copy the contents of the session cookie
 				client-side into the POST variable using a bit of javascript.
 			</p>
-	
+
 							<pre class="javascript"><code>// function to get the session cookie
 // you can use or own, or use the one your favorite javascript framework provides
 function getCookie(c_name)
@@ -337,9 +337,9 @@ $(function()
 	});
 }
 </code></pre>
-	
+
 			<h3 id="concurrency">Concurrency</h3>
-	
+
 			<p>
 				When talking about sessions, session cookies, and their behaviour, it is important to understand how they work
 				and what the possibilities and limitations are.
