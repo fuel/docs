@@ -1,3 +1,139 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+		var class_prefix = "Html::";
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Html - Classes - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>Html Class</h2>
+
+			<p>Htmlクラスは、HTMLタグのほぼすべてに対応するHTMLラッパーです。</p>
+
+			<h3>Doctypes</h3>
+
+			<p>doctypeはすべて<kbd>fuel/core/config/doctypes.php</kbd>に記述されており、同設定ファイルはあらかじめインクルードされています。</p>
+
+			<article>
+				<h4 class="method" id="method_anchor">anchor($href, $text, $attributes = array(), $secure = null)</h4>
+				<p><strong>anchor</strong>メソッドは、HTMLのanchorタグを返します。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>パラメタ</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>パラメタ</th>
+									<th>デフォルト</th>
+									<th class="description">解説</th>
+								</tr>
+								<tr>
+									<th><kbd>$href</kbd></th>
+									<td><i>必須</i></td>
+									<td>ターゲットurl</td>
+								</tr>
+								<tr>
+									<th><kbd>$text</kbd></th>
+									<td><i>必須</i></td>
+									<td>アンカー値</td>
+								</tr>
+								<tr>
+									<th><kbd>$attributes</kbd></th>
+									<td><strong>false</strong></td>
+									<td>anchorタグに適用される属性の配列</td>
+								</tr>
+								<tr>
+									<th><kbd>$secure</kbd></th>
+									<td><i>null</i></td>
+									<td>生成されるURLが、falseだとhttp、trueならhttpsになります。</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>返り値</th>
+						<td>正しくフォーマットされたanchorタグの文字列（属性配列が指定されているならその属性も）。</td>
+					</tr>
+					<tr>
+						<th>例</th>
+						<td>
+							<pre class="php"><code>//返り値 &lt;a href="http://www.domain.com/example"&gt;Example&lt;/a&gt;
+echo Html::anchor('example', 'Example');
+
+//返り値 &lt;a href="http://www.otherdomain.com/example"&gt;Example&lt;/a&gt;
+echo Html::anchor('http://www.otherdomain.com/example', 'Example');
+
+//返り値 &lt;a href="http://www.domain.com/example" id="a1" class="sample" style="color:red;"&gt;Example&lt;/a&gt;
+echo Html::anchor('example', 'Example', array('id' => 'a1', 'class' => 'sample', 'style' => 'color:red'));
+
+//返り値 &lt;a href="https://www.domain.com/example" id="a1" class="sample" style="color:red;"&gt;Example&lt;/a&gt;
+echo Html::anchor('example', 'Example', array('id' => 'a1', 'class' => 'sample', 'style' => 'color:red'), true);</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_mail_to">mail_to($email, $text, $subject = null, $attr = array())</h4>
+				<p><strong>mail_to</strong>メソッドは、そのターゲットとしてmailtoをもつHTMLのanchor tagを返します。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>パラメタ</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$email</kbd></th>
