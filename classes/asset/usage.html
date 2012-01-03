@@ -98,7 +98,7 @@
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>void</td>
+							<td>current instance</td>
 						</tr>
 						<tr>
 							<th>Example</th>
@@ -117,7 +117,15 @@ Asset::add_path('resources/template_2/');
 Asset::add_path('assets/global/', array('css', 'js', 'img'));
 Asset::add_path('assets/icons/', 'img');
 Asset::add_path('assets/images/', 'img');
-Asset::add_path('assets/css/', 'css');</code></pre>
+Asset::add_path('assets/css/', 'css');
+
+/*
+ * You can chain the calls as well.
+ */
+Asset::add_path('resources/templates/dark/')
+	->add_path('resources/templates/light')
+	->add_path('resources/templates/brown');
+</code></pre>
 							</td>
 						</tr>
 						</tbody>
@@ -167,7 +175,7 @@ Asset::add_path('assets/css/', 'css');</code></pre>
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>string</td>
+							<td>Rendered asset string or current instance when adding to group.</td>
 						</tr>
 						<tr>
 							<th>Example</th>
@@ -287,7 +295,7 @@ $path = Asset::find_file('icon.png', 'img','icons/');</code></pre>
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>string</td>
+							<td>Rendered asset string or current instance when adding to group.</td>
 						</tr>
 						<tr>
 							<th>Example</th>
@@ -349,7 +357,7 @@ Asset::img(array('bob.jpg', 'joe.jpg', 'sally.jpg'), array('class' => 'thumbnail
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>string</td>
+							<td>Rendered asset string or current instance when adding to group.</td>
 						</tr>
 						<tr>
 							<th>Example</th>
@@ -416,7 +424,7 @@ echo Asset::js('jquery.js');</code></pre>
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>void</td>
+							<td>The current instance</td>
 						</tr>
 						<tr>
 							<th>Example</th>
@@ -433,7 +441,15 @@ Asset::remove_path('resources/template_2/');
 Asset::remove_path('assets/global/', array('css', 'js', 'img'));
 Asset::remove_path('assets/icons/', 'img');
 Asset::remove_path('assets/images/', 'img');
-Asset::remove_path('assets/css/', 'css');</code></pre>
+Asset::remove_path('assets/css/', 'css');
+
+/*
+ * Or chain the calls.
+ */
+Asset::remove_path('resources/templates/dark/')
+	->remove_path('resources/templates/light')
+	->remove_path('resources/templates/brown');
+</code></pre>
 							</td>
 						</tr>
 						</tbody>
