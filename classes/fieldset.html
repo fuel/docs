@@ -257,6 +257,134 @@ $form->add('gender', '', array('options' => $ops, 'type' => 'checkbox', 'value' 
 			</article>
 
 			<article>
+				<h4 class="method" id="method_add_before">add_before($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
+				<p>Creates a Fieldset_Field instance and adds it to the current Fieldset, just before an already defined field identified by <strong>$fieldname</strong>.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$name</kbd></th>
+										<td><i>required</i></td>
+										<td>HTML name attribute, also used for referencing the field within the Fieldset</td>
+									</tr>
+									<tr>
+										<th><kbd>$label</kbd></th>
+										<td><pre class="php"><code>''</code></pre></td>
+										<td>Field label</td>
+									</tr>
+									<tr>
+										<th><kbd>$attributes</kbd></th>
+										<td><pre class="php"><code>array()</code></pre></td>
+										<td>HTML attributes as an associative array</td>
+									</tr>
+									<tr>
+										<th><kbd>$rules</kbd></th>
+										<td><pre class="php"><code>array()</code></pre></td>
+										<td>Validation rules to be applied to this Field</td>
+									</tr>
+									<tr>
+										<th><kbd>$fieldname</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Already defined field to which this field must be prepended</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>\Fieldset_Field Object</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Radio button field, to be added before the 'location' field.
+$ops = array('male', 'female');
+$form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'value' => 'true'), array(), 'location');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add_after">add_after($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
+				<p>Creates a Fieldset_Field instance and adds it to the current Fieldset, just after an already defined field identified by <strong>$fieldname</strong>.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$name</kbd></th>
+										<td><i>required</i></td>
+										<td>HTML name attribute, also used for referencing the field within the Fieldset</td>
+									</tr>
+									<tr>
+										<th><kbd>$label</kbd></th>
+										<td><pre class="php"><code>''</code></pre></td>
+										<td>Field label</td>
+									</tr>
+									<tr>
+										<th><kbd>$attributes</kbd></th>
+										<td><pre class="php"><code>array()</code></pre></td>
+										<td>HTML attributes as an associative array</td>
+									</tr>
+									<tr>
+										<th><kbd>$rules</kbd></th>
+										<td><pre class="php"><code>array()</code></pre></td>
+										<td>Validation rules to be applied to this Field</td>
+									</tr>
+									<tr>
+										<th><kbd>$fieldname</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Already defined field to which this field must be appended</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>\Fieldset_Field Object</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Radio button field, to be added after the 'location' field.
+$ops = array('male', 'female');
+$form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'value' => 'true'), array(), 'location');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_field">field($name = null)</h4>
 				<p>Gets one or all Fieldset_Field instances for the current Fieldset.</p>
 				<table class="method">

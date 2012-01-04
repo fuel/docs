@@ -86,6 +86,14 @@
 										<th>Description</th>
 									</tr>
 									<tr>
+										<th><kbd>$name</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>
+											Name of the instance requested. If it doesn't exist, it will be forged. If no name is
+											given, the default instance is returned.
+										</td>
+									</tr>
+									<tr>
 										<th><kbd>$config</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
 										<td>
@@ -106,7 +114,7 @@
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>// instantiate a asset object with a custom search path
-$asset = Asset::forge(array('paths' => 'custom/assets/');
+$asset = Asset::forge('custom', array('paths' => 'custom/assets/');
 
 // define some css files
 $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code></pre>
@@ -117,7 +125,7 @@ $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code>
 				</article>
 
 				<article>
-					<h4 class="method" id="method_instance">instance($name = null, $config = array())</h4>
+					<h4 class="method" id="method_instance">instance($name = null)</h4>
 					<p>
 						The <strong>instance</strong> method allows you load a named instance of the asset class. If this instance does not
 						exist, it will be forged using the configuration array passed.
@@ -141,18 +149,8 @@ $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code>
 										<th><kbd>$name</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-											Name of the instance requested. If it doesn't exist, it will be forged. If no name is
+											Name of the instance requested. If it doesn't exist, false is returned. If no name is
 											given, the default instance is returned.
-										</td>
-									</tr>
-									<tr>
-										<th><kbd>$config</kbd></th>
-										<td><pre class="php"><code>array()</code></pre></td>
-										<td>
-											You can pass a custom configuration when forging a new asset instance. The configuration array
-											has the same structure as the asset configuration file. The custom config will be merged with
-											a default configuration as documented <a href="./config.html">here</a> and with the
-											configuration in your asset config file, so you only have to pass values you want changed.
 										</td>
 									</tr>
 								</table>
@@ -160,13 +158,13 @@ $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code>
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>object - The named asset object.</td>
+							<td>mixed - The named asset instance or false if the instance does not exist.</td>
 						</tr>
 						<tr>
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>// instantiate a named asset object with a custom search path
-Asset::instance('custom', array('paths' => 'custom/assets/'));
+Asset::forge('custom', array('paths' => 'custom/assets/'));
 
 // define some css files using the defined instance
 Asset::instance('custom')->css(array('header.css', 'footer.css'), array(), 'layout', false);</code></pre>

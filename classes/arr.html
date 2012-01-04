@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,34 +20,34 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Arr Class</h2>
-	
+
 			<p>The arr class is a set of helper functions for working with arrays.</p>
-	
+
 			<article>
 				<h4 class="method" id="method_to_assoc">to_assoc($arr)</h4>
 				<p>The <strong>to_assoc</strong> method turns a non-associative array into an associative array if it has an even number of segments.  If it has an odd number of segments it returns <kbd>null</kbd>.</p>
@@ -102,7 +102,7 @@ null
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_assoc_to_keyval" class="method">assoc_to_keyval($assoc = null, $key_field = null, $val_field = null)</h4>
 				<p>The <strong>assoc_to_keyval</strong> method turns a multi-dimensional array into a key=>val array.</p>
@@ -171,7 +171,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_average" class="method">average($array = null)</h4>
 				<p>The <strong>average</strong> method takes all values of an array and returns the average value.</p>
@@ -211,7 +211,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_flatten" class="method">flatten($array, $glue = ':', $reset = true)</h4>
 				<p>The <strong>flatten</strong> method flattens a multi-dimensional array (both associative and indexed) down into a 1 dimensional array.</p>
@@ -281,7 +281,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_flatten_assoc" class="method">flatten_assoc($array, $glue = ':', $reset = true)</h4>
 				<p>The <strong>flatten_assoc</strong> method flattens a multi-dimensional associative array down into a 1 dimensional associative array.</p>
@@ -364,7 +364,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_filter_prefixed" class="method">filter_prefixed($array, $prefix = 'prefix_', $remove_prefix = true)</h4>
 				<p>The <strong>filter_prefixed</strong> method filters the array on a prefix. It returns an array where the key starts with the specified prefix.</p>
@@ -439,7 +439,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_filter_keys" class="method">filter_keys($array, $keys, $remove = false)</h4>
 				<p>The <strong>filter_keys</strong> method filters a given array to a set of keys. It returns an array that contains only the items whose keys are in the <kbd>$keys</kbd> array. Can also remove the specified <kbd>$keys</kbd> from an array.</p>
@@ -514,7 +514,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_get" class="method">get($array, $key, $default = false)</h4>
 				<p>The <strong>get</strong> method returns the element of the given array using dot-notation, or a default if it is not set.</p>
@@ -582,7 +582,7 @@ echo Arr::get($person, "location.city", "Unknown City");
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_set" class="method">set(&amp;$array, $key, $value = false)</h4>
 				<p>The <strong>set</strong> method sets the element of the given array using dot-notation.<br />
@@ -651,7 +651,7 @@ Arr::set($person, array("name" => "John", "location.city" => "Philadelphia"));</
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_delete" class="method">delete(&amp;$array, $key)</h4>
 				<p>The <strong>delete</strong> method the element of the given array using dot-notation.<br />
@@ -716,7 +716,7 @@ $result = Arr::delete($person, array("name", "location.doesnotexist"));
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_insert" class="method">insert(Array &amp;$original, $value, $pos)</h4>
 				<p>The <strong>insert</strong> method is mainly an array_splice alias with added error checking <br />
@@ -813,7 +813,70 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
+			<article>
+				<h4 id="method_insert_before_key" class="method">insert_before_key(Array &amp;$original, $value, $key)</h4>
+				<p>The <strong>insert_before_key</strong> method adds an element to an array before the key specified <br />
+				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$original</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to use</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>required</em></td>
+									<td>The value(s) to insert</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td>The key before which to insert</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$people = array("Jack", "Jill");
+
+Arr::insert_before_key($people, "Humpty", 1 );
+print_r( $people );
+
+// Returns
+Array
+(
+	[0] => Jack
+	[1] => Humpty
+	[2] => Jill
+)
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<article>
 				<h4 id="method_insert_after_key" class="method">insert_after_key(Array &amp;$original, $value, $key)</h4>
 				<p>The <strong>insert_after_key</strong> method adds an element to an array after the key specified <br />
@@ -859,7 +922,7 @@ Array
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$people = array("Jack", "Jill");
-	
+
 Arr::insert_after_key($people, "Humpty", 1 );
 print_r( $people );
 
@@ -876,7 +939,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_insert_after_value" class="method">insert_after_value(Array &amp;$original, $value, $search)</h4>
 				<p>The <strong>insert_after_value</strong> method adds an element to an array after the value specified <br />
@@ -939,7 +1002,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_sort" class="method">sort($array, $key, $order = 'asc', $sort_flags = SORT_REGULAR)</h4>
 				<p>The <strong>sort</strong> method sorts a multi-dimensional array by its values.</p>
@@ -1042,9 +1105,9 @@ array(
 					</tbody>
 				</table>
 			</article>
-	
+
 			<h3 id="procedural_helpers">Procedural helpers</h3>
-	
+
 			<article>
 				<h4 id="function_in_arrayi" class="method" data-class="">in_arrayi($needle, $haystack)</h4>
 				<p>The <strong>in_arrayi</strong> function is a case-insensitive version of in_array.</p>
