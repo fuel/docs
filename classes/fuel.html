@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,114 +44,114 @@
 
 		<div id="main">
 
-			<h2>Fuel Class</h2>
+			<h2>Fuelクラス</h2>
 
 			<p>
-				The Fuel class contains the core methods of the Fuel framework.
-				The public methods in this class that can be used in your application are documented here.
-				All other methods are for internal use only, and should not be used.</p>
+				Fuelクラスには、Fuelフレームワークのコアメソッドが含まれています。
+				本ドキュメントでは、アプリケーションで利用可能な同クラスのpublicメソッドを纏めています。
+				ここに記していないメソッドはクラス内部でのみ利用されるものなので、利用してはいけません。</p>
 
-			<h3 id="class_constants">Class constants</h3>
+			<h3 id="class_constants">クラス定数</h3>
 
-			<p style="margin-bottom:10px;">Environment constants. These are used in your config.php to define the application environment:</p>
-			<table class="config">
+			<p style="margin-bottom:10px;">環境定数。config.phpにおいてアプリケーションの動作環境を定めるために用いられます。</p>
+			<table class="config">。
 				<tbody>
 					<tr class="header">
-						<th>Name</th>
-						<th>Type</th>
-						<th>Value</th>
-						<th>Description</th>
+						<th>名前</th>
+						<th>タイプ</th>
+						<th>値</th>
+						<th>説明</th>
 					</tr>
 					<tr>
 						<th>TEST</th>
-						<td>string</td>
+						<td>文字列型</td>
 						<td><pre class="php"><code>'test'</code></pre></td>
 						<td>
-							Identifies the TEST environment.
+							テスト環境を同定します。
 						</td>
 					</tr>
 					<tr>
 						<th>DEVELOPMENT</th>
-						<td>string</td>
+						<td>文字列型</td>
 						<td><pre class="php"><code>'development'</code></pre></td>
 						<td>
-							Identifies the DEVELOPMENT environment.
+							開発環境を同定します。
 						</td>
 					</tr>
 					<tr>
 						<th>STAGE</th>
-						<td>string</td>
+						<td>文字列型</td>
 						<td><pre class="php"><code>'stage'</code></pre></td>
 						<td>
-							Identifies the STAGE environment.
+							ステージング環境を同定します。
 						</td>
 					</tr>
 					<tr>
 						<th>PRODUCTION</th>
-						<td>string</td>
+						<td>文字列型</td>
 						<td><pre class="php"><code>'production'</code></pre></td>
 						<td>
-							Identifies the PRODUCTION environment.
+							製品環境を同定します。
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<p id="log_constants" style="margin-bottom:10px;">Logging constants. These are used by the <a href="log.html">Log</a> class, and by the function <a href="log.html#function_logger">logger():</a></p>
+			<p id="log_constants" style="margin-bottom:10px;">ロギング定数。<a href="log.html">Log</a>クラスで用いられます。また<a href="log.html#function_logger">logger():</a>関数で用いられます。</p>
 			<table class="config">
 				<tbody>
 					<tr class="header">
-						<th>Name</th>
-						<th>Type</th>
-						<th>Value</th>
-						<th>Description</th>
+						<th>名前</th>
+						<th>タイプ</th>
+						<th>値</th>
+						<th>説明</th>
 					</tr>
 					<tr>
 						<th>L_NONE</th>
-						<td>integer</td>
+						<td>整数型</td>
 						<td><pre class="php"><code>0</code></pre></td>
 						<td>
-							Logging level 0: do not log.
+							ロギングレベル 0:ログをとりません。
 						</td>
 					</tr>
 					<tr>
 						<th>L_ERROR</th>
-						<td>integer</td>
+						<td>整数型</td>
 						<td><pre class="php"><code>1</code></pre></td>
 						<td>
-							Indicates an error message is logged.
+							エラーメッセージのログをとります。
 						</td>
 					</tr>
 					<tr>
 						<th>L_WARNING</th>
-						<td>integer</td>
+						<td>整数型</td>
 						<td><pre class="php"><code>2</code></pre></td>
 						<td>
-							Indicates an warning is logged.
+							警告メッセージのログをとります。
 						</td>
 					</tr>
 					<tr>
 						<th>L_DEBUG</th>
-						<td>integer</td>
+						<td>整数型</td>
 						<td><pre class="php"><code>3</code></pre></td>
 						<td>
-							Indicates a debug message is logged.
+							デバッグメッセージのログをとります。
 						</td>
 					</tr>
 					<tr>
 						<th>L_INFO</th>
-						<td>integer</td>
+						<td>整数型</td>
 						<td><pre class="php"><code>4</code></pre></td>
 						<td>
-							Indicates an informational message is logged.
+							情報メッセージのログをとります。
 						</td>
 					</tr>
 					<tr>
 						<th>L_ALL</th>
-						<td>integer</td>
+						<td>整数型</td>
 						<td><pre class="php"><code>5</code></pre></td>
 						<td>
-							All logging levels.
+							全てのレベルのログをとります。
 						</td>
 					</tr>
 				</tbody>
@@ -161,17 +161,17 @@
 			<table class="config">
 				<tbody>
 					<tr class="header">
-						<th>Name</th>
-						<th>Type</th>
-						<th>Value</th>
-						<th>Description</th>
+						<th>名前</th>
+						<th>タイプ</th>
+						<th>値</th>
+						<th>説明</th>
 					</tr>
 					<tr>
 						<th>VERSION</th>
-						<td>string</td>
+						<td>文字列型</td>
 						<td><pre class="php"><code>'1.1'</code></pre></td>
 						<td>
-							Version of the current Fuel installation.
+							インストールされているFuelのバージョンです。
 						</td>
 					</tr>
 				</tbody>
@@ -183,8 +183,8 @@
 
 			<article>
 				<h4 class="method" id="method_find_file">find_file($directory, $file, $ext = '.php', $multiple = false, $cache = true)</h4>
-				<p>The <strong>find_file</strong> method is used to locate files in a Fuel application directory structure.</p>
-				<p>The method searches through all search paths defined in the active Request instance, the application path, all loaded package paths and the core path (in this order). You can also use the method '<strong>add_path</strong>' to manually add global search paths.</p>
+				<p><strong>find_file</strong>メソッドは、Fuelアプリケーションディレクトリ構造下にあるファイルを見つける時に使います。</p>
+				<p>本メソッドは、アクティブなリクエストインスタンスの下で設定されている全てのサーチパス、アプリケーションのパス、ロードされている全てのパッケージのパス、コアパスを（このパス順で）探査します。'<strong>add_path</strong>'メソッドを使って、独自に（manually）グローバルサーチパスを設定することも出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -192,50 +192,50 @@
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
 									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>初期値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$directory</kbd></th>
-									<td><i>required</i></td>
-									<td>Relative directory name in which you want to search for files.</td>
+									<td><i>必須</i></td>
+									<td>探査したい相対ディレクトリ名</td>
 								</tr>
 								<tr>
 									<th><kbd>$file</kbd></th>
-									<td><i>required</i></td>
-									<td>Name of the file you want to find.</td>
+									<td><i>必須</i></td>
+									<td>探査したいファイル名</td>
 								</tr>
 								<tr>
 									<th><kbd>$ext</kbd></th>
 									<td><pre class="php"><code>'.php'</code></pre></td>
-									<td>Extension of the file you're looking for. Note the leading dot, which is required!</td>
+									<td>探査したいファイル拡張子。冒頭のドットは必須です！</td>
 								</tr>
 								<tr>
 									<th><kbd>$multiple</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>If <strong>false</strong>, the first file found is returned. If <strong>true</strong>, an array of all files found that match the criteria is returned.</td>
+									<td>もし<strong>false</strong>ならば、最初に見つけたファイル名が返されます。もし<strong>true</strong>ならば、該当するファイル名すべてを、配列で返します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$cache</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>If <strong>true</strong>, the result will be cached for subsequent requests. If <strong>false</strong>, the result will not be cached.</td>
+									<td>もし<strong>true</strong>ならば、以後の検索リクエストのために結果がキャッシュされます。<strong>false</strong>ならばキャッシュされません。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Mixed, either string or an array of strings.</td>
+						<th>返り値</th>
+						<td>Mixed, 文字列か文字列の配列です。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// find all views named 'test'
+							<pre class="php"><code>// viewsディレクトリにある 'test' 名ファイルを全て見つけます。
 $views = Fuel::find_file('views', 'test', '.php', true);
 </code></pre>
 						</td>
@@ -246,7 +246,7 @@ $views = Fuel::find_file('views', 'test', '.php', true);
 
 			<article>
 				<h4 class="method" id="method_list_files">list_files($directory = null, $filter = '*.php')</h4>
-				<p>The <strong>list_files</strong> method gets a list of all the files in a given directory inside all of the loaded search paths (e.g. the cascading file system). This is useful for things like finding all the config files in all the search paths.</p>
+				<p><strong>list_files</strong>メソッドは、ロードされている全てのサーチパス（例えば、それらのパスが派生したファイル構造 cascading file systemをもっているような場合）内にある指定ディレクトリ下のファイル一覧を取得します。全サーチパス内のconfigファイルを全べて見つけ出そうとする時などに、便利なメソッドです。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -254,35 +254,35 @@ $views = Fuel::find_file('views', 'test', '.php', true);
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
 									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>初期値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$directory</kbd></th>
-									<td><i>required</i></td>
-									<td>Relative directory name in which you want to search for files.</td>
+									<td><i>必須</i></td>
+									<td>探査したい相対ディレクトリ名</td>
 								</tr>
 								<tr>
 									<th><kbd>$filter</kbd></th>
 									<td><pre class="php"><code>'*.php'</code></pre></td>
-									<td>Filename filter, to be used in the search.</td>
+									<td>探査時に使うファイル名フィルタ</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Array</td>
+						<th>返り値</th>
+						<td>配列</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// find all config files in this Fuel installation
+							<pre class="php"><code>// インストールされているFuelの中の全てのconfigファイルを見つけ出します。
 $files = Fuel::list_files('config');
 </code></pre>
 						</td>
@@ -293,7 +293,7 @@ $files = Fuel::list_files('config');
 
 			<article>
 				<h4 class="method" id="method_addpath">add_path($path, $prefix = false)</h4>
-				<p>The <strong>add_path</strong> method allows you to add a global search path. The search paths are used by Fuel::find_file() to locate files within your application.</p>
+				<p><strong>add_path</strong>メソッドを使えば、グローバルサーチパスを付け加えることが出来ます。付け加えられたパスは、Fuel::find_file()によって、アプリケーション中のファイルの所在を突き止めるために利用されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -301,35 +301,35 @@ $files = Fuel::list_files('config');
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
 									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>初期値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$path</kbd></th>
-									<td><i>required</i></td>
-									<td>Path to be added to the list of global search paths</td>
+									<td><i>必須</i></td>
+									<td>グローバルサーチパス一覧に付け加えるパス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$prefix</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>If <strong>false</strong>, the path will be added to the search path list. If <strong>true</strong>, it will be prepended to the list.</td>
+									<td>もし<strong>false</strong>ならば、パスは、サーチパス一覧の後尾に付け加えられます。<strong>true</strong>ならば一覧冒頭に付け加えられます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><i>void</i></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// prepend the applications myfiles folder to the global search path
+							<pre class="php"><code>// アプリケーションのmyfiles folderをグローバルサーチパス一覧の冒頭に付加します。
 Fuel::add_path(APPPATH.'myfiles'.DS, true);
 </code></pre>
 						</td>
@@ -340,7 +340,7 @@ Fuel::add_path(APPPATH.'myfiles'.DS, true);
 
 			<article>
 				<h4 class="method" id="method_get_paths">get_paths()</h4>
-				<p>The <strong>get_paths</strong> method returns the defined list of search paths.</p>
+				<p><strong>get_paths</strong>メソッドは設定されているサーチパス一覧を返します。
 				<table class="method">
 					<tbody>
 					<tr>
@@ -348,17 +348,17 @@ Fuel::add_path(APPPATH.'myfiles'.DS, true);
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><i>void</i></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the defined search paths
+							<pre class="php"><code>// 設定されているサーチパスを取得
 $paths = Fuel::get_paths();
 </code></pre>
 						</td>
@@ -369,7 +369,7 @@ $paths = Fuel::get_paths();
 
 			<article>
 				<h4 class="method" id="method_load">load($file)</h4>
-				<p>The <strong>load</strong> method loads (includes) a given file, and returns the results. This method is used for example to load configuration files, which return an array of configuration settings.</p>
+				<p><strong>load</strong>メソッドは、指定ファイルをロード（インクルード）し、その結果を返します。例えば、設定ファイルをロードする時に本メソッドは使われます。その場合、設定情報は配列で返されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -377,30 +377,30 @@ $paths = Fuel::get_paths();
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
 									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>初期値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$file</kbd></th>
-									<td><i>required</i></td>
-									<td>Filename of the file to be loaded</td>
+									<td><i>必須</i></td>
+									<td>ロードしたいファイル名</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Mixed</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// load a PHP file
+							<pre class="php"><code>// あるPHP fileをロード
 if (Fuel::load('myfile.php'))
 {
 	echo "MyFile was loaded successfully";
@@ -410,12 +410,12 @@ if (Fuel::load('myfile.php'))
 					</tr>
 					</tbody>
 				</table>
-				<p class="note"> Note that if the included file does NOT contain a <strong>return</strong> statement, load() will return <strong>1</strong> if the load was successful, or <strong>0</strong> if the file could not be loaded!</p>
+				<p class="note"> 次の点に留意してください。もしインクルードされるファイルに<strong>return</strong>宣言が含まれていない(NOT)場合、ロードが成功すればload() は<strong>1</strong>を返し、失敗すれば<strong>0</strong>を返します!</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_add_module">add_module($name)</h4>
-				<p>The <strong>add_module</strong> method registers a given module as a class prefix.</p>
+				<p><strong>add_module</strong>メソッドは、指定されたモジュール（名） をクラスのプレフィックスとして登録します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -423,41 +423,41 @@ if (Fuel::load('myfile.php'))
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
 									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>初期値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><i>required</i></td>
-									<td>Module name (lowercase prefix without underscore)</td>
+									<td><i>必須</i></td>
+									<td>モジュール名 (アンダースコア無しの小文字プレフィックス)</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td><i>string</i></td>
+						<th>返り値</th>
+						<td><i>文字列</i></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
-						<td><strong>FuelException</strong>, in case a module with the given name does not exist.</td>
+						<td><strong>FuelException</strong>、指定した名前をもつモジュールが存在しない時。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// register the module 'mymodule'
+							<pre class="php"><code>// 'mymodule'モジュールを登録
 try
 {
 	$module_path = Fuel::add_module('mymodule');
 }
 catch (FuelException $e)
 {
-	// woops, module does not exist. do something!
+	// ううむ。モジュールが存在しない。なにかやってください！
 }
 </code></pre>
 						</td>
@@ -468,7 +468,7 @@ catch (FuelException $e)
 
 			<article>
 				<h4 class="method" id="method_module_exists">module_exists($module)</h4>
-				<p>The <strong>module_exists</strong> method checks if a module exists. The module you want to check does not have to be added first.</p>
+				<p><strong>module_exists</strong>メソッドはモジュールが存在するかどうかをチェックします。したがって、チェックしたいモジュールをあらかじめ付け加えておく必要はありません（The module you want to check does not have to be added first.）。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -476,33 +476,33 @@ catch (FuelException $e)
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
 									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>初期値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$module</kbd></th>
-									<td><i>required</i></td>
-									<td>Module name (lowercase prefix without underscore)</td>
+									<td><i>必須</i></td>
+									<td>モジュール名 (アンダースコア無しの小文字プレフィックス)</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><i>mixed</i></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns the path to 'mymodule'
+							<pre class="php"><code>// 'mymodule'パスを返します。
 $module_path = Fuel::module_exists('mymodule');
 
-// returns false for an unknown module
+// unknownモジュールがないのでfalseを返します。
 $module_path = Fuel::module_exists('unknown');
 </code></pre>
 						</td>
