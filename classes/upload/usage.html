@@ -509,7 +509,7 @@ foreach( Upload::get_errors() as $file )
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// register a before callback using a closure
-Upload::register('before', function (&amp;$file) {
+Upload::register('after', function (&amp;$file) {
 		if ($file['error'] == Upload::UPLOAD_ERR_OK)
 		{
 			switch($file['extension'])
