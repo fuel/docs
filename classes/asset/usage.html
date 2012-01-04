@@ -56,10 +56,10 @@
 					returned by the Asset::forge() or Asset::instance(). This section covers static usage which will always work
 					with the default instance using the configuration specified in the <a href="config.html">configuration</a>.
 				</p>
-				
+
 				<p class="note">
 					<strong>Note:</strong> the css, js and img methods will return the current instance when adding to a group.
-					This will happen when you supply a group or <em>auto_render</em> is <em>false</em> and no group (or 
+					This will happen when you supply a group or <em>auto_render</em> is <em>false</em> and no group (or
 					<em>null</em>) is supplied in the call.
 				</p>
 
@@ -387,6 +387,57 @@ echo Asset::js('menu_init.js', array(), null, true);
  * if not, the asset will be added to the default group for later rendering
  */
 echo Asset::js('jquery.js');</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_get_file" class="method">get_file($file, $type, $folder = '')</h4>
+					<p>The <strong>get_file</strong> method allows you to get the URL to an asset file.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$file</kbd></th>
+										<td><i>required</i></td>
+										<td>Name of the asset to look for.</td>
+									</tr>
+									<tr>
+										<th><kbd>$type</kbd></th>
+										<td><i>required</i></td>
+										<td>Type of asset to search for. 'img', 'css', and 'js' are supported types.</td>
+									</tr>
+									<tr>
+										<th><kbd>$folder</kbd></th>
+										<td><pre class="php"><code>''</code></pre></td>
+										<td>Optionally you can specify sub-folders if the asset is in a sub-folder of one of the defined asset search paths.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Fully qualified asset URL (depending on the base_url defined) or false if not found.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// returns something like 'http://example.org/assets/js/jquery.js'
+echo Asset::get_file('jquery.js');</code></pre>
 							</td>
 						</tr>
 						</tbody>
