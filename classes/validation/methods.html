@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,47 +20,47 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Validation Class</h2>
-	
+
 			<p>
 				The Validation class helps you validate user input, if you want to create a form &amp; its validation at
 				the same time use the <a href="../fieldset.html">Fieldset</a> class instead.
 			</p>
-	
+
 			<h3 id="class_methods">Class Methods</h3>
-	
+
 			<article>
 				<h4 class="method" id="method_forge">forge($fieldset = 'default')</h4>
-	
+
 				<p>
 					The <strong>forge</strong> method returns a new Validation instance,
 					and links it with a Fieldset with name $fieldset.
 				</p>
-	
+
 				<table class="method">
 					<tbody>
 						<tr>
@@ -112,16 +112,16 @@ $val = Validation::forge($fieldset);
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_instance">instance($name = null)</h4>
-	
+
 				<p>
 					The <strong>instance</strong> method returns the Validation instance
 					related with the Fieldset instance with the identifier $name,
 					or the default Fieldset (is created if necessary).
 				</p>
-	
+
 				<table class="method">
 					<tbody>
 						<tr>
@@ -168,7 +168,7 @@ $val = Validation::instance('my_fieldset');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_active">active()</h4>
 				<p>
@@ -201,7 +201,7 @@ $val = Validation::active();
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_active_field">active_field()</h4>
 				<p>
@@ -235,7 +235,7 @@ $field = Validation::active_field();
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_fieldset">fieldset()</h4>
 				<p>
@@ -272,7 +272,7 @@ $fieldset = $val->fieldset();
 			</article>
 
 			<article>
-				<h4 class="method" id="method_add_field">add_field($name, $label, $rules)</h4>	
+				<h4 class="method" id="method_add_field">add_field($name, $label, $rules)</h4>
 				<p>
 					The <strong>add_field</strong> method is a simpler alias for add() method which allows specifying the field name, label and rules in a single step.
 				</p>
@@ -306,9 +306,13 @@ $fieldset = $val->fieldset();
 									</tr>
 									<tr>
 										<th><kbd>$rules</kbd></th>
-										<td><em>string</em></td>
+										<td><em>mixed</em></td>
 										<td><pre class="php"><code>None</code></pre></td>
-										<td>The set of validation rules separated with vertical bar (|) with (optional) rule parameters grouped in square brackets, and separated with commas.</td>
+										<td>
+											The set of validation rules with (optional) rule parameters grouped in square brackets,
+											and separated with commas. It can be passed as a string where the rules are separated
+											with a vertical bar or pipe symbol (|), or as a array of rules.
+										</td>
 									</tr>
 								</table>
 							</td>
@@ -324,7 +328,9 @@ $fieldset = $val->fieldset();
 $val->add_field('username', 'Username', 'required|trim|valid_string[alpha,lowercase,numeric]');
 $val->add_field('email', 'Email', 'required|trim|valid_email');
 $val->add_field('age', 'Age', 'valid_string[numeric]');
-</code></pre>
+
+// as an array
+$val->add_field('username', 'Username', array('required', 'trim', 'valid_string[alpha,lowercase,numeric]'));</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -332,7 +338,7 @@ $val->add_field('age', 'Age', 'valid_string[numeric]');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_set_message">set_message($rule, $message)</h4>	
+				<h4 class="method" id="method_set_message">set_message($rule, $message)</h4>
 				<p>
 					The <strong>set_message</strong> method overwrites the language file messages for this validation instance. It's also useful when no message is assigned to the rule you're using.
 				</p>
@@ -389,7 +395,7 @@ $val->set_message('custom_rule', 'The :label you entered is previously registere
 			</article>
 
 			<article>
-				<h4 class="method" id="method_get_message">get_message($rule)</h4>	
+				<h4 class="method" id="method_get_message">get_message($rule)</h4>
 				<p>
 					The <strong>get_message</strong> method fetches a specific error message for this validation instance. Only messages set through the <a href="#method_set_message">set_message</a> method are returned.
 				</p>
@@ -437,7 +443,7 @@ $val->get_message('required', null);
 			</article>
 
 			<article>
-				<h4 class="method" id="method_add_callable">add_callable($class)</h4>	
+				<h4 class="method" id="method_add_callable">add_callable($class)</h4>
 				<p>
 					The <strong>add_callable</strong> method adds a set of custom or extended validation rules. You don't need to write a full callback, just the class name as a string will do. This also allows for overwriting functionality from this object because the new class is prepended.
 				</p>
@@ -482,7 +488,7 @@ $val->get_message('required', null);
 			</article>
 
 			<article>
-				<h4 class="method" id="method_remove_callable">remove_callable($class)</h4>	
+				<h4 class="method" id="method_remove_callable">remove_callable($class)</h4>
 				<p>
 					The <strong>remove_callable</strong> method removes a callable from the callables array.
 				</p>
@@ -526,7 +532,7 @@ $val->get_message('required', null);
 			</article>
 
 			<article>
-				<h4 class="method" id="method_callables">callables()</h4>	
+				<h4 class="method" id="method_callables">callables()</h4>
 				<p>
 					The <strong>callables</strong> method fetches the objects for which you don't need to add a full callback but just the method name
 				</p>
