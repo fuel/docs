@@ -384,8 +384,8 @@ Input::post('somevar.foo.bar');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_method">method()</h4>
-				<p>The <strong>method</strong> method returns the HTTP method used to call the controller.</p>
+				<h4 class="method" id="method_method">method($default = 'GET')</h4>
+				<p>The <strong>method</strong> method returns the HTTP method used to call the controller. If the header X-HTTP-Method-Override has been sent, the specified method will be returned instead.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -394,7 +394,20 @@ Input::post('somevar.foo.bar');</code></pre>
 					</tr>
 					<tr>
 						<th>Parameters</th>
-						<td>None</td>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><pre class="php"><code>'GET'</code></pre></td>
+									<td>Default HTTP method.</td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
