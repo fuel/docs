@@ -159,13 +159,49 @@ class Model_Users extends \Model_Crud
 						<td>array</td>
 						<td><em>none</em></td>
 						<td>
-							AN array of default values
+							An array of default values
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_defaults = array(
 	'field' => 'value',
 	'other_field' => 'other value',
 );</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<th><strong>$_created_at</strong></th>
+						<td>string</td>
+						<td><em>none</em></td>
+						<td>
+							Field name for a 'created at' field. Set <strong>$_mysql_timestamp</strong>
+							to true to use a MySQL timestamp instead of a UNIX timestamp
+						</td>
+						<td>
+							<pre class="php"><code>protected static $_created_at = 'created_at;</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<th><strong>$_modified_at</strong></th>
+						<td>string</td>
+						<td><em>none</em></td>
+						<td>
+							Field name for a 'modified at' field. Set <strong>$_mysql_timestamp</strong>
+							to true to use a MySQL timestamp instead of a UNIX timestamp
+						</td>
+						<td>
+							<pre class="php"><code>protected static $_modified_at = 'modified_at;</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<th><strong>$_mysql_timestamp</strong></th>
+						<td>boolean</td>
+						<td><em>none</em></td>
+						<td>
+							Set to true to use a MySQL timestamp instead of a UNIX timestamp for
+							<strong>$_created_at</strong> and <strong>$_modified_at</strong> fields.
+						</td>
+						<td>
+							<pre class="php"><code>protected static $_mysql_timestamp = true;</code></pre>
 						</td>
 					</tr>
 				</tbody>
