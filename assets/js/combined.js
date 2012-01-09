@@ -439,6 +439,7 @@ panes.core = {
 		"Input":		"classes/input.html",
 		"Lang":			"classes/lang.html",
 		"Log":	    	"classes/log.html",
+		"Markdown":		"classes/markdown.html",
 		"Migrate":		"classes/migrate.html",
 		"Model_Crud": {
 			"Introduction": "classes/model_crud/introduction.html",
