@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -19,36 +19,36 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Security</h2>
-	
+
 			<p>
 				Fuel takes security very serious, and as a result, has implemented the following measures to ensure the safety of your web applications:
 			</p>
-	
+
 			<ul>
 				<li><a href="#output">Output encoding</a></li>
 				<li><a href="#csrf">CSRF protection</a></li>
@@ -64,10 +64,10 @@
 				This page explains the general security measures Fuel offers, the <a href="../classes/security.html">Security
 				class</a> is documented under Classes. You will also find the details on configuring Fuels security class on that page.
 			</p>
-	
+
 			<article id="output">
 				<h3>Output encoding</h3>
-	
+
 				<p>
 					By default, Fuel favors output encoding to input filtering. The reason behind this is twofold.
 					No matter where your data originates, and whether or not it is filtered, output encoding will make it harmless
@@ -93,7 +93,7 @@
 					See the section on <a href="views.html#security">view security</a> to see how this is implemented for views.
 				</p>
 			</article>
-	
+
 			<article id="csrf">
 				<h3>CSRF Protection</h3>
 				<p>
@@ -117,8 +117,8 @@
 				<p>
 					CSRF protection can be configured through the security section in the applications config/config.php file.
 				</p>
-	
-	
+
+
 				<p>To enable CRSF protection, start by adding the token to your form:</p>
 				<pre class="php"><code>// in plain HTML
 &lt;input type="hidden" name="&lt;?php echo \Config::get('security.csrf_token_key');?&gt;" value="&lt;?php echo \Security::fetch_token();?&gt;" /&gt;
@@ -145,9 +145,9 @@ if ($_POST)
 	}
 }
 </code></pre>
-	
+
 			</article>
-	
+
 			<article id="xss">
 				<h3>XSS filtering</h3>
 				<p>
@@ -168,7 +168,7 @@ if ($_POST)
 					on individual input values, rather then as a generic input filter.
 				</p>
 			</article>
-	
+
 			<article id="input">
 				<h3>Input filtering</h3>
 				<p>
@@ -188,7 +188,7 @@ if ($_POST)
 					before Fuel is initialized, as input filtering happens very early in the request process.
 				</p>
 			</article>
-	
+
 			<article id="sql">
 				<h3>SQL injection</h3>
 				<p>
@@ -206,14 +206,14 @@ if ($_POST)
 					Fuel protects against SQL injection by escaping all values passed to one of the Database class methods. Since this happens at the level
 					of Fuel's central Query Builder, all code that uses the Query Builder, including Fuels ORM package, will automatically use escaping.
 				</p>
-	
+
 			</article>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

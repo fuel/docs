@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -19,39 +19,39 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<section>
-	
+
 				<h2 id="generate">Generate</h2>
-	
+
 				<p>
 					Code Generation can be used to speed up development times by building much of the repetitive code for you. This
 					is entirely optionally - like all of oil - and all code can be edited however you like afterwards. You can generate the following items:
 				</p>
-	
+
 				<ul>
 					<li><a href="#controllers">Controllers</a></li>
 					<li><a href="#models">Models</a></li>
@@ -60,22 +60,22 @@
 					<li><a href="#scaffolding">Scaffolding</a></li>
 					<li><a href="#configs">Configs</a></li>
 				</ul>
-	
+
 				<h3 id="controllers">Controllers</h3>
-	
+
 				<p>
 					To generate a skeleton <a href="../../general/controllers/base.html">Controller</a> with actions and views
 					predefined, use the following command:
 				</p>
-	
+
 				<pre class="cli"><code>$ php oil g controller posts action1 action2 action3
 	Created view: APPPATH/views/posts/action1.php
 	Created view: APPPATH/views/posts/action2.php
 	Created view: APPPATH/views/posts/action3.php
 	Created controller: APPPATH/classes/controller/posts.php</code></pre>
-	
+
 				<p>This will produce a controller that looks like this:</p>
-	
+
 				<pre class="php"><code>class Controller_Posts extends Controller_Template
 {
 
@@ -100,9 +100,9 @@
 }
 
 /* End of file posts.php */</code></pre>
-	
+
 				<h3 id="models">Models</h3>
-	
+
 				<p>
 					Generate a simple Model by listing fields and have
 					the <a href="../../general/migrations.html">Migration</a> automatically created for you to match:
@@ -114,7 +114,7 @@
 
 				<p>That will create a simple Model that uses <a href="../orm/intro.html">Orm</a>, so make sure the package is enabled in your config file. It will look like this:</p>
 
-				<pre class="php"><code>class Model_Post extends Orm\Model { 
+				<pre class="php"><code>class Model_Post extends Orm\Model {
 
 	protected static $_properties = array(
 		'id',
@@ -123,7 +123,7 @@
 		'created_at',
 		'updated_at'
 	);
-	
+
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),
@@ -165,9 +165,9 @@ class Create_posts
 }</code></pre>
 
 				<h4>Generating Model using Model_Crud</h4>
-				
+
 				<p>FuelPHP v1.1 added a simple Model_Crud base model which offers similar functionality of using ORM without overhead of relational data. You can have the model generated using this by adding <code>--crud</code></p>
-				
+
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int created_at:datetime --crud
 	Created model: APPPATH/classes/model/post.php
 	Created migration: APPPATH/migrations/001_create_posts.php</code></pre>
@@ -188,8 +188,8 @@ class Create_posts
 	protected static $_table_name = 'posts';
 
 }</code></pre>
-	
-				
+
+
 				<h4>Generating Model Without Timestamp Option</h4>
 
 				<p>Add <code>--no-timestamp</code> to exclude the created/updated fields and observers.</p>
@@ -230,11 +230,11 @@ class Create_posts
 </code></pre>
 
 				<h3 id="running_migrations">Running Migrations</h3>
-	
+
 				<p>
 					The following commands illustrate how to use the refine command to run useful migration tasks, assuming that the system is currently at migration 5. The migrate task can be given parameters to move directly to a given version, or just up/down by a single version.
 				</p>
-	
+
 				<pre class="cli"><code>$ php oil refine migrate
 	Currently on migration: 5.
 
@@ -249,17 +249,17 @@ $ php oil refine migrate:down
 
 $ php oil refine migrate:up
 	Migrated to version: 5.</code></pre>
-	
+
 				<h3 id="migrations">Generating Migrations</h3>
-	
+
 				<p>
 					You can generate migrations without creating a model. This could be used to rename a table, or add fields to a table in a way that is easy to deploy in other environments.
 				</p>
-	
+
 				<pre class="cli"><code>$ php oil generate migration rename_table_users_to_accounts
 	Building magic migration: rename_table
 	Created migration: APPPATH/migrations/002_rename_table_users_to_accounts.php</code></pre>
-	
+
 				<h3 id="magic_migrations">Magic Migrations</h3>
 				<p>There are a number of "magic" migrations which automatically build you a migration based on a prefix to your migration name.</p>
 				<pre class="cli"><code>$ php oil generate migration create_users name:text email:string[50] password:string[125]
@@ -269,15 +269,15 @@ $ php oil generate migration rename_field_name_to_username_in_accounts
 $ php oil generate migration drop_accounts
 </code></pre>
 				<p>Note: Be careful when naming your migrations that you don't begin with any keywords by accident.</p>
-	
+
 				<h3 id="scaffolding">Scaffolding</h3>
-	
+
 				<p>
 					Scaffolding is the really exciting part of Oil's code generation. This approach is heavily borrowed from Rails who have done
 					a great job with it. The idea is that you create not only the MVC skeletons and migrations, but populate them with default CRUD code
 					so the code will actually work after writing the command.
 				</p>
-	
+
 				<pre class="cli"><code>$ php oil g scaffold monkey name:string description:text
 	Created model: APPPATH/classes/model/monkey.php
 	Created migration: APPPATH/migrations/003_create_monkeys.php
@@ -291,13 +291,13 @@ $ php oil generate migration drop_accounts
 $ php oil refine migrate
 Migrated to latest version: 3.
 </code></pre>
-	
+
 				<p>
 					As you can see lots of code is generated by this command including a command that is executed in the second command.
 					The controller looks like this:
 				</p>
-	
-				<pre class="php"><code>class Controller_Monkey extends Controller_Template 
+
+				<pre class="php"><code>class Controller_Monkey extends Controller_Template
 {
 
 	public function action_index()
@@ -413,32 +413,32 @@ Migrated to latest version: 3.
 );
 
 /* End of file sample.php */</code></pre>
-			
+
 				<h3>Generate Config from COREPATH</h3>
 				<p>
 					To combine config from COREPATH/config if APPPATH/config doesn't have one
 				</p>
-			
+
 				<pre class="cli"><code>$ php oil g config package
 	Created config: APPPATH/config/package.php</code></pre>
-			
+
 				<p>This will produce a config that looks like this:</p>
 
 				<pre class="php"><code>return array (
-	'sources' => 
+	'sources' =>
 	array (
 		0 => 'github.com/fuel-packages',
 	),
 );</code></pre>
-			
+
 				<h3>Force Update Config from COREPATH &amp; APPPATH</h3>
 				<p>
 					To combine config from COREPATH/config and combine APPPATH/config to APPPATH/config
 				</p>
-			
+
 				<pre class="cli"><code>$ php oil g config form --overwrite
 	Created config: APPPATH/config/form.php</code></pre>
-			
+
 				<p>This will produce a config that looks like this:</p>
 
 				<pre class="php"><code>return array (
@@ -449,14 +449,14 @@ Migrated to latest version: 3.
 );
 
 /* End of file form.php */</code></pre>
-	
+
 			</section>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

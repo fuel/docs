@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -19,53 +19,53 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-	
+
 			<h2 id="rest_controller">Rest Controller</h2>
-	
+
 			<h3 id="what_is_rest">What is a Rest controller?</h3>
-	
+
 			<p>
 				A Rest Controller is an extension of the Base Controller which has RESTful support built in.
 				This will allow you to build API's with ease.
 			</p>
-	
+
 			<p class="note">
 				<strong>Please note:</strong> if you have a <kbd>before()</kbd> or <kbd>router</kbd> method in
 				your REST controller extension you <strong>must</strong> call the parent method
 				<kbd>parent::before()</kbd> (or router) for it to keep working properly.
 			</p>
-	
+
 			<h3 id="usage">Using the Rest controller</h3>
-	
+
 			<p>
 				Like all Controllers, you create a class in the <kbd>fuel/app/classes/controller</kbd> directory.
 				They need to extend the <kbd>Controller_Rest</kbd> class and are prefixed by default by "Controller_".
 				Below is an example of the controller "test":
 			</p>
-	
+
 			<pre class="php"><code>class Controller_Test extends Controller_Rest
 {
 
@@ -80,13 +80,13 @@
 		));
 	}
 }</code></pre>
-	
+
 			<p>This controller method "list" is called by the following URL:</p>
-	
+
 			<pre>http://localhost/test/list.json?foo=bar</pre>
-	
+
 			<p>You'll notice that instead of the usual "action_" prefix the Rest Controller uses the HTTP method as a prefix. The HTTP methods that Rest Controller supports are the following:</p>
-			
+
 			<table class="config">
 				<tbody>
 					<tr class="header">
@@ -123,35 +123,35 @@
 					</tr>
 				</tbody>
 			</table>
-	
+
 			<h3 id="output">Output</h3>
-	
+
 			<pre class="javascript"><code>{
 	"foo":"bar",
 	"baz":[1,50,219],
 	"empty":null
 }</code></pre>
-	
+
 			<p>
 				This is output as json because a file extension was defined in the URL. By default, responses will be
 				formatted as XML or whichever format is set in <em>fuel/core/config/rest.php</em>.
 			</p>
-	
+
 			<h3 id="formats">Supported Formats</h3>
-	
+
 			<ul>
 				<li><strong>xml</strong> – almost any programming language can read XML</li>
 				<li><strong>json</strong> – useful for JavaScript and increasingly PHP apps.</li>
 				<li><strong>csv</strong> – open with spreadsheet programs</li>
 				<li><strong>html</strong> – a simple HTML table</li>
-	
+
 				<li><strong>php</strong> – Representation of PHP code that can be <kbd>eval()</kbd>'ed</li>
 				<li><strong>serialize</strong> – Serialized data that can be unserialized in PHP</li>
 			</ul>
-	
-	
+
+
 			<h3 id="special_methods">Special controller methods</h3>
-	
+
 			<article>
 				<h4 id="response">response($data = array(), $http_code = 200)</h4>
 				<p>
@@ -164,7 +164,7 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>
