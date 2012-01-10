@@ -433,7 +433,7 @@ Migrated to latest version: 3.
 			
 				<h3>Force Update Config from COREPATH &amp; APPPATH</h3>
 				<p>
-					To combine config from COREPATH/config and combine APPPATH/config to APPPATH/config
+					To combine config from COREPATH/config and combine APPPATH/config to APPPATH/config by using either <code>--overwrite</code> or <code>-o</code> option.
 				</p>
 			
 				<pre class="cli"><code>$ php oil g config form --overwrite
@@ -449,6 +449,23 @@ Migrated to latest version: 3.
 );
 
 /* End of file form.php */</code></pre>
+
+				<h3>Generate Config to MODULE</h3>
+				<p>
+					Generate a config will always default to <code>APPPATH</code> unless specified to use module. There two way to save config to a module.
+				</p>
+
+				<h4>Option 1</h4>
+				<p>Specified from config name:</p>
+				<pre class="cli"><code>$ php oil g config admin:form
+	Created config: \Admin::config/form.php</code></pre>
+
+				<h4>Option 2</h4>
+				<p>Specified from <code>--module</code> or <code>-m</code> option:</p>
+				<pre class="cli"><code>$ php oil g config form --module=admin
+	Created config: \Admin::config/form.php</code></pre>
+
+				<p class="note">At the moment, the module needs to be loaded before this is possible. Please read <a href="../general/modules.html#/static_calls">Using module classes outside the module</a> for more information on how to set module to always load.</p>
 	
 			</section>
 
