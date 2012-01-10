@@ -43,19 +43,19 @@
 		</div>
 
 		<div id="main">
-		
+
 			<h2>Using the Email package</h2>
-			
+
 			<p>The email package needs only 3 things from you in order to start sending emails.</p>
-			
+
 			<ol>
 				<li>An address to 'send from'.</li>
 				<li>An address to send to.</li>
 				<li>And last but not least, the message</li>
 			</ol>
-			
+
 			<h3 id="sending_mails">Let's send mails.</h3>
-			
+
 			<pre class="php"><code>// Create an instance
 $email = Email::forge();
 
@@ -80,18 +80,18 @@ $email->body('This is my message');
 </code></pre>
 
 			<p>At this point we're ready to start sending the mail.</p>
-			
+
 			<h3 id="exception">Exceptions</h3>
-			
+
 			<p>When sending a mail. You can encounter 2 exception types.</p>
-			
+
 			<ul>
 				<li><strong>\EmailValidationFailedException</strong>: thrown when one or more email addresses doesn't pass validation</li>
 				<li><strong>\EmailSendingFailedException</strong>, thrown when the driver failed to send the exception</li>
 			</ul>
-			
+
 			<p>The example blow shows you how to handle those exceptions.</p>
-			
+
 			<pre class="php"><code>try
 {
 	$email->send();
@@ -104,11 +104,11 @@ catch(\EmailSendingFailedException $e)
 {
 	// The driver could not send the email
 }</code></pre>
-	
+
 			<h3 id="html_mails">HTML mails.</h3>
-			
+
 			<p>Sending HTML mail is not very different from sending normal mails:</p>
-			
+
 			<pre class="php"><code>// Set a html body message
 $email->html_body(\View::forge('email/template', $email_data));
 
@@ -117,15 +117,15 @@ $email->html_body(\View::forge('email/template', $email_data));
 
 // Set an alt body, this is optional.
 $email->alt_body('This is my alt body, for non-html viewers.');</code></pre>
-	
+
 			<h3 id="attachments">Attachments</h3>
-			
+
 			<p>
 				The Email package supports two kinds of attachments: normal (attachment), and inline. Use an inline attachment if
 				you want to use in inside the mail. You might, for instance, want to have a graphic in your mail, and you want people to
 				that image offline also. Some clients don't cache that, and yes that's dumb. But it's the interwebs and stuff like that happens.
 			</p>
-			
+
 			<pre class="php"><code>// Add an attachment
 $email->attach(DOCROOT.'dir/my_img.png');
 
@@ -133,18 +133,18 @@ $email->attach(DOCROOT.'dir/my_img.png');
 // Add a cid here to point to the html
 $email->attach(DOCROOT.'dir/my_img.png', true, 'cid:my_conten_id');
 </code></pre>
-	
+
 			<p>You can also add string attachments:</p>
-	
+
 			<pre class="php"><code>$contents = file_get_contents($my_file);
 $email->string_attach($contents, $filename);
 	</code></pre>
-			
+
 			<p>
 				By default html images are auto included, but it only includes local files.
 				Look at the following html to see how it works.
 			</p>
-			
+
 			<pre class="html"><code>&lt;!-- This is included --&gt;
 &lt;img src="path/to/my/file.png" /&gt;
 
@@ -154,11 +154,11 @@ $email->string_attach($contents, $filename);
 &lt;!-- This is not included --&gt;
 &lt;img src="cid:my_conten_id" /&gt;
 	</code></pre>
-	
+
 			<p>The last tag you saw (with the cid:) is also not included. In this situation the email expects you to attach that file yourself using an inline attachment.</p>
 
 			<h3 id="priorities">Priotity</h3>
-			
+
 			<p>
 				Alter a mail's priority by using the <a href="./methods.html#method_priority">priority</a> method.
 			</p>
@@ -169,7 +169,7 @@ $email->string_attach($contents, $filename);
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

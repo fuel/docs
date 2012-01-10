@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,38 +20,38 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Session Class</h2>
-	
+
 			<p>The session class allows you to maintain state for your application in the stateless environment of the web.
 				It allows you to store variables on the server using a variety of storage solutions, and recall these variables on the next page request.</p>
-	
+
 			<section>
 				<h2 id="configuration">Configuration</h2>
-	
+
 				<p>The session class is configured through the fuel/core/config/session.php configuration file. It is already populated with a default configuration. You can override this configuration by copying this config file to your application config directory, and modify that file as needed.</p>
 				<p>The following global configuration values can be defined:</p>
 				<table class="config">
@@ -116,6 +116,14 @@
 							<td>
 								If you want the cookie to be only valid for a certain path, enter the path here.
 								You use this mainly if you have installed your application in a folder instead of in the webservers DOCROOT.
+							</td>
+						</tr>
+						<tr>
+							<th>cookie_http_only</th>
+							<td>boolean</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								if true, allow only transmit of cookies over HTTP, disabling Javascript access.
 							</td>
 						</tr>
 						<tr>
@@ -242,14 +250,24 @@
 						</tr>
 					</tbody>
 				</table>
-	
-				<p>For each of the session storage drivers, a separate configuration section exists. This section contains the driver specific parameters, and you can use it to override global parameters for that specific storage driver.</p>
-	
+
+				<p>
+					For each of the session storage drivers, a separate configuration section exists.
+					This section contains the driver specific parameters, and you can use it to override
+					global parameters for that specific storage driver.
+				</p>
+
+				<p class="note">
+					The session class configuration is independent from the cookie class configuration.
+					It is important that you configure the <kbd>cookie_domain</kbd> and <kbd>cookie_path</kbd> items
+					correctly. Notably, the domain 'localhost' is not accepted as valid by most modern browsers!
+				</p>
+
 				<section>
 					<h5 id="cookie_driver_config">Cookie driver configuration</h5>
-	
+
 					<p>The cookie driver doesn't use any server based storage. Instead, all session variables will be stored in the cookie that is sent to the browser after each request. Use this only if you don't have to store much data, as the maximum payload size of a cookie is 4Kb, which you will reach quite quickly, due to the overhead of array serialization and encryption.</p>
-	
+
 					<p>Specific driver configuration:</p>
 					<table class="config">
 						<tbody>
@@ -268,10 +286,10 @@
 						</tbody>
 					</table>
 				</section>
-	
+
 				<section>
 					<h5 id="file_driver_config">File driver configuration</h5>
-	
+
 					<p>Specific driver configuration:</p>
 					<table class="config">
 						<tbody>
@@ -302,10 +320,10 @@
 						</tbody>
 					</table>
 				</section>
-	
+
 				<section>
 					<h5 id="db_driver_config">Database session configuration</h5>
-	
+
 					<p>Specific driver configuration:</p>
 					<table class="config">
 						<tbody>
@@ -365,10 +383,10 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 						</tbody>
 					</table>
 				</section>
-	
+
 				<section>
 					<h5 id="memcache_driver_config">Memcached session configuration</h5>
-	
+
 					<p>Specific driver configuration:</p>
 					<table class="config">
 						<tbody>
@@ -399,16 +417,16 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 </code></pre>
 								</td>
 								<td>Array containing a list of available memcached servers, as defined by <a href="http://php.net/manual/en/memcached.addservers.php">http://php.net/manual/en/memcached.addservers.php</a>. If you don't specify this parameter, it will default to a single memcached server, running on the local machine, and the listening to default port.
-	
+
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</section>
-	
+
 				<section>
 					<h5 id="redis_driver_config">Redis session configuration</h5>
-	
+
 					<p>Specific driver configuration:</p>
 					<table class="config">
 						<tbody>
@@ -433,14 +451,14 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 						</tbody>
 					</table>
 				</section>
-	
+
 			</section>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -19,36 +19,36 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
 		
 			<h2>セキュリティ</h2>
-	
+
 			<p>
 				Fuelはセキュリティをとても真剣に考え、その結果、あなたのWebアプリケーションの安全を確保するための次の対策を実装しました:
 			</p>
-	
+
 			<ul>
 				<li><a href="#output">出力エンコーディング</a></li>
 				<li><a href="#csrf">CSRF保護</a></li>
@@ -64,10 +64,9 @@
 				このページではFuelが提供する一般的なセキュリティ対策を説明し、<a href="../classes/security.html">Security
 				クラス</a>はクラスのセクションにドキュメントされています。FuelのSecurityクラスの設定の詳細についてはそちらのページで見つけることができます。
 			</p>
-	
+
 			<article id="output">
 				<h3>出力エンコーディング</h3>
-	
 				<p>
 					デフォルトでは、Fuelは入力フィルタリングより出力エンコーディングを好みます。その理由は2つの要素からなります。
 					あなたのデータがどこから来たものであろうと、そしてそれがフィルタされていようがいまいが、出力エンコーディングはそのデータを
@@ -93,7 +92,7 @@
 					これがビューにどのように実装されているかは、<a href="views.html#security">ビューのセキュリティ</a>のセクションを参照してください。See the section on <a href="views.html#security">ビューのセキュリティ</a>。
 				</p>
 			</article>
-	
+
 			<article id="csrf">
 				<h3>CSRF保護</h3>
 				<p>
@@ -117,10 +116,9 @@
 				<p>
 					CSRF保護はアプリケーションのconfig/config.phpファイルのsecurityセクションで設定できます。
 				</p>
-	
-	
 				<p>CSRF保護を有効にするには、まず、フォームにトークンを追加します:</p>
 				<pre class="php"><code>// プレーンなHTMLで
+
 &lt;input type="hidden" name="&lt;?php echo \Config::get('security.csrf_token_key');?&gt;" value="&lt;?php echo \Security::fetch_token();?&gt;" /&gt;
 
 // Formクラスを使って
@@ -145,9 +143,9 @@ if ($_POST)
 	}
 }
 </code></pre>
-	
+
 			</article>
-	
+
 			<article id="xss">
 				<h3>XSSフィルタリング</h3>
 				<p>
@@ -168,7 +166,7 @@ if ($_POST)
 					個別の入力値に使うことをお薦めします。
 				</p>
 			</article>
-	
+
 			<article id="input">
 				<h3>入力フィルタリング</h3>
 				<p>
@@ -188,7 +186,7 @@ if ($_POST)
 					もし、オブジェクトメソッドを使う場合は、Fuelが初期化される前にそのオブジェクトが利用できることを確認してください。入力フィルタはリクエストプロセスのとても初期段階で実行されます。
 				</p>
 			</article>
-	
+
 			<article id="sql">
 				<h3>SQLインジェクション</h3>
 				<p>
@@ -206,14 +204,14 @@ if ($_POST)
 					Fuelは、Databaseクラスのメソッドの1つに渡されるすべての値をエスケープすることにより、SQLインジェクションから保護します。
 					これはFuelの中心となるクエリビルダーのレベルで起こるため、クエリビルダーを使うすべてのコード、FuelのORMパッケージを含みます、は自動的にエスケープされます。
 				</p>
-	
+
 			</article>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

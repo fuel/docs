@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,38 +20,38 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Log Class</h2>
-	
+
 			<p>The log class allows you to write messages to the log files.</p>
-	
+
 			<h3 id="configuration">Configuration</h3>
-	
+
 			<p>The log files are being placed in the folder specified by the attribute '<strong>log_path</strong>' in the <strong>config.php</strong>. You can also set the '<strong>log_threshold</strong>' and the '<strong>log_date_format</strong>' parameters there.<br/>These settings can also be changed on the fly by using the <a href="config.html">Config Class</a>.</p>
-	
+
 			<table class="config">
 				<tbody>
 					<tr class="header">
@@ -86,16 +86,16 @@
 					</tr>
 				</tbody>
 			</table>
-	
+
 			<h3 id="usage">Usage</h3>
-			
+
 			<p>There are three predefined functions for ease of use:</p>
 			<pre class="php"><code>Log::info()
 Log::debug()
 Log::error()</code></pre>
-			
+
 			<p>They all use the main function <strong>Log::write()</strong> which requires the <strong>$level</strong> parameter as the first argument.</p>
-			
+
 			<h6>Some examples:</h6>
 			<pre class="php"><code>// Write a log entry with the level "Info" to the log file for the current day
 $var = 1;
@@ -110,14 +110,14 @@ if($var !== 1) Log::error('We cannot keep going, $var has been changed! :o');
 
 // Finally, create a log entry with a custom $level
 Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
-			
+
 			<h5 id="output">Output</h5>
-			
+
 			<p>All log files are being placed in the defined folder (see above), composed in folders named by the current <strong>year</strong> followed by the <strong>month</strong> (<em>"2011/06"</em> for example) with the day of the month as the filename (<em>"15.php"</em> for example).<br/>The complete path to our example log file would be: <strong>APPPATH.'logs/2011/06/15.php'</strong></p>
-	
+
 			<p><strong>The examples above would write the following code to the log file:</strong>
 			<pre class="php"><code>&lt;?php defined('COREPATH') or exit('No direct script access allowed'); ?&gt;<br/><br/>Info - 2011-01-03 18:44:45 --> my_init_function() - Application started (with $var = 1)<br/>Debug - 2011-01-03 18:44:45 --> $var is now 5<br/>Error - 2011-01-03 18:44:45 --> We cannot keep going, $var has been changed! :o<br/>Link - 2011-01-03 18:44:45 --> More info on http://fuelphp.com/</code></pre>
-	
+
 			<article>
 				<h4 class="method" id="method_info">info($msg, $method = null)</h4>
 				<p>The <strong>info</strong> method allows you to write a log entry with the <strong>$level</strong> "Info".</p>
@@ -162,7 +162,7 @@ Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_debug">debug($msg, $method = null)</h4>
 				<p>The <strong>debug</strong> method allows you to write a log entry with the <strong>$level</strong> "Debug".</p>
@@ -207,7 +207,7 @@ Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_error">error($msg, $method = null)</h4>
 				<p>The <strong>error</strong> method allows you to write a log entry with the <strong>$level</strong> "Error".</p>
@@ -252,7 +252,7 @@ Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_write">write($level, $msg, $method = null)</h4>
 				<p>The <strong>write</strong> method allows you to write a log entry with a custom <strong>$level</strong>.</p>
@@ -303,9 +303,9 @@ Log::write('Link', 'More info on http://fuelphp.com/')</code></pre>
 					</tbody>
 				</table>
 			</article>
-			
+
 			<h3 id="procedural_helpers">Procedural helpers</h3>
-			
+
 			<article>
 				<h4 id="function_logger">logger($level, $msg, $method = null)</h4>
 				<p>The <strong>logger</strong> function is an alias for <a href="#method_write">Log::write</a>.</p>
@@ -351,12 +351,12 @@ Log::write('Link', 'More info on http://fuelphp.com/')</code></pre>
 					</tbody>
 				</table>
 			</article>
-		
+
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

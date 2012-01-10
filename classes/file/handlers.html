@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,46 +20,46 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2>Handlers</h2>
-	
+
 			<article>
 				<h3 id="introduction">Introduction</h3>
-	
+
 				<p>
 					Fuel allows you to wrap directories and files in objects. By doing this it allows you to access
 					and modify filesystem items (files and directories) on a OO basis.
 				</p>
-	
+
 				<p>
 					The objects received from the File class (or file areas) are <em>File Handlers</em>. Fuel
 					has two core file handlers: <em>File Handler</em> and <em>Directory Handler</em>.
 					Like you would expect these classes handle the files and directories.
 				</p>
-	
+
 				<h3 id="topics">Topics</h3>
 				<ul>
 					<li><a href="#usage">Usage</a></li>
@@ -67,19 +67,19 @@
 					<li><a href="#directory_handler">Directory handler</a></li>
 					<li><a href="#predefined_handlers">Writing handlers</a></li>
 				</ul>
-	
+
 			</article>
-	
+
 			<article>
-	
+
 				<h3 id="usage">Usage</h3>
-	
+
 				<p>
 					Every helper class comes with a set of methods that allow you to perform operations on the
 					files or directories wrapped inside the object. Here is are some examples using
 					<a href="usage.html#method_get">File::get</a>:
 				</p>
-	
+
 				<pre class="php"><code> // First we'll get a file
 $file = \File::get(DOCROOT.'/here_is_my/textfile.txt');
 </code></pre>
@@ -95,25 +95,25 @@ $content = $file->read();
 // And rename it back to the original name
 $file->rename('textfile');
 </code></pre>
-	
+
 				<p>
 					As you can see in the example above, when renaming the file you don't need to refetch the handler.
 					You can reuse the same object over and over, untill you delete the file or unset the var.
 				</p>
-	
-	
+
+
 			</article>
-	
+
 			<section>
-	
+
 				<h3 id="file_handler">File handler</h3>
-	
+
 				<p>
 					The file handlers handles the basic interaction with files. Each example assumes the <strong>
 					$handler</strong> var is the fetched handers. Want to know how to get the handler?
 					Look at the <a href="#usage">usage section</a>.
 				</p>
-	
+
 				<article>
 					<h4 class="method" id="method_file_factory">factory($path, $config = array(), $area = null, $content = array())</h4>
 					<p>The <strong>factory</strong> method returns a new File_Handler_File object.</p>
@@ -168,7 +168,7 @@ $file->rename('textfile');
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_file_read">read($as_string = false)</h4>
 					<p>The <strong>read</strong> method is an shortcut to <a href="usage.html#method_read">File::read</a>.</p>
@@ -208,7 +208,7 @@ $file->rename('textfile');
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_file_rename">rename($new_name, $new_extension = false)</h4>
 					<p>The <strong>rename</strong> method is an shortcut to <a href="usage.html#method_rename">File::rename</a>.</p>
@@ -253,7 +253,7 @@ $file->rename('textfile');
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_file_move">move($new_path)</h4>
 					<p>The <strong>move</strong> method is an shortcut to <a href="usage.html#method_move">File::move</a>.</p>
@@ -293,7 +293,7 @@ $file->rename('textfile');
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_file_copy">copy($new_path)</h4>
 					<p>The <strong>copy</strong> method is an shortcut to <a href="usage.html#method_copy">File::copy</a>.</p>
@@ -333,7 +333,7 @@ $file->rename('textfile');
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_file_update">update($new_content)</h4>
 					<p>The <strong>update</strong> method is an shortcut to <a href="usage.html#method_update">File::update</a>.</p>
@@ -373,7 +373,7 @@ $file->rename('textfile');
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_file_delete">delete()</h4>
 					<p>The <strong>delete</strong> method is an shortcut to <a href="usage.html#method_delete">File::delete</a>.</p>
@@ -396,7 +396,7 @@ $file->rename('textfile');
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_file_get_url">get_url()</h4>
 					<p>The <strong>get_url</strong> method is an shortcut to <a href="usage.html#method_get_url">File::get_url</a>.</p>
@@ -419,7 +419,7 @@ $file->rename('textfile');
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_file_get_permissions">get_permissions()</h4>
 					<p>The <strong>get_permissions</strong> method is an shortcut to <a href="usage.html#method_get_permissions">File::get_permissions</a>.</p>
@@ -442,7 +442,7 @@ $file->rename('textfile');
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_file_get_time">get_time($type = 'modified')</h4>
 					<p>The <strong>get_time</strong> method is an shortcut to <a href="usage.html#method_get_time">File::get_time</a>.</p>
@@ -477,7 +477,7 @@ $file->rename('textfile');
 								<th>Example</th>
 								<td>
 									<pre class="php"><code>$created_at = $handler->get_time('created');
-	
+
 $modified_at = $handler->get_time('modified');
 // or short
 $modified_at = $handler->get_time();
@@ -487,7 +487,7 @@ $modified_at = $handler->get_time();
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_file_get_size">get_size()</h4>
 					<p>The <strong>get_time</strong> method is an shortcut to <a href="usage.html#method_get_size">File::get_size</a>.</p>
@@ -510,19 +510,19 @@ $modified_at = $handler->get_time();
 						</tbody>
 					</table>
 				</article>
-	
+
 			</section>
-	
+
 			<section>
-	
+
 				<h2 id="directory_handler">Directory handler</h2>
-	
+
 				<p>
 					The directory handler handles the basic interaction with directories. Each example assumes the <strong>
 					$handler</strong> var is the fetched handers. Want to know how to get the handler?
 					Look at the <a href="#usage">usage section</a>.
 				</p>
-	
+
 				<article>
 					<h4 class="method" id="method_directory_factory" data-class="File_Handler_Directory">factory($path, $config = array(), $area = null, $content = array())</h4>
 					<p>The <strong>factory</strong> method returns a new File_Handler_Directory object.</p>
@@ -577,7 +577,7 @@ $modified_at = $handler->get_time();
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_directory_read" data-class="File_Handler_Directory">read($depth = 0, $filters = null)</h4>
 					<p>The <strong>read</strong> method is an shortcut to <a href="usage.html#method_read_dir">File::read_dir</a>.</p>
@@ -622,7 +622,7 @@ $modified_at = $handler->get_time();
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_directory_rename" data-class="File_Handler_Directory">rename($new_name)</h4>
 					<p>The <strong>rename</strong> method is an shortcut to <a href="usage.html#method_rename_dir">File::rename_dir</a>.</p>
@@ -646,7 +646,7 @@ $modified_at = $handler->get_time();
 											<td><em>required</em></td>
 											<td>the new directory name</td>
 										</tr>
-	
+
 									</table>
 								</td>
 							</tr>
@@ -663,7 +663,7 @@ $modified_at = $handler->get_time();
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_directory_move" data-class="File_Handler_Directory">move($new_path)</h4>
 					<p>The <strong>move</strong> method is an shortcut to <a href="usage.html#method_move">File::move</a>.</p>
@@ -703,7 +703,7 @@ $modified_at = $handler->get_time();
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_directory_copy" data-class="File_Handler_Directory">copy($new_path)</h4>
 					<p>The <strong>copy</strong> method is an shortcut to <a href="usage.html#method_copy_dir">File::copy_dir</a>.</p>
@@ -743,7 +743,7 @@ $modified_at = $handler->get_time();
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_directory_delete" data-class="File_Handler_Directory">delete($recursive = true, $delete_top = true)</h4>
 					<p>The <strong>delete</strong> method is an shortcut to <a href="usage.html#method_delete_dir">File::delete_dir</a>.</p>
@@ -788,7 +788,7 @@ $modified_at = $handler->get_time();
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_directory_get_permissions" data-class="File_Handler_Directory">get_permissions()</h4>
 					<p>The <strong>get_permissions</strong> method is an shortcut to <a href="usage.html#method_get_permissions">File::get_permissions</a>.</p>
@@ -811,7 +811,7 @@ $modified_at = $handler->get_time();
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_directory_get_time" data-class="File_Handler_Directory">get_time($type = 'modified')</h4>
 					<p>The <strong>get_time</strong> method is an shortcut to <a href="usage.html#method_get_time">File::get_time</a>.</p>
@@ -856,27 +856,27 @@ $modified_at = $handler->get_time();
 						</tbody>
 					</table>
 				</article>
-	
+
 			</section>
-	
+
 			<article>
-	
+
 				<h2 id="writing_handlers">Writing handlers</h2>
-	
+
 				<p>
 					As mentioned before Fuel comes with two predefined handlers. One for directories and one for
 					files. By writing your own handlers you can alter the behaviour and add functionalities by
 					filetype. For instance, when dealing with csv files you might want to auto-parse them when
 					reading, or be able to fetch a image object from image files.
 				</p>
-	
+
 				<h4 id="writing_handlers_how_to">How to write them...</h4>
-	
+
 				<p>
 					Handlers are classes that extend the File Handler class (<strong>\File_Handler_File</strong>).
 					Here is an example:
 				</p>
-	
+
 				<pre class="php"><code>&lt;?php
 
 class File_Handler_XML extends \File_Handler_File
@@ -893,18 +893,18 @@ class File_Handler_XML extends \File_Handler_File
 
 /* End of file xml.php */
 </code></pre>
-	
+
 				<p class="note">Note the <strong>$this->path</strong>. This will always hold the path to the current file, even when moving or renaming.</p>
-	
+
 				<h4 id="writing_handlers_adding">Adding them...</h4>
-	
+
 				<p>
 					File handlers can be assigned by adding them in the file config.
 					By adding them to the base config all files from a certain extension wil be fetched as the
 					desired handler. You can also assign handlers on an area basis by adding them to the area config
 					you'd like to use them in.
 				</p>
-	
+
 				<pre class="php"><code>// In app/config/file.php
 
 'base_config' => array(
@@ -921,14 +921,14 @@ class File_Handler_XML extends \File_Handler_File
 	),
 ),
 </code></pre>
-	
+
 			</article>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,38 +20,38 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2>Config Class</h2>
-	
+
 			<p>The Config class handles nearly all configuration options in Fuel.  You use this class whenever you need to load in a config file, get a value or set a value.</p>
-	
+
 			<h3 id="config_groups">Config Groups</h3>
-	
+
 			<p>A config group is simply a way to scope config options.  This avoids naming collisions.  All config files (db.php, routes.php, etc.) are loaded into groups of the same name, with the exception of the main <kbd>config.php</kbd> file.</p>
-	
+
 			<article>
 				<h4 class="method" id="method_get">get($item, $default = null)</h4>
 				<p>The <strong>get</strong> method returns the desired config item.  If the item does not exist then <kbd>$default</kbd> is returned.  If the item you are retrieving is a group, then the entire group is returned.</p>
@@ -116,7 +116,7 @@ $dev_host = Config::get('db.dev.connection.hostname');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_set">set($item, $value)</h4>
 				<p>The <strong>set</strong> method Sets a given <kbd>$item</kbd> to <kbd>$value</kbd>.  <kbd>$item</kbd> can be dot (<kbd>.</kbd>) separated, just like <kbd>get()</kbd>.</p>
@@ -171,7 +171,7 @@ Config::set('blog.items_to_display', 5);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_delete">delete($item)</h4>
 				<p>The <strong>delete</strong> method removes a given <kbd>$item</kbd>.  <kbd>$item</kbd> can be dot (<kbd>.</kbd>) separated, just like <kbd>set()</kbd> and <kbd>get()</kbd> .</p>
@@ -212,7 +212,7 @@ Config::delete('blog.items_to_display');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_load">load($file, $group = null, $reload = false, $overwrite = false)</h4>
 				<p>The <strong>load</strong> method reads in a config file into the system.  It searches through the config directories for the requested file.  You can optionally group the config files to avoid naming collisions.</p>
@@ -277,7 +277,7 @@ Config::load('foo::custom', 'bar');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_save">save($file, $config = null)</h4>
 				<p>The <strong>save</strong> method saves a config file into the system.  It searches through the config directories for the requested file.  If no existing file is found, the config file is created in the APPPATH config directory.</p>
@@ -332,12 +332,12 @@ Config::save('foo::custom', 'bar');</code></pre>
 					</tbody>
 				</table>
 			</article>
-		
+
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

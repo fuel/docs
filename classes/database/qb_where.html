@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,55 +20,55 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2 id="introduction">Query_Builder_Where class</h2>
-			
+
 			<p>
 				The <strong>Query_Builder_Where</strong> class handles the conditioning and limiting logic for quiry building.
 				Every kind of where statement (including BETWEEN and IN etc...) is handled here. This class is not instantiated (it's
 				abstract) but extended by other classes that share the same functions. There classes are:
 			</p>
-			
+
 			<ul>
 				<li><a href="qb_select.html">Query_Builder_Select</a></li>
 				<li><a href="qb_update.html">Query_Builder_Update</a></li>
 				<li><a href="qb_delete.html">Query_Builder_Delete</a></li>
 			</ul>
-			
+
 			<p id="returned_instance" class="note">
 				<strong>Please note:</strong> Since Query_Builder_Where is get extended by the classes listed above, the "current instance" returned will be one of those.
 			</p>
-			
+
 			<h3 id="methods">Methods</h3>
-			
+
 			<article>
 				<h4 class="method" id="method_where">where()</h4>
 				<p>The <strong>where</strong> method is an alias for <a href="#method_and_where">and_where</a>.</p>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_and_where">and_where($column, $op = null, $value = null)</h4>
 				<p>The <strong>and_where</strong> method appends a WHERE statement.</p>
@@ -132,7 +132,7 @@ $query->and_where('surname', 'Doe');
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_or_where">or_where($column, $op = null, $value = null)</h4>
 				<p>The <strong>or_where</strong> method appends an OR WHERE statement.</p>
@@ -196,12 +196,12 @@ $query->or_where('surname', 'Doe');
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_where_open">where_open()</h4>
 				<p>The <strong>where_open</strong> method is an alias for <a href="#method_and_where_open">and_where_open</a>.</p>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_and_where_open">and_where_open()</h4>
 				<p>The <strong>and_where_open</strong> method opens an SQL closure and appends it using AND.</p>
@@ -240,7 +240,7 @@ $query->and_where_open();
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_or_where_open">or_where_open()</h4>
 				<p>The <strong>or_where_open</strong> method opens an SQL closure and appends it using OR.</p>
@@ -279,12 +279,12 @@ $query->or_where_open();
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_where_close">where_close()</h4>
 				<p>The <strong>where_close</strong> method is an alias for <a href="#method_and_where_close">and_where_close</a>.</p>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_and_where_close">and_where_close()</h4>
 				<p>The <strong>and_where_close</strong> method closes an SQL closure.</p>
@@ -329,7 +329,7 @@ $query->and_where_close();
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_or_where_close">or_where_close()</h4>
 				<p>The <strong>or_where_close</strong> method closes an SQL closure.</p>
@@ -373,7 +373,7 @@ $query->or_where_close();
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_order_by">order_by($column, $direction = NULL)</h4>
 				<p>The <strong>order_by</strong> method sets the order for the result/execution.</p>
@@ -430,7 +430,7 @@ $query->order_by('surname', 'desc');
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_limit">limit($number)</h4>
 				<p>The <strong>limit</strong> method limits the number of rows selected/affected.</p>
@@ -479,12 +479,12 @@ $query->limit(10);
 					</tbody>
 				</table>
 			</article>
-		
+
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

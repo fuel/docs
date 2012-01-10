@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -20,38 +20,38 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2>Image Class</h2>
-	
+
 			<p>
 				The Image class is used to easily add common manipulations to an image such as resizing, cropping, and so on.
 			</p>
-	
+
 			<h3 id="limitations">Limitations</h3>
-	
+
 			<p>
 				The Image class has a few limitations that should be made aware of. First off, the GD library handles transparency quite badly.
 				Due to this, <strong>Image::rotate()</strong> can not use transparent background. The rounding image in <strong>imagemagick</strong>
@@ -60,9 +60,9 @@
 			<p>
 				Using multiple transformations in GD can result in abnormal results.
 			</p>
-	
+
 			<h3 id="configuration">Configuration</h3>
-	
+
 			<p>The Image class accepts the following configuration options. Copy the file from <strong>fuel/core/config/image.php</strong> to <strong>fuel/app/config/image.php</strong></p>
 			<table class="config">
 				<tbody>
@@ -71,7 +71,7 @@
 						<th>Type</th>
 						<th>Default</th>
 						<th>Description</th>
-	
+
 					</tr>
 					<tr>
 						<th>driver</th>
@@ -147,9 +147,9 @@
 					</tr>
 				</tbody>
 			</table>
-	
+
 			<h3 id="presets">Presets</h3>
-	
+
 			<p>
 				Presets are a feature in the Image class that allow defining of a set of tasks in the config, and call that preset. An example is:
 			</p>
@@ -176,7 +176,7 @@
 		</p>
 		<pre class="php"><code>// 'watermark.gif' here replaces the $1 in array('watermark', '$1')
 Image::load('filename.gif')->preset('mypreset', 'watermark.gif');</code></pre>
-	
+
 			<article>
 				<h4 class="method" id="method_forge">forge($config = array())</h4>
 				<p>The <strong>forge</strong> method creates a new Image_Driver instance.</p>
@@ -195,7 +195,7 @@ Image::load('filename.gif')->preset('mypreset', 'watermark.gif');</code></pre>
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$config</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
@@ -225,9 +225,9 @@ $image
 					</tbody>
 				</table>
 			</article>
-	
-	
-	
+
+
+
 			<article>
 				<h4 class="method" id="method_config">config($index, $value = null)</h4>
 				<p>Changes the value of a configuration option.</p>
@@ -246,13 +246,13 @@ $image
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$index</kbd></th>
 									<td><i>Required</i></td>
 									<td>The index to be set, or an array of configuration options.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
@@ -277,7 +277,7 @@ Image::load('filename.gif')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_load">load($filename, $return_data = false)</h4>
 				<p>The <strong>load</strong> method attempts to load an image for editing.</p>
@@ -296,13 +296,13 @@ Image::load('filename.gif')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$filename</kbd></th>
 									<td><i>Required</i></td>
 									<td>The path to the image file to be loaded.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$return_data</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
@@ -324,7 +324,7 @@ Image::load('filename.gif')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_crop">crop($x1, $y1, $x2, $y2)</h4>
 				<p>Crops the image using coordinates or percentages.</p>
@@ -343,25 +343,25 @@ Image::load('filename.gif')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$x1</kbd></th>
 									<td><i>Required</i></td>
 									<td>The position of the first coord on the x-axis.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$y1</kbd></th>
 									<td><i>Required</i></td>
 									<td>The position of the first coord on the y-axis.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$x2</kbd></th>
 									<td><i>Required</i></td>
 									<td>The position of the second coord on the x-axis.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$y2</kbd></th>
 									<td><i>Required</i></td>
@@ -395,7 +395,7 @@ Image::load('filename.gif')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_resize">resize($width, $height = null, $keepar = true, $pad = false)</h4>
 				<p>Resizes the image. If the width or height is null, it will resize retaining the original aspect ratio.</p>
@@ -414,25 +414,25 @@ Image::load('filename.gif')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$width</kbd></th>
 									<td><i>Required</i></td>
 									<td>The new width of the image.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$height</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>The new height of the image</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$keepar</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
 									<td>If set to true, will keep the Aspect Ratio of the image identical to the original.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$pad</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
@@ -468,7 +468,7 @@ Image::load('filename.gif')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_crop_resize">crop_resize($width, $height = null)</h4>
 				<p>Resizes the image and crops it to fit the given width and height.</p>
@@ -487,13 +487,13 @@ Image::load('filename.gif')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$width</kbd></th>
 									<td><i>Required</i></td>
 									<td>The new width of the image.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$height</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
@@ -517,7 +517,7 @@ Image::load('filename.gif')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_rotate">rotate($degrees)</h4>
 				<p>Rotates the image clockwise.</p>
@@ -536,7 +536,7 @@ Image::load('filename.gif')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$degrees</kbd></th>
 									<td><i>Required</i></td>
@@ -568,7 +568,7 @@ Image::load('filename')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_watermark">watermark($filename, $position, $padding = 5)</h4>
 				<p>Adds a watermark to the image.</p>
@@ -587,19 +587,19 @@ Image::load('filename')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$filename</kbd></th>
 									<td><i>Required</i></td>
 									<td>The location of the image file to use as a watermark.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$position</kbd></th>
 									<td><i>Required</i></td>
 									<td>The position of the watermark, accepts "(top|center|middle|bottom) (left|center|middle|bottom)".</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$padding</kbd></th>
 									<td><pre class="php"><code>5</code></pre></td>
@@ -632,7 +632,7 @@ Image::load('filename.gif')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_border">border($size, $color = null)</h4>
 				<p>Adds a border to the image..</p>
@@ -651,13 +651,13 @@ Image::load('filename.gif')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$size</kbd></th>
 									<td><i>Required</i></td>
 									<td>The size of the border in pixels.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$color</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
@@ -687,7 +687,7 @@ Image::load('filename.gif')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_mask">mask($maskimage)</h4>
 				<p>Applies a mask to the image by blending the alpha channel of the mask with those of the loaded image.</p>
@@ -706,7 +706,7 @@ Image::load('filename.gif')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$maskimage</kbd></th>
 									<td><i>Required</i></td>
@@ -730,7 +730,7 @@ Image::load('filename.gif')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_rounded">rounded($radius, $sides = null, $antialias = null)</h4>
 				<p>Applies rounded corners to the image.</p>
@@ -749,19 +749,19 @@ Image::load('filename.gif')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$radius</kbd></th>
 									<td><i>Required</i></td>
 									<td>The location of the image to mask with.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$sides</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>Accepts any combination of "tl tr bl br" seperated by spaces, or null for all sides</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$antialias</kbd></th>
 									<td><pre class="php"><code>1</code></pre></td>
@@ -793,7 +793,7 @@ Image::load('filename.gif')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_save">save($filename, $permissions = null)</h4>
 				<p>Saves the image, and optionally attempts to set permissions.</p>
@@ -812,13 +812,13 @@ Image::load('filename.gif')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$filename</kbd></th>
 									<td><i>Required</i></td>
 									<td>The location where to save the image. If no extension is added, one will be appended based on the loaded file's extension.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$permissions</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
@@ -850,7 +850,7 @@ Image::load('filename.gif')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_save_pa">save_pa($prepend, $append = null, $extension = null, $permissions = null)</h4>
 				<p>Saves the image to the same location with a prepended and/or appended filename, and optionally attempts to set permissions.</p>
@@ -869,25 +869,25 @@ Image::load('filename.gif')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$append</kbd></th>
 									<td><i>Required</i></td>
 									<td>The string to add to the beginning of the filename.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$prepend</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>The string to add to the end of the filename, and before the extension.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$extension</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>Can set the new images extension, defaults to the loaded images extension if null.</td>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$permissions</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
@@ -912,7 +912,7 @@ Image::load('filename.gif')
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_output">output($filetype)</h4>
 				<p>Outputs the image directly and sets headers.</p>
@@ -931,7 +931,7 @@ Image::load('filename.gif')
 									<th>Default</th>
 									<th class="description">Description</th>
 								</tr>
-	
+
 								<tr>
 									<th><kbd>$filetype</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
@@ -965,7 +965,7 @@ Image::load('filename.gif')
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>
