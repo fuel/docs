@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -9,7 +9,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Rest Controller - General - FuelPHP Documentation</title>
+	<title>Rest コントローラ - 基本 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -19,52 +19,53 @@
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
 					Documentation
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-	
-			<h2 id="rest_controller">Restコントローラー</h2>
-	
-			<h3 id="what_is_rest">Restコントローラーとは?</h3>
-	
+
+			<h2 id="rest_controller">Rest コントローラ</h2>
+
+			<h3 id="what_is_rest">Rest コントローラとは?</h3>
+
 			<p>
-				Restコントローラーはベースのコントローラーを継承したもので、RESTfulなAPIを簡単に構築をすることが出来るようになります。 
+				Rest コントローラは Base コントローラを継承したもので、RESTful のサポートが組み込まれています。
+				これは、API を簡単に構築をすることが出来ます。 
 			</p>
-	
+
 			<p class="note">
-				<strong>Please note:</strong> if you have a <kbd>before()</kbd> or <kbd>router</kbd> method in
-				your REST controller extension you <strong>must</strong> call the parent method
-				<kbd>parent::before()</kbd> (or router) for it to keep working properly.
+				<strong>Please note:</strong> もし、REST コントローラの中で <kbd>before()</kbd> や <kbd>router</kbd> メソッドを
+				使うなら、うまく動作させるために親クラスの <kbd>parent::before()</kbd> (または router) 
+				を呼び出さなければ <strong>いけません</strong>。
 			</p>
-	
-			<h3 id="usage">Restコントローラーを使う</h3>
-	
+
+			<h3 id="usage">Rest コントローラを使う</h3>
+
 			<p>
 				すべてのコントローラと同様に、<kbd>fuel/app/classes/controller</kbd>ディレクトリ内にクラスを作成します。
-				それらは<kbd>Controller_Rest</kbd>クラスを継承し、"Controller_"というプレフィックスを付けます。
-				以下は "test"コントローラの例です:
+				それらは <kbd>Controller_Rest</kbd> クラスを継承し、"Controller_" というプレフィックスを付けます。
+				以下は "test" コントローラの例です:
 			</p>
-	
+
 			<pre class="php"><code>class Controller_Test extends Controller_Rest
 {
 
@@ -79,80 +80,79 @@
 		));
 	}
 }</code></pre>
-	
-			<p>このコントローラのメソッド"list"は、次のURLによって呼び出されます。</p>
-	
+
+			<p>このコントローラのメソッド "list" は、次の URL によって呼び出されます:</p>
+
 			<pre>http://localhost/test/list.json?foo=bar</pre>
-	
-			<p>通常の"action_"プレフィックスの代わりに接頭辞としてHTTPメソッドを使用していることがわかります。RestコントローラがサポートするHTTPメソッドは、次のとおりです。</p>
-			
+
+			<p>通常の "action_" プレフィックスの代わりに接頭辞として HTTP メソッドを使用していることがわかります。Rest コントローラがサポートする HTTP メソッドは、次のとおりです:</p>
+
 			<table class="config">
 				<tbody>
 					<tr class="header">
-						<th>HTTPメソッド</th>
+						<th>HTTP メソッド</th>
 						<th>説明</th>
 					</tr>
 					<tr>
 						<th>GET</th>
 						<td>
-							Used to fetch information about an existing resource. This is used by browsers when you
-							enter a URL and hit go, or when you click on a link, so it perfect for fetching information
-							on one of your REST resources (like user).
+							既存のリソースに関する情報を取得するために使われます。ブラウザに
+							URL を入力しアクセスしたり、リンクをクリックしたときに使われます。
+							REST リソース (ユーザのような) から情報を取得するために最適です。
 						</td>
 					</tr>
 					<tr>
 						<th>POST</th>
 						<td>
-							Used to update an existing resource with information. Browsers use this to submit most
-							types of forms on the Internet, although some use GET as well by submitting the form action
-							with a query string containing the field data.
+							既存の情報リソースを更新するために使われます。ブラウザはインターネット上の多くの種類のフォームに投稿するために
+							このメソッドを使用します。しかしながら、いくつかのフォームは、
+							フィールドデータを含むクエリ文字列を送信する GET を使います。
 						</td>
 					</tr>
 					<tr>
 						<th>PUT</th>
 						<td>
-							Less commonly used and not supported by most browsers, PUT is used to create a new resource.
+							あまり用いられず、ほとんどのブラウザでサポートされていませんが、PUT は新しいリソースを作成するために使われます。
 						</td>
 					</tr>
 					<tr>
 						<th>DELETE</th>
 						<td>
-							Also not used by many browsers, this HTTP verb rather obviously is used to delete a resource.
+							同じく多くのブラウザで使われませんが、リソースを削除するために使われます。
 						</td>
 					</tr>
 				</tbody>
 			</table>
-	
+
 			<h3 id="output">出力</h3>
-	
+
 			<pre class="javascript"><code>{
 	"foo":"bar",
 	"baz":[1,50,219],
 	"empty":null
 }</code></pre>
-	
-			<p>
-				ファイル拡張子がURLで定義されているので、これはJSONとして出力されます。
-				デフォルトでは、XMLフォーマット出力されるか、
-				<em>fuel/core/config/rest.php</em>に設定されているフォーマットで出力されます。
-			</p>
-	
-			<h3 id="formats">対応フォーマット</h3>
-	
-			<ul>
-				<li><strong>xml</strong> – almost any programming language can read XML</li>
-				<li><strong>json</strong> – useful for JavaScript and increasingly PHP apps.</li>
-				<li><strong>csv</strong> – open with spreadsheet programs</li>
-				<li><strong>html</strong> – a simple HTML table</li>
-	
-				<li><strong>php</strong> – Representation of PHP code that can be <kbd>eval()</kbd>'ed</li>
-				<li><strong>serialize</strong> – Serialized data that can be unserialized in PHP</li>
 
+			<p>
+				ファイル拡張子が URL で定義されているので、これは JSON として出力されます。
+				デフォルトでは、XML フォーマット出力されるか、
+				<em>fuel/core/config/rest.php</em> に設定されているフォーマットで出力されます。
+			</p>
+
+			<h3 id="formats">対応フォーマット</h3>
+
+			<ul>
+				<li><strong>xml</strong> – ほとんどのプログラミング言語は XML を読めます</li>
+				<li><strong>json</strong> – JavaScript で役立ち、PHP アプリでも使用が増えています。</li>
+				<li><strong>csv</strong> – 表計算プログラムで開きます</li>
+				<li><strong>html</strong> – シンプルな HTML の表</li>
+
+				<li><strong>php</strong> – <kbd>eval()</kbd> 可能な PHP コードでの表現</li>
+				<li><strong>serialize</strong> – PHP でアンシリアライズ可能な、シリアライズされたデータ</li>
 			</ul>
-	
-	
+
+
 			<h3 id="special_methods">特殊なコントローラのメソッド</h3>
-	
+
 			<article>
 				<h4 id="response">response($data = array(), $http_code = 200)</h4>
 				<p>
@@ -165,7 +165,7 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>
