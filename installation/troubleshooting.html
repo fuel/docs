@@ -49,6 +49,16 @@
 
 			<p>When your problem is not listed below or is listed but no proper solution is provided, please report this at the issue tracker ( http://dev.fuelphp.com ).</p>
 
+			<ul>
+				<li><a href="#syntax_error_clean_install">Syntax errors with clean installation</a></li>
+				<li><a href="#404_install">Got it working, but the index page is a 404.</a></li>
+				<li><a href="#oil_db_error">Oil cannot connect to DB but application can</a></li>
+				<li><a href="#htmlentities">The ORM/DB returns my data as html entities</a></li>
+				<li><a href="#orm_list_columns">Orm\Exception [ Error ]: Listing columns not failed</a></li>
+				<li><a href="#assets_error">Assets do not work after changing the location of index.php</a></li>
+				<li><a href="#symlinks_error">Core, App or Packages can not be found after I changed a symlink</a></li>
+			</ul>
+
 			<article>
 
 				<h3 id="syntax_error_clean_install">Syntax errors with clean installation</h3>
@@ -133,6 +143,23 @@ RewriteRule ^(.*)$ /index.php/$1 [L]
 
 				<pre class="cli"><code>$ sudo mkdir /var/mysql
 $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code></pre>
+
+			</article>
+
+			<article>
+
+				<h3 id="htmlentities">The ORM/DB returns my data as html entities</h3>
+
+				<h4>Happens When...</h4>
+
+				<p>Fuel has a security measure called "output encoding" which is switched on by default. This means
+					that any value passed to the View or ViewModel is considered dangerous unless you explicitly mark
+					it as safe. All values that aren't safe will be put through htmlentities, including the contents
+					of arrays and the properties of objects.</p>
+
+				<h4>Solution</h4>
+
+				<p>Learn more about <a href="../general/views.html#/security">security in the View class</a>.</p>
 
 			</article>
 
