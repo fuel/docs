@@ -44,19 +44,19 @@
 
 		<div id="main">
 
-			<h2>Date Class</h2>
+			<h2>Date クラス</h2>
 
-			<p>The Date class is a set of helper functions for working with dates, contrary to PHP's DateTime class the
-			Fuel Date class has full support for i18n.</p>
+			<p>Date クラスは、日付を扱うヘルバー関数を集めたものです。PHP の DateTime クラスとは異なり、
+			Fuel Date クラスは、i18n を完全サポートしています。</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($timestamp = null, $timezone = null)</h4>
-				<p>The <strong>forge</strong> method returns a new date object.</p>
+				<p><strong>forge</strong> メソッドは new date オブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -70,12 +70,12 @@
 								<tr>
 									<th><kbd>$timestamp</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The timestamp to set the date object to</td>
+									<td>date オブジェクトにセットするタイムスタンプ</td>
 								</tr>
 								<tr>
 									<th><kbd>$timezone</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The timezone in which the time is set</td>
+									<td>時刻をセットするタイムゾーン</td>
 								</tr>
 							</table>
 						</td>
@@ -104,12 +104,12 @@ Fuel\Core\Date Object
 
 			<article>
 				<h4 class="method" id="method_time">time($timezone = null)</h4>
-				<p>The <strong>time</strong> method returns the current time in the given timezone as a Date object.</p>
+				<p><strong>time</strong> メソッドは、与えられたタイムゾーンの現在時刻を Date オブジェクトで返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -123,7 +123,7 @@ Fuel\Core\Date Object
 								<tr>
 									<th><kbd>$timezone</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The timezone in which the time is set</td>
+									<td>時刻をセットするタイムゾーン</td>
 								</tr>
 							</table>
 						</td>
@@ -144,16 +144,16 @@ Fuel\Core\Date Object
 
 			<article>
 				<h4 class="method" id="method_create_from_string">create_from_string($input, $pattern_key = 'local')</h4>
-				<p>The <strong>create_from_string</strong> creates a Date object from a named date string format</p>
+				<p><strong>create_from_string</strong> は、与えられた日付文字列書式から Date オブジェクトを作成します。</p>
 
-				<p class="note">This function uses <a href="http://www.php.net/manual/en/function.strptime.php" target="_blank">strptime()</a>
-					for i18n purposes. That method isn't available on Windows hosts however, on those <kbd>strtotime()</kbd>
-					is used instead and the pattern is ignored.</p>
+				<p class="note">この関数は、i18n のため <a href="http://www.php.net/manual/en/function.strptime.php" target="_blank">strptime()</a>
+					を使用します。このメソッドは Windows ホストでは利用できないので、代わりに <kbd>strtotime()</kbd>
+					を使用し、パターンを無視します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -167,12 +167,12 @@ Fuel\Core\Date Object
 								<tr>
 									<th><kbd>$input</kbd></th>
 									<td><i>Required</i></td>
-									<td>The date string to use</td>
+									<td>日付文字列</td>
 								</tr>
 								<tr>
 									<th><kbd>$pattern_key</kbd></th>
 									<td>"local"</td>
-									<td>The pattern key to use (see config/date.php)</td>
+									<td>使用するパターン (config/date.php を参照)</td>
 								</tr>
 							</table>
 						</td>
@@ -201,7 +201,7 @@ Fuel\Core\Date Object
 
 			<article>
 				<h4 class="method" id="method_range_to_array">range_to_array($start, $end, $interval = '+1 Day')</h4>
-				<p>The <strong>range_to_array</strong> converts a range of dates into an array of date objects</p>
+				<p><strong>range_to_array</strong> は、指定範囲の日付を date オブジェクトの配列に変換します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -220,17 +220,17 @@ Fuel\Core\Date Object
 								<tr>
 									<th><kbd>$start</kbd></th>
 									<td><i>Required</i></td>
-									<td>The start date either as a Date object or a timestamp</td>
+									<td>開始日付を Date オブジェクトまたはタイムスタンプで指定</td>
 								</tr>
 								<tr>
 									<th><kbd>$end</kbd></th>
 									<td><i>Required</i></td>
-									<td>The end date either as a Date object or a timestamp</td>
+									<td>終了日付を Date オブジェクトまたはタイムスタンプで指定</td>
 								</tr>
 								<tr>
 									<th><kbd>$interval</kbd></th>
 									<td>"+1 Day"</td>
-									<td>The interval at which to create a Date object</td>
+									<td>Date オブジェクトを作成するインターバル</td>
 								</tr>
 							</table>
 						</td>
@@ -284,12 +284,12 @@ Array
 
 			<article>
 				<h4 class="method" id="method_date_in_month">days_in_month($month, $year = null)</h4>
-				<p>The <strong>days_in_month</strong> returns the number of days in any given month, in the year specified</p>
+				<p><strong>days_in_month</strong> は、指定した年月の日数を返す。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -303,12 +303,12 @@ Array
 								<tr>
 									<th><kbd>$month</kbd></th>
 									<td><i>Required</i></td>
-									<td>The month to use</td>
+									<td>月</td>
 								</tr>
 								<tr>
 									<th><kbd>$year</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The year to use (defaults to current year)</td>
+									<td>年 (デフォルトは現在の年)</td>
 								</tr>
 							</table>
 						</td>
@@ -331,12 +331,12 @@ echo Date::days_in_month(2,2000); // 29
 
 			<article>
 				<h4 class="method" id="method_time_ago">time_ago($timestamp)</h4>
-				<p>The <strong>time_ago</strong> method returns a formatted time difference.</p>
+				<p><strong>time_ago</strong> メソッドは、時刻の差を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -350,7 +350,7 @@ echo Date::days_in_month(2,2000); // 29
 								<tr>
 									<th><kbd>$timestamp</kbd></th>
 									<td><i>Required</i></td>
-									<td>The UNIX timestamp</td>
+									<td>UNIX タイムスタンプ</td>
 								</tr>
 							</table>
 						</td>
@@ -371,17 +371,17 @@ echo Date::days_in_month(2,2000); // 29
 
 			<article>
 				<h4 class="method" id="method_format">format($pattern_key = 'local')</h4>
-				<p>The <strong>formatted</strong> method returns a formatted date as specified by the pattern key. The
-					patterns are defined in the <kbd>fuel/core/config/date.php</kbd> config file - you can add your own
-					by creating a similar file in <kbd>app/config</kbd>.</p>
+				<p><strong>formatted</strong> メソッドはパターンキーで指定した書式の日付を返します。
+					パターンは、<kbd>fuel/core/config/date.php</kbd> config ファイルで定義されます。
+					<kbd>app/config</kbd> に同様のファイルを作成して、独自のパターンを追加できます。</p>
 
-				<p class="note">This method uses patterns for the <a href="http://www.php.net/manual/en/function.strftime.php" target="_blank">strftime()</a>
-					function instead of <kbd>date()</kbd> to allow for i18n.</p>
+				<p class="note">このメソッドは、i18n のため、<kbd>date()</kbd> ではなく、
+					<a href="http://www.php.net/manual/en/function.strftime.php" target="_blank">strftime()</a> を使用します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -395,7 +395,7 @@ echo Date::days_in_month(2,2000); // 29
 								<tr>
 									<th><kbd>$pattern_key</kbd></th>
 									<td>"local"</td>
-									<td>The pattern key to use (see config/date.php)</td>
+									<td>パターンキー(config/date.php を参照)</td>
 								</tr>
 							</table>
 						</td>
@@ -416,12 +416,12 @@ echo Date::days_in_month(2,2000); // 29
 
 			<article>
 				<h4 class="method" id="method_get_timestamp">get_timestamp()</h4>
-				<p>The <strong>get_timestamp</strong> method returns the Date object's timestamp</p>
+				<p><strong>get_timestamp</strong> メソッドは、Date オブジェクトのタイムスタンプを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
@@ -439,12 +439,12 @@ echo Date::days_in_month(2,2000); // 29
 
 			<article>
 				<h4 class="method" id="method_get_timezone">get_timezone()</h4>
-				<p>The <strong>get_timezone</strong> method returns the Date object's timezone</p>
+				<p><strong>get_timezone</strong> メソッドは、Date オブジェクトのタイムゾーンを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
@@ -462,12 +462,12 @@ echo Date::days_in_month(2,2000); // 29
 
 			<article>
 				<h4 class="method" id="method_set_timezone">set_timezone($timezone)</h4>
-				<p>The <strong>set_timezone</strong> method sets the Date object's timezone</p>
+				<p><strong>set_timezone</strong> メソッドは、Date オブジェクトのタイムゾーンをセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -481,7 +481,7 @@ echo Date::days_in_month(2,2000); // 29
 								<tr>
 									<th><kbd>$timezone</kbd></th>
 									<td><i>required</i></td>
-									<td>The timezone to set the Date object to</td>
+									<td>Date オブジェクトにセットするタイムゾーン</td>
 								</tr>
 							</table>
 						</td>
