@@ -398,8 +398,9 @@ $count = $result_arr['count'];
 				<p>The query builder also supports caching a query's result to help you bring down your database access.
 					For this goal it uses the Cache class behind the scenes but handles both retrieval and regeneration
 					of the caches.<br />
-					The <code>cached()</code> method takes 2 arguements: the expiration time (cache validity in seconds)
-					and a second arguement to set a custom key for the query (by default a md5 hash of the SQL). That
+					The <code>cached()</code> method takes 3 arguments: the expiration time (cache validity in seconds)
+					a second argument to set a custom key for the query (by default a md5 hash of the SQL), and a boolean
+					that can be used to indicate that you don't want to cache empty results. Using a custom cache key
 					will allow you to manually delete specific queries more easily and group sets of query caches into
 					specific directories.</p>
 
@@ -411,7 +412,8 @@ $query = DB::query("SELECT * FROM users")->cached(3600)->execute();
 
 // You can specify a key to handle the delete of cached results, useful if you
 // know that will be updated and need to delete it before it gets shown.
-$query = DB::query("SELECT * FROM users")->cached(3600, "foo.bar")->execute();
+// Empty query results will not be cached.
+$query = DB::query("SELECT * FROM users")->cached(3600, "foo.bar", false)->execute();
 
 // This delete the previous query from cache
 Cache::delete("foo.bar");
