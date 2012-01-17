@@ -329,7 +329,7 @@ function setup()
 
 var panes = {};
 var pane_names = {
-	'main': 'Fuel',
+	'main': 'FuelPHP',
 	'core': 'Core',
 	'auth': 'Auth',
 	'email': 'Email',

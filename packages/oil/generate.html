@@ -167,6 +167,14 @@ class Create_posts
 }</code></pre>
 
 
+				<p>If you do not wish to generate a migration, simply supply the <strong>--no-migration</strong>:</p>
+				
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --no-migration
+	Created model: APPPATH/classes/model/post.php</code></pre>
+
+				<h4>Generating Model using Model_Crud</h4>
+
+
 				<h4>Orm\Model を使用してモデルを生成する</h4>
 				<p><code>--orm</code> を追加することで Orm を使用したシンプルなモデルを生成します。</p>
 
@@ -183,8 +191,7 @@ class Create_posts
 }</code></pre>
 
 	
-				<h4>タイムスタンプオプションを指定せずにモデルを生成する</h4>
-
+				<h4 id="no_timestamp">タイムスタンプオプションを指定せずにモデルを生成する</h4>
 				<p>created/updated フィールドやオブザーバを除外するために <code>--no-timestamp</code> を追加します。</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --no-timestamp</code></pre>
@@ -221,6 +228,70 @@ class Create_posts
   }
 }
 </code></pre>
+
+
+				<h4 id="timestamp_fields">Changing Timestamp Fields</h4>
+
+				<p>
+					When you're using the timestamp fields in either ORM models or CRUD models (\Model_Crud) you can
+					chose your own field names. Use the <strong>--created-at</strong> and <strong>--updated-at</strong>
+					options to set your own field names.
+				</p>
+
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --created-at=my_created</code></pre>
+
+				<p>Which will give you:</p>
+				
+				<pre class="php"><code>&lt;?php
+
+class Model_Post extends \Orm\Model
+{
+	protected static $_properties = array(
+		'id',
+		'title',
+		'body',
+		'user_id',
+		'my_created',
+		'updated_at'
+	);
+
+	protected static $_observers = array(
+		'Orm\Observer_CreatedAt' => array(
+			'events' => array('before_insert'),
+			'mysql_timestamp' => false,
+			'property' => 'my_created',
+		),
+		'Orm\Observer_UpdatedAt' => array(
+			'events' => array('before_save'),
+			'mysql_timestamp' => false,
+		),
+	);
+}</code></pre>
+
+<pre class="php"><code>&lt;?php
+
+namespace Fuel\Migrations;
+
+class Create_posts
+{
+	public function up()
+	{
+		\DBUtil::create_table('posts', array(
+			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
+			'title' => array('constraint' => 50, 'type' => 'varchar'),
+			'body' => array('type' => 'text'),
+			'user_id' => array('constraint' => 11, 'type' => 'int'),
+			'my_created' => array('constraint' => 11, 'type' => 'int'),
+			'updated_at' => array('constraint' => 11, 'type' => 'int'),
+
+		), array('id'));
+	}
+
+	public function down()
+	{
+		\DBUtil::drop_table('posts');
+	}
+}</code></pre>
 
 				<h3 id="running_migrations">マイグレーションを実行する</h3>
 				<p>

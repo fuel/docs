@@ -55,7 +55,7 @@
 			<pre class="php"><code>Config::set('language', 'cy');</code></pre>
 
 			<article>
-				<h4 class="method" id="method_load">load($file, $group = null, $language = null)</h4>
+				<h4 class="method" id="method_load">load($file, $group = null, $language = null, $overwrite = false)</h4>
 				<p>The <strong>load</strong> method allows you to load a language file.</p>
 				<table class="method">
 					<tbody>
@@ -86,6 +86,11 @@
 									<th><kbd>$language</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>Sets a specific language to load.</td>
+								</tr>
+								<tr>
+									<th><kbd>$overwrite</kbd></th>
+									<td><kbd>false</kbd></td>
+									<td>(Optional) If set to <kbd>true</kbd> the loaded configuration items will be merged with the items already loaded in a non-recursive manner, with will overwrite array values in a multidimensional array, rather then merging them.</td>
 								</tr>
 							</table>
 						</td>

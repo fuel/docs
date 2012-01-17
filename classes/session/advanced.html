@@ -285,6 +285,12 @@ $session->set_config('expiration_time', 7200);
 				client-side into the POST variable using a bit of javascript.
 			</p>
 
+			<p class="note">
+				When you use a Flash based uploader. you will have to set the <kbd>match_ua</kbd> setting to <kbd>false</kbd>.
+				You have to do this because Flash uses a different User Agent which will prevent the Session class to correctly
+				identify the users session.
+			</p>
+
 							<pre class="javascript"><code>// function to get the session cookie
 // you can use or own, or use the one your favorite javascript framework provides
 function getCookie(c_name)
