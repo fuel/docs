@@ -150,6 +150,17 @@
 				<li><strong>serialize</strong> – Serialized data that can be unserialized in PHP</li>
 			</ul>
 
+			<h3 id="format_determination">Format determination</h3>
+
+			<p>
+				To determine the format in which the result should be returned, the REST controller uses the following algorithm:
+			</p>
+			<ul>
+				<li>use the protected property <kbd>$format</kbd> if it contains a supported format</li>
+				<li>use the URL extension if it is a supported format</li>
+				<li>use the format specified by the <kbd>:format</kbd> variable in the route if it contains a supported format</li>
+				<li>use the default value defined by the <kbd>$rest_format</kbd> property of your class</li>
+			</ul>
 
 			<h3 id="special_methods">Special controller methods</h3>
 
