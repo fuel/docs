@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Modules - General - FuelPHP Documentation</title>
+	<title>モジュール - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -23,7 +23,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -32,7 +32,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -43,50 +43,50 @@
 
 		<div id="main">
 
-			<h2>Modules</h2>
+			<h2>モジュール</h2>
 
-			<h3>What is a module?</h3>
+			<h3>モジュールとは?</h3>
 
 			<p>
-				A module is a group of independent MVC elements. The use of modules allows for re-usability and encapsulation of your code.
-				A module typically resides within an application sub-directory named <strong>modules</strong>.
-				It is suggested to take advantage of modules whenever you're working on a large project,
-				of which you believe it's code-base will be more than just a few lines of code.
-				It will help you to keep things neatly in order.
+				モジュールとは、独立した MVC 要素のグループのことです。モジュールを使うと、コードを再利用しカプセル化することが可能になります。
+				モジュールは、通常、アプリケーションディレクトリの下の <strong>modules</strong> ディレクトリに置かれます。
+				結構な量のコードをもつ大きなプロジェクトを動かしている場合、
+				モジュールを使ってみてはいかがでしょうか。
+				モジュールは、物事をきちんと秩序立てて整理する助けになるでしょう。
 			</p>
 
 			<p>
-				A module can operate independently, like for example a blog module or an album module. You can route directly to the module controllers, without having to access any global code.
-				Modules can also be used in a true HMVC context, where controllers call other controllers, which will produce (a part of) the result needed to generate the result of the page request.
+				例えばブログモジュールやアルバムモジュールのように、モジュールは独立して動作させることが可能です。グローバルなコードに対するいかなるアクセスも行わず、モジュールのコントローラに対して直接ルーティングすることが出来ます。
+				モジュールは、純粋な HMVC コンテクストの中で使うことも出来ます。その場合、ページ生成に必要な諸結果 (の一部) を得るために、コントローラは別のコントローラを呼び出すことが出来ます。
 			</p>
 
-			<h3 id="module_config">Module configuration</h3>
+			<h3 id="module_config">モジュールの設定</h3>
 
 			<p>
-				To be able to use modules, you will have to tell Fuel where your modules are stored.
-				By default, this is in the modules folder of your application. You use the 'modules_path' setting in your applications config.php file to define your module path.
-				You can also define multiple paths. If you do, they will be searched in the sequence you have defined them.
+				利用にあたっては、モジュールの存在を Fuel 自身に教えてあげる必要があります。
+				デフォルトでは、モジュールはアプリケーションの modules フォルダの中に存在します。また、アプリケーションの config.php の中で 'modules_path' を設定することも出来ます。
+				複数のパスを設定することも出来ます。設定したパスはその順に検索されます。
 			</p>
 
 			<pre class="php"><code>/**
- * To enable you to split up your application into modules which can be
- * routed by the first uri segment you have to define their basepaths
- * here.
+ * uri の冒頭セグメント名によって経路付けられるモジュールを
+ * アプリケーションから分離出来るようにするためには、
+ * 下記のように、それぞれ basepath を記述する必要があります。
  */
 'module_paths' => array(
-	APPPATH.'modules'.DS,		// path to application modules
-	APPPATH.'..'.DS.'globalmods'.DS	// path to our global modules
+	APPPATH.'modules'.DS,		// アプリケーションモジュールのパス
+	APPPATH.'..'.DS.'globalmods'.DS	// グローバルモジュールのパス
 ),
 </code></pre>
-			<p>When you define your paths, make sure they end with DS, the Fuel platform independent directory separator.</p>
+			<p>パス設定するときには、OS プラットフォーム毎に対応している Fuel のディレクトリセパレータ定数 DS を、それぞれパスの末尾に付けるのを忘れないでください。</p>
 
-			<h3 id="module_namespace">Module namespace</h3>
+			<h3 id="module_namespace">モジュールの名前空間</h3>
 
-			<p>One of the problems often encountered when working with independently developed code are class name collisions. For example, a lot of modules come with an admin controller. To avoid collisions, in Fuel every module lives in its own PHP namespace, which <strong><u>must</u></strong> be named identical to the folder name of the module.</p>
+			<p>それぞれ独自に開発しているコード間のクラス名が衝突してしまう、というような問題に出くわすことがあります。たとえば、多くのモジュールが 1 つの管理コントローラのもとにある場合が、それにあたります。Fuel では、名前衝突を避けるために全モジュールが PHP の名前空間のもとで動作するようになっています。名前空間は <strong><u>必ず</u></strong> 当該モジュールフォルダ名と同一でなければなりません。</p>
 
 			<pre class="php"><code>&lt;?php
 /**
- * Module controller in the Mymodule module
+ * Mymodule モジュールの中でのモジュールコントローラ
  */
 
 namespace Mymodule;
@@ -94,20 +94,20 @@ namespace Mymodule;
 class Controller_Widget
 {
 
-	// put your controller code here, just like for an application controller
+	// ここに、たとえばアプリケーションコントローラのようなコントローラのコードを書きます。
 }
 </code></pre>
 
-			<h3 id="folder_structure">Module folder structure</h3>
+			<h3 id="folder_structure">モジュールフォルダの構造</h3>
 
 			<p>
-				You start creating a module by creating a folder for your new module in the modules folder you have defined in the configuration.
-				The folders name determines the name of the module, and the name of the namespace for the classes in the module.
-				This name is also used in the URI if you want to route to the modules controllers, or as part of the <a href="../classes/request.html">Request</a> in case of an HMVC call.
+				新しいモジュールを作る時に最初にやるべきことは、設定ファイルでパスを設定したモジュールフォルダの中にフォルダを作ることです。
+				フォルダの名前は、モジュール名とモジュール各クラスのための名前空間となります。
+				また、モジュールのコントローラにルート（経路）付けたい時やHMVCからの呼び出しがあった場合の <a href="../classes/request.html">Request</a> の一部として、URI 内でその名前が使われることがあります。
 			</p>
 			<p>
-				As a module can be viewed as a self contained part of the application, you'll notice that the module folder structure is very familiar.
-				It is the same as the structure of the application folder. The following folder structure is supported for a module:
+				モジュールはそれ自身の中にアプリケーションを包含している、と見なすことができます。モジュールフォルダの構造は慣れ親しんだものであることにあなたは気づくでしょう。
+				モジュールのフォルダ構造はアプリケーションフォルダのそれと同じなのです。下記のフォルダ構造がモジュールでサポートされています:
 			</p>
 			<ul style="margin-top:-20px">
 				<li>classes
@@ -123,81 +123,81 @@ class Controller_Widget
 			</ul>
 
 			<p class="note">
-				<strong>Note:</strong> At the time of writing, tasks are
-				not yet supported within a module.
+				<strong>注記:</strong> このドキュメント記述時においては、
+				まだ tasks はモジュールの中でサポートはされていません。
 			</p>
 
-			<h3 id="cross_module_file_loading">Cross modules file loading</h3>
+			<h3 id="cross_module_file_loading">モジュール間のファイル横断読み込み</h3>
 
 			<p>
-				Whether it's a config file or a view file cross module file loading must have the
-				module prefixed to the filename:
+				設定ファイルであろうとビューファイルであろうと、モジュールを横断した読み込みを行う場合は、
+				モジュール名をファイル名接頭辞に付け加えなければなりません:
 			</p>
 
-			<pre class="php"><code>// Cross load a config
+			<pre class="php"><code>// config のモジュール横断読み込み
 \Config::load('othermodule::myconfig');
 
-// Cross load a view
+// ビューのモジュール横断読み込み
 \View::forge('othermodule::subdir/view');</code></pre>
 
-			<h3 id="module_routing">Module routing</h3>
+			<h3 id="module_routing">モジュールルーティング</h3>
 
 			<p>
-				When you use modules in routed mode, you can add custom routes to your module by including a <b>routes.php</b> in your modules config folder.
-				These routes will be loaded when Fuel detects that the first URI segment refers to a module, and only the routes of that module will be loaded.
-				Those routes will be prepended to the routes array so a possible (:any) route in the main routes config will not match before the module routing is processed.
+				モジュールでルーティングを行う場合、モジュールの config フォルダ内に <b>routes.php</b> を含めることで、独自のルートを加えることが出来ます。
+				Fuel が、URI の最初のセグメントがモジュールを指示していることを検出すると、そのモジュールの経路のみが読み込まれます。
+				モジュールで設定したルートは、メインルート設定で設定されているかもしれない (:any) のルートが、モジュールのルーティングの前にマッチしてしまわないように、ルート配列の冒頭に追加されます。
 			</p>
 
 			<p>
-				This implies that module routes can not be used to define routes for global routing or routes for other modules.
-				In other words, the left side should always include the current module as first URI segment.
-				For the right side you can use anything described in the sections above, it's perfectly fine to have a module
-				route to an app controller or another module.
+				上の点は、次のことを意味しています。すなわち、モジュールで設定されたルートはグローバルルーティングや他のモジュールのルートを定義するために使うことは出来ない、ということです。
+				別の言い方をしましょう。ルート設定 (配列) の左辺は、URI の最初のセグメントに現行モジュールが常に含まれていなければならない、ということです。
+				右辺は、他の各節で書いたのと同様で、どのようなものでも記述可能です。
+				アプリケーションコントローラあるいは他のモジュールに対するルートを設定することは完全に可能です。
 			</p>
 
-			<h3 id="modules_and_hmvc">Modules and HMVC requests</h3>
+			<h3 id="modules_and_hmvc">モジュールと HMVC リクエスト</h3>
 
 			<p>
-				Besides using modules as a way of separating logically independent parts of your application,
-				you can also use module controllers in an HMVC context, where one of your application's controllers calls one of more module controllers
-				to create the final result of the URI requested.
-			</p>
-
-			<p>
-				Read the <a href="./hmvc.html">HMVC requests docs</a> to find out more.
-			</p>
-
-			<h3 id="static_calls">Using module classes outside the module</h3>
-
-			<p>
-				It is also possible to use a module's classes outside of it of course.
-				For this to work, Fuel needs to be able to autoload the class when you reference it in your code.
-				Which means you will have to tell Fuel where to find the module. There are two ways to do this.
+				アプリケーションから論理的に独立分離したモジュールを作るという場合を除けば、
+				モジュールのコントローラを HMVC コンテキストの中で使うことも可能です。
+				そのコンテキストにおいては、リクエストされた URI による最終生成物を作るためにアプリケーションのコントローラの 1 つが他のモジュールコントローラの 1 つを呼び出します。
 			</p>
 
 			<p>
-				You can preload the module by specifying the module to load in the <code>'always_load'</code>,
-				<code>'modules'</code> setting of your applications <code>config.php</code> file:
+				この点については更に、<a href="./hmvc.html">HMVC リクエストのドキュメント</a> を参照ください。
+			</p>
+
+			<h3 id="static_calls">モジュールの外部で、他のモジュールのクラスを使う</h3>
+
+			<p>
+				当然のことですが、モジュールのクラスをモジュールの外部で使うことも可能です。
+				そのためには、そのクラスの自動読み込みを Fuel が出来るようになっていなければなりません。
+				これは、モジュールがどこにあるのか Fuel に教えておく必要がある、ということを意味します。読み込み方法としては、2 つの方法があります。
+			</p>
+
+			<p>
+				1 つは、<code>'always_load'</code> で読み込むモジュールを特定することで予めモジュールを読み込む方法で、
+				アプリケーションの <code>config.php</code> ファイルで <code>'modules'</code> を設定する方法です:
 			</p>
 
 			<pre class="php"><code>'always_load' => array(
 
 	/**
-	 * These modules are always loaded on Fuel's startup. You can specify them
-	 * in the following manner:
+	 * これらのモジュールは Fuel が動作開始する時に常に読み込まれます。
+	 * 次のような方法でモジュール指定をすることが可能です:
 	 *
 	 * array('module_name');
 	 *
-	 * A path must be set in module_paths for this to work.
+	 * パスは module_paths として動作するように設定されていなければなりません。
 	 */
 	'modules'	=> array('mymodule'),</code></pre>
 
-			<p>You can also add the module manually at runtime, before you use any of the static methods:</p>
+			<p>2 つ目の方法として、モジュールの静的メソッドを使う前に、モジュールをその都度付け加える方法です。:</p>
 
-			<pre class="php"><code>// add the module Mymodule to Fuel
+			<pre class="php"><code>// Mymodule モジュールを Fuel に加えます
 Fuel::add_module('mymodule');</code></pre>
 
-			<p>You then call the module class like this:</p>
+			<p>このようにすれば、次のようにモジュールのクラスを呼び出すことが出来ます:</p>
 
 			<pre class="php"><code>\Mymodule\Myclass::mymethod('params');</code></pre>
 
