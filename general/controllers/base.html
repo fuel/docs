@@ -80,6 +80,20 @@
 				isn't allowed, "action_list" is no problem). But this also means you can give your controller public
 				methods that can be used from other classes but are not routable.
 			</p>
+			
+			<h4 id="controller_in_subdir">Controllers in Sub-Directories</h4>
+
+			<p>
+				You can also put a controller in a subdirectory, like
+				<kbd>fuel/app/classes/controller/subdir/test.php</kbd>. In this case, the controller must include
+				the dirname in the classname like this: <var>Controller_Subdir_Test</var>.
+			</p>
+
+			<p>
+				Unlimited nested sub-directories are supported, so
+				<kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd>. would have a class name of
+				<var>Controller_Subdir1_Subdir2_Subdir3_Test</var>.
+			</p>
 
 			<h4 id="more_parameters">Using more parameters from the URL</h4>
 
@@ -110,20 +124,7 @@
 				set special HTTP headers, or a custom HTTP status code (a code other than "200 OK").
 			</p>
 
-			<h4 id="controller_in_subdir">Controller in a Sub-Directories</h4>
-
-			<p>
-				You can also put a controller in a subdirectory, like
-				<kbd>fuel/app/classes/controller/subdir/test.php</kbd>. In this case, the controller must include
-				the dirname in the classname like this: <var>Controller_Subdir_Test</var>.
-			</p>
-
-			<p>
-				Unlimited nested sub-directories are supported, so
-				<kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd>. would have a class name of
-				<var>Controller_Subdir1_Subdir2_Subdir3_Test</var>.
-			</p>
-
+			
 			<h3 id="special_methods">Special controller methods</h3>
 
 			<p class="note">
