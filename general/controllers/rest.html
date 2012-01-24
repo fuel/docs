@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
@@ -152,6 +153,17 @@
 				<li><strong>serialize</strong> – PHP でアンシリアライズ可能な、シリアライズされたデータ</li>
 			</ul>
 
+			<h3 id="format_determination">Format determination</h3>
+
+			<p>
+				To determine the format in which the result should be returned, the REST controller uses the following algorithm:
+			</p>
+			<ul>
+				<li>use the protected property <kbd>$format</kbd> if it contains a supported format</li>
+				<li>use the URL extension if it is a supported format</li>
+				<li>use the format specified by the <kbd>:format</kbd> variable in the route if it contains a supported format</li>
+				<li>use the default value defined by the <kbd>$rest_format</kbd> property of your class</li>
+			</ul>
 
 			<h3 id="special_methods">特殊なコントローラのメソッド</h3>
 
