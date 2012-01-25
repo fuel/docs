@@ -429,6 +429,7 @@ panes.core = {
 			"Advanced":		"classes/file/advanced.html",
 			"Handlers":		"classes/file/handlers.html",
 		},
+		"Finder":		"classes/finder.html",
 		"Form":			"classes/form.html",
 		"Format":		"classes/format.html",
 		"Ftp":			"classes/ftp.html",
