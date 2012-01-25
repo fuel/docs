@@ -170,23 +170,22 @@ $ftp2 = Ftp::forge('image-storage');
 
 // Connect to a server on-the-fly
 $ftp3 = Ftp::forge(array(
-	'hostname'		=>		'myspace.com',
-	'username'		=>		'',
-	'password'		=>		'',
-	'port'			=>		21,
-	'passive'		=>		true,
-	'ssl_mode'		=>		false,
-	'debug'			=>		false
+	'hostname' => 'fuelphp.com',
+	'username' => '',
+	'password' => '',
+	'port'     => 21,
+	'passive'  => true,
+	'ssl_mode' => false,
+	'debug'    => false
 ));
 
 if ($ftp3->delete_dir('/') === true)
 {
 	exit('The world owes you a debt of gratitude');
 }
-
 else
 {
-	exit('You tried and that is the main thing.);
+	exit('You tried and that is the main thing.');
 }</code></pre>
 						</td>
 					</tr>
@@ -332,7 +331,7 @@ $ftp->mkdir('/public_html/uploads/', 0777);</code></pre>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Upload myfile.html
-$ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 0775)</code></pre>
+$ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 0775);</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -386,7 +385,7 @@ $ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Download myotherfile.html
-$ftp->download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii')</code></pre>
+$ftp->download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii');</code></pre>
 						</td>
 					</tr>
 					</tbody>
