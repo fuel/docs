@@ -179,6 +179,51 @@ catch(\Database_Exception $e)
 			</article>
 
 			<article>
+				<h4 class="method" id="method_table_exists">table_exists($table)</h4>
+				<p>The <strong>table_exists</strong> method checks if a given table exists.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<td><kbd>$table</kbd></td>
+										<td><em>required</em></td>
+										<td>the table name</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns true if table exists, false if it does not.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php">
+								<code>
+								// Check if table named 'my_table' exists
+								DBUtil::table_exists('my_table');
+								</code>
+								</pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_drop_table">drop_table($table)</h4>
 				<p>The <strong>drop_table</strong> method drops a table.  Will throw a Database_Exception if it cannot.</p>
 				<table class="method">
@@ -880,7 +925,7 @@ CREATE TABLE `users` (
 
 			<article>
 				<h4 class="method" id="method_optimize_table">optimize_table($table)</h4>
-				<p>The <strong>check_table</strong> method optimizes a table.</p>
+				<p>The <strong>optimize_table</strong> method optimizes a table.</p>
 				<table class="method">
 					<tbody>
 						<tr>
