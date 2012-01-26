@@ -50,6 +50,63 @@
 			<p>The arr class is a set of helper functions for working with arrays.</p>
 
 			<article>
+				<h4 class="method" id="method_is_assoc">is_assoc($arr)</h4>
+				<p>The <strong>is_assoc</strong> method checks if the array passed is an associative array or not.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$arr</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to check.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>
+$arr = array('foo', 'bar', 'baz', 'yay');
+$result = Arr::is_assoc($arr);
+// Result: false
+
+$arr = array('foo' => 'foo', 'bar' => 'bar', 'baz' => 'baz', 'yay' => 'yay');
+$result = Arr::is_assoc($arr);
+// Result: true
+
+/*
+ * Note that even if the '2' is defined as a string, PHP will store this internally
+ * as an integer, and therefore this is NOT seen as an assoc array!
+ */
+$arr = array(0 => 'foo', 1 => 'bar', '2' => 'baz', 3 => 'yay');
+$result = Arr::is_assoc($arr);
+// Result: false!
+
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_to_assoc">to_assoc($arr)</h4>
 				<p>The <strong>to_assoc</strong> method turns a non-associative array into an associative array if it has an even number of segments.  If it has an odd number of segments it returns <kbd>null</kbd>.</p>
 				<table class="method">
