@@ -214,7 +214,11 @@ catch(\Database_Exception $e)
 								<pre class="php">
 								<code>
 								// Check if table named 'my_table' exists
-								DBUtil::table_exists('my_table');
+								if(\DBUtil::table_exists('my_table')){
+									// Table exists
+								} else {
+									// Table does NOT exist, create it!
+								} 
 								</code>
 								</pre>
 							</td>
@@ -556,7 +560,11 @@ CREATE TABLE `users` (
 							<td>
 								<pre class="php">
 									<code>
-										\DBUtil::field_exists('my_table', array('my_field_or_column'));
+										if(\DBUtil::field_exists('my_table', array('my_field_or_column'))){
+											// Fields exist
+										} else {
+											// Fields are not available on the table
+										}
 									</code>
 								</pre>
 							</td>
