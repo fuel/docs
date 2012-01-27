@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>File Advanced - Classes - FuelPHP Documentation</title>
+	<title>File 高度な利用法 - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -44,33 +44,33 @@
 
 		<div id="main">
 
-			<h2>Advanced usage</h2>
+			<h2>高度な利用法</h2>
 
 			<section>
-				<h3 id="intro">Introduction</h3>
+				<h3 id="intro">導入</h3>
 
 				<p>
-					Aside from the basic static <a href="usage.html">usage</a> of the File class there are also more
-					complex options available. The first are <strong>areas</strong> which are basically basepaths it
-					cannot act outside of and have some configuration options. And when using the File class's methods
-					on an area they will return objects wrapping directories &amp; files.
+					ファイルクラスの基本的で静的な <a href="usage.html">利用法</a> に加えて、より複合的なオプションを使うことも出来ます。
+					まず挙げるべきものとしては <strong>エリア</strong> があります。エリアとはパスの外部では動作しない基準になるパスのことです。
+					エリアは、幾つかの設定オプションを持っています。エリアに対して File クラスのメソッドを用いると、
+					ディレクトリとファイルをラップしたオブジェクトが返されます。
 				</p>
 
 				<article>
-					<h3 id="areas">Areas</h3>
+					<h3 id="areas">エリア</h3>
 
-					<h4 id="areas_intro">Introduction</h4>
+					<h4 id="areas_intro">導入</h4>
 					<p>
-						File areas are used to influence file system behaviour. By setting basic restrictions you can
-						set boundaries to allow a flexible use inside those limits without worrying about unauthorized
-						access of files and directories.
+						ファイルエリアは、ファイルシステムの動作に影響を与えたい時に使います。大元のところで制限設定を行うことで、
+						当該ファイル・ディレクトリがアクセス許可されていないのではないか? と思い悩むことなく、
+						その制限範囲内で柔軟にファイルシステムを利用出来る境界線を策定することが出来るのです。
 					</p>
 
-					<h4 id="area_config">Configuration</h4>
+					<h4 id="area_config">設定</h4>
 					<p>
-						By default file areas have unlimited access through all directories. There are two ways to set
-						these configuration values. The quickest way is to pass an array intro the
-						File::forge() method.
+						初期設定では、ファイルエリアは全ディレクトリに対して無制限にアクセス出来るようになっています。
+						2 種類のエリア設定方法があります。まず手近なものとしては、
+						File::forge() メソッドに配列を渡す方法があります。
 					</p>
 
 					<pre class="php"><code>$config = array(
@@ -81,13 +81,13 @@
 $area = \File::forge($config);</code></pre>
 
 					<p>
-						A more centralized way is by defining an area (or more) inside you File config file. To do so,
-						copy <em>core/config/file.php</em> into <em>app/config/file.php</em> (or create a new one) and
-						define your area inside the <em>'areas'</em> array. Now you can get the area by supplying the
-						string identifier to the File::forge() method.
+						より集中的に設定したいなら、File 設定ファイルによって 1つのエリア (あるいは複数のエリア) を設定します。
+						設定する時は、まず <em>core/config/file.php</em>を<em>app/config/file.php</em> にコピーしてください　(あるいは新しく作ってください)。
+						その上で、同ファイル内の <em>'areas'</em> 配列にエリアを設定します。こうすれば File::forge() メソッドに設定した文字列の識別子が与えられ、
+						エリアが得ることが出来ます。
 					</p>
 
-					<pre class="php"><code>// inside app/config/file.php
+					<pre class="php"><code>// app/config/file.php の中
 'areas' => array(
 	'my_area' => array(
 		'basedir'		=> DOCROOT.'uploads',
@@ -95,33 +95,33 @@ $area = \File::forge($config);</code></pre>
 	),
 ),
 
-// Now get the area
+// 新しいエリアを得る
 
 $area = \File::instance('my_area');
 					</code></pre>
 
-					<h3 id="area_usage">Usage</h3>
+					<h3 id="area_usage">利用法</h3>
 
 					<p>
-						There are 2 ways to use areas in the File class. <br />
-						The first is to use areas in a static context, supply a File_Area instance or identifier to the
-						function you're calling.
+						ファイルクラスのエリアを使うには 2 つの方法があります。<br />
+						1 つ目はスタティックなコンテキストの中でエリアを使い、
+						呼び出している関数に File_Area インスタンスあるいは識別子を与えることです。
 					</p>
 
-					<pre class="php"><code>// Read the contents of a directory
+					<pre class="php"><code>// あるディレクトリの中身を読み込む
 try
 {
 	$dir = File::read_dir('somedir', 0, null, 'my_area');
 }
 catch(\FileAccessException $e)
 {
-	// Operation failed
+	// 失敗したときの処理
 }
 </code></pre>
 
-					<p>The second way is to call the functions directly from the area itself.</p>
+					<p>2 つ目の方法としては、エリアから直接に関数を呼び出すことです。</p>
 
-					<pre class="php"><code>// Get the area
+					<pre class="php"><code>// エリアを取得する
 $area = File::instance('my_area');
 
 try
@@ -130,17 +130,17 @@ try
 }
 catch(\FileAccessException $e)
 {
-	// Operation failed
+	// 失敗したときの処理
 }
 </code></pre>
 
 				</article>
 
 				<article>
-					<h3 id="file_handers">Files &amp; directories as objects: File Handlers</h3>
+					<h3 id="file_handers">オブジェクトとしてのファイルとディレクトリ: ファイルハンドラ</h3>
 
 					<p>
-						<a href="handlers.html">Read about File Handlers.</a>
+						<a href="handlers.html">ファイルハンドラをお読みください。</a>
 					</p>
 				</article>
 			</section>

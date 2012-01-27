@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Response::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Response - Classes - FuelPHP Documentation</title>
+	<title>Response - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,76 +45,76 @@
 
 		<div id="main">
 
-			<h2>Response Class</h2>
+			<h2>Response クラス</h2>
 
-			<p>The response class contains the methods to deal with HTTP response and browser output.</p>
+			<p>Response クラスは HTTP レスポンスとブラウザ出力を扱うメソッドを含んでいます。</p>
 
 			<article>
-				<h4>Setting the Status Header</h4>
-				<p>The status header is treated as a &quot;special&quot; header in Fuel.  You do not set it as you would
-					other headers. The status header is set as follows in the controller:</p>
+				<h4>ステータスヘッダを設定する</h4>
+				<p>Fuel において、ステータスヘッダは &quot;特別の&quot; ヘッダとして扱われます。設定の仕方も、他のヘッダとは同じではありません。
+					コントローラの中で次のように設定します:</p>
 				<pre class="php"><code>$response = new Repsonse($body, 404);</code></pre>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_set_header">set_header($name, $value, $replace)</h4>
-				<p>The <strong>set_header</strong> method allows set custom HTTP headers.</p>
-				<p class="note">This function must called from within a controller method as the response object is one of the controller's properties.</p>
+				<p><strong>set_header</strong> メソッドを使えば独自に作成した HTTP ヘッダを設定出来ます。</p>
+				<p class="note">本機能は、レスポンスオブジェクトがコントローラのプロパティの 1 つになるような形でコントローラのメソッドから呼び出される必要があります。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
 									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><i>Required</i></td>
-									<td>Name of the header to add. Note that names are unique, overwriting each other if the same name is used.</td>
+									<td><i>説明</i></td>
+									<td>付け加えるヘッダ名。名前はユニークで、もし同一名があった場合は置き換えされます。
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
-									<td>The string that needs to be added to the HTTP header.</td>
+									<td><i>説明</i></td>
+									<td>HTTP ヘッダに付加される必要がある文字列です。</td>
 								</tr>
 								<tr>
 									<th><kbd>$replace</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>All headers will replace any previous value for the same name by default. If you set
-										this parameter to <kbd>false</kbd> the header won't overwrite and can't be overwritten.</td>
+									<td>デフォルトでは同名のヘッダの値はすべて置き換えられます。<kbd>false</kbd> がセットされた場合は、ヘッダの書き換えはありませんし、書き換え出来ません。</td>
+
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$response = new Response();
 
-// We'll be outputting a PDF
+// PDF を出力します
 $response->set_header('Content-Type', 'application/pdf');
 
-// It will be called downloaded.pdf
+// downloaded.pdf がコールされます
 $response->set_header('Content-Disposition', 'attachment; filename="downloaded.pdf"');
 
-// Set no cache
+// キャッシュをなしにします
 $response->set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
 $response->set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
 $response->set_header('Pragma', 'no-cache');
 
-// More examples
+// 更なる例
 $response->set_header('Content-Language', 'en');
 $response->set_header('Content-Type', 'text/html; charset=utf-8');
 
@@ -127,80 +127,80 @@ return $response;</code></pre>
 
 			<article>
 				<h4 class="method" id="method_send_headers">send_headers()</h4>
-				<p>The <strong>send_headers</strong> method sends the set headers out to the browser, including the HTTP status of the request.</p>
-				<p class="note">This function must called from within a controller method as the response object is one of the controller's properties.</p>
+				<p><strong>send_headers</strong> メソッドは、リクエストされた HTTP ステータスを含むヘッダをブラウザに送信します。</p>
+				<p class="note">本機能は、レスポンスオブジェクトがコントローラのプロパティの一つになるような形で、コントローラのメソッドの中から呼び出される必要があります。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
-						<td><i>None</i></td>
+						<th>パラメータ</th>
+						<td><i>なし</i></td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$response->send_headers();</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p>Note that you normally don't have to call this method manually. Fuel will take care of this as part of processing the request.</p>
+				<p>通常は手動でこのメソッドを呼び出す必要はありません。リクエスト処理の一部として Fuel がこれを処理するからです。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_redirect">redirect($url = '', $method = 'location', $redirect_code = 302)</h4>
-				<p>The <strong>redirect</strong> method offers different methods of redirecting to a new URL.</p>
+				<p><strong>redirect</strong> メソッドは、新しい URL にリダイレクトする諸々の方法を提供します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
 									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$url</kbd></th>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>URL to redirect to.</td>
+									<td>リダイレクト先の URL 。</td>
 								</tr>
 								<tr>
 									<th><kbd>$method</kbd></th>
 									<td><pre class="php"><code>'location'</code></pre></td>
-									<td>Redirection method to use. Supported are 'location' and 'refresh'.</td>
+									<td>リダイレクト方法。'location' と 'refresh'がサポートされています。</td>
 								</tr>
 								<tr>
 									<th><kbd>$redirect_code</kbd></th>
 									<td><pre class="php"><code>302</code></pre></td>
-									<td>HTTP status code to send back as part of the redirect.</td>
+									<td>HTTP ステータスコード。リダイレクトの一部分として送り返されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>This method terminates the current script, it does not return.</td>
+						<th>返り値</th>
+						<td>このメソッドは、現在のスクリプトを終わらせます。返り値を持ちません。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// use a URL
+							<pre class="php"><code>// URL を使います
 Response::redirect('http://example.com/home', 'refresh');
 
-// or use a relative URI
+// あるいは、相対 URI を使います
 Response::redirect('site/about');</code></pre>
 						</td>
 					</tr>
