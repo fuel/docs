@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Extending Core - General - FuelPHP Documentation</title>
+	<title>Core の拡張 - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -46,8 +46,8 @@
 
 			<h2>コアクラスの拡張</h2>
 
-            <p><strong>何をしているかを理解してください。同じ名前で拡張されたコアメソッドは、アプリケーションからと同様にコアから使用されます。
-            そのため予期しない振る舞いをすることがあります。</strong></p>
+			<p><strong>何をしているかを理解してください。同じ名前で拡張されたコアメソッドは、アプリケーションからと同様にコアから使用されます。
+			そのため予期しない振る舞いをすることがあります。</strong></p>
 
 			<ul>
 				<li><a href="#extend_dont_replace">コアクラスを置き換えずに拡張する</a></li>
@@ -59,7 +59,8 @@
 			<article>
 				<h3 id="extend_dont_replace">コアクラスを置き換えずに拡張する</h3>
 
-                <p>最も簡単で、あなたが生成した他のクラスと同様に動作します。グローバル名前空間のコアクラスを単に拡張します。</p>
+				<p>最も簡単で、あなたが生成した他のクラスと同様に動作します。
+				グローバル名前空間のコアクラスを単に拡張します。</p>
 
 				<pre><code>class MyConfig extends Config {}</code></pre>
 			</article>
@@ -67,41 +68,40 @@
 			<article>
 				<h3 id="extend_and_replace">コアクラスを拡張し、置き換える</h3>
 
-                <p>コアの拡張をアプリケーションと同様にコアに使用させたい場合、同じ名前でコアを拡張しますが、
-                "Fuel\Core" 名前空間のままにしておく必要があります。以下は Config クラスの例で、"fuel/app/classes/config.php" に作成します:</p>
+				<p>コアの拡張をアプリケーションと同様にコアに使用させたい場合、同じ名前でコアを拡張しますが、
+				"Fuel\Core" 名前空間のままにしておく必要があります。以下は Config クラスの例で、
+				"fuel/app/classes/config.php" に作成します:</p>
 
 				<pre><code>class Config extends Fuel\Core\Config {}</code></pre>
 
-                <p>しかし、コアクラスを同じ名前を持つクラスは、デフォルトでは無視されます。
-                オートローダに置き換えたクラスを認識させるには、アプリケーションブートストラップファイルで登録するする必要があります。
-                次の行をみてください</p>
+				<p>しかし、コアクラスを同じ名前を持つクラスは、デフォルトでは無視されます。
+				オートローダに置き換えたクラスを認識させるには、アプリケーションブートストラップファイルで登録するする必要があります。次の行をみてください:</p>
 
 				<pre><code>Autoloader::add_classes(array(
-	// ここにオーバーライドしたいクラスを追加します。
+	// ここにオーバーライドしたいクラスを追加します
 	// Example: 'View' => APPPATH.'classes/view.php',
 ));</code></pre>
 
-                <p>コメントで説明しているように、以下のように新しい Config クラスを追加する必要があります:</p>
+				<p>コメントで説明しているように、以下のように新しい Config クラスを追加する必要があります:</p>
 
 				<pre class="php"><code>Autoloader::add_classes(array(
-	// ここにオーバーライドしたいクラスを追加します。
+	// ここにオーバーライドしたいクラスを追加します
 	// Example: 'View' => APPPATH.'classes/view.php',
 	'Config' => APPPATH.'classes/config.php',
 ));</code></pre>
 
-                <p>この後、コアクラスはあなたが拡張したクラスに置き換わります。<br/>
-                注意: コアクラスは依然として有効で、プリフィックスとして名前空間をすべて指定することで使用可能です。
-                上記の "Config" クラスの拡張の例では、"Fuel\Core\Config" をコールすることでオリジナルのクラスを使用可能です。</p>
+				<p>この後、コアクラスはあなたが拡張したクラスに置き換わります。<br/>
+				注意: コアクラスは依然として有効で、プリフィックスとして名前空間をすべて指定することで使用可能です。
+				上記の "Config" クラスの拡張の例では、"Fuel\Core\Config" をコールすることでオリジナルのクラスを使用可能です。</p>
 			</article>
 
 			<article>
 				<h3 id="extend_from_packages">パッケージからコアを拡張する</h3>
 
-                <p>コアの名前空間としてパッケージを追加することで、オートローダはコアからロードする前に
-                    あなたのパッケージからクラスをロードしようとします。
-                    それらのクラスは検出されるようにオートローダでクラスを登録しなければなりません。
-                    (ファイルシステムオートローダはグローバルへのエイリアスをサポートしません)
-                    以下は <kbd>View</kbd> クラスを拡張する例です。</p>
+				<p>コアの名前空間としてパッケージを追加することで、オートローダはコアからロードする前に
+					あなたのパッケージからクラスをロードしようとします。
+					それらのクラスは検出されるようにオートローダでクラスを登録しなければなりません (ファイルシステムオートローダはグローバルへのエイリアスをサポートしません)。
+					以下は <kbd>View</kbd> クラスを拡張する例です。</p>
 
 				<pre class="php"><code>Autoloader::add_core_namespace('Example');
 
@@ -125,9 +125,10 @@ Autoloader::add_classes(array(
 				</ul>
 
 				<h4>オートローダ</h4>
-                <p>Autoloader クラスは特別なクラスで、<code>Autoloader</code> として１度だけ拡張して使用可能です。
-                拡張した後は、<kbd>app/bootstrap.php</kbd> ファイルでオリジナルの <code>Fuel\Core\Autoloader</code> の後に
-                手動で読み込まなければなりません。グローバルにコアクラスをエイリアスしている行を削除することを忘れないで下さい。</p>
+				<p>Autoloader クラスは特別なクラスで、<code>Autoloader</code> として一度だけ拡張して使用可能です。
+				拡張した後は、<kbd>app/bootstrap.php</kbd> ファイルでオリジナルの <code>Fuel\Core\Autoloader</code> の後に
+					手動で読み込まなければなりません。
+					グローバルにコアクラスをエイリアスしている行を削除することを忘れないで下さい。</p>
 			</article>
 
 		</div>
