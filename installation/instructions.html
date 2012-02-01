@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Instruction - Installation - FuelPHP Documentation</title>
+	<title>インストール方法 - インストール - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -43,42 +43,44 @@
 		</div>
 
 		<div id="main">
-			
+
 			<h5>いずれかを選択してください: <a href="#command">コマンドラインからインストール</a> | <a href="#manual">手動でインストール</a></h5>
 			<br />
 			<h3 id="command">コマンドラインからインストール</h3>
 		    <p class="note">この方法は現在 *nix systems (Linux, OS X, Unix など) でのみ動作します。</p>
             <p>我々のクイックインストーラは Oil パッケージ用に書き下ろされたインターフェースです。これを使用すると１つのコマンドで新しいプロジェクトを生成することができます。oil コマンドで 'php' を使用する必要もありません。</p>
-	
+
             <p>クイックインストーラをインストールするためには、シェルを開き次のコマンドを実行するだけです：</p>
-			
+
 			<pre class="cli"><code>$ curl get.fuelphp.com/oil | sh</code></pre>
-			
-            <p class="note">この場合、スクリプトを /usr/bin にインストールするためパスワードを尋ねてくるでしょう。</p>
-			
-            <p>これであなたのプロジェクトでは 'php oil' の代わりに 'oil' だけを使用することができます。</p>
-	
-            <p>新しいプロジェクトを生成するためには次のようにするだけです：</p>
-	
+
+			<p class="note">この場合、スクリプトを /usr/bin にインストールするためパスワードを尋ねてくるでしょう。</p>
+
+			<p>これであなたのプロジェクトでは 'php oil' の代わりに 'oil' だけを使用することができます。</p>
+
+			<p>新しいプロジェクトを生成するためには次のようにするだけです：</p>
+
 			<pre class="cli"><code>$ oil create &lt;project_name&gt;</code></pre>
-			
-            <p>これで、カレントディレクトリにあたなが指定したプロジェクト名のフォルダが作成されます。そしてリポジトリとすべてのサブモジュールをそのフォルダに複製します。</p>
-			
-            <p>注意: この場合 <code class="cli">$ oil refine install</code> も実行します。これは必要なディレクトリを書き込み可能にします。</p>
-	
+
+			<p>これで、カレントディレクトリにあたなが指定したプロジェクト名のフォルダが作成されます。そしてリポジトリとすべてのサブモジュールをそのフォルダに複製します。</p>
+
+			<p>注意: この場合 <code class="cli">$ oil refine install</code> も実行します。これは必要なディレクトリを書き込み可能にします。</p>
+
 			<h3 id="manual">手動でインストール</h3>
-	
-            <p>この方法は、あなたのウェブサーバに Fuel フレームワークのデフォルトインストール構成を生成します。</p>
+
+			<p>この方法は、あなたのウェブサーバに Fuel フレームワークのデフォルトインストール構成を生成します。</p>
 
 			<ol>
 				<li><a href="download.html">Fuel フレームワークをダウンロードする</a></li>
-				<li>ダウンロードしたファイルを解凍し、展開する。</li>
+				<li>ダウンロードしたファイルを解凍し、展開する</li>
 				<li>ファイルをサーバへ移動する
 					<ul>
-                        <li>ソース内の public ディレクトリはウェブサーバの公開用ディレクトリ（例えば、public_html, public, htdocs など）になります。
-                        その内容をそこへ移動するか Fuel を使用したい webroot のサブディレクトリへ移動します。</li>
-                        <li>fuel ディレクトリを公開ディレクトリの外に置くことをセキュリティの観点から推奨します。</li>
-                        <li>index.php 内のパスを編集し、あなたの app, core, packages ディレクトリに合わせます。</li>
+						<li>ソース内の public ディレクトリは Web サーバの公開用ディレクトリ、例えば、
+						public_html, public, htdocs など)になります。
+						その内容をそこへ移動するか 
+						Fuel を使用したい webroot のサブディレクトリへ移動します。</li>
+						<li>fuel ディレクトリを公開ディレクトリの外に置くことをセキュリティの観点から推奨します。</li>
+						<li>index.php 内のパスを編集し、あなたの app, core, packages ディレクトリに合わせます。</li>
 					</ul>
 <pre class="plain"><code>/
   fuel/
@@ -92,7 +94,8 @@
   oil
 </code></pre>
 				</li>
-				<li>手動でフォルダのパーミッションを書き込み可能にセットするか、次のようにします：
+				<li>
+					手動でフォルダのパーミッションを書き込み可能にセットするか、次のようにします：
 <pre class="cli"><code>$ php oil refine install
 	Made writable: APPPATH/cache
 	Made writable: APPPATH/logs
@@ -102,17 +105,19 @@
 </pre>
 				</li>
 			</ol>
-	
+
 			<h2 id="configuration">設定</h2>
-	
-            <p>メインの設定は app/config/config.php にあります。好きに編集してください。</p>
-	
+
+			<p>メインの設定は app/config/config.php にあります。好きに編集してください。</p>
+
 			<h2 id="install_inside_root">ドキュメントルート内にインストールする</h2>
-	
-            <p>ポイント３で説明したように、セキュリティの観点からウェブサーバのドキュメントルート内に Fuel をインストールしないことを強く推奨します。</p>
-			<p>しかしながらそうしたい状況もあります。例えば、Apache の大量の動的なバーチャルホストモジュールのある（ローカルの）開発環境は、ウェブサーバを再起動せずに新しい開発環境を素早く構築するために使用されます。
+
+			<p>ポイント 3 で説明したように、セキュリティの観点からウェブサーバのドキュメントルート内に Fuel をインストールしないことを強く推奨します。</p>
+			<p>
+				しかしながらそうしたい状況もあります。例えば、Apache の大量の動的なバーチャルホストモジュールのある (ローカルの) 開発環境は、
+				Web サーバを再起動せずに新しい開発環境を素早く構築するために使用されます。
 			</p>
-            <p>この場合は、.htaccess ファイルが必要で、ドキュメントルートに置く必要があります。さらにそのサイトへのリクエストを公開フォルダにリダイレクトし、公開フォルダをインクルードするために rewrites も変更します：</p>
+			<p>この場合は、.htaccess ファイルが必要で、ドキュメントルートに置く必要があります。さらにそのサイトへのリクエストを公開フォルダにリダイレクトし、公開フォルダをインクルードするために rewrites も変更します：</p>
 <pre class="plain"><code>
 &lt;IfModule mod_rewrite.c>
 	RewriteEngine on
@@ -128,11 +133,15 @@
 &lt;/IfModule>
 </code>
 </pre>
-			
-			<h2 id="setting_the_environment">environment をセットする</h2>
-			
-            <p>デフォルトでは、environment は開発モードにセットされています。Fuel は environment を使用して、使用するデータベースを定義します。しかし、他のことにも利用できます。</p>
-            <p>environment をセットするために、.htaccess ファイルから次の行を削除します。</p>
+
+			<h2 id="setting_the_environment">環境を設定する</h2>
+
+			<p>
+				デフォルトでは、環境は開発モードにセットされています。Fuel は環境を使用して、使用するデータベース設定を定義します。しかし、他のことにも利用できます。
+			</p>
+			<p>
+				環境を設定するために、.htaccess ファイルに次の行を追加します。
+			</p>
 			<pre class="plain"><code>SetEnv FUEL_ENV production</code></pre>
 			<p>
 				有効なオプションは Fuel クラスの <a href="../classes/fuel.html#class_constants">クラス定数</a> 内で定義されています。

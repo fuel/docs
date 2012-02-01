@@ -341,7 +341,7 @@ var pane_names = {
 panes.main = {
 	"基本": {
 		"ホーム":			"index.html",
-		"必要条件":	"requirements.html",
+		"要件":	"requirements.html",
 		"ライセンス":		"license.html",
 		"貢献":	"contribute.html",
 		"クレジット表示":		"credits.html"
@@ -354,9 +354,9 @@ panes.main = {
 	"概要": {
 		"クラス": {
 			"イントロダクション":		"general/classes.html",
-			"Coreの拡張":	"general/extending_core.html"
+			"Core の拡張":	"general/extending_core.html"
 		},
-		"コーディング規約":	"general/coding_standards.html",
+		"コーディング標準":	"general/coding_standards.html",
 		"設定":	"general/configuration.html",
 		"定数":		"general/constants.html",
 		"コントローラー": {
@@ -365,7 +365,7 @@ panes.main = {
 			"Rest":			"general/controllers/rest.html"
 		},
 		"環境":		"general/environments.html",
-		"HMVCリクエスト":	"general/hmvc.html",
+		"HMVC リクエスト":	"general/hmvc.html",
 		"モジュール":			"general/modules.html",
 		"モデル":			"general/models.html",
 		"Model-View-Controller":	"general/mvc.html",
@@ -382,7 +382,7 @@ panes.main = {
 };
 
 panes.core = {
-	"Classes": {
+	"クラス": {
 		"Agent": {
 			"Configuration":	"classes/agent/config.html",
 			"Usage":			"classes/agent/usage.html",
@@ -498,7 +498,7 @@ panes.oil = {
 };
 
 panes.auth = {
-	"Auth Package": {
+	"Auth パッケージ": {
 		"Introduction":		"packages/auth/intro.html",
 		"Usage":			"packages/auth/usage.html",
 		"Driver types": {
@@ -518,7 +518,7 @@ panes.auth = {
 
 
 panes.email = {
-	"Email Package": {
+	"Email パッケージ": {
 		"Introduction":		"packages/email/introduction.html",
 		"Usage":			"packages/email/usage.html",
 		"Methods":			"packages/email/methods.html"
@@ -526,7 +526,7 @@ panes.email = {
 };
 
 panes.orm = {
-	"Orm Package": {
+	"Orm パッケージ": {
 		"Introduction":		"packages/orm/intro.html",
 		"Creating Models":	"packages/orm/creating_models.html",
 		"CRUD":				"packages/orm/crud.html",
@@ -546,7 +546,7 @@ panes.orm = {
 };
 
 panes.parser = {
-	"Parser Package": {
+	"Parser パッケージ": {
 		"Introduction":		"packages/parser/intro.html"
 	}
 };

@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Controller - General - FuelPHP Documentation</title>
+	<title>コントローラ - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -43,24 +43,25 @@
 		</div>
 
 		<div id="main">
-		
+
 			<h2>コントローラ</h2>
-	
-			<h3 id="what_is_a_controller">コントローラとは？</h3>
-	
-			<p>
-                コントローラは、URL を通じてアクセス可能なクラスです。リクエストを処理することができます。
-                コントローラはモデルや他のクラスを呼び出して情報を取得します。最終的に、出力用にビューにすべてを渡します。
-                www.yoursite.com/example/index という URL がリクエストされた場合、1番目のセグメント ("example") は呼び出されるコントローラで、
-                2番目のセグメント ("index") は、呼び出されるそのコントローラのメソッドです。
-			</p>
-	
-            <h3 id="creating_a_controller">コントローラを生成する</h3>
+
+			<h3 id="what_is_a_controller">コントローラとは?</h3>
 
 			<p>
-                FuelPHP では、コントロータは <kbd>fuel/app/classes/controller</kbd> ディレクトリに置きます。
-                任意ですが <kbd>Controller</kbd> クラスを継承し、<kbd>"Controller_"</kbd> というプレフィックスを付けます。
-                以下は "example" コントローラの例です:
+				コントローラは、URL を通じてアクセス可能なクラスです。リクエストを処理することができます。
+				コントローラはモデルや他のクラスを呼び出して情報を取得します。最終的に、出力用にビューにすべてを渡します。
+				www.yoursite.com/example/index という URL がリクエストされた場合、1 番目のセグメント
+				("example") は呼び出されるコントローラで、2 番目のセグメント ("index") は、
+				呼び出されるそのコントローラのメソッドです。
+			</p>
+
+			<h3 id="creating_a_controller">コントローラを作成する</h3>
+
+			<p>
+				FuelPHP では、コントロータは <kbd>fuel/app/classes/controller</kbd> ディレクトリに置きます。
+				任意ですが <kbd>Controller</kbd> クラスを継承し、<kbd>"Controller_"</kbd> というプレフィックスを付けます。
+				以下は "example" コントローラの例です:
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
@@ -74,16 +75,16 @@
 }</code></pre>
 
 			<p>
-                URL を通じてリクエストされたメソッドは、<kbd>"action_"</kbd> というプレフィックスを付けます。
-                これは PHP のコンストラクタで使用する名前による制限を受けないことを意味します。
-                (例: "list" メソッドは許可されていないが、"action_list" は問題ない)
-                しかし、これはコントローラに公開メソッドを与えることができることも意味します。
-                このメソッドは他のクラスからも使用できますが、ルーティングできません。
+				URL を通じてリクエストされたメソッドは、<kbd>"action_"</kbd> というプレフィックスを付けます。
+				これは PHP のコンストラクタで使用する名前による制限を受けないことを意味します(例: "list" メソッドは許可されていないが、"action_list" は問題ない)。
+				しかし、これはコントローラに公開メソッドを与えることができることも意味します。
+				このメソッドは他のクラスからも使用できますが、ルーティングできません。
 			</p>
 
 			<h4 id="more_parameters">Using more parameters from the URL</h4>
 
-			<p>Let say we also have the following method in our Controller_Example: </p>d
+			<p>Let say we also have the following method in our Controller_Example: </p>
+
 	<pre class="php"><code>public function action_name_to_upper($name_1, $name_2)
 {
 	$data['name_1'] = strtoupper($name_1);
@@ -92,76 +93,77 @@
 }</code></pre>
 
 			<p>
-                <kbd>www.yoursite.com/example/name_to_upper/fuel/php</kbd> を使用してこのメソッドを呼び出す場合、
-                <kbd>test/name_to_upper</kbd> ビューを返します。"Fuel" や "PHP" は <var>$data</var> 配列内の
+				<kbd>www.yoursite.com/example/name_to_upper/fuel/php</kbd> を使用してこのメソッドを呼び出す場合、
+				<kbd>test/name_to_upper</kbd> ビューを返します。"Fuel" や "PHP" は <var>$data</var> 配列内の
 				<var>$name_1</var> や <var>$name_2</var> という値として渡されます。
 			</p>
 
-			<h4 id="returning_results">Returning the result</h4>
+			<h4 id="returning_results">結果を返す</h4>
 
 			<p>
-				A controller action should return it's result. The result can be anything that can be a string, or
-				anything that can be cast to string, like for example a View object.
+				コントローラアクションは結果を返します。結果は文字列か、
+				View オブジェクトのような文字列にキャスト可能なものになります。
 			</p>
 
 			<p>
-				Alternatively you can return a Response object. You use a Response object primarily if you need to
-				set special HTTP headers, or a custom HTTP status code (a code other than "200 OK").
+				それ以外に Respose オブジェクトを返すこともできます。独自の HTTP ステータスコード ("200 OK" 以外のコード) のような特別な HTTP ヘッダを設定する必要がある場合、
+				主として Respose オブジェクトを使います。
 			</p>
 
-			<h4 id="controller_in_subdir">Controller in a Sub-Directories</h4>
+			<h4 id="controller_in_subdir">サブディレクトリの中のコントローラ</h4>
+
 			<p>
-                <kbd>fuel/app/classes/controller/subdir/test.php</kbd> のようなサブディレクトリにコントローラを置くこともできます。
-                この場合、コントローラは次のようにクラス名にディレクトリ名を含まなければなりません: <var>Controller_Subdir_Test</var>
+				<kbd>fuel/app/classes/controller/subdir/test.php</kbd> のような
+				サブディレクトリにコントローラを置くこともできます。
+				この場合、コントローラは次のようにクラス名にディレクトリ名を含まなければなりません: <var>Controller_Subdir_Test</var>
 			</p>
 
 			<p>
-                サブディレクトリは深さに制限がありません。そのため、
-                <kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd> はクラス名が
+				サブディレクトリは深さに制限がありません。そのため、
+				<kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd> はクラス名が
 				<var>Controller_Subdir1_Subdir2_Subdir3_Test</var> になります。
 			</p>
 	
 			<h3 id="special_methods">特別なコントローラメソッド</h3>
 
 			<p class="note">
-                クラスのコンストラクタ <kbd>__construct()</kbd> をオーバーライドしないでください。
-                代わりに <kbd>before()</kbd> メソッドを使用します。
-                まず始めにコアからベースコントローラを学習しない限り、どのように Fuel を壊さないように継承するかを理解できません。
+				クラスのコンストラクタ <kbd>__construct()</kbd> をオーバーライドしないでください。
+				代わりに <kbd>before()</kbd> メソッドを使用します。
+				まず始めにコアからベースコントローラを学習しない限り、どのように Fuel を壊さないように継承するかを理解できません。
 			</p>
 
 			<article>
 				<h4 id="action_index">action_index()</h4>
 				<p>
-                    このメソッドは、コントローラが2番目のパラメータを指定しない場合に呼び出されます。
-                    上記の例では、<kbd>www.yoursite.com/example/index</kbd> は、<kbd>www.yoursite.com/example</kbd> と同じになります。
+					このメソッドは、コントローラが2番目のパラメータを指定しない場合に呼び出されます。
+					上記の例では、<kbd>www.yoursite.com/example/index</kbd> は、
+					<kbd>www.yoursite.com/example</kbd> と同じになります。
 				</p>
 			</article>
 
 			<article>
 				<h4 id="before">before()</h4>
-                <p>
-                    このメソッドは、コントローラで URL で指定されたメソッドが呼び出される<strong>前</strong> に実行されます。
-                    たとえメソッドが存在しない場合出あってもです。
+				<p>
+					このメソッドは、コントローラで URL で指定されたメソッドが呼び出される<strong>前</strong> に実行されます。
+					たとえメソッドが存在しない場合出あってもです。
 				</p>
 			</article>
 
 			<article>
 				<h4 id="after">after($response)</h4>
 				<p>
-                    このメソッドは、URL で指定されたメソッドの呼び出しに成功した<strong>後</strong>で実行されます。
-                    メソッドが存在していない場合は呼び出されません。
-					<a href="#response"><var>$response</var></a> パラメータが必要です。</a>
+					このメソッドは、URL で指定されたメソッドの呼び出しに成功した<strong>後</strong>で実行されます。
+					メソッドが存在していない場合は呼び出されません。<a href="#response"><var>$response</var></a> パラメータが必要です。</a>
 				</p>
 			</article>
 
 			<article>
 				<h4 id="router">router($method, $params)</h4>
 				<p>
-                    このメソッドはコントローラの内部ルーティングを上書きします。
-                    コントローラが読み込まれると、router() メソッドが呼び出されデフォルトメソッドの代わりに、
-                    渡された <var>$method</var> を使用します。
-                    <var>$method</var> に配列として <var>$params</var> で渡すこともできます。
-                    before() や after() メソッドは期待したとおりに動作します。
+					このメソッドはコントローラの内部ルーティングを上書きします。
+					コントローラが読み込まれると、router() メソッドが呼び出されデフォルトメソッドの代わりに、
+					渡された <var>$method</var> を使用します。
+                    <var>$method</var> に配列として <var>$params</var> で渡すこともできます。before() や after() メソッドは期待したとおりに動作します。
 				</p>
 			</article>
 	
@@ -170,23 +172,15 @@
 			<article>
 				<h4 id="request">$request</h4>
 				<p>
-                    このプロパティは、Request オブジェクトにを保持します。上書きはされません。
-                    現在のリクエスト情報を取得するために使用します。これは読み込み専用と考えてください。
+					このプロパティは、Request オブジェクトにを保持します。上書きはされません。
+					現在のリクエスト情報を取得するために使用します。これは読み込み専用と考えてください。
 				</p>
 			</article>
-	
-			<article>
-				<h4 id="response">$response</h4>
-				<p>
-                    このプロパティは、Response オブジェクトを保持します。何かを出力するためには、
-					<kbd>$this->response->body</kbd> プロパティに追加します。
-				</p>
-			</article>
-	
+
 			<h3 id="extending_other_controllers">他のコントローラを継承する</h3>
-	
+
 			<p>
-                オートローダのお陰で、クラス定義で名前以外のものを記述しないで他のコントローラを継承できます:
+				オートローダのお陰で、クラス定義で名前以外のものを記述しないで他のコントローラを継承できます:
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller_Welcome
@@ -197,18 +191,17 @@
 }</code></pre>
 
 			<p>
-                これは最初はおかしく感じるかもしれません。しかし、コントローラを継承することで、簡単にメソッドを共有し、
-                実際のベースコントローラを生成できます。
+				これは最初はおかしく感じるかもしれません。しかし、コントローラを継承することで、簡単にメソッドを共有し、
+				実際のベースコントローラを生成できます。
 			</p>
-	
+
 			<h3>ベースコントローラを生成する</h3>
-	
+
 			<p>
-                ベースコントローラは、<kbd>Controller_Public</kbd> または <kbd>Controller_Admin</kbd> のような共有コントローラです。
-                各コントローラ間でロジックを共有するために使用します。
-                例えば、<kbd>Controller_Admin</kbd> コントローラは login/logout アクションを持つことができます。または dashboard も持ちます。
-                しかし、ユーザが管理者としてログインされているかどうかをチェックする <kbd>before()</kbd> メソッドを含むこともできます。
-                他のすべてのコントローラは管理者パネルでこれを継承し、自動的に安全になります。
+				ベースコントローラは、<kbd>Controller_Public</kbd> または <kbd>Controller_Admin</kbd> のような共有コントローラです。各コントローラ間でロジックを共有するために使用します。
+				例えば、<kbd>Controller_Admin</kbd> コントローラは login/logout アクションを持つことができます。または dashboard も持ちます。
+				しかし、ユーザが管理者としてログインされているかどうかをチェックする <kbd>before()</kbd> メソッドを含むこともできます。
+				他のすべてのコントローラは管理者パネルでこれを継承し、自動的に安全になります。
 			</p>
 
 			<pre class="php"><code>class Controller_Admin extends Controller
@@ -233,8 +226,8 @@
 }</code></pre>
 
 			<p>
-                このコードは <kbd>fuel/app/classes/controller/admin.php</kbd> にあり、他のコントローラはすべて
-                <kbd>fuel/app/classes/controller/admin/</kbd> にあります。次のようになります:
+				このコードは <kbd>fuel/app/classes/controller/admin.php</kbd> にあり、他のコントローラはすべて
+				<kbd>fuel/app/classes/controller/admin/</kbd> にあります。次のようになります:
 			</p>
 
 			<pre class="php"><code>class Controller_Admin_User extends Controller_Admin
