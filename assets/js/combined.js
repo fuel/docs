@@ -356,7 +356,7 @@ panes.main = {
 			"イントロダクション":		"general/classes.html",
 			"Core の拡張":	"general/extending_core.html"
 		},
-		"コーディング規約":	"general/coding_standards.html",
+		"コーディング標準":	"general/coding_standards.html",
 		"設定":	"general/configuration.html",
 		"定数":		"general/constants.html",
 		"コントローラー": {
