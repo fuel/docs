@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Troubleshooting - Installation - FuelPHP Documentation</title>
+	<title>トラブルシューティング - インストール - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -51,13 +51,13 @@
             <p>問題が以下にリストアップされていない場合や、リストされているが適当な解決方法が提供さいれていない場合は、issue tracker ( <a href="http://dev.fuelphp.com ">http://dev.fuelphp.com</a> ) にレポートを上げてください。</p>
 
 			<ul>
-				<li><a href="#syntax_error_clean_install">Syntax errors with clean installation</a></li>
-				<li><a href="#404_install">Got it working, but the index page is a 404.</a></li>
+				<li><a href="#syntax_error_clean_install">クリーンインストール時の構文エラー</a></li>
+				<li><a href="#404_install">動作しているが index ページが 404 である</a></li>
 				<li><a href="#oil_db_error">Oil cannot connect to DB but application can</a></li>
-				<li><a href="#htmlentities">The ORM/DB returns my data as html entities</a></li>
+				<li><a href="#htmlentities">ORM/DB が私のデータを HTML エンティティとして返す</a></li>
 				<li><a href="#orm_list_columns">Orm\Exception [ Error ]: Listing columns not failed</a></li>
-				<li><a href="#assets_error">Assets do not work after changing the location of index.php</a></li>
-				<li><a href="#symlinks_error">Core, App or Packages can not be found after I changed a symlink</a></li>
+				<li><a href="#assets_error">index.php の場所を変更した後、Asset が動作しない</a></li>
+				<li><a href="#symlinks_error">シンボリックリンクを変更した後、Core、App、Packages が見つからない</a></li>
 			</ul>
 
 			<article>
@@ -72,26 +72,24 @@
 
 				<h4>解決方法</h4>
 
-				<p>別のテストファイルで phpinfo(); をチェックし、5.3 以上が実行されているかどうかを見ます。詳細は <a href="http://fuelphp.com/docs/requirements.html" title="Requirements - FuelPHP Documentation">動作条件</a> にあります。</p>
+				<p>別のテストファイルで phpinfo(); をチェックし、5.3 以上が実行されているかどうかを確認します。詳細は <a href="http://fuelphp.com/docs/requirements.html" title="要件 - FuelPHP ドキュメント">要件</a> にあります。</p>
 
-				<p>ローカルで開発している際に、サーバを PHP 5.3 の最新のバージョンにアップデートします。
-				ローカルで開発していない場合は、ホスティング会社に尋ねる必要があります。
-				 5.3 より前のバージョンは単に我々だけではなく、<a href="http://www.php.net/archive/2011.php#id2011-03-17-1" title="PHP: News Archive - 2011">PHP 自身</a> もサポートが無くなっています。</p>
+				<p>ローカルで開発している際に、サーバを PHP 5.3 の最新のバージョンにアップデートします。ローカルで開発していない場合は、ホスティング会社に尋ねる必要があります。5.3 より前のバージョンは単に私たちだけではなく、<a href="http://www.php.net/archive/2011.php#id2011-03-17-1" title="PHP: News Archive - 2011">PHP 自身</a> もサポートがなくなっています。</p>
 
 			</article>
 
 			<article>
 
-                <h3 id="404_install">動作しているが index ページが 404 である</h3>
+				<h3 id="404_install">動作しているが index ページが 404 である</h3>
 
 				<h4>いつ発生するか...</h4>
 
-                <p>php のインストールには <em>index.php</em> の後に .htaccess にクエスチョンマークを追加する必要がある場合があります。</p>
+				<p>php のインストールには <em>index.php</em> の後に .htaccess にクエスチョンマークを追加する必要がある場合があります。</p>
 
 				<h4>解決方法</h4>
 
 				<p>次のようにクエスチョンマークを追加します:</p>
-				
+
 				<pre class="plain"><code># Turn on URL rewriting
 RewriteEngine On
 
@@ -128,10 +126,9 @@ RewriteRule ^(.*)$ /index.php/$1 [L]
 
 				<h4>いつ発生するか...</h4>
 
-                <p>コマンドラインでデータベースを設定しようとしたときに起こります。しばしば、MAMP で MySQL サーバを使用したときに起こります。
-                その理由は、MAMP が提供している MAMP の PHP-CLI の インストールが間違っているためです。そのため PHP はデータベースサーバが不明になります。</p>
+				<p>コマンドラインでデータベースを設定しようとしたときに起こります。しばしば、MAMP で MySQL サーバを使用したときに起こります。その理由は、MAMP が提供している MAMP の PHP-CLI の インストールが間違っているためです。そのため PHP はデータベースサーバが不明になります。</p>
 
-                <p>注意: 問題を修正するために次のステップ実行する前に、通常のブラウザ接続してデータベース接続を修正します。</p>
+				<p>注意: 問題を修正するために次のステップ実行する前に、通常のブラウザ接続してデータベース接続を修正します。</p>
 
 				<h4>解決方法</h4>
 
@@ -152,18 +149,17 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 			<article>
 
-				<h3 id="htmlentities">The ORM/DB returns my data as html entities</h3>
+				<h3 id="htmlentities">ORM/DB が私のデータを HTML エンティティとして返す</h3>
 
-				<h4>Happens When...</h4>
+				<h4>いつ発生するか...</h4>
 
-				<p>Fuel has a security measure called "output encoding" which is switched on by default. This means
-					that any value passed to the View or ViewModel is considered dangerous unless you explicitly mark
-					it as safe. All values that aren't safe will be put through htmlentities, including the contents
-					of arrays and the properties of objects.</p>
+				<p>Fuel には "output encoding" と呼ばれるセキュリティ機構があり、デフォルトで有効になっています。これは、
+					View や ViewModel に渡されるあらゆる値は、あなたが明示的に安全だとマークしない限り、危険だと考えることを意味します。
+					配列の中身やオブジェクトのプロパティを含む、安全でないすべての値は htmlentities を通過します。</p>
 
-				<h4>Solution</h4>
+				<h4>解決方法</h4>
 
-				<p>Learn more about <a href="../general/views.html#/security">security in the View class</a>.</p>
+				<p><a href="../general/views.html#/security">View クラスでのセキュリティ</a> についてもっと学んでください。</p>
 
 			</article>
 
@@ -181,31 +177,29 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 				<h4>解決方法</h4>
 
-                <p>データベース設定の値が正しいか確認し、データベースへの接続をテストしてください。</p>
+				<p>データベース設定の値が正しいか確認し、データベースへの接続をテストしてください。</p>
 
 				<p>プロパティを持つモデルを更新します。</p>
 
 				<pre class="php"><code>protected static $_properties = array('id', 'title', 'contents', 'publish');</code></pre>
 
-                <p>または、APPATH/config/db.php 内のデータベースの種類を "mysql" に変更します。</p>
+				<p>または、APPATH/config/db.php 内のデータベースの種類を "mysql" に変更します。</p>
 
 			</article>
 
 			<article>
 
-				<h3 id="assets_error">index.php の場所を変更した後、asset が動作しな</h3>
+				<h3 id="assets_error">index.php の場所を変更した後、Asset が動作しない</h3>
 
 				<h4>解決方法</h4>
 
 				<p>これは Asset クラスが index.php への相対パスを使用している為です。</p>
 
-                <p>修正するためには app/config/asset.php を正しいパスにセットするように変更しなければなりません。
-                DOCROOT という定数 が index.php 内で定義されています。</p>
+				<p>修正するためには app/config/asset.php を正しいパスにセットするように変更しなければなりません。DOCROOT という定数 が index.php 内で定義されています。</p>
 
 				<pre class="php"><code>define('DOCROOT', __DIR__.DIRECTORY_SEPARATOR);</code></pre>
 
-                <p>app/config/asset.php でこれを使用可能です。これは asset パスを 初期のフォルダ DOCROOT/public/assets に戻します。
-                そのサブフォルダには、css/, img/, js/ などが配置されています。</p>
+				<p>app/config/asset.php でこれを使用可能です。これは asset パスをデフォルトのフォルダ DOCROOT/public/assets に戻します。そのサブフォルダには、css/、img/、js/ などが配置されています:</p>
 
 				<pre class="php"><code>'paths' => array(DOCROOT.'public/assets/'),</code></pre>
 
@@ -213,18 +207,16 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 			<article>
 
-				<h3 id="symlinks_error">シンボリックリンクを変更した後、Core, App, Packages が見つからない</h3>
+				<h3 id="symlinks_error">シンボリックリンクを変更した後、Core、App、Packages が見つからない</h3>
 
 				<h4>解決方法</h4>
 
-                <p>これは DOCROOT/index.php内で、realpath() が相対パスで扱われているためです。
-                これはパス情報をキャッシュし、シンボリックリンクも含みます。</p>
+				<p>これは DOCROOT/index.php 内で、realpath() が相対パスで扱われているためです。これはパス情報をキャッシュし、シンボリックリンクも含みます。</p>
 
 				<p>
-                    これを修正するには、DOCROOT/index.php を変更し、キャッシュをクリアするシンボリックリンクを含むそれぞれのパスに
-                    clearstatcache() を使用しなければなりません。またはパスのキャッシュをクリアするためにウェブサーバをリロードすることもできます。
-                    手動では clearstatcache() コマンドを発行できません。これは、スレッドでキャッシュされ、
-                    発行されたコマンドは現在のスレッドに対してのみクリアするためです。
+					これを修正するには、DOCROOT/index.php を変更し、キャッシュをクリアするシンボリックリンクを含むそれぞれのパスに
+					clearstatcache() を使用しなければなりません。またはパスのキャッシュをクリアするために　Web サーバをリロードすることもできます。
+					手動では clearstatcache() コマンドを発行できません。これは、スレッドでキャッシュされ、発行されたコマンドは現在のスレッドに対してのみクリアするためです。
 				</p>
 
 			</article>
