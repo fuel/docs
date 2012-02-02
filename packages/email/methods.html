@@ -627,6 +627,62 @@ $email->reply_to(array(
 					</tbody>
 				</table>
 			</article>
+			
+			<article>
+				<h4 class="method" id="method_header">header($header, $value = null)</h4>
+				<p>The <strong>header</strong> method adds a custom header to you mail headers.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$header</kbd></th>
+									<td><em>string|array</em></td>
+									<td><em>required</em></td>
+									<td>The header type or array of headers.</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The header value.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>$this</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Add a single address
+$email->header('X-SMTPAP', 'XXXXXXXX');
+
+// Add multiple addresses
+$email->reply_to(array(
+	'X-SMTPAP' => 'XXXXXX',
+	'X-SMTPAP2' => 'XXXXXA',
+));
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 
 			<article>
 				<h4 class="method" id="method_clear_recipients">clear_recipients()</h4>
