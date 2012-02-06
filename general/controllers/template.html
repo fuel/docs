@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Template Controller - General - FuelPHP Documentation</title>
+	<title>Template コントローラ - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,19 +44,19 @@
 
 		<div id="main">
 
-			<h2>Template Controller</h2>
+			<h2>Template コントローラ</h2>
 
-			<h3>What is a template controller?</h3>
+			<h3>Template コントローラとは?</h3>
 
-			<p>A Template Controller is an extension of the Base Controller which has template support built in using some pre-defined before() and after() methods. Basically it can be used to wrap
-			your view in a layout with a header, footer, sidebar, etc.</p>
+			<p>Template コントローラは、ベースとなるコントローラの拡張で、いくつかの定義済みの before() と after() メソッドを使用することで、テンプレート機能を持っています。 基本的に、
+			ヘッダ、フッタ、サイドバーなどを持つレイアウトで、ビューをラップします。</p>
 
-			<h3>Using the template controller</h3>
+			<h3>Template コントローラの使用</h3>
 
-			<p>Like all Controllers you create a class in the <kbd>fuel/app/classes/controller</kbd> directory. They need to extend the <kbd>Controller_Template</kbd> class and are prefixed by default by "Controller_". Below is an example of the controller "example": </p>
+			<p>すべてのコントローラと同じように、 <kbd>fuel/app/classes/controller</kbd> ディレクトリにクラスを作成します。 <kbd>Controller_Template</kbd> クラスを継承する必要があり、デフォルトでは "Controller_" を頭に付けます。以下はコントローラ  "example" の例です: </p>
 
-			<p class="note"><strong>Please note:</strong> by default, all methods of a class that extends Controller_Template will use the template.
-			<br />However, it is possible to <a href="#omit_methods">omit methods</a> from the template.</p>
+			<p class="note"><strong>注意: </strong> デフォルトでは、Controller_Template を拡張したクラスのすべてのメソッドは、テンプレートを使用します。			
+<br />しかし、テンプレートから <a href="#omit_methods">メソッドを省略することも</a> 可能です。</p>
 
 	<pre><code>class Controller_Example extends Controller_Template
 {
@@ -68,11 +68,11 @@
 	}
 }</code></pre>
 
-			<h3>Using the template controller with before()</h3>
+			<h3>Template コントローラでの before() の使用</h3>
 
-			<p class="note"><strong>Please note:</strong> if you have a before() method in your template controller extension you
-				<strong>must</strong> add <kbd>parent::before();</kbd> to that method or the <kbd>$this->template</kbd> will
-				not be available. <strong>Make before() compatible</strong> with that of the Controller_Template: use <kbd>before($data = null)</kbd> instead of just before().</p>
+			<p class="note"><strong>注意: </strong> Template コントローラで before() メソッドを使う場合、
+				<kbd>parent::before();</kbd> を追加 <strong>しなければなりません</strong>。 そうしないと <kbd>$this->template</kbd> が
+				使えません。Controller_Template の <strong>before() の互換性を維持するために</strong>: 単に before() とするのではなく、<kbd>before($data = null)</kbd> としてください。</p>
 
 
 	<pre><code>class Controller_Example extends Controller_Template
@@ -95,11 +95,11 @@
 	}
 }</code></pre>
 
-			<h3>Example template</h3>
+			<h3>テンプレートの例</h3>
 
 			<p>
-				The template file is a great place to call up your JS, CSS, etc, structure your HTML and call view partials. It allows you to give your output
-				structure. It is just a view file, by default the Template Controller will look here: <kbd>fuel/app/views/template.php</kbd>.
+				テンプレートファイルは、JS、CSS などを呼び出し、HTML を構造化し、ビューの部品を呼び出すのに絶好の場所です。また、出力の骨組みを提供します。
+				それはただのビューファイルで、Template コントローラはデフォルトでは次のファイルを探します: <kbd>fuel/app/views/template.php</kbd>。
 			</p>
 
 	<pre><code>&lt;!DOCTYPE html>
@@ -121,11 +121,11 @@
 &lt;/body>
 &lt;/html></code></pre>
 
-			<h3>Changing the default template file</h3>
+			<h3>デフォルトのテンプレートファイルの変更</h3>
 
 			<p>
-				You can easily change the default <kbd>APPPATH/views/template.php</kbd> file to something different.<br/>
-				You must set the public variable <kbd>$template</kbd> (note: you don't need .php extension here) to something different, example:
+				デフォルトの <kbd>APPPATH/views/template.php</kbd> ファイルは簡単に変更できます。<br/>
+				public な変数 <kbd>$template</kbd> (注意: 拡張子 .php は必要ありません) を別のものに設定します。例えば:
 			</p>
 
 	<pre><code>class Controller_Example extends Controller_Template
@@ -143,9 +143,9 @@
 		<h3 id="omit_methods">Omit methods from the Template Controller</h3>
 
 		<p>
-			By default, all methods of a class that extends <kbd>Controller_Template</kbd> will use the template.<br />
-			If you want to omit methods from the template, you can do this by returning something else in a
-			<kbd>Response</kbd> object. That will overwrite the default template output.
+			デフォルトでは、<kbd>Controller_Template</kbd> を拡張したクラスのすべてのメソッドは、テンプレートを使用します。<br />
+			もし、テンプレートを使用したくない場合は、何か別の内容を含む <kbd>Response</kbd> オブジェクトを返します。
+			それが、デフォルトのテンプレートの出力を上書きします。
 		</p>
 
 		<pre><code>class Controller_Example extends Controller_Template
