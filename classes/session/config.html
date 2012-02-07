@@ -347,6 +347,15 @@
 								<td>
 									Name of the database which is going to be used to store the session data. This is the name defined in the application database configuration file, app/config/db.php. If not defined, or set to null, the current active database will be selected.
 									<br /><br />
+                                    <p>
+                                        <!-- pull request https://github.com/fuel/core/pull/786 !-->
+                                        <strong>Using Oil to Create Your Sessions Table</strong><br />
+                                        An oil task has been provided to allow you to create, remove and clear your sessions table using the oil command line utility.
+                                        <pre>php oil r session</pre> - display menu <br />
+                                        <pre>php oil r session:create</pre> - create the sessions table <br />
+                                        <pre>php oil r session:remove</pre> - remove the sessions table <br />
+                                        <pre>php oil r session:clear</pre> - clear (truncate) the sessions table <br />
+                                    </p>
 									<p class="note">
 										Note that if you use multiple databases, it is not wise to use null here, as your application flow determines what the active database is at any given time.
 										Either use <strong>Config::get('environment')</strong> to use the configured current environment, or use a named database configuration.
