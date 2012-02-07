@@ -159,6 +159,81 @@ echo $output;</code></pre>
 			</article>
 
 			<article>
+				<h4 class="method" id="method_parent">params()</h4>
+				<p>Returns an array of all named parameters in the route that triggered this request.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get the list of named parameters
+$params = Request::active()->params();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_parent">param($param, $default = null)</h4>
+				<p>Returns a specific named parameter in the route that triggered this request, of the default if the parameter is not found.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$param</kbd></th>
+									<td>string, required</td>
+									<td>The name of the parameter to be returned. This must be exactly the same as defined in the route.</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>value to be returned if the named parameter requested is not defined.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get a specific named parameter called 'name'
+$param = Request::active()->param('name', 'none');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">The <a href="../general/routing.html#/named_routes">routing</a> section explains how named paramaters can be defined in a route.</p>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_parent">parent()</h4>
 				<p>The <strong>Request</strong> that created this Request.</p>
 				<table class="method">
