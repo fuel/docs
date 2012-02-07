@@ -54,7 +54,7 @@
 			<p>DBUtil allows you to create, rename, alter and drop database fields.</p>
 
 			<article>
-				<h4 class="method" id="method_create_database">create_database($database, charset = null)</h4>
+				<h4 class="method" id="method_create_database">create_database($database, charset = null, $if_not_exists = true)</h4>
 				<p>The <strong>create_database</strong> method creates a database.  Will throw a Database_Exception if it cannot.</p>
 				<table class="method">
 					<tbody>
@@ -80,6 +80,11 @@
 										<th><kbd>$charset</kbd></th>
 										<td><em>null</em></td>
 										<td>the default charset</td>
+									</tr>
+									<tr>
+										<th><kbd>$if_not_exists</kbd></th>
+										<td><strong>true</strong></td>
+										<td>whether to use <em>IF NOT EXISTS</em></td>
 									</tr>
 								</table>
 							</td>
@@ -109,10 +114,10 @@ catch(\Database_Exception $e)
 }
 
 // You can also set a default charset.
-// CREATE DATABASE `new_database` DEFAULT CHARACTER SET 'utf8'
+// CREATE DATABASE IF NOT EXISTS `new_database` DEFAULT CHARACTER SET 'utf8'
 DBUtil::create_database('new_database', 'utf8');
 
-// CREATE DATABASE `new_database  DEFAULT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci'
+// CREATE DATABASE IF NOT EXISTS `new_database  DEFAULT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci'
 DBUtil::create_database('new_database', 'utf8_unicode_ci');
 </code></pre>
 							</td>
