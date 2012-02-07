@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -82,13 +82,11 @@
 	}
 }</code></pre>
 
-
 			<p>このコントローラのメソッド "list" は、次の URL によって呼び出されます:</p>
 
 			<pre>http://localhost/test/list.json?foo=bar</pre>
 
 			<p>通常の "action_" プレフィックスの代わりに接頭辞として HTTP メソッドを使用していることがわかります。Rest コントローラがサポートする HTTP メソッドは、次のとおりです:</p>
-
 
 			<table class="config">
 				<tbody>
@@ -136,8 +134,7 @@
 }</code></pre>
 
 			<p>
-				ファイル拡張子が URL で定義されているので、これは JSON として出力されます。
-				デフォルトでは、XML フォーマット出力されるか、
+				ファイル拡張子が URL で定義されているので、これは JSON として出力されます。デフォルトでは、XML フォーマット出力されるか、
 				<em>fuel/core/config/rest.php</em> に設定されているフォーマットで出力されます。
 			</p>
 
@@ -153,16 +150,16 @@
 				<li><strong>serialize</strong> – PHP でアンシリアライズ可能な、シリアライズされたデータ</li>
 			</ul>
 
-			<h3 id="format_determination">Format determination</h3>
+			<h3 id="format_determination">フォーマットの決定</h3>
 
 			<p>
-				To determine the format in which the result should be returned, the REST controller uses the following algorithm:
+				返される結果のフォーマットを決定するために、REST コントローラは次のアルゴリズムを用います:
 			</p>
 			<ul>
-				<li>use the protected property <kbd>$format</kbd> if it contains a supported format</li>
-				<li>use the URL extension if it is a supported format</li>
-				<li>use the format specified by the <kbd>:format</kbd> variable in the route if it contains a supported format</li>
-				<li>use the default value defined by the <kbd>$rest_format</kbd> property of your class</li>
+				<li>対応フォーマットを含むなら、protected なプロパティである <kbd>$format</kbd> を使用する</li>
+				<li>対応フォーマットであるなら、URL の拡張子を使用する</li>
+				<li>対応フォーマットを含むなら、ルートの中で指定された <kbd>:format</kbd> 変数のフォーマットを使用する</li>
+				<li>あなたのクラスの <kbd>$rest_format</kbd> プロパティで定義されたデフォルト値を使用する</li>
 			</ul>
 
 			<h3 id="special_methods">特殊なコントローラのメソッド</h3>
@@ -171,7 +168,7 @@
 				<h4 id="response">response($data = array(), $http_code = 200)</h4>
 				<p>
 					このメソッドは、フォーマットと出力ロジックを介して応答データを送信するために使用されます。
-					必要に応じて、2番目のパラメータとしてステータスコードを設定することができます。
+					必要に応じて、2 番目のパラメータとしてステータスコードを設定することができます。
 				</p>
 			</article>
 
