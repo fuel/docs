@@ -324,7 +324,6 @@
 
 				<section>
 					<h5 id="db_driver_config">Database session configuration</h5>
-
 					<p>Specific driver configuration:</p>
 					<table class="config">
 						<tbody>
@@ -346,16 +345,6 @@
 								<td><pre class="php"><code>null</code></pre></td>
 								<td>
 									Name of the database which is going to be used to store the session data. This is the name defined in the application database configuration file, app/config/db.php. If not defined, or set to null, the current active database will be selected.
-									<br /><br />
-                                    <p>
-                                        <!-- pull request https://github.com/fuel/core/pull/786 !-->
-                                        <strong>Using Oil to Create Your Sessions Table</strong><br />
-                                        An oil task has been provided to allow you to create, remove and clear your sessions table using the oil command line utility.
-                                        <pre>php oil r session</pre> - display menu <br />
-                                        <pre>php oil r session:create</pre> - create the sessions table <br />
-                                        <pre>php oil r session:remove</pre> - remove the sessions table <br />
-                                        <pre>php oil r session:clear</pre> - clear (truncate) the sessions table <br />
-                                    </p>
 									<p class="note">
 										Note that if you use multiple databases, it is not wise to use null here, as your application flow determines what the active database is at any given time.
 										Either use <strong>Config::get('environment')</strong> to use the configured current environment, or use a named database configuration.
@@ -392,6 +381,24 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 							</tr>
 						</tbody>
 					</table>
+					
+                        <h3 id="oil_session_setup">Using Oil to Create/Control Your Sessions Table</h3>
+						<p>
+							An oil task has been provided to allow you to create, remove and clear your sessions table using
+							the oil command line utility.
+						</p>
+						<pre class="cli"><code># display menu
+$ php oil r session
+
+#reate the sessions table
+$ php oil r session:create
+
+# remove the sessions table
+$ php oil r session:remove
+
+# clear (truncate) the sessions table
+$ php oil r session:clear</code></pre>
+					
 				</section>
 
 				<section>
