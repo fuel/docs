@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Routing - General - FuelPHP Documentation</title>
+	<title>ルーティング - 概要 - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -46,17 +46,18 @@
 
 			<h2>ルーティング</h2>
 
-			<p>Fuelでは、単純で静的なルート設定からHTTP verbによるルーティングを用いたルート設定に至るまで、様々なルーティングが可能です。</p>
+			<p>Fuel では、単純な静的なルート設定から HTTP の動詞によるルーティングを用いた高度なルート設定に至るまで、様々なルーティングが可能です。</p>
 
-			<p>ルート設定は、<kbd>fuel/app/config/routes.php</kbd>で行います。</p>
+			<p>ルート設定は、<kbd>fuel/app/config/routes.php</kbd> で行います。</p>
 
 			<h3 id="reserved">予約済みルート</h3>
 
-			<p>Fuelには2つの予約済みルートがあります。<kbd>_root_</kbd> および <kbd>_404_</kbd>です。</p>
+			<p>Fuel には 2 つの予約済みルートがあります。<kbd>_root_</kbd> および <kbd>_404_</kbd> です。</p>
 
 			<ul>
-				<li><kbd>_root_</kbd> - URIが特定されていないときのデフォルトルート。</li>
-				<li><kbd>_404_</kbd> - コントローラー、あるいはアクションが見あたらない時のルート。なんでもありのルート catch-all routeとしても使えます。</li>
+				<li><kbd>_root_</kbd> - URI が指定されていないときのデフォルトルート。</li>
+				<li><kbd>_404_</kbd> - コントローラ、あるいはアクションが見つからないときのルート。
+					キャッチオールのルートとしても使えます。</li>
 			</ul>
 
 			<pre class="php"><code>return array(
@@ -66,7 +67,7 @@
 
 			<h3 id="basics">基本的なルーティング</h3>
 
-			<p>左辺に記述されたルートは、リクエストされたURIと比較されます。もしマッチしていれば、そのリクエストは右辺のURIに経路づけられます。</p>
+			<p>左辺に記述されたルートは、リクエストされた URI と比較されます。もしマッチしていれば、そのリクエストは右辺の URI に経路づけられます。</p>
 
 			<p>このルーティングによって、次のようなことが可能になります。:</p>
 
@@ -77,79 +78,96 @@
 );</code></pre>
 
 
-			<h3 id="slightly_advanced">やや進んだルーティング</h3>
+			<h3 id="slightly_advanced">やや高度なルーティング</h3>
 
-			<p>ルート設定には正規表現を含めることが出来ます。左辺とリクエストされたURIがマッチしたら、そのマッチした部分を右辺に代入するといったような、左辺の正規表現による右辺の後方参照が利用可能です。また、次のような幾つかの特殊な宣言があり、それを用いて何かにマッチさせたり、あるいは特定セグメントにマッチさせたりすることが出来ます。
+			<p>ルート設定には正規表現を含めることが出来ます。
+			左辺とリクエストされた URI がマッチしたら、そのマッチした部分を右辺に代入するといったような、
+			左辺の正規表現による右辺の後方参照が利用可能です。また、次のようないくつかの特別な宣言があり、それを用いて何かにマッチさせたり、
+			あるいは特定セグメントにマッチさせたりすることが出来ます。
+
 			<ul>
-				<li><kbd>:any</kbd> - URIの任意の部分にマッチする</li>
-				<li><kbd>:segment</kbd> - URIの一つのセグメントのみにマッチする。しかしそのセグメントは任意のものであっていい。</li>
+				<li><kbd>:any</kbd> - URI の任意の部分にマッチする</li>
+				<li><kbd>:segment</kbd> - URI の 1 つのセグメントのみにマッチする。しかしそのセグメントは任意のものであっていい。</li>
 				<li><kbd>:num</kbd> - 何らかの数値にマッチする。</li>
-				<li><kbd>:alpha</kbd> - 何らかのアルファベットにマッチする。UTF-8を含みます。</li>
-				<li><kbd>:alnum</kbd> - 何らかのアルファベットと数字にマッチする。 UTF-8を含みます。</li>
+				<li><kbd>:alpha</kbd> - 何らかのアルファベットにマッチする。UTF-8 を含みます。</li>
+				<li><kbd>:alnum</kbd> - 何らかのアルファベットと数字にマッチする。 UTF-8 を含みます。</li>
 			</ul>
 
-			<p>幾つかの例:</p>
+			<p>いくつかの例:</p>
 
 			<pre class="php"><code>return array(
-    'blog/(:any)'      => 'blog/entry/$1', // /blog/entry_nameが/blog/entry/entry_nameに経路付けられる。
-    '(:segment)/about' => 'site/about/$1', // /en/aboutが/site/about/enに経路付けられる。
-    '(\d{2})/about'    => 'site/about/$1', // /12/aboutが/site/about/12に経路付けられる。
+    'blog/(:any)'      => 'blog/entry/$1', // /blog/entry_name が /blog/entry/entry_name に経路付けられる
+    '(:segment)/about' => 'site/about/$1', // /en/about が /site/about/en に経路付けられる
+    '(\d{2})/about'    => 'site/about/$1', // /12/about が /site/about/12 に経路付けられる
 );</code></pre>
 
 
-			<h3 id="advanced">進んだルーティング</h3>
+			<h3 id="advanced">高度なルーティング</h3>
 
-			<p>ルートには独自のパラメタ名を持てます。このことによって、URIセグメントに対して、アクションメソッドからアクセス可能な名前を与えることが出来ます。</p>
+			<p>ルート設定では、名前付きパラメータを使えます。これより、URI セグメントに対して名前を与えることができ、
+			アクションメソッドの中でアクセスできます。</p>
 
 			<p>例:</p>
+
 			<pre class="php"><code>return array(
-    'blog/:year/:month/:id' => 'blog/entry', 
-　　　　// /blog/2010/11/entry_name が /blog/entry に経路付けられる。
+    'blog/:year/:month/:id' => 'blog/entry', // /blog/2010/11/entry_name が /blog/entry に経路付けられる
 );</code></pre>
 
-			<p>上の例では、<kbd>/blog/2010/11/entry_name</kbd>が捕捉され、'blog'コントローラー内の'entry'アクションに対する経路付けとなります。その場合、下記のようなパラメタを使うことが出来ます。:</p>
+			<p>上の例では、<kbd>/blog/2010/11/entry_name</kbd> が捕捉され、
+			'blog' コントローラ内の 'entry' アクションにルーティングされます。
+			そこでは、下記のような名前付きパラメータを使うことができます。:</p>
+
 			<pre class="php"><code>$this->param('year');
 $this->param('month');
 $this->param('id');</code></pre>
 
-			<h3 id="http_verb">HTTP verb によるルーティング</h3>
 
-			<p>複数のURLを、HTTP verbに基づいて呼び出される複数のコントローラーとアクションに経路付けることが出来ます。このことによって、素早く簡単にRESTfulなコントローラーを作り出すこと出来ます。</p>
+			<h3 id="http_verb">HTTP の動詞によるルーティング</h3>
+
+			<p>アクセスされた HTTP の動詞に基づいて、URL をコントローラとアクションに経路付けることができます。
+			このことによって、素早く簡単に RESTful なコントローラを作成できます。</p>
 
 			<p>例:</p>
 
 			<pre class="php"><code>return array(
-    // GET /blog が /blog/allに、POST /blog が /blog/create に経路付けられる。
+    // GET /blog が /blog/allに、POST /blog が /blog/create に経路付けられる
     'blog' => array(array('GET', new Route('blog/all')), array('POST', new Route('blog/create'))),
 );</code></pre>
 
-			<p>URLには、名前付けしたパラメタと正規表現を普通に使えます:</p>
+			<p>URL には、名前付きパラメータと正規表現を普通に使えます:</p>
+
 	        <pre class="php"><code>return array(
     'blog/(:any)' => array(array('GET', new Route('blog/show/$1'))),
 );</code></pre>
 
-			<h3 id="named_routes">名付け済みルートとリバースルーティング</h3>
+			<h3 id="named_routes">名前付きルートとリバースルーティング</h3>
 
-			<p>リバースルーティングというのは、次のような考え方を指します。たとえば管理エリアを作ろうとします。そして、そのセットアップのための経路情報を得たいとします。ビューにおいては、HTMLのアンカーを用いた管理エリアを作りたいとしましょう。そこでのアンカーリンクが例えば'admin/start/overview'だったとしましょう。ところが、気が変わって、そのリンクページを'admin/overview'という風に変えたいとします。その結果、全てのビューで、そのリンク名を新しいものに変えなければならなくなってしまいました。。。。。。</p>
-			<p>複数の名前をもったルートに対してリバースルーティングを用いると、単一のルート名をアンカーリンクにすることが出来ます。（上のように）経路が変わった場合、各ビューの中での各リンクはその変更に自動追随します。</p>
+			<p>リバースルーティングというのは、次のような考え方を指します。たとえば管理エリアを作ろうとし、そのルートをセットアップします。
+			ビューにおいて、管理エリアで例えば 'admin/start/overview' という HTML アンカーを使いたいとしましょう。
+			ところが、気が変わって、そのページを 'admin/overview' という風に変えることにします。
+			その結果、全てのビューで、そのリンクを更新しなければならなくなってしまいました...</p>
+
+			<p>名前付きルートとリバースルーティングを用いると、名前付きルートをアンカーリンクにすることができ、
+			ルートが変わっても、各ビューの中でのリンクはその変更を自動的に追随します。</p>
+
 			<p>ルートの例:</p>
 
 			<pre class="php"><code>return array(
-    'admin/start/overview' => array('admin/overview', 'name' => 'admin_overview'), // admin/overviewページに対して一つのルート名を付け加える
+    'admin/start/overview' => array('admin/overview', 'name' => 'admin_overview'), // admin/overview ページに対して名前付きルート名を追加する
 );</code></pre>
 
 			<p>アンカーの例:</p>
 
-			<pre class="php"><code>// &lt;a href="http://your_base_url/admin/start/overview"&gt;Overview&lt;/a&gt;を生成する
+			<pre class="php"><code>// &lt;a href="http://your_base_url/admin/start/overview"&gt;Overview&lt;/a&gt; を生成する
 echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 
 			<p class="note">
-				現在のところこのようなルート付け機能は限られています。正規表現を<kbd>用いず</kbd>、かつ、モジュール内で定義された経路では機能せず<kbd>app/config/routes.php</kbd>で定義したもののみ機能します。この点、留意してください。
+				現在のところこのようなルート付け機能は限られています。正規表現を <kbd>用いず</kbd>、かつ、モジュール内で定義されたルートでは機能せず <kbd>app/config/routes.php</kbd> で定義したもののみ機能します。この点に注意してください。
 			</p>
 
 			<h3 id="module_routing">モジュールとルーティング</h3>
 
-			<p><a href="modules.html#module_routing">how modules handle routingをお読みください</a>.</p>
+			<p><a href="modules.html#module_routing">how modules handle routing をお読みください</a>。</p>
 
 		</div>
 
