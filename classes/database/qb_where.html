@@ -91,9 +91,9 @@
 									</tr>
 									<tr>
 										<th><kbd>$column</kbd></th>
-										<td><em>string</em></td>
+										<td><em>mixed</em></td>
 										<td><em>required</em></td>
-										<td>Column name or array($column, $alias) or object</td>
+										<td>Column name or array($column, $alias), object, or callback</td>
 									</tr>
 									<tr>
 										<th><kbd>$op</kbd></th>
@@ -126,7 +126,15 @@ $query->where('name', '!=', 'John');
 // and append a new condition
 $query->and_where('surname', 'Doe');
 
-// Resulting in: SELECT * FROM `users` WHERE `name` != "John" AND `surname` = "Doe"
+// nested where through callback
+$query->where(function($query(){
+	$query->where('email', 'jim@jim.com')
+		->or_where('email', 'haha@joke.com');
+});
+
+// Resulting in:
+// SELECT * FROM `users` WHERE `name` != "John" AND `surname` = "Doe"
+// AND (`email` = "jim@jim.com" OR `email` = "haha@joke.com")
 </code></pre>
 							</td>
 						</tr>
@@ -157,7 +165,7 @@ $query->and_where('surname', 'Doe');
 										<th><kbd>$column</kbd></th>
 										<td><em>string</em></td>
 										<td><em>required</em></td>
-										<td>Column name or array($column, $alias) or object</td>
+										<td>Column name or array($column, $alias), object or callback</td>
 									</tr>
 									<tr>
 										<th><kbd>$op</kbd></th>
@@ -190,7 +198,15 @@ $query->where('name', '=', 'John');
 // and append a new condition
 $query->or_where('surname', 'Doe');
 
-// Resulting in: SELECT * FROM `users` WHERE `name` != "John" OR `surname` = "Doe"
+// nested where through callback
+$query->or_where(function($query(){
+	$query->where('email', 'jim@jim.com')
+		->and_where('id', 4);
+});
+
+// Resulting in:
+// SELECT * FROM `users` WHERE `name` != "John" OR `surname` = "Doe"
+// OR (`email` = "jim@jim.com" AND `id` = 4)
 </code></pre>
 							</td>
 						</tr>
