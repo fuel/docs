@@ -599,7 +599,7 @@ protected static function post_find($result)
 			</article>
 
 			<article>
-				<h4 class="method" id="method_save">save()</h4>
+				<h4 class="method" id="method_save">save($validate = true)</h4>
 				<p>The <strong>save</strong> method inserts or updates a record.</p>
 				<table class="method">
 					<tbody>
@@ -610,7 +610,20 @@ protected static function post_find($result)
 					<tr>
 						<th>Parameters</th>
 						<td>
-							<em>None</em>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$validate</kbd></th>
+									<th><em>boolean</em></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>Wether to run the validation.</td>
+								</tr>
+							</table>
 						</td>
 					</tr>
 					<tr>
@@ -634,6 +647,9 @@ $user->name = 'New Name';
 
 // Update a user
 $user->save();
+
+// Update without running validation
+$user->save(false);
 </code></pre>
 						</td>
 					</tr>
