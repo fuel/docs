@@ -469,7 +469,7 @@ $query->group_by('genre', 'category');
 										<th><kbd>$column</kbd></th>
 										<td><em>string</em></td>
 										<td><em>required</em></td>
-										<td>Column name or array($column, $alias) or object</td>
+										<td>Column name or array($column, $alias), object or callback</td>
 									</tr>
 									<tr>
 										<th><kbd>$op</kbd></th>
@@ -479,7 +479,7 @@ $query->group_by('genre', 'category');
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
-										<td><em>string</em></td>
+										<td><em>mixed</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>Column value</td>
 									</tr>
@@ -502,7 +502,87 @@ $query->having('name', '!=', 'John');
 // and append a new condition
 $query->and_having('surname', '=', 'Doe');
 
-// Resulting in: SELECT * FROM `users` HAVING `name` != "John" AND `surname` = "Doe"
+// create a group using a callback
+$query->and_having(function($query){
+	$query->having('email', 'info@example.com');
+	$query->or_having('email', 'second@example.com');
+});
+
+// Resulting in:
+// SELECT * FROM `users` HAVING `name` != "John" AND `surname` = "Doe"
+// AND (`email` = "info@example.com" OR `email` = "second@example.com")
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_or_having">or_having($column, $op, $value = NULL)</h4>
+				<p>The <strong>or_having</strong> method appends a "OR HAVING" statement.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$column</kbd></th>
+										<td><em>string</em></td>
+										<td><em>required</em></td>
+										<td>Column name or array($column, $alias), object or callback</td>
+									</tr>
+									<tr>
+										<th><kbd>$op</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Logic operator: =, !=, IN, BETWEEN and LIKE.</td>
+									</tr>
+									<tr>
+										<th><kbd>$value</kbd></th>
+										<td><em>mixed</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Column value</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
+$query = DB::select('*')->from('users');
+
+// Set the first HAVING statement
+$query->having('name', '!=', 'John');
+
+// and append a new condition
+$query->or_having('surname', '=', 'Doe');
+
+// create a group using a callback
+$query->or_having(function($query){
+	$query->having('email', 'info@example.com');
+	$query->and_having('email', 'second@example.com');
+});
+
+// Resulting in:
+// SELECT * FROM `users` HAVING `name` != "John" OR `surname` = "Doe"
+// OR (`email` = "info@example.com" AND `email` = "second@example.com")
 </code></pre>
 							</td>
 						</tr>
