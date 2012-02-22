@@ -810,6 +810,50 @@ $validation_object = $user->validation();
 			</article>
 
 			<article>
+				<h4 class="method" id="method_validates">validates()</h4>
+				<p>The <strong>validates</strong> method returns wether the instance will pass validation.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<em>None</em>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>A succes boolean.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$model = new Model_User;
+$model->set(array(
+	'name' => 'John',
+	'surname' => 'Doe',
+));
+
+if ($model->validates())
+{
+	// model is valid, skip validation.
+	$model->save(false)
+}
+else
+{
+	// model is not valid
+}
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_to_array">to_array()</h4>
 				<p>The <strong>to_array</strong> method returns the models public vars.</p>
 				<table class="method">
