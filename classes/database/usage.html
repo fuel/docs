@@ -50,7 +50,7 @@
 				Normal database interactions are to go through the <a href="./db.html">DB class</a>.
 				The following examples will give you a feel for how to go about using databases in Fuel.
 			</p>
-			<p>Database usage is devided into a couple of segments:</p>
+			<p>Database usage is divided into a couple of segments:</p>
 
 			<ul>
 				<li><a href="#running-queries">Running queries</a></li>
@@ -144,7 +144,7 @@ Array
 				<h3 id="results">Results</h3>
 				<p>
 					Executing a select query will generate a result object containing the requested database records.
-					By default the result is fetched as associative arrays. Here is an exaple how to influence this
+					By default the result is fetched as associative arrays. Here is an example how to influence this
 					behaviour.
 				</p>
 				<pre class="php"><code>// Will fetch the result as an associative array.
@@ -162,7 +162,7 @@ $result = DB::select('*')->from('users')->execute();
 // Just count the results, it returns an int.
 $num_rows = count($result);
 </code></pre>
-				<p>To access these results you eighter loop through the result object directly, or get the result array.</p>
+				<p>To access these results you either loop through the result object directly, or get the result array.</p>
 				<pre class="php"><code>$result = DB::select()->from('users')->execute();
 foreach($result as $item)
 {
@@ -182,7 +182,7 @@ $on_key = $result->as_array('id');
 foreach($on_key as $id => $item)
 {
 	// $id will contain the records id
-	// do something with $item or it's $id
+	// do something with $item or its $id
 }
 
 $key_value = $result->as_array('id', 'email');
@@ -313,7 +313,7 @@ $result = DB::update('users')
 				<h3 id="inserting">Inserting</h3>
 				<p>
 					For inserting data we use <a href="./db.html#method_insert">DB::insert</a>.
-					If succesfully executed an insert query will return an array containing a
+					If successfully executed an insert query will return an array containing a
 					list of insert id and rows created.
 				</p>
 				<pre class="php"><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`)
@@ -324,7 +324,7 @@ list($insert_id, $rows_affected) = DB::insert('users')->set(array(
 	'password' => 's0_s3cr3t',
 ))->execute();
 </code></pre>
-				<p>You can also set the columns and values seperatly</p>
+				<p>You can also set the columns and values separately</p>
 
 				<pre class="php"><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`)
 // VALUES ("John Random", "john@example.com", "s0_s3cr3t")
@@ -373,9 +373,9 @@ $result = DB::select()->from('users')->join('roles','right outer')->on('roles.id
 				<h3 id="escaping">Escaping</h3>
 
 				<p>Fields and values in database calls are escaped by default. In some cases you'll want to not escape data. The DB class provides a method to create <em>database expressions</em>, <a href="./db.html#method_expr">DB::expr</a>. If you don't want a value to get escaped, just wrap it in a database expression.</p>
-				<p>Database expressions are especially helpful when dealing with thing like MySQL's native function (like <em>COUNT</em>) and predefined constands (like <em>DEFAULT</em>).</p>
+				<p>Database expressions are especially helpful when dealing with thing like MySQL's native function (like <em>COUNT</em>) and predefined constants (like <em>DEFAULT</em>).</p>
 
-				<pre class="php"><code>// Set a field to it's default
+				<pre class="php"><code>// Set a field to its default
 DB::update('users')->where('id', '=', 1)->set(array(
 	'some_column' => DB::expr('DEFAULT'),
 ))->execute();
