@@ -328,7 +328,7 @@ echo Date::days_in_month(2, 2000); // 29
 			</article>
 
 			<article>
-				<h4 class="method" id="method_time_ago">time_ago($timestamp)</h4>
+				<h4 class="method" id="method_time_ago">time_ago($timestamp, $now, $period)</h4>
 				<p>The <strong>time_ago</strong> method returns a formatted time difference.</p>
 				<table class="method">
 					<tbody>
@@ -350,6 +350,16 @@ echo Date::days_in_month(2, 2000); // 29
 									<td><i>Required</i></td>
 									<td>The UNIX timestamp</td>
 								</tr>
+								<tr>
+									<th><kbd>$now</kbd></th>
+									<td><i>Optional</i></td>
+									<td>The UNIX timestamp to compare against. If not given or null, use the current time</td>
+								</tr>
+								<tr>
+									<th><kbd>$period</kbd></th>
+									<td><i>Optional</i></td>
+									<td>The timespan the answer is returned in. Possible values are 'second', 'minute', 'hour', 'day', 'week', 'month', 'years' and 'decade'. if none is specified, the largest possible is returned</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -360,7 +370,10 @@ echo Date::days_in_month(2, 2000); // 29
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>echo Date::time_ago(1294176140); // 3 months ago</code></pre>
+							<pre class="php"><code>echo Date::time_ago(strtotime("01 January 2012")); // 1 months ago (when in February 2012)
+echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012")); // 5 decades ago
+echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'years'); // 48 years ago
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
