@@ -59,6 +59,18 @@
 				<p>Using cache objects and Cache::forge() is explained in the <a href="advanced.html">advanced</a>
 				section.</p>
 
+				<h3 id="gc">Garbage Collection</h3>
+
+				<p>
+					There is currently <strong>NO</strong> garbage collection mechanism build into the Cache drivers. Storage backends that
+					have built-in support for data expiration, such as APC, Memcached or Redis, will use that feature, and
+					will auto expire stale cache entries.
+				</p>
+				<p class="note">
+					This means that if you use files to store your cached entries, you will have to write a cron job that will
+					periodically delete all old files based on their last modified timestamp!
+				</p>
+
 				<article>
 					<h4 class="method" id="method_set">set($identifier, $contents = null, $expiration = false, $dependencies = array())</h4>
 					<p>Writes a cache.</p>

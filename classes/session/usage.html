@@ -62,6 +62,19 @@
 				the session will not be refreshed! This can cause unexpected behaviour of your application due to an expired session.
 			</p>
 
+			<h3 id="gc">Garbage Collection</h3>
+
+			<p>
+				There session drivers have a built-in garbage collection mechanism to remove stale entries. Storage backends that
+				have built-in support for data expiration, such as APC, Memcached or Redis, will use that feature, and
+				will auto expire stale cache entries.
+			</p>
+			<p>
+				Storage backends that don't, for example the database or file system drivers, use the gc_probability setting to determine if
+				garbage collection is needed. If so, they will run it in a shutdown event, after the page has been send to the user.
+				Downside of this method is that if this takes some time, the page will not finished to be "loading..." until GC is completed.
+			</p>
+
 			<article>
 				<h4 class="method" id="method_instance">instance($instance = null)</h4>
 				<p>The <strong>instance</strong> method returns the default session instance, or a specific instance, identified by name.</p>
