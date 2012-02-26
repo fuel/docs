@@ -171,7 +171,7 @@
 					<tr>
 						<th>Throws</th>
 						<td>
-							<kbd>InvalidPathException</kbd> when the basepath does not exists or is not writable.
+							<kbd>InvalidPathException</kbd> when the basepath does not exist or is not writable.
 							<kbd>FileAccessException</kbd> when the basepath is not writable.
 						</td>
 					</tr>
@@ -231,7 +231,7 @@
 					</tr>
 					<tr>
 						<th>Throws</th>
-						<td><kbd>InvalidPathException</kbd> when the file does not exists.</td>
+						<td><kbd>InvalidPathException</kbd> when the file does not exist.</td>
 					</tr>
 
 					<tr>
@@ -477,7 +477,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td><kbd>boolen</kbd> result of <em>rename()</em></td>
+						<td><kbd>boolean</kbd> result of <em>rename()</em></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -535,7 +535,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td><kbd>boolen</kbd> result of <em>rename()</em></td>
+						<td><kbd>boolean</kbd> result of <em>rename()</em></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -556,7 +556,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_copy">copy($path, $new_path, $area = null)</h4>
-				<p>Copy's a file.</p>
+				<p>Copies a file.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -593,7 +593,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td><kbd>boolen</kbd> result of <em>copy()</em></td>
+						<td><kbd>boolean</kbd> result of <em>copy()</em></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -616,7 +616,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_copy_dir">copy_dir($path, $new_path, $area = null)</h4>
-				<p>Copy's a directory.</p>
+				<p>Copies a directory.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -653,7 +653,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td><kbd>boolen</kbd> result of <em>copy()</em></td>
+						<td><kbd>boolean</kbd> result of <em>copy()</em></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -666,7 +666,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>File::copy(DOCROOT.'/test.txt', DOCROOT.'/newname.txt');</code></pre>
+							<pre class="php"><code>File::copy_dir(DOCROOT.'/test', DOCROOT.'/newname');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -707,7 +707,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td><kbd>boolen</kbd> result of <em>unlink()</em></td>
+						<td><kbd>boolean</kbd> result of <em>unlink()</em></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -770,20 +770,20 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td><kbd>boolen</kbd> result of <em>unlink()</em> or true when not deleting content of subdirectories</td>
+						<td><kbd>boolean</kbd> result of <em>unlink()</em> or true when not deleting content of subdirectories</td>
 					</tr>
 					<tr>
 						<th>Throws</th>
 						<td>
 							<kbd>OutsideAreaException</kbd> when a path not inside the file area.
 							<kbd>InvalidPathException</kbd> when the source path is not a directory.
-							<kbd>FileAccessException</kbd> when somethng went wrong during the delete process.
+							<kbd>FileAccessException</kbd> when something went wrong during the delete process.
 						</td>
 					</tr>
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>File::delete_dir(DOCROOT.'/my_dir', DOCROOT.'/newname.txt');</code></pre>
+							<pre class="php"><code>File::delete_dir(DOCROOT.'/my_dir');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -887,7 +887,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$resource = File::ope_file(DOCROOT.'/my_dir/text.txt');
+							<pre class="php"><code>$resource = File::open_file(DOCROOT.'/my_dir/text.txt');
 // Do something with the resource
 File::close_file($resource);</code></pre>
 						</td>
@@ -917,7 +917,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>required</em></td>
-									<td>path to the file or directory to be wrapped in a the handler</td>
+									<td>Path to the file or directory to be wrapped in a handler</td>
 								</tr>
 								<tr>
 									<th><kbd>$config</kbd></th>
@@ -975,7 +975,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>required</em></td>
-									<td>path to the file </td>
+									<td>Path to the file</td>
 								</tr>
 								<tr>
 									<th><kbd>$config</kbd></th>
@@ -1034,7 +1034,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>required</em></td>
-									<td>path to the file </td>
+									<td>Path to the file</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
@@ -1088,12 +1088,12 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>required</em></td>
-									<td>path to the file </td>
+									<td>Path to the file</td>
 								</tr>
 								<tr>
 									<th><kbd>$type</kbd></th>
 									<td><strong>'modified'</strong></td>
-									<td>Time of time to retrieve. Must be <em>modified</em> or <em>created</em></td>
+									<td>Type of time to retrieve. Must be <em>modified</em> or <em>created</em></td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
@@ -1146,7 +1146,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>required</em></td>
-									<td>path to the file </td>
+									<td>Path to the file</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
@@ -1200,7 +1200,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>required</em></td>
-									<td>path to the file </td>
+									<td>Path to the file</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
@@ -1216,7 +1216,7 @@ File::close_file($resource);</code></pre>
 						<td>
 							An array with file information items. The array will contain path, filename and extension information,
 							the file size and permissions, the creation and last modified timestamps, the detected mime-type and
-							the file's characterset.
+							the file's character set.
 						</td>
 					</tr>
 					<tr>
@@ -1238,7 +1238,7 @@ File::close_file($resource);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_download">download($path, $name = null, $mime = null, $area = null)</h4>
-				<p>Download a file.</p>
+				<p>Outputs a file as download.</p>
 				<table class="method">
 					<tbody>
 					<tr>

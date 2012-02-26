@@ -393,7 +393,7 @@ if ( Upload::is_valid() )
 								<tr>
 									<th><kbd>$index</kbd></th>
 									<td><i>optional</i></td>
-									<td>index number of the file in the uploaded files array. If not specified, an array with all validated files is returned.
+									<td>index number of the file in the uploaded files array, or the name of a form field. If not specified, an array with all validated files is returned.
 									If the index number is invalid, or if the index refers to a file with an error status of <strong>true</strong>, an exception is thrown.</td>
 								</tr>
 							</table>
@@ -410,6 +410,12 @@ if ( Upload::is_valid() )
 foreach( Upload::get_files() as $file )
 {
 	// do something with the file info
+}
+
+// get the first uploaded file by index
+if ( ! Upload::get_files(0) )
+{
+	// first uploaded file was not succesfully uploaded
 }
 </code></pre>
 						</td>
@@ -439,7 +445,7 @@ foreach( Upload::get_files() as $file )
 								<tr>
 									<th><kbd>$index</kbd></th>
 									<td><i>optional</i></td>
-									<td>index number of the file in the uploaded files array. If not specified, an array with all invalid files is returned.
+									<td>index number of the file in the uploaded files array or the name of a form field. If not specified, an array with all invalid files is returned.
 									If the index number is invalid, or if the index refers to a file with an error status of <strong>false</strong>, an exception is thrown.</td>
 								</tr>
 							</table>
@@ -456,6 +462,13 @@ foreach( Upload::get_files() as $file )
 foreach( Upload::get_errors() as $file )
 {
 	// do something with the file info
+}
+
+// get the first uploaded file by fieldname
+if ( Upload::get_error('new_image') )
+{
+	// there was an error uploading the file for the form field 'new_image'
+	// defined as &lt;input type="file" name="new_image" /&gt;
 }
 </code></pre>
 						</td>

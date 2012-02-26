@@ -59,9 +59,11 @@
 			<h3 id="creating_a_controller">コントローラを作成する</h3>
 
 			<p>
-				FuelPHP では、コントロータは <kbd>fuel/app/classes/controller</kbd> ディレクトリに置きます。
-				任意ですが <kbd>Controller</kbd> クラスを継承し、<kbd>"Controller_"</kbd> というプレフィックスを付けます。
-				以下は "example" コントローラの例です:
+
+				FuelPHP では、コントローラーは <kbd>fuel/app/classes/controller</kbd> ディレクトリに置きます。, そして<kbd>"Controller_"</kbd> というプレフィックスを付けます。
+				必要に応じて<kbd>Controller</kbd> class を拡張する必要があります。
+				feature set. 以下は "example" コントローラの例です:
+
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
@@ -79,6 +81,20 @@
 				これは PHP のコンストラクタで使用する名前による制限を受けないことを意味します(例: "list" メソッドは許可されていないが、"action_list" は問題ない)。
 				しかし、これはコントローラに公開メソッドを与えることができることも意味します。
 				このメソッドは他のクラスからも使用できますが、ルーティングできません。
+			</p>
+			
+			<h4 id="controller_in_subdir">Controllers in Sub-Directories</h4>
+
+			<p>
+				You can also put a controller in a subdirectory, like
+				<kbd>fuel/app/classes/controller/subdir/test.php</kbd>. In this case, the controller must include
+				the dirname in the classname like this: <var>Controller_Subdir_Test</var>.
+			</p>
+
+			<p>
+				Unlimited nested sub-directories are supported, so
+				<kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd>. would have a class name of
+				<var>Controller_Subdir1_Subdir2_Subdir3_Test</var>.
 			</p>
 
 			<h4 id="more_parameters">Using more parameters from the URL</h4>
@@ -110,6 +126,7 @@
 				主として Respose オブジェクトを使います。
 			</p>
 
+<<<<<<< HEAD
 			<h4 id="controller_in_subdir">サブディレクトリの中のコントローラ</h4>
 
 			<p>
