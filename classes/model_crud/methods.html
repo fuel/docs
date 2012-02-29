@@ -307,7 +307,7 @@ else
 			</article>
 
 			<article>
-				<h4 class="method" id="method_find_by_">find_by_*($value = null)</h4>
+				<h4 class="method" id="method_find_by_magic">find_by_*($value = null)</h4>
 				<p>This is a magic method.  You can specify the column to name to find by after the <code>find_by_</code> portion of the method name.</p>
 
 				<strong>Example</strong><br>
@@ -478,7 +478,7 @@ $users = Model_User::find_all(10, 20);
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Must return the query object.</td>
+						<td>Void</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -488,9 +488,6 @@ protected static function pre_find($query)
 {
 	// alter the query
 	$query->where('active', 'yes');
-
-	// return the query object.
-	return $query;
 }
 </code></pre>
 						</td>
@@ -930,16 +927,16 @@ $user_array = $user->to_array();
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>The insert query object.</td>
+						<td>Void</td>
 					</tr>
 					<tr>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected static function pre_save($query)
+protected function pre_save($query)
 {
-	// Do something with the query
-	return $query;
+	// change the query
+	$query->set(array('field' => 'value'));
 }
 </code></pre>
 						</td>
@@ -984,7 +981,7 @@ protected static function pre_save($query)
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected static function post_save($result)
+protected function post_save($result)
 {
 	// Do something with the result
 	return $result;
@@ -1026,16 +1023,16 @@ protected static function post_save($result)
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>The update query object.</td>
+						<td>Void</td>
 					</tr>
 					<tr>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected static function pre_update($query)
+protected function pre_update($query)
 {
-	// Do something with the query
-	return $query;
+	// Change the update query.
+	$query->set(array('field' => 'value'));
 }
 </code></pre>
 						</td>
@@ -1080,7 +1077,7 @@ protected static function pre_update($query)
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected static function post_update($result)
+protected function post_update($result)
 {
 	// Do something with the result
 	return $result;
@@ -1122,16 +1119,15 @@ protected static function post_update($result)
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>The delete query object.</td>
+						<td>Void</td>
 					</tr>
 					<tr>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected static function pre_delete($query)
+protected function pre_delete($query)
 {
-	// Do something with the query
-	return $query;
+	// Do something with the delete query
 }
 </code></pre>
 						</td>
@@ -1176,7 +1172,7 @@ protected static function pre_delete($query)
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected static function post_delete($result)
+protected function post_delete($result)
 {
 	// Do something with the result
 	return $result;
@@ -1224,7 +1220,7 @@ protected static function post_delete($result)
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected static function pre_validate($data)
+protected function pre_validate($data)
 {
 	// Do something with the data
 	return $data;
@@ -1272,7 +1268,7 @@ protected static function pre_validate($data)
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected static function post_validate($data)
+protected function post_validate($data)
 {
 	// Do something with the data
 	return $data;
@@ -1320,7 +1316,7 @@ protected static function post_validate($data)
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected static function prep_values($data)
+protected function prep_values($data)
 {
 	// Do something with the data
 	return $data;
