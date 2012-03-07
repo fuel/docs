@@ -458,7 +458,7 @@ panes.core = {
 		"Redis":		"classes/redis.html",
 		"Request":		"classes/request.html",
 		"Response":		"classes/response.html",
-		// "Route":		"todo.html",
+		"Router":		"classes/router.html",
 		"Security":		"classes/security.html",
 		"Session": {
 			"Configuration":	"classes/session/config.html",

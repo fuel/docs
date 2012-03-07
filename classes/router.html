@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+		var class_prefix = "Router::";
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Router - Classes - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>Router Class</h2>
+
+			<p>The <kbd>Router</kbd> class determines which controller needs to be loaded, based on the request passed to it, and the routes defined.</p>
+
+			<article>
+				<h4 class="method" id="method_process">process(\Request $request, $route = true)</h4>
+				<p>
+					The <strong>process</strong> method takes a request object, and will try to find a route match for the URI contained in the request.
+					If no route can be matched, the router will create a new route based on the information in the URI, and following the controller/method or
+					module/controller/method URI scheme. It will not check if the determined route is valid!
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$request</kbd></th>
+									<td><i>required</i></td>
+									<td>A valid Request object.</td>
+								</tr>
+								<tr>
+									<th><kbd>$route</kbd></th>
+									<td><code>true</code></td>
+									<td>
+										If 'true', the loaded routes will be used to find a match. If 'false', the loaded routes will be ignored and a new
+										route will be constructed. This is used for HMVC calls to controllers that are not routeable from the URL.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><i>Route object, or null if no valid route object could be constructed</i></td>
+					</tr>
+					</tbody>
+				</table>
+
+				<p class="note">
+					Under normal circumstances you won't be needing this method, it is used internally in the framework to load
+					controllers.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add">add($path, $options = null, $prepend = false)</h4>
+				<p>
+					The <strong>add</strong> method allows you to manually add new routes at runtime. You might need this if you want to load
+					controllers that don't follow the normal URI scheme, or if you want to load routes from other sources then the routes.php
+					configuration files.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$path</kbd></th>
+									<td><i>required</i></td>
+									<td>The URI path to be matched. This is the left side of your routes.php route definition.</td>
+								</tr>
+								<tr>
+									<th><kbd>$options</kbd></th>
+									<td><i>string|array|Route</i></td>
+									<td>Either the translation for $path, an array for verb routing (like the right side of your routes.php rout definition) or an instance of Route.</td>
+								</tr>
+								<tr>
+									<th><kbd>$prepend</kbd></th>
+									<td><code>false</code></td>
+									<td>If true, the new route will be prepended to the already loaded routes.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><i>void</i></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// load a new route for 'this/that' => 'something/else'
+Router::add('this/that', 'something/else');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get">get($name, $named_params = array())</h4>
+				<p>
+					The <strong>get</strong> method allows you to do reverse routing for a named route. Based on the name passed,
+					it will retrieve the defined path for it, and return a URI that you can use in your views.
+					This means that if you change your routes, the links in your views will be updated accordingly.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>Name of the route to load.</td>
+								</tr>
+								<tr>
+									<th><kbd>$named_params</kbd></th>
+									<td><code>array()</code></td>
+									<td>Array of parameters to be added to the URI created.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><kbd>bool|array</kbd></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// if your routes are defined like this:
+return array(
+	'_root_'  => 'welcome/index',  // The default route
+	'_404_'   => 'welcome/404',    // The main 404 route
+
+	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
+);
+
+// this call will return 'http://your_base_url/welcome/hello'
+echo Router::get('hello');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>
