@@ -1140,6 +1140,28 @@ DB::count_last_query();
 				</table>
 			</article>
 
+			<h3 id="transaction">Transaction example</h3>
+
+				<pre class="php"><code>// typical transaction code flow
+try
+{
+    DB::start_transaction();
+
+    // some query ...
+
+    DB::commit_transaction();
+
+    // return query result
+}
+catch (Exception $e)
+{
+    // rollback pending transactional queries
+    DB::rollback_transaction();
+
+    throw $e;
+}
+</code></pre>
+
 		</div>
 
 		<footer>
