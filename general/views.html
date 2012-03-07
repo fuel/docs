@@ -44,17 +44,17 @@
 
 		<div id="main">
 
-			<h2>Views</h2>
+			<h2>ビュー</h2>
 
-			<h3 id="what_is_a_view">What is a view?</h3>
+			<h3 id="what_is_a_view">ビューとは?</h3>
 
-			<p>Views are files that present data to the browser. These files enable the separation of logic and presentation for your application. Views are typically html, javascript, or css but can contain variables passed into them from the controller.</p>
+			<p>ビューは、ブラウザにデータを提供するファイルです。アプリケーションのロジックとプレゼンテーションを分離することができます。ビューは典型的には html、javascript あるいは css ですが、コントローラからから渡される変数を含むことがあります。</p>
 
-			<h3>Creating a view</h3>
+			<h3>ビューを作成する</h3>
 
-			<p>In FuelPHP, Views are located in the fuel/app/views directory. Views can be located in subdirectories. Views are named by their directory path from the fuel/app/views and the file name, so a view file located <em>fuel/app/views/user/join.php</em> would be named <kbd>user/join</kbd>.</p>
+			<p>FuelPHP では、 ビューは fuel/app/views ディレクトリに置きます。サブディレクトリに置くこともできます。fuel/app/views からのディレクトリパスとファイル名から命名します。従って、<em>fuel/app/views/user/join.php</em> にあるビューファイルは <kbd>user/join</kbd> と命名されます。</p>
 
-			<p>Example:</p>
+			<p>例:</p>
 
 	<pre class="html"><code>&lt;html&gt;
 	&lt;head&gt;
@@ -66,11 +66,11 @@
 &lt;/html&gt;
 </code></pre>
 
-			<h3 id="using_views">Using views</h3>
+			<h3 id="using_views">ビューを使用する</h3>
 
-			<p>Views in the Fuel framework are very flexible. You can create a single view and nest views within other views. This can be done multiple ways.</p>
+			<p>FuelPHP フレームワークのビューは柔軟です。単一ビューを作成し、ビューを他のビューの中に入れ子にすることができます。複数の方法で可能です。</p>
 
-			<p><strong>Example View (fuel/app/views/home/index.php):</strong></p>
+			<p><strong>ビューの例 (fuel/app/views/home/index.php):</strong></p>
 			<pre class="html"><code>&lt;html&gt;
 	&lt;head&gt;
 		&lt;title>&lt;?php echo $title; ?&gt;&lt;/title>
@@ -81,43 +81,43 @@
 &lt;/html&gt;
 </code></pre>
 
-			<p><strong>Method 1 (using example view above):</strong></p>
+			<p><strong>方法 1 (上記ビューを使用):</strong></p>
 
 			<pre class="php"><code>class Controller_Home extends Controller
 {
 
-	$data = array(); //stores variables going to views
+	$data = array(); //ビューに渡す変数を格納する
 
 	$data['username'] = 'Joe14';
 	$data['title'] = 'Home';
 
-	//assign the view to browser output
+	//ビューをブラウザ出力に割り当てる
 	return View::forge('home/index', $data);
 }</code></pre>
 
-			<p><strong>Method 2 (using example view above):</strong></p>
+			<p><strong>方法 2 (上記ビューを使用):</strong></p>
 
 			<pre class="php"><code>class Controller_Home extends Controller
 {
-	//create the view
+	//ビューを作成する
 	$view = View::forge('home/index');
 
-	//assign variables for the view
+	//ビューに変数を割り当てる
 	$view->username = 'Joe14';
 	$view->title = 'Home';
 
-	//another way to assign variables for the view
+	//ビューに変数を割り当てる別の方法
 	$view->set('username', 'Joe14');
 	$view->set('title', 'Home');
 
-	//assign the view to browser output
+	//ビューをブラウザ出力に割り当てる
 	return $view;
 }</code></pre>
 
-			<h3 id="security">Security</h3>
+			<h3 id="security">セキュリティ</h3>
 
-			<p>By default, Views use output encoding to sanitize anything you pass to them using Security::htmlentities().
-				If you want to pass something unfiltered, you can use the method <kbd>set($name, $value, false)</kbd>.</p>
+			<p>デフォルトでは、ビューは Security::htmlentities() を使用して、ビューに渡されたものをすべてサニタイズします。
+				フィルタしないで渡したい場合は、<kbd>set($name, $value, false)</kbd> メソッドを使用できます。</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
 {
@@ -127,46 +127,46 @@
 		$view = \View::forge('example');
 
 		// add it unfiltered just like you added
-		// add it filtered, outputs: &amp;lt;strong&amp;gt;not bold because filtered&amp;lt;/strong&amp;gt;
+		// フィルタされて出力される: &amp;lt;strong&amp;gt;not bold because filtered&amp;lt;/strong&amp;gt;
 		$view->title = '&lt;strong&gt;not bold because filtered&lt;/strong&gt;';
 
-		// add it unfiltered just like you added
+		// フィルタしないで追加する
 		$view->set('title', '&lt;strong&gt;not bold because filtered&lt;/strong&gt;', false);
 
 		return $view;
 	}
 }</code></pre>
 
-			<p>If you don't want your View to work like this, change the public static property <kbd>View::$auto_encode</kbd>
-			and set it to <kbd>false</kbd>. Now anything added will be unfiltered.  If you do want some values filtered, you can use
-			<kbd>set($name, $value, true)</kbd>.</p>
+			<p>ビューをこのように動作させたくない場合は静的プロパティ <kbd>View::$auto_encode</kbd>
+			を <kbd>false</kbd> に変更してください。 そうすると、フィルタされなくなります。ある値をフィルタしたい場合は、
+			<kbd>set($name, $value, true)</kbd> を使用できます。</p>
 
-			<p class="note"><strong>Note on objects:</strong> Unless the passed object is of the type View, ViewModel or Closure, it is
-			expected to have a <kbd>__toString()</kbd> method and forced to be a string when output filtering is enabled. If you want
-			to pass it anyway, you need to use <kbd>set($name, $value, false)</kbd>, but don't forget to filter what you
-			use!<br />
-			View &amp; ViewModels are expected to contain HTML and take care of their own filtering which is why they're
-			not sanitized. Closures cannot be sanitized, and you should take care to ensure this is done within them if
-			necessary.</p>
+			<p class="note"><strong>オブジェクトについての注意:</strong> 渡されるオブジェクトが View、ViewModel あるいは Closure のインスタンスでない限り、 
+			オブジェクトは <kbd>__toString()</kbd> メソッドを持つことが期待され、出力フィルタリングが有効なとき文字列に強制変換されます。どうしても渡したい場合は、
+			<kbd>set($name, $value, false)</kbd> を使用する必要がありますが、 フィルタすることを決して忘れないで
+			ください。<br />
+			View と ViewModels は HTML を含み、サニタイズされないものを独自にフィルタリングすることが期待されます。
+			Closures はサニタイズできませんので、必要ならば内部でサニタイズが確実に行われるように
+			注意すべきです。</p>
 
-			<h3>Lazy rendering</h3>
+			<h3>遅延レンダリング</h3>
 
 			<p>
-				When instantiating a view object, only the environment needed to generate output is setup. The view file is not
-				being read, no variables will be interpreted, and no output will be rendered.
+				ビューオブジェクトを初期化するとき、出力を生成するのに必要な環境のみがセットアップされます。ビューファイルは読み込まれず、
+				変数は解釈されず、出力はレンダリングされません。
 			</p>
 			<p>
-				This only happens when you explicitly call the <code>render()</code> method on the view object or when you
-				cast the view object to a string (which happens automatically when you echo it). This means no views are processed
-				until it's absolutely needed. It also means that Fuel doesn't keep rendered views in memory until it is time to
-				send them to the browser.
+				これは <code>render()</code> メソッドを明示的に呼び出す場合、あるいは
+				ビューオブジェクトを文字列にキャストする(echo すると自動的にそうなります)ときのみ起きます。つまり、ビューは完全に必要になるまで処理されません。
+				FuelPHP はブラウザに出力する時が来るまで、レンダリングしたビューをメモリに保存しない、 
+				ということでもあります。
 			</p>
 
-			<h3>Nesting Views</h3>
+			<h3>ビューを入れ子にする</h3>
 
-			<p>Views can also be nested to contain other views. This can be done multiple ways.</p>
+			<p>ビューは入れ子にすることができます。複数の方法が可能です。</p>
 
-			<h3>Example Views</h3>
+			<h3>ビューの例</h3>
 
 			<p>fuel/app/views/layout.php</p>
 
@@ -201,58 +201,58 @@
 	&amp;copy; Copyright &lt;?php echo date(&#x27;Y&#x27;);?&gt; &lt;?php echo $site_title; ?&gt;
 &lt;/div&gt;</code></pre>
 
-			<h3 id="method_one">Method 1 (using example views above and lazy rendering):</h3>
+			<h3 id="method_one">方法 1 (上記の例と遅延レンダリングを使用):</h3>
 
 			<pre class="php"><code>class Controller_Home extends Controller
 {
 
 	public function action_index()
 	{
-		// create the view
+		// ビューを作成する
 		$view = View::forge('layout');
 
-		// assign global variables so all views have access to them
+		// グローバル変数(すべてのビューがアクセスできる)を割り当てる
 		$view->set_global('username', 'Joe14');
 		$view->set_global('title', 'Home');
 		$view->set_global('site_title', 'My Website');
 
-		//assign views as variables, lazy rendering
+		//変数としてビューを割り当てる、遅延レンダリング
 		$view->head = View::forge('head');
 		$view->header = View::forge('header');
 		$view->content = View::forge('content');
 		$view->footer = View::forge('footer');
 
-		// return the view object to the Request
+		// ビューオブジェクトをリクエストに返す
 		return $view;
 	}
 }</code></pre>
 
-			<h3 id="method_two">Method 2 (using example views above and forced rendering):</h3>
+			<h3 id="method_two">方法 2 (上記の例と強制レンダリングを使用):</h3>
 
 			<pre class="php"><code>class Controller_Home extends Controller
 {
 
 	public function action_index()
 	{
-		//assign variables
+		//変数を割り当てる
 		$data = array();
 		$data['title'] = 'Home';
 		$data['site_title'] = 'My Website';
 		$data['username'] = 'Joe14';
 
-		//assign views as variables, forced rendering
+		//変数としてビューを割り当てる、強制レンダリング
 		$views = array();
 		$views['head'] = View::forge('head', $data)->render();
 		$views['header'] = View::forge('header', $data)->render();
 		$views['content'] = View::forge('content', $data)->render();
 		$views['footer'] = View::forge('footer', $data)->render();
 
-		// return the rendered HTML to the Request
+		// レンダリングした HTML をリクエストに返す
 		return View::forge('layout', $views)->render();
 	}
 }</code></pre>
 
-			<p>See the <a href="../classes/view.html">View Class in the classes section</a> for View's function descriptions.</p>
+			<p>ビューの機能の説明は、<a href="../classes/view.html">View Class in the classes section</a> を参照ください。</p>
 
 		</div>
 
