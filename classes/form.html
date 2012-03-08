@@ -259,7 +259,8 @@ echo Form::close();</code></pre>
 				<h4 class="method" id="method_radio">radio($field, $value = null, $attributes = array())</h4>
 
 				<p>This is an alias for <kbd>Form::input()</kbd> that automatically sets the <kbd>type</kbd> attribute to
-				<kbd>'radio'</kbd>.</p>
+				<kbd>'radio'</kbd>.<br />
+				<em>For backwards compatibility this method also accepts: <kbd>checkbox($field, $value = null, array $attributes = array())</kbd></em></p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -286,6 +287,12 @@ echo Form::close();</code></pre>
 									<td>Field value, will be ignored when the first param is an array.</td>
 								</tr>
 								<tr>
+									<th><kbd>$checked</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Whether checked (if bool) or matches $value (if string), will be ignored when
+										the first param is an array.</td>
+								</tr>
+								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
 									<td>These will be used as html tag properties.</td>
@@ -301,10 +308,9 @@ echo Form::close();</code></pre>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>echo Form::label('Male', 'gender');
-echo Form::radio('gender', 'Male', array('checked' => 'checked'));
+echo Form::radio('gender', 'Male', true);
 echo Form::label('Female', 'gender');
-echo Form::radio('gender', 'Female');
-</code></pre>
+echo Form::radio('gender', 'Female');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -313,10 +319,11 @@ echo Form::radio('gender', 'Female');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_checkbox">checkbox($field, $value = null, $attributes = array())</h4>
+				<h4 class="method" id="method_checkbox">checkbox($field, $value = null, $checked = null, $attributes = array())</h4>
 
 				<p>This is an alias for <kbd>Form::input()</kbd> that automatically sets the <kbd>type</kbd> attribute to
-				<kbd>'checkbox'</kbd>.</p>
+				<kbd>'checkbox'</kbd>.<br />
+				<em>For backwards compatibility this method also accepts: <kbd>checkbox($field, $value = null, array $attributes = array())</kbd></em></p>
 <table class="method">
 					<tbody>
 					<tr>
@@ -343,6 +350,12 @@ echo Form::radio('gender', 'Female');
 									<td>Field value, will be ignored when the first param is an array.</td>
 								</tr>
 								<tr>
+									<th><kbd>$checked</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Whether checked (if bool) or matches $value (if string), will be ignored when
+										the first param is an array.</td>
+								</tr>
+								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
 									<td>These will be used as html tag properties.</td>
@@ -358,10 +371,9 @@ echo Form::radio('gender', 'Female');
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>echo Form::label('Male', 'gender');
-echo Form::checkbox('gender', 'Male', array('checked' => 'checked') );
+echo Form::checkbox('gender', 'Male', true);
 echo Form::label('Female', 'gender');
-echo Form::checkbox('gender', 'Female' );
-</code></pre>
+echo Form::checkbox('gender', 'Female');</code></pre>
 						</td>
 					</tr>
 					</tbody>
