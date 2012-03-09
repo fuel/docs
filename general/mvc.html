@@ -44,51 +44,51 @@
 
 		<div id="main">
 
-			<h2>Model-View-Controller (MVC)</h2>
+			<h2>モデル、ビュー、コントローラ (MVC)</h2>
 
-			<h3 id="what_is_mvc">What is MVC?</h3>
+			<h3 id="what_is_mvc">MVC とは?</h3>
 
-			<p>MVC is an approach to separating your code depending on what role it plays in your application. In the
-			application flow it starts with a controller that is loaded. That Controller executes a method which retrieves
-			data using Models. Once it is done the controller decides what View to load, which contains the output your
-			visitors get to see.</p>
+			<p>MVC は、アプリケーションでの役割に基づいてコードを分離するアプローチです。
+			アプリケーションフローでは、まずコントローラが呼び出されます。コントローラは、モデルを使用してデータを取得するメソッドを実行します。
+			それから、コントローラはどのビューを呼び出すか決定します。
+			ビューには訪問者が閲覧する出力が含まれています。</p>
 
-			<h3 id="controllers">Controllers</h3>
+			<h3 id="controllers">コントローラ</h3>
 
-			<p>Fuel's routing decides based on the requested URL what controller to load and what method to call upon it.
-			This is where your application starts working. The Controller decides what actions to take, what to do with any
-			user input, what data gets manipulated and which View is shown to the user. The Controller does none of these
-			things itself however; it calls upon Models and Classes to do the work.</p>
+			<p>FuelPHP のルーティングは、呼び出すコントローラとメソッドをリクエスト URL に基づいて、決定します。
+			ここからアプリケーションが動き出します。コントローラは、何を行うか、ユーザの入力をどう扱うか、
+			どのデータが処理されるか、どのビューをユーザに見せるか、を決めます。しかし、コントローラは、自身では何も行いません。
+			モデルとクラスを呼び出します。</p>
 
-			<p>Read more about <a href="controllers/base.html">Controllers</a>.</p>
+			<p>詳細については<a href="controllers/base.html">コントローラ</a>を参照ください。</p>
 
-			<h3 id="models">Models</h3>
+			<h3 id="models">モデル</h3>
 
-			<p>Whenever data needs to be retrieved, manipulated or deleted this should always be done by a model. A Model
-			is a representation of some kind of data and has the methods to change them. For example: you never put SQL
-			queries in a Controller, those are put in the Model and the Controller will call upon the Model to execute
-			the queries. This way if your database changes you won't need to change all your Controllers but just the
-			Model that acts upon it.</p>
+			<p>データを取得/処理/削除する必要がある時は必ず、モデルで行うべきです。
+			モデルは、ある種のデータの表現であり、データを変更するメソッドがあります。例:
+			コントローラに SQL クエリを置くべきではありません。SQL クエリはモデルに置き、コントローラはクエリを実行するときにモデルを呼び出します。
+			こうすると、データベースが変更になった場合、コントローラを変更する必要はなく、
+			データベースを扱うモデルのみ変更すればよいです。</p>
 
-			<p>Read more about <a href="models.html">Models</a>.</p>
+			<p>詳細については<a href="models.html">モデル</a>を参照ください。</p>
 
-			<h3 id="views">Views</h3>
+			<h3 id="views">ビュー</h3>
 
-			<p>Views contain your HTML, which should never be found in your Controllers or any other class that is not
-			specifically meant to create output. By separating your layout from your logic you ensure that when you decide
-			to change your layout you only have to change the views and won't have to care about the Controllers.<br />
-			Views should thus contain little more than <kbd>echo</kbd> and <kbd>foreach</kbd> usage of PHP.</p>
+			<p>ビューには HTML が含まれます。コントローラや、出力を意図しない他のクラスには HTML が含まれるべきではありません。
+			ロジックからレイアウトを分離することで、 
+			レイアウトを変更するときに、ビューを変更しさえすれば良く、コントローラを気にする必要はなくなります。<br />
+			したがって、ビューでは PHP は <kbd>echo</kbd> と <kbd>foreach</kbd> を使う程度にすべきです。</p>
 
-			<p>Read more about <a href="views.html">Views</a>.</p>
+			<p>詳細については<a href="views.html">ビュー</a>を参照ください。</p>
 
-			<h3 id="viewmodels">ViewModels</h3>
+			<h3 id="viewmodels">ビューモデル</h3>
 
-			<p>Once your application gets more complex you'll discover that it gets hard to decide if a piece of logic
-			really belongs in the Controller, what if it is very specifically about the View and has little to do with your
-			application logic? This is where ViewModels come in; they are the glue between your controllers and your
-			views.</p>
+			<p>アプリケーションが複雑になると、アプリケーションロジックよりもビューに関係するロジックをコントローラに含めるかどうか判断が難しくなるでしょう。
+			コントローラに含めるかどうか判断が難しくなるでしょう。
+			この場合、ビューモデルが役立ちます。 
+			ビューモデルはコントローラとビューの仲立ちをします。</p>
 
-			<p>Read more about <a href="viewmodels.html">ViewModels</a>.</p>
+			<p>詳細については<a href="viewmodels.html">ビューモデル</a>を参照ください。</p>
 
 		</div>
 
