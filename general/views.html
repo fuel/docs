@@ -133,6 +133,9 @@
 		// フィルタしないで追加する
 		$view->set('title', '&lt;strong&gt;not bold because filtered&lt;/strong&gt;', false);
 
+		// or use the set_safe() method, which is identical to set() but defaults to 'false'
+		$view->set_safe('title', '&lt;strong&gt; bold because unfiltered&lt;/strong&gt;');
+
 		return $view;
 	}
 }</code></pre>
