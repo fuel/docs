@@ -54,6 +54,58 @@
 			<p>DBUtil allows you to create, rename, alter and drop database fields.</p>
 
 			<article>
+				<h4 class="method" id="method_set_connection">set_connection($connection)</h4>
+				<p>The <strong>set_connection</strong> method sets the default DBUtil connection for all methods.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$connection</kbd></th>
+										<td><strong>required</strong></td>
+										<td class="description">The database connection.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the number of affected rows.</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>\Database_Exception on failure</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// Set an alternative database connection for DBUtil
+DBUtil::set_connection('my_database_group');
+
+// Do other DBUtil calls with that connection.
+...
+
+// And set it back to default.
+DBUtil::set_connection(null);
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_create_database">create_database($database, charset = null, $if_not_exists = true, $db = null)</h4>
 				<p>The <strong>create_database</strong> method creates a database.  Will throw a Database_Exception if it cannot.</p>
 				<table class="method">
