@@ -54,7 +54,7 @@
 			<p>DBUtil allows you to create, rename, alter and drop database fields.</p>
 
 			<article>
-				<h4 class="method" id="method_create_database">create_database($database, charset = null, $if_not_exists = true)</h4>
+				<h4 class="method" id="method_create_database">create_database($database, charset = null, $if_not_exists = true, $db = null)</h4>
 				<p>The <strong>create_database</strong> method creates a database.  Will throw a Database_Exception if it cannot.</p>
 				<table class="method">
 					<tbody>
@@ -85,6 +85,11 @@
 										<th><kbd>$if_not_exists</kbd></th>
 										<td><strong>true</strong></td>
 										<td>whether to use <em>IF NOT EXISTS</em></td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -128,7 +133,7 @@ DBUtil::create_database('new_database', 'utf8_unicode_ci');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_drop_database">drop_database($database)</h4>
+				<h4 class="method" id="method_drop_database">drop_database($database, $db = null)</h4>
 				<p>The <strong>drop_database</strong> method drops a database.  Will throw a Database_Exception if it cannot.</p>
 				<table class="method">
 					<tbody>
@@ -149,6 +154,11 @@ DBUtil::create_database('new_database', 'utf8_unicode_ci');
 										<th><kbd>$database</kbd></th>
 										<td><em>required</em></td>
 										<td>the database name</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -184,7 +194,7 @@ catch(\Database_Exception $e)
 			</article>
 
 			<article>
-				<h4 class="method" id="method_table_exists">table_exists($table)</h4>
+				<h4 class="method" id="method_table_exists">table_exists($table, $db = null)</h4>
 				<p>The <strong>table_exists</strong> method checks if a given table exists.</p>
 				<table class="method">
 					<tbody>
@@ -205,6 +215,11 @@ catch(\Database_Exception $e)
 										<td><kbd>$table</kbd></td>
 										<td><em>required</em></td>
 										<td>the table name</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -233,7 +248,7 @@ catch(\Database_Exception $e)
 			</article>
 
 			<article>
-				<h4 class="method" id="method_drop_table">drop_table($table)</h4>
+				<h4 class="method" id="method_drop_table">drop_table($table, $db = null)</h4>
 				<p>The <strong>drop_table</strong> method drops a table.  Will throw a Database_Exception if it cannot.</p>
 				<table class="method">
 					<tbody>
@@ -254,6 +269,11 @@ catch(\Database_Exception $e)
 										<th><kbd>$table</kbd></th>
 										<td><em>required</em></td>
 										<td>the table name</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -289,7 +309,7 @@ catch(\Database_Exception $e)
 			</article>
 
 			<article>
-				<h4 class="method" id="method_rename_table">rename_table($table, $new_table_name)</h4>
+				<h4 class="method" id="method_rename_table">rename_table($table, $new_table_name, $db = null)</h4>
 				<p>The <strong>rename_table</strong> method renames a table.</p>
 				<table class="method">
 					<tbody>
@@ -350,7 +370,7 @@ catch(\Database_Exception $e)
 			</article>
 
 			<article>
-				<h4 class="method" id="method_create_table">create_table($table, $fields, $primary_keys = array(), $if_not_exists = true, $engine = false, $charset = null, $foreign_keys = array())</h4>
+				<h4 class="method" id="method_create_table">create_table($table, $fields, $primary_keys = array(), $if_not_exists = true, $engine = false, $charset = null, $foreign_keys = array(), $db = null)</h4>
 				<p>The <strong>create_table</strong> method creates a table.</p>
 				<table class="method">
 					<tbody>
@@ -394,13 +414,18 @@ catch(\Database_Exception $e)
 									</tr>
 									<tr>
 										<th><kbd>$charset</kbd></th>
-										<td><strong>null</strong></td>
+										<td><pre class="php"><code>null</code></pre></td>
 										<td>the default charset, falls back to the active db group charset</td>
 									</tr>
 									<tr>
 										<th><kbd>$foreign_keys</kbd></th>
 										<td><strong>array()</strong></td>
 										<td>array of foreign key constraints definitions. The array keys 'key' and 'reference' are required and throw an error if missing, all others are optional.</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -504,6 +529,10 @@ CREATE TABLE `users` (
 										<th><kbd>auto_increment</kbd></th>
 										<td>set to <em>true</em> to use auto incrementing</td>
 									</tr>
+									<tr>
+										<th><kbd>comment</kbd></th>
+										<td>adds a comment to your field</td>
+									</tr>
 								</table>
 							</td>
 						</tr>
@@ -526,7 +555,7 @@ CREATE TABLE `users` (
 			</article>
 
 			<article>
-				<h4 class="method" id="method_field_exists">field_exists($table, $columns)</h4>
+				<h4 class="method" id="method_field_exists">field_exists($table, $columns, $db = null)</h4>
 				<p>The <strong>field_exists</strong> method checks if given field(s) in a given table exists.</p>
 				<table class="method">
 					<tbody>
@@ -552,6 +581,11 @@ CREATE TABLE `users` (
 										<td>$columns</td>
 										<td>required</td>
 										<td>array containing fields</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -579,7 +613,7 @@ CREATE TABLE `users` (
 			</article>
 
 			<article>
-				<h4 class="method" id="method_add_fields">add_fields($table, $fields)</h4>
+				<h4 class="method" id="method_add_fields">add_fields($table, $fields, $db = null)</h4>
 				<p>The <strong>add_fields</strong> method adds fields to a table.</p>
 				<table class="method">
 					<tbody>
@@ -605,6 +639,11 @@ CREATE TABLE `users` (
 										<th><kbd>$fields</kbd></th>
 										<td><em>required</em></td>
 										<td>array containing fields</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -632,7 +671,7 @@ CREATE TABLE `users` (
 			</article>
 
 			<article>
-				<h4 class="method" id="method_drop_fields">drop_fields($table, $fields)</h4>
+				<h4 class="method" id="method_drop_fields">drop_fields($table, $fields, $db = null)</h4>
 				<p>The <strong>drop_fields</strong> method drops fields from a table.</p>
 				<table class="method">
 					<tbody>
@@ -659,6 +698,11 @@ CREATE TABLE `users` (
 										<td><em>required</em></td>
 										<td>string or array containing fields</td>
 									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
+									</tr>
 								</table>
 							</td>
 						</tr>
@@ -681,7 +725,7 @@ CREATE TABLE `users` (
 			</article>
 
 			<article>
-				<h4 class="method" id="method_modify_fields">modify_fields($table, $fields)</h4>
+				<h4 class="method" id="method_modify_fields">modify_fields($table, $fields, $db = null)</h4>
 				<p>The <strong>modify_fields</strong> method alters fields in a table.</p>
 				<table class="method">
 					<tbody>
@@ -707,6 +751,11 @@ CREATE TABLE `users` (
 										<th><kbd>$fields</kbd></th>
 										<td><em>required</em></td>
 										<td>array containing fields</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -734,7 +783,7 @@ CREATE TABLE `users` (
 			</article>
 
 			<article>
-				<h4 class="method" id="method_create_index">create_index($table, $index_columns, $index_name, $index = '')</h4>
+				<h4 class="method" id="method_create_index">create_index($table, $index_columns, $index_name, $index = '', $db = null)</h4>
 				<p>The <strong>create_index</strong> method allows you to create secondary indexes on a table.</p>
 				<table class="method">
 					<tbody>
@@ -771,6 +820,11 @@ CREATE TABLE `users` (
 										<td><em>optional</em></td>
 										<td>type of index to be created.<br />Currently supported: UNIQUE, FULLTEXT, SPATIAL, NONCLUSTERED</td>
 									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
+									</tr>
 								</table>
 							</td>
 						</tr>
@@ -801,7 +855,7 @@ CREATE TABLE `users` (
 			</article>
 
 			<article>
-				<h4 class="method" id="method_drop_index">drop_index($table, $index_name)</h4>
+				<h4 class="method" id="method_drop_index">drop_index($table, $index_name, $db = null)</h4>
 				<p>The <strong>drop_index</strong> method allows you to drop a secondary index from a table.</p>
 				<table class="method">
 					<tbody>
@@ -827,6 +881,11 @@ CREATE TABLE `users` (
 										<th><kbd>$index_name</kbd></th>
 										<td><em>required</em></td>
 										<td>name of the index to be dropped</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -854,7 +913,7 @@ CREATE TABLE `users` (
 			<h3 id="database-operations">Database operations</h3>
 
 			<article>
-				<h4 class="method" id="method_truncate_table">truncate_table($table)</h4>
+				<h4 class="method" id="method_truncate_table">truncate_table($table, $db = null)</h4>
 				<p>The <strong>truncate_table</strong> method truncates a table.</p>
 				<table class="method">
 					<tbody>
@@ -875,6 +934,11 @@ CREATE TABLE `users` (
 										<th><kbd>$table</kbd></th>
 										<td><em>required</em></td>
 										<td class="description">the table name.</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -898,7 +962,7 @@ CREATE TABLE `users` (
 			</article>
 
 			<article>
-				<h4 class="method" id="method_analyze_table">analyze_table($table)</h4>
+				<h4 class="method" id="method_analyze_table">analyze_table($table, $db = null)</h4>
 				<p>The <strong>analyze_table</strong> method analyzes a table.</p>
 				<table class="method">
 					<tbody>
@@ -919,6 +983,11 @@ CREATE TABLE `users` (
 										<th><kbd>$table</kbd></th>
 										<td><em>required</em></td>
 										<td class="description">the table name.</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -942,7 +1011,7 @@ CREATE TABLE `users` (
 			</article>
 
 			<article>
-				<h4 class="method" id="method_check_table">check_table($table)</h4>
+				<h4 class="method" id="method_check_table">check_table($table, $db = null)</h4>
 				<p>The <strong>check_table</strong> method checks a table.</p>
 				<table class="method">
 					<tbody>
@@ -963,6 +1032,11 @@ CREATE TABLE `users` (
 										<th><kbd>$table</kbd></th>
 										<td><em>required</em></td>
 										<td class="description">the table name.</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -986,7 +1060,7 @@ CREATE TABLE `users` (
 			</article>
 
 			<article>
-				<h4 class="method" id="method_optimize_table">optimize_table($table)</h4>
+				<h4 class="method" id="method_optimize_table">optimize_table($table, $db = null)</h4>
 				<p>The <strong>optimize_table</strong> method optimizes a table.</p>
 				<table class="method">
 					<tbody>
@@ -1007,6 +1081,11 @@ CREATE TABLE `users` (
 										<th><kbd>$table</kbd></th>
 										<td><em>required</em></td>
 										<td class="description">the table name.</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
@@ -1030,7 +1109,7 @@ CREATE TABLE `users` (
 			</article>
 
 			<article>
-				<h4 class="method" id="method_repair_table">repair_table($table)</h4>
+				<h4 class="method" id="method_repair_table">repair_table($table, $db = null)</h4>
 				<p>The <strong>repair_table</strong> method repairs a table.</p>
 				<table class="method">
 					<tbody>
@@ -1051,6 +1130,11 @@ CREATE TABLE `users` (
 										<th><kbd>$table</kbd></th>
 										<td><em>required</em></td>
 										<td class="description">the table name.</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
 									</tr>
 								</table>
 							</td>
