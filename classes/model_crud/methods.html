@@ -449,7 +449,7 @@ $users = Model_User::find_all(10, 20);
 			</article>
 
 			<article>
-				<h4 class="method" id="method_pre_find">pre_find($query)</h4>
+				<h4 class="method" id="method_pre_find">pre_find(&$query)</h4>
 				<p>Replace the <strong>pre_find</strong> method to alter the query before executing.</p>
 				<table class="method">
 					<tbody>
@@ -484,7 +484,7 @@ $users = Model_User::find_all(10, 20);
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected static function pre_find($query)
+protected static function pre_find(&$query)
 {
 	// alter the query
 	$query->where('active', 'yes');
@@ -898,7 +898,7 @@ $user_array = $user->to_array();
 			</article>
 
 			<article>
-				<h4 class="method" id="method_pre_save">pre_save($query)</h4>
+				<h4 class="method" id="method_pre_save">pre_save(&$query)</h4>
 				<p>Replace the <strong>pre_save</strong> method to alter the query before inserting.</p>
 				<table class="method">
 					<tbody>
@@ -933,7 +933,7 @@ $user_array = $user->to_array();
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected function pre_save($query)
+protected function pre_save(&$query)
 {
 	// change the query
 	$query->set(array('field' => 'value'));
@@ -994,7 +994,7 @@ protected function post_save($result)
 			</article>
 
 			<article>
-				<h4 class="method" id="method_pre_update">pre_update($query)</h4>
+				<h4 class="method" id="method_pre_update">pre_update(&$query)</h4>
 				<p>Replace the <strong>pre_update</strong> method to alter the query before updating.</p>
 				<table class="method">
 					<tbody>
@@ -1029,7 +1029,7 @@ protected function post_save($result)
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected function pre_update($query)
+protected function pre_update(&$query)
 {
 	// Change the update query.
 	$query->set(array('field' => 'value'));
@@ -1090,7 +1090,7 @@ protected function post_update($result)
 			</article>
 
 			<article>
-				<h4 class="method" id="method_pre_delete">pre_delete($query)</h4>
+				<h4 class="method" id="method_pre_delete">pre_delete(&$query)</h4>
 				<p>Replace the <strong>pre_delete</strong> method to alter the query before deleting.</p>
 				<table class="method">
 					<tbody>
@@ -1125,7 +1125,7 @@ protected function post_update($result)
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// Inside your model
-protected function pre_delete($query)
+protected function pre_delete(&$query)
 {
 	// Do something with the delete query
 }
