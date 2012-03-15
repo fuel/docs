@@ -54,7 +54,7 @@
 			<p>We have included a configuration file located at <kbd>fuel/core/config/doctypes.php</kbd> which has all the doctypes.</p>
 
 			<article>
-				<h4 class="method" id="method_anchor">anchor($href, $text, $attributes = array(), $secure = null)</h4>
+				<h4 class="method" id="method_anchor">anchor($href, $text = null, $attributes = array(), $secure = null)</h4>
 				<p>The <strong>anchor</strong> method returns an HTML anchor tag.</p>
 				<table class="method">
 					<tbody>
@@ -78,17 +78,17 @@
 								</tr>
 								<tr>
 									<th><kbd>$text</kbd></th>
-									<td><i>required</i></td>
+									<td><pre class="php"><code>null</code></pre></td>
 									<td>Anchor value</td>
 								</tr>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
-									<td><strong>false</strong></td>
+									<td><pre class="php"><code>array()</code></pre></td>
 									<td>Array of attributes to be applied to the anchor tag.</td>
 								</tr>
 								<tr>
 									<th><kbd>$secure</kbd></th>
-									<td><i>null</i></td>
+									<td><pre class="php"><code>null</code></pre></td>
 									<td>Set to false to force http, or to true to force https on the created URL</td>
 								</tr>
 							</table>
@@ -101,7 +101,10 @@
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>//returns &lt;a href="http://www.domain.com/example"&gt;Example&lt;/a&gt;
+							<pre class="php"><code>//returns &lt;a href="http://www.domain.com/example"&gt;http://www.domain.com/example&lt;/a&gt;
+echo Html::anchor('example');
+
+//returns &lt;a href="http://www.domain.com/example"&gt;Example&lt;/a&gt;
 echo Html::anchor('example', 'Example');
 
 //returns &lt;a href="http://www.otherdomain.com/example"&gt;Example&lt;/a&gt;
@@ -148,12 +151,12 @@ echo Html::anchor('example', 'Example', array('id' => 'a1', 'class' => 'sample',
 								</tr>
 								<tr>
 									<th><kbd>$subject</kbd></th>
-									<td><strong>null</strong></td>
+									<td><pre class="php"><code>null</code></pre></td>
 									<td>Anchor value</td>
 								</tr>
 								<tr>
 									<th><kbd>$attr</kbd></th>
-									<td><strong>empty</strong></td>
+									<td><pre class="php"><code>array()</code></pre></td>
 									<td>Array of attributes to be applied to the anchor tag.</td>
 								</tr>
 							</table>
@@ -210,12 +213,12 @@ echo Html:::mail_to('name@domain.com', 'Name', null, array('id' => 'a2', 'class'
 								</tr>
 								<tr>
 									<th><kbd>$subject</kbd></th>
-									<td><strong>null</strong></td>
+									<td><pre class="php"><code>null</code></pre></td>
 									<td>Anchor value</td>
 								</tr>
 								<tr>
 									<th><kbd>$attr</kbd></th>
-									<td><strong>empty</strong></td>
+									<td><pre class="php"><code>array()</code></pre></td>
 									<td>Array of attributes to be applied to the anchor tag.</td>
 								</tr>
 							</table>
@@ -267,7 +270,7 @@ echo Html::mail_to_safe('name@domain.com', 'Name');</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$attr</kbd></th>
-									<td><strong>array()</strong></td>
+									<td><pre class="php"><code>array()</code></pre></td>
 									<td>Attributes array. If no alt attribute is supplied, the alt attribute defaults to the filename.</td>
 								</tr>
 							</table>
@@ -426,7 +429,7 @@ echo Html::doctype('html5');</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$attr</kbd></th>
-									<td><strong>false</strong></td>
+									<td><pre class="php"><code>false</code></pre></td>
 									<td>Array of attributes to be applied to the audio tag.</td>
 								</tr>
 							</table>
@@ -475,7 +478,7 @@ echo Html::audio(array('../sounds/beep.mp3','../sounds/frog.mp4'));</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$style</kbd></th>
-									<td><strong>false</strong></td>
+									<td><pre class="php"><code>false</code></pre></td>
 									<td>Array of attributes to be applied to the ul tag.</td>
 								</tr>
 							</table>
@@ -556,7 +559,7 @@ echo Html::ul($items, $attr);</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$style</kbd></th>
-									<td><strong>false</strong></td>
+									<td><pre class="php"><code>false</code></pre></td>
 									<td>(Optional) Array of attributes to be applied to the ol tag.</td>
 								</tr>
 							</table>
