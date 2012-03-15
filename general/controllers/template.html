@@ -68,23 +68,36 @@
 	}
 }</code></pre>
 
-			<h3>Using the template controller with before()</h3>
+			<h3>Using the template controller with before() and/or after()</h3>
 
 			<p class="note"><strong>Please note:</strong> if you have a before() method in your template controller extension you
 				<strong>must</strong> add <kbd>parent::before();</kbd> to that method or the <kbd>$this->template</kbd> will
-				not be available. <strong>Make before() compatible</strong> with that of the Controller_Template: use <kbd>before($data = null)</kbd> instead of just before().</p>
+				not be available. <strong>Make after() compatible</strong> with that of the Controller_Template:
+				use <kbd>after($response)</kbd> instead of just after().</p>
 
 
 	<pre><code>class Controller_Example extends Controller_Template
 {
 	/**
-	 * Make before() compatible with Controller_Template by adding $data = null as a parameter
+	 * Your before method
 	 */
-	public function before($data = null)
+	public function before()
 	{
 		parent::before(); // Without this line, templating won't work!
 
 		// do stuff
+	}
+
+	/**
+	 * Make after() compatible with Controller_Template by adding $response as a parameter
+	 */
+	public function after($response)
+	{
+		parent::after($response); // not needed if you create your own reponse object
+
+		// do stuff
+
+		return $response; // make sure after() returns the response object
 	}
 
 	public function action_index()
