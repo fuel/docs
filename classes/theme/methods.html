@@ -179,7 +179,8 @@ $theme = \Theme::forge(array(
 				<p>
 					The <strong>view</strong> method loads a view from the currently loaded theme.
 					It will try to load it from the active theme first. If it doesn't exist in the active theme, and a fallback
-					theme is defined, it will load it from the fallback theme instead.
+					theme is defined, it will load it from the fallback theme instead. If it can't be found there either, the
+					request is passed to the View class where it follows the normal flow of locating the view file.
 				</p>
 
 				<p class="note">This uses <a href="../view.html#method_forge">View::forge() </a>to return the view. This means that the Parser package is supported for views defined in themes too.</p>
@@ -245,10 +246,10 @@ $view = $theme->view('template/homepage');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_asset">asset($path)</h4>
+				<h4 class="method" id="method_asset_path">asset_path($path)</h4>
 				<p>
-					The <strong>asset</strong> method returns the path to the asset requested in $path, relative to the <strong>DOCROOT</strong>.
-					If the path is outside the <strong>DOCROOT</strong>, the fully qualified path is returned.
+					The <strong>asset_path</strong> method returns the path to the asset requested in $path, relative to the <strong>DOCROOT</strong>.
+					If the configured asset folder is a URL to the requested $path is returned.
 				</p>
 				<table class="method">
 					<tbody>
@@ -286,14 +287,14 @@ $view = $theme->view('template/homepage');
 $theme = \Theme::instance();
 
 // will return &lt;img src="/THEMEDIR/assets/img/test.png" /&gt;
-$img = \Html::img($theme->asset('img/test.png'));
+$img = \Html::img($theme->asset_path('img/test.png'));
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 
-				<p class="note">Note that there is currently no support for the Asset class, given the static nature of that class.</p>
+				<p class="note">Note that to every Theme class instance, an instance of the Asset class assigned. See the <a href="./advanced.html">advanced</a> page on how the use the Asset class instance.</p>
 			</article>
 
 			<article>
@@ -609,6 +610,219 @@ $theme = \Theme::instance();
 
 // set the fallback theme to 'basic', and return its definition
 $fallback = $theme->fallback('basic');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get_template">get_template()</h4>
+				<p>
+					The <strong>get_template()</strong> method will return the View instance of the currently loaded theme template.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>View</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Retrieve the current template to set the page title
+$theme = \Theme::instance();
+
+// fetch all installed themes
+$theme->get_template()->set('title', 'This is the page title');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_template">set_template($template)</h4>
+				<p>
+					The <strong>set_template</strong> method allow you to set the theme template for the page.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$template</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of the theme template view to load.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>View</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// set the page template to the subpage layout, and set the page title
+$theme->set_template('layouts/subpage')->set('title', 'Subpage title');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get_partial">get_partial($section, $view)</h4>
+				<p>
+					The <strong>get_partial</strong> method allow you to get the view instance of a previously set partial in a named section of your page template.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$section</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of page template section you want to add this partial to.</td>
+								</tr>
+								<tr>
+									<th><kbd>$view</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of view to use for the partial</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>View</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+/**
+ * Get the View instance of the 'partials/menu' view in the 'sidebar' section of the
+ * currently loaded page template, and assign a variable to it.
+ */
+$theme->get_partial('sidebar', 'partials/menu')->set('class', 'menu green');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					When you get a partial, use the name of the view you used to set it. If you assign the same view to the same
+					section multiple times, the first one will be returned. If you have passed a View instance to set_partial(),
+					you can get it using the number of the partial, prefixed with 'partial_'.
+					Example: you retrieve the second partial using the view name 'partial_2'.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_partial">set_partial($section, $view, $overwrite = false)</h4>
+				<p>
+					The <strong>set_partial</strong> method allow you to set a view partial for a named section of your page template.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$section</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of page template section you want to add this partial to.</td>
+								</tr>
+								<tr>
+									<th><kbd>$view</kbd></th>
+									<td><em>string|View</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of view to use for the partial, or a View object.</td>
+								</tr>
+								<tr>
+									<th><kbd>$overwrite</kbd></th>
+									<td><em>boolean</em></td>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>If <strong>false</strong>, append the partial to any partials already defined for this section. If <strong>true</strong>, existing contents will be deleted.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>View</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+/**
+ * Assign the 'partials/menu' view to the 'sidebar' section of the
+ * currently loaded page template.
+ *
+ * In the template, this partial is echo'd out as $sidebar;
+ */
+$theme->set_partial('sidebar', 'partials/menu');
 </code></pre>
 						</td>
 					</tr>

@@ -137,6 +137,11 @@ $result = Arr::is_assoc($arr);
 						<td>array|null</td>
 					</tr>
 					<tr>
+						<th>Throws</th>
+						<td><kbd>BadMethodCallException</kbd> when the number of values in the given array is
+							uneven</td>
+					</tr>
+					<tr>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$arr = array('foo', 'bar', 'baz', 'yay');
@@ -200,6 +205,11 @@ null
 					<tr>
 						<th>Returns</th>
 						<td>array</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td><kbd>InvalidArgumentException</kbd> when the first argument isn't an array or doesn't
+							implement the Iterator interface.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -417,6 +427,74 @@ Array
 	[1:age] => 23
 )
 </code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_reverse_flatten" class="method">reverse_flatten($array, $glue = ':')</h4>
+				<p>The <strong>reverse_flatten</strong> method unflattens a flattened multi-dimensional array (both associative and indexed) into its original form.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to unflatten.</td>
+								</tr>
+								<tr>
+									<th><kbd>$glue</kbd></th>
+									<td><pre class="php"><code>:</code></pre></td>
+									<td>The string used to glue the keys together with</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$flattened = array(
+	'0_name' => 'James',
+	'0_age' => 24,
+	'1_name' => 'John',
+	'1_age' => 34,
+);
+
+print_r( Arr::reverse_flatten($flattened, '_') );
+
+// Returns
+Array
+(
+	[0] => Array
+		(
+			[name] => James
+			[age] => 24
+		)
+	
+	[1] => Array
+		(
+			[name] => John
+			[age] => 34
+		)
+)</code></pre>
 						</td>
 					</tr>
 					</tbody>
