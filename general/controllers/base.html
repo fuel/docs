@@ -59,11 +59,9 @@
 			<h3 id="creating_a_controller">コントローラを作成する</h3>
 
 			<p>
-
 				FuelPHP では、コントローラーは <kbd>fuel/app/classes/controller</kbd> ディレクトリに置きます。, そして<kbd>"Controller_"</kbd> というプレフィックスを付けます。
 				必要に応じて<kbd>Controller</kbd> class を拡張する必要があります。
 				feature set. 以下は "example" コントローラの例です:
-
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
@@ -126,20 +124,6 @@
 				主として Respose オブジェクトを使います。
 			</p>
 
-
-			<h4 id="controller_in_subdir">サブディレクトリの中のコントローラ</h4>
-
-			<p>
-				<kbd>fuel/app/classes/controller/subdir/test.php</kbd> のような
-				サブディレクトリにコントローラを置くこともできます。
-				この場合、コントローラは次のようにクラス名にディレクトリ名を含まなければなりません: <var>Controller_Subdir_Test</var>
-			</p>
-
-			<p>
-				サブディレクトリは深さに制限がありません。そのため、
-				<kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd> はクラス名が
-				<var>Controller_Subdir1_Subdir2_Subdir3_Test</var> になります。
-			</p>
 	
 			<h3 id="special_methods">特別なコントローラメソッド</h3>
 
@@ -170,7 +154,7 @@
 				<h4 id="after">after($response)</h4>
 				<p>
 					このメソッドは、URL で指定されたメソッドの呼び出しに成功した<strong>後</strong>で実行されます。
-					メソッドが存在していない場合は呼び出されません。<a href="#response"><var>$response</var></a> パラメータが必要です。</a>
+					メソッドが存在していない場合は呼び出されません。<a href="#response"><var>$response</var></a> パラメータが必要です。
 				</p>
 			</article>
 
@@ -183,7 +167,7 @@
                     <var>$method</var> に配列として <var>$params</var> で渡すこともできます。before() や after() メソッドは期待したとおりに動作します。
 				</p>
 			</article>
-	
+
 			<h3 id="special_propperties">特別なコントローラプロパティ</h3>
 
 			<article>
@@ -197,7 +181,8 @@
 			<h3 id="extending_other_controllers">他のコントローラを継承する</h3>
 
 			<p>
-				オートローダのお陰で、クラス定義で名前以外のものを記述しないで他のコントローラを継承できます:
+				オートローダのお陰で、クラス定義で名前以外のものを記述しないで
+				他のコントローラを継承できます:
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller_Welcome
@@ -216,8 +201,7 @@
 
 			<p>
 				ベースコントローラは、<kbd>Controller_Public</kbd> または <kbd>Controller_Admin</kbd> のような共有コントローラです。各コントローラ間でロジックを共有するために使用します。
-				例えば、<kbd>Controller_Admin</kbd> コントローラは login/logout アクションを持つことができます。または dashboard も持ちます。
-				しかし、ユーザが管理者としてログインされているかどうかをチェックする <kbd>before()</kbd> メソッドを含むこともできます。
+				例えば、<kbd>Controller_Admin</kbd> コントローラは login/logout アクションを持つことができます。または dashboard も持ちます。しかし、ユーザが管理者としてログインされているかどうかをチェックする <kbd>before()</kbd> メソッドを含むこともできます。
 				他のすべてのコントローラは管理者パネルでこれを継承し、自動的に安全になります。
 			</p>
 

@@ -44,13 +44,13 @@
 
 		<div id="main">
 			<h2>タスク</h2>
-	
+
 			<h3 id="what_are_tasks">タスクとは</h3>
-	
+
 			<p>タスクは、コマンドラインから実行されるかまたは cron ジョブとしてセットアップされるクラスです。一般的にはバックグラウンドプロセス、定期的に行われるタスク、メンテナンスタスクで使用されます。タスクは、コントローラ同様、モデルや他のクラスを呼び出すことができます。</p>
-	
+
 			<h3 id="creating_tasks">タスクを作成する</h3>
-	
+
 			<p>Fuel ではコントローラは <kbd>fuel/app/tasks</kbd> ディレクトリに置かれます。以下は、タスク "example" の例です。</p>
 
 	<pre class="php"><code>namespace Fuel\Tasks;
@@ -63,17 +63,17 @@ class Example
 		echo $message;
 	}
 }</code></pre>
-	
+
 			<p>これは、oil の refine ユーティリティで呼び出されます。</p>
 
 			<pre class="cli"><code>$ php oil refine example "Good morning"</code></pre>.
 
 			<p>コマンドでタスク名だけを用いると、メソッド <kbd>"run()"</kbd> を参照します。</p>
 
-			<h3 id="more_methods">タスクをメソッドに分割するSplitting tasks into more methods</h4>
+			<h3 id="more_methods">タスクをメソッドに分割するSplitting tasks into more methods</h3>
 
 			<p>タスククラスにメソッドを追加して、タスクをより明確ないくつかのタスクに細分化することができます。そうすることでタスクを個別に呼び出しできます。</p>
-	
+
 	<pre class="php"><code>public function current_date()
 {
 	echo date('Y-m-d');

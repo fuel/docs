@@ -51,30 +51,18 @@
 				The Theme class provides theming to your application.
 			</p>
 
-			<h3 id="iterator">Iterator</h3>
+			<h3 id="asset">Asset support</h3>
 
-			<p>The Theme class implements Iterator. This allows you iterate over a theme object and access the theme information array.</p>
+			<p>
+				Every Theme class instance has it's own instance of the Asset class, to make it easy to load assets from the theme.
+				The Asset instance is populated with the asset paths of both the active and the fallback theme, which will provide
+				the same fallback features for your assets as you have for other theme elements like templates and views.
+			</p>
 
-<pre class="php"><code>// get the theme instance
-$theme = \Theme::instance();
+			<p>Example:</p>
 
-// loop over it to get all data from the information array
-foreach ($theme as $name => $value)
-{
-	echo $name,' is set to ',$value;
-}
-</code></pre>
-
-			<h3 id="arrayaccess">ArrayAccess</h3>
-
-			<p>The Theme class also implements ArrayAccess. This allows you access the object as if it was an array. It allows direct access to theme information array values.</p>
-
-<pre class="php"><code>// get the theme instance
-$theme = \Theme::instance();
-
-// sets the theme color if not defined in the theme information file
-is_null($theme['color']) and $theme['color'] = 'blue';
-</code></pre>
+			<pre class="php"><code>// load an asset using the default theme instance
+echo \Theme::instance()->asset->css('bootstrap.css');</code></pre>
 
 			<h3 id="advanced_config">Advanced configuration</h3>
 
@@ -155,7 +143,7 @@ $theme = \Theme::forge($config);
 $theme->active(
 	array(
 		'name' => 'darkglow',
-		'path' => DOCROOT.'themes'.DS.'darkglow'.DS,
+		'path' => APPPATH.'themes'.DS.'darkglow'.DS,
 		'asset_base' => '/themes/darkglow/assets/',
 		'find_file' => true,
 	)
