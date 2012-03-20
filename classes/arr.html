@@ -434,6 +434,74 @@ Array
 			</article>
 
 			<article>
+				<h4 id="method_reverse_flatten" class="method">reverse_flatten($array, $glue = ':')</h4>
+				<p>The <strong>reverse_flatten</strong> method unflattens a flattened multi-dimensional array (both associative and indexed) into its original form.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to unflatten.</td>
+								</tr>
+								<tr>
+									<th><kbd>$glue</kbd></th>
+									<td><pre class="php"><code>:</code></pre></td>
+									<td>The string used to glue the keys together with</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$flattened = array(
+	'0_name' => 'James',
+	'0_age' => 24,
+	'1_name' => 'John',
+	'1_age' => 34,
+);
+
+print_r( Arr::reverse_flatten($flattened, '_') );
+
+// Returns
+Array
+(
+	[0] => Array
+		(
+			[name] => James
+			[age] => 24
+		)
+	
+	[1] => Array
+		(
+			[name] => John
+			[age] => 34
+		)
+)</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 id="method_filter_prefixed" class="method">filter_prefixed($array, $prefix = 'prefix_', $remove_prefix = true)</h4>
 				<p>The <strong>filter_prefixed</strong> method filters the array on a prefix. It returns an array where the key starts with the specified prefix.</p>
 				<table class="method">

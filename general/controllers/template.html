@@ -72,19 +72,32 @@
 
 			<p class="note"><strong>注意: </strong> Template コントローラで before() メソッドを使う場合、
 				<kbd>parent::before();</kbd> を追加 <strong>しなければなりません</strong>。 そうしないと <kbd>$this->template</kbd> が
-				使えません。Controller_Template の <strong>before() の互換性を維持するために</strong>: 単に before() とするのではなく、<kbd>before($data = null)</kbd> としてください。</p>
+				使えません。<strong>Make after() compatible</strong> with that of the Controller_Template:
+				use <kbd>after($response)</kbd> instead of just after().</p>
 
 
 	<pre><code>class Controller_Example extends Controller_Template
 {
 	/**
-	 * Make before() compatible with Controller_Template by adding $data = null as a parameter
+	 * Your before method
 	 */
-	public function before($data = null)
+	public function before()
 	{
 		parent::before(); // Without this line, templating won't work!
 
 		// do stuff
+	}
+
+	/**
+	 * Make after() compatible with Controller_Template by adding $response as a parameter
+	 */
+	public function after($response)
+	{
+		parent::after($response); // not needed if you create your own reponse object
+
+		// do stuff
+
+		return $response; // make sure after() returns the response object
 	}
 
 	public function action_index()
