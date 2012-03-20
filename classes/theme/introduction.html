@@ -126,6 +126,20 @@
 				a partial section called 'sidebar', you would use <strong>echo $sidebar;</strong> in your page template.
 			</p>
 
+			<h3 id="chrome">Partial chrome</h3>
+
+			<p>
+				'Chrome' is a term used in UI interface design, and describes the design and styling of a window border. In the context of the Theme
+				class, it is a view that can be used to encapsulate a template partial section, which allows you to style that section independent
+				of the template itself and of the partial output. Chrome will only be generated if there were partials to render.
+			</p>
+			<p>
+				For example, if you have a UI with windows, some of which can be opened and closed, some of which can be moved, and some are static,
+				you can use different chrome templates assigned to each of the template sections representing such a window. Each chrome template
+				will contain the HTML and javascript code to achieve the desired functionality. From your application code, you can control this
+				by simply assigning the correct chrome template.
+			</p>
+
 			<p>Example:</p>
 
 			<pre class="php"><code>&lt;?php
@@ -137,17 +151,23 @@ class Homepage extends \Controller
 	public function before()
 	{
 		// load the theme template
-		$this->theme = \Theme::instance()->set_template('layouts/homepage');
+		$this->theme = \Theme::instance();
 
-		// set the page title
+		// set the page template
+		$this->theme->set_template('layouts/homepage');
+
+		// set the page title (can be chained to set_template() too)
 		$this->theme->get_template()->set('title', 'My homepage');
 
 		// set the homepage navigation menu
 		$this->theme->set_partial('navbar', 'homepage/navbar');
 
+		// define chrome with rounded window borders for the sidebar section
+		$this->theme->set_chrome('sidebar', 'chrome/borders/rounded', 'partial');
+
 		// set the partials for the homepage sidebar content
 		$this->theme->set_partial('sidebar', 'homepage/widgets/login');
-		$this->theme->set_partial('sidebar', 'homepage/widgets/news')->set('users', Model_News::latest(5));;
+		$this->theme->set_partial('sidebar', 'homepage/widgets/news')->set('users', Model_News::latest(5));
 
 		// call the user model to get the list of logged in users, pass that to the users sidebar partial
 		$this->theme->set_partial('sidebar', 'homepage/widgets/users')->set('users', Model_User::logged_in_users());
