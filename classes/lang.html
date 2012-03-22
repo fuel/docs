@@ -133,7 +133,7 @@ Lang:load('foo::example', 'bar', 'it');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_get">get($line, $params = array())</h4>
+				<h4 class="method" id="method_get">get($line, $params = array(), $default = null)</h4>
 				<p>The <strong>get</strong> method allows you to get a specific line from the language file.</p>
 				<table class="method">
 					<tbody>
@@ -160,12 +160,17 @@ Lang:load('foo::example', 'bar', 'it');</code></pre>
 									<td><pre class="php"><code>array()</code></pre></td>
 									<td>Sets an array of parameter that might be passed to the line.</td>
 								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The default value to return if <kbd>$line</kbd> is not found.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>mixed. String if found, or false if not found</td>
+						<td>mixed. Either <kbd>$line</kbd>, or <kbd>$default</kbd> if <kbd>$line</kbd> does not exist.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -242,7 +247,7 @@ Lang::set('hello', 'Ahoy!');</code></pre>
 			<h3 id="procedural_helpers">Procedural helpers</h3>
 
 			<article>
-				<h4 id="function___">__($string, $params = array())</h4>
+				<h4 id="function___">__($string, $params = array(), $default = null)</h4>
 				<p>The <strong>__</strong> function is an alias for <a href="#method_get">Lang::get</a>.</p>
 				<table class="method">
 					<tbody>
@@ -265,12 +270,17 @@ Lang::set('hello', 'Ahoy!');</code></pre>
 									<td><pre class="php"><code>array()</code></pre></td>
 									<td>Sets an array of parameter that might be passed to the line.</td>
 								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The default value to return if <kbd>$line</kbd> is not found.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>string, result from <a href="#method_get">Lang::get</a></td>
+						<td>mixed, result from <a href="#method_get">Lang::get</a></td>
 					</tr>
 					<tr>
 						<th>Example</th>
