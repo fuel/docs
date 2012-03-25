@@ -187,6 +187,75 @@ $params = Request::active()->params();</code></pre>
 			</article>
 
 			<article>
+				<h4 class="method" id="method_get_method">get_method()</h4>
+				<p>Gets the request method.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>none</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Request method</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Set the request method on a forged request
+$method = Request::main()->get_method();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_method">set_method($method)</h4>
+				<p>Sets the request method.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$method</kbd></th>
+									<td>string, required</td>
+									<td>The name of the parameter to be returned. This must be exactly the same as defined in the route.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>current instance</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Set the request method on a forged request
+$params = Request::forge('some/route')->set_method('POST');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_parent">param($param, $default = null)</h4>
 				<p>Returns a specific named parameter in the route that triggered this request, of the default if the parameter is not found.</p>
 				<table class="method">
