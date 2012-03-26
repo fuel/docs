@@ -255,22 +255,16 @@ class Homepage extends \Controller
 						<td>The extension for theme view files.</td>
 					</tr>
 					<tr>
-						<th>info_file_name</th>
-						<td>string</td>
-						<td><pre class="php"><code>'theme.info'</code></pre></td>
-						<td>The theme info file name.</td>
-					</tr>
-					<tr>
 						<th>require_info_file</th>
 						<td>boolean</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>Whether to require a theme info file.</td>
 					</tr>
 					<tr>
-						<th>info_file_type</th>
+						<th>info_file_name</th>
 						<td>string</td>
-						<td><pre class="php"><code>'php'</code></pre></td>
-						<td>File type of the theme info file.  Possible values: php, ini, json and yaml.</td>
+						<td><pre class="php"><code>'themeinfo.php'</code></pre></td>
+						<td>The theme info file name.<br />Possible extensions: php, ini, json and yaml.</td>
 					</tr>
 				</tbody>
 			</table>
@@ -280,16 +274,19 @@ class Homepage extends \Controller
 			<pre class="php"><code>// Inside app/config/theme.php
 
 return array(
-	'active' => 'default',
+	'active'   => 'default',
 	'fallback' => 'default',
-	'paths' => array(			// theme files are outside the DOCROOT here
-		APPATH.'themes',
+
+	// theme files are outside the DOCROOT here so this implies
+	// &lt;localpath&gt;/public/themes/&lt;themename&gt;...
+	'paths'    => array(
+		APPPATH.'themes',
 	),
-	'assets_folder' => 'themes',	// so this implies &lt;localpath&gt;/public/themes/&lt;themename&gt;...
-	'view_ext' => '.html',
-	'info_file_name' => 'theme.info',
+
+	'assets_folder'     => 'assets',
+	'view_ext'          => '.html',
 	'require_info_file' => false,
-	'info_file_type' => 'php',
+	'info_file_name'    => 'themeinfo.php',
 );
 	</code></pre>
 
