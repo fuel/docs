@@ -778,7 +778,7 @@ CREATE TABLE `users` (
 
 			<article>
 				<h4 class="method" id="method_modify_fields">modify_fields($table, $fields, $db = null)</h4>
-				<p>The <strong>modify_fields</strong> method alters fields in a table.</p>
+				<p>The <strong>modify_fields</strong> method alters fields in a table and should only be used when you're not needing to update the field names. For updating field names, use DBUtil::change_fields instead.</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -826,6 +826,64 @@ CREATE TABLE `users` (
 								<pre class="php"><code>\DBUtil::modify_fields('users2', array(
 	'name' => array('constraint' => 100, 'type' => 'varchar', 'charset' => 'utf8_general_ci'),
 	'title' => array('constraint' => 50, 'type' => 'varchar', 'default' => 'mrs.'),
+));
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_change_fields">change_fields($table, $fields, $db = null)</h4>
+				<p>The <strong>change_fields</strong> method alters fields in a table and should only be used when you're needing to update field names. If you do not need to update field names, use DBUtil::modify_fields instead.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$table</kbd></th>
+										<td><em>required</em></td>
+										<td>the table name</td>
+									</tr>
+									<tr>
+										<th><kbd>$fields</kbd></th>
+										<td><em>required</em></td>
+										<td>array containing fields</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the number of affected rows.</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>\Database_Exception on failure</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>\DBUtil::change_fields('users2', array(
+	'name' => array('name' => 'new_name', 'constraint' => 100, 'type' => 'varchar', 'charset' => 'utf8_general_ci'),
+	'title' => array('title' => 'new_title', 'constraint' => 50, 'type' => 'varchar', 'default' => 'mrs.'),
 ));
 </code></pre>
 							</td>
