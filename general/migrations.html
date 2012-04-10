@@ -90,6 +90,18 @@ $ php oil refine migrate:up
 $ php oil refine migrate:down
 $ php oil refine migrate --version=10</code></pre>
 
+			<p>
+				Migrations are supported for modules and packages too. You can specify on the oil commandline if you want to
+				migrate all, or only specific modules and/or packages. If you do, you can use '--default' to indicate you want
+				to include app migrations.
+			</p>
+
+			<pre class="cli"><code>$ php oil refine migrate -all
+$ php oil refine migrate --modules=module1,module2 --packages=package1
+$ php oil refine migrate:up --packages=package1
+$ php oil refine migrate:down --modules=module1,module2 --default
+$ php oil refine migrate --version=10</code></pre>
+
 			<p class="note">
 				<strong>Note: </strong>
 				The migrate:current task is to match your schema to the version listed in <kbd>fuel/[app|core]/config/migrate.php</kbd> as if you have just got
