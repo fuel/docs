@@ -362,7 +362,8 @@ panes.main = {
 		"コントローラー": {
 			"Base" :		"general/controllers/base.html",
 			"Template":		"general/controllers/template.html",
-			"Rest":			"general/controllers/rest.html"
+			"Rest":			"general/controllers/rest.html",
+			"Hybrid":		"general/controllers/hybrid.html"
 		},
 		"環境":		"general/environments.html",
 		"HMVC リクエスト":	"general/hmvc.html",

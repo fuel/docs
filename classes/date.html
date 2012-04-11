@@ -48,7 +48,7 @@
 			<h2>Date クラス</h2>
 
 			<p>Date クラスは、日付を扱うヘルバー関数を集めたものです。PHP の DateTime クラスとは異なり、
-			Fuel Date クラスは、i18n を完全サポートしています。</p>
+			Fuel Date クラスは、i18n を完全サポートしています。You can also use the Date class for timezone conversions.</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($timestamp = null, $timezone = null)</h4>
@@ -137,6 +137,51 @@ Fuel\Core\Date Object
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>print_r(Date::time());</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_display_timezone">display_timezone($timezone = null)</h4>
+				<p>
+					The <strong>display_timezone</strong> method allows you to globally set a timezone which can be used
+					by the format() method to generate output in another timezone then the system timezone.
+					If you don't pass a parameter, the current display_timezone is returned.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$timezone</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The display timezone to be used to format timestamps in a non-system timezone.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed, null, or the current display timezone if no parameter is passed.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// set the display timezone to 'America/Lima'
+Date::display_timezone('America/Lima'));</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -382,13 +427,23 @@ echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'yea
 			</article>
 
 			<article>
-				<h4 class="method" id="method_format">format($pattern_key = 'local')</h4>
-				<p><strong>formatted</strong> メソッドはパターンキーで指定した書式の日付を返します。
-					パターンは、<kbd>fuel/core/config/date.php</kbd> config ファイルで定義されます。
-					<kbd>app/config</kbd> に同様のファイルを作成して、独自のパターンを追加できます。</p>
+				<h4 class="method" id="method_format">format($pattern_key = 'local', $timezone = null)</h4>
+				<p>
+					<strong>formatted</strong> メソッドはパターンキーで指定した書式の日付を返します。 The
+					patterns are defined in the <kbd>fuel/core/config/date.php</kbd> config file - you can add your own
+					by creating a similar file in <kbd>app/config</kbd>.
+				</p>
+				<p class="note">This method uses patterns for the <a href="http://www.php.net/manual/en/function.strftime.php" target="_blank">strftime()</a>
+					function instead of <kbd>date()</kbd> to allow for i18n.</p>
+				<p>
+					If you don't pass a timezone, the timezone set on the current Date object will be used when formatting the result. By default,
+					this is the system timezone, unless you have altered it by calling the <kbd>set_timezone()</kbd> method. You can also pass
+					<kbd>true</kbd> which will cause the global display_timezone to be used.
+				</p>
+				<p class="note">You can use the display_timezone to globally set a timezone to convert to, for example from a user profile
+				setting when a user is logged in. This will allow all dates to be displayed in the users local timezone.</p>
 
-				<p class="note">このメソッドは、i18n のため、<kbd>date()</kbd> ではなく、
-					<a href="http://www.php.net/manual/en/function.strftime.php" target="_blank">strftime()</a> を使用します。</p>
+				
 				<table class="method">
 					<tbody>
 					<tr>
@@ -409,6 +464,11 @@ echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'yea
 									<td>"local"</td>
 									<td>パターンキー(config/date.php を参照)</td>
 								</tr>
+								<tr>
+									<th><kbd>$timezone</kbd></th>
+									<td>null</td>
+									<td>The timezone to use when generating the formatted output</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -419,7 +479,17 @@ echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'yea
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>echo Date::forge(1294176140)->format("%m/%d/%Y"); // 01/04/2011</code></pre>
+							<pre class="php"><code>// if the system time is UTC, this will return "01/04/2011 21:22"
+echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M");
+
+// set the timezone to "Europe/Amsterdam" (which is GMT+1 in January), this will return "01/04/2011 22:22"
+echo Date::forge(1294176140)->set_timezone('Europe/Amsterdam')->format("%m/%d/%Y %H:%M");
+
+// set the display timezone globally to "Europe/Amsterdam"
+Date::display_timezone('Europe/Amsterdam');
+
+// this will return "01/04/2011 22:22" too
+echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M", true);</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -466,6 +536,49 @@ echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'yea
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>echo Date::forge(1294176140, "Europe/London")->get_timezone(); // Europe/London</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get_timezone_abbr">get_timezone_abbr($display_timezone = false)</h4>
+				<p>The <strong>get_timezone_abbr</strong> method returns the abbreviated timezone for either the timezone set in the Date object, or for the display timezone.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$display_timezone</kbd></th>
+									<td><i>boolean</i></td>
+									<td>if true, the global display_timezone is used instead of the timezone set on the Date object</td>
+								</tr>
+							</table>
+						</td>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>echo Date::forge(1294176140, "Europe/London")->get_timezone_abbr(); // returns "GMT"
+echo Date::forge(1294176140, "Europe/Amsterdam")->get_timezone_abbr(); // returns "CET"
+
+// set the display timezone globally to "Europe/Amsterdam"
+Date::display_timezone('Europe/Amsterdam');
+echo Date::forge(1294176140)->get_timezone_abbr(true); // returns "CET" too</code></pre>
 						</td>
 					</tr>
 					</tbody>
