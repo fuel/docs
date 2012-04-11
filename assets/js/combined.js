@@ -362,7 +362,8 @@ panes.main = {
 		"Controllers": {
 			"Base" :		"general/controllers/base.html",
 			"Template":		"general/controllers/template.html",
-			"Rest":			"general/controllers/rest.html"
+			"Rest":			"general/controllers/rest.html",
+			"Hybrid":		"general/controllers/hybrid.html"
 		},
 		"Environments":		"general/environments.html",
 		"HMVC Requests":	"general/hmvc.html",
