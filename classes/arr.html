@@ -1242,6 +1242,73 @@ array(
 				</table>
 			</article>
 
+			<article>
+				<h4 id="method_sort" class="method">in_array_recursive($needle, $haystack, $strict = false)</h4>
+				<p>The <strong>in_array_recursive</strong> method checks wether a value is in an array recursively.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$needle</kbd></th>
+									<td><em>required</em></td>
+									<td>The value to search for</td>
+								</tr>
+								<tr>
+									<th><kbd>$haystack</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to search in.</td>
+								</tr>
+								<tr>
+									<th><kbd>$strict</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>The wether to use == or ===.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$arr = array(
+	'one' => 1,
+	2,
+	3,
+	array(
+		56
+	),
+	87
+);
+
+var_dump(Arr::in_array_recursive('56', $arr));
+// is true
+
+var_dump(Arr::in_array_recursive('87', $arr, true));
+// is false
+
+var_dump(Arr::in_array_recursive(87, $arr, true));
+// is true</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<h3 id="procedural_helpers">Procedural helpers</h3>
 
 			<article>
