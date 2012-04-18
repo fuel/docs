@@ -377,6 +377,7 @@ panes.main = {
 		"Packages":			"general/packages.html",
 		"Security":			"general/security.html",
 		"Tasks":			"general/tasks.html",
+		"Unit Testing":		"general/unit_testing.html",
 		"Error handling":	"general/error.html",
 		"Profiling":		"general/profiling.html",
 	}
