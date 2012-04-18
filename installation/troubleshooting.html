@@ -53,7 +53,7 @@
 			<ul>
 				<li><a href="#syntax_error_clean_install">クリーンインストール時の構文エラー</a></li>
 				<li><a href="#404_install">動作しているが index ページが 404 である</a></li>
-				<li><a href="#oil_db_error">Oil cannot connect to DB but application can</a></li>
+				<li><a href="#oil_db_error">Oil がデータベースに接続できないがアプリケーションは接続できる</a></li>
 				<li><a href="#htmlentities">ORM/DB が私のデータを HTML エンティティとして返す</a></li>
 				<li><a href="#orm_list_columns">Orm\Exception [ Error ]: Listing columns not failed</a></li>
 				<li><a href="#assets_error">index.php の場所を変更した後、Asset が動作しない</a></li>
@@ -120,7 +120,7 @@ RewriteRule ^(.*)$ /index.php/$1 [L]
 
 			<article>
 
-				<h3 id="oil_db_error">Oil がデータベースに接続できないがアプリケーションは動作している</h3>
+				<h3 id="oil_db_error">Oil がデータベースに接続できないがアプリケーションは接続できる</h3>
 
 				<pre class="plain"><code>mysql_connect(): [2002] No such file or directory (trying to connect via unix:///var/mysql/mysql.sock) in /Users/phil/Sites/fuel/fuel/core/classes/database/mysql/connection.php on 73</code></pre>
 
@@ -154,7 +154,8 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 				<h4>いつ発生するか...</h4>
 
 				<p>Fuel には "output encoding" と呼ばれるセキュリティ機構があり、デフォルトで有効になっています。これは、
-					View や ViewModel に渡されるあらゆる値は、あなたが明示的に安全だとマークしない限り、危険だと考えることを意味します。
+					View や ViewModel に渡されるあらゆる値は、あなたが明示的に安全だとマークしない限り、
+					危険だと考えることを意味します。
 					配列の中身やオブジェクトのプロパティを含む、安全でないすべての値は htmlentities を通過します。</p>
 
 				<h4>解決方法</h4>
