@@ -62,6 +62,7 @@
 				<li><a href="#deleting">Deleting</a> data</li>
 				<li><a href="#joins">Joins</a></li>
 				<li><a href="#escaping">Escaping</a></li>
+				<li><a href="#binding">Query binding</a></li>
 				<li><a href="#caching">Query caching</a></li>
 			</ul>
 
@@ -389,6 +390,75 @@ $result_arr = $result->current();
 // Get the number of rows
 $count = $result_arr['count'];
 </code></pre>
+
+			</article>
+
+			<article>
+
+				<h3 id="binding">Query binding</h3>
+
+				<p>The query builder supports query binding, a technique that allows you to assign variables to your
+				hand-written queries in a safe and secure manner.</p>
+
+				<p>Query binding works by placing uniquely identifyable placeholders in your SQL. The query builder will
+				replace these placeholders by their corresponding values when the query is compiled for execution (so not
+				when you bind it!).</p>
+
+				<p>You can use any string as a placeholder, but it is highly recommended to choose a standard naming
+				convention, and stick to it. It will make your application more maintainable. The FuelPHP standard is
+				to use a colon followed by the variable name (:varname), which is a notation used throughout the framework
+				to define placeholders.</p>
+
+				<pre class="php"><code>$name = 'John'; // set the variable we're going to bind
+$query = "SELECT * FROM users WHERE username = :name"; // our query
+
+// bind the variable and run the query, produces SELECT * FROM users WHERE username = 'John'
+$result = DB::query($query)->bind(':name', $name)->execute();</code></pre>
+
+				<p>Variables are bound by reference, so you can define your query and your bindings early in your code
+				and modify the bound variable later.</p>
+
+				<pre class="php"><code>// create the query object
+$query = DB::query("SELECT * FROM users WHERE username = :name");
+
+$name = 'unknown';                // set the variable with a default value
+$query->bind(':name', $name);     // and bind it to the query
+
+// after some code, change the bound variable
+$name = 'Sally';
+
+// bind the variable and run the query, produces SELECT * FROM users WHERE username = 'Sally'
+$result = $query->execute();</code></pre>
+
+				<p>Because the variable is bound by reference, you can NOT bind a literal. If you
+				do, you'll get a "Cannot pass parameter 2 by reference" exception!</p>
+
+				<pre class="php"><code>// this will generate an exception!
+$query = DB::query("SELECT * FROM users WHERE username = :name")->bind(':name', 'value')->execute();</code></pre>
+
+				<p>You can assign by value using the param() method:</p>
+
+				<pre class="php"><code>// this will work though
+$query = DB::query("SELECT * FROM users WHERE username = :name")->param(':name', 'value')->execute();</code></pre>
+
+				<p>And finally, you can use the parameters() method if you want to mix the two:</p>
+
+				<pre class="php"><code>// create the query object
+$query = DB::query("SELECT * FROM users WHERE username = :name AND state = :state");
+
+$name = 'John'; // set the variable we're going to bind
+
+// bind the variable and literal
+$query->parameters(array(':name' => &amp;$name, ':state' => 'new'));
+
+// and run the query, produces SELECT * FROM users WHERE username = 'John' AND state = 'new'
+$result = $query->execute();</code></pre>
+
+				<p class="note">Some frameworks use question marks as placeholders. This works for them because their
+				binding system is positional, the first question mark gets replaced by the first variable bound, and
+				so on. In FuelPHP, order of binding is not relevant, there is a one-to-one link between the placeholder
+				and the variable bound. It also means you can use the same placeholder multiple times in a single
+				query.</p>
 
 			</article>
 
