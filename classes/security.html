@@ -105,6 +105,22 @@
 							</td>
 						</tr>
 						<tr>
+							<th>htmlentities_flags</th>
+							<td>integer</td>
+							<td><pre class="php"><code>null</code></pre></td>
+							<td>
+								Flags to be used when encoding HTML entities. Defaults to ENT_QUOTES if nothing is defined.
+							</td>
+						</tr>
+						<tr>
+							<th>htmlentities_double_encode</th>
+							<td>boolean</td>
+							<td><pre class="php"><code>null</code></pre></td>
+							<td>
+								Whether of not already encoded entities should be encoded again. Defaults to <strong>false</strong> if nothing is defined.
+							</td>
+						</tr>
+						<tr>
 							<th>auto_encode_view_data</th>
 							<td>boolean</td>
 							<td><pre class="php"><code>true</code></pre></td>
@@ -288,7 +304,7 @@ echo Security::js_set_token();
 								</tr>
 								<tr>
 									<th><kbd>$filters</kbd></th>
-									<td><i>Required</i></td>
+									<td><pre class="php"><code>null</code></pre></td>
 									<td>
 										The filters to be used to clean the string(s). A filter can be a single value, or an array of values. Each value must be a valid PHP callback.
 										You may specify functions ('htmlentities'), objects ($this), or static methods ('Classname::method').
@@ -396,7 +412,7 @@ $text = Security::xss_clean($text);</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_htmlentities">htmlentities($value)</h4>
+				<h4 class="method" id="method_htmlentities">htmlentities($value, $flags = null, $encoding = null, $double_encode = null)</h4>
 				<p>
 					The <strong>htmlentities</strong> method allows you to turn HTML characters into their entity equivalent. This method operates identical to PHP's htmlentities() function
 					but supports arrays and objects as well.
@@ -420,6 +436,21 @@ $text = Security::xss_clean($text);</code></pre>
 									<th><kbd>$value</kbd></th>
 									<td><i>Required</i></td>
 									<td>The input value.</td>
+								</tr>
+								<tr>
+									<th><kbd>$flags</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Flags to be passed to htmlentities(). If not given and not configured, it will default to ENT_QUOTES.</td>
+								</tr>
+								<tr>
+									<th><kbd>$encoding</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The encoding used for the value passed. If not given it will default the FuelPHP's default encoding.</td>
+								</tr>
+								<tr>
+									<th><kbd>$double_encoding</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>If true, already encoded values will not be encoded again. If not given and not configured it will default to <strong>false</strong>.</td>
 								</tr>
 							</table>
 						</td>
