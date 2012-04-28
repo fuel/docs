@@ -119,15 +119,7 @@ $this->render('welcome/index', $data);</code></pre>
 							<td>integer</td>
 							<td><pre class="php"><code>0</code></pre></td>
 							<td>
-								The total number of items.
-							</td>
-						</tr>
-						<tr>
-							<th>total_pages</th>
-							<td>integer</td>
-							<td><pre class="php"><code>0</code></pre></td>
-							<td>
-								The total number of pages.
+								The total number of items. Usually this is the result of a count() query.
 							</td>
 						</tr>
 						<tr>
@@ -139,9 +131,17 @@ $this->render('welcome/index', $data);</code></pre>
 							</td>
 						</tr>
 						<tr>
+							<th>current_page</th>
+							<td>integer</td>
+							<td><pre class="php"><code>null</code></pre></td>
+							<td>
+								The page to load if no page number is present in the URI. If not given, it defaults to 1.
+							</td>
+						</tr>
+						<tr>
 							<th>template</th>
 							<td>array</td>
-							<td><pre class="php"><code></code></pre></td>
+							<td><pre class="php"><code>array(...)</code></pre></td>
 							<td>
 								Associative array containing the HTML markup to create the pagination elements (see Global Config Array section for the list of array keys w/ default values).
 							</td>
