@@ -101,7 +101,7 @@
 			</article>
 
 			<article>
-				<h4 class="method" id="method_add">add($path, $options = null, $prepend = false)</h4>
+				<h4 class="method" id="method_add">add($path, $options = null, $prepend = false, $case_sensitive = null)</h4>
 				<p>
 					The <strong>add</strong> method allows you to manually add new routes at runtime. You might need this if you want to load
 					controllers that don't follow the normal URI scheme, or if you want to load routes from other sources then the routes.php
@@ -137,6 +137,11 @@
 									<td><code>false</code></td>
 									<td>If true, the new route will be prepended to the already loaded routes.</td>
 								</tr>
+								<tr>
+									<th><kbd>$case_sensitive</kbd></th>
+									<td><code>null</code></td>
+									<td>If true, the new route will be matched against the URI without regards to case. If false, the match will be case sensitive. If not given, the configured default will be used.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -149,6 +154,13 @@
 						<td>
 							<pre class="php"><code>// load a new route for 'this/that' => 'something/else'
 Router::add('this/that', 'something/else');
+
+// force it to be case sensitive
+Router::add('this/that', 'something/else', true);
+
+// manually create a Route instance which is treated as not case sensitive
+$path = 'this/that';
+Router::add($path, new Route($path, 'something/else', false));
 </code></pre>
 						</td>
 					</tr>
