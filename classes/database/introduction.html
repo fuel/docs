@@ -83,7 +83,7 @@
 	),
 	'table_prefix'   => '',
 	'charset'        => 'utf8',
-	'caching'        => false,
+	'enable_cache'   => true,
 	'profiling'      => false,
 ),
 
@@ -98,9 +98,69 @@
 	),
 	'table_prefix'   => '',
 	'charset'        => 'utf8',
-	'caching'        => false,
+	'enable_cache'   => true,
 	'profiling'      => false,
 ),</code></pre>
+				<h3 id="config_settings">All Config Settings</h3>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Setting</th>
+							<th>Type</th>
+							<th class="description">Description</th>
+						</tr>
+						<tr>
+							<th><kbd>type</kbd></th>
+							<td>string</td>
+							<td>What type of connection to use. Can be mysq, mysqli or pdo.</td>
+						</tr>
+						<tr>
+							<th><kbd>connection</kbd></th>
+							<td>array</td>
+							<td>Connection settings array</td>
+						</tr>
+						<tr>
+							<th><kbd>connection.dns</kbd></th>
+							<td>string</td>
+							<td>Connection DNS for PDO.</td>
+						</tr>
+						<tr>
+							<th><kbd>connection.username</kbd></th>
+							<td>string</td>
+							<td>Connection user.</td>
+						</tr>
+						<tr>
+							<th><kbd>connection.password</kbd></th>
+							<td>string</td>
+							<td>Connection password.</td>
+						</tr>
+						<tr>
+							<th><kbd>connection.persistent</kbd></th>
+							<td>boolean</td>
+							<td>Wether to initiate a persisten connection.</td>
+						</tr>
+						<tr>
+							<th><kbd>table_prefix</kbd></th>
+							<td>string</td>
+							<td>Table prefix.</td>
+						</tr>
+						<tr>
+							<th><kbd>charset</kbd></th>
+							<td>string</td>
+							<td>Connection charset.</td>
+						</tr>
+						<tr>
+							<th><kbd>enable_cache</kbd></th>
+							<td>boolean</td>
+							<td>Wether to allow caching, will overwrite query cache settings on a connection basis.</td>
+						</tr>
+						<tr>
+							<th><kbd>profiling</kbd></th>
+							<td>boolean</td>
+							<td>Wether to add the connections queries to the profiler.</td>
+						</tr>
+					</tbody>
+				</table>
 				<p>
 					Once you have your configuration in place, it's time to <a href="./usage.html">use it</a>.
 				</p>
