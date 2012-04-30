@@ -140,7 +140,7 @@
 								<tr>
 									<th><kbd>$case_sensitive</kbd></th>
 									<td><code>null</code></td>
-									<td>If true, the new route will be matched against the URI without regards to case. If false, the match will be case sensitive. If not given, the configured default will be used.</td>
+									<td>If false, the new route will be matched against the URI without regards to case. If true, the match will be case sensitive. If not given, the configured default will be used.</td>
 								</tr>
 							</table>
 						</td>
@@ -228,7 +228,7 @@ echo Router::get('hello');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_delete">delete($path)</h4>
+				<h4 class="method" id="method_delete">delete($path, $case_sensitive = null)</h4>
 				<p>
 					The <strong>delete</strong> method allows you to manually delete existing routes at runtime.
 				</p>
@@ -251,6 +251,11 @@ echo Router::get('hello');
 									<th><kbd>$path</kbd></th>
 									<td><i>required</i></td>
 									<td>The URI path to be matched. This is the left side of your routes.php route definition.</td>
+								</tr>
+								<tr>
+									<th><kbd>$case_sensitive</kbd></th>
+									<td><code>null</code></td>
+									<td>If false, the given route path will be matched against the URI without regards to case. If true, the match will be case sensitive. If not given, the configured default will be used.</td>
 								</tr>
 							</table>
 						</td>
