@@ -180,193 +180,90 @@
 
 			<h3>Class properties</h3>
 
-			<p>To be written.</p>
-
-			<article>
-				<h4 class="method" id="method_find_file">find_file($directory, $file, $ext = '.php', $multiple = false, $cache = true)</h4>
-				<p>The <strong>find_file</strong> method is used to locate files in a Fuel application directory structure.</p>
-				<p>The method searches through all search paths defined in the active Request instance, the application path, all loaded package paths and the core path (in this order). You can also use the method '<strong>add_path</strong>' to manually add global search paths.</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+			<p style="margin-bottom:10px;">Note that although these properties are defined as public, you should not alter them without good reason.</p>
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Name</th>
+						<th>Static</th>
+						<th>Type</th>
+						<th>Value</th>
+						<th>Description</th>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>$initialized</th>
+						<td>yes</td>
+						<td>boolean</td>
+						<td><pre class="php"><code>false</code></pre></td>
 						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$directory</kbd></th>
-									<td><i>required</i></td>
-									<td>Relative directory name in which you want to search for files.</td>
-								</tr>
-								<tr>
-									<th><kbd>$file</kbd></th>
-									<td><i>required</i></td>
-									<td>Name of the file you want to find.</td>
-								</tr>
-								<tr>
-									<th><kbd>$ext</kbd></th>
-									<td><pre class="php"><code>'.php'</code></pre></td>
-									<td>Extension of the file you're looking for. Note the leading dot, which is required!</td>
-								</tr>
-								<tr>
-									<th><kbd>$multiple</kbd></th>
-									<td><pre class="php"><code>false</code></pre></td>
-									<td>If <strong>false</strong>, the first file found is returned. If <strong>true</strong>, an array of all files found that match the criteria is returned.</td>
-								</tr>
-								<tr>
-									<th><kbd>$cache</kbd></th>
-									<td><pre class="php"><code>true</code></pre></td>
-									<td>If <strong>true</strong>, the result will be cached for subsequent requests. If <strong>false</strong>, the result will not be cached.</td>
-								</tr>
-							</table>
+							Indicates if the framework has been initialized.
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Mixed, either string or an array of strings.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
+						<th>$env</th>
+						<td>yes</td>
+						<td>string</td>
+						<td><pre class="php"><code>FUEL::DEVELOPMENT</code></pre></td>
 						<td>
-							<pre class="php"><code>// find all views named 'test'
-$views = Fuel::find_file('views', 'test', '.php', true);
-</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_list_files">list_files($directory = null, $filter = '*.php')</h4>
-				<p>The <strong>list_files</strong> method gets a list of all the files in a given directory inside all of the loaded search paths (e.g. the cascading file system). This is useful for things like finding all the config files in all the search paths.</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$directory</kbd></th>
-									<td><i>required</i></td>
-									<td>Relative directory name in which you want to search for files.</td>
-								</tr>
-								<tr>
-									<th><kbd>$filter</kbd></th>
-									<td><pre class="php"><code>'*.php'</code></pre></td>
-									<td>Filename filter, to be used in the search.</td>
-								</tr>
-							</table>
+							Environment the framework runs in. Must be one of the environment constants mentioned above.
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Array</td>
-					</tr>
-					<tr>
-						<th>Example</th>
+						<th>$profiling</th>
+						<td>yes</td>
+						<td>boolean</td>
+						<td><pre class="php"><code>false</code></pre></td>
 						<td>
-							<pre class="php"><code>// find all config files in this Fuel installation
-$files = Fuel::list_files('config');
-</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_addpath">add_path($path, $prefix = false)</h4>
-				<p>The <strong>add_path</strong> method allows you to add a global search path. The search paths are used by Fuel::find_file() to locate files within your application.</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$path</kbd></th>
-									<td><i>required</i></td>
-									<td>Path to be added to the list of global search paths</td>
-								</tr>
-								<tr>
-									<th><kbd>$prefix</kbd></th>
-									<td><pre class="php"><code>false</code></pre></td>
-									<td>If <strong>false</strong>, the path will be added to the search path list. If <strong>true</strong>, it will be prepended to the list.</td>
-								</tr>
-							</table>
+							If true, the profiler has been enabled.
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td><i>void</i></td>
-					</tr>
-					<tr>
-						<th>Example</th>
+						<th>$locale</th>
+						<td>yes</td>
+						<td>string</td>
+						<td><pre class="php"><code>en_US</code></pre></td>
 						<td>
-							<pre class="php"><code>// prepend the applications myfiles folder to the global search path
-Fuel::add_path(APPPATH.'myfiles'.DS, true);
-</code></pre>
+							Currently defined locale.
 						</td>
 					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_get_paths">get_paths()</h4>
-				<p>The <strong>get_paths</strong> method returns the defined list of search paths.</p>
-				<table class="method">
-					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td><i>void</i></td>
-					</tr>
-					<tr>
-						<th>Example</th>
+						<th>$timezone</th>
+						<td>yes</td>
+						<td>string</td>
+						<td><pre class="php"><code>UTC</code></pre></td>
 						<td>
-							<pre class="php"><code>// get the defined search paths
-$paths = Fuel::get_paths();
-</code></pre>
+							Currently defined timezone.
 						</td>
 					</tr>
-					</tbody>
-				</table>
-			</article>
+					<tr>
+						<th>$encoding</th>
+						<td>yes</td>
+						<td>string</td>
+						<td><pre class="php"><code>UTF8</code></pre></td>
+						<td>
+							Currently defined character encoding.
+						</td>
+					</tr>
+					<tr>
+						<th>$is_cli</th>
+						<td>yes</td>
+						<td>boolean</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>
+							If true, the framework runs in CLI mode.
+						</td>
+					</tr>
+					<tr>
+						<th>$is_test</th>
+						<td>yes</td>
+						<td>boolean</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>
+							If true, the framework runs in Unit Test mode.
+						</td>
+					</tr>
+				</tbody>
+			</table>
 
 			<article>
 				<h4 class="method" id="method_load">load($file)</h4>
@@ -412,104 +309,6 @@ if (Fuel::load('myfile.php'))
 					</tbody>
 				</table>
 				<p class="note"> Note that if the included file does NOT contain a <strong>return</strong> statement, load() will return <strong>1</strong> if the load was successful, or <strong>0</strong> if the file could not be loaded!</p>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_add_module">add_module($name)</h4>
-				<p>The <strong>add_module</strong> method registers a given module as a class prefix.</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$name</kbd></th>
-									<td><i>required</i></td>
-									<td>Module name (lowercase prefix without underscore)</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td><i>string</i></td>
-					</tr>
-					<tr>
-						<th>Throws</th>
-						<td><strong>FuelException</strong>, in case a module with the given name does not exist.</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// register the module 'mymodule'
-try
-{
-	$module_path = Fuel::add_module('mymodule');
-}
-catch (FuelException $e)
-{
-	// woops, module does not exist. do something!
-}
-</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_module_exists">module_exists($module)</h4>
-				<p>The <strong>module_exists</strong> method checks if a module exists. The module you want to check does not have to be added first.</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$module</kbd></th>
-									<td><i>required</i></td>
-									<td>Module name (lowercase prefix without underscore)</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td><i>mixed</i></td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>// returns the path to 'mymodule'
-$module_path = Fuel::module_exists('mymodule');
-
-// returns false for an unknown module
-$module_path = Fuel::module_exists('unknown');
-</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
 			</article>
 
 		</div>

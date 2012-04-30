@@ -449,6 +449,7 @@ panes.core = {
 			"Methods": "classes/model_crud/methods.html"
 			//"Usage": "classes/model_crud/usage.html",
 		},
+		"Module":		"classes/module.html",
 		"Mongo_Db": {
 			"Introduction":	"classes/mongo/introduction.html",
 			"Methods":		"classes/mongo/methods.html"
@@ -508,13 +509,13 @@ panes.auth = {
 			"Groups":		"packages/auth/types/groups.html",
 			"ACL":			"packages/auth/types/acl.html"
 		},
+		"Writing drivers":	"packages/auth/drivers.html",
 		"SimpleAuth": {
 			"Introduction":	"packages/auth/simpleauth/intro.html",
 			"Login":		"packages/auth/simpleauth/login.html",
 			"Groups":		"packages/auth/simpleauth/groups.html",
 			"ACL":			"packages/auth/simpleauth/acl.html"
-		},
-		"Writing drivers":	"packages/auth/drivers.html"
+		}
 	}
 };
 

@@ -8,10 +8,10 @@
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
-		var class_prefix = "Package::";
+		var class_prefix = "Module::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Package - Classes - FuelPHP Documentation</title>
+	<title>Module - Classes - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
@@ -45,13 +45,13 @@
 
 		<div id="main">
 
-			<h2>Package Class</h2>
+			<h2>Module Class</h2>
 
-			<p>The <kbd>Package</kbd> class allows you to easily load, unload, check if a package is loaded, or get all packages loaded.</p>
+			<p>The <kbd>Module</kbd> class allows you to easily load, unload, check if a module exists or if it is loaded, or get a list of all modules loaded.</p>
 
 			<article>
-				<h4 class="method" id="method_load">load($package, $path = null)</h4>
-				<p>The <strong>load</strong> method allows you to load one or more packages at runtime.  If the package cannot be found a <kbd>PackageNotFoundException</kbd> will be thrown.</p>
+				<h4 class="method" id="method_load">load($module, $path = null)</h4>
+				<p>The <strong>load</strong> method allows you to load one or more modules at runtime.  If the module cannot be found a <kbd>ModuleNotFoundException</kbd> will be thrown.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -68,14 +68,14 @@
 									<th class="description">Description</th>
 								</tr>
 								<tr>
-									<th><kbd>$package</kbd></th>
+									<th><kbd>$module</kbd></th>
 									<td><i>required</i></td>
-									<td>Name of the package to be loaded, or an array of packages and package paths.</td>
+									<td>Name of the module to be loaded, or an array of modules.</td>
 								</tr>
 								<tr>
 									<th><kbd>$path</kbd></th>
-									<td><code>PKGPATH</code></td>
-									<td>Path to the folder in which the package is installed.</td>
+									<td><code>null</code></td>
+									<td>Path to the given module. You can use this to load modules from outside the defined module paths.</td>
 								</tr>
 							</table>
 						</td>
@@ -87,17 +87,17 @@
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// load the orm package
-Package::load('orm');
+							<pre class="php"><code>// load a users module
+Module::load('users');
 
-// load the parser package from a specific directory
-Package::load('parser', '/path/to/packages/dir/');
+// load the users module from a specific directory
+Module::load('users', '/path/to/modules/users/');
 
-// load multiple packages from a single package installation
-Package::load( array('First' => PKGPATH.'my'.DS.'first'.DS, 'Last' => PKGPATH.'my'.DS.'last'.DS) );
+// load multiple modules from a single module installation
+Module::load( array('Users' => '/path/to/modules/users/', 'Groups' => '/path/to/modules/groups/') );
 
-// load the non-existent package
-Package::load('awesome'); // Throws a PackageNotFoundException
+// load the non-existent module
+Module::load('awesome'); // Throws a ModuleNotFoundException
 </code></pre>
 						</td>
 					</tr>
@@ -106,8 +106,8 @@ Package::load('awesome'); // Throws a PackageNotFoundException
 			</article>
 
 			<article>
-				<h4 class="method" id="method_unload">unload($package)</h4>
-				<p>The <strong>unload</strong> method allows you to unload a package at runtime.</p>
+				<h4 class="method" id="method_unload">unload($module)</h4>
+				<p>The <strong>unload</strong> method allows you to unload a module at runtime.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -124,9 +124,9 @@ Package::load('awesome'); // Throws a PackageNotFoundException
 									<th class="description">Description</th>
 								</tr>
 								<tr>
-									<th><kbd>$package</kbd></th>
+									<th><kbd>$module</kbd></th>
 									<td><i>required</i></td>
-									<td>Name of the package to be unloaded.</td>
+									<td>Name of the module to be unloaded.</td>
 								</tr>
 							</table>
 						</td>
@@ -138,18 +138,20 @@ Package::load('awesome'); // Throws a PackageNotFoundException
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// unload the orm package
-Package::unload('orm');
+							<pre class="php"><code>// unload the users module
+Module::unload('users');
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
+
+				<p class="note">This will remove all loaded routes that point to this module!</p>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_loaded">loaded($package = null)</h4>
-				<p>The <strong>loaded</strong> method allows you to check if a package is currently loaded.  If no package name is given then all loaded packages are returned.</p>
+				<h4 class="method" id="method_loaded">loaded($module = null)</h4>
+				<p>The <strong>loaded</strong> method allows you to check if a module is currently loaded.  If no module name is given then all loaded module are returned.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -166,9 +168,9 @@ Package::unload('orm');
 									<th class="description">Description</th>
 								</tr>
 								<tr>
-									<th><kbd>$package</kbd></th>
+									<th><kbd>$module</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Name of the package to be checked.</td>
+									<td>Name of the module to be checked.</td>
 								</tr>
 							</table>
 						</td>
@@ -180,18 +182,66 @@ Package::unload('orm');
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// Check if the orm package is loaded
-$loaded = Package::loaded('orm');
+							<pre class="php"><code>// Check if the users module is loaded
+$loaded = Module::loaded('users');
 
-// Get all loaded packages
-$loaded = Package::loaded();
+// Get all loaded modules
+$loaded = Module::loaded();
 /*
 Returns something like:
 array(
-    'orm' => '/path/to/orm',
-    'parser' => '/path/to/parser',
+    'users' => '/path/to/users',
+    'groups' => '/path/to/groups',
 )
 */
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_exists">exists($module)</h4>
+				<p>
+					The <strong>exists</strong> method allows you to check if a module exists, i.e. if it can be found in one of the configured module paths.
+					If found, it returns the path to the module. If not, it returns <strong>false</strong>.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$module</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>Name of the module to be checked.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><kbd>bool|string</kbd></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Optionally load the comments module
+if (Module::exists('comments'))
+{
+	Module::load('comments');
+}
 </code></pre>
 						</td>
 					</tr>

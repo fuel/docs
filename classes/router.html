@@ -227,6 +227,56 @@ echo Router::get('hello');
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_delete">delete($path)</h4>
+				<p>
+					The <strong>delete</strong> method allows you to manually delete existing routes at runtime.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$path</kbd></th>
+									<td><i>required</i></td>
+									<td>The URI path to be matched. This is the left side of your routes.php route definition.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><i>void</i></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// delete the route for 'this/that'
+Router::delete('this/that');
+
+// force it to be case sensitive
+Router::delete('this/that', true);
+
+// delete all routes that point to a module controller
+Router::delete('module/controller(:any)');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 		</div>
 
 		<footer>
