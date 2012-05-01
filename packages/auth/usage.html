@@ -50,18 +50,161 @@
 			write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
 			consistent.</p>
 
-			<ul>
-				<li><a href="#login_drivers">Basic Usage of Login drivers</a></li>
-				<li><a href="#group_drivers">Basic Usage of Group drivers</a></li>
-				<li><a href="#acl_drivers">Basic Usage of Acl drivers</a></li>
-			</ul>
-
 			<section>
-				<h2 id="login_drivers">Basic Usage of Login drivers</h2>
+				<h3 id="auth_interface">Interface</h3>
 
-				<p>The Auth class works mainly with one or more login drivers and offers a set of 2 methods for all other
-				drivers. One getting a driver instance and a second answering whether a loaded driver of that type
-				validates. Below are first the methods for checking and getting the drivers.</p>
+				<p>The Auth class provides a static interface for generic methods, and contains a __callStatic magic method
+					which allows you to fetch loaded driver instances, and call driver methods statically (only if multiple
+					concurrent drivers are disabled in the auth config!).</p>
+
+				<article>
+					<h4 id="method_forge" class="method">forge($custom = array())</h4>
+					<p>Instantiates the Auth driver or drivers defined in the Auth configuration file. Optionally, you can pass
+						a custom configuration array to define the driver that needs to be instantiated.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$custom</kbd></th>
+										<td><i>mixed</i></td>
+										<td>Driver configuration array, or string containing the driver name to instantiate. If not given, the values from the Auth config file are used.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Auth_Login_Driver instance</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>AuthException, if the defined driver failed to load, or if another drivers is already instantiated using the same driver id.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// Create the default instance(s)
+Auth::forge();
+
+// Create the SimpleAuth instance
+Auth::forge('simpleauth');
+
+// or specify multiple driver settings
+Auth::forge(array('driver' => 'simpleauth', 'id' => 'customid'));</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<p class="note">If you only use a single Auth driver configured in the Auth configuration file, you don't need to call this method manually.
+						The default instance will be created automatically the first time the default instance is requested by one of the other methods.</p>
+				</article>
+
+				<article>
+					<h4 id="method_instance" class="method">instance($instance = null)</h4>
+					<p>Retrieves a loaded driver instance. When multiple drivers are set in config the first driver loaded will
+						be set as the default driver.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$instance</kbd></th>
+										<td><i>null</i></td>
+										<td>null to fetch the default driver, or a driver id to get a specific one</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Auth_Login_Driver</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// Logout the default driver
+Auth::instance()->logout();
+
+// Login the SimpleAuth driver
+Auth::instance('simpleauth')->login(Input::post('username'), Input::post('password'));</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<p class="note">If the default instance is requested, but none is loaded, instance() will call forge() to create the
+					default instance based on the settings defined in the Auth configuration file.</p>
+				</article>
+
+				<article>
+					<h4 id="method_unload" class="method">unload($driver_id = null)</h4>
+					<p>Removes a loaded driver instance. If null, the default driver instance will be removed.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$driver_id</kbd></th>
+										<td><i>null</i></td>
+										<td>null to remove the default driver, or a driver id to remove a specific one</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean, <strong>true</strong> if the unload succeeded, <strong>false</strong> otherwise.</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>AuthException, when $driver_id is not a valid driver.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// Remove the default driver
+Auth::unload();
+
+// Remove the SimpleAuth driver
+Auth::unload('simpleauth');</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
 
 				<article>
 					<h4 id="method_check" class="method">check($specific = null)</h4>
@@ -113,9 +256,8 @@ Auth::check(array('simpleauth', 'twitter'));</code></pre>
 				</article>
 
 				<article>
-					<h4 id="method_instance" class="method">instance($instance = null)</h4>
-					<p>Retrieves a loaded driver, when multiple drivers are set in config the first driver will also be the
-						default.</p>
+					<h4 id="method_verified" class="method">verified($specific = null)</h4>
+					<p>Get a specific verified driver or all verified drivers.</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -130,255 +272,86 @@ Auth::check(array('simpleauth', 'twitter'));</code></pre>
 										<th>Param</th>
 										<th>Default</th>
 										<th class="description">Description</th>
-									</tr>
-									<tr>
-										<th><kbd>$instance</kbd></th>
-										<td><i>null</i></td>
-										<td>null to fetch the default driver, or a driver id to get a specific one</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>Auth_Login_Driver</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>// Logout the default driver
-Auth::instance()->logout();
-
-// Login the SimpleAuth driver
-Auth::instance('simpleauth')->login(Input::post('username'), Input::post('password'));</code></pre>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</article>
-
-				<h3 id="driver_methods">Driver methods</h3>
-
-				<p>The methods below should be available on all Auth drivers in at least the way described here, but will
-				often have specific parameters added for their implementation.</p>
-
-				<article>
-					<h4 id="method_get_user_array" class="method" data-class="Auth_Login_Driver">get_user_array(Array $additional_fields = array())</h4>
-					<p>Returns an array describing the current logged in user, always includes at least a screenname and
-					an emailaddress. Additional fields can be configured in the driver config or requested through the
-					$additional_fields array, but they must have a get_user_<em>fieldname</em>() method within the driver
-					to be gettable.</p>
-					<table class="method">
-						<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
-									</tr>
-									<tr>
-										<th><kbd>$additional_fields</kbd></th>
-										<td><i>array()</i></td>
-										<td>an array with fieldnames to fetch</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>array</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>$user = Auth::instance()->get_user_array();</code></pre>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</article>
-
-				<article>
-					<h4 id="method_login" class="method" data-class="Auth_Login_Driver">login()</h4>
-					<p>Must be implemented specific to the driver to login the user.</p>
-					<table class="method">
-						<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td><em>None by default</em></td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>bool</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>Auth::instance('simpleauth')->login($username, $password);</code></pre>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</article>
-
-				<article>
-					<h4 id="method_logout" class="method" data-class="Auth_Login_Driver">logout()</h4>
-					<p>Must be implemented specific to the driver to logout the user, and work without parameters.</p>
-					<table class="method">
-						<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td><em>None</em></td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>void</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>Auth::instance('simpleauth')->logout();</code></pre>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</article>
-
-				<article>
-					<h4 id="method_get_email" class="method" data-class="Auth_Login_Driver">get_email()</h4>
-					<p>Fetches the current logged in user's emailaddress.</p>
-					<table class="method">
-						<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td><em>None</em></td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>string</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>$email = Auth::instance('simpleauth')->get_email();</code></pre>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</article>
-
-				<article>
-					<h4 id="method_get_screen_name" class="method" data-class="Auth_Login_Driver">get_screen_name()</h4>
-					<p>Fetches the current logged in user's screen name.</p>
-					<table class="method">
-						<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td><em>None</em></td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>string</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>$name = Auth::instance('simpleauth')->get_screen_name();</code></pre>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</article>
-
-			</section>
-
-			<section>
-				<h2 id="group_drivers">Basic Usage of Group drivers</h2>
-
-				<p>Group drivers are for assigning users to user groups.</p>
-
-				<article>
-					<h4 id="method_member" class="method">member($group, $specific = null)</h4>
-					<p>Checks if user is a member of the given group in either all loaded Group drivers or just those
-						specified as the 2nd parameter.</p>
-					<table class="method">
-						<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
-									</tr>
-									<tr>
-										<th><kbd>$group</kbd></th>
-										<td><i>required</i></td>
-										<td>group id</td>
 									</tr>
 									<tr>
 										<th><kbd>$specific</kbd></th>
 										<td><i>null</i></td>
-										<td>null to check all or one ore more driver id's (single string or array of strings)</td>
+										<td>null to return all verified drivers in an array, or one specific driver id</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>bool, whether one of the (given) drivers had the current user registered as a member</td>
+							<td>Array|Auth_Login_Driver|false. When</td>
 						</tr>
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>if ( ! Auth::member(100))
+								<pre class="php"><code>// check if the simpleauth driver is verified
+$driver = Auth::verified('simpleauth');
+</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_logout" class="method">logout()</h4>
+					<p>Logout of all currently logged in drivers.</p>
+				</article>
+
+				<article>
+					<h4 id="method_register_driver_type" class="method">register_driver_type($type, $check_method)</h4>
+					<p>Registers a new driver type.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$type</kbd></th>
+										<td>required</td>
+										<td>Type of Auth driver to be registered.</td>
+									</tr>
+									<tr>
+										<th><kbd>$check_method</kbd></th>
+										<td>required</td>
+										<td>The driver method to be called when verifying drivers of this type.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// register the 'role' driver type
+if ( ! Auth::register_driver_type('role', 'check_role'))
 {
-	Response::redirect('no_admin');
+	throw new AuthException('role could not be registered');
 }
-
-// specific driver
-Auth::member(1, 'simplegroup');
-
-// Multiple drivers
-Auth::check(0, array('simplegroup', 'genericgroup'));</code></pre>
+</code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
+					<p class="note">Both type and method must be unique amongst all registered drivers. This method returns 'false' if this is not the case.</p>
 				</article>
 
 				<article>
-					<h4 id="method_group" class="method">group($instance = null)</h4>
-					<p>Retrieves a loaded group driver, when multiple drivers are set in config the first driver will also
-						be the default.</p>
+					<h4 id="method_unregister_driver_type" class="method">unregister_driver_type($type)</h4>
+					<p>Unregisters a driver type.</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -395,148 +368,25 @@ Auth::check(0, array('simplegroup', 'genericgroup'));</code></pre>
 										<th class="description">Description</th>
 									</tr>
 									<tr>
-										<th><kbd>$instance</kbd></th>
-										<td><i>null</i></td>
-										<td>null to fetch the default driver, or a driver id to get a specific one</td>
+										<th><kbd>$type</kbd></th>
+										<td>required</td>
+										<td>Type of Auth driver to be removed.</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Auth_Group_Driver</td>
-						</tr>
-						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>Auth::group()->get_name();</code></pre>
+								<pre class="php"><code>// remove the 'role' driver type
+Auth::unregister_driver_type('role');
+</code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
+					<p class="note">Note that the default drivers types, 'login', 'group' and 'acl' can not be unregistered!</p>
 				</article>
-
-			</section>
-
-			<section>
-				<h2 id="acl_drivers">Basic Usage of ACL drivers</h2>
-
-				<p>Group drivers are for assigning users to user groups.<br />
-					ACL uses input of a location and required rights on that location as input for the checking of rights,
-					what that exactly means is up to you. There are 2 common ways in which these are implemented:</p>
-
-				<ul>
-					<li><strong>Location = Controller, Rights = Methods</strong><br />
-						In this scenario you could have a <kbd>Controller_Articles</kbd> with methods like
-						<kbd>action_list()</kbd> and <kbd>action_create()</kbd> which you could check using:
-						<kbd>Auth::has_access('articles.list');</kbd></li>
-					<li><strong>Location = Model, Rights = specific operations</strong><br />
-						In this scenario you could have a <kbd>Model_Article</kbd> and before allowing any operation within
-						the model you first check if the user has the required CRUD rights:
-						<kbd>Auth::has_access('article.[read,update]');</kbd></li>
-				</ul>
-
-				<p>These are but examples, it's up to you how you interpret and use these.</p>
-
-				<article>
-					<h4 id="method_has_access" class="method">has_access($condition, $specific = null)</h4>
-					<p>Checks if user is has access for the given condition in either all loaded Acl drivers or just those
-						specified as the 2nd parameter.</p>
-					<table class="method">
-						<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
-									</tr>
-									<tr>
-										<th><kbd>$condition</kbd></th>
-										<td><i>required</i></td>
-										<td>takes a location and the required rights on the location as either a string or
-											an array</td>
-									</tr>
-									<tr>
-										<th><kbd>$specific</kbd></th>
-										<td><i>null</i></td>
-										<td>null to check all or one ore more driver id's (single string or array of strings)</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>bool, whether the user gets access to all given rights in the given location from the loaded
-								(or specified) ACL drivers.</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>// check if user is allowed to comment
-if ( ! Auth::has_access('comments.create'))
-{
-	Response::redirect('no_admin');
-}
-
-// check if user can also update &amp; delete comments
-Auth::has_access('comments.[update,delete]');
-
-// The same with an array instead of a string
-Auth::has_access(array('comments', array('update', 'delete')));</code></pre>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</article>
-
-				<article>
-					<h4 id="method_acl" class="method">acl($instance = null)</h4>
-					<p>Retrieves a loaded ACL driver, when multiple drivers are set in config the first driver will also
-						be the default.</p>
-					<table class="method">
-						<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
-									</tr>
-									<tr>
-										<th><kbd>$instance</kbd></th>
-										<td><i>null</i></td>
-										<td>null to fetch the default driver, or a driver id to get a specific one</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>Auth_Acl_Driver</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-		<pre class="php"><code>Auth::acl();</code></pre>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</article>
-
 			</section>
 
 		</div>

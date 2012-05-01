@@ -479,7 +479,7 @@ Input::post('somevar.foo.bar');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_real_ip">real_ip()</h4>
+				<h4 class="method" id="method_real_ip">real_ip($default = '0.0.0.0', $exclude_reserved = false)</h4>
 				<p>The <strong>real_ip</strong> method returns the 'real' IP address of the user. If a proxy server is detected, it will attempt to determine the user's private IP address from the information the proxy adds to the header. If this information is not present, the public IP address is returned.</p>
 				<table class="method">
 					<tbody>
@@ -489,7 +489,25 @@ Input::post('somevar.foo.bar');</code></pre>
 					</tr>
 					<tr>
 						<th>Parameters</th>
-						<td>None</td>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><pre class="php"><code>'0.0.0.0'</code></pre></td>
+									<td>The value to be returned if no valid IP address was detected.</td>
+								</tr>
+								<tr>
+									<th><kbd>$exclude_reserved</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>If true, exclude private and reserved IP ranges, and return only public IP addresses.</td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
@@ -503,6 +521,30 @@ Input::post('somevar.foo.bar');</code></pre>
 					</tr>
 					</tbody>
 				</table>
+
+				<p class="note">When $exclude_reserved is true, the following ranges will be excluded from the result:</p>
+<pre><code>IPv4:
+10.0.0.0/8     // private use network (rfc1918)
+172.16.0.0/12  // private use network (rfc1918)
+192.168.0.0/16 // private use network (rfc1918)
+0.0.0.0/8      // "this" network (rfc1700)
+169.254.0.0/16 // link local network (rfc3927)
+192.0.2.0/24   // test net (rfc3330)
+224.0.0.0/4    // Multicast (rfc3171)
+240.0.0.0/4    // Reserved for Future Use (rfc1700)
+
+IPv6:
+fc00::/7       // unique-local addresses (rfc4193)
+::/128         // unspecified address (rfc4291)
+::1/128        // loopback address (rfc4291)
+fe80::/10      // link local unicast (rfc4291)
+2001:db8::/32  // documentation addresses (rfc3849)
+5f00::/8       // 6Bone
+3ffe::/16      // 6Bone
+::ffff:0:0/96  // IPv4-Mapped addresses (rfc4291)
+2001:10::/28   // ORCHID addresses (rfc4843)
+::/0           // default unicast route address
+</code></pre>
 			</article>
 
 			<article>

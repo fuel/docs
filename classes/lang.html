@@ -55,6 +55,37 @@
 			</p>
 			<pre class="php"><code>Config::set('language', 'cy');</code></pre>
 
+			<h3 id="lang_groups">Lang File Types</h3>
+
+			You can use different file layouts to store your language files. The layout type is determined by the file extension:
+			<ul>
+				<li>
+					PHP. The default type. A PHP file should return an array structure.
+					<pre class="php"><code> return array('key' => 'value');</code></pre>
+				</li>
+				<li>
+					INI. See <a href="http://en.wikipedia.org/wiki/INI_file">this page</a> for a definition of the ini-file layout.
+					<pre class="ini"><code> [group]
+key=value</code></pre>
+				</li>
+				<li>
+					YAML. See <a href="http://en.wikipedia.org/wiki/YAML">this page</a> for a definition of the yaml-file layout.
+					<pre class="yaml"><code> group:
+   key: value</code></pre>
+				</li>
+				<li>
+					JSON. See <a href="http://en.wikipedia.org/wiki/JSON">this page</a> for a definition of the json-file layout.
+					<pre class="javascript"><code> {
+"group" :
+    {
+		"key": "value"
+	}
+}</code></pre>
+				</li>
+			</ul>
+
+			<p>If you don't specify a file type, Lang::load() will default to the 'php' type.</p>
+
 			<article>
 				<h4 class="method" id="method_load">load($file, $group = null, $language = null, $overwrite = false)</h4>
 				<p>The <strong>load</strong> method allows you to load a language file.</p>
@@ -233,6 +264,68 @@ Lang:set('hello', 'Ahoy!', 'test');
 // Will also work as above
 Lang::load('test', 'test');
 Lang::set('hello', 'Ahoy!');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_save">save($file, $lang, $language = null)</h4>
+				<p>
+					The <strong>save</strong> method saves a language file into the system.  It searches through the language directories for the requested file
+					in the requested language.  If no existing file is found, the language file is created in the APPPATH lang directory.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$file</kbd></th>
+									<td><i>required</i></td>
+									<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed). You can prefix this with a namespace to load a config file from a loaded package or module.</td>
+								</tr>
+								<tr>
+									<th><kbd>$lang</kbd></th>
+									<td><i>required</i></td>
+									<td>If this is a string, it specifies a group name to save. If it is an array, it is assumed to contain the language strings to be saved.</td>
+								</tr>
+								<tr>
+									<th><kbd>$language</kbd></th>
+									<td><code>null</code></td>
+									<td>The language code to save the file too. If not given, it will be saved to whatever the current set language code is.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><kbd>true</kbd> if the language file was saved, <kbd>false</kbd> if an error occurred</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// This loads the "custom" language file in a group named "foo".
+Lang::load('custom', 'foo');
+
+// update some language item
+Lang::set('foo.key', $value);
+
+// save the updated language group 'foo' (note: it will save everything in that group!)
+Lang::save('custom', 'foo');
+
+// save the updated language group 'bar' to the language file 'custom' in the module 'foo'
+Lang::save('foo::custom', 'bar');</code></pre>
 						</td>
 					</tr>
 					</tbody>

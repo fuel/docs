@@ -180,193 +180,91 @@
 
 			<h3>Class properties</h3>
 
-			<p>To be written.</p>
 
-			<article>
-				<h4 class="method" id="method_find_file">find_file($directory, $file, $ext = '.php', $multiple = false, $cache = true)</h4>
-				<p><strong>find_file</strong>メソッドは、Fuelアプリケーションディレクトリ構造下にあるファイルを見つける時に使います。</p>
-				<p>本メソッドは、アクティブなリクエストインスタンスの下で設定されている全てのサーチパス、アプリケーションのパス、ロードされている全てのパッケージのパス、コアパスを（このパス順で）探査します。'<strong>add_path</strong>'メソッドを使って、独自に（manually）グローバルサーチパスを設定することも出来ます。</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+			<p style="margin-bottom:10px;">Note that although these properties are defined as public, you should not alter them without good reason.</p>
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Name</th>
+						<th>Static</th>
+						<th>Type</th>
+						<th>Value</th>
+						<th>Description</th>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
+						<th>$initialized</th>
+						<td>yes</td>
+						<td>boolean</td>
+						<td><pre class="php"><code>false</code></pre></td>
 						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>初期値</th>
-									<th class="description">解説</th>
-								</tr>
-								<tr>
-									<th><kbd>$directory</kbd></th>
-									<td><i>必須</i></td>
-									<td>探査したい相対ディレクトリ名</td>
-								</tr>
-								<tr>
-									<th><kbd>$file</kbd></th>
-									<td><i>必須</i></td>
-									<td>探査したいファイル名</td>
-								</tr>
-								<tr>
-									<th><kbd>$ext</kbd></th>
-									<td><pre class="php"><code>'.php'</code></pre></td>
-									<td>探査したいファイル拡張子。冒頭のドットは必須です！</td>
-								</tr>
-								<tr>
-									<th><kbd>$multiple</kbd></th>
-									<td><pre class="php"><code>false</code></pre></td>
-									<td>もし<strong>false</strong>ならば、最初に見つけたファイル名が返されます。もし<strong>true</strong>ならば、該当するファイル名すべてを、配列で返します。</td>
-								</tr>
-								<tr>
-									<th><kbd>$cache</kbd></th>
-									<td><pre class="php"><code>true</code></pre></td>
-									<td>もし<strong>true</strong>ならば、以後の検索リクエストのために結果がキャッシュされます。<strong>false</strong>ならばキャッシュされません。</td>
-								</tr>
-							</table>
+							Indicates if the framework has been initialized.
 						</td>
 					</tr>
 					<tr>
-						<th>返り値</th>
-						<td>Mixed, 文字列か文字列の配列です。</td>
-					</tr>
-					<tr>
-						<th>例</th>
+						<th>$env</th>
+						<td>yes</td>
+						<td>string</td>
+						<td><pre class="php"><code>FUEL::DEVELOPMENT</code></pre></td>
 						<td>
-							<pre class="php"><code>// viewsディレクトリにある 'test' 名ファイルを全て見つけます。
-$views = Fuel::find_file('views', 'test', '.php', true);
-</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_list_files">list_files($directory = null, $filter = '*.php')</h4>
-				<p><strong>list_files</strong>メソッドは、ロードされている全てのサーチパス（例えば、それらのパスが派生したファイル構造 cascading file systemをもっているような場合）内にある指定ディレクトリ下のファイル一覧を取得します。全サーチパス内のconfigファイルを全べて見つけ出そうとする時などに、便利なメソッドです。</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>パラメタ</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>初期値</th>
-									<th class="description">解説</th>
-								</tr>
-								<tr>
-									<th><kbd>$directory</kbd></th>
-									<td><i>必須</i></td>
-									<td>探査したい相対ディレクトリ名</td>
-								</tr>
-								<tr>
-									<th><kbd>$filter</kbd></th>
-									<td><pre class="php"><code>'*.php'</code></pre></td>
-									<td>探査時に使うファイル名フィルタ</td>
-								</tr>
-							</table>
+							Environment the framework runs in. Must be one of the environment constants mentioned above.
 						</td>
 					</tr>
 					<tr>
-						<th>返り値</th>
-						<td>配列</td>
-					</tr>
-					<tr>
-						<th>例</th>
+						<th>$profiling</th>
+						<td>yes</td>
+						<td>boolean</td>
+						<td><pre class="php"><code>false</code></pre></td>
 						<td>
-							<pre class="php"><code>// インストールされているFuelの中の全てのconfigファイルを見つけ出します。
-$files = Fuel::list_files('config');
-</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_addpath">add_path($path, $prefix = false)</h4>
-				<p><strong>add_path</strong>メソッドを使えば、グローバルサーチパスを付け加えることが出来ます。付け加えられたパスは、Fuel::find_file()によって、アプリケーション中のファイルの所在を突き止めるために利用されます。</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>パラメタ</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>初期値</th>
-									<th class="description">解説</th>
-								</tr>
-								<tr>
-									<th><kbd>$path</kbd></th>
-									<td><i>必須</i></td>
-									<td>グローバルサーチパス一覧に付け加えるパス。</td>
-								</tr>
-								<tr>
-									<th><kbd>$prefix</kbd></th>
-									<td><pre class="php"><code>false</code></pre></td>
-									<td>もし<strong>false</strong>ならば、パスは、サーチパス一覧の後尾に付け加えられます。<strong>true</strong>ならば一覧冒頭に付け加えられます。</td>
-								</tr>
-							</table>
+							If true, the profiler has been enabled.
 						</td>
 					</tr>
 					<tr>
-						<th>返り値</th>
-						<td><i>void</i></td>
-					</tr>
-					<tr>
-						<th>例</th>
+						<th>$locale</th>
+						<td>yes</td>
+						<td>string</td>
+						<td><pre class="php"><code>en_US</code></pre></td>
 						<td>
-							<pre class="php"><code>// アプリケーションのmyfiles folderをグローバルサーチパス一覧の冒頭に付加します。
-Fuel::add_path(APPPATH.'myfiles'.DS, true);
-</code></pre>
+							Currently defined locale.
 						</td>
 					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_get_paths">get_paths()</h4>
-				<p><strong>get_paths</strong>メソッドは設定されているサーチパス一覧を返します。</p>
-				<table class="method">
-					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>パラメタ</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>返り値</th>
-						<td><i>void</i></td>
-					</tr>
-					<tr>
-						<th>例</th>
+						<th>$timezone</th>
+						<td>yes</td>
+						<td>string</td>
+						<td><pre class="php"><code>UTC</code></pre></td>
 						<td>
-							<pre class="php"><code>// 設定されているサーチパスを取得
-$paths = Fuel::get_paths();
-</code></pre>
+							Currently defined timezone.
 						</td>
 					</tr>
-					</tbody>
-				</table>
-			</article>
+					<tr>
+						<th>$encoding</th>
+						<td>yes</td>
+						<td>string</td>
+						<td><pre class="php"><code>UTF8</code></pre></td>
+						<td>
+							Currently defined character encoding.
+						</td>
+					</tr>
+					<tr>
+						<th>$is_cli</th>
+						<td>yes</td>
+						<td>boolean</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>
+							If true, the framework runs in CLI mode.
+						</td>
+					</tr>
+					<tr>
+						<th>$is_test</th>
+						<td>yes</td>
+						<td>boolean</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>
+							If true, the framework runs in Unit Test mode.
+						</td>
+					</tr>
+				</tbody>
+			</table>
 
 			<article>
 				<h4 class="method" id="method_load">load($file)</h4>
@@ -414,103 +312,6 @@ if (Fuel::load('myfile.php'))
 				<p class="note"> 次の点に留意してください。もしインクルードされるファイルに<strong>return</strong>宣言が含まれていない(NOT)場合、ロードが成功すればload() は<strong>1</strong>を返し、失敗すれば<strong>0</strong>を返します!</p>
 			</article>
 
-			<article>
-				<h4 class="method" id="method_add_module">add_module($name)</h4>
-				<p><strong>add_module</strong>メソッドは、指定されたモジュール（名） をクラスのプレフィックスとして登録します。</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>パラメタ</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>初期値</th>
-									<th class="description">解説</th>
-								</tr>
-								<tr>
-									<th><kbd>$name</kbd></th>
-									<td><i>必須</i></td>
-									<td>モジュール名 (アンダースコア無しの小文字プレフィックス)</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>返り値</th>
-						<td><i>文字列</i></td>
-					</tr>
-					<tr>
-						<th>Throws</th>
-						<td><strong>FuelException</strong>、指定した名前をもつモジュールが存在しない時。</td>
-					</tr>
-					<tr>
-						<th>例</th>
-						<td>
-							<pre class="php"><code>// 'mymodule'モジュールを登録
-try
-{
-	$module_path = Fuel::add_module('mymodule');
-}
-catch (FuelException $e)
-{
-	// ううむ。モジュールが存在しない。なにかやってください！
-}
-</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_module_exists">module_exists($module)</h4>
-				<p><strong>module_exists</strong>メソッドはモジュールが存在するかどうかをチェックします。したがって、チェックしたいモジュールをあらかじめ付け加えておく必要はありません（The module you want to check does not have to be added first.）。</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>パラメタ</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>初期値</th>
-									<th class="description">解説</th>
-								</tr>
-								<tr>
-									<th><kbd>$module</kbd></th>
-									<td><i>必須</i></td>
-									<td>モジュール名 (アンダースコア無しの小文字プレフィックス)</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>返り値</th>
-						<td><i>mixed</i></td>
-					</tr>
-					<tr>
-						<th>例</th>
-						<td>
-							<pre class="php"><code>// 'mymodule'パスを返します。
-$module_path = Fuel::module_exists('mymodule');
-
-// unknownモジュールがないのでfalseを返します。
-$module_path = Fuel::module_exists('unknown');
-</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
 
 		</div>
 
