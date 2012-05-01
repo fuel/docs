@@ -504,12 +504,12 @@ panes.auth = {
 	"Auth Package": {
 		"Introduction":		"packages/auth/intro.html",
 		"Usage":			"packages/auth/usage.html",
+		"Writing drivers":	"packages/auth/drivers.html",
 		"Driver types": {
 			"Login":		"packages/auth/types/login.html",
-			"Groups":		"packages/auth/types/groups.html",
+			"Group":		"packages/auth/types/group.html",
 			"ACL":			"packages/auth/types/acl.html"
 		},
-		"Writing drivers":	"packages/auth/drivers.html",
 		"SimpleAuth": {
 			"Introduction":	"packages/auth/simpleauth/intro.html",
 			"Login":		"packages/auth/simpleauth/login.html",
