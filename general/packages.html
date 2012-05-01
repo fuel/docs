@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Packages - General - FuelPHP Documentation</title>
+	<title>パッケージ - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,36 +44,42 @@
 
 		<div id="main">
 
-			<h2>Packages</h2>
+			<h2>パッケージ</h2>
 
 			<p>
-				When it comes to organizing, reuse and share your code, packages are a great way to allow you to do this.
-				They can contain all sorts of code like models, third-party libraries, configs and so on.
-				Packages also allow you to extend the core without messing up you app/classes directory.
-				To clarify what packages are, here are the "is" and "is not" on packages.
+				モジュール・サードパーティライブラリ・設定などといった、あらゆる種類のものを含むことができる
+				パッケージは、コードの組織化・再利用・共有のための素晴らしい手段です。
+				app/classes ディレクトリを滅茶苦茶することなくに core を拡張することもできます。
+				以下で、パッケージとは何であり、何でないのかを明らかにして行きましょう。
 			</p>
 
-			<h4 id="they_are">Packages...</h4>
+			<h4 id="they_are">パッケージは</h4>
 			<ul>
-				<li>are a great way to organize your code,</li>
-				<li>supply a place to keep third party libraries,</li>
-				<li>allow you to extend other packages without messing with someone's code,</li>
-				<li>a place to extend fuel without messing with core files.</li>
+				<li>コードをまとめ、</li>
+				<li>サードパーティライブラリを維持するための場所を提供し、</li>
+				<li>誰かが書いたコードを滅茶苦茶にすることなく拡張すること実現し、</li>
+				<li>core を目茶目茶にすることなく fuel の拡張をするための場所です。</li>
 			</ul>
 
-			<h4 id="they_are_not">But..</h4>
+			<h4 id="they_are_not">一方で</h4>
 			<ul>
-				<li>packages do not map to the URL,</li>
-				<li>and are not approachable through HMVC requests</li>
+				<li>パッケージは URL をマップすることはなく、</li>
+				<li>また、 HMVC リクエストからアプローチすることはできません。</li>
 			</ul>
 
-			<h3 id="installing">Installing packages</h3>
-			<p>Installing packages can be done manually and through <a href="../packages/oil/package.html">oil</a>. To install manually download the package source and place it into your package directory (default in fuel/packages).</p>
-			<p class="note">To actually be able to use your it you must either add it to <code>always_load</code> in
-			<code>app/config/config.php</code> or use <a href="../classes/package.html#method_load">Package::load()</a>.</p>
+			<h3 id="installing">パッケージのインストール</h3>
+			<p>
+				パッケージのインストールは、手動もしくは <a href="../packages/oil/package.html">oil</a> から行えます。
+				手動でインストールするには、ダウンロードしたパッケージをパッケージディレクトリ (デフォルトでは fuel/packages)へ配置してください。
+			</p>
+			<p class="note">
+				パッケージを利用する際には、パッケージを <code>app/config/config.php</code> の <code>always_load</code> へ追加するか、
+				もしくは <a href="../classes/package.html#method_load">Package::load()</a> を呼び出す必要があります。
+			</p>
 
-			<h3 id="creation">Creating packages</h3>
+			<h3 id="creation">パッケージの作成</h3>
 			<p>To help people understand what you are doing it's best to structure your package like so:</p>
+			<p>あなたが何をしているのかを他の人が理解しやすくするための、ベストなパッケージ構造:</p>
 
 			<pre><code>/packages
     /package
