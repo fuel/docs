@@ -8,7 +8,7 @@
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../../';
-		var class_prefix = "Auth::instance()->";
+		var class_prefix = "$object->";
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
 	<title>Login - Driver types - Auth Package - FuelPHP Documentation</title>
@@ -59,6 +59,20 @@
 					MUST implement.
 				</p>
 
+				<h3 id="driver_config">Driver configuration</h3>
+
+				<p>
+					A group driver can load additional drivers that it depends on. Generally, these are ACL drivers. But your implementation
+					could introduce and use custom driver types as well. To do so, add this structure to your driver class:
+				</p>
+
+								<pre class="php"><code>// autoload the SimpleGroup group driver when loading this login driver
+// this also defines the additional user record fields this driver has a getter for
+	protected $config = array(
+		'drivers' => array('group' => array('SimpleGroup')),
+		'additional_fields' => array('profile_fields'),
+	);
+</code></pre>
 				<h3 id="generic_methods">Generic methods</h3>
 
 				<p>

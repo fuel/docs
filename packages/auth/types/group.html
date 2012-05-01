@@ -8,9 +8,10 @@
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../../';
+		var class_prefix = "$object->";
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
-	<title>Groups - Driver types - Auth Package - FuelPHP Documentation</title>
+	<title>Group - Driver types - Auth Package - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
@@ -50,7 +51,325 @@
 			consistent.</p>
 
 			<section>
-				<h2 id="driver_types">Driver types: Groups</h2>
+				<h2 id="driver_types">Auth_Group_Driver</h2>
+
+				<p>
+					This driver is the base class for all Auth group drivers. It is defined as an abstract class which contains
+					all methods generic to all group drivers, and abstract method definitions for all methods any group driver
+					MUST implement.
+				</p>
+
+				<h3 id="driver_config">Driver configuration</h3>
+
+				<p>
+					A group driver can load additional drivers that it depends on. Generally, these are ACL drivers. But your implementation
+					could introduce and use custom driver types as well. To do so, add this structure to your driver class:
+				</p>
+
+								<pre class="php"><code>// autoload the SimpleAcl acl driver when loading this group driver
+	protected $config = array(
+		'drivers' => array('acl' => array('SimpleAcl'))
+	);
+</code></pre>
+
+				<h3 id="generic_methods">Generic methods</h3>
+
+				<p>
+					Generic methods are defined in the group base driver, and are available to all Auth group drivers through
+					extension. These methods provide functions to ...
+				</p>
+				<p class="note">The methods defined in the classes but not documented here are used internally, and should not be called directly.</p>
+
+				<article>
+					<h4 id="method_get_id" class="method">get_id()</h4>
+					<p>Returns the drivers unique id. This can be used to identify the driver, or to select a specific driver instance.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>The drivers id string.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// returns 'simpleauth'
+$id = Auth::instance('simplegroup')->get_id();
+</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_set_config" class="method">set_config($key, $value)</h4>
+					<p>Sets a driver configuration value.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$key</kbd></th>
+										<td>required</td>
+										<td>Configuration key name</td>
+									</tr>
+									<tr>
+										<th><kbd>$value</kbd></th>
+										<td>required</td>
+										<td>Value for this configuration key</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>void</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// set a config value on the simplegroup driver
+Auth::instance('simplegroup')->set_config('key', 'value');
+</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_get_config" class="method">get_config($key, $default = null)</h4>
+					<p>Gets a driver configuration value.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$key</kbd></th>
+										<td>required</td>
+										<td>Configuration key name</td>
+									</tr>
+									<tr>
+										<th><kbd>$default</kbd></th>
+										<td><i>null</i></td>
+										<td>Default value to be returned if the requested key does not exist</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>mixed</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// get a config value of the simplegroup driver, return false if it doesn't exist
+$key = Auth::instance(simplegroup)->get_config('key', false);
+</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_has_access" class="method">has_access($condition, $driver, $group = null)</h4>
+					<p>The <strong>has_access</strong> method uses the defined ACL drivers to check the users access according to the given condition.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$condition</kbd></th>
+										<td>required</td>
+										<td>takes a location and the required rights on the location as either a string or
+											an array</td>
+									</tr>
+									<tr>
+										<th><kbd>$driver</kbd></th>
+										<td>required</td>
+										<td>ACL driver to query, or <strong>null</strong> if all loaded drivers should be called to check for access.</td>
+									</tr>
+									<tr>
+										<th><kbd>$group</kbd></th>
+										<td><i>null</i></td>
+										<td>Optionally, only check this group structure, instead of against all defined groups.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean, <strong>true</strong> if access was granted, <strong>false</strong> if not.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// check if user is allowed to comment
+if ( ! Auth::instance('simplegroup')->has_access('comments.create'), null)
+{
+	Response::redirect('no_admin');
+}
+
+// check if user can also update &amp; delete comments
+Auth::instance('simplegroup')->has_access('comments.[update,delete]', null);
+
+// call statically (will use the default group driver instance)
+Auth::has_access('comments.[update,delete]');
+
+// The same with an array instead of a string
+Auth::instance('simplegroup')->has_access(array('comments', array('update', 'delete')), null);</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<h3 id="abstract_methods">Abstract methods</h3>
+
+				<p>
+					Every group driver you develop MUST provide all of these methods, and the MUST return the values documented here.
+				</p>
+
+				<article>
+					<h4 id="method_member" class="method">member($group, $specific = null)</h4>
+					<p>Checks if user is a member of the given group in either all loaded Group drivers or just those
+						specified as the 2nd parameter.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$group</kbd></th>
+										<td><i>required</i></td>
+										<td>group id</td>
+									</tr>
+									<tr>
+										<th><kbd>$specific</kbd></th>
+										<td><i>null</i></td>
+										<td>null to check all or one ore more driver id's (single string or array of strings)</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>bool, whether one of the (given) drivers had the current user registered as a member</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>if ( ! Auth::member(100))
+{
+	Response::redirect('no_admin');
+}
+
+// specific driver
+Auth::member(1, 'simplegroup');
+
+// Multiple drivers
+Auth::check(0, array('simplegroup', 'genericgroup'));</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_get_name" class="method">get_name($group)</h4>
+					<p>Get the display name of the given group name.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$group</kbd></th>
+										<td><i>null</i></td>
+										<td>name of the group you want to get the display name of</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>mixed, the retrieved group display name, or <strong>false</strong> if the given group does not exist.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// get the display name of the admin group
+Auth::instance('simplegroup')->get_name('admin');</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
 
 			</section>
 
