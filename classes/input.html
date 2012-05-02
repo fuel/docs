@@ -78,6 +78,70 @@ echo Input::uri(); // returns /controller/method</code></pre>
 			</article>
 
 			<article>
+				<h4 class="method" id="method_json">json($default = null)</h4>
+				<p>The <strong>json</strong> method returns a json_decoded (and cleaned) array from the json request body.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array - Format::from_json result array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$json_request_array = \Input::json();
+
+// Set a default for when no json body is provided:
+$json_request_array = \Input::json(array(
+	'no' => 'body'
+));</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_xml">xml($default = null)</h4>
+				<p>The <strong>xml</strong> method returns a XML decoded (and cleaned) array from the XML request body.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array - Format::from_json result array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$xml_request_array = \Input::xml();
+
+// Set a default for when no json body is provided:
+$xml_request_array = \Input::xml(array(
+	'no' => 'body'
+));</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_cookie">cookie($index, $default = null)</h4>
 				<p>The <strong>cookie</strong> method allows you to read $_COOKIE variables. Call without params to fetch the
 				full cookie array.</p>
