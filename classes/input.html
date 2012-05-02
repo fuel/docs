@@ -78,8 +78,8 @@ echo Input::uri(); // returns /controller/method</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_json">json($default = null)</h4>
-				<p>The <strong>json</strong> method returns a json_decoded (and cleaned) array from the json request body.</p>
+				<h4 class="method" id="method_json">json($index = null, $default = null)</h4>
+				<p>The <strong>json</strong> method returns a json_decoded (and cleaned) value from the json request body.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -97,12 +97,10 @@ echo Input::uri(); // returns /controller/method</code></pre>
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$json_request_array = \Input::json();
+							<pre class="php"><code>$value = \Input::json('key');
 
-// Set a default for when no json body is provided:
-$json_request_array = \Input::json(array(
-	'no' => 'body'
-));</code></pre>
+// Set a default for when no value is present:
+$value = \Input::json('key', 'backup-value');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -110,8 +108,8 @@ $json_request_array = \Input::json(array(
 			</article>
 
 			<article>
-				<h4 class="method" id="method_xml">xml($default = null)</h4>
-				<p>The <strong>xml</strong> method returns a XML decoded (and cleaned) array from the XML request body.</p>
+				<h4 class="method" id="method_xml">xml($index = null, $default = null)</h4>
+				<p>The <strong>xml</strong> method returns a XML decoded (and cleaned) value from the XML request body.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -129,12 +127,10 @@ $json_request_array = \Input::json(array(
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$xml_request_array = \Input::xml();
+							<pre class="php"><code>$value = \Input::xml('key');
 
-// Set a default for when no json body is provided:
-$xml_request_array = \Input::xml(array(
-	'no' => 'body'
-));</code></pre>
+// Set a default for when no value is present:
+$value = \Input::xml('key', 'backup-value');</code></pre>
 						</td>
 					</tr>
 					</tbody>
