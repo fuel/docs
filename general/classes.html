@@ -66,6 +66,32 @@
 
 			<p>That will be loaded from app/classes/session/driver.php</p>
 
+			<h3 id="classes_namespaces">Classes and Namespaces</h3>
+
+			<p>
+				To determine which PHP file to load, FuelPHP's autoloader will treat namespaces and class names with underscores exactly the same.
+				This means that for classes in sub-directories, you can mix-and-match namespaces and underscores to suit your needs.
+			</p>
+
+			<p>Take for example a class in the file app/classes/core/system/messages.php. The class in this file can be defined as:</p>
+
+				<pre class="php"><code>// global namespace, fully underscored class name
+class Core_System_Messages {}
+
+// combine a namespace and underscores
+namespace Core;
+class System_Messages {}
+
+// or fully namespaced
+namespace Core\System;
+class Messages {}
+</code></pre>
+
+			<p class="note">
+				The first method is the one most commonly used and easiest to understand. The namespaced versions are particularly handy if you
+				combine them with the Use statement in the classes that use the defined class.
+			</p>
+
 			<article>
 				<h2 id="init_method">Initializing your class</h2>
 

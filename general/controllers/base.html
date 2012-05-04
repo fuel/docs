@@ -59,8 +59,8 @@
 			<h3 id="creating_a_controller">Creating a controller</h3>
 
 			<p>
-				In FuelPHP, Controllers are put in the <kbd>fuel/app/classes/controller</kbd> directory, and are prefixed 
-				with <kbd>"Controller_"</kbd>. 	Optionally, they should extend the <kbd>Controller</kbd> class for the full 
+				In FuelPHP, Controllers are put in the <kbd>fuel/app/classes/controller</kbd> directory, and are prefixed
+				with <kbd>"Controller_"</kbd>. 	Optionally, they should extend the <kbd>Controller</kbd> class for the full
 				feature set. Below is an example of the controller "example":
 			</p>
 
@@ -80,7 +80,7 @@
 				isn't allowed, "action_list" is no problem). But this also means you can give your controller public
 				methods that can be used from other classes but are not routable.
 			</p>
-			
+
 			<h4 id="controller_in_subdir">Controllers in Sub-Directories</h4>
 
 			<p>
@@ -115,16 +115,20 @@
 			<h4 id="returning_results">Returning the result</h4>
 
 			<p>
-				A controller action should return its result. The result can be anything that can be a string, or
-				anything that can be cast to string, like for example a View object.
+				A controller action <strong>MUST</strong> return a Response object. Optionally you can specify special HTTP headers,
+				or a custom HTTP status code (a code other than "200 OK").
 			</p>
 
 			<p>
-				Alternatively you can return a Response object. You use a Response object primarily if you need to
-				set special HTTP headers, or a custom HTTP status code (a code other than "200 OK").
+				If your controller extends one of the base controllers, your action can also return any value that can be cast to string,
+				like for example a View object. The after() method of the base controller will convert it into a Response object for you.
+			</p>
+			<p>
+				If your controller does not extend one of the base controllers, and you want to use this feature,
+				your controller must contain it's own after() method that will accept the actions return value, and has to wrap it into
+				a Reponse object which it must return.
 			</p>
 
-			
 			<h3 id="special_methods">Special controller methods</h3>
 
 			<p class="note">
@@ -155,6 +159,7 @@
 				<p>
 					This method will be executed <strong>after</strong> the method from the URL was called successfully,
 					this will not be called if the method turns out not to exist. <a href="#response"><var>$response</var></a> parameter is required.
+					The after() method <strong>MUST</strong> return a Response object.
 				</p>
 			</article>
 
@@ -165,16 +170,6 @@
 					the router() method will be called and use the <var>$method</var> that is being passed in, instead
 					of the default method. It will also pass in <var>$params</var>, in an array, to that
 					<var>$method</var>. The before() and after() methods will still work as expected.
-				</p>
-			</article>
-
-			<h3 id="special_propperties">Special controller properties</h3>
-
-			<article>
-				<h4 id="request">$request</h4>
-				<p>
-					This property holds the Request object. It should not be overwritten. It should be used to get
-					information about the current request. It should be thought of as read-only.
 				</p>
 			</article>
 

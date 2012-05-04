@@ -69,10 +69,10 @@
 				<h3 id="extend_and_replace">Extending &amp; replacing core classes</h3>
 
 				<p>If you want your core extension to be used by the core as well as by your own application you need to extend
-				it under the same name but take it from the "Fuel\Core" namespace. Below is an example for the Config class
-				which you create in "fuel/app/classes/config.php":</p>
+				it under the same name but take it from the "Fuel\Core" namespace. Below is an example for the Lang class
+				which you create in "fuel/app/classes/lang.php":</p>
 
-				<pre><code>class Config extends Fuel\Core\Config {}</code></pre>
+				<pre><code>class Lang extends Fuel\Core\Lang {}</code></pre>
 
 				<p>But classes that have the same name as core classes are ignored by default. To make the Autoloader recognize
 				your replacement you need to register it in the application bootstrap file. Search for the lines below:</p>
@@ -82,17 +82,17 @@
 	// Example: 'View' => APPPATH.'classes/view.php',
 ));</code></pre>
 
-				<p>As is explained in the comments you need to add the new Config class as follows:</p>
+				<p>As is explained in the comments you need to add the new Lang class as follows:</p>
 
 				<pre class="php"><code>Autoloader::add_classes(array(
 	// Add classes you want to override here
 	// Example: 'View' => APPPATH.'classes/view.php',
-	'Config' => APPPATH.'classes/config.php',
+	'Lang' => APPPATH.'classes/lang.php',
 ));</code></pre>
 
-				<p>After this the core class will have been replaced by your extension.<br />
-				Note: the core class will still be available when used with full namespace prefixed. With the above example of
-				extending "Config" you can still use the original by calling "Fuel\Core\Config".</p>
+				<p>After this the core class will have been replaced by your extension.</p>
+				<p class="note">The core class will still be available when used with full namespace prefixed. With the above example of
+				extending "Lang" you can still use the original by calling "Fuel\Core\Lang".</p>
 			</article>
 
 			<article>

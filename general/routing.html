@@ -165,6 +165,25 @@ echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 				Note that this currently only works for routes that <kbd>DO NOT</kbd> contain a regex, and only for routes defined in <kbd>app/config/routes.php</kbd>, not for module routes.
 			</p>
 
+			<h3 id="inline_routes">Inline routes</h3>
+
+			<p>A route does not have to resolve to a controller method. FuelPHP also supports inline routes, which are defined as a Closure that replaces the controller method.</p>
+
+			<p>Example route:</p>
+
+			<pre class="php"><code>return array(
+    'secret/mystuff' => function () {
+		// this route only works in development
+		if (\Fuel::$env == \Fuel::DEVELOPMENT)
+		{
+			return \Request::forge('secret/mystuff/keepout', false);
+		}
+		else
+		{
+			throw new HttpNotFoundException('This page is only accessable in development.');
+		}
+};</code></pre>
+
 			<h3 id="module_routing">Modules &amp; Routing</h3>
 
 			<p><a href="modules.html#module_routing">Read about how modules handle routing</a>.</p>
