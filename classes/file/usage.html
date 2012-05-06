@@ -488,8 +488,9 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>Example</th>
+							<pre class="php"><code>// rename 'test.txt' to 'newname.txt', and move it to a sub-directory
 						<td>
-							<pre class="php"><code>File::rename(DOCROOT.'/test.txt', DOCROOT.'/newname.txt');</code></pre>
+File::rename(DOCROOT.'test.txt', DOCROOT.'folder/newname.txt');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -580,7 +581,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 								<tr>
 									<th><kbd>$new_path</kbd></th>
 									<td><em>required</em></td>
-									<td>Path to copy to</td>
+									<td>Full path, including filename, to copy to</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
@@ -607,7 +608,8 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>File::copy(DOCROOT.'/test.txt', DOCROOT.'/newname.txt');</code></pre>
+							<pre class="php"><code>// copy the file 'test.txt' from the docroot to a sub directory
+File::copy(DOCROOT.'test.txt', DOCROOT.'folder/test.txt');</code></pre>
 						</td>
 					</tr>
 					</tbody>
