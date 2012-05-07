@@ -78,6 +78,66 @@ echo Input::uri(); // returns /controller/method</code></pre>
 			</article>
 
 			<article>
+				<h4 class="method" id="method_json">json($index = null, $default = null)</h4>
+				<p>The <strong>json</strong> method returns a json_decoded (and cleaned) value from the json request body.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array - Format::from_json result array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$value = \Input::json('key');
+
+// Set a default for when no value is present:
+$value = \Input::json('key', 'backup-value');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_xml">xml($index = null, $default = null)</h4>
+				<p>The <strong>xml</strong> method returns a XML decoded (and cleaned) value from the XML request body.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array - Format::from_json result array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$value = \Input::xml('key');
+
+// Set a default for when no value is present:
+$value = \Input::xml('key', 'backup-value');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_cookie">cookie($index, $default = null)</h4>
 				<p>The <strong>cookie</strong> method allows you to read $_COOKIE variables. Call without params to fetch the
 				full cookie array.</p>
@@ -306,51 +366,6 @@ Input::get('somevar.foo.bar');</code></pre>
 // You can go multiple levels deep as well.
 // This will return $_POST['somevar']['foo']['bar']
 Input::post('somevar.foo.bar');</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_get_post">get_post($index, $default = null)</h4>
-				<p>The <strong>get_post</strong> method allows you to read from $_GET and $_POST variables, checking $_GET first.</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$index</kbd></th>
-									<td><i>required</i></td>
-									<td>The key in the $_GET or $_POST array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
-								</tr>
-								<tr>
-									<th><kbd>$default</kbd></th>
-									<td><i>optional</i></td>
-									<td>What value should be returned if the array item is not found?</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>mixed</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre><code class="php">Input::get_post('foo', 'bar');</code></pre>
 						</td>
 					</tr>
 					</tbody>

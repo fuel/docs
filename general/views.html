@@ -116,8 +116,9 @@
 
 			<h3 id="security">セキュリティ</h3>
 
-			<p>デフォルトでは、ビューは Security::htmlentities() を使用して、ビューに渡されたものをすべてサニタイズします。
-				フィルタしないで渡したい場合は、<kbd>set($name, $value, false)</kbd> メソッドを使用できます。</p>
+			<p>Views use output encoding to sanitize anything you pass to them. In a default installation, the security method
+				Security::htmlentities() is defined as output filter. You can modify the filters in your applications config.php file.
+				If you want to pass something unfiltered, you can use the method <kbd>set($name, $value, false)</kbd>.</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
 {
@@ -140,9 +141,12 @@
 	}
 }</code></pre>
 
-			<p>ビューをこのように動作させたくない場合は静的プロパティ <kbd>View::$auto_encode</kbd>
-			を <kbd>false</kbd> に変更してください。 そうすると、フィルタされなくなります。ある値をフィルタしたい場合は、
-			<kbd>set($name, $value, true)</kbd> を使用できます。</p>
+			<p>If you don't want your View to work like this, you can pass <kbd>false</kbd> as third argument <kbd>View::forge()</kbd>
+			Now anything added to this View object will be unfiltered.  If you then do want some values filtered, you can use
+			<kbd>set($name, $value, true)</kbd>.<br />
+			You can also globally disable the output filter by setting the application
+			configuration value <kbd>security.auto_filter_output</kbd> to <kbd>false</kbd>. For security reasons it is highly recommended
+			that you don't do this!</p>
 
 			<p class="note"><strong>オブジェクトについての注意:</strong> 渡されるオブジェクトが View、ViewModel あるいは Closure のインスタンスでない限り、 
 			オブジェクトは <kbd>__toString()</kbd> メソッドを持つことが期待され、出力フィルタリングが有効なとき文字列に強制変換されます。どうしても渡したい場合は、

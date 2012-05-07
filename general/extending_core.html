@@ -67,12 +67,11 @@
 
 			<article>
 				<h3 id="extend_and_replace">コアクラスを拡張し、置き換える</h3>
+				<p>If you want your core extension to be used by the core as well as by your own application you need to extend
+				it under the same name but take it from the "Fuel\Core" namespace. Below is an example for the Lang class
+				which you create in "fuel/app/classes/lang.php":</p>
 
-				<p>コアの拡張をアプリケーションと同様にコアにも使用させたい場合、同じ名前でコアを拡張し、
-				"Fuel\Core" 名前空間を取ります。以下は Config クラスの例で、
-				"fuel/app/classes/config.php" に作成します:</p>
-
-				<pre><code>class Config extends Fuel\Core\Config {}</code></pre>
+				<pre><code>class Lang extends Fuel\Core\Lang {}</code></pre>
 
 				<p>しかし、コアクラスを同じ名前を持つクラスは、デフォルトでは無視されます。
 				オートローダに置き換えたクラスを認識させるには、アプリケーションブートストラップファイルで登録するする必要があります。次の行を探してください:</p>
@@ -82,17 +81,18 @@
 	// Example: 'View' => APPPATH.'classes/view.php',
 ));</code></pre>
 
-				<p>コメントで説明しているように、以下のように新しい Config クラスを追加する必要があります:</p>
+
+				<p>As is explained in the comments you need to add the new Lang class as follows:</p>
 
 				<pre class="php"><code>Autoloader::add_classes(array(
 	// ここにオーバーライドしたいクラスを追加します
 	// Example: 'View' => APPPATH.'classes/view.php',
-	'Config' => APPPATH.'classes/config.php',
+	'Lang' => APPPATH.'classes/lang.php',
 ));</code></pre>
 
 				<p>この後、コアクラスはあなたが拡張したクラスに置き換わります。<br/>
-				注意: コアクラスは依然として有効で、プリフィックスとして名前空間をすべて指定することで使用可能です。
-				上記の "Config" クラスの拡張の例では、"Fuel\Core\Config" をコールすることでオリジナルのクラスを使用可能です。</p>
+				<p class="note">The core class will still be available when used with full namespace prefixed. With the above example of
+				extending "Lang" you can still use the original by calling "Fuel\Core\Lang".</p>
 			</article>
 
 			<article>

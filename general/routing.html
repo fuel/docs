@@ -165,7 +165,26 @@ echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 				現在のところこのようなルート付け機能は限られています。正規表現を <kbd>用いず</kbd>、かつ、モジュール内で定義されたルートでは機能せず <kbd>app/config/routes.php</kbd> で定義したもののみ機能します。この点に注意してください。
 			</p>
 
-			<h3 id="module_routing">モジュールとルーティング</h3>
+			<h3 id="inline_routes">Inline routes</h3>
+
+			<p>A route does not have to resolve to a controller method. FuelPHP also supports inline routes, which are defined as a Closure that replaces the controller method.</p>
+
+			<p>Example route:</p>
+
+			<pre class="php"><code>return array(
+    'secret/mystuff' => function () {
+		// this route only works in development
+		if (\Fuel::$env == \Fuel::DEVELOPMENT)
+		{
+			return \Request::forge('secret/mystuff/keepout', false);
+		}
+		else
+		{
+			throw new HttpNotFoundException('This page is only accessable in development.');
+		}
+};</code></pre>
+
+			<h3 id="module_routing">Modules &amp; Routing</h3>
 
 			<p><a href="modules.html#module_routing">how modules handle routing をお読みください</a>。</p>
 

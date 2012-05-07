@@ -59,9 +59,9 @@
 			<h3 id="creating_a_controller">コントローラを作成する</h3>
 
 			<p>
-				FuelPHP では、コントローラーは <kbd>fuel/app/classes/controller</kbd> ディレクトリに置きます。, そして<kbd>"Controller_"</kbd> というプレフィックスを付けます。
-				必要に応じて<kbd>Controller</kbd> class を拡張する必要があります。
-				feature set. 以下は "example" コントローラの例です:
+				In FuelPHP, Controllers are put in the <kbd>fuel/app/classes/controller</kbd> directory, and are prefixed
+				with <kbd>"Controller_"</kbd>. 	Optionally, they should extend the <kbd>Controller</kbd> class for the full
+				feature set. Below is an example of the controller "example":
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
@@ -80,7 +80,7 @@
 				しかし、これはコントローラに公開メソッドを与えることができることも意味します。
 				このメソッドは他のクラスからも使用できますが、ルーティングできません。
 			</p>
-			
+
 			<h4 id="controller_in_subdir">Controllers in Sub-Directories</h4>
 
 			<p>
@@ -115,17 +115,21 @@
 			<h4 id="returning_results">結果を返す</h4>
 
 			<p>
-				コントローラアクションは結果を返します。結果は文字列か、
-				View オブジェクトのような文字列にキャスト可能なものになります。
+				A controller action <strong>MUST</strong> return a Response object. Optionally you can specify special HTTP headers,
+				or a custom HTTP status code (a code other than "200 OK").
 			</p>
 
 			<p>
-				それ以外に Respose オブジェクトを返すこともできます。独自の HTTP ステータスコード ("200 OK" 以外のコード) のような特別な HTTP ヘッダを設定する必要がある場合、
-				主として Respose オブジェクトを使います。
+				If your controller extends one of the base controllers, your action can also return any value that can be cast to string,
+				like for example a View object. The after() method of the base controller will convert it into a Response object for you.
+			</p>
+			<p>
+				If your controller does not extend one of the base controllers, and you want to use this feature,
+				your controller must contain it's own after() method that will accept the actions return value, and has to wrap it into
+				a Reponse object which it must return.
 			</p>
 
-	
-			<h3 id="special_methods">特別なコントローラメソッド</h3>
+			<h3 id="special_methods">Special controller methods</h3>
 
 			<p class="note">
 				クラスのコンストラクタ <kbd>__construct()</kbd> をオーバーライドしないでください。
@@ -153,8 +157,9 @@
 			<article>
 				<h4 id="after">after($response)</h4>
 				<p>
-					このメソッドは、URL で指定されたメソッドの呼び出しに成功した<strong>後</strong>で実行されます。
-					メソッドが存在していない場合は呼び出されません。<a href="#response"><var>$response</var></a> パラメータが必要です。
+					This method will be executed <strong>after</strong> the method from the URL was called successfully,
+					this will not be called if the method turns out not to exist. <a href="#response"><var>$response</var></a> parameter is required.
+					The after() method <strong>MUST</strong> return a Response object.
 				</p>
 			</article>
 
@@ -165,16 +170,6 @@
 					コントローラが読み込まれると、router() メソッドが呼び出されデフォルトメソッドの代わりに、
 					渡された <var>$method</var> を使用します。
                     <var>$method</var> に配列として <var>$params</var> で渡すこともできます。before() や after() メソッドは期待したとおりに動作します。
-				</p>
-			</article>
-
-			<h3 id="special_propperties">特別なコントローラプロパティ</h3>
-
-			<article>
-				<h4 id="request">$request</h4>
-				<p>
-					このプロパティは、Request オブジェクトにを保持します。上書きはされません。
-					現在のリクエスト情報を取得するために使用します。これは読み込み専用と考えてください。
 				</p>
 			</article>
 

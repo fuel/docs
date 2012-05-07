@@ -122,9 +122,22 @@ class Controller_Welcome extends Controller
 
 			<p>ネイティブ SQL クエリとクエリビルダの利用については <a href="../classes/database/db.html">DB クラス</a> のドキュメントをご覧ください。</p>
 
-			<h3 id="orm_models">モデルを作成するための Orm の利用</h3>
+			<h3 id="model_crud_models">Using Model_Crud to create models</h3>
 
-			<p>モデルを作成するさい、採用可能な 1 つの方法として、<a href="../packages/orm/intro.html">Orm パッケージ</a> の活用があります。Orm パッケージは手を加えることなくそのまま使える多くの機能をモデルに付け加えます。下記がその活用事例です。</p>
+			<p>One possible way of creating models is by using <a href="../classes/model_crud/introduction.html">Model_Crud</a>, which adds a commonly used functionality to your models for interacting with a database table. There's an example of its usage below.</p>
+
+			<pre class="php"><code>// find all articles
+$entry = Model_Article::find_all();
+
+// find all articles from category 1 order descending by date
+$entry = Model_Article::find(array(
+    'where' => array('category_id', 1),
+    'order_by' => array('date', 'desc')
+));</code></pre>
+
+			<h3 id="orm_models">Using the Orm to create models</h3>
+
+			<p>For models with more functionality, like support for relations, you can use the <a href="../packages/orm/intro.html">Orm Package</a>, which adds a lot of functionality out-of-the-box to your models. There's an example of its usage below.</p>
 
 			<pre class="php"><code>// 全ての記事を探し出す
 $entry = Model_Article::find('all');
@@ -135,7 +148,8 @@ $entry = Model_Article::find('all', array(
     'order_by' => array('date', 'desc')
 ));</code></pre>
 
-			<p>ORM の動作については、更に <a href="../packages/orm/intro.html">Orm パッケージ</a> のドキュメントをご覧ください。</p>
+
+			<p>Model_Crud and the ORM package use similar syntax, which makes it simple to migrate once you require more functionality than Model_Crud can provide.</p>
 
 		</div>
 
