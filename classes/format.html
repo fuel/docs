@@ -11,7 +11,7 @@
 		var class_prefix = "Form::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Form - Classes - FuelPHP Documentation</title>
+	<title>Format - Classes - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
@@ -88,15 +88,15 @@
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$array = array('foo' => 'bar');
-print_r( Format::forge( $array ) );
+print_r(Format::forge($array));
 
 // Returns
 Fuel\Core\Format Object
 (
 	[_data:protected] => Array
-		(
-			[foo] => bar
-		)
+	(
+		[foo] => bar
+	)
 )</code>
 							</pre>
 						</td>
@@ -139,13 +139,13 @@ Fuel\Core\Format Object
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
-print_r( Format::forge( $json_string, 'json' )->to_array() );
+print_r(Format::forge($json_string, 'json')->to_array());
 
 // Returns
 Array
 (
-    [foo] => bar
-    [baz] => qux
+	[foo] => bar
+	[baz] => qux
 )</code>
 							</pre>
 						</td>
@@ -198,7 +198,7 @@ Array
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
-print_r( Format::forge( $array )->to_xml() );
+print_r(Format::forge($array)->to_xml());
 
 // Returns
 // &lt;?xml version="1.0" encoding="utf-8"?&gt;
@@ -230,10 +230,9 @@ print_r( Format::forge( $array )->to_xml() );
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
-print_r( Format::forge( $json_string, 'json' )->to_csv() );
+print_r(Format::forge($json_string, 'json')->to_csv());
 
 // Returns
-//
 // foo,baz
 // "bar","qux"</code>
 							</pre>
@@ -243,7 +242,7 @@ print_r( Format::forge( $json_string, 'json' )->to_csv() );
 				</table>
 			</article>
 			<article>
-				<h4>to_json()</h4>
+				<h4 class="method" id="method_to_json">to_json()</h4>
 				<p>The <strong>to_json</strong> method returns the given data as a JSON string. Do not call this directly, use the <strong>forge</strong> method as described in the example.</p>
 				<table class="method">
 					<tbody>
@@ -259,7 +258,7 @@ print_r( Format::forge( $json_string, 'json' )->to_csv() );
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
-print_r( Format::forge( $array )->to_json() );
+print_r(Format::forge($array)->to_json());
 
 // Returns
 // {"foo":"bar","baz":"qux"}</code>
@@ -287,7 +286,7 @@ print_r( Format::forge( $array )->to_json() );
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
-print_r( Format::forge( $array )->to_serialized() );
+print_r(Format::forge($array)->to_serialized());
 
 // Returns
 // a:2:{s:3:"foo";s:3:"bar";s:3:"baz";s:3:"qux";}</code>
@@ -314,20 +313,20 @@ print_r( Format::forge( $array )->to_serialized() );
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$array = array (1, 2, array ("a", "b", "c"));
-echo Format::forge( $array )->to_php();
+							<pre class="php"><code>$array = array(1, 2, array('a', 'b', 'c'));
+print_r(Format::forge($array)->to_php());
 
 // Returns
-"array (
-  0 => 1,
-  1 => 2,
-  2 =>
-  array (
-    0 => 'a',
-    1 => 'b',
-    2 => 'c',
-  ),
-)"</code></pre>
+Array
+(
+	0 => 1,
+	1 => 2,
+	2 => array(
+		0 => 'a',
+		1 => 'b',
+		2 => 'c',
+	),
+)</code></pre>
 						</td>
 					</tr>
 					</tbody>
