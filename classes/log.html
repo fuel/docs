@@ -64,9 +64,9 @@
 					<tr>
 						<th>log_threshold</th>
 						<td>constant</td>
-						<td><pre class="php"><code>Fuel::L_ERROR</code></pre></td>
+						<td><pre class="php"><code>Fuel::L_WARNING</code></pre></td>
 						<td>
-							Can be any of the following: <code>Fuel::L_NONE, Fuel::L_ERROR, Fuel::L_DEBUG, Fuel::L_INFO or Fuel::L_ALL</code>
+							Can be any of the following: <code>Fuel::L_NONE, Fuel::L_ERROR, Fuel::L_WARNING, Fuel::L_DEBUG, Fuel::L_INFO or Fuel::L_ALL</code>
 						</td>
 					</tr>
 					<tr>
@@ -90,9 +90,10 @@
 
 			<h3 id="usage">Usage</h3>
 
-			<p>There are three predefined functions for ease of use:</p>
+			<p>There are four predefined functions for ease of use:</p>
 			<pre class="php"><code>Log::info()
 Log::debug()
+Log::warning()
 Log::error()</code></pre>
 
 			<p>They all use the main function <strong>Log::write()</strong> which requires the <strong>$level</strong> parameter as the first argument.</p>
@@ -106,6 +107,9 @@ Log::info('Application started (with $var = '.$var.')', 'my_init_function()');
 $var = 5;
 Log::debug('$var is now '.$var);
 
+// Send a warning log entry
+if($var !== 1) Log::warning('Although $var has been changed, we will keep going.');
+
 // Send an error log entry
 if($var !== 1) Log::error('We cannot keep going, $var has been changed! :o');
 
@@ -117,7 +121,7 @@ Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 			<p>All log files are being placed in the defined folder (see above), composed in folders named by the current <strong>year</strong> followed by the <strong>month</strong> (<em>"2011/06"</em> for example) with the day of the month as the filename (<em>"15.php"</em> for example).<br/>The complete path to our example log file would be: <strong>APPPATH.'logs/2011/06/15.php'</strong></p>
 
 			<p><strong>The examples above would write the following code to the log file:</strong></p>
-			<pre class="php"><code>&lt;?php defined('COREPATH') or exit('No direct script access allowed'); ?&gt;<br/><br/>Info - 2011-01-03 18:44:45 --> my_init_function() - Application started (with $var = 1)<br/>Debug - 2011-01-03 18:44:45 --> $var is now 5<br/>Error - 2011-01-03 18:44:45 --> We cannot keep going, $var has been changed! :o<br/>Link - 2011-01-03 18:44:45 --> More info on http://fuelphp.com/</code></pre>
+			<pre class="php"><code>&lt;?php defined('COREPATH') or exit('No direct script access allowed'); ?&gt;<br/><br/>Info - 2011-01-03 18:44:45 --> my_init_function() - Application started (with $var = 1)<br/>Debug - 2011-01-03 18:44:45 --> $var is now 5<br/>Warning - 2011-01-03 18:44:45 --> Although $var has been changed, we will keep going.<br/>Error - 2011-01-03 18:44:45 --> We cannot keep going, $var has been changed! :o<br/>Link - 2011-01-03 18:44:45 --> More info on http://fuelphp.com/</code></pre>
 
 			<article>
 				<h4 class="method" id="method_info">info($msg, $method = null)</h4>
@@ -209,6 +213,51 @@ Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_warning">warning($msg, $method = null)</h4>
+				<p>The <strong>warning</strong> method allows you to write a log entry with the <strong>$level</strong> "Warning".</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$msg</kbd></th>
+									<td><em>required</em></td>
+									<td>The message for the info log entry.</td>
+								</tr>
+								<tr>
+									<th><kbd>$method</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Information about the method which created the log entry.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// we send a warning log entry<br/>if($var !== 1) Log::warning('Although $var has been changed, we will keep going.');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+      
 			<article>
 				<h4 class="method" id="method_error">error($msg, $method = null)</h4>
 				<p>The <strong>error</strong> method allows you to write a log entry with the <strong>$level</strong> "Error".</p>
