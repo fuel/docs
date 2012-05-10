@@ -46,9 +46,9 @@
 
 			<h2>トラブルシューティング</h2>
 
-            <p>Fuel はかなり多くの設定があります。ときに設定が適切に作用するにはいくつかの作業が必要です。あなたのマシンをセットアップする際に起こるかもしれないいくつかのシナリオを以下にリストアップしました。</p>
+			<p>Fuel はかなり多くの設定があります。ときに設定が適切に作用するにはいくつかの作業が必要です。あなたのマシンをセットアップする際に起こるかもしれないいくつかのシナリオを以下にリストアップしました。</p>
 
-            <p>問題が以下にリストアップされていない場合や、リストされているが適当な解決方法が提供さいれていない場合は、issue tracker ( http://dev.fuelphp.com ) にレポートを上げてください。</p>
+			<p>問題が以下にリストアップされていない場合や、リストされているが適当な解決方法が提供さいれていない場合は、issue tracker ( http://dev.fuelphp.com ) にレポートを上げてください。</p>
 
 			<ul>
 				<li><a href="#syntax_error_clean_install">クリーンインストール時の構文エラー</a></li>
@@ -90,31 +90,31 @@
 
 				<p>次のようにクエスチョンマークを追加します:</p>
 
-				<pre class="plain"><code># Turn on URL rewriting
+				<pre class="plain"><code># URL リライトをオンに
 RewriteEngine On
 
-# Installation directory
+# インストールしたディレクトリ
 RewriteBase /
-# If fuel is not a level up
+# もし fuel が上になければ
 # RewriteBase /public
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^(.*)$ index.php?/$1 [L]
-# Notice the ? after index.php
+# index.php の後の ? に注意
 </code></pre>
 
 			<p>fcgi のインストールの場合にはいくつかの解決方法があります:</p>
 
 			<pre class="plain"><code>
 RewriteRule ^(.*)$ index.php?$1 [L]
-# Notice the fact that the slash has been removed after the ?
+# ? の後のスラッシュが削除されていることに注意
 
-#Other possible setups:
+#他のセットアップ方法:
 
 RewriteRule ^(.*)$ /index.php/$1 [L]
-# Notice the leading slash added before index.php
+# index.php の前にスラッシュが追加されていることに注意
 </code></pre>
 			</article>
 
