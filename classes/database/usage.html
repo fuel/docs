@@ -411,7 +411,7 @@ $count = $result_arr['count'];
 $query = "SELECT * FROM users WHERE username = :name"; // our query
 
 // bind the variable and run the query, produces SELECT * FROM users WHERE username = 'John'
-$result = DB::query($query)->bind(':name', $name)->execute();</code></pre>
+$result = DB::query($query)->bind('name', $name)->execute();</code></pre>
 
 				<p>Variables are bound by reference, so you can define your query and your bindings early in your code
 				and modify the bound variable later.</p>
@@ -420,7 +420,7 @@ $result = DB::query($query)->bind(':name', $name)->execute();</code></pre>
 $query = DB::query("SELECT * FROM users WHERE username = :name");
 
 $name = 'unknown';                // set the variable with a default value
-$query->bind(':name', $name);     // and bind it to the query
+$query->bind('name', $name);     // and bind it to the query
 
 // after some code, change the bound variable
 $name = 'Sally';
@@ -432,12 +432,12 @@ $result = $query->execute();</code></pre>
 				do, you'll get a "Cannot pass parameter 2 by reference" exception!</p>
 
 				<pre class="php"><code>// this will generate an exception!
-$query = DB::query("SELECT * FROM users WHERE username = :name")->bind(':name', 'value')->execute();</code></pre>
+$query = DB::query("SELECT * FROM users WHERE username = :name")->bind('name', 'value')->execute();</code></pre>
 
 				<p>You can assign by value using the param() method:</p>
 
 				<pre class="php"><code>// this will work though
-$query = DB::query("SELECT * FROM users WHERE username = :name")->param(':name', 'value')->execute();</code></pre>
+$query = DB::query("SELECT * FROM users WHERE username = :name")->param('name', 'value')->execute();</code></pre>
 
 				<p>And finally, you can use the parameters() method if you want to mix the two:</p>
 
@@ -447,7 +447,7 @@ $query = DB::query("SELECT * FROM users WHERE username = :name AND state = :stat
 $name = 'John'; // set the variable we're going to bind
 
 // bind the variable and literal
-$query->parameters(array(':name' => &amp;$name, ':state' => 'new'));
+$query->parameters(array('name' => &amp;$name, 'state' => 'new'));
 
 // and run the query, produces SELECT * FROM users WHERE username = 'John' AND state = 'new'
 $result = $query->execute();</code></pre>
