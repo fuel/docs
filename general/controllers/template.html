@@ -79,25 +79,25 @@
 	<pre><code>class Controller_Example extends Controller_Template
 {
 	/**
-	 * Your before method
+	 * あなたの before メソッド
 	 */
 	public function before()
 	{
-		parent::before(); // Without this line, templating won't work!
+		parent::before(); // この行がないと、テンプレートが動作しません!
 
-		// do stuff
+		// 何かする
 	}
 
 	/**
-	 * Make after() compatible with Controller_Template by adding $response as a parameter
+	 * $response をパラメータとして追加し、after() を Controller_Template 互換にする
 	 */
 	public function after($response)
 	{
-		parent::after($response); // not needed if you create your own reponse object
+		parent::after($response); // Response オブジェクトを作成する場合は不要
 
 		// do stuff
 
-		return $response; // make sure after() returns the response object
+		return $response; // after() は確実に Response オブジェクトを返すように
 	}
 
 	public function action_index()
@@ -153,7 +153,7 @@
 	}
 }</code></pre>
 
-		<h3 id="omit_methods">Omit methods from the Template Controller</h3>
+		<h3 id="omit_methods">Template コントローラからメソッドを省略する</h3>
 
 		<p>
 			デフォルトでは、<kbd>Controller_Template</kbd> を拡張したクラスのすべてのメソッドは、テンプレートを使用します。<br />
@@ -170,15 +170,15 @@
 		$this->template->title   = 'Example Page';
 		$this->template->content = View::forge('test/index', $data);
 
-		// this will show content in template
+		// テンプレートのコンテンツを表示する
 	}
 
-	public function action_example()
+	public function action_Example()
 	{
 		$data['title']   = "Example Page";
 		$data['content'] = "Don't show me in the template";
 
-		// returned Response object takes precedence and will show content without template
+		// Response オブジェクトが返されると、それが優先され、テンプレートなしのコンテンツが表示される
 		return new Response(View::forge('index/test', $data));
 	}
 }</code></pre>
