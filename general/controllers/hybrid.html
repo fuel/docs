@@ -1,5 +1,5 @@
-﻿<!doctype html>
-<html lang="en">
+<!doctype html>
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Hybrid Controller - General - FuelPHP Documentation</title>
+	<title>Hybrid コントローラ - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -23,9 +23,9 @@
 
 				<form id="google_search">
 					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />
+						<span id="searchclear">nbsp;</span>
+						<input type="submit" name="searchsubmit" id="searchsubmit" value="検索" />
+						<input type="text" value="" id="searchinput" name="searchinput" />
 					</p>
 				</form>
 			</div>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,32 +44,32 @@
 
 		<div id="main">
 
-			<h2 id="hybrid_controller">Hybrid Controller</h2>
+			<h2 id="hybrid_controller">Hybrid コントローラ</h2>
 
 			<p>
-				The hybrid controller brings together the functionality of both the REST controller and the
-				Template controller in a single base controller.
+				Hybrid コントローラは、1 つのベースコントローラで、REST コントローラと
+				Template コントローラの両方の機能を一緒にもたらします。
 			</p>
 
 			<p class="note">
-				For more information about the Template or Rest functionality, see the <a href="./rest.html">Controller_Rest</a> or <a href="./template.html">Controller_Template</a> pages.
+				Template や REST の機能の詳細については、<a href="./rest.html">Controller_Rest</a> または <a href="./template.html"> Controller_Template</a> のページを参照してください。
 			</p>
 
 			<p>
-				Like all Controllers, you create a class in the <kbd>fuel/app/classes/controller</kbd> directory.
-				They need to extend the <kbd>Controller_Hybrid</kbd> class and are prefixed by default by "Controller_".
-				Below is an example of the controller "test":
+				すべてのコントローラと同様に、<kbd>fuel/app/classes/controller</kbd> ディレクトリ内にクラスを作成します。
+				それらは <kbd>Controller_Hybrid</kbd> クラスを継承し、デフォルトでは "Controller_" というプレフィックスを付けます。
+				以下は "test" コントローラの例です:
 			</p>
 
 			<pre class="php"><code>class Controller_Test extends Controller_Hybrid
 {
-	// this will be called if you request /test/list from the URL
+	// URL から /test/list をリクエストすると呼ばれる
 	public function action_list()
 	{
 		$this->template->content = 'Hello World!';
 	}
 
-	// this will be called when you do an ajax GET request for /test/list?foo=bar
+	// /test/list?foo=bar へ Ajax リクエストすると呼ばれる
 	public function get_list()
 	{
 		$this->response(array(
