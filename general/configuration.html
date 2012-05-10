@@ -130,7 +130,7 @@
 						<td>callback</td>
 						<td><pre class="php"><code>null</code></pre></td>
 						<td>
-							ob_start() に渡されるコールバック。ob_gzhandler を設定すると出力の gzip encoding of output.
+							ob_start() に渡されるコールバック。ob_gzhandler を設定すると出力の gzip エンコーディングが有効に。
 						</td>
 					</tr>
 					<tr>
@@ -148,7 +148,7 @@ E_STRICT
 					</tr>
 					<tr>
 						<th>errors.throttle</th>
-						 <td>int</td>
+						<td>int</td>
 						<td><pre class="php"><code>10</code></pre></td>
 						<td>
 							表示を止める前に出力するエラーの数 (out-of-memory エラーを避けます)
@@ -195,8 +195,8 @@ E_STRICT
 						<td><pre class="php"><code>0</code></pre></td>
 						<td>
 							time() を使用する際に、サーバの gmt タイムスタンプのオフセットからのオフセット秒数<br />
-							<em>This is only to correct bad server configuration: <kbd>time()</kbd> should always
-							return the number of seconds since January 1 1970 00:00:00 GMT.</em>
+							<em>これは、不適切なサーバ設定を訂正するためのみの設定です: <kbd>time()</kbd> は絶えず
+							1970年1月1日 00:00:00 GMT からの秒数を返すべきです。</em>
 						</td>
 					</tr>
 					<tr>
@@ -204,7 +204,7 @@ E_STRICT
 						<td>string</td>
 						<td><pre class="php"><code>'UTC'</code></pre></td>
 						<td>
-							サーバのタイムゾーン
+							サーバのタイムゾーン。
 						</td>
 					</tr>
 					<tr>
@@ -261,7 +261,7 @@ E_STRICT
 						<td>array</td>
 						<td><pre class="php"><code>array('htmlentities')</code></pre></td>
 						<td>
-						    URI をフィルタする PHP 関数
+							URI をフィルタする PHP 関数
 						</td>
 					</tr>
 					<tr>
@@ -278,8 +278,8 @@ E_STRICT
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
-							What php functions filter the variables set to a view. Can be set to <em>xxs_clean</em>,
-							this may cause a performance hit based on the size of the variables.
+							ビューにセットする変数をフィルタする PHP 関数。<em>xxs_clean</em> をセットすることもできますが、
+							変数のサイズによりパフォーマンスに打撃を与える可能性があります。
 						</td>
 					</tr>
 					<tr>
@@ -383,8 +383,8 @@ E_STRICT
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
 							どの設定ファイルをオートロードするか。次のように設定ファイルを group にロードします: <strong>array('config')</strong> または
-							<strong>array('filename' => 'group')</strong> ファイルをセットでロードしたくない場合は、グループ名を 
-							<em>null</em> にします: <strong>array('filename' => null)</strong>
+							<strong>array('filename' => 'group')</strong>。ファイルをセットでロードしたくない場合は、グループ名を
+							<em>null</em> にします: <strong>array('filename' => null)</strong>。
 						</td>
 					</tr>
 					<tr>
@@ -393,8 +393,8 @@ E_STRICT
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
 							どの言語ファイルをオートロードするか。次のように設定ファイルを group にロードします: <strong>array('lang')</strong> または
-							<strong>array('filename' => 'group')</strong> ファイルをロードしたくない場合は、グループ名を 
-							<em>null</em> にします: <strong>array('filename' => null)</strong>
+							<strong>array('filename' => 'group')</strong>。ファイルをロードしたくない場合は、グループ名を
+							<em>null</em> にします: <strong>array('filename' => null)</strong>。
 						</td>
 					</tr>
 				</tbody>
