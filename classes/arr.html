@@ -89,24 +89,21 @@
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>
-// Single array
+							<pre class="php"><code>// Single array
 $arr = array('one' => 1, 'two' => 2);
-Arr::is_multi($arr);
+echo Arr::is_multi($arr);
 // Result: false
-
 
 // Multi-dimensional array
 $arr = array('one' => array('test' => 1), 'two' => array('test' => 2), 'three' => array('test' => 3));
-Arr::is_multi($arr);
+echo Arr::is_multi($arr);
 // Result: true
-
 
 // Multi-dimensional array with elements check
 $arr = array('one' => array('test' => 1), 'two' => array('test' => 2), 'three' => 3);
 
-Arr::is_multi($arr, false); // Result: true
-Arr::is_multi($arr, true);  // Result: false
+echo Arr::is_multi($arr, false); // Result: true
+echo Arr::is_multi($arr, true);  // Result: false
 </code></pre>
 						</td>
 					</tr>
@@ -147,13 +144,12 @@ Arr::is_multi($arr, true);  // Result: false
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>
-$arr = array('foo', 'bar', 'baz', 'yay');
-$result = Arr::is_assoc($arr);
+							<pre class="php"><code>$arr = array('foo', 'bar', 'baz', 'yay');
+echo Arr::is_assoc($arr);
 // Result: false
 
 $arr = array('foo' => 'foo', 'bar' => 'bar', 'baz' => 'baz', 'yay' => 'yay');
-$result = Arr::is_assoc($arr);
+echo Arr::is_assoc($arr);
 // Result: true
 
 /*
@@ -161,9 +157,8 @@ $result = Arr::is_assoc($arr);
  * as an integer, and therefore this is NOT seen as an assoc array!
  */
 $arr = array(0 => 'foo', 1 => 'bar', '2' => 'baz', 3 => 'yay');
-$result = Arr::is_assoc($arr);
+echo Arr::is_assoc($arr);
 // Result: false!
-
 </code></pre>
 						</td>
 					</tr>
@@ -210,21 +205,19 @@ $result = Arr::is_assoc($arr);
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$arr = array('foo', 'bar', 'baz', 'yay');
-$array = Arr::to_assoc($arr);
-/*
-Result:
-array(
-    'foo' => 'bar',
-    'baz' => 'yay',
+print_r(Arr::to_assoc($arr));
+
+// Result:
+Array
+(
+    ["foo"] => 'bar'
+    ["baz"] => 'yay'
 )
-*/
 
 $arr = array('foo', 'bar', 'baz');
-$array = Arr::to_assoc($arr);
-/*
-Result:
-null
-*/</code></pre>
+echo Arr::to_assoc($arr);
+// Result: null
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -290,9 +283,9 @@ null
 	)
 );
 
-print_r( Arr::assoc_to_keyval($people, 'name', 'age') );
+print_r(Arr::assoc_to_keyval($people, 'name', 'age'));
 
-// Returns
+// Result:
 Array
 (
 	["Jack"] => 21
@@ -338,7 +331,8 @@ Array
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>echo Arr::average(array('1', 2, 4, '8')); // Outputs 3.75</code></pre>
+							<pre class="php"><code>echo Arr::average(array('1', 2, 4, '8'));
+// Result: 3.75</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -389,20 +383,14 @@ Array
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$indexed = array(
-	array(
-		"a"
-	),
-	array(
-		"b"
-	),
-	array(
-		"c"
-	),
+	array("a"),
+	array("b"),
+	array("c"),
 );
 
-print_r( Arr::flatten($indexed, '_') );
+print_r(Arr::flatten($indexed, '_'));
 
-// Returns
+// Result:
 Array
 (
 	[0_0] => a
@@ -461,35 +449,35 @@ Array
 							<pre class="php"><code>$people = array(
 	array(
 		"name" => "Jack",
-		"age" => 21
+		"age"  => 21
 	),
 	array(
 		"name" => "Jill",
-		"age" => 23
+		"age"  => 23
 	)
 );
 
-print_r( Arr::flatten_assoc($people) );
+print_r(Arr::flatten_assoc($people));
 
-// Returns
+// Result:
 Array
 (
 	[0:name] => Jack
-	[0:age] => 21
+	[0:age]  => 21
 	[1:name] => Jill
-	[1:age] => 23
+	[1:age]  => 23
 )
 
 // Let's flatten another array on top
-print_r( Arr::flatten_assoc( array( array( "name" => "Humpty", "age" => 11 ) ) ,":",false) );
+print_r(Arr::flatten_assoc(array(array("name" => "Humpty", "age" => 11)), ":", false));
 
-// Returns
+// Result:
 Array
 (
 	[0:name] => Humpty
-	[0:age] => 11
+	[0:age]  => 11
 	[1:name] => Jill
-	[1:age] => 23
+	[1:age]  => 23
 )
 </code></pre>
 						</td>
@@ -538,26 +526,26 @@ Array
 						<td>
 							<pre class="php"><code>$flattened = array(
 	'0_name' => 'James',
-	'0_age' => 24,
+	'0_age'  => 24,
 	'1_name' => 'John',
-	'1_age' => 34,
+	'1_age'  => 34,
 );
 
-print_r( Arr::reverse_flatten($flattened, '_') );
+print_r(Arr::reverse_flatten($flattened, '_'));
 
-// Returns
+// Result:
 Array
 (
 	[0] => Array
 		(
 			[name] => James
-			[age] => 24
+			[age]  => 24
 		)
 	
 	[1] => Array
 		(
 			[name] => John
-			[age] => 34
+			[age]  => 34
 		)
 )</code></pre>
 						</td>
@@ -616,9 +604,9 @@ Array
 	"project_type" => "Framework",
 );
 
-print_r( Arr::filter_prefixed($arr, "user_"));
+print_r(Arr::filter_prefixed($arr, "user_"));
 
-// Returns
+// Result:
 Array
 (
 	[name] => Frank
@@ -626,9 +614,9 @@ Array
 )
 
 // Let's keep the prefix
-print_r( Arr::filter_prefixed($arr, "project_", false);
+print_r(Arr::filter_prefixed($arr, "project_", false);
 
-// Returns
+// Result:
 Array
 (
 	[project_name] => Fuel
@@ -691,9 +679,9 @@ Array
 	"project_type" => "Framework",
 );
 
-print_r( Arr::filter_keys($arr, array('project_name', 'user_name')));
+print_r(Arr::filter_keys($arr, array('project_name', 'user_name')));
 
-// Returns
+// Result:
 Array
 (
 	[project_name] => Fuel
@@ -703,7 +691,7 @@ Array
 // Let's remove some keys
 print_r(Arr::filter_keys($arr, array('user_name', 'user_surname'), true));
 
-// Returns
+// Result:
 Array
 (
 	[project_name] => Fuel
@@ -770,14 +758,14 @@ Array
 );
 
 echo Arr::get($person, "name", "Unknown Name");
-// Returns "Jack"
+// Result: "Jack"
 
 echo Arr::get($person, "job", "Unknown job");
-// Returns "Unknown job"
+// Result: "Unknown job"
 
 // This method can also dive into arrays by using a dot to separate between keys
 echo Arr::get($person, "location.city", "Unknown City");
-// Returns "Pittsburgh"</code></pre>
+// Result: "Pittsburgh"</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -965,9 +953,9 @@ $result = Arr::delete($person, array("name", "location.doesnotexist"));
 							<pre class="php"><code>$people = array("Jack", "Jill");
 
 // Add one value
-Arr::insert($people, "Humpty", 0 );
-print_r( $people );
-// Returns
+Arr::insert($people, "Humpty", 0);
+print_r($people);
+// Result:
 Array
 (
 	[0] => Humpty
@@ -976,9 +964,9 @@ Array
 )
 
 // Add multiple values
-Arr::insert($people, array("Hansel", "Gretel"), 1 );
-print_r( $people );
-// Returns
+Arr::insert($people, array("Hansel", "Gretel"), 1);
+print_r($people);
+// Result:
 Array
 (
 	[0] => Humpty
@@ -989,10 +977,10 @@ Array
 )
 
 // Add an array
-Arr::insert($people, array( array("name" => "Wolf", "teeth" => "sharp" ) ), 0 );
-print_r( $people );
+Arr::insert($people, array( array("name" => "Wolf", "teeth" => "sharp")), 0);
+print_r($people);
 
-// Returns
+// Result:
 Array
 (
 	[0] => Array
@@ -1061,10 +1049,10 @@ Array
 						<td>
 							<pre class="php"><code>$people = array("Jack", "Jill");
 
-Arr::insert_before_key($people, "Humpty", 1 );
-print_r( $people );
+Arr::insert_before_key($people, "Humpty", 1);
+print_r($people);
 
-// Returns
+// Result:
 Array
 (
 	[0] => Jack
@@ -1124,10 +1112,10 @@ Array
 						<td>
 							<pre class="php"><code>$people = array("Jack", "Jill");
 
-Arr::insert_after_key($people, "Humpty", 1 );
-print_r( $people );
+Arr::insert_after_key($people, "Humpty", 1);
+print_r($people);
 
-// Returns
+// Result:
 Array
 (
 	[0] => Jack
@@ -1187,10 +1175,10 @@ Array
 						<td>
 							<pre class="php"><code>$people = array("Jack", "Jill");
 
-Arr::insert_after_value($people, "Humpty", "Jack" );
-print_r( $people );
+Arr::insert_after_value($people, "Humpty", "Jack");
+print_r($people);
 
-// Returns
+// Result:
 Array
 (
 	[0] => Jack
@@ -1277,7 +1265,7 @@ Array
 );
 
 $data = Arr::sort($data, 'info.pet.type');
-// Returns
+// Result:
 array(
 	array(
 		'info' => array(
@@ -1350,24 +1338,16 @@ array(
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$arr = array(
-	'one' => 1,
-	2,
-	3,
-	array(
-		56
-	),
-	87
-);
+							<pre class="php"><code>$arr = array('one' => 1, 2, 3, array(56), 87);
 
-var_dump(Arr::in_array_recursive('56', $arr));
-// is true
+echo Arr::in_array_recursive('56', $arr);
+// Result: true
 
-var_dump(Arr::in_array_recursive('87', $arr, true));
-// is false
+echo Arr::in_array_recursive('87', $arr, true);
+// Result: false
 
-var_dump(Arr::in_array_recursive(87, $arr, true));
-// is true</code></pre>
+echo Arr::in_array_recursive(87, $arr, true);
+// Result: true</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -1413,11 +1393,11 @@ var_dump(Arr::in_array_recursive(87, $arr, true));
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$bool = in_arrayi('This', array('something','tHis'));
-// Will result in $bool == true
+							<pre class="php"><code>echo in_arrayi('This', array('something','tHis'));
+// Result: true
 
-$bool = in_arrayi('Thi', array('something','tHis'));
-// Will result in $bool == false</code></pre>
+echo in_arrayi('Thi', array('something','tHis'));
+// Result: false</code></pre>
 						</td>
 					</tr>
 					</tbody>
