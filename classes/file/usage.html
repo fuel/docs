@@ -305,7 +305,27 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>File::read_dir(DOCROOT);</code></pre>
+							<pre class="php"><code>// Read a directory
+$contents = File::read_dir(DOCROOT);
+
+// Read with a limited dept
+$contents = File::read_dir(DOCROOT, 2);
+
+// Read with custom rules
+$contents = File::read_dir(DOCROOT, 0, array(
+	'!^.', // no hidden files/dirs
+	'!^private' => 'dir', // no private dirs
+	'\.png$' => 'file', // only get png's
+	'\.css$' => 'file', // or css files
+	'!^_', // exclude everything that starts with an underscore.
+));
+
+/**
+ * As you can see above, you can make
+ * rules directory or file specific by
+ * adding "=> 'file'" or "=> 'dir'"
+ * behind the rule.
+ */</code></pre>
 						</td>
 					</tr>
 					</tbody>
