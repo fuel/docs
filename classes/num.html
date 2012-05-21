@@ -148,9 +148,9 @@
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>echo Num::bytes('200K');  // 204800
-echo static::bytes('5MiB');  // 5242880
-echo static::bytes('1000');  // 1000
-echo static::bytes('2.5GB'); // 2684354560</code></pre>
+echo Num::bytes('5MiB');  // 5242880
+echo Num::bytes('1000');  // 1000
+echo Num::bytes('2.5GB'); // 2684354560</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -200,10 +200,10 @@ echo static::bytes('2.5GB'); // 2684354560</code></pre>
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>echo Num::format_bytes('204800'); // 200 kB
-echo Num::format_bytes('214901', 1); // 209.9 kB
+								<pre class="php"><code>echo Num::format_bytes('204800');     // 200 kB
+echo Num::format_bytes('214901', 1);  // 209.9 kB
 echo Num::format_bytes('2249010', 1); // 2.1 MB
-Num::format_bytes('badbytes') // false
+echo Num::format_bytes('badbytes');   // false
 </code></pre>
 							</td>
 						</tr>
@@ -254,10 +254,10 @@ Num::format_bytes('badbytes') // false
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>echo Num::quantity(7000); // 7K
-echo Num::quantity(7500); // 8K
-echo Num::quantity(7500, 1); // 7.5K
-Num::quantity('badnumber') // false
+								<pre class="php"><code>echo Num::quantity(7000);        // 7K
+echo Num::quantity(7500);        // 8K
+echo Num::quantity(7500, 1);     // 7.5K
+echo Num::quantity('badnumber'); // false
 </code></pre>
 							</td>
 						</tr>
@@ -309,9 +309,9 @@ Num::quantity('badnumber') // false
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>echo Num::format('1234567890', '(000) 000-0000'); // (123) 456-7890
-echo Num::format('1234567890', '000.000.0000'); // 123.456.7890
-echo Num::format('1234567890', '000.000.0000'); // 123.456.7890
-echo echo Num::format('1', '000.000.000'); // 1..
+echo Num::format('1234567890', '000.000.0000');   // 123.456.7890
+echo Num::format('1234567890', '000.000.0000');   // 123.456.7890
+echo Num::format('1', '000.000.000');             // 1..
 </code></pre>
 							</td>
 						</tr>
