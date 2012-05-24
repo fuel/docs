@@ -93,6 +93,78 @@
 					</tbody>
 				</table>
 			</article>
+			
+			<article>
+				<h4 class="method" id="method_unregister">unregister($event, $callback = null)</h4>
+				<p>The <strong>unregister</strong> method allows files to unregister an object that would be run when the <kbd>trigger</kbd> method is called.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$event</kbd></th>
+									<td><i>required</i></td>
+									<td>The event you are registering your code to.</td>
+								</tr>
+								<tr>
+									<th><kbd>$callback</kbd></th>
+									<td><i>optional</i></td>
+									<td>The callback method. If none provided all callbacks will be removed.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Define two even calbacks
+$callback_one = function()
+{
+	echo 'callback one';
+}
+
+$callback_two = function()
+{
+	echo 'callback two';
+}
+
+// Register the events to "my_event"
+Event::register('my_event', $callback_one);
+Event::register('my_event', $callback_two);
+
+// Unregister callback one
+Event::unregister('my_event', $callback_one);
+
+// Trigger the event
+Event::trigger('my_event');
+// This will only echo "callback two"
+
+// Unregister all callbacks from "my_event";
+Event::unregister('my_event');
+
+// Trigger the event
+Event::trigger('my_event');
+// Will output nothing.</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 
 			<article>
 				<h4 class="method" id="method_trigger">trigger($event, $data = '', $return_type = 'string')</h4>
@@ -178,6 +250,128 @@
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>Event::has_events('user_login')</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_forge">forge(array $events = array())</h4>
+				<p>The <strong>forge</strong> returns a new event object.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$events</kbd></th>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td>The event you are checking.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Event_Instance object</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Create a new event object
+$events = Event::forge();
+
+// Create a new event object
+// with events
+$events = Event::forge(array(
+	'update' => function(){
+		// do something on update
+	},
+	'register' => function(){
+		// do something on register
+	},
+));
+
+/**
+ * !! All other Event method apply to the instance
+ */
+$events->register('my_event', function(){
+	echo 'this is awesome';
+});
+
+$events->trigger('my_event');
+// will output "this is awesome"
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_instance">instance($name = 'fuelphp', array $events = array())</h4>
+				<p>The <strong>instance</strong> returns a new event object singleton.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><pre class="php"><code>'fuelphp'</code></pre></td>
+									<td>The instance name.</td>
+								</tr>
+								<tr>
+									<th><kbd>$events</kbd></th>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td>The event you are checking.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Event_Instance object</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Create a new event instance
+$events = Event::instance('my_instance');
+
+$same = Event::instance('my_instance');
+
+$events->register('my_event', function(){
+	'awesome!';
+});
+
+$same->register('my_event', function(){
+	echo 'this is ';
+});
+
+Event::instance('my_instance')->trigger('my_event');
+// will output "this is awesome!"</code></pre>
 						</td>
 					</tr>
 					</tbody>
