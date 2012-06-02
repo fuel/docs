@@ -68,7 +68,17 @@
 
 				<pre class="cli"><code>$ cd Sites/fuel
 $ php oil -v
-Fuel: 1.1</code></pre>
+Fuel: 1.2</code></pre>
+				
+				<h3 id="environments">Environments</h3>
+
+				<p>
+					Oil won’t use any instructions you’ve made for HTTP requests, such as defining the server environment using .htaccess. Oil will use whichever environment is the default unless you instruct it.
+				</p>
+
+				<pre class="cli"><code>$ FUEL_ENV=production php oil refine migrate</code></pre>
+
+				<p>In place of <code>production</code> you can use any of the defined environments.</p>
 
 				<h3 id="help">インラインヘルプ</h3>
 
@@ -77,12 +87,13 @@ Fuel: 1.1</code></pre>
 				<pre class="cli"><code>$ php oil help
 
 Usage:
-  php oil [console|generate|help|test|package]
+  php oil [console|generate|package|refine|help|test]
 
 Runtime options:
   -f, [--force]    # 既存のファイルを上書きする
   -s, [--skip]     # 既存のファイルをスキップする
   -q, [--quiet]    # ステータス出力を抑制する
+  -t, [--speak]    # Speak errors in a robot voice
 
 Description:
   The 'oil' command can be used in several ways to facilitate quick development, help with
