@@ -221,6 +221,34 @@ return array(
 // this call will return 'http://your_base_url/welcome/hello'
 echo Router::get('hello');
 </code></pre>
+<br />
+<p>
+	You can also do this if your route contains a named parameters, a regex, or a combination of both.
+	Since regexes can't be identified by name, a numeric index is used for each regex in the route,
+	processed in the order in which they are defined:
+</p>
+							<pre class="php"><code>// if your route is defined like this:
+return array(
+	'hello/(:name)/(:segment)/(\d{2})' => array('welcome/user', 'name' => 'user'),
+);
+
+// this call will return 'http://your_base_url/welcome/user/john/article/16'
+echo Router::get('user', array('name' => 'john', 'article', '16'));
+</code></pre>
+<br />
+<p class="note">
+	Note that if your route contains a mix of a traditional regex and a named parameter or a regex shortcut,
+	they will be replaced together, which might lead to unexpected results.
+</p>
+							<pre class="php"><code>// if your route is defined like this:
+return array(
+	'hello/(:name)(/:segment)' => array('welcome/user', 'name' => 'user'),
+);
+
+// note that "(/:segment)" will be replaced in its entirely by "article", so
+// this call will return 'http://your_base_url/welcome/user/johnarticle' !
+echo Router::get('user', array('name' => 'john', 'article'));
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
