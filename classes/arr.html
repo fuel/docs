@@ -773,9 +773,9 @@ echo Arr::get($person, "location.city", "Unknown City");
 			</article>
 
 			<article>
-				<h4 id="method_set" class="method">set(&amp;$array, $key, $value = false)</h4>
-				<p>The <strong>set</strong> method sets the element of the given array using dot-notation.<br />
-				<u>WARNING</u>: The original array is edited by reference</p>
+				<h4 id="method_set" class="method">set(&amp;$array, $key, $value = null)</h4>
+				<p>The <strong>set</strong> method sets the element of the given array using dot-notation.</p>
+				<p class="note"><strong>WARNING</strong>: The original array is edited by reference</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -835,6 +835,81 @@ Arr::set($person, "location.city", "Philadelphia");
 
 // or set multiple values in one go
 Arr::set($person, array("name" => "John", "location.city" => "Philadelphia"));</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_pluck" class="method">pluck($array, $key, $index = null)</h4>
+				<p>The <strong>pluck</strong> method plucks values from a collection of arrays or objects.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to pluck from</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td>The key to pluck from the arrays.</td>
+								</tr>
+								<tr>
+									<th><kbd>$index</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Optional return array index.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$collection = array(
+	array(
+		'id' => 2,
+		'name' => 'Bill',
+		'surname' => 'Cosby',
+	),
+	array(
+		'id' => 5,
+		'name' => 'Chris',
+		'surname' => 'Rock',
+	),
+	array(
+		'id' => 7,
+		'name' => 'Bert',
+		'surname' => 'Visser',
+	),
+);
+
+// Get an array of id's
+$ids = \Arr::pluck($collection, 'id');
+// array(2, 5, 7);
+
+// Get an array of names with the id as the index
+$names = \Arr::pluck($collection, 'name', 'id');
+// array(2 => 'Bill', 5 => 'Chris', 7 => 'Bert');
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
