@@ -45,8 +45,139 @@
 		<div id="main">
 			<h2 id="simplegroup">SimpleAuth Group</h2>
 
-			<p>TODO</p>
+			<p>
+				As said in the <a href="../usage.html">introduction</a> of the Auth package, an authentication system comes with
+				three different drivers, each dealing with a part of the system.
+			</p>
+			<p>
+				The SimpleAuth group driver stores it's group definitions in the simpleauth configuration file.	It provides the logic
+				for checking if a user is a member of a group, and for retrieving group information, or the roles defined to to a group.
+			</p>
 
+			<h3 id="configuration">Configuration</h3>
+
+			<p>
+				The SimpleAuth group driver stores it's group definitions in the simpleauth configuration file. The groups are defined
+				as a multi-dimensional array, which must have the following structure:
+			</p>
+
+			<pre class="php"><code>array(
+	&lt;id&gt; => array(				// where &lt;id&gt; is a number that identifies the group
+		'name' => 'name-of-this-group',		// the name that identifies this group, like 'Administrators' or 'Guests'
+		'roles' => array('role', 'otherrole'),	// list of roles assigned to this group
+	),
+),</code></pre>
+			<p>The simpleauth config file supplied with the Auth package contains some examples that you can use.</p>
+
+			<h3 id="classmethods">Class methods</h3>
+
+				<article>
+					<h4 id="method_member" class="method">member($group, $user = null)</h4>
+					<p>The <strong>member</strong> method allows you to check if a user is member of a given group.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$group</kbd></th>
+										<td>required</td>
+										<td>The id of the group you want to check for membership</td>
+									</tr>
+									<tr>
+										<th><kbd>$user</kbd></th>
+										<td><pre class="php"><code>null</code></pre>
+										<td>A specific user, identified by the result of get_user_id(), or <strong>null</strong> for the currently logged-in user.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean. <strong>true</strong> if the user is member of the group, or <strong>false</strong> if not.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_get_name" class="method">get_name($group = null)</h4>
+					<p>The <strong>get_name</strong> method allows you to fetch the name of a given group id.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$group</kbd></th>
+										<td><pre class="php"><code>null</code></pre>
+										<td>The id of the group you want to get the name of</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>mixed. <strong>false</strong> if the group id does not exist, or the defined name of the group.</td>
+						</tr>
+						</tbody>
+					</table>
+					<p class="note">If no group id is given, the name of the first defined group is returned.</p>
+				</article>
+
+				<article>
+					<h4 id="method_get_roles" class="method">get_roles($group = null)</h4>
+					<p>The <strong>get_name</strong> method allows you to fetch the roles defined for a given group id.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$group</kbd></th>
+										<td><pre class="php"><code>null</code></pre>
+										<td>The id of the group you want to get the roles of</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>array. If the group id does not exist, an empty array is returned. If no group id is given, the roles of the first group are returned.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
 		</div>
 
 		<footer>
