@@ -328,7 +328,8 @@ function setup()
 		method_list($methods);
 	}
 
-	document.title = document.title+' * v'+DocVersion;
+	var title = $('#header div h1').html();
+	$('#header div h1').html(title.replace('</strong>', '</strong>'+DocVersion+' '));
 };
 
 var panes = {};
