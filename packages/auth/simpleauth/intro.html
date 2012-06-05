@@ -51,6 +51,18 @@
 				You can use this as a reference when building your own driver.
 			</p>
 
+			<h3 id="setup">Auth setup</h3>
+
+			<p>
+				Configuration starts with telling the Auth package that you are going to use the SimpleAuth driver.
+				This is done through the auth.php configuration file. A default file is provided in the Auth package.
+				You should copy this file to your app/config folder before making any changes. The default file is already
+				configured for the SimpleAuth package. You will find an explaination of this config file <a href="../intro.html#/configuration">here</a>.
+			</p>
+			<p>
+				After you have done this, you can choose to autoload the package through the <strong>always_load</strong> section of the app/config/config.php.
+			</p>
+
 			<h3 id="configuration">Configuration</h3>
 
 			<p>
@@ -188,15 +200,15 @@
 			<pre class="php"><code>public function action_login()
 {
 	$data = array();
+
+	// If so, you pressed the submit button. let's go over the steps
 	if (Input::post())
 	{
-
-		// Ok, you pressed the submit button. let's go over
-
 		// first of all, let's get a auth object
 		$auth = Auth::instance();
 
-		// check the credentials. This assumes that you have the previous table created
+		// check the credentials. This assumes that you have the previous table created and
+		// you have used the table definition and configuration as mentioned above.
 		if ($auth->login())
 		{
 			// credentials ok, go right in
@@ -204,9 +216,8 @@
 		}
 		else
 		{
-			// Oops, no soup for you. try to login again.
-			// Set some values to repopulate the username field and give some error text back to the view
-
+			// Oops, no soup for you. try to login again. Set some values to
+			// repopulate the username field and give some error text back to the view
 			$data['username']    = Input::post('username');
 			$data['login_error'] = 'Wrong username/password combo. Try again';
 		}

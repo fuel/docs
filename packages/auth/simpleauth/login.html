@@ -57,46 +57,545 @@
 
 			<h3 id="classmethods">Class methods</h3>
 
-			<article>
-				<h4 class="method" id="method_beep">beep($num = 1)</h4>
-				<p>The <strong>beep</strong> method fires a system beep on the computer running the command.</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$num</kbd></th>
-									<td><em>1</em></td>
-									<td>Number of beeps.</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>void</td>
-					</tr>
-					<tr>
-						<th>Example</th>
-						<td>
-							<pre class="php"><code>Cli::beep(25);</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
+				<article>
+					<h4 id="method_validate_user" class="method">validate_user($username_or_email = '', $password = '')</h4>
+					<p>The <strong>validate_user</strong> method validates a login request. This method supports both email address and username as valid credential.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$username_or_email</kbd></th>
+										<td>required</td>
+										<td>Either the users username, or email address</td>
+									</tr>
+									<tr>
+										<th><kbd>$password</kbd></th>
+										<td>required</td>
+										<td>The users password</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>mixed. <strong>false</strong> if the user didn't pass validation, or an <strong>array</strong> with the users information if the credentials were valid.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
 
+				<article>
+					<h4 id="method_login" class="method">login($username_or_email = '', $password = '')</h4>
+					<p>The <strong>login</strong> method performs a login request. It calls the validate_user() to validate the request before attempting a login.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$username_or_email</kbd></th>
+										<td>required</td>
+										<td>Either the users username, or email address</td>
+									</tr>
+									<tr>
+										<th><kbd>$password</kbd></th>
+										<td>required</td>
+										<td>The users password</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean. returns <strong>true</strong> if the login was succesful, <strong>false</strong> otherwise.</td>
+						</tr>
+						</tbody>
+					</table>
+					<p class="note">After a succesful login, the 'username' and the current 'login_hash' will be available as a session variable.</p>
+				</article>
+
+				<article>
+					<h4 id="method_force_login" class="method">force_login($user_ids = '')</h4>
+					<p>
+						The <strong>force_login</strong> method performs a forced login request. You can use this for an automated login, when you know.
+						the user_id, but you don't know the password. This can be used for example for a "remember me" feature.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$user_id</kbd></th>
+										<td>required</td>
+										<td>The id of the user you want to login</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean. returns <strong>true</strong> if the login was succesful, <strong>false</strong> otherwise.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_logout" class="method">logout()</h4>
+					<p>The <strong>logout</strong> method logs out the current logged-in user.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean. returns <strong>true</strong> if the logout was succesful, <strong>false</strong> otherwise.</td>
+						</tr>
+						</tbody>
+					</table>
+					<p class="note">If you have enabled guest user support, the guest user will be setup after a succesful logout.</p>
+				</article>
+
+				<article>
+					<h4 id="method_create_user" class="method">create_user($username, $password, $email, $group = 1, Array $profile_fields = array())</h4>
+					<p>
+						The <strong>create_user</strong> allows method you to create a new user record in the users table.
+					</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$username</kbd></th>
+										<td>required</td>
+										<td>The name of the user you want to create</td>
+									</tr>
+									<tr>
+										<th><kbd>$password</kbd></th>
+										<td>required</td>
+										<td>The password you want to assign to the user</td>
+									</tr>
+									<tr>
+										<th><kbd>$email</kbd></th>
+										<td>required</td>
+										<td>The email address of the user you want to create</td>
+									</tr>
+									<tr>
+										<th><kbd>$group</kbd></th>
+										<td>1</td>
+										<td>The group you want to assign this user to. By default, the user is assigned to group 1.</td>
+									</tr>
+									<tr>
+										<th><kbd>$profile_fields</kbd></th>
+										<td><pre class="php"><code>array()</code></pre>
+										<td>Any additional profile fields you want to assign to this user</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>SimpleUserUpdateException</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>mixed. returns the id of the user record created, or <strong>false</strong> if the creation failed.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_update_user" class="method">update_user($values, $username = null)</h4>
+					<p>
+						The <strong>update_user</strong> method allows you to update values in the user record.
+					</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$values</kbd></th>
+										<td><pre class="php"><code>array()</code></pre>
+										<td>Associative array with column name / value pairs for the columns or profile fields you want to update.</td>
+									</tr>
+									<tr>
+										<th><kbd>$username</kbd></th>
+										<td>required</td>
+										<td>The name of the user you want to create</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>SimpleUserUpdateException</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean. returns <strong>true</strong> if columns were updated, or <strong>false</strong> if no columns were affected.</td>
+						</tr>
+						</tbody>
+					</table>
+					<p class="note">
+						Note that you can <strong>not</strong> use this method to change the username. And as a security measure, if you
+						want to change the password, you have to pass the current password in $values as "old_password".
+					</p>
+				</article>
+
+				<article>
+					<h4 id="method_change_password" class="method">change_password($old_password, $new_password, $username = null)</h4>
+					<p>
+						The <strong>change_password</strong> method allows you to change a users password.
+					</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$old_password</kbd></th>
+										<td>required</td>
+										<td>The users current password</td>
+									</tr>
+									<tr>
+										<th><kbd>$new_password</kbd></th>
+										<td>required</td>
+										<td>The users new password</td>
+									</tr>
+									<tr>
+										<th><kbd>$username</kbd></th>
+										<td>required</td>
+										<td>The name of the user of whom you want to change the password</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>SimpleUserUpdateException</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean. returns <strong>true</strong> if the password was changed, or <strong>false</strong> if the old password was incorrect.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_reset_password" class="method">reset_password($username)</h4>
+					<p>
+						The <strong>reset_password</strong> method allows you to assign a new random password to a user.
+					</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$username</kbd></th>
+										<td>required</td>
+										<td>The name of the user for whom you want to reset the password</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>SimpleUserUpdateException</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>string, the generated random password.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_delete_user" class="method">delete_user($username)</h4>
+					<p>
+						The <strong>delete_user</strong> method allows you to delete a user account.
+					</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$username</kbd></th>
+										<td>required</td>
+										<td>The name of the user account you want to delete</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>SimpleUserUpdateException</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean. returns <strong>true</strong> if the user account was deleted, or <strong>false</strong> if it failed (because the username did not exist).</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_create_login_hash" class="method">create_login_hash()</h4>
+					<p>The <strong>create_login_hash</strong> method generates a new login hash for the currently logged-in user.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>string, the generated login hash.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_get_user_id" class="method">get_user_id()</h4>
+					<p>The <strong>get_user_id</strong> method returns an array structure containing the drivers id value, and the id of the currently logged-in user.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>mixed. returns an array in the form <strong>array(driver_id, user_id)</strong> if a user is logged in, or <strong>false</strong> otherwise.</td>
+						</tr>
+						</tbody>
+					</table>
+					<p class="note">If guest user support is enabled, you will never get <strong>false</strong> returned, because the method will return the user id of the guest user.</p>
+				</article>
+
+				<article>
+					<h4 id="method_get_groups" class="method">get_groups()</h4>
+					<p>The <strong>get_groups</strong> method returns the user groups assigned to the currently logged-in user.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>mixed. returns an array in the form <strong>array(array('SimpleGroup', group_id))</strong> if a user is logged in, or <strong>false</strong> otherwise.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_get_email" class="method">get_email()</h4>
+					<p>The <strong>get_email</strong> method returns the email address assigned to the currently logged-in user.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>mixed. returns an email address if a user is logged in, or <strong>false</strong> if no email address is defined for the current user, or there is no user logged-in.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_get_screen_name" class="method">get_screen_name()</h4>
+					<p>The <strong>get_screen_name</strong> method returns the screen- or display name of the currently logged-in user.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>mixed. returns a string containing the name, or <strong>false</strong> if there is no user logged-in.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_get_profile_fields" class="method">get_profile_fields()</h4>
+					<p>The <strong>get_profile_fields</strong> method returns the stored profile fields for the logged-in user.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>array.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_guest_login" class="method">guest_login()</h4>
+					<p>The <strong>guest_login</strong> allows you to check if guest access is enabled.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean. returns <strong>true</strong> if the guest support is enabled, or <strong>false</strong> if not.</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
 		</div>
 
 		<footer>
