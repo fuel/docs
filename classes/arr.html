@@ -168,7 +168,7 @@ echo Arr::is_assoc($arr);
 
 			<article>
 				<h4 class="method" id="method_to_assoc">to_assoc($arr)</h4>
-				<p>The <strong>to_assoc</strong> method turns a non-associative array into an associative array if it has an even number of segments.  If it has an odd number of segments it returns <kbd>null</kbd>.</p>
+				<p>The <strong>to_assoc</strong> method turns a non-associative array into an associative array if it has an even number of segments.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1364,6 +1364,128 @@ array(
 		),
 	),
 );</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_multisort" class="method">multisort($array, $conditions, $ignore_case = false)</h4>
+				<p>The <strong>sort</strong> method sorts a multi-dimensional array by multiple values.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to sort</td>
+								</tr>
+								<tr>
+									<th><kbd>$conditions</kbd></th>
+									<td><em>required</em></td>
+									<td>Array of sorting conditions.</td>
+								</tr>
+								<tr>
+									<th><kbd>$ornire_case</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Wether to sort case insensitive.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$collection = array(
+	'i5' => array(
+		'name' => 'Carl',
+		'age' => 17,
+		'points' => 30,
+		'arr' => array(
+			'key' => 10,
+		),
+	),
+	'i7' => array(
+		'name' => 'carl',
+		'age' => 17,
+		'points' => 20,
+		'arr' => array(
+			'key' => 10,
+		),
+	),
+	'i2' => array(
+		'name' => 'Bert',
+		'age' => 20,
+		'points' => 30,
+		'arr' => array(
+			'key' => 10,
+		),
+	),
+);
+
+$collection = \Arr::multisort($collection, array(
+	'name' => SORT_ASC,
+	'points' => array(SORT_ASC, SORT_NUMERIC),
+	'age' => array(SORT_ASC, SORT_NUMERIC),
+), true);
+print_r($collection);
+
+// Result
+Array
+(
+    [i2] => Array
+        (
+            [name] => Bert
+            [age] => 20
+            [points] => 30
+            [arr] => Array
+                (
+                    [key] => 10
+                )
+
+        )
+
+    [i7] => Array
+        (
+            [name] => carl
+            [age] => 17
+            [points] => 20
+            [arr] => Array
+                (
+                    [key] => 10
+                )
+
+        )
+
+    [i5] => Array
+        (
+            [name] => Carl
+            [age] => 17
+            [points] => 30
+            [arr] => Array
+                (
+                    [key] => 10
+                )
+
+        )
+)</code></pre>
 						</td>
 					</tr>
 					</tbody>
