@@ -283,15 +283,14 @@ catch(\Database_Exception $e)
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php">
-								<code>
-								// Check if table named 'my_table' exists
-								if(\DBUtil::table_exists('my_table')){
-									// Table exists
-								} else {
-									// Table does NOT exist, create it!
-								} 
-								</code>
+								<pre class="php"><code>// Check if table named 'my_table' exists
+if(DBUtil::table_exists('my_table'))
+{
+	// Table exists
+} else
+{
+	// Table does NOT exist, create it!
+}</code>
 								</pre>
 							</td>
 						</tr>
@@ -649,14 +648,15 @@ CREATE TABLE `users` (
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php">
-									<code>
-										if(\DBUtil::field_exists('my_table', array('my_field_or_column'))){
-											// Fields exist
-										} else {
-											// Fields are not available on the table
-										}
-									</code>
+								<pre class="php"><code>
+if(DBUtil::field_exists('my_table', array('my_field_or_column')))
+{
+	// Fields exist
+}
+else
+{
+	// Fields are not available on the table
+}</code>
 								</pre>
 							</td>
 						</tr>
@@ -1004,21 +1004,16 @@ CREATE TABLE `users` (
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>\DBUtil::add_foreign_key(
-									'users',
-									array(
-										'constraint' => 'constraintA',
-										'key' => 'keyA',
-										'reference' => array(
-											'table' => 'table',
-											'column' => 'field',
-										),
-										'on_update' => 'CASCADE',
-										'on_delete' => 'RESTRICT'
-									)
-								);
-
-								</code></pre>
+								<pre class="php"><code>\DBUtil::add_foreign_key('users', array(
+	'constraint' => 'constraintA',
+	'key' => 'keyA',
+	'reference' => array(
+		'table' => 'table',
+		'column' => 'field',
+	),
+	'on_update' => 'CASCADE',
+	'on_delete' => 'RESTRICT'
+));</code></pre>
 							</td>
 						</tr>
 					</tbody>
