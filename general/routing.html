@@ -167,7 +167,11 @@ echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 
 			<h3 id="inline_routes">Inline routes</h3>
 
-			<p>A route does not have to resolve to a controller method. FuelPHP also supports inline routes, which are defined as a Closure that replaces the controller method.</p>
+			<p>
+				A route does not have to resolve to a controller method. FuelPHP also supports inline routes, which are defined as a Closure
+				that replaces the controller method. Like controller methods, inline routes MUST return a Response object, either by forging
+				one manually, or as the result of executing a forged Request.
+			</p>
 
 			<p>Example route:</p>
 
@@ -176,7 +180,7 @@ echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 		// this route only works in development
 		if (\Fuel::$env == \Fuel::DEVELOPMENT)
 		{
-			return \Request::forge('secret/mystuff/keepout', false);
+			return \Request::forge('secret/mystuff/keepout', false)->execute();
 		}
 		else
 		{
