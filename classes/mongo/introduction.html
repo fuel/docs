@@ -91,6 +91,12 @@
 						<td>the port to use in the connection</td>
 					</tr>
 					<tr>
+						<th>replicaset</th>
+						<td>string</td>
+						<td>no</td>
+						<td>the name of the replicaset to use for the connection</td>
+					</tr>
+					<tr>
 						<th>username</th>
 						<td>string</td>
 						<td>no</td>
@@ -112,16 +118,17 @@
 		'mongo' => array(
 			// This group is used when no instance name has been provided.
 			'default' => array(
-				'hostname' => 'localhost',
-				'database' => 'mongo_fuel',
+				'hostname'   => 'localhost',
+				'database'   => 'mongo_fuel',
 			),
 
 			// List your own groups below.
 			'my_mongo_connection' => array(
-				'hostname' => 'localhost',
-				'database' => 'my_db',
-				'username' => 'user',
-				'password' => 'p@s$w0rD',
+				'hostname'   => 'localhost',
+				'database'   => 'my_db',
+				'replicaset' => 'replica',
+				'username'   => 'user',
+				'password'   => 'p@s$w0rD',
 			),
 		),
 	</code></pre>

@@ -95,7 +95,38 @@
 				 <var>Controller_Subdir1_Subdir2_Subdir3_Test</var> になります。
 			</p>
 
+			<h4 id="controller_namespacing">Namespacing controllers</h4>
+
+			<p>
+				As mentioned in the introduction by default controllers are created in the <kbd>app/classes/controller</kbd> folder,
+				and are prefixed with <var>Controller_</var>. This prefix is defined in your <kbd>app/config/config.php</kbd> configuration file
+				(and if not this is the default), but can be changed if you want to namespace your controllers, or if you
+				want to move them to a different folder structure.
+			</p>
+
+			<p>
+				Lets move the example given above to the <kbd>Controller</kbd> namespace. You tell FuelPHP that you've done this by setting the
+				config setting <var>controller_prefix</var> to <kbd>'\\Controller\\'</kbd> in your app's config.php file.
+			</p>
+
+			<pre class="php"><code>namespace Controller;
+
+class Example extends Controller
+{
+
+	public function action_index()
+	{
+		$data['css'] = Asset::css(array('reset.css','960.css','main.css'));
+		return Response::forge(View::forge('welcome/index'));
+	}
+}</code></pre>
+
+
+
+
+
 			<h4 id="more_parameters">URL からの複数のパラメータの使用</h4>
+
 
 			<p>例えば、Controller_Example の中に次のメソッドがあるとします: </p>
 

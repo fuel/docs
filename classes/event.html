@@ -49,6 +49,72 @@
 
 			<p>The event class allows you to interact with the Fuel Core without having to alter any core files.</p>
 
+			<h3 id="system_events">System defined events</h3>
+
+			<p>
+				The FuelPHP defines several events on the <kbd>fuelphp</kbd> instance, which you can use to hook into the
+				core without having to extend it. These events are:
+			</p>
+
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Event</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>app_created</th>
+						<td>
+							This event will be triggered after the FuelPHP framework has been initialised.
+						</td>
+					</tr>
+					<tr>
+						<th>request_created</th>
+						<td>
+							This event will be triggered after a new <kbd>Request</kbd> object has been forged.
+						</td>
+					</tr>
+					<tr>
+						<th>request_started</th>
+						<td>
+							This event will be triggered when execution of a <kbd>Request</kbd> is requested.
+						</td>
+					</tr>
+					<tr>
+						<th>controller_started</th>
+						<td>
+							This event will be triggered before the controllers <kbd>before()</kbd> method is called.
+						</td>
+					</tr>
+					<tr>
+						<th>controller_finished</th>
+						<td>
+							This event will be triggered after the controllers <kbd>after()</kbd> method has been called and the response received.
+						</td>
+					</tr>
+					<tr>
+						<th>response_created</th>
+						<td>
+							This event will be triggered after a new <kbd>Response</kbd> object has been forged.
+						</td>
+					</tr>
+					<tr>
+						<th>request_finished</th>
+						<td>
+							This event will be triggered when execution of a <kbd>Request</kbd> is complete and a response is received.
+						</td>
+					</tr>
+					<tr>
+						<th>shutdown</th>
+						<td>
+							This event will be triggered after the main request has been processed and the output has been send out.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3 id="class_methods">Class methods</h3>
+
 			<article>
 				<h4 class="method" id="method_register">register($event, $callback)</h4>
 				<p>The <strong>register</strong> method allows files to register an object that will be run when the <kbd>trigger</kbd> method is called.</p>
@@ -93,7 +159,7 @@
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_unregister">unregister($event, $callback = null)</h4>
 				<p>The <strong>unregister</strong> method allows files to unregister an object that would be run when the <kbd>trigger</kbd> method is called.</p>
