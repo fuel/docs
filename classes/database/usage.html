@@ -156,7 +156,14 @@ $result = DB::select('id','name')->from('users')->as_object()->execute();
 
 // Will fetch the result as an Model_Users object.
 $result = DB::select()->from('users')->as_object('Model_Users')->execute();
+
+// Will fetch the result as an Model_Users object (a model from the Users module).
+$result = DB::select()->from('users')->as_object('\\Users\\Model_Users')->execute();
 </code></pre>
+				<p class="note">
+					When you pass a class name to as_object(), make sure you include any namespace if needed. If the class
+					specified does not exist, as_object() will be ignored and an indexed array will be returned.
+				</p>
 				<p>Want to know how many records you have fetched? It's dead simple!</p>
 				<pre class="php"><code>
 $result = DB::select('*')->from('users')->execute();
