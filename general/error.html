@@ -54,7 +54,32 @@
 				on by providing a HTTP error status.
 			</p>
 
-			<h3 id="config">Error 404</h3>
+			<h3 id="code_errors">Code errors</h3>
+
+			<p>
+				FuelPHP's internal error handling is based on Exceptions. This allows you to catch them in your code, so your
+				application can handle the exception that occured gracefully and the user can continue using the application.
+			</p>
+			<p>
+				FuelPHP also alters the default PHP behaviour when it comes to PHP errors (which are not exceptions) from the
+				old procedural functions. Instead of continuing on all non-fatal errors, <strong>FuelPHP will throw a PhpErrorException
+				on all of these errors</strong>. This will force you to solve all errors, even an E_NOTICE which in the old days you
+				might have ignored. It will also allow you to catch PHP errors. For example to catch syntax errors in view files
+				when you have non-programmers creating views.
+			</p>
+			<p>
+				You can alter this behaviour by adding PHP error types (like E_NOTICE or E_STRICT) to the <a href="./configuration.html#config">errors.continue_on</a> key
+				in your applications config/config.php file. Errors defined here will allow your script to continue. No exception
+				is being thrown for these errors, so you can no longer catch these.
+			 </p>
+			 <p class="note">
+				 It is strongly adviced not to continue on errors, as it might lead to bugs in your code that are
+				 very difficult to find once your application moves into production!
+			 </p>
+
+			<h3 id="application_errors">Application logic errors</h3>
+
+			<h4 id="config">Error 404</h4>
 
 			<p>
 				The 404 route is set in <em>app/config/routes.php</em> and must point to the controller/method
@@ -165,7 +190,7 @@ public function action_my404()
 	}
 }</code></pre>
 
-			<h3 id="throw_500">Throwing a 500</h3>
+			<h4 id="throw_500">Throwing a 500</h4>
 
 			<p>
 				There may be moments where your applications simply need to stop and show an error to
