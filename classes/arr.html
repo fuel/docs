@@ -609,8 +609,8 @@ print_r(Arr::filter_prefixed($arr, "user_"));
 // Result:
 Array
 (
-	[name] => Frank
-	[surname] => de Jonge
+	[name] => John
+	[surname] => Lastname
 )
 
 // Let's keep the prefix
@@ -621,6 +621,66 @@ Array
 (
 	[project_name] => Fuel
 	[project_type] => Framework
+)
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_remove_prefixed" class="method">remove_prefixed($array, $prefix)</h4>
+				<p>The <strong>remove_prefixed</strong> method removed values from an array if they match a given prefix.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to remove from.</td>
+								</tr>
+								<tr>
+									<th><kbd>$prefix</kbd></th>
+									<td><pre class="php"><code>prefix_</code></pre></td>
+									<td>The string used to filter on</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$arr = array(
+	"user_name" => "John",
+	"user_surname" => "Lastname",
+	"project_name" => "Fuel",
+	"project_type" => "Framework",
+);
+
+print_r(Arr::remove_prefixed($arr, "project"));
+
+// Result:
+Array
+(
+	[user_name] => John
+	[user_surname] => Lastname
 )
 </code></pre>
 						</td>
