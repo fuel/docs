@@ -233,7 +233,7 @@ Event::trigger('my_event');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_trigger">trigger($event, $data = '', $return_type = 'string')</h4>
+				<h4 class="method" id="method_trigger">trigger($event, $data = '', $return_type = 'string', $reversed = false)</h4>
 				<p>The <strong>trigger</strong> method is used to trigger or activate callbacks that are associated through the register method.</p>
 				<table class="method">
 					<tbody>
@@ -264,6 +264,11 @@ Event::trigger('my_event');
 									<th><kbd>$return_type</kbd></th>
 									<td><pre class="php"><code>'string'</code></pre></td>
 									<td>What type of return data you expect. (string, array, json, none, serialized) - <strong>Default is string</strong></td>
+								</tr>
+								<tr>
+									<th><kbd>$$reversed</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Set to true to fire the events in reversed order, LIFO instead or FIFO.</td>
 								</tr>
 							</table>
 						</td>
