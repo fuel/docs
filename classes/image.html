@@ -280,7 +280,7 @@ Image::load('filename.gif')
 			</article>
 
 			<article>
-				<h4 class="method" id="method_load">load($filename, $return_data = false)</h4>
+				<h4 class="method" id="method_load">load($filename, $return_data = false, $force_extension = false)</h4>
 				<p>The <strong>load</strong> method attempts to load an image for editing.</p>
 				<table class="method">
 					<tbody>
@@ -309,6 +309,12 @@ Image::load('filename.gif')
 									<td><pre class="php"><code>false</code></pre></td>
 									<td>Determines whether to return image data, and only works with GD.</td>
 								</tr>
+
+								<tr>
+									<th><kbd>$force_extension</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Whether or not to force the image extension (to $force_extension), and only works with GD.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -319,7 +325,24 @@ Image::load('filename.gif')
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>Image::load('filename.gif');</code></pre>
+							<pre class="php"><code>// Load image
+Image::load('filename.gif');
+
+// Upload an image and pass it directly into the Image::load method.
+Upload::process(array(
+	'path' => DOCROOT.DS.'files'
+));
+
+if (Upload::is_valid())
+{
+	$data = Upload::get_files(0);
+
+	// Using the file upload data, we can force the image's extension
+	// via $force_extension
+	Image::load($data['file'], false, $data['extension'])
+		->crop_resize(200, 200)
+		->save('image');    
+} </code></pre>
 						</td>
 					</tr>
 					</tbody>
