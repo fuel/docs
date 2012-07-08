@@ -385,7 +385,15 @@ panes.main = {
 		"Unit Testing":		"general/unit_testing.html",
 		"Error handling":	"general/error.html",
 		"Profiling":		"general/profiling.html",
-	}
+	},
+	"Third party": {
+		"Introduction":		"vendor/intro.html",
+		"htmLawed":			"vendor/htmlawed.html",
+		"Markdown":			"vendor/markdown.html",
+		"PHPQuickProfiler":	"vendor/phpquickprofiler.html",
+		"PHPSecLib":		"vendor/phpseclib.html",
+		"spyc":				"vendor/spyc.html",
+	},
 };
 
 panes.core = {
