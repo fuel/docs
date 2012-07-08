@@ -385,7 +385,15 @@ panes.main = {
 		"ユニットテスト":		"general/unit_testing.html",
 		"エラー処理":	"general/error.html",
 		"プロファイリング":		"general/profiling.html",
-	}
+	},
+	"Third party": {
+		"Introduction":		"vendor/intro.html",
+		"htmLawed":			"vendor/htmlawed.html",
+		"Markdown":			"vendor/markdown.html",
+		"PHPQuickProfiler":	"vendor/phpquickprofiler.html",
+		"PHPSecLib":		"vendor/phpseclib.html",
+		"spyc":				"vendor/spyc.html",
+	},
 };
 
 panes.core = {
