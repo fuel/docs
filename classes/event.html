@@ -110,6 +110,54 @@
 							This event will be triggered after the main request has been processed and the output has been send out.
 						</td>
 					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							In <strong>app/config/event.php</strong>
+							<pre class="php"><code>&lt;?php
+
+return array(
+	'fuelphp' => array(
+		'app_created' => function()
+		{
+			// FuelPHP initialised
+		},
+		'request_created' => function()
+		{
+			// Request forged
+		},
+		'request_started' => function()
+		{
+			// Request is requested
+		},
+		'controller_started' => function()
+		{
+			// Controller before() method called
+		},
+		'controller_finished' => function()
+		{
+			// Controller after() method called
+		},
+		'response_created' => function()
+		{
+			// Response forged
+		},
+		'request_finished' => function()
+		{
+			// Request is complete and Response received
+		},
+		'shutdown' => function()
+		{
+			// Outpus has been send out
+		},
+	),
+);
+</code></pre>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 
