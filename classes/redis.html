@@ -118,6 +118,19 @@ echo "&lt;/ul>";
 </code></pre>
 			</article>
 
+			<article>
+				<h4 id="redis_pipelining">Pipelining</h4>
+				<p>You can add multiple Redis commands into a command pipeline, and execute them all at once.</p>
+				<p>An example:</p>
+				<pre class="php"><code>// create the Redis 'mystore' instance
+$redis = Redis::instance('mystore');
+
+// pipeline some redis commands, then execute them
+$result = $redis->pipeline()
+	->sadd('list', 4)
+	->sadd('list', 1)
+	->sadd('list', 55)
+	->execute();</code></pre>
 		</div>
 
 		<footer>

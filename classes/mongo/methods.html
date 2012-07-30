@@ -1868,6 +1868,56 @@ $indexes = $mongodb->list_indexes('my_collection');
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="get_collection">get_collection($collection = "")</h4>
+				<p>
+					The <strong>get_collection</strong> method returns a MongoCollection object from the core MongoDB PHP Driver. <a href="http://www.php.net/manual/en/book.mongo.php">(?)</a>
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$collection</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>''</code></pre></td>
+									<td>The collection (table) to use.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>A MongoCollection object from the core MongoDB PHP Driver.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get a collection
+$mongodb       = \Mongo_Db::instance();
+$my_collection = $mongodb->get_collection('my_collection');
+$my_collection->update(array('_id' => $id), array('$push' => array('array.to.add.to' => $data)));
+</code></pre>
+						<br />
+						This was put in place due to the inherent lack of support for <a href="http://www.mongodb.org/display/DOCS/Updating#Updating-ModifierOperations">update modifier operation</a>.
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 		</div>
 
 		<footer>
