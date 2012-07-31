@@ -123,6 +123,19 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOP
 				very dangerous).  There are only environment-specific config settings.
 			</p>
 
+			<h3 id="env_apache">Using Apache configuration</h3>
+
+			<p>
+				You can use the Apache configuration statement <strong>SetEnv</strong> to set the environment your application should run in.
+				In most cases this is easier then using an environment variable, and in some cases the only option if you don't have commandline
+				access to your server.
+			</p>
+
+			<pre class="php"><code>// run this application in production mode
+SetEnv FUEL_ENV PRODUCTION</code></pre>
+
+			<p class="note">Both the variable name <strong>FUEL_ENV</strong> and the environment need to be specified in UPPERCASE.</p>
+
 		</div>
 
 		<footer>
