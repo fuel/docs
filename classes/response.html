@@ -55,6 +55,13 @@
 					コントローラの中で次のように設定します:</p>
 				<pre class="php"><code>$response = new Response($body, 404);</code></pre>
 
+				<h4>Setting the Status Header and other headers</h4>
+				<pre class="php"><code>$headers = array (
+    'Cache-Control'     => 'no-cache, no-store, max-age=0, must-revalidate',
+    'Expires'           => 'Mon, 26 Jul 1997 05:00:00 GMT',
+    'Pragma'            => 'no-cache',
+);
+$response = new Response($body, 404, $headers);</code></pre>
 			</article>
 
 			<article>
