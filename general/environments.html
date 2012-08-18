@@ -123,6 +123,41 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOP
 				very dangerous).  There are only environment-specific config settings.
 			</p>
 
+			<h4 id="env_config_loading_order">Package and Module Config Loading Order</h4>
+				<p>
+					Packages and Modules have their own configuration files which can be be overridden based on the current environment. Remember that configs loaded later can override values in earlier loaded configs.
+				</p>
+
+			<h5 id="env_config_loading_order_package">Packages</h5>
+
+			<pre class="php"><code>/**
+ * Locating a package config
+ * 
+ * Loading Order assuming FUEL::TEST:
+ * 
+ * 1. app/packages/mypackage/config/stuff.php
+ * 2. app/config/stuff.php
+ * 3. app/packages/mypackage/config/test/stuff.php *note below
+ * 4. app/config/test/stuff.php
+ */
+Config::get('mypackage.stuff');</code></pre>
+
+			<p class="note">When Fuel looks for config files in a package's own directory, it looks through <em>ALL</em> packages in the order that they were loaded.  If a package loaded after your package has a config file by the same name, it can override the config of the former package.</p>
+
+			<h5 id="env_config_loading_order_module">Modules</h5>
+
+			<pre class="php"><code>/**
+ * Locating a module config
+ * 
+ * Loading Order assuming FUEL::TEST:
+ * 
+ * 1. app/modules/mymodule/config/stuff.php
+ * 2. app/modules/mymodule/config/test/stuff.php
+ * 3. app/config/test/modules/mymodule/stuff.php
+ */
+Config::get('mymodule::stuff');</code></pre>
+
+
 			<h3 id="env_apache">Using Apache configuration</h3>
 
 			<p>
