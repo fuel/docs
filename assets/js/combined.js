@@ -354,7 +354,9 @@ panes.main = {
 	"インストール": {
 		"インストール方法":	"installation/instructions.html",
 		"ダウンロード":		"installation/download.html",
-		"トラブルシューティング":		"installation/troubleshooting.html",
+		"チュートリアル":	"installation/tutorials.html",
+		"トラブルシューティング":		"installation/troubleshooting.html"
+
 	},
 	"概要": {
 		"クラス": {
