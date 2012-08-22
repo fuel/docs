@@ -354,7 +354,8 @@ panes.main = {
 	"Installation": {
 		"Instructions":	"installation/instructions.html",
 		"Download":		"installation/download.html",
-		"Troubleshooting":		"installation/troubleshooting.html",
+		"Tutorials":	"installation/tutorials.html",
+		"Troubleshooting":		"installation/troubleshooting.html"
 	},
 	"General": {
 		"Classes": {
