@@ -55,7 +55,7 @@
 			<h3 id="class_constants">クラス定数</h3>
 
 			<p style="margin-bottom:10px;">環境定数。config.phpにおいてアプリケーションの動作環境を定めるために用いられます。</p>
-			<table class="config">。
+			<table class="config">
 				<tbody>
 					<tr class="header">
 						<th>名前</th>
@@ -178,89 +178,89 @@
 				</tbody>
 			</table>
 
-			<h3>Class properties</h3>
+			<h3>クラスプロパティ</h3>
 
 
-			<p style="margin-bottom:10px;">Note that although these properties are defined as public, you should not alter them without good reason.</p>
+			<p style="margin-bottom:10px;">これらのプロパティは public なプロパティとして定義されていますが、正当な理由なく変更しないでください。</p>
 			<table class="config">
 				<tbody>
 					<tr class="header">
-						<th>Name</th>
-						<th>Static</th>
-						<th>Type</th>
-						<th>Value</th>
-						<th>Description</th>
+						<th>名前</th>
+						<th>静的プロパティ</th>
+						<th>タイプ</th>
+						<th>値</th>
+						<th>説明</th>
 					</tr>
 					<tr>
 						<th>$initialized</th>
-						<td>yes</td>
-						<td>boolean</td>
+						<td>はい</td>
+						<td>論理型</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
-							Indicates if the framework has been initialized.
+							フレームワークが初期化されているか。
 						</td>
 					</tr>
 					<tr>
 						<th>$env</th>
-						<td>yes</td>
-						<td>string</td>
+						<td>はい</td>
+						<td>文字列型</td>
 						<td><pre class="php"><code>FUEL::DEVELOPMENT</code></pre></td>
 						<td>
-							Environment the framework runs in. Must be one of the environment constants mentioned above.
+							フレームワークを実行する環境定数。上記の環境定数のいずれかでなければいけません。
 						</td>
 					</tr>
 					<tr>
 						<th>$profiling</th>
-						<td>yes</td>
-						<td>boolean</td>
+						<td>はい</td>
+						<td>論理型</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
-							If true, the profiler has been enabled.
+							true の場合、プロファイラーを有効にします。
 						</td>
 					</tr>
 					<tr>
 						<th>$locale</th>
-						<td>yes</td>
-						<td>string</td>
+						<td>はい</td>
+						<td>文字列型</td>
 						<td><pre class="php"><code>en_US</code></pre></td>
 						<td>
-							Currently defined locale.
+							現在のロケールを定義します。
 						</td>
 					</tr>
 					<tr>
 						<th>$timezone</th>
-						<td>yes</td>
-						<td>string</td>
+						<td>はい</td>
+						<td>文字列型</td>
 						<td><pre class="php"><code>UTC</code></pre></td>
 						<td>
-							Currently defined timezone.
+							現在のタイムゾーンを定義します。
 						</td>
 					</tr>
 					<tr>
 						<th>$encoding</th>
-						<td>yes</td>
-						<td>string</td>
+						<td>はい</td>
+						<td>文字列型</td>
 						<td><pre class="php"><code>UTF8</code></pre></td>
 						<td>
-							Currently defined character encoding.
+							現在の文字エンコードを定義します。
 						</td>
 					</tr>
 					<tr>
 						<th>$is_cli</th>
-						<td>yes</td>
-						<td>boolean</td>
+						<td>はい</td>
+						<td>論理型</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
-							If true, the framework runs in CLI mode.
+							true の場合、フレームワークは CLI モードで実行されます。
 						</td>
 					</tr>
 					<tr>
 						<th>$is_test</th>
-						<td>yes</td>
-						<td>boolean</td>
+						<td>はい</td>
+						<td>論理型</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
-							If true, the framework runs in Unit Test mode.
+							true の場合、フレームワークは Unit Test モードで実行されます。
 						</td>
 					</tr>
 				</tbody>
@@ -268,19 +268,19 @@
 
 			<article>
 				<h4 class="method" id="method_load">load($file)</h4>
-				<p><strong>load</strong>メソッドは、指定ファイルをロード（インクルード）し、その結果を返します。例えば、設定ファイルをロードする時に本メソッドは使われます。その場合、設定情報は配列で返されます。</p>
+				<p><strong>load</strong> メソッドは、指定ファイルをロード（インクルード）し、その結果を返します。例えば、設定ファイルをロードする時に本メソッドは使われます。その場合、設定情報は配列で返されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的メソッド</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
+									<th>パラメータ名</th>
 									<th>初期値</th>
 									<th class="description">解説</th>
 								</tr>
@@ -299,7 +299,7 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// あるPHP fileをロード
+							<pre class="php"><code>// ある PHP file をロード
 if (Fuel::load('myfile.php'))
 {
 	echo "MyFile was loaded successfully";
@@ -309,7 +309,7 @@ if (Fuel::load('myfile.php'))
 					</tr>
 					</tbody>
 				</table>
-				<p class="note"> 次の点に留意してください。もしインクルードされるファイルに<strong>return</strong>宣言が含まれていない(NOT)場合、ロードが成功すればload() は<strong>1</strong>を返し、失敗すれば<strong>0</strong>を返します!</p>
+				<p class="note"> 次の点に留意してください。もしインクルードされるファイルに <strong>return</strong> 宣言が含まれていない (NOT) 場合、ロードが成功すれば load() は <strong>1</strong> を返し、失敗すれば <strong>0</strong> を返します!</p>
 			</article>
 			
 		</div>
