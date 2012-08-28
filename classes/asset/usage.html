@@ -98,7 +98,8 @@
 										<th><kbd>$type</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-											If adding a folder, the type to add it to. Currently, 'img', 'css' and 'js' are suppored.
+											If adding a folder, the type to add it to. The asset class has the types 'img', 'css' and 'js' predefined.
+											If you pass an undefined type, a new paths structure will be created for this type.
 											To add the same path to multiple types, pass them as an array of types.
 										</td>
 									</tr>
@@ -127,6 +128,11 @@ Asset::add_path('assets/global/', array('css', 'js', 'img'));
 Asset::add_path('assets/icons/', 'img');
 Asset::add_path('assets/images/', 'img');
 Asset::add_path('assets/css/', 'css');
+
+/*
+ * Create a new asset type
+ */
+Asset::add_path('assets/docs/', 'pdf');
 
 /*
  * You can chain the calls as well.
