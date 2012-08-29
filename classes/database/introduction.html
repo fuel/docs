@@ -81,21 +81,23 @@
 		'password'       => 'y0uR_p@ssW0rd',
 		'persistent'     => false,
 	),
+	'identifier'   => '`',
 	'table_prefix'   => '',
 	'charset'        => 'utf8',
 	'enable_cache'   => true,
 	'profiling'      => false,
 ),
 
-// a PDO driver configuration
+// a PDO driver configuration, using PostgreSQL
 'production' => array(
 	'type'           => 'pdo',
 	'connection'     => array(
-		'dsn'            => 'mysql:host=localhost;dbname=fuel_db',
+		'dsn'            => 'pgsql:host=localhost;dbname=fuel_db',
 		'username'       => 'your_username',
 		'password'       => 'y0uR_p@ssW0rd',
 		'persistent'     => false,
 	),
+	'identifier'   => '"',
 	'table_prefix'   => '',
 	'charset'        => 'utf8',
 	'enable_cache'   => true,
@@ -138,6 +140,11 @@
 							<th><kbd>connection.persistent</kbd></th>
 							<td>boolean</td>
 							<td>Wether to initiate a persisten connection.</td>
+						</tr>
+						<tr>
+							<th><kbd>identifier</kbd></th>
+							<td>string</td>
+							<td>Delimiter used to quote identifiers.</td>
 						</tr>
 						<tr>
 							<th><kbd>table_prefix</kbd></th>
