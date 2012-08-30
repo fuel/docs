@@ -287,8 +287,56 @@ echo $alt(); // outputs 'one'
 			</article>
 
 			<article>
+				<h4 class="method" id="method_upper">upper($str, $encoding = null)</h4>
+				<p>The <strong>upper</strong> method converts all characters to uppercase. It is equivalent to PHP's strtoupper() for your specific character encoding.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$string</kbd></th>
+										<td><em>string</em></td>
+										<td><em>Required</em></td>
+										<td>The input string.</td>
+									</tr>
+									<tr>
+										<th><kbd>$encoding</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>The character encoding.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>string</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>Str::upper('User Data'); // returns 'USER DATA'</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_lower">lower($str, $encoding = null)</h4>
-				<p>The <strong>lower</strong> method converts all characters to lowercase.  It is equivalent to PHP's strtolower() for your specific character encoding.</p>
+				<p>The <strong>lower</strong> method converts all characters to lowercase. It is equivalent to PHP's strtolower() for your specific character encoding.</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -614,6 +662,61 @@ Str::ends_with($string, 'amet'); // returns true
 Str::ends_with($string, 'Amet'); // returns false
 Str::ends_with($string, 'Amet', true); // returns true
 </code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_sub">sub($str, $start, $length = null, $encoding = null)</h4>
+				<p>The <strong>sub</strong> method returns the portion of the string specified. It is equivalent to PHP's substr() for your specific character encoding.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$str</kbd></th>
+										<td><em>required</em></td>
+										<td>The input string.</td>
+									</tr>
+									<tr>
+										<th><kbd>$start</kbd></th>
+										<td><em>required</em></td>
+										<td>Position of first character. See <a href="http://php.net/substr" target="_blank">php.net</a> for detailed usage.</td>
+									</tr>
+									<tr>
+										<th><kbd>$length</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Maximum number of characters. See <a href="http://php.net/substr" target="_blank">php.net</a> for detailed usage.</td>
+									</tr>
+									<tr>
+										<th><kbd>$encoding</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>The character encoding.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>string</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>Str::sub('User Data', 3, -1); // returns 'r Dat'</code></pre>
 							</td>
 						</tr>
 					</tbody>
