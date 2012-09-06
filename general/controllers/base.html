@@ -80,20 +80,20 @@
 				isn't allowed, "action_list" is no problem). But this also means you can give your controller public
 				methods that can be used from other classes but are not routable.
 			</p>
-			
+
 			<h3 id="http_method_prefixed_actions">HTTP method prefixed action.</h3>
-			
+
 			<p>
 				It's possible to route to HTTP method prefixed actions. Here is an example:
 			</p>
-			
+
 			<pre class="php"><code>class Controller_Example extends Controller
 {
 	public function get_index()
 	{
 		// This will be called when the HTTP method is GET.
 	}
-	
+
 	public function post_index()
 	{
 		// This will be called when the HTTP method is POST.
@@ -199,8 +199,10 @@ class Example extends Controller
 			<article>
 				<h4 id="before">before()</h4>
 				<p>
-					This method will be executed <strong>before</strong> the method from the URL is called on your
-					controller, even if that method turns out not to exist.
+					The before() method is used as a general pre-method prepping method, to execute code required in
+					every controller method called. This method will be executed <strong>before</strong> the method
+					from the URL is called on your controller. It will not be called if that method turns out not to exist.
+					You should not use this method for routing decisions. If you need that, use the <strong>router</strong> method instead.
 				</p>
 			</article>
 
