@@ -45,7 +45,7 @@
 
 		<div id="main">
 
-			<h2>Session Class</h2>
+			<h2>Session クラス</h2>
 
 			<p>
 				The session class allows you to maintain state for your application in the stateless environment of the web.
@@ -85,13 +85,13 @@
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$instance</kbd></th>
@@ -102,11 +102,11 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed - session object, or <kbd>false</kbd> in case the requested instance does not exist.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// get the default session instance (identified by the 'driver' configuration setting).
 $session = Session::instance();
@@ -130,19 +130,19 @@ $session = Session::instance('myappcookie');
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>型</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
 									<td><em>string|array</em></td>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the session variable to set or associative array of values.</td>
 								</tr>
 								<tr>
@@ -158,11 +158,11 @@ $session = Session::instance('myappcookie');
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// store the userid in the session
 Session::set('userid', $userid);
@@ -198,13 +198,13 @@ Session::set('userid', $userid)->set('foo', 'bar');
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
@@ -220,11 +220,11 @@ Session::set('userid', $userid)->set('foo', 'bar');
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed - Dependent on the type of the stored <var>$variable</var>. The method returns <kbd>null</kbd> if the requested variable does not exist.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// get the stored userid from the session
 $userid = Session::get('userid');
@@ -257,28 +257,28 @@ $vars = Session::get();</code></pre>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the session variable to delete.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// delete the stored userid from the session
 Session::delete('userid');
@@ -302,17 +302,17 @@ Session::delete('array.varC');
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the session flash variable to set.</td>
 								</tr>
 								<tr>
@@ -327,11 +327,11 @@ Session::delete('array.varC');
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// tell the next page request which step to process
 Session::set_flash('step', 2);
@@ -355,17 +355,17 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the session variable to get.</td>
 								</tr>
 								<tr>
@@ -377,11 +377,11 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed - Dependent on the type of the stored <var>$variable</var>. The method returns <kbd>null</kbd> if the requested variable does not exist.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// find out which step to process
 $step = Session::get_flash('step');
@@ -402,28 +402,28 @@ $step = Session::get_flash('step');
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the flash variable to keep.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// keep the step value for one more page request
 Session::keep_flash('step');
@@ -444,28 +444,28 @@ Session::keep_flash('step');
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the flash variable to delete.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// delete the step from the session
 Session::delete_flash('userid');
@@ -486,15 +486,15 @@ Session::delete_flash('userid');
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// create a new session
 Session::create();
@@ -515,15 +515,15 @@ Session::create();
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// destroy a session
 Session::destroy();
@@ -544,15 +544,15 @@ Session::destroy();
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// read the session
 Session::read();
@@ -573,15 +573,15 @@ Session::read();
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// write the session
 Session::write();
@@ -607,15 +607,15 @@ Session::write();
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// rotate the session
 Session::rotate();
@@ -639,13 +639,13 @@ Session::rotate();
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
@@ -660,11 +660,11 @@ Session::rotate();
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed - element value, or <kbd>false</kbd> if the requested element does not exist.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// get the current session id
 $session_id = Session::key('session_id');

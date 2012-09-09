@@ -45,12 +45,12 @@
 
 		<div id="main">
 
-			<h2>Security Class</h2>
+			<h2>Security クラス</h2>
 
 			<p>The security class allows you to have CSRF protection in your application.</p>
 
 			<section>
-				<h3 id="configuration">Configuration</h3>
+				<h3 id="configuration">設定</h3>
 
 				<p>
 					The security class is configured through the security section of the <kbd>app/config/config.php</kbd> configuration file.
@@ -59,10 +59,10 @@
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>型</th>
+							<th>規定値</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>csrf_autoload</th>
@@ -162,13 +162,13 @@
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
@@ -179,11 +179,11 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>boolean</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>Security::check_token();</code></pre>
 						</td>
@@ -202,15 +202,15 @@
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$csrf_token = Security::fetch_token();</code></pre>
 						</td>
@@ -229,15 +229,15 @@
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// output the javascript function
 echo Security::js_fetch_token();
@@ -263,15 +263,15 @@ echo Security::js_fetch_token();
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// output the javascript function
 echo Security::js_set_token();
@@ -298,17 +298,17 @@ echo Security::js_set_token();
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
+									<td><i>必須</i></td>
 									<td>The value to be cleaned. This can be a string value, or an array of string values.</td>
 								</tr>
 								<tr>
@@ -323,11 +323,11 @@ echo Security::js_set_token();
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// first strip tags, convert html entities in the remaining data, and finish it off using our special cleaning solution
 $filters = array('strip_tags', 'htmlentities', '\\cleaners\\soap::clean');
@@ -348,28 +348,28 @@ $text = Security::clean($text, $filters);</code></pre>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
+									<td><i>必須</i></td>
 									<td>The input string.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$text = '&lt;p&gt;Test paragraph.&lt;/p&gt;';
 $text = Security::strip_tags($text);</code></pre>
@@ -389,28 +389,28 @@ $text = Security::strip_tags($text);</code></pre>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
+									<td><i>必須</i></td>
 									<td>The input string.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$text = '&lt;SCRIPT&gt;alert("XSS attack!")&lt;/SCRIPT&gt;';
 $text = Security::xss_clean($text);</code></pre>
@@ -433,17 +433,17 @@ $text = Security::xss_clean($text);</code></pre>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
+									<td><i>必須</i></td>
 									<td>The input value.</td>
 								</tr>
 								<tr>
@@ -465,15 +465,15 @@ $text = Security::xss_clean($text);</code></pre>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed</td>
 					</tr>
 					<tr>
-						<th>Throws</th>
+						<th>例外</th>
 						<td><strong>RuntimeException</strong>, in case an object has been passed that can't be cast as string.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$text = '&lt;p&gt;Test paragraph.&lt;/p&gt;';
 $text = Security::htmlentities($text);</code></pre>
@@ -491,28 +491,28 @@ $text = Security::htmlentities($text);</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$string</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The input value.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string, result from <a href="#method_htmlentities">Security::htmlentities</a></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$text = '&lt;p&gt;Test paragraph.&lt;/p&gt;';
 $text = e($text);</code></pre>
