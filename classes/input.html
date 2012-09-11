@@ -138,7 +138,7 @@ $value = \Input::xml('key', 'backup-value');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_cookie">cookie($index, $default = null)</h4>
+				<h4 class="method" id="method_cookie">cookie($index = null, $default = null)</h4>
 				<p><strong>cookie</strong> メソッドは、$_COOKIE 変数を読み込みます。
 				引数なしで呼び出すと、すべてのクッキーを配列で取得します。</p>
 				<table class="method">
@@ -184,7 +184,7 @@ $value = \Input::xml('key', 'backup-value');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_delete">delete($index, $default = null)</h4>
+				<h4 class="method" id="method_delete">delete($index = null, $default = null)</h4>
 				<p><strong>delete</strong> メソッドは、[訳注: HTTP の] DELETE メソッドで呼び出されたときに、php://input ストリームからパラメータを読み込みます。引数なしで呼び出すと、配列をすべて取得します。</p>
 				<table class="method">
 					<tbody>
@@ -229,7 +229,7 @@ $value = \Input::xml('key', 'backup-value');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_put">put($index, $default = null)</h4>
+				<h4 class="method" id="method_put">put($index = null, $default = null)</h4>
 				<p><strong>put</strong> メソッドは、[訳注: HTTP の] PUT メソッドで呼び出されたときに、php://input ストリームからパラメータを読み込みます。
 				引数なしで呼び出すと、配列をすべて取得します。</p>
 				<table class="method">
@@ -275,7 +275,8 @@ $value = \Input::xml('key', 'backup-value');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_get">get($index, $default = null)</h4>
+				
+				<h4 class="method" id="method_get">get($index = null, $default = null)</h4>
 				<p><strong>get</strong> メソッドは、$_GET 変数を読み込みます。引数なしで呼び出すと、配列をすべて取得します。</p>
 				<table class="method">
 					<tbody>
@@ -294,8 +295,8 @@ $value = \Input::xml('key', 'backup-value');</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>必須</i></td>
-									<td>$_GET 配列のキー。多次元配列には、階層をドット (.) で区切ることでアクセスできます。</td>
+									<td><i>optional</i></td>
+									<td>The key in the $_GET array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
@@ -324,7 +325,7 @@ Input::get('somevar.foo.bar');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_post">post($index, $default = null)</h4>
+				<h4 class="method" id="method_post">post($index = null, $default = null)</h4>
 				<p><strong>post</strong> メソッドは、$_POST 変数を読み込みます。引数なしで呼び出すと、配列をすべて取得します。</p>
 				<table class="method">
 					<tbody>
@@ -563,7 +564,7 @@ fe80::/10      // link local unicast (rfc4291)
 			</article>
 
 			<article>
-				<h4 class="method" id="method_server">server($index, $default = null)</h4>
+				<h4 class="method" id="method_server">server($index = null, $default = null)</h4>
 				<p><strong>server</strong> メソッドは、$_SERVER 変数にアクセスします。
 					引数なしで呼び出すと、配列をすべて取得します。</p>
 				<table class="method">
