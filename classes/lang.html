@@ -54,6 +54,19 @@
 				Use the <a href="./config.html#method_set">Config set method</a> to change the value.
 			</p>
 			<pre class="php"><code>Config::set('language', 'cy');</code></pre>
+			<p>
+				You can also define a fallback language in your configuration, which is either a language code, or an array of
+				language codes. The fallback is used whenever you load a language file, and the file does not exist for the
+				specified language.
+			</p>
+
+			<h3 id="multi_lang">Multi-language support</h3>
+
+			<p>
+				The Lang class supports multiple languages, which can be used concurrently. By default the currently set language
+				is used to load files and retrieve language strings, but you can switch this dynamically using the method described
+				above, or by specifying the required language code in one of the Lang class method calls.
+			</p>
 
 			<h3 id="lang_groups">Lang File Types</h3>
 
@@ -164,7 +177,7 @@ Lang::load('foo::example', 'bar', 'it');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_get">get($line, $params = array())</h4>
+				<h4 class="method" id="method_get">get($line, $params = array(), $default = null, , $language = null)</h4>
 				<p>The <strong>get</strong> method allows you to get a specific line from the language file.</p>
 				<table class="method">
 					<tbody>
@@ -191,6 +204,16 @@ Lang::load('foo::example', 'bar', 'it');</code></pre>
 									<td><pre class="php"><code>array()</code></pre></td>
 									<td>Sets an array of parameter that might be passed to the line.</td>
 								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Value to return if $line could not be found.</td>
+								</tr>
+								<tr>
+									<th><kbd>$language</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Language code for which this line should be retrieved. If not given the current active language will be used.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -213,7 +236,7 @@ $this->output = Lang::get('test.something');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_set">set($line, $value, $group = null)</h4>
+				<h4 class="method" id="method_set">set($line, $value, $group = null, $language = null)</h4>
 				<p>The <strong>set</strong> method allows you to set a specific line to the language file.</p>
 				<table class="method">
 					<tbody>
@@ -244,6 +267,11 @@ $this->output = Lang::get('test.something');</code></pre>
 									<th><kbd>$group</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>Sets a language group to be used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$language</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Language code for which this line should be set. If not given the current active language will be used.</td>
 								</tr>
 							</table>
 						</td>
@@ -330,6 +358,61 @@ Lang::save('foo::custom', 'bar');</code></pre>
 					</tr>
 					</tbody>
 				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_delete">delete($item, $group = null, $language = null)</h4>
+				<p>The <strong>set</strong> method allows you to delete a specific line from the <em>loaded</em> language file.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$item</kbd></th>
+									<td><i>required</i></td>
+									<td>The desired line's identifier.</td>
+								</tr>
+								<tr>
+									<th><kbd>$group</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Sets a language group to be used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$language</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Language code for which this line should be deleted. If not given the current active language will be used.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// delete the 'hello' language key
+Lang::delete('hello');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					Note that this deletes the language item stored in the language class, it does <em>NOT</em> delete it from the language file on disk!
+				</p>
 			</article>
 
 			<h3 id="procedural_helpers">Procedural helpers</h3>
