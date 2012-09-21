@@ -160,7 +160,7 @@ $query->select(
 			</article>
 
 			<article>
-				<h4 class="method" id="method_select_array">select_array(array $columns)</h4>
+				<h4 class="method" id="method_select_array">select_array(array $columns, $reset = false)</h4>
 				<p>The <strong>select_array</strong> method appends columns to select.</p>
 				<table class="method">
 					<tbody>
@@ -184,6 +184,12 @@ $query->select(
 										<td><em>required</em></td>
 										<td>an array containing column names</td>
 									</tr>
+									<tr>
+										<th><kbd>$reset</kbd></th>
+										<td><em>bool</em></td>
+										<td><pre class="php"><code>false</code></pre></td>
+										<td>If true, do not append, but overwrite</td>
+									</tr>
 								</table>
 							</td>
 						</tr>
@@ -206,7 +212,16 @@ $query->select_array(array(
 	'birthdate'
 ));
 
-// SELECT `surname`, `email`, `is_active` as active, `birthdate` FROM `users ...
+// produces SELECT `surname`, `email`, `is_active` as active, `birthdate` FROM `users ...
+
+// Supply an array to use an alias and reset the previous select
+$query->select_array(array(
+	array('surname', 'name'),
+	'birthdate'
+), true);
+
+// produces SELECT `surname` as name, `birthdate` FROM `users ...
+
 </code></pre>
 							</td>
 						</tr>
