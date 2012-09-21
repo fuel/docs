@@ -115,18 +115,22 @@
 				 <var>Controller_Subdir1_Subdir2_Subdir3_Test</var> になります。
 			</p>
 
-			<h4 id="controller_namespacing">Namespacing controllers</h4>
+			<h4 id="controller_namespacing">コントローラの名前空間</h4>
 
 			<p>
-				As mentioned in the introduction by default controllers are created in the <kbd>app/classes/controller</kbd> folder,
-				and are prefixed with <var>Controller_</var>. This prefix is defined in your <kbd>app/config/config.php</kbd> configuration file
-				(and if not this is the default), but can be changed if you want to namespace your controllers, or if you
-				want to move them to a different folder structure.
+				冒頭で述べた通りコントローラは <kbd>app/classes/controller</kbd> 置かれ、
+				そして <var>Controller_</var>というプレフィックスを付けます。
+				このプレフィックスはあなたの設定ファイル <kbd>app/config/config.php</kbd>で、
+				(この設定がデフォルトでは存在しなかったとしても)設定されます。
+				あなたがコントローラに名前空間を使用したい場合、
+				もしくはコントローラを別のフォルダへ移動させたい場合に、
+				この設定を変更することができます。
 			</p>
 
 			<p>
-				Lets move the example given above to the <kbd>Controller</kbd> namespace. You tell FuelPHP that you've done this by setting the
-				config setting <var>controller_prefix</var> to <kbd>'\\Controller\\'</kbd> in your app's config.php file.
+				では、前述のとおり名前空間 <kbd>Controller</kbd> へ expample コントローラを移動させましょう。
+				<var>controller_prefix</var> を <kbd>'\\Controller\\'</kbd> へ設定することで、
+				この変更を FuelPHP へ知らせます。
 			</p>
 
 			<pre class="php"><code>namespace Controller;
