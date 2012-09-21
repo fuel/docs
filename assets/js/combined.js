@@ -352,9 +352,10 @@ panes.main = {
 		"Credits":		"credits.html"
 	},
 	"Installation": {
-		"Instructions":	"installation/instructions.html",
-		"Download":		"installation/download.html",
-		"Tutorials":	"installation/tutorials.html",
+		"Instructions":			"installation/instructions.html",
+		"Download":				"installation/download.html",
+		"Upgrade":				"installation/upgrade.html",
+		"Tutorials":			"installation/tutorials.html",
 		"Troubleshooting":		"installation/troubleshooting.html"
 	},
 	"General": {
