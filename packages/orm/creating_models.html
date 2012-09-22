@@ -146,6 +146,28 @@
 					above. A full explanation of the Validation class and it's rule can be found under
 					<a href="../../classes/validation/validation.html">Core</a>.</p>
 
+				<h3 id="conditions">protected static $_conditions</h3>
+
+				<p>By default this property does not exist and Model::condition() returns <kbd>array()</kbd>, but you can set
+				on the model if you want any conditions defined on every query run. Currently 'order_by' and 'where' conditions
+				are supported.
+				</p>
+
+				<pre class="php"><code>class Model_Article extends Orm\Model
+{
+	protected static $_conditions = array(
+		'order_by' => array('id' => 'desc'),
+		'where' => array(
+			array('publish_date', '>', time()),
+			array('published', '=', 1),
+		),
+	);
+}</code></pre>
+				<p class="note">
+					The <kbd>order_by</kbd> condition is only applied if no other order by clause is defined.
+					The <kbd>where</kbd> conditions are added using <kbd>and</kbd> to any other defined where clauses.
+				</p>
+
 				<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many, $_many_through</h3>
 
 				<p>Relating models to each other is explained in <a href="relations/intro.html">Relating Models</a></p>
