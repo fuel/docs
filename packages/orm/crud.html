@@ -144,6 +144,24 @@ $all_articles = $query->limit(15)->get();</code></pre>
 
 					<p>All these methods are equally valid, the four other methods of find actually use the Query object as
 						well but don't return it.</p>
+
+					<h3 id="partial_selects">Partial column selects</h3>
+					<p>By default all ORM find methods will select all table columns. You can use the <kbd>select</kbd> array
+						entry or the <kbd>select()</kbd> method to alter this behavior.
+					</p>
+
+					<pre class="php"><code>// using the array method. select only the 'name' and 'date' columns
+$entry = Model_Article::find('last', array('select' => array('name', 'date')));
+
+// same, but then using the chaining method
+$entry = Model_Article::find()->select('name', 'date')->get();
+
+// using the array method. select all columns except the 'date' column
+$entry = Model_Article::find('all', array('select' => array(array('date' => false))));
+
+// same, but then using the chaining method
+$entry = Model_Article::find()->select(array('date' => false))->get();
+</code></pre>
 				</article>
 
 				<article id="update">
