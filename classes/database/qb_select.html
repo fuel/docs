@@ -719,50 +719,6 @@ $query->and_having_close();
 			</article>
 
 			<article>
-				<h4 class="method" id="method_and_having_close">and_having_close()</h4>
-				<p>The <strong>and_having_close</strong> method closes an SQL closure.</p>
-				<table class="method">
-					<tbody>
-						<tr>
-							<th>Static</th>
-							<td>No</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td>
-								<em>None</em>
-							</td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>Returns the current instance.</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>// prepare a select statement
-$query = DB::select('*')->from('users');
-
-// Set a HAVING statement
-$query->having('email', 'like', '%@example.com');
-
-// Open a closure
-$query->and_having_open();
-
-// Set a HAVING statement
-$query->having('name', '=', 'John');
-$query->or_where('surname', 'Doe');
-
-$query->and_having_close();
-// SELECT * FROM `users` HAVING `email` LIKE "%example.com" AND (`name` = "John" OR `surname` = "Doe")
-</code></pre>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
 				<h4 class="method" id="method_or_having_close">or_having_close()</h4>
 				<p>The <strong>or_having_close</strong> method closes an SQL closure.</p>
 				<table class="method">
