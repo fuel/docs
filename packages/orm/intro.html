@@ -93,6 +93,15 @@
 					already saved objects. This shouldn't happen during normal usage and is most often caused by faulty
 					configuration of relations.<br />
 					Sometimes this can be caused by a bug, especially when you're not using a stable release.</p>
+
+				<h3>I have defined a limit and offset, but the results are not correct</h3>
+				<p>The ORM always makes sure that query results are consistent. If you run a query that contains related
+					models, a subquery will be generated to make sure the entire related resultset is fetched. Even if this
+					means more records then the limit you have set will be fetched. This is because once you start manipulating
+					incomplete resultsets, very bad things might happen to your related models.</p>
+				<p>If you are absolutely sure you are not going to manipulate the results, for example because you need them
+					for pagination only, you can use <kbd>rows_limit()</kbd> and <kbd>rows_offset()</kbd> instead, which will
+					forces them on the entire query.</p>
 			</section>
 
 		</div>
