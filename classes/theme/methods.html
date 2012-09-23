@@ -928,6 +928,62 @@ $themes = $theme->all();
 			</article>
 
 			<article>
+				<h4 class="method" id="method_use_modules">use_modules($enable = true)</h4>
+				<p>
+					The <strong>use_modules</strong> method enables or disables the auto prefixing feature for modules.
+					When loading a theme view, if enabled the view file is prefixed with the name of the current active
+					module. If not found, it's checked again without the prefix, allowing for global views from inside
+					a module.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$enable</kbd></th>
+									<td><em>boolean</em></td>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>True to enable the feature, false to disable it.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Theme</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// when in the module 'test', this will load the theme view 'test/view'
+$info = $theme->use_modules()->set_partial('content', 'view')->use_modules(false);
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<p class="note">
+					You can set a global default value through the <strong>use_modules</strong> key of the theme.php configuration file.
+				</p>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_load_info">load_info($theme = null)</h4>
 				<p>
 					The <strong>load_info</strong> method returns the complete info array for a theme.
