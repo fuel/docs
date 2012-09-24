@@ -387,14 +387,14 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 			</article>
 
 			<article>
-				<h4 id="extending_validation">Extending the Validation class</h4>
-				<p>There are few approaches to extend the validation class:</p>
-				<p>1. To extend the core class like described in the <a href="../../general/extending_core.html">Extending Core Classes</a></p>
-				<p>2. To create a class in <b>app/classes/myrules.php</b> (for example)</p>
+				<h4 id="extending_validation">Validation クラスを拡張する</h4>
+				<p>validation クラスを拡張する方法は、いくつかあります。</p>
+				<p>1. <a href="../../general/extending_core.html">コアクラスの拡張</a>で説明されているように、コアクラスを拡張する</p>
+				<p>2. (例えば) <b>app/classes/myrules.php</b> にクラスを作成する</p>
 				<pre class="php"><code>// app/classes/myrules.php
 class MyRules
 {
-	// note this is a static method
+	// 静的メソッドであることに注意する
 	public static function _validation_unique($val, $options)
 	{
 		list($table, $field) = explode('.', $options);
@@ -406,7 +406,7 @@ class MyRules
 		return ! ($result->count() > 0);
 	}
 
-	// note this is a non-static method
+	// 非静的メソッドであることに注意する
 	public function _validation_is_upper($val)
 	{
 		return $val === strtoupper($val);
@@ -414,38 +414,38 @@ class MyRules
 
 }
 
-// and call it like:
+// 以下のようにして呼び出す
 $val = Validation::forge();
 
-// Note the difference between static and non-static validation rules:
+// 静的ルールと非静的ルールの違いに注意する
 
-// Add it staticly, will only be able to use static methods
+// 静的に追加すると、静的メソッドのみ使用できる
 $val->add_callable('MyRules');
 
-// Adds it non-static, will be able to use both static and non-static methods
+// 非静的に追加すると、静的メソッドも非静的メソッドも使用できる
 $val->add_callable(new MyRules());
 
 $val->add('username', 'Your username', array(), array('trim', 'strip_tags', 'required', 'is_upper'))
 	->add_rule('unique', 'users.username');</code></pre>
 
-				<p>3. Calling callbacks from a model. It works like a method described above, but we only need to call it in other way:</p>
+				<p>3. モデルからコールバックを呼び出す。上述のメソッドのように動作するが、別の方法で呼び出す必要がある</p>
 
 				<pre class="php"><code>$val = Validation::forge();
 $val->add_model('Model_User');</code></pre>
 
 				<p class="note">
-					<strong>Note: </strong>
-					You need the '_validation_' prefix for a method to be available in validation.
+					<strong>注意: </strong>
+					バリデーションで利用可能にするには '_validation_' プレフィクスが必要です。
 				</p>
 
 				<p class="note">
-					<strong>Note: </strong>
-					if you pass the class name as a string, the validation method must be defined as static. If the method is not static, you will have to pass an object instance as callable().
+					<strong>注意: </strong>
+					クラス名を文字列として渡す場合は、バリデーションメソッドが静的メソッドで定義される必要があります。メソッドが非静的の場合は、オブジェクトインスタンスをを callable() として渡す必要があります。
 				</p>
 
-				<p>It can be useful to use <a href="methods.html#method_active">Validation::active()</a> and <a href="methods.html#method_active_field">Validation::active_field()</a> to get the currently active validation instance and field currently being validated, respectively.</p>
+				<p>現在アクティブなバリデーションインスタンスと、現在検証されているフィールドを取得するには、それぞれ <a href="methods.html#method_active">Validation::active()</a> と <a href="methods.html#method_active_field">Validation::active_field()</a> を使用すると便利でしょう。</p>
 
-				<p>For example, in the above you could do:</p>
+				<p>Validation::activeを利用した例です。</p>
 
 				<pre class="php"><code>public static function _validation_unique($val, $options)
 {
