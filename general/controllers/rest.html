@@ -72,7 +72,7 @@
 
 	public function get_list()
 	{
-		$this->response(array(
+		return $this->response(array(
 			'foo' => Input::get('foo'),
 			'baz' => array(
 				1, 50, 219
@@ -90,6 +90,36 @@
 				You'll notice that instead of the usual "action_" prefix the Rest Controller uses the HTTP method as a prefix.
 				When no function the corresponding HTTP method prefix is found it will fall back to the "action_" prefix.
 				The HTTP methods that Rest Controller supports are the following:
+			</p>
+
+			<h3 id="xml_basenode">XML Base Node Name</h3>
+
+			<p>
+				When using XML output you can set the XML basenode by setting the <code>$xml_basenode</code> param.
+			</p>
+
+			<pre class="php"><code>class Controller_Test extends Controller_Rest
+{
+	// Set it for the whole controller
+	protected $xml_basenode = 'my_basenode';
+
+	// Or inside your controller function
+	public function get_items()
+	{
+		$this->xml_basenode = 'other_basenode';
+
+		return $this->response(array(
+			'foo' => Input::get('foo'),
+			'baz' => array(
+				1, 50, 219
+			),
+			'empty' => null
+		));
+	}
+}</code></pre>
+
+			<p class="note">
+				You can also set the XML basenode app-globally by changing the <code>rest.xml_basenode</code> config setting.
 			</p>
 
 			<table class="config">
