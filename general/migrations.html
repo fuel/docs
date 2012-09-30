@@ -73,7 +73,7 @@ class Example
     }
 }</code></pre>
 
-			<h3 id="run_a_mirgation">Run a Migration</h3>
+			<h3 id="run_a_migration">Run a Migration</h3>
 
 			<p>A migration can be run in two ways:</p>
 
@@ -109,6 +109,17 @@ $ php oil refine migrate --version=10</code></pre>
 				config number so the current command will not be relevant in many situations.
 			</p>
 
+			<h3 id="skip_migrations">Skipping migrations</h3>
+
+			<p>
+				You can abort the migration process by having your <kbd>up()</kbd> or <kbd>down()</kbd> method return
+				<kbd>false</kbd>. This can be useful if your migration has external dependencies, for example the existence of a table created in a different
+				migration.
+			</p>
+			<p class="note">
+				This will only abort the migration stack currently being processed, either the application migrations, or the migrations in a single module or package.
+				All migrations in other stacks will be processed as normal.
+			</p>
 		</div>
 
 		<footer>
