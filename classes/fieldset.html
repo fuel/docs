@@ -705,6 +705,102 @@ $article_form->set_config('key', 'value');</code></pre>
 			</article>
 
 			<article>
+				<h4 class="method" id="method_disable">disable($field)</h4>
+				<p>
+					The <kbd>disable</kbd> method allows you to disable a field from being build. You can use this if you want to alter the sequence of fields
+					on the form, or to create more complex layouts without having to build individual fields.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$field</kbd></th>
+										<td>required</td>
+										<td>The specific field you want to disable.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>\Fieldset Object</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>RuntimeException, if the field given is not defined</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$fieldset->disable('name');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">The field is not removed from the fieldset, so it will still be validated.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_enable">enable($field)</h4>
+				<p>The <kbd>enable</kbd> method allows you to re-enable a field that has been <kbd>disable</kbd>d before.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$field</kbd></th>
+										<td>required</td>
+										<td>The specific field you want to enable.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>\Fieldset Object</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>RuntimeException, if the field given is not defined</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$fieldset->enable('name');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_input">input($field = null)</h4>
 				<p>Alias for $this->validation()->input(). Gets an array of validated input value(s) from either POST data or given input. See <a href="validation/validation.html#usage">Validation</a>.</p>
 				<table class="method">
