@@ -66,7 +66,9 @@ $new->property = 'something';
 $new->save();
 
 // option 2, use forge instead of new
-$new = Model_Example::forge();</code></pre>
+$new = Model_Example::forge();
+$new->property = 'something';
+$new->save();</code></pre>
 
 					<p class="note">After <kbd>save()</kbd> the model has been saved to the database and if you're using an
 						<kbd>auto_increment</kbd> primary key it will automatically be set on the instance after successful
@@ -81,7 +83,8 @@ $new = new Model_Example($props);
 $new->save();
 
 // option 2, use forge instead of new
-$new = Model_Example::forge($props)->save();</code></pre>
+$new = Model_Example::forge($props);
+$new->save();</code></pre>
 				</article>
 
 				<article id="read">
