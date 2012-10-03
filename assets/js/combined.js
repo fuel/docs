@@ -510,7 +510,7 @@ panes.oil = {
 		"Generate":			"packages/oil/generate.html",
 		"Refine":			"packages/oil/refine.html",
 		"Package":			"packages/oil/package.html",
-//		"Test":				"packages/oil/test.html",
+		"Test":				"packages/oil/test.html",
 		"Console":			"packages/oil/console.html"
 	}
 };
