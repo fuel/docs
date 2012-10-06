@@ -60,10 +60,10 @@
 
 				<h4>値と関係を保つ</h4>
 
-				<p>If you need to save values with the relationship table you don't want to use ManyMany but create a model
-					in between instead which belongs to both sides of what you would otherwise call the ManyMany
-					relationship. It is described under "<a href="intro.html#usage_nested_rels">Usage with nested
-					relationships</a> how you can fetch all this.</p>
+				<p>リレーションシップ·テーブルに値を保存する必要がある場合は、ManyManyを使用していますが、 
+					そうでなければManyMany関係と呼ぶようなものの両側に
+					属する代わりの間でモデルを作成する必要はありません。それについては、<a href="intro.html#usage_nested_rels">入れ子になったリレーションシップの使用法
+					</a>で説明されています。</p>
 
 				<h3>設定オプション</h3>
 
@@ -100,12 +100,12 @@
 
 				<h3>例</h3>
 
-				<p>Let's say we have a model <kbd>Model_Post</kbd> and it <em>has many and belongs to many</em>
-					<kbd>Model_User</kbd>s. The ID of the Model_Post is along with the ID of the Model_User in a table
-					called <kbd>posts_users</kbd> (default order is alphabetical). That table has just 2 columns:
-					<kbd>post_id</kbd> and <kbd>user_id</kbd> which are together the primary key of that table.<br />
-					If you keep to the defaults all you need to do is add <kbd>'users'</kbd> to the
-					<kbd>$_many_many</kbd> static property of the Model_Post:</p>
+				<p> <kbd>Model_Post</kbd>があるします。そしてそれは <kbd>Model_User</kbd>などと<em>多くを持って、多くに属しています。</em>
+					 Model_PostのIDは、呼ばれるテーブル<kbd>posts_users</kbd>に、Model_UserのIDとともにあります。
+					 (デフォルトの順序はアルファベット順です) そのテーブルは、ちょうど2カラムがあります。:
+					<kbd>post_id</kbd> と <kbd>user_id</kbd> は共にそれらのテーブルの主キーです。<br />
+					あなたがデフォルトを維持する場合に必要な作業は <kbd>'users'</kbd>の為に、
+					<kbd>$_many_many</kbd>をModel_Postの静的プロパティに加えることです。:</p>
 
 				<pre class="php"><code>protected static $_many_many = array('users');</code></pre>
 
