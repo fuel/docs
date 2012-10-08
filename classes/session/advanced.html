@@ -322,26 +322,23 @@ $(function()
 {
 	$('#custom_file_upload').uploadify(
 	{
-		'uploader'       : '/uploadify/uploadify.swf',
-		'script'         : '/uploadify/uploadify.php',
-		'cancelImg'      : '/uploadify/cancel.png',
-		'folder'         : '/uploads',
+		'swf'            : '/uploadify/uploadify.swf',
+		'uploader'       : '/uploadify/uploadify.php',
 		'multi'          : true,
 		'auto'           : true,
-		'fileExt'        : '*.jpg;*.gif;*.png',
-		'fileDesc'       : 'Image Files (.JPG, .GIF, .PNG)',
+		'fileTypeExts'   : '*.jpg;*.gif;*.png',
+		'fileTypeDesc'   : 'Image Files (.JPG, .GIF, .PNG)',
 		'queueID'        : 'custom-queue',
 		'queueSizeLimit' : 3,
-		'simUploadLimit' : 3,
 		'removeCompleted': false,
-		'scriptData'     : {'fuelcid': getCookie('fuelcid')},
-		'onSelectOnce'   : function(event,data)
+		'formData'       : {'fuelcid': getCookie('fuelcid')},
+		'onSelect'       : function(file)
 		{
-			$('#status-message').text(data.filesSelected + ' files have been added to the queue.');
+			alert('The file ' + file.name + ' was added to the queue.');
 		},
-		'onAllComplete'  : function(event,data)
+		'onQueueComplete' : function(queueData)
 		{
-			$('#status-message').text(data.filesUploaded + ' files uploaded, ' + data.errors + ' errors.');
+			alert(queueData.uploadsSuccessful + ' files were successfully uploaded.');
 		}
 	});
 }
