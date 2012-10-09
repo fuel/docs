@@ -98,7 +98,7 @@ $request = Request::forge('admin/login');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_execute">execute()</h4>
+				<h4 class="method" id="method_execute">execute($method_params = null)</h4>
 				<p>The <strong>execute</strong> method executes a request and stores the resulting response in the request object to be used later.</p>
 				<table class="method">
 					<tbody>
@@ -108,7 +108,20 @@ $request = Request::forge('admin/login');
 					</tr>
 					<tr>
 						<th>Parameters</th>
-						<td>No</td>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$method_params</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>An array of optional parameters to pass to the controller being called.</td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
@@ -118,7 +131,11 @@ $request = Request::forge('admin/login');
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// create and execute the request object for the admin controller, login method
-$request = Request::forge('admin/login')->execute();</code></pre>
+$request = Request::forge('admin/login')->execute();
+
+// pass an object to the login controller
+$object = new Object();
+$request = Request::forge('admin/login')->execute(array('object' => $object);</code></pre>
 						</td>
 					</tr>
 					</tbody>
