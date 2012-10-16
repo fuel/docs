@@ -394,12 +394,18 @@ $query = DB::delete('table_name');
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>// returns new Database_Expression('COUNT(table_name.table_column)');
-$query = DB::expr('COUNT(table_name.table_column)');
-</code></pre>
+$expr = DB::expr('COUNT(table_name.table_column)');
+
+// prevents incorrect quoting of this expression in the generated query
+$expr = DB::expr('columnname + 1');</code></pre>
 							</td>
 						</tr>
 					</tbody>
 				</table>
+				<p class="note">
+					You have to use DB:expr() in your query for all expressions, i.e. for everything that is not a fieldname,
+					to make sure the value you pass isn't enclosed in quotes or backticks.
+				</p>
 			</article>
 
 			<article>
