@@ -555,6 +555,7 @@ panes.orm = {
 			"Has Many":		"packages/orm/relations/has_many.html",
 			"Many to Many":	"packages/orm/relations/many_many.html"
 		},
+		"EAV containers":		"packages/orm/eav.html",
 		"Observers": {
 			"Introduction":			"packages/orm/observers/intro.html",
 			"Included observers":	"packages/orm/observers/included.html",
