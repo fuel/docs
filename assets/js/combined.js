@@ -472,9 +472,13 @@ panes.core = {
 		"Num":			"classes/num.html",
 		"Package":		"classes/package.html",
 		"Pagination":	"classes/pagination.html",
-		"Profiler":	"classes/profiler.html",
+		"Profiler":		"classes/profiler.html",
 		"Redis":		"classes/redis.html",
-		"Request":		"classes/request.html",
+		"Request": {
+			"URI requests":		"classes/request/request.html",
+			"Curl":		"classes/request/curl.html",
+			"Soap":		"classes/request/soap.html"
+		},
 		"Response":		"classes/response.html",
 		"Router":		"classes/router.html",
 		"Security":		"classes/security.html",
