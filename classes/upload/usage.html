@@ -305,6 +305,11 @@
 				</tbody>
 			</table>
 
+			<p class="note">
+				Note that to be able to upload files, your HTML &lt;form&gt; tag MUST contain <strong>enctype="multipart/data"</strong>, and your form
+				MUST contain at least one input field of type "file". Without it, all uploads will fail, and Upload::process will throw an exception!
+			</p>
+
 			<h3 id="usage_example">Usage example</h3>
 			<pre class="php"><code>// Custom configuration for this upload
 $config = array(
@@ -603,6 +608,10 @@ Upload::register('before', function (&amp;$file) {
 					<tr>
 						<th>Returns</th>
 						<td>void</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>FuelException, when no file upload attempt could be detected (i.e. form without "Enctype" or input field of type="file")</td>
 					</tr>
 					<tr>
 						<th>Example</th>
