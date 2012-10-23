@@ -57,12 +57,12 @@
 				configuration is done in <em>app/config/config.php</em>. The loaded configuration can be made
 				environment specific, more on this under <a href="environments.html#/env_config">Environments</a>.
 			</p>
-			
+
 			<p class="note">
 				To overwrite settings from feature specific configs, either create a new file in app/config or copy
 				the corresponding file from core/config to app/config.
 			</p>
-			
+
 			<p>
 				Interacting with config files/settings is done using the <a href="../classes/config.html">Config</a> class.
 				Config files can also be generated using <a href="../packages/oil/generate.html#config">Oil</a>.
@@ -221,6 +221,15 @@
 						<td><pre class="php"><code>'UTC'</code></pre></td>
 						<td>
 							The server timezone.
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+						<p class="note">
+							If you set this value, make <strong>ABSOLUTELY</strong> sure that the timezone configured matches the timezone set on your server.
+							Since timezone calculations work by converting to GMT, it goes horribly wrong when you have a timezone mismatch. This will cause
+							time displays in your application to be incorrect, and cookie/session issues due to incorrect expiry time calculations!
+						</p>
 						</td>
 					</tr>
 					<tr>
