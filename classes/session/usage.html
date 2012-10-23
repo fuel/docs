@@ -75,6 +75,13 @@
 				Downside of this method is that if this takes some time, the page will not finished to be "loading..." until GC is completed.
 			</p>
 
+			<p class="note">
+				When using cookies, make <strong>ABSOLUTELY</strong> sure that the timezone configured in your <em>app/config/config.php</em> and your
+				<em>php.ini</em> file matches the timezone set on your server. Since cookie expiry timestamps are in GMT, expiry time calculation goes
+				horribly wrong when you have a timezone mismatch, ranging from not expiring properly to cookies not set at all because they arrive at
+				the browser already expired.
+			</p>
+
 			<article>
 				<h4 class="method" id="method_instance">instance($instance = null)</h4>
 				<p>The <strong>instance</strong> method returns the default session instance, or a specific instance, identified by name.</p>
