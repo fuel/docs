@@ -59,6 +59,7 @@
 					<li><a href="#viewmodels">Viewmodels</a></li>
 					<li><a href="#migrations">Migrations</a></li>
 					<li><a href="#scaffolding">Scaffolding</a></li>
+					<li><a href="#tasks">Tasks</a></li>
 					<li><a href="#configs">Configs</a></li>
 				</ul>
 
@@ -346,6 +347,7 @@ $ php oil refine migrate:up
 				<pre class="cli"><code>$ php oil generate migration create_users name:text email:string[50] password:string[125]
 $ php oil generate migration rename_table_users_to_accounts
 $ php oil generate migration add_bio_to_accounts bio:text
+$ php oil generate migration delete_bio_from_accounts bio:text
 $ php oil generate migration rename_field_name_to_username_in_accounts
 $ php oil generate migration drop_accounts
 </code></pre>
@@ -477,6 +479,59 @@ Migrated to latest version: 3.
 
 
 }</code></pre>
+
+				<h3 id="tasks">Tasks</h3>
+
+				<p>
+					You can also have oil generate the skeleton of a new task.
+				</p>
+
+				<pre class="cli"><code>$ php oil g task newtask cmd1 cmd2</code></pre>
+
+				<p>
+					Which will generate
+				</p>
+
+				<pre class="php"><code>&lt;?php
+
+namespace Fuel\Tasks;
+
+class Newtask
+{
+	public static function run($args = NULL)
+	{
+		echo "\n===========================================";
+		echo "\nRunning DEFAULT task [Newtask:Run]";
+		echo "\n-------------------------------------------\n\n";
+
+		/***************************
+		 Put in TASK DETAILS HERE
+		 **************************/
+	}
+
+	public static function cmd1($args = NULL)
+	{
+		echo "\n===========================================";
+		echo "\nRunning task [Newtask:Cmd1]";
+		echo "\n-------------------------------------------\n\n";
+
+		/***************************
+		 Put in TASK DETAILS HERE
+		 **************************/
+	}
+
+	public static function cmd2($args = NULL)
+	{
+		echo "\n===========================================";
+		echo "\nRunning task [Newtask:Cmd2]";
+		echo "\n-------------------------------------------\n\n";
+
+		/***************************
+		 Put in TASK DETAILS HERE
+		 **************************/
+	}
+}
+/* End of file tasks/newtask.php */</code></pre>
 
 				<h3 id="configs">Configs</h3>
 
