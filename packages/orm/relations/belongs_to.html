@@ -45,14 +45,14 @@
 		<div id="main">
 			<h2>Orm</h2>
 
-			<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-				Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-				to establish relations between those objects.<br />
-				It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
-				Active Record Pattern</a>, but was also influenced by other systems.</p>
+			<p>ORMは<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
+				関係マッピング</a>の略です。 これは、2つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
+				それはあなたがそれらのオブジェクト間の関係を確立することができます。<br />
+				それは <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">
+				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
 
 			<section>
-				<h2 id="belongs_to">Relations: Belongs To</h2>
+				<h2 id="belongs_to">リレーション: Belongs To</h2>
 
 				<p>Has the primary key of the relation kept in its table, belongs to 1 related object. This is the other
 					side of a <a href="has_one.html">HasOne</a> or <a href="has_many.html">HasMany</a> relation.</p>
@@ -67,26 +67,26 @@
 
 				<pre class="php"><code>protected static $_belongs_to = array('post');</code></pre>
 
-				<p>Below are examples for establishing and breaking belongs-to relations:</p>
+				<p>以下は Belongs To 関係を確立し、切断するための例です:</p>
 
-				<pre class="php"><code>// both main and related object are new:
+				<pre class="php"><code>// 両方のメインと関連オブジェクトをnewする:
 $comment = new Model_Comment();
 $comment->post = new Model_Post();
 $comment->save();
 
-// both main and related object already exist
+// 両方のメインと関連オブジェクトがすでに存在している
 $comment = Model_Comment::find(6);
 $comment->post = Model_Post::find(1);
 $comment->save();
 
-// break the relationship established above
+// 上に確立された関係を切断する。
 $comment = Model_Comment::find(6);
 $comment->post = null;
 $comment->save();</code></pre>
 
-				<h3>Full config example with defaults as values</h3>
+				<h3>デフォルト値を持つ完全な設定例</h3>
 
-				<pre class="php"><code>// in a Model_Comment which belong to a post
+				<pre class="php"><code>// postに属しているModel_Commentで
 protected static $_belongs_to = array(
 	'post' => array(
 		'key_from' => 'post_id',
