@@ -100,7 +100,7 @@ key=value</code></pre>
 			<p>If you don't specify a file type, Lang::load() will default to the 'php' type.</p>
 
 			<article>
-				<h4 class="method" id="method_load">load($file, $group = null, $language = null, $overwrite = false)</h4>
+				<h4 class="method" id="method_load">load($file, $group = null, $language = null, $overwrite = false, $reload = false)</h4>
 				<p>The <strong>load</strong> method allows you to load a language file.</p>
 				<table class="method">
 					<tbody>
@@ -135,7 +135,12 @@ key=value</code></pre>
 								<tr>
 									<th><kbd>$overwrite</kbd></th>
 									<td><kbd>false</kbd></td>
-									<td>(Optional) If set to <kbd>true</kbd> the loaded configuration items will be merged with the items already loaded in a non-recursive manner, with will overwrite array values in a multidimensional array, rather then merging them.</td>
+									<td>(Optional) If set to <kbd>true</kbd> the loaded language items will be merged with the items already loaded in a non-recursive manner, with will overwrite array values in a multidimensional array, rather then merging them.</td>
+								</tr>
+								<tr>
+									<th><kbd>$reload</kbd></th>
+									<td><kbd>false</kbd></td>
+									<td>(Optional) If set to <kbd>true</kbd> a reload of the requested language file is forced, erasing cached language items related to the lang file to be loaded.</td>
 								</tr>
 							</table>
 						</td>
