@@ -54,18 +54,18 @@
 			<section>
 				<h2 id="has_many">リレーション: Has Many</h2>
 
-				<p>Specifies a one-to-many relationship to another model. The target model must include a
-					"<a href="belongs_to.html">Belongs To</a>" reference to the current model to allow the inverse
-					relationship.</p>
+				<p>別のモデルに1対多の関係を指定します。対象モデルは、逆相関関係を実現するために現在のモデルへの参照
+					"<a href="belongs_to.html">Belongs To</a>"
+					を含める必要があります。</p>
 
 				<h3>例</h3>
 
-				<p>Let's say we have a model <kbd>Model_Post</kbd> and it <em>has many</em> <kbd>Model_Comment</kbd>s
-					(which in turn <em>belong to</em> the post). The ID of the Model_Post is saved with the Model_Comment
-					instance in its own table. This means the <kbd>comments</kbd> table will have a column
-					<kbd>post_id</kbd> (or something else you configure), while the posts table won't mention the comments.
-					If you keep to the defaults all you need to do is add <kbd>'comments'</kbd> to the
-					<kbd>$_has_many</kbd> static property of the Model_User:</p>
+				<p><kbd>Model_Post</kbd>と、それと<em>has many</em>関係の<kbd>Model_Comment</kbd>があるとします。
+					（そしてそれは次に、postに<em>属して</em>います。）　Model_PostのIDは、独自のテーブルで
+					Model_Commentインスタンスに保存されます。 postsテーブルがコメントを言及していないでしょうが、<kbd>comments</kbd>テーブルがカラム<kbd>post_id</kbd>
+					（または、設定した他の何か）を持っていることを意味します。
+					あなたがデフォルトに保つ場合に必要なことは<kbd>'comment</kbd>へ
+					Model_Userの静的プロパティ<kbd>$_has_many</kbd>を追加するだけです:</p>
 
 				<pre class="php"><code>protected static $_has_many = array('comments');</code></pre>
 
@@ -86,7 +86,7 @@ $post = Model_Post::find(1);
 unset($post->comments[6]);
 $post->save();</code></pre>
 
-				<h3>デフォルト値を持つ完全な設定例s</h3>
+				<h3>デフォルト値を持つ完全な設定例</h3>
 
 				<pre class="php"><code>// 多くのコメントを持つModel_Postで
 protected static $_has_many = array(

@@ -63,7 +63,7 @@
 
 				<p>modelの<kbd>Model_User</kbd>と、そして<em>hasOne 関係</em>にある<kbd>Model_Profile</kbd>があるとします。
 					（そしてそれは次に、ユーザーに属しています。）
-					Model_UserのIDは、独自のテーブル内
+					Model_UserのIDは、独自のテーブルで
 					Model_Profileインスタンスに保存されます。 userテーブルは、プロファイルを言及ししていませんが
 					<kbd>profiles</kbd>テーブルは、カラム <kbd>user_id</kbd>を（または、設定他の何か）があることを意味します。
 					あなたが既定値を維持する場合に必要な作業は、Model_Userの静的プロパティ<kbd>$_has_one</kbd>に
@@ -88,7 +88,7 @@ $user = Model_User::find(6);
 $user->profile = null;
 $user->save();</code></pre>
 
-				<h3>値としてデフォルト値を持つフルconfigの例</h3>
+				<h3>デフォルト値を持つ完全な設定例</h3>
 
 				<pre class="php"><code>// 1つのprofileを持っているModel_User
 protected static $_has_one = array(
