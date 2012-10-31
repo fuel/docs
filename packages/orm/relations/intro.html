@@ -167,7 +167,7 @@
 				<pre class="php"><code>// eager loading, using joins:
 $post = Model_Post::find('all', array('related' => array('comments')));
 // or
-$post = Model_Post::find()->related('comments')->get();
+$post = Model_Post::query()->related('comments')->get();
 // $post->comments is available without any further querying after this
 
 // or use lazy loading, it won't use joins but query a relation once requested

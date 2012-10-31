@@ -131,10 +131,13 @@ $entry = Model_Article::find('all', array(
 
 					<h3 id="find_chaining">Find using method chaining</h3>
 
-					<p>When you use the <kbd>find()</kbd> method without properties it will return an Orm\Query object
-						which you can use, and possibly reuse to find entries.</p>
+					<p class="note">
+						When you use the <kbd>find()</kbd> method without properties, it will be considered to be an
+						error situation. Currently it will return an Orm\Query object which you can use, and possibly
+						reuse to find entries. This behaviour might change in the future, so using this is <strong>discouraged</strong>,
+						use the <kbd>query()</kbd> method instead.</p>
 
-					<pre class="php"><code>$query = Model_Article::find()->where('category_id', 1)->order_by('date', 'desc');
+					<pre class="php"><code>$query = Model_Article::query()->where('category_id', 1)->order_by('date', 'desc');
 
 // We want to know the total number of articles for pagination
 $number_of_articles = $query->count();
@@ -163,13 +166,13 @@ $all_articles = $query->limit(15)->get();</code></pre>
 $entry = Model_Article::find('last', array('select' =&gt; array('name', 'date')));
 
 // same, but then using the chaining method
-$entry = Model_Article::find()->select('name', 'date')->get();
+$entry = Model_Article::query()->select('name', 'date')->get();
 
 // using the array method. select all columns except the 'date' column
 $entry = Model_Article::find('all', array('select' =&gt; array(array('date' =&gt; false))));
 
 // same, but then using the chaining method
-$entry = Model_Article::find()->select(array('date' =&gt; false))->get();
+$entry = Model_Article::query()->select(array('date' =&gt; false))->get();
 </code></pre>
 				</article>
 
@@ -213,11 +216,11 @@ $entry->delete();</code></pre>
 								<td>string <kbd>$column</kbd>, [string <kbd>$more_columns</kbd>,] | array <kbd>$filter</kbd></td>
 								<td>
 									<pre class="php"><code>// Find only some columns
-Model_Article::find()-&gt;select('id', 'name');
+Model_Article::query()-&gt;select('id', 'name');
 Model_Article::find('all', array('select' =&gt; array('id', 'name')));
 
 // Find all columns except 'name'
-Model_Article::find()-&gt;select(array('name' =&gt; false));
+Model_Article::query()-&gt;select(array('name' =&gt; false));
 Model_Article::find('all', array('select' =&gt; array(array('name' =&gt; false))));
 </code></pre>
 								</td>
@@ -227,11 +230,11 @@ Model_Article::find('all', array('select' =&gt; array(array('name' =&gt; false))
 								<td>string|array <kbd>$relation</kbd>, [array <kbd>$conditions</kbd>]</td>
 								<td>
 									<pre class="php"><code>// include related models in the find
-Model_Article::find()-&gt;related(array('author', 'comments'));
+Model_Article::query()-&gt;related(array('author', 'comments'));
 Model_Article::find('all', array('related' =&gt; array('author', 'comments')));
 
 // include conditions on the relation (only supported when chaining)
-Model_Article::find()-&gt;related('author', array('where' =&gt; array('active', '=', 1)));
+Model_Article::query()-&gt;related('author', array('where' =&gt; array('active', '=', 1)));
 </code></pre>
 								</td>
 							</tr>
@@ -240,7 +243,7 @@ Model_Article::find()-&gt;related('author', array('where' =&gt; array('active', 
 								<td>string <kbd>$viewname</kbd></td>
 								<td>
 									<pre class="php"><code>// use a view to retrieve data
-Model_Article::find()-&gt;use_view('with_comments');
+Model_Article::query()-&gt;use_view('with_comments');
 Model_Article::find('all', array('use_view' =&gt; 'with_comments'));
 </code></pre>
 								</td>
@@ -250,12 +253,12 @@ Model_Article::find('all', array('use_view' =&gt; 'with_comments'));
 								<td>string <kbd>$column</kbd>, [string <kbd>$operator</kbd>,] mixed <kbd>$value</kbd></td>
 								<td>
 									<pre class="php"><code>// Single where
-Model_Article::find()-&gt;where('id', 4);
+Model_Article::query()-&gt;where('id', 4);
 Model_Article::find('all', array('where' =&gt; array('category_id' =&gt; 5)));
 
 // Multiple where usage examples
-Model_Article::find()-&gt;where('id', 4)->where('category_id', '&gt;', 1);
-Model_Article::find()-&gt;where(array('id' =&gt; 4, 'category_id' =&gt; 6));
+Model_Article::query()-&gt;where('id', 4)->where('category_id', '&gt;', 1);
+Model_Article::query()-&gt;where(array('id' =&gt; 4, 'category_id' =&gt; 6));
 Model_Article::find('all', array('where' =&gt; array(array('category_id', '=', 5), array('publish', '&lt;', time()))));
 </code></pre>
 								</td>
@@ -264,12 +267,12 @@ Model_Article::find('all', array('where' =&gt; array(array('category_id', '=', 5
 								<td>string <kbd>$column</kbd>, [string <kbd>$direction</kbd>]</td>
 								<td>
 									<pre class="php"><code>// Single order_by
-Model_Article::find()-&gt;order_by('name', 'desc');
+Model_Article::query()-&gt;order_by('name', 'desc');
 Model_Article::find('all', array('order_by' =&gt; array('name' =&gt; 'desc')));
 
 // Multiple order_by usage examples
-Model_Article::find()-&gt;order_by('name', 'desc')->order_by('category_id', 'asc');
-Model_Article::find()-&gt;order_by(array('name' => 'desc', 'category_id' =&gt; 'asc'));
+Model_Article::query()-&gt;order_by('name', 'desc')->order_by('category_id', 'asc');
+Model_Article::query()-&gt;order_by(array('name' => 'desc', 'category_id' =&gt; 'asc'));
 Model_Article::find('all', array('order_by' => array(array('name' =&gt; 'desc', 'category_id' =&gt; 'asc'))));
 </code></pre>
 								</td>
@@ -279,7 +282,7 @@ Model_Article::find('all', array('order_by' => array(array('name' =&gt; 'desc', 
 								<td>int <kbd>$limit</kbd></td>
 								<td>
 									<pre class="php"><code>// limit with relation consistence
-Model_Article::find()-&gt;limit(10);
+Model_Article::query()-&gt;limit(10);
 Model_Article::find('all', array('limit' =&gt; 10));
 </code></pre>
 								</td>
@@ -289,7 +292,7 @@ Model_Article::find('all', array('limit' =&gt; 10));
 								<td>int <kbd>$limit</kbd></td>
 								<td>
 									<pre class="php"><code>// limit without relation consistence
-Model_Article::find()-&gt;rows_limit(10);
+Model_Article::query()-&gt;rows_limit(10);
 Model_Article::find('all', array('rows_limit' =&gt; 10));
 </code></pre>
 								</td>
@@ -299,7 +302,7 @@ Model_Article::find('all', array('rows_limit' =&gt; 10));
 								<td>int <kbd>$offset</kbd></td>
 								<td>
 									<pre class="php"><code>// offset with relation consistence
-Model_Article::find()-&gt;offset(10);
+Model_Article::query()-&gt;offset(10);
 Model_Article::find('all', array('offset' =&gt; 10));
 </code></pre>
 								</td>
@@ -309,7 +312,7 @@ Model_Article::find('all', array('offset' =&gt; 10));
 								<td>int <kbd>$offset</kbd></td>
 								<td>
 									<pre class="php"><code>// offset without relation consistence
-Model_Article::find()-&gt;rows_offset(10);
+Model_Article::query()-&gt;rows_offset(10);
 Model_Article::find('all', array('rows_offset' =&gt; 10));
 </code></pre>
 								</td>
@@ -334,7 +337,7 @@ Model_Article::find('all', array('rows_offset' =&gt; 10));
 					<p>Using chaining you can create more complex where clauses, using and, or and nesting</p>
 
 					<pre class="php"><code>// complex where clause
-Model_Article::find()
+Model_Article::query()
   -&gt;where('author', '=', 16)
   -&gt;and_where_open()
       -&gt;where('date', '&lt;', time())
