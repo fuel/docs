@@ -183,6 +183,29 @@
 	protected static $_connection = 'articles_database';
 }</code></pre>
 
+				<h3 id="to_array_filter">protected static $_to_array_filter</h3>
+
+				<p>
+					If you are writing an API driven application, often you want to limit the columns that are exposed to the
+					API interface. For example, when exposing a user record, you would not want to expose the user's password,
+					login hash or salt.
+				</p>
+				<p>
+					In your model definition, you can add a list of columns to the <em>to_array_filter</em> array to exclude
+					them from being exported using to_array().
+				</p>
+				<pre class="php"><code>class Model_User extends Orm\Model
+{
+	protected static $_to_array_filter = array(
+		'password', 'login_hash', 'salt'	// exclude these columns from being exported
+	);
+}</code></pre>
+				<p class="note">
+					By default the to_array() method exports both column and relation data loaded in the current model object.
+					Optionally, it allows you to export the custom properties too. The array filter works on column names,
+					custom properties and relations, allowing you to filter all of them.
+				</p>
+
 				<h3 id="observers">protected static $_observers</h3>
 
 				<p>Adding observers is explained in <a href="observers/intro.html">Observers</a></p>
