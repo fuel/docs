@@ -134,7 +134,20 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOP
 			<pre class="php"><code>// run this application in production mode
 SetEnv FUEL_ENV production</code></pre>
 
-			<p class="note">Both the variable name <strong>FUEL_ENV</strong> and the environment need to be specified in lowercase.</p>
+			<p class="note">The variable name <strong>FUEL_ENV</strong> should be specified in UPPERCASE, the environment name in lowercase.</p>
+
+			<h3 id="env_oil">Setting the environment for oil</h3>
+
+			<p>
+				When using a *unix operating system, you can use the <kbd>env</kbd> command to define the variable before starting oil.
+			</p>
+
+			<pre class="cli"><code><strong>$</strong> env FUEL_ENV=production php oil -v</code></pre>
+
+			<p class="note">
+				At the moment we don't know how this can be done in Windows without the use of a batch file that adds the environment variable.
+				If you know how, let us know, or send us a pull request adding it to this page!
+			</p>
 
 		</div>
 
