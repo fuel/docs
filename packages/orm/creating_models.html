@@ -183,7 +183,7 @@
 	protected static $_connection = 'articles_database';
 }</code></pre>
 
-				<h3 id="to_array_filter">protected static $_to_array_filter</h3>
+				<h3 id="to_array_exclude">protected static $_to_array_exclude</h3>
 
 				<p>
 					If you are writing an API driven application, often you want to limit the columns that are exposed to the
@@ -191,7 +191,7 @@
 					login hash or salt.
 				</p>
 				<p>
-					In your model definition, you can add a list of columns to the <em>to_array_filter</em> array to exclude
+					In your model definition, you can add a list of columns to the <em>to_array_exclude</em> array to exclude
 					them from being exported using to_array().
 				</p>
 				<pre class="php"><code>class Model_User extends Orm\Model
@@ -202,8 +202,8 @@
 }</code></pre>
 				<p class="note">
 					By default the to_array() method exports both column and relation data loaded in the current model object.
-					Optionally, it allows you to export the custom properties too. The array filter works on column names,
-					custom properties and relations, allowing you to filter all of them.
+					Optionally, it allows you to export the custom properties too. Array exclusion works on column names,
+					custom properties and relations, allowing you to exclude properties from all of them.
 				</p>
 
 				<h3 id="observers">protected static $_observers</h3>
