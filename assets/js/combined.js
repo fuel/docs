@@ -229,7 +229,7 @@ var max_navtable_height = 0;
 				$('#toc_handle').triggerHandler('close');
 				$('#search_clear').click();
 				$('#header').stop().animate({
-					'margin-top': -50
+					'margin-top': -65
 				}, 300);
 			}
 			else
@@ -329,7 +329,8 @@ function setup()
 	}
 
 	var title = $('#header div h1').html();
-	$('#header div h1').html(title.replace('</strong>', '</strong>'+DocVersion+' '));
+	$('#header div h1').html(title.replace('</strong>', '</strong><span>'+DocVersion+' '));
+	$('#header div h1').append('</span>');
 };
 
 var panes = {};
