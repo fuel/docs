@@ -59,8 +59,8 @@
 
 				<h3>例</h3>
 
-				<p><kbd>Model_Comment</kbd>と、それに属している<kbd>Model_Post</kbd>があるとしましょう。
-					(それには同様にcommentsは<em>has many</em>です) Model_PostのIDは、独自のテーブルで
+				<p><kbd>Model_Post</kbd>と、それに属している<kbd>Model_Comment</kbd>があるとしましょう。
+					(このとき Model_Post に対して comments は<em>１対多</em>の関係にあります) Model_PostのIDは、独自のテーブルで
 					Model_Commentインスタンスに保存されます。 これは、<kbd>comments</kbd>テーブルは
 					カラム <kbd>post_id</kbd>（または、設定した他の何か）があることを意味します。 あなたが既定値を維持する場合に必要な作業は、Model_Commentの静的プロパティの
 					<kbd>$_belongs_to</kbd>に<kbd>'post'</kbd>を追加するだけです:</p>
