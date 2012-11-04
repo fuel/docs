@@ -46,23 +46,23 @@
 
 			<h2>Orm</h2>
 
-			<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-				Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-				to establish relations between those objects.<br />
-				It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
-				Active Record Pattern</a>, but was also influenced by other systems.</p>
+			<p>ORMは<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
+				関係マッピング</a>の略です。 これは、2つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
+				それはあなたがそれらのオブジェクト間の関係を確立することができます。<br />
+				それは <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">
+				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
 
 			<article>
-				<h3 id="creating_observers">Observers: Creating your own</h3>
+				<h3 id="creating_observers">オブザーバー：自分の作成</h3>
 
-				<p>You can add any class as an observer by adding the full classname (namespace included) to the Observers
-					property of your model. There's 2 ways of creating classes that can be used as observers:</p>
+				<p>完全なclassname（名前空間を含めて）をモデルのオブザーバ・プロパティに加えることにで、オブザーバとしてあなたはどんなクラスでも
+					加えることができます。オブザーバとして使われることができるクラスを作成するには2つの方法があります:</p>
 
 				<h3>Extend the Orm\Observer class</h3>
 
-				<p>Create a new class that extends <kbd>Orm\Observer</kbd> and create methods for the events upon which you
-					want your Observer to act. In the example below you want it to act upon <kbd>after_insert</kbd>. The
-					method will be passed the Model instance it is acting upon.</p>
+				<p><kbd>Orm\Observer</kbd>を展開する新しいクラスを作成して、あなたのオブザーバが行動することを望むイベントのための
+					方法を作成してください。 下記の例は、それが<kbd>after_insert</kdb>に作用することを望んでいます。
+					メソッドは、それを実行する対象モデルのインスタンスが渡されます。</p>
 
 				<pre class="php"><code>class Observer_Something extends Orm\Observer
 {
@@ -73,9 +73,10 @@
 	}
 }</code></pre>
 
-				<p class="note">Extensions of the type Orm\Observer are singletons by default, as such you can't use a
-					method <kbd>instance()</kbd> or property <kbd>$_instance</kbd> or it won't work anymore. Because of this
-					methods may be both static or non-static.</p>
+				<p class="note">
+					Orm\Observerタイプの拡張機能は、デフォルトでシングルトンのように、 
+					<kbd>$_INSTANCE</kbd>または<kbd>instance()</kbd>のプロパティを使用できなくなる、
+					もしくは動かなくなるでしょう。</p>
 
 				<h3>Have an orm_notify() method</h3>
 
@@ -87,7 +88,7 @@
 				<pre class="php"><code>class Some_Other_Class
 {
 
-	// it may have many methods and properties before or after the orm_notify method
+	// それはorm_notifyメソッドの前または後に、多くのメソッドとプロパティを持つことができます。
 
 	public static function orm_notify(Model $model, $event)
 	{
@@ -95,7 +96,7 @@
 	}
 }</code></pre>
 
-				<h3 id="event_names">Event names</h3>
+				<h3 id="event_names">イベント名</h3>
 
 				<ul>
 					<li><kbd>after_create</kbd>, called by the __construct() method once the object was created</li>
