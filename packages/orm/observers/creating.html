@@ -61,7 +61,7 @@
 				<h3>Extend the Orm\Observer class</h3>
 
 				<p><kbd>Orm\Observer</kbd>を展開する新しいクラスを作成して、あなたのオブザーバが行動することを望むイベントのための
-					方法を作成してください。 下記の例は、それが<kbd>after_insert</kdb>に作用することを望んでいます。
+					方法を作成してください。 下記の例は、それが<kbd>after_insert</kbd>に作用することを望んでいます。
 					メソッドは、それを実行する対象モデルのインスタンスが渡されます。</p>
 
 				<pre class="php"><code>class Observer_Something extends Orm\Observer
@@ -78,12 +78,12 @@
 					<kbd>$_INSTANCE</kbd>または<kbd>instance()</kbd>のプロパティを使用できなくなる、
 					もしくは動かなくなるでしょう。</p>
 
-				<h3>Have an orm_notify() method</h3>
+				<h3>orm_notify() メソッドを持っています</h3>
 
-				<p>When you extend the <kbd>Orm\Observer</kbd> class it inherits an <kbd>orm_notify()</kbd> method that
-					will check if there's a method that matches the event and call it when possible. But you can use any
-					class as an observer as long as it has an <kbd>orm_notify()</kbd> method. That will be called on events
-					and be passed the event name and a Model instance.</p>
+				<p>あなたは<kbd>Orm\Observer</kbd>クラスを拡張するとき、それはイベントに一致するメソッドがあるかどうかを確認し、
+				可能な場合はそれを呼びます<kbd>orm_notify()</kbd>メソッドを継承します。
+				それは<kbd>orm_notify()</kbd>メソッドを持っているとして、しかし、あなたがいる限りオブザーバーとして任意のクラスを使用することができます。それはイベントで呼び出され、
+				イベント名とモデルのインスタンスを渡すことができます。</p>
 
 				<pre class="php"><code>class Some_Other_Class
 {
@@ -99,17 +99,17 @@
 				<h3 id="event_names">イベント名</h3>
 
 				<ul>
-					<li><kbd>after_create</kbd>, called by the __construct() method once the object was created</li>
-					<li><kbd>after_load</kbd>, called by the __construct() method once an object was loaded from the database</li>
-					<li><kbd>before_save</kbd>, called by the save() method before anything is done</li>
-					<li><kbd>after_save</kbd>, called by the save() method after it has completed</li>
-					<li><kbd>before_insert</kbd>, called when an object is first saved to the database</li>
-					<li><kbd>after_insert</kbd>, called after an object is first saved to the database</li>
-					<li><kbd>before_update</kbd>, called when an object is saved to the database (except for the first time)</li>
-					<li><kbd>after_update</kbd>, called after an object is saved to the database (except for the first time)</li>
-					<li><kbd>before_delete</kbd>, called when you delete an object from the database</li>
-					<li><kbd>after_delete</kbd>, called after you delete an object from the database</li>
-					<li><kbd>after_clone</kbd>, called after an object was successfully cloned</li>
+					<li><kbd>after_create</kbd>は、オブジェクトが作成されたら__construct()メソッドによって呼び出されます。</li>
+					<li><kbd>after_load</kbd>はオブジェクトがデータベースからロードされた時に、__construct()メソッドによって呼び出されます。</li>
+					<li><kbd>before_save</kbd>, 何が行われる前に、save()メソッドによって呼び出されます</li>
+					<li><kbd>after_save</kbd>, 何かが完了した後に、save()メソッドによって呼び出されます</li>
+					<li><kbd>before_insert</kbd>, オブジェクトが最初にデータベースに保存される前に呼び出されます</li>
+					<li><kbd>after_insert</kbd>, オブジェクトが最初にデータベースに保存された後に呼び出されます</li>
+					<li><kbd>before_update</kbd>, オブジェクトがデータベースに保存される前に呼び出されます（初回を除く）</li>
+					<li><kbd>after_update</kbd>, オブジェクトがデータベースに保存された後呼び出されます（初回を除く）</li>
+					<li><kbd>before_delete</kbd>,あなたがデータベースからオブジェクトを削除するときに呼び出されます</li>
+					<li><kbd>after_delete</kbd>, あなたがデータベースからオブジェクトを削除した後に呼び出されます</li>
+					<li><kbd>after_clone</kbd>, オブジェクトが正常にクローン化された後に呼び出されます</li>
 				</ul>
 
 			</article>
