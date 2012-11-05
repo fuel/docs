@@ -45,7 +45,7 @@
             <div id="main">
                 <section>
                     <h2 id="introduction">Introduction</h2>
-                    <p>Soft deleting is essentially the ability to hide an entry in the database instead of removing every trace of it from the database. This means that data can be retrieved for use at a later date. Another way to think of it is archiving the data.</p>
+                    <p>Soft deleting is essentially the ability to hide an entry in the database instead of removing every trace of the entry. This means that data can be retrieved for use at a later date. Another way to think of it is archiving the data.</p>
                     <p>For example you might have a system that records employee working hours. Every day an employee logs their time so reports can be generated to weed out lazy people. If a person gets fired you no longer want them to be able to access the system but it may still be useful to retain the data on hours worked.</p>
                     <p>If the employee is soft deleted then, as far as the system is concerned, the employee no longer exists. The soft delete model provides a way to query this archived data so reports can still be generated using this “deleted” data.</p>
                     <p>Some people advocate avoiding soft (or logical) deletes. This model does not force you to use soft delete but provides a way for a quick implementation in your project if you decide that soft delete is for you.</p>
@@ -98,6 +98,14 @@ $employee = Model_Employee::deleted(1);
 
 $employee->restore(); //The employee is no longer deleted.
 $employee->undelete(); //Does the same as above.</code></pre>
+                </section>
+                
+                <section>
+                    <h2 id="relations">Relations</h2>
+                    <h1>Delete</h1>
+                    <p>The delete function will soft delete related models providing that <kbd>cascade_delete</kbd> is true. If the related model is not soft delete as well then a <kbd>RelationNotSoft</kbd> exception is thrown.</p>
+                    <h1>Restore</h1>
+                    <p>The restore function will also restore related entries providing the <kbd>cascade_delete</kbd> is true for the relation.</p>
                 </section>
             </div>
 
