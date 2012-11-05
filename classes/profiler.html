@@ -46,14 +46,12 @@
 		<div id="main">
 
 			<h2>Profiler クラス</h2>
-
-			<p>The profiler class allows you to add your own profiling information to the profiler.</p>
+			<p><strong>Profiler クラス</strong>を使うと、独自のプロファイリング情報をプロファイラに送ることができます。</p>
 
 			<article>
 				<h4 class="method" id="method_mark">mark($label)</h4>
 				<p>
-					The <strong>mark</strong> method will add a speed marker to the profiler.
-					This marker will show in the "Load Time" section of the profiler.
+					<strong>mark</strong>はスピードマーカーをプロファイラに追加します。<br />追加されたマーカーはプロファイラの"Load Time"セクションで確認することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -73,7 +71,9 @@
 								<tr>
 									<th><kbd>$label</kbd></th>
 									<td><i>必須</i></td>
-									<td>A text label to describe the marker to be set.</td>
+									<td>
+									 スピードマーカーの説明
+									</td>
 								</tr>
 							</table>
 						</td>
@@ -85,7 +85,7 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>Profiler::mark('start of this piece of code');</code></pre>
+							<pre class="php"><code>Profiler::mark('これはメソッドの開始地点です');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -95,9 +95,8 @@
 			<article>
 				<h4 class="method" id="method_mark_memory">mark_memory($var, $name)</h4>
 				<p>
-					The <strong>mark_memory</strong> method will add a memory marker to the profiler.
-					If you pass a variable, the memory usage of that variable will be logged.
-					If not, the memory usage at the time of marking will be logged.
+					<strong>mark_memory</strong>はメモリマーカーをプロファイラに追加します。<br/>
+					変数を渡した場合、その変数のメモリ使用量が記録されます。そうでない場合は、その時点でのメモリ使用量が記録されます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -117,12 +116,14 @@
 								<tr>
 									<th><kbd>$var</kbd></th>
 									<td><kbd>false</kbd></td>
-									<td>The variable whose size has to be logged. If false or not specified, PHP memory usage will be logged.</td>
+									<td>サイズを取得したい変数。もし、falseを渡すか、何も渡さない場合は全体のメモリ使用量が記録されます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><kbd>'Memory&nbsp;Usage'</kbd></td>
-									<td>A text label to describe the marker to be set.</td>
+									<td>
+									 マーカーの説明
+									</td>
 								</tr>
 							</table>
 						</td>
@@ -134,7 +135,7 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>Profiler::mark_memory($this, 'Controller_Welcome object');</code></pre>
+							<pre class="php"><code>Profiler::mark_memory($this, 'Controller_Welcome オブジェクトです');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -142,9 +143,10 @@
 			</article>
 
 			<article>
-				<h4 class="method" id="method_log">log($text)</h4>
+				<h4 class="method" id="method_console">console($text)</h4>
 				<p>
-					The <strong>log</strong> method will add a log entry to the profiler.
+				  <strong>console</strong>はログをプロファイラに追加します。<br />
+				  "Console"セクションで確認することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -164,7 +166,9 @@
 								<tr>
 									<th><kbd>$text</kbd></th>
 									<td><i>必須</i></td>
-									<td>A text to describe the log entry to be set.</td>
+									<td>
+									 プロファイラへ追加するログ
+									</td>
 								</tr>
 							</table>
 						</td>
@@ -176,7 +180,7 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>Profiler::log('start of this piece of code');</code></pre>
+							<pre class="php"><code>Profiler::console('プロファイラに表示させる文章');</code></pre>
 						</td>
 					</tr>
 					</tbody>
