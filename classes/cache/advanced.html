@@ -52,8 +52,14 @@
 			<section>
 				<h3>Advanced usage</h3>
 
-				<p>Here we'll explain how to use caches as object instances.<br />
-				To be written.</p>
+                                <p>Using cache as an object instance.</p>
+                                <pre><code>$options = array(...); //These are the same as in the cache config file.
+
+$cache = Cache::forge('my_cache', $options)</code></pre>
+                                <p>Data can then be saved to the cache using the <kbd>set()</kbd> function.</p>
+                                <pre id="php"><code>$cache-&gt;set($myData, 604800);</code></pre>
+                                <p>This sets the data in one block and sets the expiration time to one week (604800 seconds). If the second parameter is set to null then the cache will never expire.</p>
+                                <p>Data can be retrieved in the same way as when using <kbd>Cache</kbd> statically.</p>
 			</section>
 
 		</div>
