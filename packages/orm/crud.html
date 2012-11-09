@@ -125,6 +125,16 @@ $entry = Model_Article::find('all', array(
 		array('category_id', 1),
 	),
 	'order_by' =&gt; array('date' =&gt; 'desc'),
+));
+
+// find all articles from category 1 or catergory 2
+$entry = Model_Article::find('all', array(
+	'where' =&gt; array(
+		array('category_id', 1),
+		'or' =&gt; array(
+			array('catergory_id', 2),
+		),
+	),
 ));</code></pre>
 
 					<p>In this example it will always return an array of instances of Model_Article.</p>
@@ -260,6 +270,9 @@ Model_Article::find('all', array('where' =&gt; array('category_id' =&gt; 5)));
 Model_Article::query()-&gt;where('id', 4)->where('category_id', '&gt;', 1);
 Model_Article::query()-&gt;where(array('id' =&gt; 4, 'category_id' =&gt; 6));
 Model_Article::find('all', array('where' =&gt; array(array('category_id', '=', 5), array('publish', '&lt;', time()))));
+
+// Using or where
+Model_Article::query()-&gt;where('id', 4)-&gt;or_where('id', 5);
 </code></pre>
 								</td>
 							<tr>
