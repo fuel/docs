@@ -552,9 +552,6 @@ panes.orm = {
 		"Introduction":		"packages/orm/intro.html",
 		"Creating Models":	"packages/orm/creating_models.html",
 		"CRUD":				"packages/orm/crud.html",
-                "Models": {
-                    "Soft": "packages/orm/models/soft.html"
-                },
 		"Relating Models": {
 			"Introduction":	"packages/orm/relations/intro.html",
 			"Belongs To":	"packages/orm/relations/belongs_to.html",
