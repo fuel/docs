@@ -127,12 +127,12 @@ $entry = Model_Article::find('all', array(
 	'order_by' =&gt; array('date' =&gt; 'desc'),
 ));
 
-// find all articles from category 1 or catergory 2
+// find all articles from category 1 or category 2
 $entry = Model_Article::find('all', array(
 	'where' =&gt; array(
 		array('category_id', 1),
 		'or' =&gt; array(
-			array('catergory_id', 2),
+			array('category_id', 2),
 		),
 	),
 ));</code></pre>
@@ -195,6 +195,16 @@ $entry->author = 'Total n00b';
 $entry->save();</code></pre>
 
 					<p>That's it, nothing more to it: Find, change properties and save.</p>
+
+					<p>You can also set properties on the model from an array:</p>
+
+					<pre class="php"><code>$entry = Model_Article::find(4);
+$entry->set(array(
+	'title'  => 'My first edit',
+	'author' => 'Total n00b'
+));
+
+$entry->save();</code></pre>
 				</article>
 
 				<article id="delete">
