@@ -366,10 +366,24 @@ Model_Article::query()
 				</article>
                                 
                                 <article>
+                                    <h3 id="subqueries"><a class="internal_link" href="#/custom_sql">Subqueries</a></h3>
+                                    <p>Subqueries can be created by constructing a seperate query object and using get_query() to parse it.</p>
+                                    <pre id="php"><code>$subQuery = Model_Article::query()
+        -&gt;select('author')
+        -&gt;where('date', '&lt;', time())
+        -&gt;where('draft', '=', 1);
+
+Model_Article::query()
+        -&gt;where('author', '=', 16)
+        -&gt;or_where('author', $subQuery-&gt;get_query())
+        -&gt;get();</code></pre>
+                                </article>
+                                
+                                <article>
                                     <h3 id="custom_sql"><a class="internal_link" href="#/custom_sql">Custom SQL</a></h3>
                                     <p>It is also possible to perform custom SQL statements and have the result returned as an Orm model (or list of models). Although this is not part of the Orm itself it is useful to know. Take a look at the <a href="../../classes/database/db.html#/method_query">DB::query()</a> function for more information.</a></p>
                                     <pre class="php"><code>DB::query('SELECT * FROM `articles` WHERE `id` = 1')-&gt;as_object('Model_Article')-&gt;execute();</code></pre>
-                                    <p class="note">It is recommended that you use the query() function where ever possible though</p>
+                                    <p class="note">It is recommended that you use the <kbd>query()</kbd> function where ever possible though</p>
                                </article>
 			</section>
 
