@@ -62,8 +62,8 @@
 				<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
 
 				<p class="note">The above only works with the MySQL and MySQLi drivers because it needs to fetch the model
-					properties from the database. It is however not very efficient and thus discouraged to use it this way
-					because you'll always need that one extra query per model just to fetch the columnnames.</p>
+					properties from the database. It is however not very efficient and thus <strong>discouraged</strong> to use it this way
+					because you'll always need that one extra query per model just to fetch the column names.</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -80,7 +80,7 @@
 
 				<h3 id="table_name">protected static $_table_name</h3>
 
-				<p>When this isn't set the <kbd>Model_</kbd> prefix is removed from the classname and the classname is
+				<p>When this isn't set the <kbd>Model_</kbd> prefix is removed from the class name and the class name is
 					pluralized. Thus "Model_Article" expects table "articles". If you don't follow this convention you can
 					change it by setting the <kbd>$_table_name</kbd> property.</p>
 
@@ -109,7 +109,7 @@
 				<h3 id="propperties">protected static $_properties</h3>
 
 				<p>There's already a simple example above of adding all model properties, they can also be configured by
-				using the column name as the key and setting options like type, label & validation.</p>
+				using the column name as the key and setting options like type, label and validation.</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -191,12 +191,12 @@
 					login hash or salt.
 				</p>
 				<p>
-					In your model definition, you can add a list of columns to the <em>to_array_exclude</em> array to exclude
+					In your model definition, you can add a list of columns to the <strong>to_array_exclude</strong> array to exclude
 					them from being exported using to_array().
 				</p>
 				<pre class="php"><code>class Model_User extends Orm\Model
 {
-	protected static $_to_array_filter = array(
+	protected static $_to_array_exclude = array(
 		'password', 'login_hash', 'salt'	// exclude these columns from being exported
 	);
 }</code></pre>
