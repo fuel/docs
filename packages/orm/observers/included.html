@@ -55,7 +55,7 @@
 			<article>
 				<h3 id="included_observers">Observers: Included observers</h3>
 
-				<p>Included observers are listed below:</p>
+				<p>付属のオブザーバーは以下に記載されています:</p>
 
 				<ul>
 					<li><a href="#os_self">Observer_Self</a></li>
@@ -68,16 +68,17 @@
 
 				<h4 id="os_self">Observer_Self</h4>
 
-				<p>While not exactly good practice, in some cases it's probably cleanest to just have the event method with
-					your model. That's where the Observer_Self comes in, it checks if you model has a method named after
-					the event and prefixed with <kbd>_event_</kbd>. For example for the <kbd>after_save</kbd> event you need
-					to add a public method <kbd>_event_after_save()</kbd> to your model so it can have the observer call on
-					the model itself.</p>
+				<p>良い習慣ではありませんが、場合によっては、あなたのモデルとイベントメソッドだけを持っているのはおそらく最も
+					クリーンです。 もしモデルがイベントにちなんで命名され、<kbd>_event_</kbd>で始まるメソッドを持っている場合は、
+					Observer_Selfの出番です。たとえば <kbd>after_save</kbd> イベントの場合、 あなたは
+					public メソッドの <kbd>_event_after_save()</kbd> を 使っているmodelに追加する必要があり、それは 
+					モデル自体のオブザーバの呼び出しを持つことができます。
+				</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Self');
 
-// But if you only observe some events you can optimize by only adding those
+// しかし、あなただけのいくつかのイベントを観察する場合には、それらを追加することによって最適化することができます
 protected static $_observers = array('Orm\\Observer_Self' => array('after_save', 'before_insert'));</code></pre>
 
 				<h4 id="os_created">Observer_CreatedAt</h4>
@@ -85,13 +86,13 @@ protected static $_observers = array('Orm\\Observer_Self' => array('after_save',
 				<p>This observer acts only upon <kbd>before_insert</kbd> and expects your model to have a
 					<kbd>created_at</kbd> property which will be set to the Unix timestamp when saving for the first time.</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_CreatedAt');
 
-// Adding it with config:
-// - only needs to run on before_insert
-// - use mysql timestamp (uses UNIX timestamp by default)
-// - use just "created" instead of "created_at"
+// 設定追加:
+// - before_insertのみで実行する必要
+// - mysqlのタイムスタンプを使用（デフォルトではUNIXタイムスタンプを使用しています）
+// - "created_at"の代わりに"created"を使用します。
 protected static $_observers = array(
 	'Orm\\Observer_CreatedAt' => array(
 		'events' => array('before_insert'),
@@ -106,10 +107,10 @@ protected static $_observers = array(
 					<kbd>updated_at</kbd> property which will be set to the Unix timestamp when saving (also during the
 					first time).</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_UpdatedAt');
 
-// Adding it with config:
+// 設定追加:
 // - only needs to run on before_save
 // - use mysql timestamp (uses UNIX timestamp by default)
 // - use just "updated" instead of "updated_at"
@@ -133,7 +134,7 @@ protected static $_observers = array(
 
 				<p>The observer can be loaded as follows:</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Validation');
 
 // But adding it just for before_save is enough
@@ -243,7 +244,7 @@ echo $fieldset;</code></pre>
 					such. Neither are the exceptions thrown by this observer meant to be read by the visitor of your site,
 					they're meant to help you debug your code.</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Typing');
 
 // But adding it just for these specific events is enough
@@ -317,10 +318,10 @@ protected static $_observers = array('Orm\\Observer_Typing' => array('before_sav
 					and expects your model to have a <kbd>title</kbd> (to create the slug) and a <kbd>slug</kbd> (to save it) property.
 				</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>//オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Slug');
 
-// With settings
+// 設定
 protected static $_observers = array(
 	'Orm\\Observer_Slug' => array(
 		'events' => array('before_insert'),
