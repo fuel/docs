@@ -102,7 +102,7 @@ if(typeof google != 'undefined')
 {
 google.load('search', '1', {language : 'en'});
 google.setOnLoadCallback(function() {
-	customSearchControl = new google.search.CustomSearchControl('006591637332971941800:3efr01twcei');
+	customSearchControl = new google.search.CustomSearchControl('006268519150918941486:vg1sweimb7m');
 	customSearchControl.setResultSetSize(4);
 	var options = new google.search.DrawOptions();
 	options.setSearchFormRoot('cse-search-form');
