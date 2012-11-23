@@ -530,7 +530,7 @@ echo Inflector::is_countable('apple'); // returns true</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_pluralize">pluralize($word)</h4>
+				<h4 class="method" id="method_pluralize">pluralize($word, $count)</h4>
 				<p>The <strong>pluralize</strong> method allows you get the plural version of the given word.</p>
 				<table class="method">
 					<tbody>
@@ -552,6 +552,11 @@ echo Inflector::is_countable('apple'); // returns true</code></pre>
 									<td><i>Required</i></td>
 									<td>The word you want to pluralize.</td>
 								</tr>
+								<tr>
+									<th><kbd>$count</kbd></th>
+									<td><strong>0</strong></td>
+									<td>An instance, which if equal <kbd>1</kbd> will return the string as a singular.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -562,7 +567,8 @@ echo Inflector::is_countable('apple'); // returns true</code></pre>
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>echo Inflector::pluralize('apple'); // returns apples</code></pre>
+							<pre class="php"><code>echo Inflector::pluralize('apple'); // returns apples
+echo Inflector::pluralize('apple', 1); // returns apple</code></pre>
 						</td>
 					</tr>
 					</tbody>
