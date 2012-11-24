@@ -83,8 +83,8 @@ protected static $_observers = array('Orm\\Observer_Self' => array('after_save',
 
 				<h4 id="os_created">Observer_CreatedAt</h4>
 
-				<p>This observer acts only upon <kbd>before_insert</kbd> and expects your model to have a
-					<kbd>created_at</kbd> property which will be set to the Unix timestamp when saving for the first time.</p>
+				<p>このオブザーバは<kbd>before_insert</kbd>だけに作用します。<kbd>created_at</kbd>プロパティを持っている
+					モデルが初めて保存するとき、Unixタイムスタンプがセットされます。</p>
 
 				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_CreatedAt');
@@ -92,7 +92,7 @@ protected static $_observers = array('Orm\\Observer_CreatedAt');
 // 設定追加:
 // - before_insertのみで実行する必要
 // - mysqlのタイムスタンプを使用（デフォルトではUNIXタイムスタンプを使用しています）
-// - "created_at"の代わりに"created"を使用します。
+// - "created_at"の代わりに"created"を使用
 protected static $_observers = array(
 	'Orm\\Observer_CreatedAt' => array(
 		'events' => array('before_insert'),
@@ -111,9 +111,9 @@ protected static $_observers = array(
 protected static $_observers = array('Orm\\Observer_UpdatedAt');
 
 // 設定追加:
-// - only needs to run on before_save
-// - use mysql timestamp (uses UNIX timestamp by default)
-// - use just "updated" instead of "updated_at"
+// - before_saveのみで実行する必要あり
+// - mysqlのタイムスタンプを使用（デフォルトではUNIXタイムスタンプを使用しています）
+// - "updated_at"の代わりに、"updated"を使用
 protected static $_observers = array(
 	'Orm\\Observer_UpdatedAt' => array(
 		'events' => array('before_save'),
@@ -124,9 +124,11 @@ protected static $_observers = array(
 
 				<h4 id="os_validation">Observer_Validation</h4>
 
-				<p>This observer only acts on <kbd>before_save</kbd>. It is used to prevent the model from saving if
-					validation rules fail. It uses the <a href="../../../classes/fieldset.html">Fieldset</a> class
-					and can also generate the form for you.</p>
+				<p>このオブザーバのみ<kbd>before_save</kbd>に作用します。
+					これは、検証規則が失敗した場合の保存からモデルを防ぐために使用されます。
+					それは、 <a href="../../../classes/fieldset.html">Fieldset</a>クラスを使用し、
+					またあなたのためのフォームを生成することができます。
+				</p>
 
 				<p class="note">The primary key(s) are not added to Validation nor to the Form as they're not editable
 					and will be auto-increment most of the time. In cases where you set it upon creation and need
@@ -146,7 +148,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 					to validate before save. As such, you must try/catch your calls to the <kbd>save</kbd> function of
 					a model.</p>
 
-				<p>More extensive example functionality/scaffolding is shown below:</p>
+				<p>より広範な機能例/scaffoldingを以下に示します:</p>
 
 				<pre class="php"><code>class Controller_Articles extends Controller
 {
