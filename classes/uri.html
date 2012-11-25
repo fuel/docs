@@ -346,8 +346,8 @@ echo Uri::segment_replace('http://localhost/this/that/*/other');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_to_assoc">to_assoc()</h4>
-				<p>The <strong>to_assoc</strong> method takes the segments array and turns it into an associative array if the number of segments is even.  If the number of segments is odd, it returns <kbd>null</kbd>.</p>
+				<h4 class="method" id="method_to_assoc">to_assoc($start = 1)</h4>
+				<p>The <strong>to_assoc</strong> method takes the segments array and turns it into an associative array if the number of segments is even.  If the number of segments is odd, the last array key will have a value of <code>null</code>.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -356,11 +356,24 @@ echo Uri::segment_replace('http://localhost/this/that/*/other');</code></pre>
 					</tr>
 					<tr>
 						<th>Parameters</th>
-						<td>None</td>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$start</kbd></th>
+									<td><pre class="php"><code>1</code></pre></td>
+									<td>The segment number to start with. This allows you to strip leading segments.</td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>array|null</td>
+						<td>array</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -379,7 +392,9 @@ array(
 $arr = Uri::to_assoc();
 /*
 Result:
-null
+array(
+    'welcome' => null,
+);
 */</code></pre>
 						</td>
 					</tr>
