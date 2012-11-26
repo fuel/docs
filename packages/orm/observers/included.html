@@ -218,11 +218,11 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 					defined in a common view however you can just as easily define it in the model and obtain an
 					instance of it in the view using <code>Fieldset::instance()</code>.</p>
 
-				<pre class="php"><code>// use an instance of Model_Article to create the form, you can also pass the classname
+				<pre class="php"><code>// フォームを作成するModel_Articleのインスタンスを使用して、あなたはまた、クラス名を渡すことができます。
 $fieldset = Fieldset::forge()->add_model($article);
 
-// Populate the form with values from the model instance
-// passing true will also make it use POST/PUT to repopulate after failed save
+// モデルのインスタンスからの値を使用してフォームを移入します。
+// trueを渡しても、セーブ失敗した後に再設定するためにPOST/PUTを使用します。
 $fieldset->populate($article, true);
 
 // The fieldset will be build as HTML when cast to string
@@ -306,8 +306,8 @@ protected static $_observers = array('Orm\\Observer_Typing' => array('before_sav
 							<th>options</th>
 							<td>array</td>
 							<td>
-								Array of valid string values for set or enum data type<br />
-								<strong>Note:</strong> currently the options themselves cannot contain comma's.
+								セットのための有効な文字列値の配列または列挙データ型<br />
+								<strong>注:</strong> 現在のオプション自体はカンマを含めることはできません。
 							</td>
 						</tr>
 					</tbody>
@@ -316,8 +316,8 @@ protected static $_observers = array('Orm\\Observer_Typing' => array('before_sav
 				<h3 id="os_slug">Observer_Slug</h3>
 
 				<p>
-					This observer creates a unique url safe slug for your model. It works only upon <kbd>before_insert</kbd>
-					and expects your model to have a <kbd>title</kbd> (to create the slug) and a <kbd>slug</kbd> (to save it) property.
+					このオブザーバは、モデル固有のURL安全スラグを作成します。 それは "before_insert"時にのみ動作し、
+					あなたのモデルが<kbd>タイトル</kbd>（スラグを作成するため）と<kbd>スラグ</kbd>（スラグを保存するため）プロパティを持つことを想定しています。
 				</p>
 
 				<pre class="php"><code>//オブザーバを追加します。
@@ -327,14 +327,15 @@ protected static $_observers = array('Orm\\Observer_Slug');
 protected static $_observers = array(
 	'Orm\\Observer_Slug' => array(
 		'events' => array('before_insert'),
-		'source' => 'title',   // property used to base the slug on, may also be array of properties
-		'property' => 'slug',  // property to set the slug on when empty
+		'source' => 'title',   // 上にスラグをベースに使用されるプロパティはプロパティの配列かもしれません。
+		'property' => 'slug',  // プロパティが空のときにスラグを設定します。
 	),
 );
 protected static $_observers = array('Orm\\Observer_Slug' => array('before_insert'));</code></pre>
 
 				<p>
-					The Observer creates the <kbd>slug</kbd> from the <kbd>title</kbd> using <a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a> and adds an index, if the slug already exists.
+					オブザーバは<a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a>を使用して
+					<kbd>タイトル</kbd>から<kbd>スラグ</kbd>を作成し、スラグが既に存在する場合は、インデックスを追加します。
 				</p>
 			</article>
 
