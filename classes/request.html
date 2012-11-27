@@ -47,7 +47,7 @@
 
 			<h2>Request クラス</h2>
 
-			<p>RequestクラスはURIリクエストを処理します。Fuelはindex.php内で、ユーザーからのURIリクエストを処理するために同クラスを使用しています。また、HMVCコンテクストの中でリクエストを生成するためには、このクラスを使う必要があります。</p>
+			<p>Request クラスは URI リクエストを処理します。Fuel は index.php 内で、ユーザーからの URI リクエストを処理するために同クラスを使用しています。また、HMVC コンテクストの中でリクエストを生成するためには、このクラスを使う必要があります。</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($uri = null, $route = true)</h4>
@@ -70,12 +70,12 @@
 								<tr>
 									<th><kbd>$uri</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>リクエストされているURI。このパラメタが存在しない場合は、URIを見つけるためにURIクラスが使われます。</td>
+									<td>リクエストされている URI。このパラメタが存在しない場合は、URI を見つけるために URI クラスが使われます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$route</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>もしtrueであれば、渡された(passed)あるいは見つけだされたURIはRoutingクラスで処理されます。もし経路（ルート）が存在しないのであれば404が生成されます。もし非公開のURIをリクエストするのであれば、このパラメタには<strong>false</strong>を設定してください。</td>
+									<td>もし true であれば、渡された (passed) あるいは見つけだされた URI は Routing クラスで処理されます。もし経路 (ルート) が存在しないのであれば 404 が生成されます。もし非公開の URI をリクエストするのであれば、このパラメタには <strong>false</strong> を設定してください。</td>
 								</tr>
 							</table>
 						</td>
@@ -99,7 +99,7 @@ $request = Request::forge('admin/login');
 
 			<article>
 				<h4 class="method" id="method_execute">execute()</h4>
-				<p><strong>execute</strong>メソッドはリクエストを実行し、そのレスポンス結果を利用するために結果をリクエストオブジェクトに格納します。</p>
+				<p><strong>execute</strong> メソッドはリクエストを実行し、そのレスポンス結果を利用するために結果をリクエストオブジェクトに格納します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -127,7 +127,7 @@ $request = Request::forge('admin/login')->execute();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_response">response()</h4>
-				<p><strong>response</strong>メソッドは、実行されたリクエストのレスポンスオブジェクトを取得します。</p>
+				<p><strong>response</strong> メソッドは、実行されたリクエストのレスポンスオブジェクトを取得します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -149,7 +149,7 @@ $request = Request::forge('admin/login')->execute();</code></pre>
 $response = Request::forge('admin/login')->execute()->response();
 echo $response;
 
-// リクエストオブジェクトには、出力取得の別の方法として __toString()メソッドが含まれている。
+// リクエストオブジェクトには、出力取得の別の方法として __toString() メソッドが含まれている。
 $output = Request::forge('admin/login')->execute();
 echo $output;</code></pre>
 						</td>
@@ -360,8 +360,8 @@ $children = Request::main()->children();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_show_404">show_404($return = false)</h4>
-				<p><strong>show_404</strong>メソッドは、アプリケーションの404ページを表示するか、そのまま返します。もしroutes.phpに設定していない場合は、Fuelのデフォルト404ページがその代わりをします。404のルート設定が間違っている場合は、エラーがスローされます。</p>
-				<p class="note">この機能は現在非推奨で<kbd>HttpNotFoundException</kbd>が推奨されています。</p>
+				<p><strong>show_404</strong>メソッドは、アプリケーションの404ページを表示するか、そのまま返します。もし routes.php に設定していない場合は、Fuel のデフォルト 404 ページがその代わりをします。404 のルート設定が間違っている場合は、エラーがスローされます。</p>
+				<p class="note">この機能は現在非推奨で <kbd>HttpNotFoundException</kbd> が推奨されています。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -380,14 +380,14 @@ $children = Request::main()->children();</code></pre>
 								<tr>
 									<th><kbd>$return</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>もし<strong>false</strong>なら結果がエコーされます。<strong>true</strong>の場合はその値を返します。</td>
+									<td>もし<strong>false</strong> なら結果がエコーされます。<strong>true</strong> の場合はその値を返します。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>もし<strong>$return</strong>がfalseの場合メソッドは終了。そうでないならば設定された404ページのhtmlを返します。</td>
+						<td>もし<strong>$return</strong> が false の場合メソッドは終了。そうでないならば設定された 404 ページの html を返します。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -401,7 +401,7 @@ $children = Request::main()->children();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_main">main()</h4>
-				<p><strong>main</strong>メソッドはメインリクエストのインスタンス（最初のページリクエストで生成されたもの)を返します。</p>
+				<p><strong>main</strong> メソッドはメインリクエストのインスタンス (最初のページリクエストで生成されたもの) を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -414,7 +414,7 @@ $children = Request::main()->children();</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Fuel\Core\Request オブジェクト、 あるいはメインリクエストインスタンスが存在しない場合は false を返す。</td>
+						<td>Fuel\Core\Request オブジェクト、あるいはメインリクエストインスタンスが存在しない場合は false を返す。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -425,12 +425,12 @@ $children = Request::main()->children();</code></pre>
 					</tbody>
 				</table>
 
-				<p class="note">これは最初に実行されたリクエストインスタンスであって、必ずしも現在のリクエストのルート親（root parent）のインスタンスではありません。たとえば、メインリクエストが404で（<kbd>_404_</kbd>にルート付けられたものが実行された）その後に新しいリクエストを生成するという様なケースがそれにあたるでしょう。</p>
+				<p class="note">これは最初に実行されたリクエストインスタンスであって、必ずしも現在のリクエストのルート親 (root parent) のインスタンスではありません。たとえば、メインリクエストが 404 で (<kbd>_404_</kbd> にルート付けられたものが実行された) その後に新しいリクエストを生成するという様なケースがそれにあたるでしょう。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_active">active()</h4>
-				<p><strong>active</strong>メソッドはアクティブなリクエストインスタンスを返します。</p>
+				<p><strong>active</strong> メソッドはアクティブなリクエストインスタンスを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -481,7 +481,7 @@ $children = Request::main()->children();</code></pre>
 								<tr>
 									<th><kbd>$prefix</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td><strong>false</strong>なら、パスはサーチパスの後ろに、<strong>true</strong>ならサーチパスの前に付加されます。</td>
+									<td><strong>false</strong> なら、パスはサーチパスの後ろに、<strong>true</strong> ならサーチパスの前に付加されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -493,7 +493,7 @@ $children = Request::main()->children();</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// アプリケーションのmyfilesフォルダをアクティブなリクエストインスタンスのサーチパスに付け加える。
+							<pre class="php"><code>// アプリケーションの myfiles フォルダをアクティブなリクエストインスタンスのサーチパスに付け加える。
 Request::active()->add_path(APPPATH.'myfiles'.DS);</code></pre>
 						</td>
 					</tr>
@@ -503,7 +503,7 @@ Request::active()->add_path(APPPATH.'myfiles'.DS);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_get_paths">get_paths()</h4>
-				<p><strong>get_paths</strong>メソッドは設定されているサーチパス一覧を返します。</p>
+				<p><strong>get_paths</strong> メソッドは設定されているサーチパス一覧を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
