@@ -592,6 +592,57 @@ Image::load('filename')
 					</tbody>
 				</table>
 			</article>
+			
+						<article>
+				<h4 class="method" id="method_flip">flip($direction)</h4>
+				<p>Flip the image vertically and / or horizontally.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+
+								<tr>
+									<th><kbd>$direction</kbd></th>
+									<td><i>Required</i></td>
+									<td>the flip direction. Accepts "horizontal", "vertical" or "both"</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Image_Driver</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>//Flip vertical
+Image::load('filename.gif')
+	->flip('vertical');
+
+// Flip horizontal
+Image::load('filename.gif')
+	->flip('horizontal');
+
+// Flip horizontal and vertical.
+Image::load('filename')
+	->flip('both');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 
 			<article>
 				<h4 class="method" id="method_watermark">watermark($filename, $position, $padding = 5)</h4>
