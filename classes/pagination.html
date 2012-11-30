@@ -55,9 +55,11 @@
 
 				<pre class="php"><code>$config = array(
 	'pagination_url' => 'http://localhost/fuel/welcome/index/',
-	'total_items' => 10,
-	'per_page' => 5,
-	'uri_segment' => 3,
+	'total_items'    => 10,
+	'per_page'       => 5,
+	'uri_segment'    => 3,
+	// or if you prefer pagination by query string
+	//'uri_segment'    => 'page',
 );
 
 // Create a pagination instance named 'mypagination'
@@ -92,17 +94,17 @@ $this->render('welcome/index', $data);</code></pre>
 						<tr>
 							<th>pagination_url</th>
 							<td>string</td>
-							<td>None</td>
+							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								The URL of page where you have pagination.
+								The URL of page where you have pagination. If null, Fuel tries to detect it from the current URL.
 							</td>
 						</tr>
 						<tr>
 							<th>uri_segment</th>
-							<td>integer</td>
+							<td>integer|string</td>
 							<td><pre class="php"><code>3</code></pre></td>
 							<td>
-								The URI segment containing the page number.
+								The URI segment containing the page number (if integer). The query string field containing the page number (if string).
 							</td>
 						</tr>
 						<tr>
