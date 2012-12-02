@@ -77,7 +77,9 @@
 {
 	protected static $_observers = array(
 		'example', // will call Observer_Example class for all events
-		'Orm\\Observer_CreatedOn' => array('before_insert'), // will only call Orm\Observer_CreatedOn at before_insert event
+		'Orm\\Observer_CreatedOn' => array( 
+			'events' => array('before_insert'), // will only call Orm\Observer_CreatedOn at before_insert event
+		)
 	);
 }</code></pre>
 			</article>
