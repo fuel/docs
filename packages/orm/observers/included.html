@@ -78,7 +78,9 @@
 protected static $_observers = array('Orm\\Observer_Self');
 
 // But if you only observe some events you can optimize by only adding those
-protected static $_observers = array('Orm\\Observer_Self' => array('after_save', 'before_insert'));</code></pre>
+protected static $_observers = array('Orm\\Observer_Self' => array(
+	'events' => array('after_save', 'before_insert')
+));</code></pre>
 
 				<h4 id="os_created">Observer_CreatedAt</h4>
 
