@@ -78,7 +78,9 @@
 protected static $_observers = array('Orm\\Observer_Self');
 
 // But if you only observe some events you can optimize by only adding those
-protected static $_observers = array('Orm\\Observer_Self' => array('after_save', 'before_insert'));</code></pre>
+protected static $_observers = array('Orm\\Observer_Self' => array(
+	'events' => array('after_save', 'before_insert')
+));</code></pre>
 
 				<h4 id="os_created">Observer_CreatedAt</h4>
 
@@ -137,7 +139,9 @@ protected static $_observers = array(
 protected static $_observers = array('Orm\\Observer_Validation');
 
 // But adding it just for before_save is enough
-protected static $_observers = array('Orm\\Observer_Validation' => array('before_save'));</code></pre>
+protected static $_observers = array('Orm\\Observer_Validation' => array( 
+	'events' => array('before_save')
+));</code></pre>
 
 				<p>Validation rules should be defined in your model in <kbd>$_properties</kbd>. This is demonstrated
 					in <a href="../creating_models.html#propperties">Creating Models</a>. After you have added the
@@ -247,7 +251,9 @@ echo $fieldset;</code></pre>
 protected static $_observers = array('Orm\\Observer_Typing');
 
 // But adding it just for these specific events is enough
-protected static $_observers = array('Orm\\Observer_Typing' => array('before_save', 'after_save', 'after_load'));</code></pre>
+protected static $_observers = array('Orm\\Observer_Typing' => array( 
+	'events' => array('before_save', 'after_save', 'after_load')
+));</code></pre>
 
 				<p>
 					For this observer to work you must have your the <kbd>$_properties</kbd> static variable set in your
