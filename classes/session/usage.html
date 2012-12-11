@@ -353,7 +353,7 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 			</article>
 
 			<article>
-				<h4 class="method" id="method_get_flash">get_flash($variable, $default = null)</h4>
+				<h4 class="method" id="method_get_flash">get_flash($variable, $default = null, $expire = false)</h4>
 				<p>The <strong>get_flash</strong> method allows you to get a session flash variable. Flash variables have a limited lifespan. Depending on the configuration, they will be deleted after the next page request, or after they are retrieved.</p>
 				<table class="method">
 					<tbody>
@@ -379,6 +379,11 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>Default value to return in case the requested variable does not exist. If no default is given, the method will return <kbd>null</kbd>.</td>
+								</tr>
+								<tr>
+									<th><kbd>$expire</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>if <kbd>true</kbd>, the session variable expires immediately, even if it is set in the same request.</td>
 								</tr>
 							</table>
 						</td>
