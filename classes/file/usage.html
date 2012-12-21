@@ -459,8 +459,8 @@ $contents = File::read_dir(DOCROOT, 0, array(
 			</article>
 
 			<article>
-				<h4 class="method" id="method_rename">rename($path, $new_path, $area = null)</h4>
-				<p>Rename directory or file.</p>
+				<h4 class="method" id="method_rename">rename($path, $new_path, $source_area = null, $target_area = null)</h4>
+				<p>Rename or move a directory or file.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -487,9 +487,15 @@ $contents = File::read_dir(DOCROOT, 0, array(
 									<td>New name of the file or directory</td>
 								</tr>
 								<tr>
-									<th><kbd>$area</kbd></th>
+									<th><kbd>$source_area</kbd></th>
 									<td><kbd>null</kbd></td>
 									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
+									usage</a> for more information)</td>
+								</tr>
+								<tr>
+									<th><kbd>$target_area</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>Optional Area object to use if $source_area does not contain $new_path, defaults to main config (see <a href="advanced.html">advanced
 									usage</a> for more information)</td>
 								</tr>
 							</table>
@@ -510,7 +516,13 @@ $contents = File::read_dir(DOCROOT, 0, array(
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// rename 'test.txt' to 'newname.txt', and move it to a sub-directory
-File::rename(DOCROOT.'test.txt', DOCROOT.'folder/newname.txt');</code></pre>
+File::rename(DOCROOT.'test.txt', DOCROOT.'folder/newname.txt');
+
+// rename using a single area
+File::rename(DOCROOT.'one.jpg', DOCROOT.'final.jpg', 'docroot');
+
+// move and rename between two restrictive areas
+File::rename(APPPATH.'tmp/file.jpg', DOCROOT.'folder/image.jpg', 'tmp', 'public');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -518,7 +530,7 @@ File::rename(DOCROOT.'test.txt', DOCROOT.'folder/newname.txt');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_rename_dir">rename_dir($path, $new_path, $area = null)</h4>
+				<h4 class="method" id="method_rename_dir">rename_dir($path, $new_path, $source_area = null, $target_area = null)</h4>
 				<p>Alias for File::rename</p>
 				<table class="method">
 					<tbody>
@@ -546,9 +558,15 @@ File::rename(DOCROOT.'test.txt', DOCROOT.'folder/newname.txt');</code></pre>
 									<td>New name of the file or directory</td>
 								</tr>
 								<tr>
-									<th><kbd>$area</kbd></th>
+									<th><kbd>$source_area</kbd></th>
 									<td><kbd>null</kbd></td>
 									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
+									usage</a> for more information)</td>
+								</tr>
+								<tr>
+									<th><kbd>$target_area</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>Optional Area object to use if $source_area does not contain $new_path, defaults to main config (see <a href="advanced.html">advanced
 									usage</a> for more information)</td>
 								</tr>
 							</table>
@@ -576,7 +594,7 @@ File::rename(DOCROOT.'test.txt', DOCROOT.'folder/newname.txt');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_copy">copy($path, $new_path, $area = null)</h4>
+				<h4 class="method" id="method_copy">copy($path, $new_path, $area = null, $source_area = null, $target_area = null)</h4>
 				<p>Copies a file.</p>
 				<table class="method">
 					<tbody>
@@ -604,9 +622,15 @@ File::rename(DOCROOT.'test.txt', DOCROOT.'folder/newname.txt');</code></pre>
 									<td>Full path, including filename, to copy to</td>
 								</tr>
 								<tr>
-									<th><kbd>$area</kbd></th>
+									<th><kbd>$source_area</kbd></th>
 									<td><kbd>null</kbd></td>
 									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
+									usage</a> for more information)</td>
+								</tr>
+								<tr>
+									<th><kbd>$target_area</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>Optional Area object to use if $source_area does not contain $new_path, defaults to main config (see <a href="advanced.html">advanced
 									usage</a> for more information)</td>
 								</tr>
 							</table>
@@ -629,7 +653,14 @@ File::rename(DOCROOT.'test.txt', DOCROOT.'folder/newname.txt');</code></pre>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// copy the file 'test.txt' from the docroot to a sub directory
-File::copy(DOCROOT.'test.txt', DOCROOT.'folder/test.txt');</code></pre>
+File::copy(DOCROOT.'test.txt', DOCROOT.'folder/test.txt');
+
+// copy using a single area
+File::copy(DOCROOT.'one.jpg', DOCROOT.'img/one.jpg', 'public');
+
+// copy between two restrictive areas
+File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -637,7 +668,7 @@ File::copy(DOCROOT.'test.txt', DOCROOT.'folder/test.txt');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_copy_dir">copy_dir($path, $new_path, $area = null)</h4>
+				<h4 class="method" id="method_copy_dir">copy_dir($path, $new_path, $area = null, $source_area = null, $target_area = null)</h4>
 				<p>Copies a directory.</p>
 				<table class="method">
 					<tbody>
@@ -665,9 +696,15 @@ File::copy(DOCROOT.'test.txt', DOCROOT.'folder/test.txt');</code></pre>
 									<td>Path to copy to</td>
 								</tr>
 								<tr>
-									<th><kbd>$area</kbd></th>
+									<th><kbd>$source_area</kbd></th>
 									<td><kbd>null</kbd></td>
 									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
+									usage</a> for more information)</td>
+								</tr>
+								<tr>
+									<th><kbd>$target_area</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>Optional Area object to use if $source_area does not contain $new_path, defaults to main config (see <a href="advanced.html">advanced
 									usage</a> for more information)</td>
 								</tr>
 							</table>
@@ -675,7 +712,7 @@ File::copy(DOCROOT.'test.txt', DOCROOT.'folder/test.txt');</code></pre>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td><kbd>boolean</kbd> result of <em>copy()</em></td>
+						<td><kbd>null</kbd></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
