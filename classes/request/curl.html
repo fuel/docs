@@ -279,7 +279,7 @@ $curl->set_option(CURLOPT_USERPWD, $username . ':' . $password);
 			<pre class="php"><code>// create a Request_Curl object
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// set a username and password to be used in the request
+// set some options to be used in the request
 $curl->set_options(array(
 	CURLOPT_TIMEOUT => 30,
 	CURLOPT_FOLLOWLOCATION => true,
@@ -528,7 +528,7 @@ $curl->set_mime_type('json');
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
 // we want an array returned
-$soap->set_auto_format(true);
+$curl->set_auto_format(true);
 </code></pre>
 						</td>
 					</tr>
