@@ -63,17 +63,29 @@
 				the corresponding file from core/config to app/config.
 			</p>
 
+			<h3 id="config">Configuration options</h3>
+
 			<p>
-				Interacting with config files/settings is done using the <a href="../classes/config.html">Config</a> class.
-				Config files can also be generated using <a href="../packages/oil/generate.html#config">Oil</a>.
+				These are the options that can be defined in the applications basic configuration file, <kbd>app/config/config.php</kbd>.
+				When you have just installed FuelPHP, this file is empty. All default values, as defined below, are defined in the
+				corresponding file in the <kbd>core/config</kbd> folder. When you want to override a default, add the key to the array
+				in your app config file, and modify the value. Alternatively, copy the section from the core file to the app file, and
+				modify it.
 			</p>
 
-			<h3 id="config">Configuration options</h3>
+			<p class="note">
+				FuelPHP uses "<em>dot-notation</em>" when handling arrays. It is a convenient way of accessing elements of a multi-dimensional
+				array. This notation is used in the documenation as well, as it provides an easy to type array reference. For example:
+			</p>
+			<pre class="php"><code>// when you see "always_load.packages = array()", it is shorthand for:
+array("always_load" => array("packages" => array(...) ) );
+</code></pre>
+
 
 			<table class="config">
 				<tbody>
 					<tr class="header">
-						<th>Key</th>
+						<th style="width:500px;">Key</th>
 						<th>Type</th>
 						<th>Default</th>
 						<th>Description</th>
@@ -151,6 +163,17 @@
 						<td><pre class="php"><code>null</code></pre></td>
 						<td>
 							Callback given to ob_start(), set to ob_gzhandler to enable gzip encoding of output.
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+						</td>
+					</tr>
+					<tr>
+						<th>errors</th>
+						<td>array</td>
+						<td colspan="2">
+							<strong>Array, containing the configuration keys to control behaviour when detecting errors:</strong>
 						</td>
 					</tr>
 					<tr>
@@ -257,6 +280,18 @@
 						</td>
 					</tr>
 					<tr>
+						<td colspan="4">
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<th>security</th>
+						<td>array</td>
+						<td colspan="2">
+							<strong>Array, containing the configuration keys to control your application security:</strong>
+						</td>
+					</tr>
+					<tr>
 						<th>security.csrf_autoload</th>
 						<td>bool</td>
 						<td><pre class="php"><code>false</code></pre></td>
@@ -330,6 +365,18 @@
 						</td>
 					</tr>
 					<tr>
+						<td colspan="4">
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<th>cookie</th>
+						<td>array</td>
+						<td colspan="2">
+							<strong>Array, containing the configuration keys define the global cookie settings:</strong>
+						</td>
+					</tr>
+					<tr>
 						<th>cookie.expiration</th>
 						<td>int</td>
 						<td><pre class="php"><code>0</code></pre></td>
@@ -378,11 +425,23 @@
 						</td>
 					</tr>
 					<tr>
+						<td colspan="4">
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<th>always_load</th>
+						<td>array</td>
+						<td colspan="2">
+							<strong>Array, containing the items the framework has to load when it initializes:</strong>
+						</td>
+					</tr>
+					<tr>
 						<th>always_load.packages</th>
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
-							Which packages to autoload. Specify like so: <strong>array('package')</strong> or <strong>array('package' => PKGPATH.'path/to/package')</strong>
+							Which packages to autoload. Specify like so: <strong>array('package')</strong> or <strong>array('package' => PKGPATH.'path/to/package')</strong>. In order for this to work a package path must be set in <em>package_paths</em>
 						</td>
 					</tr>
 					<tr>
@@ -399,7 +458,8 @@
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
-							Which classes to autoload and initiate.
+							Which classes to autoload and initiate. When you want to autoload a class from a package or module, make sure
+							that is autoloaded too!
 						</td>
 					</tr>
 					<tr>
@@ -424,6 +484,11 @@
 					</tr>
 				</tbody>
 			</table>
+
+			<p>
+				Interacting with config files/settings is done using the <a href="../classes/config.html">Config</a> class.
+				Config files can also be generated using <a href="../packages/oil/generate.html#configs">Oil</a>.
+			</p>
 
 		</div>
 

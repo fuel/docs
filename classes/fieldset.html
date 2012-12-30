@@ -997,7 +997,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_set_tabular_form">set_tabular_form($model, $relation, $parent)</h4>
+				<h4 class="method" id="method_set_tabular_form">set_tabular_form($model, $relation, $parent, $blanks = 1)</h4>
 				<p>Define an embedded fieldset on a related ORM model to create a One-to-Many form.</p>
 				<table class="method">
 					<tbody>
@@ -1029,6 +1029,11 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 										<th><kbd>$parent</kbd></th>
 										<td><i>required</i></td>
 										<td>Parent object that is used to generate the main form, and contains the related records to be displayed in the tabular form</td>
+									</tr>
+									<tr>
+										<th><kbd>$blanks</kbd></th>
+										<td><pre class="php"><code>1</code></pre></td>
+										<td>Number of empty rows to be displayed in the tabular form</td>
 									</tr>
 								</tbody>
 							</table>
@@ -1133,7 +1138,75 @@ $form = Fieldset::forge('article')->add_model($article);
 $form->add(\Fieldset::forge('tabular')->set_tabular_form('Model_Comments', 'comments', $article)->set_fieldset_tag(false));
 				</code></pre>
 
-				<p class="note">This only works for related models that DO NOT have a compound key!</p>
+				<p class="note">This only works for related models that <strong>DO NOT</strong> have a compound key!</p>
+
+				<p>
+					A tabular form generates HTML input tags that use an array with the name of the relation specified, and the primary key value of the
+					record as it's index value. Any blank rows that are added at the bottom of the table will use the relation name, with a '_new' suffix.
+					This will allow you to update the parent record, and all related records, in one go, and process the new lines separately.
+				</p>
+				<p>
+					In this example, you'll see input tag names like <code>comments[12][fieldA]</code> for existing rows (in this case a row with <code>id = 12</code>,
+					and <code>comments_new[0][fieldA]</code> for a field in the first blank line.
+				</p>
+				<pre class='php'><code>// Process the posted one-to-many form
+if (\Input::post())
+{
+	// validate the input
+	$form->validation()->run();
+
+	// if validated, save the updates
+	if ( ! $form->validation()->error())
+	{
+		// update the article record, and any comment record changes
+		$article->from_array($data);
+
+		// do we need to delete tabular form records?
+		foreach ($data['comments'] as $id => $row)
+		{
+			if ($id and ! empty($row['_delete']))
+			{
+				unset($article->comments[$id]);
+			}
+		}
+
+		// do we have a new tabular form record data (assuming we've added only one blank line)?
+		$data = array_filter($data['comments_new'][0]);
+
+		$new_errors = false;
+		if ( ! empty($data))
+		{
+			// check for required fields
+			if (empty($data['fieldA']) or empty($data['fieldB']))
+			{
+				$new_errors = true;
+				// display an error message about missing required fields here...
+			}
+			else
+			{
+				// create a new related record
+				$article->comments[] = Model_Comments::forge(array('article_id' => $article->id, 'fieldA' => $data['fieldA'], 'fieldB' => $data['fieldB']));
+			}
+		}
+
+		// save the updates
+		if ( ! $new_errors)
+		{
+			if ($article->save())
+			{
+				// display a save-succesful message here and redirect away
+			}
+			else
+			{
+				// display an error message, save was not succesful
+			}
+		}
+	}
+	else
+	{
+		// inform the user validation failed
+	}
+}</code></pre>
 			</article>
 
 			<article>

@@ -55,33 +55,6 @@
 				For more information about the Template or Rest functionality, see the <a href="./rest.html">Controller_Rest</a> or <a href="./template.html">Controller_Template</a> pages.
 			</p>
 
-			<p>
-				Like all Controllers, you create a class in the <kbd>fuel/app/classes/controller</kbd> directory.
-				They need to extend the <kbd>Controller_Hybrid</kbd> class and are prefixed by default by "Controller_".
-				Below is an example of the controller "test":
-			</p>
-
-			<pre class="php"><code>class Controller_Test extends Controller_Hybrid
-{
-	// this will be called if you request /test/list from the URL
-	public function action_list()
-	{
-		$this->template->content = 'Hello World!';
-	}
-
-	// this will be called when you do an ajax GET request for /test/list?foo=bar
-	public function get_list()
-	{
-		$this->response(array(
-			'foo' => Input::get('foo'),
-			'baz' => array(
-				1, 50, 219
-			),
-			'empty' => null
-		));
-	}
-}</code></pre>
-
 		</div>
 
 		<footer>
