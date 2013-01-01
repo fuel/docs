@@ -355,9 +355,9 @@ panes.main = {
 	"インストール": {
 		"インストール方法":	"installation/instructions.html",
 		"ダウンロード":		"installation/download.html",
+		"アップグレード":	"installation/upgrade.html",
 		"チュートリアル":	"installation/tutorials.html",
 		"トラブルシューティング":		"installation/troubleshooting.html"
-
 	},
 	"概要": {
 		"クラス": {
@@ -389,8 +389,8 @@ panes.main = {
 		"エラー処理":	"general/error.html",
 		"プロファイリング":		"general/profiling.html",
 	},
-	"Third party": {
-		"Introduction":		"vendor/intro.html",
+	"サードパーティ": {
+		"イントロダクション":		"vendor/intro.html",
 		"htmLawed":			"vendor/htmlawed.html",
 		"Markdown":			"vendor/markdown.html",
 		"PHPQuickProfiler":	"vendor/phpquickprofiler.html",
