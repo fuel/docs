@@ -45,7 +45,7 @@
 
 		<div id="main">
 
-			<h2>Upload Class</h2>
+			<h2>Upload クラス</h2>
 
 			<p>
 				The upload class allows to securely process files that have been uploaded to the application.
@@ -62,8 +62,8 @@
 				<tbody>
 					<tr class="header">
 						<th>Key</th>
-						<th>Type</th>
-						<th>Description</th>
+						<th>型</th>
+						<th>説明</th>
 					</tr>
 					<tr>
 						<th>field</th>
@@ -157,8 +157,8 @@
 				<tbody>
 					<tr class="header">
 						<th>Key</th>
-						<th>Type</th>
-						<th>Description</th>
+						<th>型</th>
+						<th>説明</th>
 					</tr>
 					<tr>
 						<th>saved_to</th>
@@ -192,7 +192,7 @@
 				<tbody>
 					<tr class="header">
 						<th>Name</th>
-						<th>Description</th>
+						<th>説明</th>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_OK</th>
@@ -350,15 +350,15 @@ foreach (Upload::get_errors() as $file)
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>boolean - true if validated files exist, false if not.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// do we have any uploaded files to save?
 if (Upload::is_valid())
@@ -382,13 +382,13 @@ if (Upload::is_valid())
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
@@ -400,11 +400,11 @@ if (Upload::is_valid())
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// get the list of successfully uploaded files
 foreach(Upload::get_files() as $file)
@@ -434,13 +434,13 @@ if ( ! Upload::get_files(0))
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
@@ -452,11 +452,11 @@ if ( ! Upload::get_files(0))
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// get the list of uploaded files with errors
 foreach(Upload::get_errors() as $file)
@@ -494,33 +494,33 @@ if (Upload::get_errors('new_image'))
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$event</kbd></th>
-									<td><i>required</i></td>
+									<td><i>必須</i></td>
 									<td>name of the callback event you want to register. Valid names are 'validate', 'before' and 'after'.</td>
 								</tr>
 								<tr>
 									<th><kbd>$callback</kbd></th>
-									<td><i>required</i></td>
+									<td><i>必須</i></td>
 									<td>Valid PHP callback function. This can be a function, a dynamic or static method, or a closure.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>boolean - true if the callback was registered, false if the registration failed.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// register a before callback using a closure
 Upload::register('before', function (&amp;$file) {
@@ -589,13 +589,13 @@ Upload::register('before', function (&amp;$file) {
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$config</kbd></th>
@@ -606,7 +606,7 @@ Upload::register('before', function (&amp;$file) {
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
@@ -640,13 +640,13 @@ Upload::process(array(
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$integer</kbd></th>
@@ -669,11 +669,11 @@ Upload::process(array(
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// save all validated files
 Upload::save();
@@ -705,6 +705,7 @@ foreach (Upload::get_errors() as $key => $file)
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/classes/upload/usage.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/classes/upload/usage.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

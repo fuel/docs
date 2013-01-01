@@ -45,48 +45,48 @@
 
 		<div id="main">
 
-			<h2>Date Class</h2>
+			<h2>Date クラス</h2>
 
-			<p>The Date class is a set of helper functions for working with dates, contrary to PHP's DateTime class the
-			Fuel Date class has full support for i18n. You can also use the Date class for timezone conversions.</p>
+			<p>Date クラスは、日付を扱うヘルバー関数を集めたものです。PHP の DateTime クラスとは異なり、
+			Fuel Date クラスは、i18n を完全サポートしています。You can also use the Date class for timezone conversions.</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($timestamp = null, $timezone = null)</h4>
-				<p>The <strong>forge</strong> method returns a new date object.</p>
+				<p><strong>forge</strong> メソッドは new date オブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$timestamp</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The timestamp to set the date object to</td>
+									<td>date オブジェクトにセットするタイムスタンプ</td>
 								</tr>
 								<tr>
 									<th><kbd>$timezone</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The timezone in which the time is set</td>
+									<td>時刻をセットするタイムゾーン</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Fuel\Core\Date Object</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>print_r(Date::forge(1294176140));
 
@@ -105,36 +105,36 @@ Fuel\Core\Date Object
 
 			<article>
 				<h4 class="method" id="method_time">time($timezone = null)</h4>
-				<p>The <strong>time</strong> method returns the current time in the given timezone as a Date object.</p>
+				<p><strong>time</strong> メソッドは、与えられたタイムゾーンの現在時刻を Date オブジェクトで返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$timezone</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The timezone in which the time is set</td>
+									<td>時刻をセットするタイムゾーン</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Fuel\Core\Date Object</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>print_r(Date::time());</code></pre>
 						</td>
@@ -157,13 +157,13 @@ Fuel\Core\Date Object
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$timezone</kbd></th>
@@ -174,11 +174,11 @@ Fuel\Core\Date Object
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed, null, or the current display timezone if no parameter is passed.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// set the display timezone to 'America/Lima'
 Date::display_timezone('America/Lima'));</code></pre>
@@ -190,46 +190,46 @@ Date::display_timezone('America/Lima'));</code></pre>
 
 			<article>
 				<h4 class="method" id="method_create_from_string">create_from_string($input, $pattern_key = 'local')</h4>
-				<p>The <strong>create_from_string</strong> creates a Date object from a named date string format or a
-					pattern.</p>
 
-				<p class="note">This function uses <a href="http://www.php.net/manual/en/function.strptime.php" target="_blank">strptime()</a>
-					for i18n purposes. That method isn't available on Windows hosts however, on those <kbd>strtotime()</kbd>
-					is used instead and the pattern is ignored.</p>
+				<p><strong>create_from_string</strong> は、与えられた日付文字列書式から Date オブジェクトを作成します。</p>
+
+				<p class="note">この関数は、i18n のため <a href="http://www.php.net/manual/en/function.strptime.php" target="_blank">strptime()</a>
+					を使用します。このメソッドは Windows ホストでは利用できないので、代わりに <kbd>strtotime()</kbd>
+					を使用し、パターンを無視します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$input</kbd></th>
-									<td><i>Required</i></td>
-									<td>The date string to use</td>
+									<td><i>必須</i></td>
+									<td>日付文字列</td>
 								</tr>
 								<tr>
 									<th><kbd>$pattern_key</kbd></th>
 									<td>"local"</td>
-									<td>The pattern key to use (see config/date.php) or directly a strptime() pattern</td>
+									<td>使用するパターン (config/date.php を参照 または直接のstrptime（）パターン)</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Fuel\Core\Date Object</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>print_r(Date::create_from_string("01/04/2011" , "us"));
 
@@ -248,7 +248,7 @@ Fuel\Core\Date Object
 
 			<article>
 				<h4 class="method" id="method_range_to_array">range_to_array($start, $end, $interval = '+1 Day')</h4>
-				<p>The <strong>range_to_array</strong> converts a range of dates into an array of date objects</p>
+				<p><strong>range_to_array</strong> は、指定範囲の日付を date オブジェクトの配列に変換します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -256,38 +256,38 @@ Fuel\Core\Date Object
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$start</kbd></th>
-									<td><i>Required</i></td>
-									<td>The start date either as a Date object or a timestamp</td>
+									<td><i>必須</i></td>
+									<td>開始日付を Date オブジェクトまたはタイムスタンプで指定</td>
 								</tr>
 								<tr>
 									<th><kbd>$end</kbd></th>
-									<td><i>Required</i></td>
-									<td>The end date either as a Date object or a timestamp</td>
+									<td><i>必須</i></td>
+									<td>終了日付を Date オブジェクトまたはタイムスタンプで指定</td>
 								</tr>
 								<tr>
 									<th><kbd>$interval</kbd></th>
 									<td>"+1 Day"</td>
-									<td>The interval at which to create a Date object</td>
+									<td>Date オブジェクトを作成するインターバル</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$start = time();
 $end = $start + 604800; // Plus 1 week
@@ -328,41 +328,41 @@ Array
 
 			<article>
 				<h4 class="method" id="method_date_in_month">days_in_month($month, $year = null)</h4>
-				<p>The <strong>days_in_month</strong> returns the number of days in any given month, in the year specified</p>
+				<p><strong>days_in_month</strong> は、指定した年月の日数を返す。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$month</kbd></th>
-									<td><i>Required</i></td>
-									<td>The month to use</td>
+									<td><i>必須</i></td>
+									<td>月</td>
 								</tr>
 								<tr>
 									<th><kbd>$year</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The year to use (defaults to current year)</td>
+									<td>年 (デフォルトは現在の年)</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>int</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo Date::days_in_month(2);       // 28
 echo Date::days_in_month(2, 2000); // 29
@@ -375,26 +375,26 @@ echo Date::days_in_month(2, 2000); // 29
 
 			<article>
 				<h4 class="method" id="method_time_ago">time_ago($timestamp, $now, $period)</h4>
-				<p>The <strong>time_ago</strong> method returns a formatted time difference.</p>
+				<p><strong>time_ago</strong> メソッドは、時刻の差を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$timestamp</kbd></th>
-									<td><i>Required</i></td>
-									<td>The UNIX timestamp</td>
+									<td><i>必須</i></td>
+									<td>UNIX タイムスタンプ</td>
 								</tr>
 								<tr>
 									<th><kbd>$now</kbd></th>
@@ -410,11 +410,11 @@ echo Date::days_in_month(2, 2000); // 29
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo Date::time_ago(strtotime("01 January 2012")); // 1 months ago (when in February 2012)
 echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012")); // 5 decades ago
@@ -429,7 +429,7 @@ echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'yea
 			<article>
 				<h4 class="method" id="method_format">format($pattern_key = 'local', $timezone = null)</h4>
 				<p>
-					The <strong>formatted</strong> method returns a formatted date as specified by the pattern key. The
+					<strong>formatted</strong> メソッドはパターンキーで指定した書式の日付を返します。 The
 					patterns are defined in the <kbd>fuel/core/config/date.php</kbd> config file - you can add your own
 					by creating a similar file in <kbd>app/config</kbd>.
 				</p>
@@ -443,25 +443,26 @@ echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'yea
 				<p class="note">You can use the display_timezone to globally set a timezone to convert to, for example from a user profile
 				setting when a user is logged in. This will allow all dates to be displayed in the users local timezone.</p>
 
+				
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$pattern_key</kbd></th>
 									<td>"local"</td>
-									<td>The pattern key to use (see config/date.php)</td>
+									<td>パターンキー(config/date.php を参照)</td>
 								</tr>
 								<tr>
 									<th><kbd>$timezone</kbd></th>
@@ -472,11 +473,11 @@ echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'yea
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// if the system time is UTC, this will return "01/04/2011 21:22"
 echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M");
@@ -497,19 +498,19 @@ echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M", true);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_get_timestamp">get_timestamp()</h4>
-				<p>The <strong>get_timestamp</strong> method returns the Date object's timestamp</p>
+				<p><strong>get_timestamp</strong> メソッドは、Date オブジェクトのタイムスタンプを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>int</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo Date::forge(1294176140)->get_timestamp(); // 1294176140</code></pre>
 						</td>
@@ -520,19 +521,19 @@ echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M", true);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_get_timezone">get_timezone()</h4>
-				<p>The <strong>get_timezone</strong> method returns the Date object's timezone</p>
+				<p><strong>get_timezone</strong> メソッドは、Date オブジェクトのタイムゾーンを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo Date::forge(1294176140, "Europe/London")->get_timezone(); // Europe/London</code></pre>
 						</td>
@@ -550,13 +551,13 @@ echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M", true);</code></pre>
 						<th class="legend">Static</th>
 						<td>No</td>
 					</tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$display_timezone</kbd></th>
@@ -566,11 +567,11 @@ echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M", true);</code></pre>
 							</table>
 						</td>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo Date::forge(1294176140, "Europe/London")->get_timezone_abbr(); // returns "GMT"
 echo Date::forge(1294176140, "Europe/Amsterdam")->get_timezone_abbr(); // returns "CET"
@@ -586,36 +587,36 @@ echo Date::forge(1294176140)->get_timezone_abbr(true); // returns "CET" too</cod
 
 			<article>
 				<h4 class="method" id="method_set_timezone">set_timezone($timezone)</h4>
-				<p>The <strong>set_timezone</strong> method sets the Date object's timezone</p>
+				<p><strong>set_timezone</strong> メソッドは、Date オブジェクトのタイムゾーンをセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$timezone</kbd></th>
-									<td><i>required</i></td>
-									<td>The timezone to set the Date object to</td>
+									<td><i>必須</i></td>
+									<td>Date オブジェクトにセットするタイムゾーン</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo Date::forge(1294176140)->set_timezone("America/Chicago")->get_timezone(); // America/Chicago</code></pre>
 						</td>
@@ -629,6 +630,7 @@ echo Date::forge(1294176140)->get_timezone_abbr(true); // returns "CET" too</cod
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/classes/date.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/classes/date.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

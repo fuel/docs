@@ -52,41 +52,41 @@
 				Active Record Pattern</a> closely, but was also influenced by other systems.</p>
 
 			<section>
-				<h2 id="intro">Introduction</h2>
+				<h2 id="intro">はじめに</h2>
 
-				<p>Unlike many other ActiveRecord implementations, ours is small, fast and dead simple to use. It attempts
-					to make creating, updating and deleting items from your database as easy as possible. It does this by
-					doing all the hard work for you.</p>
+				<p>他の多くのActiveRecordの実装とは異なり、小型で高速、さらに死ぬほど簡単に使えます。
+					それは簡単に、あなたのデータベースを項目を作成したり更新したり削除したりすることができるでしょう。
+					あなたのために、これらがすべてのハードワークを行います。</p>
 			</section>
 
 			<section>
-				<h2 id="install">Installation</h2>
+				<h2 id="install">インストール</h2>
 
-				<p>The Orm package is included in the Fuel download. All you need to do is enable it in your config.</p>
+				<p>ORMパッケージは、ダウンロードされたFuelに含まれています。あなたの設定を有効にするだけです。</p>
 				<pre class="php"><code>'packages' => array(
 	'orm',
 ),</code></pre>
 			</section>
 
 			<section>
-				<h2 id="troubleshooting">Troubleshooting</h2>
+				<h2 id="troubleshooting">トラブルシューティング</h2>
 
-				<p>Some common problems and frequent questions.</p>
+				<p>一般的な問題とよくある質問。</p>
 
-				<h3>My relations/foreign keys aren't being saved (1)</h3>
-				<p>This happens most often when you're using the wrong type of relationship. Especially Has-one and
-					Belongs-to tend to get mixed up. Reread the examples in the docs to make sure you're using the
-					correct relation types and check if everything is configured correctly.</p>
+				<h3>リレーション/外部キーが保存されていません。 (1)</h3>
+				<p>リレーションシップの間違った型を使用している場合に、最も頻繁に起こります。 特に Has-one と
+					Belongs-to に混ざってしまいがちです。 ドキュメントの例を再読し、
+					あなたが正しくリレーションタイプを使用していることと、すべてが正しく設定されているかどうかを確認をしてください。.</p>
 
-				<h3>I can't relate objects (2)</h3>
-				<p>Make sure your model is extending <code>Orm\Model</code> and not <code>Model_Crud</code>.</p>
+				<h3>オブジェクトを関連付けることができません (2)</h3>
+				<p>あなたのモデルが <code>Orm\Model</code> を継承し、 <code>Model_Crud</code>を継承していない事を確認してください。</p>
 
-				<h3>I get an exception that my related model in a package/module can't be found</h3>
-				<p>Make sure the package or module is loaded by Fuel, otherwise the Autoloader won't be able to find
-					the class.<br />
-					And when configuring the related model <code>"model_to"</code> make sure you configure the full
-					classname, this includes the namespace <em>even if you're in that namespace</em>. Classnames in
-					strings are always taken from global context, no matter the current namespace context.</p>
+				<h3>package/moduleの私の関連するモデルが見つからないという例外を取得しました</h3>
+				<p>パッケージまたはモジュールがFuelによってロードされていることを確認してください。
+					それ以外のオートローダーは、クラスを見つけることができません。<br />
+					そして、<code>"model_to"</code>と関連するモデルを設定するときは完全なクラス名を設定してください。
+					これは、<em>あなたがその空間にいる場合でも</em>名前空間が含まれています。
+					文字列内のクラス名は、常にグローバルコンテキストから取得されます。現在の名前空間コンテキストは関係ありません。</p>
 
 				<h3>I get an Orm\FrozenObject exception</h3>
 				<p>Objects can't be edited while being saved to the database, that prevents circular saving and resaving
@@ -109,6 +109,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/packages/orm/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/packages/orm/intro.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

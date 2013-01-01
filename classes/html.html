@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,17 +45,17 @@
 
 		<div id="main">
 
-			<h2>Html Class</h2>
+			<h2>Html クラス</h2>
 
-			<p>The Html class is an HTML wrapper for nearly all HTML tags.</p>
+			<p>Htmlクラスは、HTMLタグのほぼすべてに対応するHTMLラッパーです。</p>
 
 			<h3>Doctypes</h3>
 
-			<p>We have included a configuration file located at <kbd>fuel/core/config/doctypes.php</kbd> which has all the doctypes.</p>
+			<p>doctypeはすべて<kbd>fuel/core/config/doctypes.php</kbd>に記述されており、同設定ファイルはあらかじめインクルードされています。</p>
 
 			<article>
 				<h4 class="method" id="method_anchor">anchor($href, $text, $attributes = array(), $secure = null)</h4>
-				<p>The <strong>anchor</strong> method returns an HTML anchor tag.</p>
+				<p><strong>anchor</strong>メソッドは、HTMLのanchorタグを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -63,54 +63,54 @@
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメタ</th>
+									<th>規定値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$href</kbd></th>
-									<td><i>required</i></td>
-									<td>Target url</td>
+									<td><i>必須</i></td>
+									<td>ターゲットurl</td>
 								</tr>
 								<tr>
 									<th><kbd>$text</kbd></th>
-									<td><i>required</i></td>
-									<td>Anchor value</td>
+									<td><i>必須</i></td>
+									<td>アンカー値</td>
 								</tr>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><strong>false</strong></td>
-									<td>Array of attributes to be applied to the anchor tag.</td>
+									<td>anchorタグに適用される属性の配列</td>
 								</tr>
 								<tr>
 									<th><kbd>$secure</kbd></th>
 									<td><i>null</i></td>
-									<td>Set to false to force http, or to true to force https on the created URL</td>
+									<td>生成されるURLが、falseだとhttp、trueならhttpsになります。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String containing the correctly formatted anchor tag (and attributes if supplied).</td>
+						<th>返り値</th>
+						<td>正しくフォーマットされたanchorタグの文字列（属性配列が指定されているならその属性も）。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>//returns &lt;a href="http://www.domain.com/example"&gt;Example&lt;/a&gt;
+							<pre class="php"><code>//返り値 &lt;a href="http://www.domain.com/example"&gt;Example&lt;/a&gt;
 echo Html::anchor('example', 'Example');
 
-//returns &lt;a href="http://www.otherdomain.com/example"&gt;Example&lt;/a&gt;
+//返り値 &lt;a href="http://www.otherdomain.com/example"&gt;Example&lt;/a&gt;
 echo Html::anchor('http://www.otherdomain.com/example', 'Example');
 
-//returns &lt;a href="http://www.domain.com/example" id="a1" class="sample" style="color:red;"&gt;Example&lt;/a&gt;
+//返り値 &lt;a href="http://www.domain.com/example" id="a1" class="sample" style="color:red;"&gt;Example&lt;/a&gt;
 echo Html::anchor('example', 'Example', array('id' => 'a1', 'class' => 'sample', 'style' => 'color:red'));
 
-//returns &lt;a href="https://www.domain.com/example" id="a1" class="sample" style="color:red;"&gt;Example&lt;/a&gt;
+//返り値 &lt;a href="https://www.domain.com/example" id="a1" class="sample" style="color:red;"&gt;Example&lt;/a&gt;
 echo Html::anchor('example', 'Example', array('id' => 'a1', 'class' => 'sample', 'style' => 'color:red'), true);</code></pre>
 						</td>
 					</tr>
@@ -120,7 +120,7 @@ echo Html::anchor('example', 'Example', array('id' => 'a1', 'class' => 'sample',
 
 			<article>
 				<h4 class="method" id="method_mail_to">mail_to($email, $text, $subject = null, $attr = array())</h4>
-				<p>The <strong>mail_to</strong> method returns an HTML anchor tag with mailto as the target.</p>
+				<p><strong>mail_to</strong>メソッドは、そのターゲットとしてmailtoをもつHTMLのanchor tagを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -128,51 +128,51 @@ echo Html::anchor('example', 'Example', array('id' => 'a1', 'class' => 'sample',
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$email</kbd></th>
-									<td><i>required</i></td>
+									<td><i>必須</i></td>
 									<td>Email address</td>
 								</tr>
 								<tr>
 									<th><kbd>$text</kbd></th>
-									<td><i>required</i></td>
-									<td>Anchor value</td>
+									<td><i>必須</i></td>
+									<td>アンカー値</td>
 								</tr>
 								<tr>
 									<th><kbd>$subject</kbd></th>
 									<td><strong>null</strong></td>
-									<td>Anchor value</td>
+									<td>アンカー値</td>
 								</tr>
 								<tr>
 									<th><kbd>$attr</kbd></th>
 									<td><strong>empty</strong></td>
-									<td>Array of attributes to be applied to the anchor tag.</td>
+									<td>anchorタグに適用される属性の配列</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String containing the correctly formated anchor tag (and attributes if supplied).</td>
+						<th>返り値</th>
+						<td>正しくフォーマットされたanchorタグの文字列（属性配列が指定されているならその属性も）。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>//returns &lt;a href="mailto:name@domain.com"&gt;Name&lt;/a&gt;
+							<pre class="php"><code>//返り値 &lt;a href="mailto:name@domain.com"&gt;Name&lt;/a&gt;
 echo Html::mail_to('name@domain.com', 'Name');
 
-//returns &lt;a href="mailto:name@domain.com?subject=Something"&gt;Name&lt;/a&gt;
+//返り値 &lt;a href="mailto:name@domain.com?subject=Something"&gt;Name&lt;/a&gt;
 echo Html::mail_to('name@domain.com', 'Name', 'Something');
 
-//returns &lt;a href="mailto:name@domain.com" id="a2" class="sample" style="color:red;"&gt;Name&lt;/a&gt;
+//返り値 &lt;a href="mailto:name@domain.com" id="a2" class="sample" style="color:red;"&gt;Name&lt;/a&gt;
 echo Html:::mail_to('name@domain.com', 'Name', null, array('id' => 'a2', 'class' => 'sample', 'style' => 'color:red'));</code></pre>
 						</td>
 					</tr>
@@ -182,7 +182,7 @@ echo Html:::mail_to('name@domain.com', 'Name', null, array('id' => 'a2', 'class'
 
 			<article>
 				<h4 class="method" id="method_mail_to_safe">mail_to_safe($email, $text, $subject = null, $attr = array())</h4>
-				<p>The <strong>mail_to_safe</strong> method returns JavaScript code that produces an HTML anchor tag with mailto as target.</p>
+				<p><strong>mail_to_safe</strong>メソッドは、そのターゲットとしてmailtoをもつHTMLのanchor tagを生成するJavascriptのコードを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -190,46 +190,46 @@ echo Html:::mail_to('name@domain.com', 'Name', null, array('id' => 'a2', 'class'
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$email</kbd></th>
-									<td><i>required</i></td>
+									<td><i>必須</i></td>
 									<td>Email address</td>
 								</tr>
 								<tr>
 									<th><kbd>$text</kbd></th>
-									<td><i>required</i></td>
-									<td>Anchor value</td>
+									<td><i>必須</i></td>
+									<td>アンカー値</td>
 								</tr>
 								<tr>
 									<th><kbd>$subject</kbd></th>
 									<td><strong>null</strong></td>
-									<td>Anchor value</td>
+									<td>アンカー値</td>
 								</tr>
 								<tr>
 									<th><kbd>$attr</kbd></th>
 									<td><strong>empty</strong></td>
-									<td>Array of attributes to be applied to the anchor tag.</td>
+									<td>anchorタグに適用される属性の配列</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String containing the correctly formatted anchor tag (and attributes if supplied).</td>
+						<th>返り値</th>
+						<td>正しくフォーマットされたanchorタグの文字列（属性配列が指定されているならその属性も）。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>//returns
-//&lt;script type="text/javascript"&gt;
+							<pre class="php"><code>//返り値
+//&lt;script type="text/javascript"&gt
 //	var user = "name";
 //	var at = "@";
 //	var server = "domain.com";
@@ -244,7 +244,7 @@ echo Html::mail_to_safe('name@domain.com', 'Name');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_img">img($src, $attr = array())</h4>
-				<p>The <strong>img</strong> method returns an image tag.</p>
+				<p><strong>img</strong>メソッドはimageタグを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -252,38 +252,38 @@ echo Html::mail_to_safe('name@domain.com', 'Name');</code></pre>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$src</kbd></th>
-									<td><i>required</i></td>
-									<td>Path to image.</td>
+									<td><i>必須</i></td>
+									<td>画像のパス</td>
 								</tr>
 								<tr>
 									<th><kbd>$attr</kbd></th>
 									<td><strong>array()</strong></td>
-									<td>Attributes array. If no alt attribute is supplied, the alt attribute defaults to the filename.</td>
+									<td>属性の配列。もしalt属性が指定されていない時は、ファイル名が同属性（の値）のデフォルトになります。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String containing the correctly formatted image tag.</td>
+						<th>返り値</th>
+						<td>正しくフォーマットされたimageタグ文字列。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>//returns &lt;img src="http://example.com/path/to/image.png" alt="image.png" /&gt;
+							<pre class="php"><code>//返り値 &lt;img src="http://example.com/path/to/image.png" alt="image.png" /&gt;
 echo Html::img('path/to/image.png');
 
-//returns &lt;img src="http://example.com/path/to/image.png" alt="Alt Message" class="myclass" /&gt;
+//返り値 &lt;img src="http://example.com/path/to/image.png" alt="Alt Message" class="myclass" /&gt;
 echo Html::img('path/to/image.png', array("alt" => "Alt Message", 'class' => "myclass"));
 </code></pre>
 						</td>
@@ -294,7 +294,7 @@ echo Html::img('path/to/image.png', array("alt" => "Alt Message", 'class' => "my
 
 			<article>
 				<h4 class="method" id="method_meta">meta($name, $content = '', $type = 'name')</h4>
-				<p>The <strong>meta</strong> method returns meta tag or tags if multi-level array is supplied.</p>
+				<p><strong>meta</strong>メソッドはmetaタグを返します。多次元配列が指定された時は複数のmetaタグが返されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -302,43 +302,43 @@ echo Html::img('path/to/image.png', array("alt" => "Alt Message", 'class' => "my
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><i>required</i></td>
-									<td>Can be array containing single or multiple meta parameters or can be name/http-equiv value.</td>
+									<td><i>必須</i></td>
+									<td>一次元配列、あるいは多次元配列のmetaパラメタを含む配列が指定可能。あるいは、name/http-equivの値を記述することも可能です。</td>
 								</tr>
 								<tr>
 									<th><kbd>$content</kbd></th>
-									<td><i>required</i></td>
-									<td>If no array is supplied on the $name parameter, $content equals to the meta attribute content's value.</td>
+									<td><i>必須</i></td>
+									<td>$nameパラメタに配列が指定されていない場合、$contentはmeta要素内のcontent属性値と等しくなります。</td>
 								</tr>
 								<tr>
 									<th><kbd>$type</kbd></th>
 									<td><strong>'name'</strong></td>
-									<td>If no value is supplied will default to name. Can be name or http-equiv.</td>
+									<td>値が設定されていない場合はnameがデフォルトとなります。nameあるいはhttp-equivを設定することが可能です。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String containing the correctly formated meta tags.</td>
+						<th>返り値</th>
+						<td>正しくフォーマットされたmetaタグ文字列。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>//returns &lt;meta name="description" content="Meta Example!" /&gt;
+							<pre class="php"><code>//返り値 &lt;meta name="description" content="Meta Example!" /&gt;
 echo Html::meta('description', 'Meta Example!');
 
-//returns &lt;meta name="robots" content="no-cache" /&gt;
+//返り値 &lt;meta name="robots" content="no-cache" /&gt;
 echo Html::meta('robots', 'no-cache');
 
 $meta = array(
@@ -347,9 +347,9 @@ $meta = array(
 	array('name' => 'keywords', 'content' => 'fuel, rocks'),
 );
 
-//returns &lt;meta name="robots" content="no-cache" /&gt;
-//returns &lt;meta name="description" content="Meta Example!" /&gt;
-//returns &lt;meta name="keywords" content="fuel, rocks" /&gt;
+//返り値 &lt;meta name="robots" content="no-cache" /&gt;
+//返り値 &lt;meta name="description" content="Meta Example!" /&gt;
+//返り値 &lt;meta name="keywords" content="fuel, rocks" /&gt;
 echo Html::meta($meta);</code></pre>
 						</td>
 					</tr>
@@ -359,7 +359,7 @@ echo Html::meta($meta);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_doctype">doctype($type = 'xhtml1-trans')</h4>
-				<p>The <strong>doctype</strong> method returns a correctly formated doctype tag.</p>
+				<p><strong>doctype</strong>メソッドは、正しくフォーマットされたdoctypeタグを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -367,33 +367,33 @@ echo Html::meta($meta);</code></pre>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$type</kbd></th>
 									<td>'xhtml1-trans'</td>
-									<td>Type of HTML doctype tag to be outputted.<br />Accepted Values: <kbd>xhtml11</kbd>, <kbd>xhtml1-strict</kbd>, <kbd>xhtml1-trans</kbd>, <kbd>xhtml1-frame</kbd>, <kbd>html5</kbd>, <kbd>html4-strict</kbd>, <kbd>html4-trans</kbd>, <kbd>html4-frame</kbd></td>
+									<td>出力されるべきHTMLのdoctypeタグのタイプ。<br />指定可能な値: <kbd>xhtml11</kbd>, <kbd>xhtml1-strict</kbd>, <kbd>xhtml1-trans</kbd>, <kbd>xhtml1-frame</kbd>, <kbd>html5</kbd>, <kbd>html4-strict</kbd>, <kbd>html4-trans</kbd>, <kbd>html4-frame</kbd></td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String containing the correctly formated doctype tag.</td>
+						<th>返り値</th>
+						<td>正しくフォーマットされたdoctypeタグ文字列</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>//returns the XHTML1 Transitional doctype tag.
+							<pre class="php"><code>//返り値 the XHTML1 Transitional doctype tag.
 echo Html::doctype();
 
-//returns &lt;!DOCTYPE html&gt;
+//返り値 &lt;!DOCTYPE html&gt;
 echo Html::doctype('html5');</code></pre>
 						</td>
 					</tr>
@@ -403,7 +403,7 @@ echo Html::doctype('html5');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_audio">audio($src, $attr = false)</h4>
-				<p>The <strong>audio</strong> method requires you to set html5 as the doctype in order to be used.</p>
+				<p><strong>audio</strong>メソッドの利用にあたっては、html5をdoctypeとして指定することが必要となります。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -411,38 +411,38 @@ echo Html::doctype('html5');</code></pre>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$src</kbd></th>
-									<td><i>required</i></td>
-									<td>Location of the source file or array containing multiple locations.</td>
+									<td><i>必須</i></td>
+									<td>ソースファイルのロケーション、あるいは複数のロケーションを含む配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$attr</kbd></th>
 									<td><strong>false</strong></td>
-									<td>Array of attributes to be applied to the audio tag.</td>
+									<td>audioタグに適用されるべき属性の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String containing the correctly formatted audio tag with its sources.</td>
+						<th>返り値</th>
+						<td>ソース(src)が指定されている正しくフォーマットされたaudioタグの文字列。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>//returns &lt;audio&gt;&lt;source src="../sounds/beep.mp3" /&gt;&lt;/audio&gt;
+							<pre class="php"><code>//返り値 &lt;audio&gt;&lt;source src="../sounds/beep.mp3" /&gt;&lt;/audio&gt;
 echo Html::audio('../sounds/beep.mp3');
 
-//returns &lt;audio&gt;&lt;source src="../sounds/beep.mp3" /&gt;&lt;source src="../sounds/frog.mp4" /&gt;&lt;/audio&gt;
+//返り値 &lt;audio&gt;&lt;source src="../sounds/beep.mp3" /&gt;&lt;source src="../sounds/frog.mp4" /&gt;&lt;/audio&gt;
 echo Html::audio(array('../sounds/beep.mp3','../sounds/frog.mp4'));</code></pre>
 						</td>
 					</tr>
@@ -452,7 +452,7 @@ echo Html::audio(array('../sounds/beep.mp3','../sounds/frog.mp4'));</code></pre>
 
 			<article>
 				<h4 class="method" id="method_ul">ul($list, $style = false)</h4>
-				<p>The <strong>ul</strong> method returns a correctly formatted single or multi-level unordered list.</p>
+				<p><strong>ul</strong>メソッドは正しくフォーマットされた単純な、あるいは入れ子になった順不同リストを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -460,35 +460,35 @@ echo Html::audio(array('../sounds/beep.mp3','../sounds/frog.mp4'));</code></pre>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$list</kbd></th>
-									<td><i>required</i></td>
-									<td>Array containing single or multi-level items to be outputted as list items.</td>
+									<td><i>必須</i></td>
+									<td>リストアイテムとして出力されるべき、単純な、あるいは入れ子になった順不同リストアイテムを含む配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$style</kbd></th>
 									<td><strong>false</strong></td>
-									<td>Array of attributes to be applied to the ul tag.</td>
+									<td>ulタグに適用される属性の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String containing the correctly formated list.</td>
+						<th>返り値</th>
+						<td>正しくフォーマットされたlistタグの文字列。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>/* returns
+							<pre class="php"><code>/* 返り値
 &lt;ul id="todo" class="pending"&gt;
 	&lt;li&gt;red&lt;/li&gt;
 	&lt;li&gt;blue&lt;/li&gt;
@@ -500,7 +500,7 @@ $items = array('red', 'blue', 'green', 'yellow');
 $attr = array('id' => 'todo','class' => 'pending');
 echo Html::ul($items, $attr);
 
-/* returns
+/* 返り値
 &lt;ul class="order"&gt;
 	&lt;li&gt;colors
 		&lt;ul&gt;
@@ -533,7 +533,7 @@ echo Html::ul($items, $attr);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_ol">ol($list, $style = false)</h4>
-				<p>The <strong>ol</strong> method returns a correctly formatted single or multi-level ordered list.</p>
+				<p><strong>ol</strong>メソッドは正しくフォーマットされた単純な、あるいは入れ子になった順序リストを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -541,35 +541,35 @@ echo Html::ul($items, $attr);</code></pre>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$list</kbd></th>
-									<td><i>required</i></td>
-									<td>Array containing single or multi-level items to be outputted as list items.</td>
+									<td><i>必須</i></td>
+									<td>リストアイテムとして出力されるべき、単純な、あるいは入れ子になった順序リストアイテムを含む配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$style</kbd></th>
 									<td><strong>false</strong></td>
-									<td>(Optional) Array of attributes to be applied to the ol tag.</td>
+									<td>（オプション）olタグに適用される属性の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String containing the correctly formated list.</td>
+						<th>返り値</th>
+						<td>正しくフォーマットされたlistタグの文字列。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>/* returns
+							<pre class="php"><code>/* 返り値
 &lt;ol id="todo" class="pending"&gt;
 	&lt;li&gt;red&lt;/li&gt;
 	&lt;li&gt;blue&lt;/li&gt;
@@ -581,7 +581,7 @@ $items = array('red', 'blue', 'green', 'yellow');
 $attr = array('id' => 'todo','class' => 'pending');
 echo Html::ol($items, $attr);
 
-/* returns
+/* 返り値
 &lt;ol class="order"&gt;
 	&lt;li&gt;colors
 		&lt;ol&gt;
@@ -611,50 +611,50 @@ echo Html::ol($items, $attr);</code></pre>
 				</table>
 			</article>
 
-			<h3 id="procedural_helpers">Procedural helpers</h3>
+			<h3 id="procedural_helpers">処理ヘルパー</h3>
 
 			<article>
 				<h4 id="function_html_tag">html_tag($tag, $attr = array(), $content = false)</h4>
-				<p>The <strong>html_tag</strong> function generates an HTML tag based on the attributes provided..</p>
+				<p><strong>html_tag</strong>関数は、指定された属性に基づいて HTMLタグを生成します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>型</th>
+									<th>規定値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$tag</kbd></th>
 									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>the value to search for</td>
+									<td><em>必須</em></td>
+									<td>得たい要素名（the value to search for）</td>
 								</tr>
 								<tr>
 									<th><kbd>$attr</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>array of attributes</td>
+									<td>属性の配列</td>
 								</tr>
 								<tr>
 									<th><kbd>$content</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>the content wrapped in the tag</td>
+									<td>タグで囲まれるコンテント</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo html_tag('a', array(
 	'href' => 'http://somedomain.com/',
@@ -671,34 +671,34 @@ echo Html::ol($items, $attr);</code></pre>
 
 			<article>
 				<h4 id="function_array_to_attr">array_to_attr($attr)</h4>
-				<p>The <strong>array_to_attr</strong> function generates an attributes string.</p>
+				<p><strong>array_to_attr</strong>関数は属性文字列を生成します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>型</th>
+									<th>規定値</th>
+									<th class="description">解説</th>
 								</tr>
 								<tr>
 									<th><kbd>$attr</kbd></th>
 									<td><em>array</em></td>
-									<td><em>required</em></td>
-									<td>an array of attributes</td>
+									<td><em>必須</em></td>
+									<td>属性の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo array_to_attr(array(
 	'href' => 'http://somedomain.com/',
@@ -718,6 +718,7 @@ echo Html::ol($items, $attr);</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/classes/html.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/classes/html.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

@@ -45,13 +45,13 @@
 
 		<div id="main">
 
-			<h2>Str Class</h2>
+			<h2>Str クラス</h2>
 
-			<p>The str class is a set of methods to help with the manipulation of strings.</p>
+			<p>str クラスは、文字列の操作を手助けするメソッドの集合です。</p>
 
 			<article>
 				<h4 class="method" id="method_increment">increment($str, $first = 1)</h4>
-				<p>The <strong>increment</strong> method allows you to append a number to the end of a string or increment that number if it already exists.</p>
+				<p><strong>increment</strong> メソッドは、文字列の後ろに数字を付加したり、既に数字が付いている場合はそれに 1 加算します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -59,42 +59,42 @@
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
-										<td><em>required</em></td>
-										<td>The string to increment.</td>
+										<td><em>必須</em></td>
+										<td>対象の文字列</td>
 									</tr>
 									<tr>
 										<th><kbd>$first</kbd></th>
 										<td><pre class="php"><code>1</code></pre></td>
-										<td>The first number to increment with.</td>
+										<td>加算を開始する最初の番号</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>string</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>$string = "filename";
-Str::increment($string); // returns filename_1
+Str::increment($string); // 返り値: filename_1
 
 $string = "filename_1";
-Str::increment($string); // returns filename_2
+Str::increment($string); // 返り値: filename_2
 
 $string = "filename";
-Str::increment($string, 3); // returns filename_3
+Str::increment($string, 3); // 返り値: filename_3
 </code></pre>
 							</td>
 						</tr>
@@ -104,7 +104,7 @@ Str::increment($string, 3); // returns filename_3
 
 			<article>
 				<h4 class="method" id="method_random">random($type = 'alnum', $length = 8)</h4>
-				<p>The <strong>random</strong> method generates a random string based on the type given.</p>
+				<p><strong>random</strong> メソッドは、type で指定された文字種のランダムな文字列を生成します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -112,63 +112,63 @@ Str::increment($string, 3); // returns filename_3
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><em>alnum</em></td>
-										<td>The type of string to generate. Your choices are alnum, numeric, nozero, alpha, distinct, hexdec, unique, and sha1.</td>
+										<td>生成する文字列の文字種。(選択肢: alnum, numeric, nozero, alpha, distinct, hexdec, unique, sha1)</td>
 									</tr>
 									<tr>
 										<th><kbd>$length</kbd></th>
 										<td><pre class="php"><code>16</code></pre></td>
-										<td>The number of characters you would like the final string to be (unique and sha1 ignore this parameter).</td>
+										<td>生成する文字列の長さ。 (unique と sha1 の場合は無視します)</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>string</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// alnum (uppercase and lowercase letters mixed with numbers)
+								<pre class="php"><code>// alnum (アルファベット大文字、小文字、数字)
 Str::random('alnum', 16);
 // Returns: SvZi9Dh3lq7zQYim
 
-// numeric (just numbers)
+// numeric (数字のみ)
 Str::random('numeric', 16);
 // Returns: 1045343964672481
 
-// nozero (just numbers excluding zero)
+// nozero (0 を除いた数字)
 Str::random('nozero', 16);
 // Returns: 3244623373994515
 
-// alpha (just uppercase and lowercase letters)
+// alpha (アルファベット大文字と小文字)
 Str::random('alpha', 16);
 // Returns: LuVAXbmxQbbWoYqz
 
-// distinct (uppercase letters and numbers that cannot be confused)
+// distinct (読み間違えづらいアルファベット大文字と数字)
 Str::random('distinct', 16);
 // Returns: R79MPKMH4KTRN35J
 
-// hexdec (hexadecimal characters a-f, 0-9)
+// hexdec (16進数の文字列: a-f, 0-9)
 Str::random('hexdec', 16);
 // Returns: 09c34e42f36547f8
 
-// unique (32 character string based on md5)
+// unique (md5 を基にした32文字の文字列)
 Str::random('unique');
 // Returns: ed4bb844a35b7a4edb7eed0d3795d328
 
-// sha1 (40 character string based on sha1)
+// sha1 (sha1 を基にした40文字の文字列)
 Str::random('sha1');
 // Returns: af5c5a8cc3be9a3180205c1ed2975015cd6cf1e7</code></pre>
 							</td>
@@ -179,7 +179,7 @@ Str::random('sha1');
 
 			<article>
 				<h4 class="method" id="method_truncate">truncate($string, $limit, $continuation = '...', $is_html = false)</h4>
-				<p>The <strong>truncate</strong> method allows you to limit characters and provide a continuation string without breaking html.</p>
+				<p><strong>truncate</strong> メソッドは、文字列を指定した長さで切り詰めます。文字列が HTML を含む場合は、それを破壊しないようにすることもできます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -187,49 +187,49 @@ Str::random('sha1');
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
-										<td><em>required</em></td>
-										<td>The string to truncate.</td>
+										<td><em>必須</em></td>
+										<td>切り詰める文字列</td>
 									</tr>
 									<tr>
 										<th><kbd>$limit</kbd></th>
-										<td><em>required</em></td>
-										<td>The number of characters to allow in the string.</td>
+										<td><em>必須</em></td>
+										<td>文字列の最大長 (文字列の長さがこの値を超えると切り詰める)</td>
 									</tr>
 									<tr>
 										<th><kbd>$continuation</kbd></th>
 										<td><pre class="php"><code>'...'</code></pre></td>
-										<td>The string to append to the end of the truncated string.</td>
+										<td>切り詰めた文字列の末尾に付加する文字列</td>
 									</tr>
 									<tr>
 										<th><kbd>$is_html</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If the string contains html. Setting this as true will make the method not break html.</td>
+										<td>文字列が HTML を含む場合、この引数を true にすると、このメソッドは HTML タグを破壊しません。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>string</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>$string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-Str::truncate($string, 15); // returns Lorem ipsum dol...
+Str::truncate($string, 15); // 返り値: Lorem ipsum dol...
 
 $string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-Str::truncate($string, 15, '...Read More'); // returns Lorem ipsum dol...Read More
+Str::truncate($string, 15, '...Read More'); // 返り値: Lorem ipsum dol...Read More
 </code></pre>
 							</td>
 						</tr>
@@ -249,28 +249,28 @@ Str::truncate($string, 15, '...Read More'); // returns Lorem ipsum dol...Read Mo
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>*$args</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>As many arguments as you need to alternate</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Closure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>$alt = Str::alternator('one', 'two', 'three', 'four');
 echo $alt(); // outputs 'one'
@@ -288,7 +288,7 @@ echo $alt(); // outputs 'one'
 
 			<article>
 				<h4 class="method" id="method_upper">upper($str, $encoding = null)</h4>
-				<p>The <strong>upper</strong> method converts all characters to uppercase. It is equivalent to PHP's strtoupper() for your specific character encoding.</p>
+				<p><strong>upper</strong> メソッドは、すべてのアルファベットを大文字に変換します。特定の文字のエンコーディングについては、PHP の strtoupper() と同等です。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -296,38 +296,38 @@ echo $alt(); // outputs 'one'
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
-										<td><em>Required</em></td>
-										<td>The input string.</td>
+										<td><em>必須</em></td>
+										<td>入力文字列</td>
 									</tr>
 									<tr>
 										<th><kbd>$encoding</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The character encoding.</td>
+										<td>文字エンコーディング</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>string</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>Str::upper('User Data'); // returns 'USER DATA'</code></pre>
+								<pre class="php"><code>Str::upper('User Data'); // 返り値: 'USER DATA'</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -336,7 +336,7 @@ echo $alt(); // outputs 'one'
 
 			<article>
 				<h4 class="method" id="method_lower">lower($str, $encoding = null)</h4>
-				<p>The <strong>lower</strong> method converts all characters to lowercase. It is equivalent to PHP's strtolower() for your specific character encoding.</p>
+				<p><strong>lower</strong> メソッドは、すべてのアルファベットを小文字に変換します。特定の文字のエンコーディングについては、PHP の strtoupper() と同等です。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -344,38 +344,38 @@ echo $alt(); // outputs 'one'
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
-										<td><em>Required</em></td>
-										<td>The input string.</td>
+										<td><em>必須</em></td>
+										<td>入力文字列</td>
 									</tr>
 									<tr>
 										<th><kbd>$encoding</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The character encoding.</td>
+										<td>文字エンコーディング</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>string</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>Str::lower('User Data'); // returns 'user data'</code></pre>
+								<pre class="php"><code>Str::lower('User Data'); // 返り値: 'user data'</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -384,7 +384,7 @@ echo $alt(); // outputs 'one'
 
 			<article>
 				<h4 class="method" id="method_tr">tr($string, $array = array())</h4>
-				<p>The <strong>tr</strong> method parse the params from given string using PHP's strtr().</p>
+				<p><strong>tr</strong> メソッドは、PHP の strtr() を用いて、与えられた文字列からパラメータをパースします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -392,38 +392,38 @@ echo $alt(); // outputs 'one'
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
-										<td><em>Required</em></td>
-										<td>The input string.</td>
+										<td><em>必須</em></td>
+										<td>入力文字列</td>
 									</tr>
 									<tr>
 										<th><kbd>$array</kbd></th>
 										<td><em>array</em></td>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>params to str_replace.</td>
+										<td>str_replace に渡すパラメータ</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>string</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>Str::tr('Hello :name', array('name' => 'World')); // returns 'Hello World'</code></pre>
+								<pre class="php"><code>Str::tr('Hello :name', array('name' => 'World')); // 返り値: 'Hello World'</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -432,7 +432,7 @@ echo $alt(); // outputs 'one'
 
 			<article>
 				<h4 class="method" id="method_is_json">is_json($string)</h4>
-				<p>The <strong>is_json</strong> method check if a string is json encoded.</p>
+				<p><strong>is_json</strong> メソッドは、文字列が json エンコードされているかチェックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -440,32 +440,32 @@ echo $alt(); // outputs 'one'
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
-										<td><em>Required</em></td>
-										<td>The input string.</td>
+										<td><em>必須</em></td>
+										<td>入力文字列</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>bool</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>Str::is_json('{"0":"An","encoded":["string"]}'); // returns true</code></pre>
+								<pre class="php"><code>Str::is_json('{"0":"An","encoded":["string"]}'); // 返り値: true</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -474,7 +474,7 @@ echo $alt(); // outputs 'one'
 
 			<article>
 				<h4 class="method" id="method_is_serialized">is_serialized($string)</h4>
-				<p>The <strong>is_serialized</strong> method check if a string is serialized.</p>
+				<p><strong>is_serialized</strong> メソッドは、文字列が PHP シリアライズされているかチェックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -482,33 +482,33 @@ echo $alt(); // outputs 'one'
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
-										<td><em>Required</em></td>
-										<td>The input string.</td>
+										<td><em>必須</em></td>
+										<td>入力文字列</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>bool</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>Str::is_serialized('a:2:{i:0;s:2:"An";s:7:"encoded";a:1:{i:0;s:6:"string";}}');
-// returns true</code></pre>
+// 返り値: true</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -517,7 +517,7 @@ echo $alt(); // outputs 'one'
 
 			<article>
 				<h4 class="method" id="method_is_html">is_html($string)</h4>
-				<p>The <strong>is_html</strong> method check if a string is html.</p>
+				<p><strong>is_html</strong> メソッドは、文字列が HTML かチェックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -525,33 +525,33 @@ echo $alt(); // outputs 'one'
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
-										<td><em>Required</em></td>
-										<td>The input string.</td>
+										<td><em>必須</em></td>
+										<td>入力文字列</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>bool</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>Str::is_html('Lorem ipsum &lt;b>dolor sit amet&lt;/b>, consectetur &lt;u>adipiscing&lt;/u> elit.');
-// returns true</code></pre>
+// 返り値: true</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -603,7 +603,7 @@ echo $alt(); // outputs 'one'
 
 			<article>
 				<h4 class="method" id="method_starts_with">starts_with($str, $start, $ignore_case = false)</h4>
-				<p>The <strong>starts_with</strong> method checks wether a string has a precific beginning.</p>
+				<p><strong>starts_with</strong> メソッドは、文字列が指定した文字列で始まっているかチェックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -611,44 +611,44 @@ echo $alt(); // outputs 'one'
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$str</kbd></th>
-										<td><em>required</em></td>
-										<td>The string to check.</td>
+										<td><em>必須</em></td>
+										<td>チェック対象の文字列</td>
 									</tr>
 									<tr>
 										<th><kbd>$start</kbd></th>
-										<td><em>required</em></td>
-										<td>The beginning to check for.</td>
+										<td><em>必須</em></td>
+										<td>この文字列で始まっているか</td>
 									</tr>
 									<tr>
 										<th><kbd>$ignore_case</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>Wether to ignore the case.</td>
+										<td>大文字小文字を無視するかどうか</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>bool</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>$string = "Lorem ipsum dolor sit amet";
 
-Str::starts_with($string, 'Lorem'); // returns true
-Str::starts_with($string, 'lorem'); // returns false
-Str::starts_with($string, 'lorem', true); // returns true
+Str::starts_with($string, 'Lorem'); // 返り値: true
+Str::starts_with($string, 'lorem'); // 返り値: false
+Str::starts_with($string, 'lorem', true); // 返り値: true
 </code></pre>
 							</td>
 						</tr>
@@ -658,7 +658,7 @@ Str::starts_with($string, 'lorem', true); // returns true
 
 			<article>
 				<h4 class="method" id="method_ends_with">ends_with($str, $end, $ignore_case = false)</h4>
-				<p>The <strong>ends_with</strong> method checks wether a string has a precific ending.</p>
+				<p><strong>ends_with</strong> メソッドは、文字列が指定した文字列で終わっているかチェックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -666,44 +666,44 @@ Str::starts_with($string, 'lorem', true); // returns true
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$str</kbd></th>
-										<td><em>required</em></td>
-										<td>The string to check.</td>
+										<td><em>必須</em></td>
+										<td>チェック対象の文字列</td>
 									</tr>
 									<tr>
 										<th><kbd>$end</kbd></th>
-										<td><em>required</em></td>
-										<td>The ending to check for.</td>
+										<td><em>必須</em></td>
+										<td>この文字列で終わっているか</td>
 									</tr>
 									<tr>
 										<th><kbd>$ignore_case</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>Wether to ignore the case.</td>
+										<td>大文字小文字を無視するかどうか</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>bool</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>$string = "Lorem ipsum dolor sit amet";
 
-Str::ends_with($string, 'amet'); // returns true
-Str::ends_with($string, 'Amet'); // returns false
-Str::ends_with($string, 'Amet', true); // returns true
+Str::ends_with($string, 'amet'); // 返り値: true
+Str::ends_with($string, 'Amet'); // 返り値: false
+Str::ends_with($string, 'Amet', true); // 返り値: true
 </code></pre>
 							</td>
 						</tr>
@@ -713,7 +713,7 @@ Str::ends_with($string, 'Amet', true); // returns true
 
 			<article>
 				<h4 class="method" id="method_sub">sub($str, $start, $length = null, $encoding = null)</h4>
-				<p>The <strong>sub</strong> method returns the portion of the string specified. It is equivalent to PHP's substr() for your specific character encoding.</p>
+				<p><strong>sub</strong> メソッドは、指定された文字列の一部分を返します。特定の文字のエンコーディングについては、PHP の substr() と同等です。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -721,45 +721,45 @@ Str::ends_with($string, 'Amet', true); // returns true
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$str</kbd></th>
-										<td><em>required</em></td>
-										<td>The input string.</td>
+										<td><em>必須</em></td>
+										<td>入力文字列</td>
 									</tr>
 									<tr>
 										<th><kbd>$start</kbd></th>
-										<td><em>required</em></td>
-										<td>Position of first character. See <a href="http://php.net/substr" target="_blank">php.net</a> for detailed usage.</td>
+										<td><em>必須</em></td>
+										<td>開始位置 (詳細は <a href="http://php.net/substr" target="_blank">php.net</a> を参照してください)</td>
 									</tr>
 									<tr>
 										<th><kbd>$length</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Maximum number of characters. See <a href="http://php.net/substr" target="_blank">php.net</a> for detailed usage.</td>
+										<td>文字数の最大値 (詳細は <a href="http://php.net/substr" target="_blank">php.net</a> を参照してください)</td>
 									</tr>
 									<tr>
 										<th><kbd>$encoding</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The character encoding.</td>
+										<td>文字エンコーディング</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>string</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>Str::sub('User Data', 3, -1); // returns 'r Dat'</code></pre>
+								<pre class="php"><code>Str::sub('User Data', 3, -1); // 返り値: 'r Dat'</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -771,6 +771,7 @@ Str::ends_with($string, 'Amet', true); // returns true
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/classes/str.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/classes/str.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

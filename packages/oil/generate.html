@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Generate - Oil Package - FuelPHP Documentation</title>
+	<title>Generate - Oil パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -49,8 +49,8 @@
 				<h2 id="generate">Generate</h2>
 
 				<p>
-					Code Generation can be used to speed up development times by building much of the repetitive code for you. This
-					is entirely optionally - like all of oil - and all code can be edited however you like afterwards. You can generate the following items:
+					コード生成を使用すると、多く繰り返すコードをビルドする開発回数をスピードアップすることができます。
+					これは - oil 全体にも言えますが- 完全にオプションです。後で全てのコードは好きなように編集可能です。次のような項目を生成することができます:
 				</p>
 
 				<ul>
@@ -66,8 +66,8 @@
 				<h3 id="controllers">Controllers</h3>
 
 				<p>
-					To generate a skeleton <a href="../../general/controllers/base.html">Controller</a> with actions and views
-					predefined, use the following command:
+					事前に定義したアクションやビューを持つ <a href="../../general/controllers/base.html">Controller</a> のスケルトンを生成するために、
+					次ようなコマンドを使用します:
 				</p>
 
 				<pre class="cli"><code>$ php oil g controller posts action1 action2 action3
@@ -76,7 +76,7 @@
 	Created view: APPPATH/views/posts/action3.php
 	Created controller: APPPATH/classes/controller/posts.php</code></pre>
 
-				<p>This will produce a controller that looks like this:</p>
+				<p>これは次のようなコントローラを生成します:</p>
 
 				<pre class="php"><code>class Controller_Posts extends Controller_Template
 {
@@ -106,15 +106,15 @@
 				<h3 id="models">Models</h3>
 
 				<p>
-					Generate a simple Model by listing fields and have
-					the <a href="../../general/migrations.html">Migration</a> automatically created for you to match:
+					フィールドをリストすることでシンプルな <a href="../../general/controllers/base.html">Model</a> を生成し、
+					自動的にマッチした <a href="../../general/migrations.html">Migration</a> を生成します:
 				</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int
 	Created model: APPPATH/classes/model/post.php
 	Created migration: APPPATH/migrations/001_create_posts.php</code></pre>
 
-				<p>That will create a simple Model that uses <a href="../orm/intro.html">Orm</a>, so make sure the package is enabled in your config file. It will look like this:</p>
+				<p>これは、<a href="../orm/intro.html">Orm</a> を使うシンプルなモデルを作成しますので、設定ファイルで Orm パッケージが有効になっていることを確認してください。このようなコードになります:</p>
 
 				<pre class="php"><code>class Model_Post extends Orm\Model {
 
@@ -142,7 +142,7 @@
 /* End of file post.php */
 </code></pre>
 
-			<p>Not very exciting, but the migration is the useful part here:</p>
+			<p>あまりワクワクしませんが、マイグレーションはここでは有用な部分です:</p>
 
 			<pre class="php"><code>namespace Fuel\Migrations;
 
@@ -166,20 +166,20 @@ class Create_posts
 	}
 }</code></pre>
 
-				<p>If you do not wish to generate a migration, simply supply the <strong>--no-migration</strong>:</p>
+				<p>もしマイグレーションの生成を望まないなら、<strong>--no-migration</strong> を指定してください:</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --no-migration
 	Created model: APPPATH/classes/model/post.php</code></pre>
 
-				<h4>Generating Model using Model_Crud</h4>
+				<h4>Model_Crud を使用してモデルを生成する</h4>
 
-				<p>FuelPHP v1.1 added a simple Model_Crud base model which offers similar functionality of using ORM without overhead of relational data. You can have the model generated using this by adding <code>--crud</code></p>
+				<p>FuelPHP v1.1 はリレーショナルデータのオーバヘッドなしで ORM を使うのと同じような機能を提供するシンプルな Model_Crud ベースのモデルを追加しました。<code>--crud</code> を追加することで、そのようなモデルを生成できます。</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int created_at:datetime --crud
 	Created model: APPPATH/classes/model/post.php
 	Created migration: APPPATH/migrations/001_create_posts.php</code></pre>
 
-				<p>That will create a simple Model that uses Fuel\Core\Model_Crud. It will look like this:</p>
+				<p>これは <a href="../orm/intro.html">Orm</a> を使用したシンプルなモデルを生成します。設定ファイルでパッケージが有効かどうか確認してください。次のようになります:</p>
 
 				<pre class="php"><code>class Model_Post extends \Model_Crud
 {
@@ -197,9 +197,9 @@ class Create_posts
 }</code></pre>
 
 
-				<h4 id="no_timestamp">Generating Model Without Timestamp Option</h4>
+				<h4 id="no_timestamp">タイムスタンプオプションを指定せずにモデルを生成する</h4>
 
-				<p>Add <code>--no-timestamp</code> to exclude the created/updated fields and observers.</p>
+				<p>created/updated フィールドやオブザーバを除外するために <code>--no-timestamp</code> を追加します。</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --no-timestamp</code></pre>
 				<pre class="php"><code>class Model_Post extends \Orm\Model
@@ -236,17 +236,17 @@ class Create_posts
 }
 </code></pre>
 
-				<h4 id="timestamp_fields">Changing Timestamp Fields</h4>
+				<h4 id="timestamp_fields">タイムスタンプのフィールドを変更する</h4>
 
 				<p>
-					When you're using the timestamp fields in either ORM models or CRUD models (\Model_Crud) you can
-					chose your own field names. Use the <strong>--created-at</strong> and <strong>--updated-at</strong>
-					options to set your own field names.
+					ORM モデルか CRUD モデル (\Model_Crud) でタイムスタンプを使っている場合、
+					独自のフィールド名を指定することができます。<strong>--created-at</strong> と <strong>--updated-at</strong>
+					オプションを使ってフィールド名を指定してください。
 				</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --created-at=my_created</code></pre>
 
-				<p>Which will give you:</p>
+				<p>これは以下を生成します:</p>
 
 				<pre class="php"><code>&lt;?php
 
@@ -310,9 +310,9 @@ class Create_posts
 				<h3 id="running_migrations">Running Migrations</h3>
 
 				<p>
-					The following commands illustrate how to use the refine command to run useful migration tasks,
-					assuming that the system is currently at migration 5. The migrate task can be given parameters to
-					move directly to a given version, or just up/down by a single version.
+					次のコマンドは有用なマイグレーションタスクを実行する refine コマンドの使い方を示しています。
+					システムが現在マイグレーション 5 であると仮定しています。マイグレーションタスクはパラメータを指定し、直接そのバージョンに移動することができます。
+					または、バージョンを 1 つ 上げたり下げたりします。
 				</p>
 
 				<pre class="cli"><code>$ php oil refine migrate
@@ -335,15 +335,15 @@ $ php oil refine migrate:up
 				<h3 id="migrations">Generating Migrations</h3>
 
 				<p>
-					You can generate migrations without creating a model. This could be used to rename a table, or add fields to a table in a way that is easy to deploy in other environments.
+					モデルを生成せずにマイグレーションを生成可能です。テーブルをリネームするために使用されるか、他の環境に簡単にデプロイするためにテーブルにフィールドを追加するために使用されます。
 				</p>
 
 				<pre class="cli"><code>$ php oil generate migration rename_table_users_to_accounts
 	Building magic migration: rename_table
 	Created migration: APPPATH/migrations/002_rename_table_users_to_accounts.php</code></pre>
 
-				<h3 id="magic_migrations">Magic Migrations</h3>
-				<p>There are a number of "magic" migrations which automatically build you a migration based on a prefix to your migration name.</p>
+				<h3 id="magic_migrations">Magic マイグレーション</h3>
+				<p>いくるかの "magic" マイグレーションがあり、自動的にあなたのマイグレーション名のプリフィックスに基づいたマイグレーションをビルドします。</p>
 				<pre class="cli"><code>$ php oil generate migration create_users name:text email:string[50] password:string[125]
 $ php oil generate migration rename_table_users_to_accounts
 $ php oil generate migration add_bio_to_accounts bio:text
@@ -351,14 +351,14 @@ $ php oil generate migration delete_bio_from_accounts bio:text
 $ php oil generate migration rename_field_name_to_username_in_accounts
 $ php oil generate migration drop_accounts
 </code></pre>
-				<p>Note: Be careful when naming your migrations that you don't begin with any keywords by accident.</p>
+				<p>注意: マイグレーションを名付ける際に、誤ってキーワードで開始しないように注意してください。</p>
 
-				<h3 id="scaffolding">Scaffolding</h3>
+				<h3 id="scaffolding">スキャフォールド</h3>
 
 				<p>
-					Scaffolding is the really exciting part of Oil's code generation. This approach is heavily borrowed from Rails who have done
-					a great job with it. The idea is that you create not only the MVC skeletons and migrations, but populate them with default CRUD code
-					so the code will actually work after writing the command.
+					スキャフォールドは、 Oil のコード生成のワクワクする部分です。このアプローチは、Rails から借用しており、偉大な功績があります。
+					それは、MVC スケルトンやマイグレーションだけでなく、デフォルトの CRUD コードを埋め込んで、
+					コマンドを記述した後にコードが実際に動作するという考えです。
 				</p>
 
 				<pre class="cli"><code>$ php oil g scaffold monkey name:string description:text
@@ -376,8 +376,8 @@ Migrated to latest version: 3.
 </code></pre>
 
 				<p>
-					As you can see lots of code is generated by this command including a command that is executed in the second command.
-					The controller looks like this:
+					2 番目のコマンドで実行されたコマンドを含み、このコマンドによって多くのコードが生成されたことがわかります。
+					コントローラは次のようになります:
 				</p>
 
 				<pre class="php"><code>class Controller_Monkey extends Controller_Template
@@ -536,13 +536,13 @@ class Newtask
 				<h3 id="configs">Configs</h3>
 
 				<p>
-					To generate a <a href="../../classes/config.html">Config</a>, use the following command:
+					<a href="../../classes/config.html">Config</a> を生成するために次のコマンドを使用します:
 				</p>
 
 				<pre class="cli"><code>$ php oil g config sample hello:world
 	Created config: APPPATH/config/sample.php</code></pre>
 
-				<p>This will produce a config that looks like this:</p>
+				<p>これは次のような設定を生成します:</p>
 
 				<pre class="php"><code>return array (
 	'hello' => 'world',
@@ -550,15 +550,15 @@ class Newtask
 
 /* End of file sample.php */</code></pre>
 
-				<h3>Generate Config from COREPATH</h3>
+				<h3>COREPATH から設定を生成する</h3>
 				<p>
-					To combine config from COREPATH/config if APPPATH/config doesn't have one
+					APPPATH/config がない場合、COREPAT/config から設定を結合します。
 				</p>
 
 				<pre class="cli"><code>$ php oil g config package
 	Created config: APPPATH/config/package.php</code></pre>
 
-				<p>This will produce a config that looks like this:</p>
+				<p>これは次のような設定を生成します:</p>
 
 				<pre class="php"><code>return array (
 	'sources' =>
@@ -567,15 +567,15 @@ class Newtask
 	),
 );</code></pre>
 
-				<h3>Force Update Config from COREPATH &amp; APPPATH</h3>
+				<h3>COREPATH や APPPATH から強制的に設定を更新する</h3>
 				<p>
-					To combine config from COREPATH/config and combine APPPATH/config to APPPATH/config
+					COREPATH/config や combine APPPATH/config から APPPATH/config に設定を結合する
 				</p>
 
 				<pre class="cli"><code>$ php oil g config form --overwrite
 	Created config: APPPATH/config/form.php</code></pre>
 
-				<p>This will produce a config that looks like this:</p>
+				<p>これは次のような設定を生成します:</p>
 
 				<pre class="php"><code>return array (
 	'prep_value' => true,
@@ -593,6 +593,7 @@ class Newtask
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/packages/oil/generate.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/packages/oil/generate.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

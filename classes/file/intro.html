@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>File Intro - Classes - FuelPHP Documentation</title>
+	<title>File 導入 - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -44,71 +44,70 @@
 
 		<div id="main">
 
-			<h2>File Class</h2>
+			<h2>File クラス</h2>
 
 			<section>
 
-				<h3 id="intro">Introduction</h3>
+				<h3 id="intro">導入</h3>
 
 				<p>
-					The File class offers a set of methods for working with files &amp; directories. This can
-					be done through some helper methods or through a more advanced object oriented method where
-					all files and directories are wrapped in objects.
+					File クラスは、ファイルとディレクトリを取り扱う各種メソッド一式を提供します。
+					幾つかのヘルパーメソッド、また、すべてのファイルやディレクトリがオブジェクトにラップされた、より進んだオブジェクト指向のメソッドを通じて、
+					その処理が行われます。
 				</p>
 
 			</section>
 
 			<section>
-				<h3 id="configuration">Configuration</h3>
+				<h3 id="configuration">設定</h3>
 
 				<p>
-					The File class is highly configurable and gives you all the control you need over the behaviour
-					supplied by the class. Configuration settings vary from restricting filesystem access to setting
-					drivers by filetype.
+					ファイルクラスでは詳細な設定が可能です。
+					クラスの動作に対して必要なコントロールをすべて行えます。設定は、ファイルシステムへのアクセス制限からはじまり
+					ファイルタイプドライバの設定に至ります。
 				</p>
 
 				<p>
-					The default file config is located at <em>core/config/file.php</em>. To change these settings
-					create a config file with your own settings at <em>app/config/file.php</em>.
+					デフォルトの設定ファイルは <em>core/config/file.php</em> です。
+					設定を変更するには <em>app/config/file.php</em> を作って行ってください。
 				</p>
 
 				<p>
-					The following configuration values can be defined:
+					次の設定値が定義可能です:
 				</p>
 
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>型</th>
+							<th>規定値</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>basedir</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								The path to the basedir. Defaults to <em>null</em> for no restrictions.
-								When defined this will restrict the access to that specific directory.
+								基準ディレクトリパス。デフォルトは <em>null</em> で制限がありません。
+								設定がなされた場合、その設定ディレクトリのアクセスに制限されます。
 							</td>
 						</tr>
 						<tr>
 							<th>extensions</th>
-							<td>array</td>
+							<td>配列</td>
 							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								Array of allowed extensions, null for all.
-								If defined the File class will only handle the given extentions and
-								filter out the rest.
+								許可する拡張子配列。null の場合全て許可されます。
+								設定がなされた場合、ファイルクラスはその拡張子のみを取り扱い、それ以外は処理から除外します。
 							</td>
 						</tr>
 						<tr>
 							<th>url</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								Base url for files, null for not available.
+								ファイルに対する Base url です。null の場合、利用しない。
 							</td>
 						</tr>
 						<tr>
@@ -116,23 +115,23 @@
 							<td>null</td>
 							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								Whether to use file locks. Set to <em>true</em> if you want the File class to use them.
+								ファイルロックを用いるかどうか。利用したい時には、<em>true</em> をセットしてください。
 							</td>
 						</tr>
 						<tr>
 							<th>file_drivers</th>
-							<td>array</td>
+							<td>配列</td>
 							<td><pre class="php"><code>array</code></pre></td>
 							<td>
-								Array of file drivers per extension. These allow you to use custom drivers on a by filetype basis.
+								拡張したいファイルドライバの配列。ファイルタイプベースの独自ドライバを利用することが出来ます。
 							</td>
 						</tr>
 						<tr>
 							<th>magic_file</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								Alternative location of the fileinfo() magic file. If not specified, the system default will be used.
+								fileinfo() で使われるマジックファイルの位置。もし指定されないならシステムのデフォルトが利用されます。
 							</td>
 						</tr>
 					</tbody>
@@ -145,6 +144,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/classes/file/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/classes/file/intro.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

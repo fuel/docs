@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Classes - General - FuelPHP Documentation</title>
+	<title>クラス - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,71 +44,71 @@
 
 		<div id="main">
 
-			<h2>Classes</h2>
+			<h2>クラス</h2>
 
-			<h3 id="what_is_a_class">What is a class?</h3>
+			<h3 id="what_is_a_class">クラスとは?</h3>
 
-			<p>A class is just a normal PHP class. It doesn't need to extend anything or follow any conventions other than the naming convention which is the same as all other classes in Fuel.</p>
+			<p>クラスは通常の PHP クラスです。何かを継承したり、ネーミング以外の制約に従う必要はありません。制約は、Fuel のその他のすべてのクラスと同じものです。</p>
 
 			<pre class="php"><code>class Session</code></pre>
 
-			<p>That will be loaded from app/classes/session.php.</p>
+			<p>これは app/classes/session.php をロードします。</p>
 
-			<h3 id="loading_classes">Loading Classes</h3>
+			<h3 id="loading_classes">クラスの読み込み</h3>
 
-			<p>Unlike some other frameworks classes do not need to be loaded manually. They will be auto-loaded when you refer to them in your code (Controllers, Models, etc).</p>
+			<p>他のフレームワークとは違って、クラスは手動でロードする必要はありません。コード (コントローラやモデルなど) 内で参照すると自動的にロードされます。</p>
 
-			<h3 id="classes_subdirectories">Classes in a sub-directory</h3>
+			<h3 id="classes_subdirectories">サブディレクトリ内のクラス</h3>
 
-			<p>Just like <a href="controllers/base.html">Controllers</a>, classes must be lower-case with first-letter upper case, while underscores will put the class into a sub-directory.</p>
+			<p><a href="controllers/base.html">Controllers</a> と同様に、クラスは最初の文字のみ大文字でその他は小文字にしなければなりません。一方アンダースコアはサブディレクトリにクラスを置きます。</p>
 
 			<pre class="php"><code>Class Session_Driver</code></pre>
 
-			<p>That will be loaded from app/classes/session/driver.php</p>
+			<p>これは app/classes/session/driver.php をロードします。</p>
 
-			<h3 id="classes_namespaces">Classes and Namespaces</h3>
+			<h3 id="classes_namespaces">クラスと名前空間</h3>
 
 			<p>
-				To determine which PHP file to load, FuelPHP's autoloader will treat namespaces and class names with underscores exactly the same.
-				This means that for classes in sub-directories, you can mix-and-match namespaces and underscores to suit your needs.
+				ロードする PHP ファイルを決める際に、FuelPHP のオートローダは名前空間とアンダースコアのクラス名をまったく同じに扱います。
+				これは、サブディレクトリ内のクラスで、自由に名前空間とアンダースコアをミックするして使うことができるということです。
 			</p>
 
-			<p>Take for example a class in the file app/classes/core/system/messages.php. The class in this file can be defined as:</p>
+			<p>たとえば、ファイル app/classes/core/system/messages.php の中のクラスの場合、このファイル内のクラスは、次のように定義できます:</p>
 
-				<pre class="php"><code>// global namespace, fully underscored class name
+				<pre class="php"><code>// グローバル名前空間、アンダースコアだけのクラス名
 class Core_System_Messages {}
 
-// combine a namespace and underscores
+// 名前空間とアンダースコアのコンビネーション
 namespace Core;
 class System_Messages {}
 
-// or fully namespaced
+// 名前空間だけ
 namespace Core\System;
 class Messages {}
 </code></pre>
 
 			<p class="note">
-				The first method is the one most commonly used and easiest to understand. The namespaced versions are particularly handy if you
-				combine them with the Use statement in the classes that use the defined class.
+				最初の方法は最も一般的に使用され、理解するのも最も簡単です。名前空間つきバージョンは、定義されたクラスを使用する Use ステートメントを組み合わせて使うと
+				特に便利です。
 			</p>
 
 			<article>
-				<h2 id="init_method">Initializing your class</h2>
+				<h2 id="init_method">クラスの初期化</h2>
 
-				<p>It is possible to have Fuel's autoloader perform certain automated tasks once a class is loaded,
-					sort of like what <code>__construct()</code> does for instances of a class. You do this by adding
-					a public static <code>_init()</code> method to the class.</p>
+				<p>クラスがロードされたときに、Fuel のオートローダに何らかのタスクを自動的に実行させることができます。
+				これは <code>__construct()</code> がクラスのインスタンスにすることと同様です。
+				これはクラスに public の <code>_init()</code> メソッドを追加することで可能になります。</p>
 
 				<pre class="php"><code>class Example {
 	public static function _init()
 	{
-		// this is called upon loading the class
+		// これはクラスをロードしているときに呼び出されます。
 	}
 }</code></pre>
 
-				<p class="note">If a loaded class has its own <code>_init()</code> method and a parent must be loaded
-					alongside it, that parent's init method isn't called unless you call it using
-					<code>parent::_init();</code></p>
+				<p class="note">読み込まれたクラスが自身に <code>_init()</code> メソッドがあり、親クラスがそれと一緒にロードされる必要がある場合、
+					親クラスの init メソッドは
+					<code>parent::_init();</code> を使用しない限り呼び出されません。</p>
 			</article>
 
 		</div>
@@ -116,6 +116,7 @@ class Messages {}
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/general/classes.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/general/classes.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

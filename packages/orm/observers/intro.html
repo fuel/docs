@@ -46,38 +46,38 @@
 
 			<h2>Orm</h2>
 
-			<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-				Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-				to establish relations between those objects.<br />
-				It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
-				Active Record Pattern</a>, but was also influenced by other systems.</p>
+			<p>ORMは<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
+				関係マッピング</a>の略です。 これは、2つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
+				それはあなたがそれらのオブジェクト間の関係を確立することができます。<br />
+				それは <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">
+				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
 
 			<article>
-				<h3 id="intro">Observers: Introduction</h3>
+				<h3 id="intro">オブザーバー：はじめに</h3>
 
-				<p>An event based system to allow you to add behavior to specific events. When an event is observed the
-					Orm will automatically call all the added observers to see if there's anything for them to do.</p>
+				<p>イベントベースのシステムは、特定のイベントに動作を追加できるようにします。 イベントが観測されると
+					ORMは自動的にそれらを行うためには何があるのかどうかを確認するために追加されたすべてのオブザーバーを呼び出します</p>
 
 				<ul>
-					<li><a href="intro.html#add_observers">Adding observers to your model</a></li>
-					<li><a href="included.html">Included observers</a></li>
-					<li><a href="creating.html">Creating your own Observers</a></li>
+					<li><a href="intro.html#add_observers">モデルにオブザーバを追加</a></li>
+					<li><a href="included.html">includeされたオブザーバー</a></li>
+					<li><a href="creating.html">あなた自身のオブザーバーを作成</a></li>
 				</ul>
 			</article>
 
 			<article id="add_observers">
-				<h3 id="adding">Adding observers to your model</h3>
+				<h3 id="adding">モデルにオブザーバを追加</h3>
 
-				<p>You can add observers in 2 ways: just add the name to have the observer called for all events or with
-					the observer as name and an array of specific events for which the observer is called.<br />
-					When the Observer is in the same namespace as the Model and prefixed with <kbd>Observer_</kbd> you can
-					leave out the "Observer_" prefix. In all other cases you have to provide the full classname.</p>
+				<p>あなたは2つの方法でオブザーバを追加することができます: オブザーバをすべてのイベントのために、
+					またはオブザーバが呼び出す名前と多数の特定のイベントとしてのオブザーバを呼び出させる場合に、名前を加えてください。<br />
+					オブザーバーがモデルと同じ名前空間にあって、<kbd>Observer_</kbd>で前に置かれるとき、
+					あなたは"Observer_"接頭辞を無視することができます。他の全てのケースでは、あなたは完全なclassnameを提供しなければなりません。</p>
 
 				<pre class="php"><code>class Model_Article
 {
 	protected static $_observers = array(
-		'example', // will call Observer_Example class for all events
-		'Orm\\Observer_CreatedOn' => array('before_insert'), // will only call Orm\Observer_CreatedOn at before_insert event
+		'example', // すべてのイベントのObserver_Exampleクラスを呼び出します。
+		'Orm\\Observer_CreatedOn' => array('before_insert'), // before_insertイベントでのみOrm\\Observer_CreatedOnを呼び出します
 	);
 }</code></pre>
 			</article>
@@ -87,6 +87,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/packages/orm/observers/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/packages/orm/observers/intro.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

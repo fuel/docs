@@ -44,7 +44,7 @@
 		</div>
 
 		<div id="main">
-			<h2>Auth package</h2>
+			<h2>Auth パッケージ</h2>
 
 			<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
 			write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
@@ -68,13 +68,13 @@
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$custom</kbd></th>
@@ -85,15 +85,15 @@
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Auth_Login_Driver instance</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>AuthException, if the defined driver failed to load, or if another drivers is already instantiated using the same driver id.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Create the default instance(s)
 Auth::forge();
@@ -122,13 +122,13 @@ Auth::forge(array('driver' => 'simpleauth', 'id' => 'customid'));</code></pre>
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$instance</kbd></th>
@@ -139,11 +139,11 @@ Auth::forge(array('driver' => 'simpleauth', 'id' => 'customid'));</code></pre>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Auth_Login_Driver</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Logout the default driver
 Auth::instance()->logout();
@@ -168,13 +168,13 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$driver_id</kbd></th>
@@ -185,15 +185,15 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>boolean, <strong>true</strong> if the unload succeeded, <strong>false</strong> otherwise.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>AuthException, when $driver_id is not a valid driver.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Remove the default driver
 Auth::unload();
@@ -216,13 +216,13 @@ Auth::unload('simpleauth');</code></pre>
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$specific</kbd></th>
@@ -233,11 +233,11 @@ Auth::unload('simpleauth');</code></pre>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>bool, whether one of the (given) drivers successfully validated the login</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>if ( ! Auth::check())
 {
@@ -265,13 +265,13 @@ Auth::check(array('simpleauth', 'twitter'));</code></pre>
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$specific</kbd></th>
@@ -282,11 +282,11 @@ Auth::check(array('simpleauth', 'twitter'));</code></pre>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Array|Auth_Login_Driver|false. When</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// check if the simpleauth driver is verified
 $driver = Auth::verified('simpleauth');
@@ -312,13 +312,13 @@ $driver = Auth::verified('simpleauth');
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
@@ -334,7 +334,7 @@ $driver = Auth::verified('simpleauth');
 							</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// register the 'role' driver type
 if ( ! Auth::register_driver_type('role', 'check_role'))
@@ -359,13 +359,13 @@ if ( ! Auth::register_driver_type('role', 'check_role'))
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
@@ -376,7 +376,7 @@ if ( ! Auth::register_driver_type('role', 'check_role'))
 							</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// remove the 'role' driver type
 Auth::unregister_driver_type('role');
@@ -394,6 +394,7 @@ Auth::unregister_driver_type('role');
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/packages/auth/usage.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/packages/auth/usage.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

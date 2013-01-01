@@ -11,7 +11,7 @@
 		var class_prefix = "Cookie::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Cookie - Classes - FuelPHP Documentation</title>
+	<title>Cookie - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,98 +45,92 @@
 
 		<div id="main">
 
-			<h2>Cookie Class</h2>
+			<h2>Cookie クラス</h2>
 
-			<p>The cookie class allows you to get, set and delete cookies.</p>
+			<p>cookie クラスは cookie の値の取得、設定、削除を行うことができます。</p>
 
-			<h3 id="configuration">Configuration</h3>
+			<h3 id="configuration">設定</h3>
 
-			<p>The cookie class is configured through the global application configuration file, <strong>app/config/config.php</strong>. It defines a section called '<strong>cookie</strong>', in which the following settings are defined:</p>
+			<p>cookie クラスの設定はアプリケーションの共通設定ファイル <strong>app/config/config.php</strong> で行います。設定項目は '<strong>cookie</strong>' セクションの中にあり、次のように設定されています。</p>
 			<table class="method">
 				<tbody>
 					<tr>
-						<th>Variable</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th class="description">Description</th>
+						<th>パラメータ</th>
+						<th>型</th>
+						<th>規定値</th>
+						<th class="description">説明</th>
 					</tr>
 					<tr>
 						<th><kbd>expiration</kbd></th>
 						<td>integer</td>
 						<td><pre class="php"><code>0</code></pre></td>
-						<td>Number of seconds before the cookie expires. This value will be used when $expiration is not specified when you call the set() method.</td>
+						<td>cookie の有効期限。この値は set() 関数で $expiration が指定されていないときに使われます。</td>
 					</tr>
 					<tr>
 						<th><kbd>path</kbd></th>
 						<td>string</td>
 						<td><pre class="php"><code>'/'</code></pre></td>
-						<td>Restrict the path that the cookie is available to. This value will be used when $path is not specified when you call the set() method.</td>
+						<td>cookie が有効となるパスを制限します。この値は set() 関数で $path が指定されていないときに使われます。</td>
 					</tr>
 					<tr>
 						<th><kbd>domain</kbd></th>
 						<td>string</td>
 						<td><pre class="php"><code>null</code></pre></td>
-						<td>Restrict the domain that the cookie is available to. This value will be used when $domain is not specified when you call the set() method.</td>
+						<td>cookie が有効となるドメインを制限します。この値は set() 関数で $domain が指定されていないときに使われます。</td>
 					</tr>
 					<tr>
 						<th><kbd>secure</kbd></th>
 						<td>boolean</td>
 						<td><pre class="php"><code>false</code></pre></td>
-						<td>Set to true if you only want to transmit cookies over secure connections.</td>
+						<td>true を設定したときはセキュアな接続の時のみ cookie が送信されます。</td>
 					</tr>
 					<tr>
 						<th><kbd>httponly</kbd></th>
 						<td>boolean</td>
 						<td><pre class="php"><code>false</code></pre></td>
-						<td>Allow only transmit of cookies over HTTP, disabling Javascript access.</td>
+						<td>true を設定したときは HTTP によるアクセスのときのみ cookie が送信されます。 Javascript によるアクセスの時は送信されません。</td>
 					</tr>
 				</tbody>
 			</table>
-			<p>If one or more of these values are missing from the global configuration, the class will use the defaults as defined in this table.</p>
-			<p class="note">
-				When using cookies, make <strong>ABSOLUTELY</strong> sure that the timezone configured in your <em>app/config/config.php</em> and/or your
-				<em>php.ini</em> file matches the timezone set on your server. Since cookie expiry timestamps are in GMT, expiry time calculation goes
-				horribly wrong when you have a timezone mismatch, ranging from not expiring properly to cookies not set at all because they arrive at
-				the browser already expired.
-			</p>
+			<p>これらの値のどれか、又は複数の値がアプリケーションの共通設定ファイルから欠落しているとき、cookie クラスはこの表に定義されている値をデフォルトとして使用します。</p>
 
 			<article>
 				<h4 class="method" id="method_get">get($name = null, $default = null)</h4>
-				<p>The <strong>get</strong> method allows you to read a $_COOKIE variable. If no name given, all cookies are returned.</p>
+				<p><strong>get</strong> 関数は $_COOKIE 変数から値を取得します。$name が指定されていないときは全ての値を取得します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><i>Optional</i></td>
-									<td>The key in the $_COOKIE array.</td>
+									<td><i>任意</i></td>
+									<td>$_COOKIE 変数の中でのキー</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>What value should be returned if the array item is not found?</td>
+									<td>指定された $name が取得できなかったときに返すデフォルトの値</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$theme = Cookie::get('theme', 'blue');</code></pre>
 						</td>
@@ -147,130 +141,130 @@
 
 			<article>
 				<h4 class="method" id="method_set">set($name, $value, $expiration = null, $path = null, $domain = null, $secure = null, $httponly = null)</h4>
-				<p>The <strong>set</strong> method allows you to create a cookie.</p>
+				<p><strong>set</strong> 関数は cookie を作成し、値を設定します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><i>Required</i></td>
-									<td>The key in the $_COOKIE array.</td>
+									<td><i>必須</i></td>
+									<td>$_COOKIE 変数内でのキー</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
-									<td>The value of the cookie.</td>
+									<td><i>必須</i></td>
+									<td>cookie に設定する値</td>
 								</tr>
 								<tr>
 									<th><kbd>$expiration</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Number of seconds the cookie should last for.</td>
+									<td>cookie の有効期間(秒)</td>
 								</tr>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The path on the server in which the cookie will be available on.</td>
+									<td>cookie が有効となるパス</td>
 								</tr>
 								<tr>
 									<th><kbd>$domain</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The domain that the cookie is available to.</td>
+									<td>cookie が有効となるドメイン</td>
 								</tr>
 								<tr>
 									<th><kbd>$secure</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Set to true if you only want to transmit cookies over secure connections.</td>
+									<td>true を設定したときはセキュアな接続の時のみ cookie が送信されます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$httponly</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Allow only transmit of cookies over HTTP, disabling Javascript access.</td>
+									<td>true を設定したときは HTTP によるアクセスのときのみ cookie が送信されます。 Javascript によるアクセスの時は送信されません。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>boolean</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>Cookie::set('theme', 'blue', 60 * 60 * 24);</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p>For every parameter not specified or defined as <strong>null</strong>, the globally defined configuration value will be substituted.</p>
+				<p>規定値が <strong>null</strong> のパラメータについては、 <strong>null</strong> 、もしくは未指定の場合は共通設定ファイルで指定された設定値が使われます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_delete">delete($name, $path = null, $domain = null, $secure = null, $httponly = null)</h4>
-				<p>The <strong>delete</strong> method deletes a parameter from the $_COOKIE array.</p>
+				<p><strong>delete</strong> 関数は $_COOKIE 変数から値を削除します。</p>
 				<p class="note">
 					When a cookie was created under a specified path or/or domain etc. you must also supply this to the delete function.
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><i>Required</i></td>
-									<td>Remove a cookie item.</td>
+									<td><i>必須</i></td>
+									<td>削除するキー</td>
 								</tr>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The path on the server in which the cookie will be available on.</td>
+									<td>cookie が有効となるパス</td>
 								</tr>
 								<tr>
 									<th><kbd>$domain</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The domain that the cookie is available to.</td>
+									<td>cookie が有効となるドメイン</td>
 								</tr>
 								<tr>
 									<th><kbd>$secure</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Set to true if you only want to transmit cookies over secure connections.</td>
+									<td>true を設定したときはセキュアな接続の時のみ cookie が送信されます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$httponly</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Allow only transmit of cookies over HTTP, disabling Javascript access.</td>
+									<td>true を設定したときは HTTP によるアクセスのときのみ cookie が送信されます。 Javascript によるアクセスの時は送信されません。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// Delete normal cookie
 \Cookie::delete('theme');
@@ -292,6 +286,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/classes/cookie.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/classes/cookie.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>
