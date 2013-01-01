@@ -44,36 +44,33 @@
 
 		<div id="main">
 
-			<h2>Database Introduction</h2>
+			<h2>Database イントロダクション</h2>
 
 			<section>
 
-				<h3 id="introduction">Introduction</h3>
+				<h3 id="introduction">イントロダクション</h3>
 
 				<p>
-					Fuel offers a driver based database abstraction layer. At the time of writing supported
-					drivers are MySQL, MySQLi and PDO. Aside from regular database interaction, fuel also
-					comes with a DBUtil class to perform database operations such as creating databases,
-					adding fields and much more.
+					Fuel はデータベース抽象化レイヤをベースにしたドライバを提供します。
+					執筆時点でのサポート対象ドライバは、MySQL, MySQLi および PDO です。 
+					Aside from regular database interaction, fuel also
+					comes with a DBUtil class to perform database operations such as creating databases, adding fields and much more.
 				</p>
 
-				<p class="note">Please note that not all features are supported by every driver.</p>
+				<p class="note">各ドライバにおいて、すべての機能をサポートしているわけではないことに注意してください。</p>
 			</section>
 
 			<section>
-				<h3 id="configuration">Configuration</h3>
+				<h3 id="configuration">設定</h3>
 
 				<p>
-					In order to begin working with databases, you must change the database settings. The global
-					settings, that are valid for all your <a href="../../general/environments.html">environments</a>,
-					are defined in <em>APPPATH/config/db.php</em>. You define environment specific database settings
-					in the <em>db.php</em> located in the appropriate environment configuration folder. The two will
-					be merged to form the complete database configuration.
+					In order to begin working with databases, you must change the database settings. The
+					database config file is located at <em>APPPATH/config/db.php</em>.
 				</p>
 				<p>
-					Database configurations are formated like so:
+					データベースの設定のフォーマットはこんな感じです:
 				</p>
-					<pre class="php"><code>// a MySQL driver configuration
+					<pre class="php"><code>// MySQL ドライバの設定
 'development' => array(
 	'type'           => 'mysqli',
 	'connection'     => array(
@@ -83,7 +80,6 @@
 		'username'       => 'your_username',
 		'password'       => 'y0uR_p@ssW0rd',
 		'persistent'     => false,
-		'compress'       => false,
 	),
 	'identifier'   => '`',
 	'table_prefix'   => '',
@@ -92,7 +88,7 @@
 	'profiling'      => false,
 ),
 
-// a PDO driver configuration, using PostgreSQL
+// PDO ドライバで PostgreSQL を使う設定
 'production' => array(
 	'type'           => 'pdo',
 	'connection'     => array(
@@ -100,7 +96,6 @@
 		'username'       => 'your_username',
 		'password'       => 'y0uR_p@ssW0rd',
 		'persistent'     => false,
-		'compress'       => false,
 	),
 	'identifier'   => '"',
 	'table_prefix'   => '',
@@ -108,78 +103,73 @@
 	'enable_cache'   => true,
 	'profiling'      => false,
 ),</code></pre>
-				<h3 id="config_settings">All Config Settings</h3>
+				<h3 id="config_settings">全設定項目</h3>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Setting</th>
-							<th>Type</th>
-							<th class="description">Description</th>
+							<th>項目</th>
+							<th>型</th>
+							<th class="description">説明</th>
 						</tr>
 						<tr>
 							<th><kbd>type</kbd></th>
 							<td>string</td>
-							<td>What type of connection to use. Can be mysq, mysqli or pdo.</td>
+							<td>接続に使う種類。mysq [訳注: mysql の誤植], mysqli または pdo です。</td>
 						</tr>
 						<tr>
 							<th><kbd>connection</kbd></th>
 							<td>array</td>
-							<td>Connection settings array</td>
+							<td>接続情報の配列</td>
 						</tr>
 						<tr>
-							<th><kbd>connection.dsn</kbd></th>
+							<th><kbd>connection.dns</kbd></th>
 							<td>string</td>
-							<td>Connection DSN for PDO.</td>
+							<td>PDO の DNS [訳注: DSN の誤植]</td>
 						</tr>
 						<tr>
 							<th><kbd>connection.username</kbd></th>
 							<td>string</td>
-							<td>Connection user.</td>
+							<td>ユーザ名</td>
 						</tr>
 						<tr>
 							<th><kbd>connection.password</kbd></th>
 							<td>string</td>
-							<td>Connection password.</td>
+							<td>パスワード</td>
 						</tr>
 						<tr>
 							<th><kbd>connection.persistent</kbd></th>
 							<td>boolean</td>
-							<td>Wether to initiate a persisten connection.</td>
-						</tr>
-						<tr>
-							<th><kbd>connection.compress</kbd></th>
-							<td>boolean</td>
-							<td>Wether to use client compression when using MySQL / MySQLi.</td>
+							<td>持続的接続を開始するかどうか</td>
 						</tr>
 						<tr>
 							<th><kbd>identifier</kbd></th>
 							<td>string</td>
-							<td>Delimiter used to quote identifiers.</td>
+							<td>デリミタに使われるクオートの識別子</td>
 						</tr>
 						<tr>
 							<th><kbd>table_prefix</kbd></th>
 							<td>string</td>
-							<td>Table prefix.</td>
+							<td>テーブルの接頭辞</td>
 						</tr>
 						<tr>
 							<th><kbd>charset</kbd></th>
 							<td>string</td>
-							<td>Connection charset.</td>
+							<td>文字セット</td>
 						</tr>
 						<tr>
 							<th><kbd>enable_cache</kbd></th>
 							<td>boolean</td>
-							<td>Wether to allow caching, will overwrite query cache settings on a connection basis.</td>
+							<td>キャッシュ機能を使うかどうか。will overwrite query cache settings on a connection basis.</td>
 						</tr>
 						<tr>
 							<th><kbd>profiling</kbd></th>
 							<td>boolean</td>
-							<td>Wether to add the connections queries to the profiler.</td>
+							<td>プロファイラにクエリ情報を追加するかどうか</td>
 						</tr>
 					</tbody>
 				</table>
 				<p>
-					Once you have your configuration in place, it's time to <a href="./usage.html">use it</a>.
+					設定が済んだら、<a href="./usage.html">使ってみましょう</a>。
 				</p>
 			</section>
 
@@ -188,6 +178,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/classes/database/introduction.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/classes/database/introduction.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

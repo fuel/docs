@@ -46,16 +46,16 @@
 
 			<h2>Orm</h2>
 
-			<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-				Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-				to establish relations between those objects.<br />
-				It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
-				Active Record Pattern</a>, but was also influenced by other systems.</p>
+			<p>ORMは<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
+				関係マッピング</a>の略です。 これは、2つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
+				それはあなたがそれらのオブジェクト間の関係を確立することができます。<br />
+				それは <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">
+				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
 
 			<article>
 				<h3 id="included_observers">Observers: Included observers</h3>
 
-				<p>Included observers are listed below:</p>
+				<p>付属のオブザーバーは以下に記載されています:</p>
 
 				<ul>
 					<li><a href="#os_self">Observer_Self</a></li>
@@ -68,30 +68,31 @@
 
 				<h4 id="os_self">Observer_Self</h4>
 
-				<p>While not exactly good practice, in some cases it's probably cleanest to just have the event method with
-					your model. That's where the Observer_Self comes in, it checks if you model has a method named after
-					the event and prefixed with <kbd>_event_</kbd>. For example for the <kbd>after_save</kbd> event you need
-					to add a public method <kbd>_event_after_save()</kbd> to your model so it can have the observer call on
-					the model itself.</p>
+				<p>良い習慣ではありませんが、場合によっては、あなたのモデルとイベントメソッドだけを持っているのはおそらく最も
+					クリーンです。 もしモデルがイベントにちなんで命名され、<kbd>_event_</kbd>で始まるメソッドを持っている場合は、
+					Observer_Selfの出番です。たとえば <kbd>after_save</kbd> イベントの場合、 あなたは
+					public メソッドの <kbd>_event_after_save()</kbd> を 使っているmodelに追加する必要があり、それは 
+					モデル自体のオブザーバの呼び出しを持つことができます。
+				</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Self');
 
-// But if you only observe some events you can optimize by only adding those
+// しかし、あなただけのいくつかのイベントを観察する場合には、それらを追加することによって最適化することができます
 protected static $_observers = array('Orm\\Observer_Self' => array('after_save', 'before_insert'));</code></pre>
 
 				<h4 id="os_created">Observer_CreatedAt</h4>
 
-				<p>This observer acts only upon <kbd>before_insert</kbd> and expects your model to have a
-					<kbd>created_at</kbd> property which will be set to the Unix timestamp when saving for the first time.</p>
+				<p>このオブザーバは<kbd>before_insert</kbd>だけに作用します。<kbd>created_at</kbd>プロパティを持っている
+					モデルが初めて保存するとき、Unixタイムスタンプがセットされます。</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_CreatedAt');
 
-// Adding it with config:
-// - only needs to run on before_insert
-// - use mysql timestamp (uses UNIX timestamp by default)
-// - use just "created" instead of "created_at"
+// 設定追加:
+// - before_insertのみで実行する必要
+// - mysqlのタイムスタンプを使用（デフォルトではUNIXタイムスタンプを使用しています）
+// - "created_at"の代わりに"created"を使用
 protected static $_observers = array(
 	'Orm\\Observer_CreatedAt' => array(
 		'events' => array('before_insert'),
@@ -102,17 +103,17 @@ protected static $_observers = array(
 
 				<h4 id="os_updated">Observer_UpdatedAt</h4>
 
-				<p>This observer acts only upon <kbd>before_save</kbd> and expects your model to have a
-					<kbd>updated_at</kbd> property which will be set to the Unix timestamp when saving (also during the
-					first time).</p>
+				<p>このオブザーバーは <kbd>before_save</kbd>の時に機能します。
+                                    あなたのモデルが <kbd>updated_at</kbd>プロパティがあると想定し、保存するとき(もしくは最初に）、
+                                    そのプロパティはUnixタイムスタンプが設定されます。</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_UpdatedAt');
 
-// Adding it with config:
-// - only needs to run on before_save
-// - use mysql timestamp (uses UNIX timestamp by default)
-// - use just "updated" instead of "updated_at"
+// 設定追加:
+// - before_saveのみで実行する必要あり
+// - mysqlのタイムスタンプを使用（デフォルトではUNIXタイムスタンプを使用しています）
+// - "updated_at"の代わりに、"updated"を使用
 protected static $_observers = array(
 	'Orm\\Observer_UpdatedAt' => array(
 		'events' => array('before_save'),
@@ -123,29 +124,30 @@ protected static $_observers = array(
 
 				<h4 id="os_validation">Observer_Validation</h4>
 
-				<p>This observer only acts on <kbd>before_save</kbd>. It is used to prevent the model from saving if
-					validation rules fail. It uses the <a href="../../../classes/fieldset.html">Fieldset</a> class
-					and can also generate the form for you.</p>
+				<p>このオブザーバのみ<kbd>before_save</kbd>に作用します。
+					これは、検証規則が失敗した場合の保存からモデルを防ぐために使用されます。
+					それは、 <a href="../../../classes/fieldset.html">Fieldset</a>クラスを使用し、
+					またあなたのためのフォームを生成することができます。
+				</p>
 
-				<p class="note">The primary key(s) are not added to Validation nor to the Form as they're not editable
-					and will be auto-increment most of the time. In cases where you set it upon creation and need
-					validation you'll need to add the field manually.</p>
+				<p class="note">主要なキーは編集できませんし、検証にも、フォームにも追加されません。
+                                 そしてほとんどの場合自動インクリメントとなります。それを創造の上に置いて、確認を必要とする場合、
+                                 あなたは手動でフィールドを加える必要があります。</p>
 
-				<p>The observer can be loaded as follows:</p>
+				<p>オブザーバーは、以下のようにロードすることができます:</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Validation');
 
 // But adding it just for before_save is enough
 protected static $_observers = array('Orm\\Observer_Validation' => array('before_save'));</code></pre>
 
-				<p>Validation rules should be defined in your model in <kbd>$_properties</kbd>. This is demonstrated
-					in <a href="../creating_models.html#propperties">Creating Models</a>. After you have added the
-					Validation Observer, the Orm\ValidationFailed exception will be thrown when the model's data fails
-					to validate before save. As such, you must try/catch your calls to the <kbd>save</kbd> function of
-					a model.</p>
+				<p>検証ルールは<kbd>$_properties</kbd>でモデルで定義する必要があります。
+                                    これは、<a href="../creating_models.html#propperties">モデルの作成</a>に示されています。
+				    あなたが検証オブザーバーを追加した後、モデルのデータを保存する前に検証に失敗した場合、Orm\ValidationFailed に例外が投げられます。
+                                    このようにモデルの<kbd>保存</kbd>機能への呼び出しをtry/catchする必要があります。</p>
 
-				<p>More extensive example functionality/scaffolding is shown below:</p>
+				<p>より広範な機能例/scaffoldingを以下に示します:</p>
 
 				<pre class="php"><code>class Controller_Articles extends Controller
 {
@@ -210,16 +212,17 @@ protected static $_observers = array('Orm\\Observer_Validation' => array('before
 
 }</code></pre>
 
-				<p>As this uses the <a href="../../../classes/fieldset.html">Fieldset</a> class to perform validation,
-					it can also create forms for a model. In the following example, the create and edit forms are
-					defined in a common view however you can just as easily define it in the model and obtain an
-					instance of it in the view using <code>Fieldset::instance()</code>.</p>
+				<p>これは、<a href="../../../classes/fieldset.html">Fieldset</a>クラスを使用しているので、検証を実行し、
+                                    また、モデル用のフォームを作成することができます。次の例では、作成と編集フォームが一般的なビューで定義されています。
+                                    しかし、同じように簡単にモデルにそれを定義し、
+                                    <code>Fieldset::instance()</code>を使用することで、
+                                    viewでそれのインスタンスを取得することができます。</p>
 
-				<pre class="php"><code>// use an instance of Model_Article to create the form, you can also pass the classname
+				<pre class="php"><code>// フォームを作成するModel_Articleのインスタンスを使用して、あなたはまた、クラス名を渡すことができます。
 $fieldset = Fieldset::forge()->add_model($article);
 
-// Populate the form with values from the model instance
-// passing true will also make it use POST/PUT to repopulate after failed save
+// モデルのインスタンスからの値を使用してフォームを移入します。
+// trueを渡しても、セーブ失敗した後に再設定するためにPOST/PUTを使用します。
 $fieldset->populate($article, true);
 
 // The fieldset will be build as HTML when cast to string
@@ -228,22 +231,21 @@ echo $fieldset;</code></pre>
 				<h4 id="os_typing">Observer_Typing</h4>
 
 				<p>
-					This is for 2 things: type enforcement for input and type casting for output from the DB. That means
+					これは2つのもののためのものです: type enforcement for input and type casting for output from the DB. That means
 					that when you're saving the Typing observer will try to cast the input value to the expected type and
 					throw an exception when it can't. And when you're retrieving DB data, normally it would all be strings
 					(even integers and floats) but with the typing observer those will be cast to their scalar type.
 				</p>
 
-				<p>In addition to the above the Typing observer also adds support for serialized &amp; json fields. Both should
-					be string type fields ("text" preferably) but will have their value encoded for saving (using
-					<kbd>serialize()</kbd> or <kbd>json_encode()</kbd>) and decoded when retrieving from the DB (using
-					<kbd>unserialize()</kbd> or <kbd>json_decode()</kbd>).</p>
+				<p>タイピングオブザーバーは上記のほかに、シリアル＆JSONフィールドのサポートを追加します。どちらも
+                                    文字列型のフィールドである必要があります（"テキスト"が望ましい）。  しかし保存用に(<kbd>serialize()</kbd> もしくは <kbd>json_encode()</kbd>を使って)エンコードされたの値を持つことになり、そして
+                                    DBから取得する際には(<kbd>unserialize()</kbd> もしくは <kbd>json_decode()</kbd>を使って)デコードをします。</p>
 
 				<p class="note">The Observer_Typing isn't meant as an alternative to validation, don't try to use it as
 					such. Neither are the exceptions thrown by this observer meant to be read by the visitor of your site,
 					they're meant to help you debug your code.</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Typing');
 
 // But adding it just for these specific events is enough
@@ -258,9 +260,9 @@ protected static $_observers = array('Orm\\Observer_Typing' => array('before_sav
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th style="width: 15%;">Param</th>
+							<th style="width: 15%;">パラメータ</th>
 							<th style="width: 35%;">Valid input</th>
-							<th style="width: 50%;">Description</th>
+							<th style="width: 50%;">説明</th>
 						</tr>
 						<tr>
 							<th>data_type</th>
@@ -268,43 +270,43 @@ protected static $_observers = array('Orm\\Observer_Typing' => array('before_sav
 								text, tinytext, mediumtext, longtext, enum, set, bool, boolean, serialize, json,
 								time_unix, time_mysql</td>
 							<td>
-								The SQL data type, <strong>Required</strong> to have the typing observer used on a field.
+                                                                フィールド上で使用されるタイピングオブザーバを持っているために<strong>必要な</strong>SQLデータ型。
 							</td>
 						</tr>
 						<tr>
 							<th>null</th>
 							<td>bool</td>
 							<td>
-								Whether <kbd>null</kbd> is allowed as a value
+								<kbd>null</kbd> が値として許可されているかどうか
 							</td>
 						</tr>
 						<tr>
 							<th>character_maximum_length</th>
 							<td>int</td>
 							<td>
-								The maximum number of characters allowed for a string data type (varchar, text)
+								文字列データ型のために許可される最大文字数 (varchar, text)
 							</td>
 						</tr>
 						<tr>
 							<th>min</th>
 							<td>int</td>
 							<td>
-								The minimal value for an integer
+								整数の最小値
 							</td>
 						</tr>
 						<tr>
 							<th>max</th>
 							<td>int</td>
 							<td>
-								The maximum value for an integer
+								整数の最大値
 							</td>
 						</tr>
 						<tr>
 							<th>options</th>
 							<td>array</td>
 							<td>
-								Array of valid string values for set or enum data type<br />
-								<strong>Note:</strong> currently the options themselves cannot contain comma's.
+								セットのための有効な文字列値の配列または列挙データ型<br />
+								<strong>注:</strong> 現在のオプション自体はカンマを含めることはできません。
 							</td>
 						</tr>
 					</tbody>
@@ -313,25 +315,26 @@ protected static $_observers = array('Orm\\Observer_Typing' => array('before_sav
 				<h3 id="os_slug">Observer_Slug</h3>
 
 				<p>
-					This observer creates a unique url safe slug for your model. It works only upon <kbd>before_insert</kbd>
-					and expects your model to have a <kbd>title</kbd> (to create the slug) and a <kbd>slug</kbd> (to save it) property.
+					このオブザーバは、モデル固有のURL安全スラグを作成します。 それは "before_insert"時にのみ動作し、
+					あなたのモデルが<kbd>タイトル</kbd>（スラグを作成するため）と<kbd>スラグ</kbd>（スラグを保存するため）プロパティを持つことを想定しています。
 				</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>//オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Slug');
 
-// With settings
+// 設定
 protected static $_observers = array(
 	'Orm\\Observer_Slug' => array(
 		'events' => array('before_insert'),
-		'source' => 'title',   // property used to base the slug on, may also be array of properties
-		'property' => 'slug',  // property to set the slug on when empty
+		'source' => 'title',   // 上にスラグをベースに使用されるプロパティはプロパティの配列かもしれません。
+		'property' => 'slug',  // プロパティが空のときにスラグを設定します。
 	),
 );
 protected static $_observers = array('Orm\\Observer_Slug' => array('before_insert'));</code></pre>
 
 				<p>
-					The Observer creates the <kbd>slug</kbd> from the <kbd>title</kbd> using <a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a> and adds an index, if the slug already exists.
+					オブザーバは<a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a>を使用して
+					<kbd>タイトル</kbd>から<kbd>スラグ</kbd>を作成し、スラグが既に存在する場合は、インデックスを追加します。
 				</p>
 			</article>
 
@@ -340,6 +343,7 @@ protected static $_observers = array('Orm\\Observer_Slug' => array('before_inser
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/packages/orm/observers/included.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/packages/orm/observers/included.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

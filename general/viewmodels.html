@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>ViewModels - General - FuelPHP Documentation</title>
+	<title>ビューモデル - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -45,25 +45,25 @@
 		<div id="main">
 
 			<article>
-				<h2>ViewModels</h2>
+				<h2>ビューモデル</h2>
 
-				<p>ViewModels are optional. If you don't need them, you can use <a href="views.html">Views</a>.</p>
+				<p>ビューモデルはオプションです。必要ない場合は、<a href="views.html">ビュー</a> を使用することができます。</p>
 
-				<h3 id="what_is_a_viewmodel">What is a ViewModel?</h3>
+				<h3 id="what_is_a_viewmodel">ビューモデルとは?</h3>
 
-				<p>A ViewModel is a class that contains the logic that is needed to generate your views. When the controller
-				is done with your user input and is done with whatever actions it needed to take, it turns execution over to
-				the ViewModel to retrieve whatever data is needed for the view. A ViewModel shouldn't do any data manipulation
-				but can contain database calls and any other retrieval or preparation operations needed to generate the View's
-				data.</p>
+				<p>ビューモデルはビューの生成に必要なロジックを含むクラスです。
+				コントローラがユーザ入力を処理し、必要なアクションを処理すると、
+				ビューモデルにビューに必要なデータを取得するように処理を引き継ぎます。
+				ビューモデルはデータの操作を一切すべきではありませんが、データベースの呼び出しや他のデータの取得、
+				ビューの生成に必要な準備の操作を含めます。</p>
 
-				<h3 id="creating_viewmodels">Creating a ViewModel</h3>
+				<h3 id="creating_viewmodels">ビューモデルの作成</h3>
 
-				<p>First we'll create an empty ViewModel in <code>app/classes/view/index.php</code>:</p>
+				<p>最初は <code>app/classes/view/index.php</code> で、空のビューモデルを作成します:</p>
 
 				<pre><code>class View_Index extends ViewModel {}</code></pre>
 
-				<p>Then you create the view to which this belongs in <code>app/views/index.php</code>:</p>
+				<p>そして、<code>app/views/index.php</code> でこれが属するビューを作成します:</p>
 
 				<pre><code>&lt;h1&gt;&lt;?php echo $title; ?&gt;&lt;/h1&gt;
 
@@ -76,21 +76,21 @@
 ?&gt;
 &lt;/ul&gt;</code></pre>
 
-				<p class="note"><strong>On view names</strong><br />
-				A ViewModel and its view are expected to share the same name. Thus a
-				ViewModel <code>View_Index</code> expects the view to be in <code>app/views/index.php</code>. And underscores
-				work here the same as with classes, which means that the view for <code>View_Some_Thing</code> is expected
-				to be in <code>app/views/some/thing.php</code>.<br />
-				This default can be overwritten by setting a non-static <code>$_view</code> property in your ViewModel with the
-				View name (without .php suffix).</p>
+				<p class="note"><strong>ビューの名前</strong><br />
+				ビューモデルとそのビューは同じ名前を共有します。
+				ビューモデル <code>View_Index</code> のビューは <code>app/views/index.php</code> になります。
+				アンダースコアはクラスと同じように、つまり、ビュー <code>View_Some_Thing</code> は、
+				<code>app/views/some/thing.php</code> になります。<br />
+				このデフォルトの動作は、そのビューを使うビューモデルの中で、静的でない <code>$_view</code> プロパティを設定することで、
+				オーバーライトできます。</p>
 
-				<p>And last we'll call the ViewModel from the controller:</p>
+				<p>最後に、ビューモデルをコントローラから呼び出します:</p>
 
 				<pre><code>ViewModel::forge('index');</code></pre>
 
-				<p>Now we have everything setup; however, there is still no data passed to the view. It still needs to get a
-				<code>$title</code> string and <code>$articles</code> array passed to it. We do this by adding a <code>view()</code> method
-				to the ViewModel which will assign this data:</p>
+				<p>これですべてを設定しました; しかし、まだデータがビューに渡されていません。
+				<code>$title</code> の文字列と <code>$articles</code> の配列を渡す必要があります。
+				ビューモデルにこのデータを与える <code>view()</code> メソッドを追加します:</p>
 
 				<pre><code>class View_Index extends ViewModel
 {
@@ -103,13 +103,13 @@
 	}
 }</code></pre>
 
-				<p>And you're done.</p>
+				<p>これで完了です。</p>
 
-				<h3 id="functions">Passing functions to views</h3>
+				<h3 id="functions">関数をビューに渡す</h3>
 
-				<p>To pass a View specific function from your ViewModel to your View, you use <a href="http://www.php.net/manual/functions.anonymous.php">Closures</a>:</p>
+				<p>ビューモデルから、特定の関数をビューに渡すには、<a href="http://www.php.net/manual/functions.anonymous.php">クロージャ</a> を使用します。</p>
 
-				<pre class="php"><code>// In the ViewModel
+				<pre class="php"><code>// ビューモデルの中
 class View_Index extends ViewModel
 {
 
@@ -119,50 +119,50 @@ class View_Index extends ViewModel
 	}
 }
 
-// Which you can then use in your view:
-$echo_upper('this string'); // Outputs: "THIS STRING"</code></pre>
+// ビューの中で使える:
+$echo_upper('this string'); // 出力: "THIS STRING"</code></pre>
 			</article>
 
 			<article>
-				<h3 id="security">Security</h3>
+				<h3 id="security">セキュリティ</h3>
 
-				<p>It works the same as with View. This means that anything set on the ViewModel will be output encoded as
-					long as you don't switch that off. You can use the same <code>set($name, $value, $encode)</code> method
-					on the ViewModel as you'd use on the View directly. More on this in the
-					<a href="views.html#security">Security section of View</a>.</p>
+				<p>ビューと同じように動作します。ビューモデルでセットされたものはすべて、オフにしない限り、出力エンコードされます。
+					ビューで使うのと同じようにビューモデルでも <code>set($name, $value, $encode)</code> メソッドが使えます。
+					詳細は、
+					<a href="views.html#security">ビューのセキュリティのセクション</a> にあります。</p>
 			</article>
 
 			<article>
-				<h3 id="advanced">Advanced usage</h3>
+				<h3 id="advanced">高度な利用法</h3>
 
-				<h4 id="more_methods">More methods</h4>
+				<h4 id="more_methods">追加のメソッド</h4>
 
-				<p>If there are different ways of parsing the same View, you can add multiple methods to the ViewModel other
-				than the default <code>view()</code> method. To use those, you need to add the method's name as the second parameter to the
-				<code>ViewModel::forge()</code> method:</p>
-
+				<p>同じビューを解析する別の方法がある場合は、デフォルトの <code>view()</code> メソッド以外に複数のメソッドを追加することができます。
+				そうするためには、第 2 パラメータにメソッド名を指定した
+				<code>ViewModel::forge()</code> メソッドを追加します:</p>
+				
 				<pre><code>// will call other_method() upon the ViewModel from the above example
 ViewModel::forge('index', 'other_method');</code></pre>
 
-				<h4 id="before_after">Before and after methods</h4>
+				<h4 id="before_after">before と after メソッド</h4>
 
-				<p>If you need to have some data added for all the methods in the ViewModel, you can add a <code>before()</code>
-				or <code>after()</code> method just like you can with Controllers.</p>
+				<p>いくつかのデータをビューモデルのすべてのメソッドで使う必要がある場合、<code>before()</code>
+				または <code>after()</code> メソッドをコントローラと同様に追加します。</p>
 
-				<h4 id="changing_view">Changing the view</h4>
+				<h4 id="changing_view">ビューの変更</h4>
 
-				<p>By default, the <code>$this->_view</code> gets a View object assigned to it. You can replace this object by
-				making your own <code>set_view()</code> method in the ViewModel and setting the <code>$this->_view</code> to
-				an object of your choosing.<br />
-				However, this object must allow you to set properties on it (which are used as the template data) and must have
-				a <code>__toString()</code> magic method that will render and return the parsed contents.<br />
-				The name of the expected view is available in the <code>$this->_view</code> property.</p>
+				<p>デフォルトでは <code>$this->_view</code> にビューオブジェクトがアサインされます。
+				ビューモデルに独自の <code>set_view()</code> メソッドを作成し、
+				<code>$this->_view</code> にオブジェクトをセットすることで置き換えることができます。
+				しかし、そのオブジェクトはプロパティを設定でき (テンプレートのデータとして使われます)、解析されたコンテンツをレンダリングし返す
+				<code>__toString()</code> マジックメソッドを持たなくてはなりません。
+				ビューの名前は <code>$this->_view</code> プロパティから取得できます。</p>
 
-				<h4>Using ViewModels from other namespaces or not View_ prefixed</h4>
+				<h4>他の名前空間や接頭辞 View_ なしでのビューモデルの使用</h4>
 
-				<p>If you want to use these, you have to use the full classname with the <code>forge()</code>, including the namespace.
-				In these cases, the default naming will often not work as expected so setting the <code>$_view</code>
-				property is encouraged.</p>
+				<p>これらを使用する場合、名前空間を含む、完全なクラス名で <code>forge()</code> を使う必要があります。
+				その場合、デフォルトの命名規則はしばしば期待したように動作しませんので、
+				<code>$_view</code> プロパティをセットすることが推奨されます。</p>
 			</article>
 
 		</div>
@@ -170,6 +170,7 @@ ViewModel::forge('index', 'other_method');</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/general/viewmodels.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/general/viewmodels.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

@@ -45,44 +45,44 @@
 		<div id="main">
 			<h2>Orm</h2>
 
-			<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-				Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-				to establish relations between those objects.<br />
-				It follows closely the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
-				Active Record Pattern</a>, but was also influenced by other systems.</p>
+			<p>ORMは<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
+				関係マッピング</a>の略です。 これは、2つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
+				それはあなたがそれらのオブジェクト間の関係を確立することができます。<br />
+				それは <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">
+				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
 
 			<section>
-				<h2 id="creation">Creating Models</h2>
+				<h2 id="creation">モデルの作成</h2>
 
-				<p>Creating a model takes little time, the convention is to use the <kbd>Model_</kbd>
-					prefix for the class (eg Model_Article using the filename article.php) and thus
-					place them in <kbd>app/classes/model/</kbd> but you are free to use
-					whatever name you choose.</p>
+				<p>モデルは少しの時間で作る事ができます, 規則では <kbd>Model_</kbd>
+					プレフィックスをクラスにつけます。 (ファイル名が、article.phpなら、Model_Articleとします。) 
+					そして、 <kbd>app/classes/model/</kbd>に従って設置をしますが、あなたが選択した任意の名前を
+					自由に使用することができます。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
 
-				<p class="note">The above only works with the MySQL and MySQLi drivers because it needs to fetch the model
-					properties from the database. It is however not very efficient and thus discouraged to use it this way
-					because you'll always need that one extra query per model just to fetch the columnnames.</p>
+				<p class="note">データベースからモデルのプロパティを取得する必要があるため,mysqlとmysqliドライバと上記のみ動作します。
+					しかしそれはひどく効率的ではないため、この方法で使う事を推奨しません。
+					それは常に1つのモデルごとに1つ余分なクエリ,列名だけをフェッチすることが必要になるからです。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
 	protected static $_properties = array('id', 'title', 'contents', 'publish');
 }</code></pre>
 
-				<h2 id="config">Configuration</h2>
+				<h2 id="config">設定</h2>
 
-				<p>You can add static properties to the Model to configure it. As we've seen there are none required but
-					setting <kbd>$_properties</kbd> is encouraged. All these can be both <kbd>public</kbd> and
-					<kbd>protected</kbd> but may NOT be <kbd>private</kbd>.<br />
-					Note that all configuration properties are prefixed with a single underscore to prevent collisions with
-					your column names.</p>
+				<p>あなたはそれを構成するためにモデルに静的なプロパティを追加することができます。これまで見てきたように、どれも必要ありませんが
+					<kbd>$_properties</kbd>を設定する事が推奨されています。 これらのすべては <kbd>public</kbd> と
+					<kbd>protected</kbd> です。 <kbd>private</kbd>ではありません。<br />
+					すべての設定プロパティーにプレフィックスが着いている事に注意し、
+					列名との衝突を防止するために強調している。</p>
 
 				<h3 id="table_name">protected static $_table_name</h3>
 
-				<p>When this isn't set the <kbd>Model_</kbd> prefix is removed from the classname and the classname is
-					pluralized. Thus "Model_Article" expects table "articles". If you don't follow this convention you can
-					change it by setting the <kbd>$_table_name</kbd> property.</p>
+				<p>クラス名から<kbd>Model_</kbd>プレフィックスが外されている場合、クラス名が複数形になります
+					したがって、"Model_Article"は"articles"テーブルを期待しています。 もし、この規則に従わない場合は
+					<kbd>$_table_name</kbd>でプロパティを設定することによって変更することができます。 </p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -91,30 +91,29 @@
 
 				<h3 id="primary_key">protected static $_primary_key</h3>
 
-				<p>By default this is set to <kbd>array('id')</kbd>, if you use another column name or multiple primary
-					keys you need to set this property.</p>
+				<p>デェフォルとでこれは、<kbd>array('id')</kbd>にセットされています。あなたが別の列名または複数の主キーを使用する場合は、
+					このプロパティを設定する必要があります。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
 	protected static $_primary_key = array('aid');
 }</code></pre>
 
-				<p class="note">The primary key must be a real primary key: unique and unchanging. Don't use it for other
-					purposes (like a foreign key in a one-one relation) as well, that won't work as the PK can't be
-					changed. The Orm won't check this, and while it might seem to work at first glance: you'll get
-					into trouble.<br />
-					It is not required for the PK to be auto_increment (though preferred) and you can specify the PK
-					yourself, but only the first time. Once it's set, it's set.</p>
+				<p class="note">主キーは、一意で普遍な本当の主キーでなければなりません。PKが変更するようには動かないだけでなく、
+					他の目的（1対1の関係で外部キーなど）のためにそれを使用しないでください。ORMはこれをチェックしません。それは一見しただけで動作するように見えるかもしれませんが
+					あなたをトラブルに巻き込むでしょう。<br />
+					それはPKには必要ありません。 auto_incrementにすべき（望ましい）です。PKを
+					自分で初回のみ指定することができます。一度セットすると、それがセットされます。</p>
 
 				<h3 id="propperties">protected static $_properties</h3>
 
-				<p>There's already a simple example above of adding all model properties, they can also be configured by
-				using the column name as the key and setting options like type, label & validation.</p>
+				<p>すべてのモデルプロパティを追加する上記の簡単な例が既にあり、
+					それらはキーとして列名を使用し、型、ラベル＆検証のようなオプションを設定することができます。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
 	protected static $_properties = array(
-		'id', // both validation &amp; typing observers will ignore the PK
+		'id', // 両方の検証 &amp; タイピングのオブザーバーは、PKを無視します。
 		'name' => array(
 			'data_type' => 'varchar',
 			'label' => 'Article Name',
@@ -132,14 +131,14 @@
 			'data_type' => 'int',
 			'label' => 'Created At',
 			'form' => array(
-				'type' => false, // this prevents this field from being rendered on a form
+				'type' => false, // このフィールドは、formが表示される際に、レンダリングされません。
 			),
 		),
 		'updated_at' => array('data_type' => 'int', 'label' => 'Updated At')
 	);
 }</code></pre>
 
-				<p>Form attributes can be passed in the form of an array as shown in the example.</p>
+				<p>この例に示すように、フォームの属性は配列の形で渡すことができます。</p>
 
 				<p>Validation rules can be passed as either just the rule: <kbd>array('required')</kbd> or as the rule
 					with an array of params: <kbd>array('min_length' => array(3))</kbd> both are shown in the example
@@ -170,45 +169,22 @@
 
 				<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many, $_many_through</h3>
 
-				<p>Relating models to each other is explained in <a href="relations/intro.html">Relating Models</a></p>
+				<p>お互いのモデルを関連することは、 <a href="relations/intro.html">Relating Models</a>で説明しています。</p>
 
 				<h3 id="connection">protected static $_connection</h3>
 
-				<p>By default this property does not exist and Model::connection() returns <kbd>null</kbd>, but you can set
-				it to any other database name configured in <kbd>app/config/db.php</kbd>. Note however that relations don't
-				work across connections.</p>
+				<p>デフォルトでは、このプロパティが存在しません。そして Model::connection() は <kbd>null</kbd>を返します。 しかし、
+				<kbd>app/config/db.php</kbd>で設定された,任意の他のデータベース名に設定することができます。関係が接続の向こう側に動作しないことに
+				注意してください。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
 	protected static $_connection = 'articles_database';
 }</code></pre>
 
-				<h3 id="to_array_exclude">protected static $_to_array_exclude</h3>
-
-				<p>
-					If you are writing an API driven application, often you want to limit the columns that are exposed to the
-					API interface. For example, when exposing a user record, you would not want to expose the user's password,
-					login hash or salt.
-				</p>
-				<p>
-					In your model definition, you can add a list of columns to the <em>to_array_exclude</em> array to exclude
-					them from being exported using to_array().
-				</p>
-				<pre class="php"><code>class Model_User extends Orm\Model
-{
-	protected static $_to_array_filter = array(
-		'password', 'login_hash', 'salt'	// exclude these columns from being exported
-	);
-}</code></pre>
-				<p class="note">
-					By default the to_array() method exports both column and relation data loaded in the current model object.
-					Optionally, it allows you to export the custom properties too. Array exclusion works on column names,
-					custom properties and relations, allowing you to exclude properties from all of them.
-				</p>
-
 				<h3 id="observers">protected static $_observers</h3>
 
-				<p>Adding observers is explained in <a href="observers/intro.html">Observers</a></p>
+				<p>追加オブザーバーについては <a href="observers/intro.html">Observers</a>で説明されています。</p>
 			</section>
 
 		</div>
@@ -216,6 +192,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/packages/orm/creating_models.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/packages/orm/creating_models.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

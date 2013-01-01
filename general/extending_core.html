@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Extending Core - General - FuelPHP Documentation</title>
+	<title>Core の拡張 - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,64 +44,64 @@
 
 		<div id="main">
 
-			<h2>Extending Core Classes</h2>
+			<h2>コアクラスの拡張</h2>
 
-			<p><strong>Be sure to know what you are doing, extended core methods under the same name will be used by the
-			core as well as by your application and this may result in unexpected behavior.</strong></p>
+			<p><strong>何をしているかを理解してください。同じ名前で拡張されたコアメソッドは、アプリケーションからと同様にコアから使用されます。
+			そのため予期しない振る舞いをすることがあります。</strong></p>
 
 			<ul>
-				<li><a href="#extend_dont_replace">Extending but not replacing the core class</a></li>
-				<li><a href="#extend_and_replace">Extending &amp; replacing core classes</a></li>
-				<li><a href="#extend_from_packages">Extending the Core from packages</a></li>
-				<li><a href="#extension_limitations">Extension limitations</a></li>
+				<li><a href="#extend_dont_replace">コアクラスを置き換えずに拡張する</a></li>
+				<li><a href="#extend_and_replace">コアクラスを拡張し、置き換える</a></li>
+				<li><a href="#extend_from_packages">パッケージからコアを拡張する</a></li>
+				<li><a href="#extension_limitations">拡張の制限</a></li>
 			</ul>
 
 			<article>
-				<h3 id="extend_dont_replace">Extending but not replacing the core class</h3>
+				<h3 id="extend_dont_replace">コアクラスを置き換えずに拡張する</h3>
 
-				<p>These are the easiest and will work like any other class you create; just make them extend the core class
-				in the global namespace:</p>
+				<p>最も簡単で、あなたが生成した他のクラスと同様に動作します。
+				グローバル名前空間のコアクラスを単に拡張します。</p>
 
 				<pre><code>class MyConfig extends Config {}</code></pre>
 			</article>
 
 			<article>
-				<h3 id="extend_and_replace">Extending &amp; replacing core classes</h3>
-
+				<h3 id="extend_and_replace">コアクラスを拡張し、置き換える</h3>
 				<p>If you want your core extension to be used by the core as well as by your own application you need to extend
 				it under the same name but take it from the "Fuel\Core" namespace. Below is an example for the Lang class
 				which you create in "fuel/app/classes/lang.php":</p>
 
 				<pre><code>class Lang extends Fuel\Core\Lang {}</code></pre>
 
-				<p>But classes that have the same name as core classes are ignored by default. To make the Autoloader recognize
-				your replacement you need to register it in the application bootstrap file. Search for the lines below:</p>
+				<p>しかし、コアクラスを同じ名前を持つクラスは、デフォルトでは無視されます。
+				オートローダに置き換えたクラスを認識させるには、アプリケーションブートストラップファイルで登録するする必要があります。次の行を探してください:</p>
 
 				<pre><code>Autoloader::add_classes(array(
-	// Add classes you want to override here
+	// ここにオーバーライドしたいクラスを追加します
 	// Example: 'View' => APPPATH.'classes/view.php',
 ));</code></pre>
+
 
 				<p>As is explained in the comments you need to add the new Lang class as follows:</p>
 
 				<pre class="php"><code>Autoloader::add_classes(array(
-	// Add classes you want to override here
+	// ここにオーバーライドしたいクラスを追加します
 	// Example: 'View' => APPPATH.'classes/view.php',
 	'Lang' => APPPATH.'classes/lang.php',
 ));</code></pre>
 
-				<p>After this the core class will have been replaced by your extension.</p>
+				<p>この後、コアクラスはあなたが拡張したクラスに置き換わります。</p>
 				<p class="note">The core class will still be available when used with full namespace prefixed. With the above example of
 				extending "Lang" you can still use the original by calling "Fuel\Core\Lang".</p>
 			</article>
 
 			<article>
-				<h3 id="extend_from_packages">Extending the Core from packages</h3>
+				<h3 id="extend_from_packages">パッケージからコアを拡張する</h3>
 
-				<p>By adding your package as a core namespace the autoloader will attempt to load any class from your package
-					before it attempts it from the core. You must register these classes with the Autoloader though in order
-					for them to be detected (filesystem autoloader doesn't support aliasing to global). Below is an example for
-					extending the <kbd>View</kbd> class.</p>
+				<p>コアの名前空間としてパッケージを追加することで、オートローダはコアからロードする前に
+					あなたのパッケージからクラスをロードしようとします。
+					それらのクラスは検出されるようにオートローダでクラスを登録しなければなりません (ファイルシステムオートローダはグローバルへのエイリアスをサポートしません)。
+					以下は <kbd>View</kbd> クラスを拡張する例です。</p>
 
 				<pre class="php"><code>Autoloader::add_core_namespace('Example');
 
@@ -111,7 +111,7 @@ Autoloader::add_classes(array(
 			</article>
 
 			<article>
-				<h3 id="extension_limitations">Extension limitations</h3>
+				<h3 id="extension_limitations">拡張の制限</h3>
 
 				<p>All classes can be extended from app. Most classes can be extended from packages but there are a few exceptions:</p>
 
@@ -121,14 +121,14 @@ Autoloader::add_classes(array(
 					<li><kbd>Profiler</kbd></li>
 					<li><kbd>Security</kbd></li>
 					<li><kbd>Event</kbd></li>
-					<li>Any class you use in your main <kbd>app/config/config.php</kbd></li>
+					<li>メインの <kbd>app/config/config.php</kbd> で使用するクラス</li>
 				</ul>
 
-				<h4>Autoloader</h4>
-				<p>The Autoloader class is a special case, you can only extend it once as <code>Autoloader</code> and
-					have it used. After extending it you have to require it manually in the <kbd>app/bootstrap.php</kbd>
-					file after the original <code>Fuel\Core\Autoloader</code>, don't forget to remove the line that
-					aliases the core class to global.</p>
+				<h4>オートローダ</h4>
+				<p>Autoloader クラスは特別なクラスで、<code>Autoloader</code> として一度だけ拡張して使用可能です。
+				拡張した後は、<kbd>app/bootstrap.php</kbd> ファイルでオリジナルの <code>Fuel\Core\Autoloader</code> の後に
+					手動で読み込まなければなりません。
+					グローバルにコアクラスをエイリアスしている行を削除することを忘れないで下さい。</p>
 			</article>
 
 		</div>
@@ -136,6 +136,7 @@ Autoloader::add_classes(array(
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/general/extending_core.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/general/extending_core.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

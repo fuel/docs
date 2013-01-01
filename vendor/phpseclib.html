@@ -46,48 +46,48 @@
 
 			<h2>PHPSecLib</h2>
 
-			<h3>Introduction</h3>
+			<h3>はじめに</h3>
 
 			<p>
-				The PHP Secure Communications Library contains LGPL-licensed pure-PHP implementations of arbitrary-precision integers,
-				fully PKCS#1 (v2.1) compliant RSA, DES, 3DES, RC4, Rijndael, AES, SSH-1, SSH-2, and SFTP. This book discusses how to use them.
+				PHPのセキュリティで保護された通信ライブラリは、任意精度の整数のLGPLライセンスの純粋なPHPの実装が含まれています,
+				PKCS#1 (v2.1) に帰順したRSA, DES, 3DES, RC4, Rijndael, AES, SSH-1, SSH-2, そして SFTPです。この本はそれらを使用する方法について説明します。
 			</p>
 
-			<h3>Documentation</h3>
+			<h3>ドキュメンテーション</h3>
 
-			<p>You can find the original PHPSecLib documentation <a href="http://phpseclib.sourceforge.net/documentation/" target="_blank">here</a>.</p>
+			<p>オリジナルのPHPSecLibドキュメントは <a href="http://phpseclib.sourceforge.net/documentation/" target="_blank">こちら</a>です。</p>
 
-			<h3>FuelPHP Usage</h3>
+			<h3>FuelPHPの使用</h3>
 
 			<p>
-				The PHPSecLib vendor package is used by FuelPHP in the Crypt class, to generate secure hashes, and in the Auth package, which uses PBKDF2.
+				PHPSecLibベンダのパッケージは、安全なハッシュを生成する為に、CryptクラスでFuelPHPで使用されています。PBKDF2を使用して認証パッケージにされています。
 			</p>
 
-			<h3>Application Usage</h3>
+			<h3>アプリケーションの使用状況</h3>
 
 			<p>
-				For use in your application the PHPSecLib package has been converted to a namespaced, autoloader friendly library.
-				You can use it directly from your application.
+				アプリケーションで使用するためPHPSecLibパッケージは名前空間が付き、オートローダで、使いやすいライブラリになっています。
+				アプリケーションから直接使用することができます。
 			</p>
 <pre class="php"><code>&lt;?php
 /**
- * Example controller that does an SSH login
+ * SSHログインを行うサンプルコントローラ
  */
 
 class Controller_Ssh extends Controller
 {
 	public function action_index()
 	{
-		// connect to my server
+		// サーバーに接続する
 		$ssh = new \PHPSecLib\Net_SSH2('myserver.example.org');
 
-		// login
+		// ログイン
 		if ( ! $ssh->login('username', 'password'))
 		{
 			throw new \Exception('ssh login failed');
 		}
 
-		// return the view that formats the directory list
+		// ディレクトリリストをViewに渡す。
 		return View::forge('ssh/dirinfo', array(
 			'pwd' => $ssh->exec('pwd'),
 			'info' => $ssh->exec('ls -la'),
@@ -101,6 +101,7 @@ class Controller_Ssh extends Controller
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/vendor/phpseclib.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/vendor/phpseclib.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

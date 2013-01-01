@@ -45,13 +45,13 @@
 
 		<div id="main">
 
-			<h2>DB Class</h2>
+			<h2>DB クラス</h2>
 
-			<p>The DB class allows you to build and execute database queries and fetch the result.</p>
+			<p>DB クラスは、データベースクエリの生成と実行および結果の取得を行います。</p>
 
 			<article>
 				<h4 class="method" id="method_query">query($query)</h4>
-				<p>The <strong>query</strong> method returns a new Database_Query object.</p>
+				<p><strong>query</strong> メソッドは、新しい Database_Query オブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -59,28 +59,28 @@
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$query</kbd></th>
-										<td><em>required</em></td>
-										<td>SQL query</td>
+										<td><em>必須</em></td>
+										<td>SQL クエリ</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns a Database_Query_Builder_Select object.</td>
+							<th>返り値</th>
+							<td>Database_Query_Builder_Select オブジェクトを返します。</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Will prepare: SELECT * FROM `users`
 $query = DB::query('SELECT * FROM `users`');
@@ -93,7 +93,7 @@ $query = DB::query('SELECT * FROM `users`');
 
 			<article>
 				<h4 class="method" id="method_last_query">last_query()</h4>
-				<p>The <strong>last_query</strong> method returns the last executed SQL query.</p>
+				<p><strong>last_query</strong> メソッドは、最後に実行した SQL クエリを返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -101,30 +101,30 @@ $query = DB::query('SELECT * FROM `users`');
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><em>null</em></td>
-										<td>The database connection.</td>
+										<td>データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>The last executed SQL query.</td>
+							<th>返り値</th>
+							<td>最後に実行した SQL クエリ</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// execute a query
+								<pre class="php"><code>// クエリを実行する
 $user = DB::select()->from('users')->where('id', 1);
 
 echo DB::last_query();
@@ -138,7 +138,7 @@ echo DB::last_query();
 
 			<article>
 					<h4 class="method" id="method_select">select()</h4>
-					<p>The <strong>select</strong> method returns a new Database_Query_Builder_Select object.</p>
+					<p><strong>select</strong> メソッドは、新しい Database_Query_Builder_Select オブジェクトを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -146,28 +146,28 @@ echo DB::last_query();
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$columns</kbd></th>
 										<td><strong>null</strong></td>
-										<td>Columns to select.</td>
+										<td>select するカラム</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns a Database_Query_Builder_Select object.</td>
+							<th>返り値</th>
+							<td>Database_Query_Builder_Select オブジェクト</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Will prepare: SELECT *
 $query = DB::select();
@@ -183,7 +183,7 @@ $query = DB::select('id', 'name');
 
 			<article>
 				<h4 class="method" id="method_select_array">select_array($columns)</h4>
-				<p>The <strong>select_array</strong> method returns a new Database_Query_Builder_Select object.</p>
+				<p><strong>select_array</strong> メソッドは、新しい Database_Query_Builder_Select オブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -191,28 +191,28 @@ $query = DB::select('id', 'name');
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$columns</kbd></th>
 										<td><strong>array();</strong></td>
-										<td>Array of columns to select.</td>
+										<td>select するカラムの配列</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns a Database_Query_Builder_Select object.</td>
+							<th>返り値</th>
+							<td>Database_Query_Builder_Select オブジェクト</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Will prepare: SELECT *
 $query = DB::select_array();
@@ -228,7 +228,7 @@ $query = DB::select_array(array('id', 'name'));
 
 			<article>
 				<h4 class="method" id="method_insert">insert($table = null, $columns = array())</h4>
-				<p>The <strong>insert</strong> method returns a new Database_Query_Builder_Insert object.</p>
+				<p><strong>insert</strong> メソッドは、新しい Database_Query_Builder_Insert オブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -236,13 +236,13 @@ $query = DB::select_array(array('id', 'name'));
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
@@ -258,11 +258,11 @@ $query = DB::select_array(array('id', 'name'));
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns a Database_Query_Builder_Insert object.</td>
+							<th>返り値</th>
+							<td>Database_Query_Builder_Insert オブジェクト</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Will prepare: INSERT INTO `table_name`
 $query = DB::insert('table_name');
@@ -278,7 +278,7 @@ $query = DB::insert('table_name', array('id', 'name'));
 
 			<article>
 				<h4 class="method" id="method_update">update($table = null)</h4>
-				<p>The <strong>update</strong> method returns a new Database_Query_Builder_Update object.</p>
+				<p><strong>update</strong> メソッドは、新しい Database_Query_Builder_Update オブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -286,28 +286,28 @@ $query = DB::insert('table_name', array('id', 'name'));
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">Table to update.</td>
+										<td class="description">update するテーブル</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns a Database_Query_Builder_Update object.</td>
+							<th>返り値</th>
+							<td>Database_Query_Builder_Update オブジェクト</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Will prepare: UPDATE `table_name`
 $query = DB::update('table_name');
@@ -320,7 +320,7 @@ $query = DB::update('table_name');
 
 			<article>
 				<h4 class="method" id="method_delete">delete($table = null)</h4>
-				<p>The <strong>delete</strong> method returns a new Database_Query_Builder_Delete object.</p>
+				<p><strong>delete</strong> メソッドは、新しい Database_Query_Builder_Delete オブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -328,28 +328,28 @@ $query = DB::update('table_name');
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The table to delete from.</td>
+										<td class="description">delete 元のテーブル</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns a Database_Query_Builder_Delete object.</td>
+							<th>返り値</th>
+							<td>Database_Query_Builder_Delete オブジェクト</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Will prepare: DELETE FROM `table_name`
 $query = DB::delete('table_name');
@@ -362,7 +362,7 @@ $query = DB::delete('table_name');
 
 			<article>
 				<h4 class="method" id="method_expr">expr($expression)</h4>
-				<p>The <strong>expr</strong> method returns a new Database_Expression object.</p>
+				<p><strong>expr</strong> メソッドは、新しい Database_Expression オブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -370,28 +370,28 @@ $query = DB::delete('table_name');
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$expression</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The expression.</td>
+										<td class="description">式</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns a Database_Expression object.</td>
+							<th>返り値</th>
+							<td>Database_Expression オブジェクト</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// returns new Database_Expression('COUNT(table_name.table_column)');
 $expr = DB::expr('COUNT(table_name.table_column)');
@@ -410,7 +410,7 @@ $expr = DB::expr('columnname + 1');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_quote">quote($string, $db = null)</h4>
-				<p>The <strong>quote</strong> method returns a quoted string for an SQL query.</p>
+				<p><strong>quote</strong> メソッドは、クオートで囲まれた SQL クエリ文字列を返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -418,38 +418,38 @@ $expr = DB::expr('columnname + 1');</code></pre>
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">The string to quote</td>
+										<td><em>必須</em></td>
+										<td class="description">クオートで囲う文字列</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns a Database_Expression object.</td>
+							<th>返り値</th>
+							<td>Database_Expression オブジェクト</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// returns 'something\'s quoted'.
+								<pre class="php"><code>// 返り値: 'something\'s quoted'
 $query = DB::quote("'something's quoted'");
 
-// returns 'something\'s quoted' through a defined database connection.
+// 返り値: 'something\'s quoted' (定義済みのデータベースコネクションで)
 $query = DB::quote("'something's quoted'", $db_connection);
 </code></pre>
 							</td>
@@ -460,7 +460,7 @@ $query = DB::quote("'something's quoted'", $db_connection);
 
 			<article>
 				<h4 class="method" id="method_quote_identifier">quote_identifier($string, $db)</h4>
-				<p>The <strong>quote_identifier</strong> method returns a quoted string for an SQL query.</p>
+				<p><strong>quote_identifier</strong> メソッドは、クオートで囲まれた SQL クエリ文字列を返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -468,33 +468,33 @@ $query = DB::quote("'something's quoted'", $db_connection);
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">The string, or array of strings, to quote.</td>
+										<td><em>必須</em></td>
+										<td class="description">クオートで囲う文字列または配列</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns a quoted string for an SQL query.</td>
+							<th>返り値</th>
+							<td>クオートで囲まれた SQL 文字列</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// `users`.`name`
 print_r(DB::quote_identifier('users.name'));
@@ -512,7 +512,7 @@ print_r(DB::quote_identifier(array('users.name')));
 
 			<article>
 				<h4 class="method" id="method_quote_table">quote_table($string, $db = null)</h4>
-				<p>The <strong>quote_table</strong> method returns a quoted string for an SQL query.</p>
+				<p><strong>quote_table</strong> メソッドは、クオートで囲まれた SQL クエリ文字列を返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -520,33 +520,33 @@ print_r(DB::quote_identifier(array('users.name')));
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">The string, or array of strings, to quote.</td>
+										<td><em>必須</em></td>
+										<td class="description">クオートで囲う文字列または配列</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns a quoted string for an SQL query.</td>
+							<th>返り値</th>
+							<td>クオートで囲まれた SQL 文字列</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// `users`
 print_r(DB::quote_table('users'));
@@ -564,7 +564,7 @@ print_r(DB::quote_identifier(array('users')));
 
 			<article>
 				<h4 class="method" id="method_table_prefix">table_prefix($table, $db = null)</h4>
-				<p>The <strong>table_prefix</strong> method returns the table name with the configured prefix.
+				<p><strong>table_prefix</strong> メソッドは、設定された接頭辞を付加したテーブル名を返します。
 				If not, then just the prefix is returned.</p>
 				<table class="method">
 					<tbody>
@@ -573,33 +573,33 @@ print_r(DB::quote_identifier(array('users')));
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">The table name to prefix.</td>
+										<td><em>必須</em></td>
+										<td class="description">接頭辞を付加するテーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns the prefixed table name or the table name.</td>
+							<th>返り値</th>
+							<td>接頭辞が付加されたテーブル名もしくはテーブル名</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prefixed_table_name
 print_r(DB::table_prefix('table_name'));
@@ -612,7 +612,7 @@ print_r(DB::table_prefix('table_name'));
 
 			<article>
 				<h4 class="method" id="method_escape">escape($string, $db = null)</h4>
-				<p>The <strong>escape</strong> method returns a escaped string for an SQL query.</p>
+				<p><strong>escape</strong> メソッドは、エスケープされた SQL クエリ文字列を返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -620,33 +620,33 @@ print_r(DB::table_prefix('table_name'));
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">The string to escape.</td>
+										<td><em>必須</em></td>
+										<td class="description">エスケープする文字列</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns an escaped string for an SQL query.</td>
+							<th>返り値</th>
+							<td>エスケープされた SQL クエリ文字列</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// 'or *\' \"'
 print_r(DB::escape('or *\' "'));
@@ -659,8 +659,8 @@ print_r(DB::escape('or *\' "'));
 
 			<article>
 				<h4 class="method" id="method_list_columns">list_columns($table, $like = null, $db = null)</h4>
-				<p>The <strong>list_columns</strong> method return a lists all of the columns in a table.
-				Optionally, a LIKE string can be used to search for specific fields.</p>
+				<p><strong>list_columns</strong> メソッドは、テーブル内のすべてのカラムのリストを返します。
+				オプションで、特定のフィールドの検索に LIKE 文字列を使うこともできます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -668,38 +668,38 @@ print_r(DB::escape('or *\' "'));
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>null</em></td>
-										<td class="description">The table to look in.</td>
+										<td class="description">中を見るテーブル</td>
 									</tr>
 									<tr>
 										<th><kbd>$like</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The column to search for.</td>
+										<td class="description">検索するカラム</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns an array with field data.</td>
+							<th>返り値</th>
+							<td>フィールドのデータの配列</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>/*
 Array
@@ -770,8 +770,8 @@ print_r(DB::list_columns('users','%name%'));
 
 			<article>
 				<h4 class="method" id="method_list_tables">list_tables($like = null, $db = null)</h4>
-				<p>The <strong>list_tables</strong> method return a lists all of the tables in a database.
-				Optionally, a LIKE string can be used to search for specific tables.</p>
+				<p><strong>list_tables</strong> メソッドは、データベース内のすべてのテーブルのリストを返します。
+				オプションで、特定のテーブルの検索に LIKE 文字列を使うこともできます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -779,13 +779,13 @@ print_r(DB::list_columns('users','%name%'));
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$like</kbd></th>
@@ -795,17 +795,17 @@ print_r(DB::list_columns('users','%name%'));
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns an array with table names.</td>
+							<th>返り値</th>
+							<td>テーブル名の配列</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>/*
 Array
@@ -843,33 +843,33 @@ DB::list_tables('%sessions%');
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td class="description">The SQL data type.</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns a normalized array describing the SQL data type.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>/*
 Array
@@ -888,7 +888,7 @@ DB::datatype('char');
 
 			<article>
 				<h4 class="method" id="method_count_records">count_records($table, $db = null)</h4>
-				<p>The <strong>count_records</strong> method returns the number of records in a table.</p>
+				<p><strong>count_records</strong> メソッドは、テーブルのレコード数を返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -896,33 +896,33 @@ DB::datatype('char');
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">The table to count records from.</td>
+										<td><em>必須</em></td>
+										<td class="description">カウント元のテーブル</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns the number of records in a table.</td>
+							<th>返り値</th>
+							<td>テーブルのレコード数</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// (int) 14
 DB::count_records('users');
@@ -935,7 +935,7 @@ DB::count_records('users');
 
 			<article>
 				<h4 class="method" id="method_count_last_query">count_last_query($db = null)</h4>
-				<p>The <strong>count_last_query</strong> method returns the number of records in the last query, without LIMIT or OFFSET applied.</p>
+				<p><strong>count_last_query</strong> メソッドは、LIMIT や OFFSET 句を取り除いた、最後のクエリでのレコードの行数を返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -943,28 +943,28 @@ DB::count_records('users');
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns the number of records in the last query, without LIMIT or OFFSET applied.</td>
+							<th>返り値</th>
+							<td>LIMIT や OFFSET 句を取り除いた、最後のクエリでのレコードの行数</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// SELECT * FROM `users` WHERE `active` = "yes" LIMIT 10;
 $limited_result = DB::select()->from('users')->where('active', '=', 'yes')->limit(10)->execute();
@@ -980,7 +980,7 @@ DB::count_last_query();
 
 			<article>
 				<h4 class="method" id="method_set_charset">set_charset($charset, $db)</h4>
-				<p>The <strong>set_charset</strong> method sets the connection character set. This is called automatically by [static::connect].</p>
+				<p><strong>set_charset</strong> メソッドは、コネクションの文字セットを設定します。This is called automatically by [static::connect].</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -988,33 +988,33 @@ DB::count_last_query();
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$charset</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">The character set name.</td>
+										<td><em>必須</em></td>
+										<td class="description">文字セットの名前</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td><em>void</em></td>
+							<th>返り値</th>
+							<td><em>なし</em></td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>DB::set_charset('utf8');</code></pre>
 							</td>
@@ -1054,7 +1054,7 @@ DB::count_last_query();
 
 			<article>
 				<h4 class="method" id="method_in_transaction">in_transaction($db = null)</h4>
-				<p>The <strong>in_transaction</strong> method checks whether a connection is in transaction.</p>
+				<p><strong>in_transaction</strong> メソッドは、コネクションがトランザクションの中にあるかどうかチェックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -1062,30 +1062,30 @@ DB::count_last_query();
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tbody>
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>引数</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$db</kbd></th>
 											<td><strong>null</strong></td>
-											<td class="description">The database connection.</td>
+											<td class="description">データベースコネクション</td>
 										</tr>
 									</tbody>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td><em>bool</em> - only meaningful with PDO driver. If in the transaction return true. Otherwise return false.</td>
+							<th>返り値</th>
+							<td><em>bool</em> - PDO ドライバでのみ有効。トランザクションの中なら true、そうでなければ false を返す。</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code class="php" >DB::in_transaction();</code></pre>
 							</td>
@@ -1096,7 +1096,7 @@ DB::count_last_query();
 
 			<article>
 				<h4 class="method" id="method_start_transaction">start_transaction($db = null)</h4>
-				<p>The <strong>start_transaction</strong> method begins a transaction on an instance.</p>
+				<p><strong>start_transaction</strong> メソッドは、そのインスタンスでトランザクションを開始します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -1104,29 +1104,29 @@ DB::count_last_query();
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td><em>bool</em> - only meaningful with PDO driver. All others always return true, but
-								throw an Exception when the SQL command fails.</td>
+							<th>返り値</th>
+							<td><em>bool</em> - PDO ドライバでのみ有効。
+							常に true を返すが、SQL コマンドが失敗した場合は例外を投げる。</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>DB::start_transaction();</code></pre>
 							</td>
@@ -1137,7 +1137,7 @@ DB::count_last_query();
 
 			<article>
 				<h4 class="method" id="method_commit_transaction">commit_transaction($db = null)</h4>
-				<p>The <strong>commit_transaction</strong> method commits all pending transactional queries.</p>
+				<p><strong>commit_transaction</strong> メソッドは、未決のすべてのトランザクションクエリをコミットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -1145,29 +1145,29 @@ DB::count_last_query();
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td><em>bool</em> - only meaningful with PDO driver. All others always return true, but
-								throw an Exception when the SQL command fails.</td>
+							<th>返り値</th>
+							<td><em>bool</em> - PDO ドライバでのみ有効。
+							常に true を返すが、SQL コマンドが失敗した場合は例外を投げる。</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>DB::commit_transaction();</code></pre>
 							</td>
@@ -1178,7 +1178,7 @@ DB::count_last_query();
 
 			<article>
 				<h4 class="method" id="method_rollback_transaction">rollback_transaction($db = null)</h4>
-				<p>The <strong>rollback_transaction</strong> method rolls back all pending transactional queries.</p>
+				<p><strong>rollback_transaction</strong> メソッドは、未決のすべてのトランザクションクエリをロールバックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -1186,29 +1186,29 @@ DB::count_last_query();
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>引数</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td><em>bool</em> - only meaningful with PDO driver. All others always return true, but
-								throw an Exception when the SQL command fails.</td>
+							<th>返り値</th>
+							<td><em>bool</em> - PDO ドライバでのみ有効。
+							常に true を返すが、SQL コマンドが失敗した場合は例外を投げる。</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>DB::rollback_transaction();</code></pre>
 							</td>
@@ -1217,22 +1217,22 @@ DB::count_last_query();
 				</table>
 			</article>
 
-			<h3 id="transaction">Transaction example</h3>
+			<h3 id="transaction">トランザクションの例</h3>
 
-				<pre class="php"><code>// typical transaction code flow
+				<pre class="php"><code>// 典型的なトランザクションコードの流れ
 try
 {
     DB::start_transaction();
 
-    // some query ...
+    // 何らかのクエリ...
 
     DB::commit_transaction();
 
-    // return query result
+    // クエリの結果を返す
 }
 catch (Exception $e)
 {
-    // rollback pending transactional queries
+    // 未決のトランザクションクエリをロールバックする
     DB::rollback_transaction();
 
     throw $e;
@@ -1244,6 +1244,7 @@ catch (Exception $e)
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/classes/database/db.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/classes/database/db.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8">	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<link rel="shortcut icon" href="./../favicon.ico" />
@@ -11,7 +11,7 @@
 		var class_prefix = "Config::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Config - Classes - FuelPHP Documentation</title>
+	<title>Config - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -45,9 +45,10 @@
 
 		<div id="main">
 
-			<h2>Config Class</h2>
+			<h2>Config クラス</h2>
 
-			<p>The Config class handles nearly all configuration options in Fuel.  You use this class whenever you need to load in a config file, get a value or set a value.</p>
+			<p>Config クラスは、Fuel の設定オプションの殆どすべてを処理することが出来ます。config ファイルの読み込み、値の取得、設定を行う場合、本クラスが常用されます。</p>
+
 
 			<h3 id="config_groups">Config File Types</h3>
 
@@ -80,68 +81,69 @@ key=value</code></pre>
 
 			<p>If you don't specify a file type, Config::load() will default to the 'php' type.</p>
 
-			<h3 id="config_groups">Config Groups</h3>
+			<h3 id="config_groups">Config グループ</h3>
 
-			<p>A config group is simply a way to scope config options.  This avoids naming collisions.  All config files (db.php, routes.php, etc.) are loaded into groups of the same name, with the exception of the main <kbd>config.php</kbd> file.</p>
+
+			<p>config グループは、設定オプションの範囲を決めるための簡単な方法です。名前の衝突を、グループによって回避します。全ての config ファイル (db.php や routes.php、その他) は、メインの <kbd>config.php</kbd> を除いて、その config ファイル名と同名称のグループとして読み込まれます。</p>
 
 			<article>
 				<h4 class="method" id="method_get">get($item, $default = null)</h4>
-				<p>The <strong>get</strong> method returns the desired config item.  If the item does not exist then <kbd>$default</kbd> is returned.  If the item you are retrieving is a group, then the entire group is returned.</p>
+				<p><strong>get</strong> メソッドは、取得したい設定項目を返します。項目が存在しない場合は <kbd>$default</kbd> に記した値を返します。取得した項目がグループであれば、グループ全体を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$item</kbd></th>
-									<td><i>required</i></td>
-									<td>The name of the item to retrieve.  Groups and multi-dimensional arrays can be accessed by separating the levels by a dot (<kbd>.</kbd>)</td>
+									<td><i>必須</i></td>
+									<td>取得したい項目名。ドット (<kbd>.</kbd>) で階層を区切ることによって、グループと多次元配列にアクセスすることが出来ます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>(Optional) The default value to return if <kbd>$item</kbd> is not found.</td>
+									<td>（オプション）<kbd>$item</kbd> が見つからない時は、$default が返ります。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Either <kbd>$item</kbd>, or <kbd>$default</kbd> if <kbd>$item</kbd> does not exist.  If <kbd>$item</kbd> is a group than an <kbd>array</kbd> containing the entire group.</td>
+						<th>返り値</th>
+						<td><kbd>$item</kbd> か、もし <kbd>$item</kbd> が存在しない時は <kbd>$default</kbd>。<kbd>$item</kbd> がグループの時は、グループ全体を含む配列。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Outputs the current language set in config.php
+							<pre class="php"><code>// config.php に設定されている現在の言語を出力します。
 echo Config::get('language');
 
-// By default a non-existent item will return null
+// 存在しない項目のデフォルトとして null を返す
 if (Config::get('items_to_display') === null)
 {
 	throw new Exception('You must set the number of items to display in config.php');
 }
 
-// You can set a default for non-existent items as well
+// 存在しない項目の場合のデフォルトを下記のように設定出来ます。
 $items_to_display = Config::get('items_to_display', 10);
 
-// This will load in the entire db group, which is the contents of config/db.php
+// config/db.php の内容をもつ db グループ全体を読み込みます。
 $db_configs = Config::get('db');
 
-// This will get which db connection is set to 'active' in the db config
+// どの db 接続が db config の 'active' にセットされているのかを取得します。
 $active_db = Config::get('db.active');
 
-// You can go multiple levels deep as well.
-// This will fetch the hostname of the 'dev' db group
+// 下記のように、階層を奥深く探索することが出来ます。
+// この例では db group の 'dev' のホスト名を取得出来ます。
 $dev_host = Config::get('db.dev.connection.hostname');</code></pre>
 						</td>
 					</tr>
@@ -151,93 +153,93 @@ $dev_host = Config::get('db.dev.connection.hostname');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set">set($item, $value)</h4>
-				<p>The <strong>set</strong> method Sets a given <kbd>$item</kbd> to <kbd>$value</kbd>.  <kbd>$item</kbd> can be dot (<kbd>.</kbd>) separated, just like <kbd>get()</kbd>.</p>
+				<p><strong>set</strong> メソッドは指定した <kbd>$item</kbd> に <kbd>$value</kbd> をセットします。<kbd>$item</kbd> は、<kbd>get()</kbd> メソッドと同様にドット (<kbd>.</kbd>) で区切ることが出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$item</kbd></th>
-									<td><i>required</i></td>
-									<td>The name of the item to set.  Groups and multi-dimensional arrays can be set by separating the levels by a dot (<kbd>.</kbd>).  If <kbd>$item</kbd> does not exist it will be created.</td>
+									<td><i>必須</i></td>
+									<td>セットしたい項目名。ドット (<kbd>.</kbd>) で階層を区切ることによって、グループと多次元配列にアクセスすることが出来ます。もし <kbd>$item</kbd> が存在しない時は、それを生成します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>required</i></td>
-									<td>The value to set <kbd>$item</kbd> to.</td>
+									<td><i>必須</i></td>
+									<td><kbd>$item</kbd> にセットする値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>This method always returns <kbd>true</kbd>.</td>
+						<th>返り値</th>
+						<td>本メソッドは常に <kbd>true</kbd> を返します。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Sets the current language
+							<pre class="php"><code>// 現在の言語をセットします。
 Config::set('language', 'en');
 
-// Sets the active db connection
+// アクティブな db 接続名をセットします。
 Config::set('db.active', 'test');
 
-// This sets a custom value that you can use later
+// 今後利用したい独自の値をセットします。
 Config::set('items_to_display', 5);
 
-// You can also use dots to create custom groups and items
+// ドットを使えばカスタムグループと項目が作れます。
 Config::set('blog.items_to_display', 5);</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-
+	
 			<article>
 				<h4 class="method" id="method_delete">delete($item)</h4>
-				<p>The <strong>delete</strong> method removes a given <kbd>$item</kbd>.  <kbd>$item</kbd> can be dot (<kbd>.</kbd>) separated, just like <kbd>set()</kbd> and <kbd>get()</kbd> .</p>
+				<p><strong>delete</strong> メソッドは指定した <kbd>$item</kbd> を削除します。<kbd>$item</kbd> は、<kbd>set()</kbd> メソッドや <kbd>get()</kbd> メソッドと同様、ドットで区切ることが出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$item</kbd></th>
-									<td><i>required</i></td>
+									<td><i>必須</i></td>
 									<td>The name of the item to delete.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Remove a configuration item using dot notation
+							<pre class="php"><code>// ドット区切りで設定項目を削除します。
 Config::delete('blog.items_to_display');</code></pre>
 						</td>
 					</tr>
@@ -247,62 +249,63 @@ Config::delete('blog.items_to_display');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_load">load($file, $group = null, $reload = false, $overwrite = false)</h4>
-				<p>The <strong>load</strong> method reads in a config file into the system.  It searches through the config directories for the requested file.  You can optionally group the config files to avoid naming collisions.</p>
+				<p><strong>load</strong> メソッドは設定ファイルをシステムに読み込みます。要求されたファイルについて、config ディレクトリを検索します。オプションとして、名前の衝突を回避するために設定ファイルをグループ化できます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$file</kbd></th>
-									<td><i>required</i></td>
-									<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed). You can prefix this with a namespace to load a config file from a loaded package or module.</td>
+									<td><i>必須</i></td>
+									<td>設定ファイルのパスは、config ディレクトリに対する相対パスです。ファイル拡張子を含まないでください(拡張子として ".php" であることが決め打ちされています)。パッケージ・モジュールの設定ファイルを読み込むために、名前空間のプレフィックスを付けることが出来ます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$group</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>(Optional) A group name to use.  If set to <kbd>true</kbd> then a group of the same name as <kbd>$file</kbd> will be created.  If this is not set or is <kbd>null</kbd> then the loaded config will be merged with the root config.</td>
+									<td>(オプション) 利用するグループ名。<kbd>true</kbd> の場合、グループ名は <kbd>$file</kbd> で作られる名前と同じになります。<kbd>null</kbd> の場合、読み込まれる設定はルートの設定とマージされます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$reload</kbd></th>
 									<td><kbd>false</kbd></td>
-									<td>(Optional) If set to <kbd>true</kbd> a reload of the requested configuration is forced, erasing cached configuration items related to the config file to be loaded.</td>
+									<td>(オプション) <kbd>true</kbd> の場合、リクエストされた設定のリロードが強制され、読み込まれる設定ファイルについてキャッシュされた設定項目は消されます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$overwrite</kbd></th>
 									<td><kbd>false</kbd></td>
-									<td>(Optional) If set to <kbd>true</kbd> the loaded configuration items will be merged with the items already loaded in a non-recursive manner, with will overwrite array values in a multidimensional array, rather then merging them.</td>
+									<td>(オプション) <kbd>true</kbd> の場合、読み込まれる設定項目は、既に読み込まれている項目と非再帰的にマージされます。多次元配列の場合は、マージではなくて配列値がオーバーライトされます。（訳注：すみません。ここの部分、英文が全く持ってわかりかねます・・・）
+</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>An <kbd>array</kbd> containing the configuration that has been loaded.  If the config file has already been loaded then it will return <kbd>false</kbd></td>
+						<th>返り値</th>
+						<td><kbd>配列</kbd> には、読み込まれた設定が入っています。もし設定ファイルが既に読み込まれている場合は、<kbd>false</kbd> が返ります。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// This merges the "custom" config file in with the root config.
 Config::load('custom');
 
-// This loads the "custom" config file in a group named "custom".
+// "custom" 設定ファイルをグループ名 "custom" で読み込む。
 Config::load('custom', true);
 
-// This loads the "custom" config file in a group named "foo".
+// "custom" 設定ファイルをグループ名 "foo" で読み込む。
 Config::load('custom', 'foo');
 
-// This loads the "custom" config from a module called foo in a group named "bar"
+// モジュール名 "foo" の "custom" 設定ファイルをグループ名 "bar" で読み込む。
 Config::load('foo::custom', 'bar');</code></pre>
 						</td>
 					</tr>
@@ -312,52 +315,52 @@ Config::load('foo::custom', 'bar');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_save">save($file, $config = null)</h4>
-				<p>The <strong>save</strong> method saves a config file into the system.  It searches through the config directories for the requested file.  If no existing file is found, the config file is created in the APPPATH config directory.</p>
+				<p><strong>save</strong> メソッドは、システム内に設定ファイルを保存します。ファイルが存在しない時は、設定ファイルが APPPATH の config ディレクトリに作成されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$file</kbd></th>
-									<td><i>required</i></td>
-									<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed). You can prefix this with a namespace to load a config file from a loaded package or module.</td>
+									<td><i>必須</i></td>
+									<td>設定ファイルのパスは config ディレクトリに対する相対パスです。ファイル拡張子を含まないでください (拡張子として ".php" であることが決め打ちされています)。パッケージやモジュールの設定ファイルを読み込むために、名前空間のプレフィックスを付けることが出来ます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$config</kbd></th>
-									<td><i>required</i></td>
-									<td>If this is a string, it specifies a group name to save. If it is an array, it is assumed to contain the configuration to be saved.</td>
+									<td><i>必須</i></td>
+									<td>文字列であれば、保存されるべきグループ名となります。配列であれば、保存されるべき設定を含むと見なされます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td><kbd>true</kbd> if the config was saved, <kbd>false</kbd> if an error occurred</td>
+						<th>返り値</th>
+						<td><kbd>true</kbd> なら保存されています。<kbd>false</kbd> ならエラーが起こっています。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// This loads the "custom" config file in a group named "foo".
+							<pre class="php"><code>// グループ名 "foo" として "custom" 設定ファイルを読み込む。
 Config::load('custom', 'foo');
 
-// update some config item
+// 幾つかの設定項目を更新
 Config::set('foo.key', $value);
 
-// save the updated config group 'foo' (note: it will save everything in that group!)
+// 'foo' グループに更新設定を保存 (注意: これはそのグループのすべてを保存することに注意!)
 Config::save('custom', 'foo');
 
-// save the updated config group 'bar' to config file 'custom' in the module 'foo'
+// 'foo' モジュール内の 'custom' 設定ファイルに、更新された 'bar' 設定グループを保存
 Config::save('foo::custom', 'bar');</code></pre>
 						</td>
 					</tr>
@@ -370,6 +373,7 @@ Config::save('foo::custom', 'bar');</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/classes/config.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/classes/config.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

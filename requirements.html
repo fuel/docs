@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './';
 	</script>
 	<script src="./assets/js/combined.js"></script>
-	<title>Requirements - FuelPHP Documentation</title>
+	<title>要件 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,57 +44,58 @@
 
 		<div id="main">
 
-			<h2>Requirements</h2>
-			<h5 id="web_server">Web Server</h5>
+			<h2>要件</h2>
+			<h5 id="web_server">Web サーバ</h5>
 			<ul>
-				<li>Any web server.  Fuel has been tested on Apache, IIS and Nginx.</li>
-				<li>Works on all major operating systems including *nix and Windows.</li>
+				<li>任意の Web サーバ。Fuel は、Apache、IIS そして Nginx でテストされています。</li>
+				<li>*nix や Windows 等の主なオペレーティングシステム上で動作します。</li>
 			</ul>
-			<h5 id="php_version">PHP Version</h5>
+			<h5 id="php_version">PHP バージョン</h5>
 			<ul>
-				<li>Version 5.3 or greater is required.</li>
+				<li>バージョン 5.3 以降が必要です。</li>
 			</ul>
-			<h5 id="php_extensions">PHP Extensions</h5>
+			<h5 id="php_extensions">PHP エクステンション</h5>
 			<p>
-				Fuel uses functionality that PHP defines as "extensions". To avoid any possible compatibility issues, Fuel only uses extensions that
-				are part of the PHP code as documented on the <a href="http://php.net">PHP website</a>. If extensions are used that are part of the
-				PECL repository (which need to be installed manually by a system administrator), Fuel will use them if present, and work around it if not.
+				Fuel は、PHP が「エクステンション」として定義する機能を使用します。互換性の問題を避けるため、
+				Fuel は <a href="http://php.net">PHP Web サイト</a> に記載されている PHP コードの一部であるエクステンションのみ使用します。
+				(システム管理者が手作業でインストールする必要のある) PECL レポジトリの一部であるエクステンションが使用される場合は、Fuel はエクステンションが存在すれば使用しますが、無くても動作します。
 			</p>
-			<p>This is a list of extensions used, and the classes that use them:</p>
+			<p>使用されるエクステンションと、エクステンションを使用するクラスの一覧です。</p>
 			<table class="config valign">
 				<tbody>
 					<tr>
-						<th class="small">Extension</th>
-						<th class="small">Used in</th>
-						<th>Comments</th>
+						<th class="small">エクステンション</th>
+						<th class="small">使用箇所</th>
+						<th>コメント</th>
 					</tr>
 					<tr>
 						<td>fileinfo</td>
 						<td>Upload</td>
-						<td><a href="http://php.net/manual/en/book.fileinfo.php">Documentation</a>.<br />
-						Note that on Windows platforms, a manual installation of a DLL might be needed.</td>
+						<td><a href="http://php.net/manual/en/book.fileinfo.php">ドキュメント</a>。<br />
+						Windows プラットフォームでは、DLL を手作業でインストールする必要があるかもしれないので、注意してください。</td>
 					</tr>
 					<tr>
 						<td>mbstring</td>
 						<td>n/a</td>
-						<td><a href="http://php.net/manual/en/book.mbstring.php">Documentation</a>.<br />
-						If not present, the framework has no multibyte support. You can check the MBSTRING constant to see if your installation has multibyte support enabled.</td>
+						<td><a href="http://php.net/manual/en/book.mbstring.php">ドキュメント</a>。<br />
+						これがない場合、フレームワークはマルチバイトをサポートしません。MBSTRING 定数をチェックすることで、マルチバイトサポートが有効かどうか確認できます。</td>
 					</tr>
 					<tr>
 						<td>mcrypt</td>
 						<td>Crypt</td>
-						<td><a href="http://php.net/manual/en/book.mcrypt.php">Documentation</a>.<br />
-						If not present, PHPSecLib is used to emulate its functionality.</td>
+						<td><a href="http://php.net/manual/en/book.mcrypt.php">ドキュメント</a>。<br />
+						これがない場合、PHPSecLib を使用してこの機能をエミュレートします。
+						</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<h3 id="recommended">Recommended</h3>
+			<h3 id="recommended">推奨環境</h3>
 			<ul>
-				<li>Web Server - Apache running on *nix.</li>
-				<li>PHP Version - 5.3.2</li>
-				<li>mod_rewrite - To remove the index.php from the URL.</li>
-				<li><a href="http://www.phpunit.de/manual/current/en/index.html">PHPUnit</a> - 3.5.12</li>
+				<li>Web サーバ - *nix 上の Apache</li>
+				<li>PHP バージョン - 5.3.2</li>
+				<li>mod_rewrite - URL から index.php を取り除くため。</li>
+				<li><a href="http://www.phpunit.de/manual/current/ja/index.html">PHPUnit</a> - 3.5.12</li>
 			</ul>
 
 		</div>
@@ -102,6 +103,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/requirements.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/requirements.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

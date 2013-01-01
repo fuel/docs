@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Models - General - FuelPHP Documentation</title>
+	<title>モデル - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,24 +44,24 @@
 
 		<div id="main">
 
-			<h2>Models</h2>
+			<h2>モデル</h2>
 
-			<h3>What are models?</h3>
-
-			<p>
-				Whenever data needs to be retrieved, manipulated or deleted this should always be done by a model. A Model is a representation of some kind of
-				data and has the methods to change them. For example: you never put SQL queries in a Controller, those are put in the Model and the Controller will
-				call upon the Model to execute the queries. This way if your database changes you won't need to change all your Controllers but just the Model that acts upon it.
-			</p>
-
-			<h3 id="using_models">How are Models used?</h3>
+			<h3>モデルとは?</h3>
 
 			<p>
-				In Fuel a Model is essentially just a <a href="classes.html" title="Class Documentation">Class</a> like any other. They do nothing more than a library, but the Model_ prefix
-				helps to differentiate it from other classes. To do something useful with a Model you will need to use other classes.
+				データを取得し、操作し、あるいはそれを消去したい場合、その処理は常にモデルによって行われるべきです。モデルは、ある種のデータ表現であり、
+				データを変化させるメソッドを持ちます。たとえば。コントローラには SQL クエリを一切記述せず、モデル側にそれを記述し、コントローラではモデルが実行したクエリを呼び出す、
+				というような処理が出来ます。この方法によって、データベースを変更した時もコントローラを書き換える必要はなく、データベースに影響を及ぼすモデルのみを書き換えるだけですむのです。
 			</p>
 
-			<h3 id="creating_models">Creating a model</h3>
+			<h3 id="using_models">どのようにモデルを使うか?</h3>
+
+			<p>
+				Fuel において、モデルの本質は単なる <a href="classes.html" title="Class Documentation">クラス</a> です。他のものと同様なのです。つまりライブラリ以外のなにものでもありません。
+				ただし Model_ 接頭辞が付いているので、他のクラスと見分けを付けることが容易になります。モデルを有効に使うためには、他のクラスを必要とするでしょう。
+			</p>
+
+			<h3 id="creating_models">モデルを作る</h3>
 
 			<pre class="php"><code>
 namespace Model;
@@ -75,15 +75,15 @@ class Welcome extends \Model {
 
 }</code></pre>
 
-			<p class="note">Remember to prefix a backslash to classes you're using from global, outside the namespace
-				you're in. If you don't understand why, read up on namespaces on
-				<a href="http://www.php.net/namespaces">PHP.net</a>.</p>
+			<p class="note">現在の名前空間の外部にあるグローバルからクラスを使う時には、
+			バックスラッシュを接頭辞としてつけることを忘れないでください。もしこの点について理解していない場合は、
+			<a href="http://www.php.net/namespaces">PHP.net</a> の名前空間に関する部分を読んでください。</p>
 
-			<h3 id="accessing_models">Accessing a model</h3>
+			<h3 id="accessing_models">モデルへのアクセス</h3>
 
-			<p>PHP has the <code>use</code> keyword for importing classes into the current namespace, this allows
-				you to shorten the Model's classname from <code>Model\Welcome</code> to just <code>Welcome</code>
-				within the file of a specific class:</p>
+			<p>PHP は、現在の名前空間にクラスをインポートするための <code>use</code> キーワードをもっています。
+				このキーワードによって、特定のクラスのファイルの中で、モデルクラス名 <code>Model\Welcome</code> を <code>Welcome</code>
+				という単純な名前に短縮出来ます。</p>
 
             <pre class="php"><code>
 use \Model\Welcome;
@@ -98,29 +98,29 @@ class Controller_Welcome extends Controller
 
 
 
-			<h3 id="writing_own_models">Writing your own models</h3>
+			<h3 id="writing_own_models">モデルを書く</h3>
 
-			<p>While models can be used with any type of data storage we'll focus here on usage with SQL because that's the
-				most common usage. Almost always your models will have at least all <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete" target="_blank">CRUD</a>
-				methods: create, read, update, delete (or variations on those). In Fuel your models don't need to extend
-				anything by default, though you can of course create your own base model or use Fuel's
-				<a href="#orm_models">Orm package</a>.</p>
+			<p>モデルは、どのようなかたちのデータストレージに対しても使うことができますが、ここでは SQL での利用に焦点を当てましょう。というのも、
+				それが最もよく使われているものだからです。ほとんど常だと思いますが、作られるモデルには少なくとも <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete" target="_blank">CRUD</a>
+				メソッド: create, read, update, delete (あるいはそれらのバリエーション） の 4 つが全て含まれているはずです。Fuel においては、
+				モデルは、デフォルトでは何も継承する必要がありません。
+				もちろん、自分なりのベースモデルを作ることや Fuel の <a href="#orm_models">Orm パッケージ</a> を使うことも出来ます。</p>
 
-			<h3 id="writing_queries">Writing SQL Queries</h3>
+			<h3 id="writing_queries">SQL クエリを書く</h3>
 
-			<p>You can use the <a href="../classes/database/db.html">DB class</a> to build queries with native SQL like so:</p>
+			<p><a href="../classes/database/db.html">DB クラス</a> を使ってネイティブな SQL クエリを次のように作成することが出来ます:</p>
 
 			<pre class="php"><code>DB::query('SELECT * FROM users WHERE id = 5');</code></pre>
 
-			<h3 id="use_query_builder">Using the Query Builder</h3>
+			<h3 id="use_query_builder">クエリビルダを使う</h3>
 
-			<p>When it comes to escaping data, working with data in arrays or making an application portable over multiple database engines, you might find native
-				SQL to be rather cumbersome. Using the Query Builder methods in the DB Class you can abstract writing native SQL:
+			<p>データをエスケープする、データを配列で使う、あるいは複数のデータベースエンジンを跨ぐことが出来るようなアプリケーションを作る、このような時、
+				ネイティブな SQL が重荷になることがあります。DB クラスのクエリビルダのメソッドを用いれば、ネイティブ SQL を抽象化して書くことが出来ます。
 			</p>
 
 			<pre class="php"><code>DB::select('title','content')->from('articles')->execute()->get('title');</code></pre>
 
-			<p>See more about native SQL queries and using the Query Builder in the <a href="../classes/database/db.html">DB class</a> documentation.</p>
+			<p>ネイティブ SQL クエリとクエリビルダの利用については <a href="../classes/database/db.html">DB クラス</a> のドキュメントをご覧ください。</p>
 
 			<h3 id="model_crud_models">Using Model_Crud to create models</h3>
 
@@ -139,14 +139,15 @@ $entry = Model_Article::find(array(
 
 			<p>For models with more functionality, like support for relations, you can use the <a href="../packages/orm/intro.html">Orm Package</a>, which adds a lot of functionality out-of-the-box to your models. There's an example of its usage below.</p>
 
-			<pre class="php"><code>// find all articles
+			<pre class="php"><code>// 全ての記事を探し出す
 $entry = Model_Article::find('all');
 
-// find all articles from category 1 order descending by date
+// 日付逆順でカテゴリ 1 に属する全ての記事を探し出す
 $entry = Model_Article::find('all', array(
     'where' => array('category_id', 1),
     'order_by' => array('date', 'desc')
 ));</code></pre>
+
 
 			<p>Model_Crud and the ORM package use similar syntax, which makes it simple to migrate once you require more functionality than Model_Crud can provide.</p>
 
@@ -155,6 +156,7 @@ $entry = Model_Article::find('all', array(
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.3/develop/general/models.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.3/develop_japanese/general/models.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>
