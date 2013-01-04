@@ -231,10 +231,10 @@ echo $fieldset;</code></pre>
 				<h4 id="os_typing">Observer_Typing</h4>
 
 				<p>
-					これは2つのもののためのものです: type enforcement for input and type casting for output from the DB. That means
-					that when you're saving the Typing observer will try to cast the input value to the expected type and
-					throw an exception when it can't. And when you're retrieving DB data, normally it would all be strings
-					(even integers and floats) but with the typing observer those will be cast to their scalar type.
+					これは2つのもののためのものです: 入力のための型強制とDBからの出力のための型キャストです。 つまり、
+                                        あなたがタイピングオブザーバを保存しているときにすることは予想される型に入力値をキャストしようとすることで、
+                                        それができないは例外をスローします。そして、あなたがDBのデータを取得しているとき、
+                                        通常、それはすべての文字列になります（偶数整数および浮動小数点数）が、タイピングオブザーバでそれらはそれらのスカラ型にキャストされます。
 				</p>
 
 				<p>タイピングオブザーバーは上記のほかに、シリアル＆JSONフィールドのサポートを追加します。どちらも
@@ -252,9 +252,9 @@ protected static $_observers = array('Orm\\Observer_Typing');
 protected static $_observers = array('Orm\\Observer_Typing' => array('before_save', 'after_save', 'after_load'));</code></pre>
 
 				<p>
-					For this observer to work you must have your the <kbd>$_properties</kbd> static variable set in your
-					model, or not set at all using detection with <kbd>DB::list_columns()</kbd> (mySQL only!). When
-					configuring it yourself the following settings are available:
+                                        このObserverを動作させるために、あなたは、モデル内の静的変数<kbd>$_properties</kbd>をセットをする、
+                                        もしくは設定をせずにすべてを<kbd>DB::list_columns()</kbd>（MYSQLのみ！）で検出を使用します。
+                                        それを自分で設定する場合は以下の設定が可能です：
 				</p>
 
 				<table class="config">
