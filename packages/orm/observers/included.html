@@ -225,7 +225,7 @@ $fieldset = Fieldset::forge()->add_model($article);
 // trueを渡しても、セーブ失敗した後に再設定するためにPOST/PUTを使用します。
 $fieldset->populate($article, true);
 
-// The fieldset will be build as HTML when cast to string
+// フィールドセットは、文字列へのキャスト時にHTMLとしてビルドされます。
 echo $fieldset;</code></pre>
 
 				<h4 id="os_typing">Observer_Typing</h4>
@@ -241,9 +241,9 @@ echo $fieldset;</code></pre>
                                     文字列型のフィールドである必要があります（"テキスト"が望ましい）。  しかし保存用に(<kbd>serialize()</kbd> もしくは <kbd>json_encode()</kbd>を使って)エンコードされたの値を持つことになり、そして
                                     DBから取得する際には(<kbd>unserialize()</kbd> もしくは <kbd>json_decode()</kbd>を使って)デコードをします。</p>
 
-				<p class="note">The Observer_Typing isn't meant as an alternative to validation, don't try to use it as
-					such. Neither are the exceptions thrown by this observer meant to be read by the visitor of your site,
-					they're meant to help you debug your code.</p>
+				<p class="note">Observer_Typingが検証に代わるものとして意図されていないため、検証としてそれを使用しようと
+                                    しないでください。どちらもあなたのサイトの訪問者によって読まれることを意図してこのオブザーバによってスローされた例外はありません。
+                                    コードをデバッグするのに役立つことを意図しています。</p>
 
 				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Typing');
