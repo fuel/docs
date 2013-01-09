@@ -333,6 +333,31 @@ $var = $some_var + $other_var; //space before and after math operator
 $var++; // no space before increment
 ++$var; //no space after increment</code></pre>
 
+			<h5 id="dot-notation">Array dot-notation</h5>
+
+			<p>
+				Although strictly speaking it's not a coding standard, it's used a lot within the frameworks classes and this documentation,
+				and since it's not a common PHP notation, it might confuse people new to the framework.
+			</p>
+			<pre class="php"><code>// when you see "always_load.packages = array()", it is shorthand for:
+array("always_load" => array("packages" => array(...) ) );
+</code></pre>
+
+			<p>This notation is used by the Arr class, but also the Lang, Config and Session classes, to quickly access individual elements from a multi-dimensional array.</p>
+			<pre class="php"><code>// when you have an array structure like this
+$array = array(
+    "always_load" => array(
+        "packages" => array(
+            "orm",
+            "package" => "/my/special/package.php",
+        )
+     )
+);
+
+// then this will return "/my/special/package.php":
+$path = Arr::get($array, 'always_load.packages.package');
+</code></pre>
+
 		</div>
 
 		<footer>

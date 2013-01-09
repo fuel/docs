@@ -58,6 +58,7 @@
 				<li><a href="#orm_list_columns">Orm\Exception [ Error ]: Listing columns not failed</a></li>
 				<li><a href="#assets_error">Assets do not work after changing the location of index.php</a></li>
 				<li><a href="#symlinks_error">Core, App or Packages can not be found after I changed a symlink</a></li>
+				<li><a href="#stack_frame_error">Exception thrown without a stack frame</a></li>
 			</ul>
 
 			<article>
@@ -212,9 +213,11 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 				<h3 id="assets_error">Assets do not work after changing the location of index.php</h3>
 
-				<h4>Solution</h4>
+				<h4>Happens When...</h4>
 
-				<p>That is because Asset class uses relative path to index.php.</p>
+				<p>That is because your path is not defined correctly, the Asset class uses a path relative to index.php.</p>
+
+				<h4>Solution</h4>
 
 				<p>To fix that you have to modify the app/config/asset.php to set the correct path. Notice in index.php that a constant named DOCROOT is being defined:</p>
 
@@ -230,14 +233,35 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 				<h3 id="symlinks_error">Core, App or Packages can not be found after I changed a symlink</h3>
 
-				<h4>Solution</h4>
+				<h4>Happens When...</h4>
 
-				<p>That is because in DOCROOT/index.php, realpath() is used to deal with relative paths, which will cache path information, including the symlink.</p>
+				<p>This my happen because in DOCROOT/index.php, realpath() is used to deal with relative paths, which will cache path information, including the symlink.</p>
+
+				<h4>Solution</h4>
 
 				<p>
 					To fix that you have to modify the DOCROOT/index.php and use clearstatcache() for each of the paths containing a symlink to
 					clear the cache. Alternatively, you can reload your	webserver to clear the path cache. You can not manually issue the
 					clearstatcache() command, since it is cached per thread, and issuing the command will only clear the cache for the current thread.
+				</p>
+
+			</article>
+
+			<article>
+
+				<h3 id="stack_frame_error">Exception thrown without a stack frame</h3>
+
+				<h4>Happens When...</h4>
+
+				<p>The cause of this message is that an error occured while PHP is already in it's tear-down phase, and no error handler is available anymore.</p>
+
+				<h4>Solution</h4>
+
+				<p>
+					There are a lot of reasons why this can happen. We'll try do document the most obvious ones here:
+					<ul>
+						<li>Your webserver doesn't have write rights to the folder that stores the logfiles (by default APPPATH.'logs').</li>
+					</ul>
 				</p>
 
 			</article>

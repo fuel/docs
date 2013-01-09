@@ -53,7 +53,7 @@
 				By using modules to produce the widget output, you can create a highly modular application with easy to re-use components.
 			</p>
 
-			<p>You call a module controller method using the <a href="../classes/request.html">Request</a> class:</p>
+			<p>You call a module controller method using the <a href="../classes/request/request.html">Request</a> class:</p>
 			<pre class="php"><code>// fetch the output of a controller
 $widget = Request::forge('mycontroller/mymethod/parms')->execute();
 echo $widget;
@@ -61,6 +61,11 @@ echo $widget;
 // or fetch the output of a module
 $widget = Request::forge('mymodule/mycontroller/mymethod/parms', false)->execute();
 echo $widget;
+
+// and if you need to pass in some data
+$widget = Request::forge('mymodule/mycontroller/mymethod/parms', false)->execute(array('tree'=>'apple'));
+echo $widget;
+
 </code></pre>
 			<p class="note">
 				By default, all requests made are processed by Fuel's routing engine. If you want to request something that isn't routable

@@ -177,20 +177,18 @@
 				SimpleAuth relies on a single table. Here is the SQL to create it:
 			</p>
 
-			<pre class="sql"><code>CREATE TABLE `users` (
-	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-	`username` VARCHAR( 50 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
-	`password` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
-	`group` INT NOT NULL DEFAULT 1 ,
-	`email` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
-	`last_login` INT( 11 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 0,
-	`login_hash` CHAR( 40 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
-	`profile_fields` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
-	`created_at` INT( 11 ) UNSIGNED NOT NULL ,
-	UNIQUE (
-		`username` ,
-		`email`
-	)
+			<pre class="sql"><code>CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `group` int(11) NOT NULL DEFAULT '1',
+  `email` varchar(255) NOT NULL,
+  `last_login` varchar(25) NOT NULL,
+  `login_hash` varchar(255) NOT NULL,
+  `profile_fields` text NOT NULL,
+  `created_at` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`,`email`)
 )</code></pre>
 
 			<h3 id="example">Example</h3>

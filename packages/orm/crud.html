@@ -99,8 +99,8 @@ $new->save();</code></pre>
 					<pre class="php"><code>// you know there's an article with ID=2
 $entry = Model_Article::find(2);
 
-// ...or when using multiple primary keys
-$entry = Model_Article::find(array(2, 5));</code></pre>
+// ...or when using compound primary keys
+$entry = Model_Article::find(array(2, 'foo'));</code></pre>
 
 					<p>In this example it will return either an instance of Model_Article or null when the ID wasn't found.</p>
 
@@ -125,6 +125,16 @@ $entry = Model_Article::find('all', array(
 		array('category_id', 1),
 	),
 	'order_by' =&gt; array('date' =&gt; 'desc'),
+));
+
+// find all articles from category 1 or category 2
+$entry = Model_Article::find('all', array(
+	'where' =&gt; array(
+		array('category_id', 1),
+		'or' =&gt; array(
+			array('category_id', 2),
+		),
+	),
 ));</code></pre>
 
 					<p>In this example it will always return an array of instances of Model_Article.</p>
@@ -185,6 +195,16 @@ $entry->author = 'Total n00b';
 $entry->save();</code></pre>
 
 					<p>That's it, nothing more to it: Find, change properties and save.</p>
+
+					<p>You can also set properties on the model from an array:</p>
+
+					<pre class="php"><code>$entry = Model_Article::find(4);
+$entry->set(array(
+	'title'  => 'My first edit',
+	'author' => 'Total n00b'
+));
+
+$entry->save();</code></pre>
 				</article>
 
 				<article id="delete">
@@ -260,6 +280,9 @@ Model_Article::find('all', array('where' =&gt; array('category_id' =&gt; 5)));
 Model_Article::query()-&gt;where('id', 4)->where('category_id', '&gt;', 1);
 Model_Article::query()-&gt;where(array('id' =&gt; 4, 'category_id' =&gt; 6));
 Model_Article::find('all', array('where' =&gt; array(array('category_id', '=', 5), array('publish', '&lt;', time()))));
+
+// Using or where
+Model_Article::query()-&gt;where('id', 4)-&gt;or_where('id', 5);
 </code></pre>
 								</td>
 							<tr>
@@ -351,6 +374,27 @@ Model_Article::query()
 						your open and close methods match!
 					</p>
 				</article>
+                                
+                                <article>
+                                    <h3 id="subqueries"><a class="internal_link" href="#/custom_sql">Subqueries</a></h3>
+                                    <p>Subqueries can be created by constructing a seperate query object and using get_query() to parse it.</p>
+                                    <pre id="php"><code>$subQuery = Model_Article::query()
+        -&gt;select('author')
+        -&gt;where('date', '&lt;', time())
+        -&gt;where('draft', '=', 1);
+
+Model_Article::query()
+        -&gt;where('author', '=', 16)
+        -&gt;or_where('author', $subQuery-&gt;get_query(true))
+        -&gt;get();</code></pre>
+                                </article>
+                                
+                                <article>
+                                    <h3 id="custom_sql"><a class="internal_link" href="#/custom_sql">Custom SQL</a></h3>
+                                    <p>It is also possible to perform custom SQL statements and have the result returned as an Orm model (or list of models). Although this is not part of the Orm itself it is useful to know. Take a look at the <a href="../../classes/database/db.html#/method_query">DB::query()</a> function for more information.</a></p>
+                                    <pre class="php"><code>DB::query('SELECT * FROM `articles` WHERE `id` = 1')-&gt;as_object('Model_Article')-&gt;execute();</code></pre>
+                                    <p class="note">It is recommended that you use the <kbd>query()</kbd> function where ever possible though</p>
+                               </article>
 			</section>
 
 		</div>

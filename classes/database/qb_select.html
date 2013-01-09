@@ -406,6 +406,76 @@ $query->on('users.id', '=', 'profiles.user_id');
 			</article>
 
 			<article>
+				<h4 class="method" id="method_and_on">and_on()</h4>
+				<p>The <strong>and_on</strong> method is an alias for <a href="#method_on">on</a>.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_or_on">or_ on($c1, $op, $c2)</h4>
+				<p>The <strong>on</strong> method adds "OR ON ..." conditions for the last created JOIN statement.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$c1</kbd></th>
+										<td><em>mixed</em></td>
+										<td><em>required</em></td>
+										<td>table name or array($table, $alias)</td>
+									</tr>
+									<tr>
+										<th><kbd>$op</kbd></th>
+										<td><em>string</em></td>
+										<td><em>required</em></td>
+										<td>logical operator</td>
+									</tr>
+									<tr>
+										<th><kbd>$c2</kbd></th>
+										<td><em>mixed</em></td>
+										<td><em>required</em></td>
+										<td>table name or array($table, $alias)</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
+$query = DB::select()->from('users');
+
+// Join a table
+$query->join('profiles');
+$query->on('users.id', '=', 'profiles.user_id');
+
+// Add an OR ON condition
+$query->or_on('users.id', '=', 'profiles.other_id');
+
+// SELECT * FROM `users` JOIN `profiles` ON `users`.`id` = `profiles`.`user_id` OR `users`.`id` = `profiles`.`other_id`
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_group_by">group_by($columns)</h4>
 				<p>The <strong>group_by</strong> method creates a "GROUP BY ..." filter.</p>
 				<table class="method">
