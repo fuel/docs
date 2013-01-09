@@ -111,6 +111,10 @@
 					<li><kbd>after_clone</kbd>, called after an object was successfully cloned</li>
 				</ul>
 
+				<p class="note">
+					Note that the <kbd>before_save</kbd> event is called even if the method <kbd>is_changed()</kbd> returns false while the event <kbd>before_update</kbd> is called <em>only</em> if the method <kbd>is_changed()</kbd> returns true. Therefore, if you use observers to pre-process posted files (<kbd>$_FILES</kbd>), you should use <kbd>before_save</kbd>.
+				</p>
+
 			</article>
 
 		</div>
