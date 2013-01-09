@@ -556,10 +556,6 @@ panes.orm = {
 		"Introduction":		"packages/orm/intro.html",
 		"Creating Models":	"packages/orm/creating_models.html",
 		"CRUD":				"packages/orm/crud.html",
-                "Models": {
-                    "Soft": "packages/orm/models/soft.html",
-                    "Temporal": "packages/orm/models/temporal.html"
-                },
 		"Relating Models": {
 			"Introduction":	"packages/orm/relations/intro.html",
 			"Belongs To":	"packages/orm/relations/belongs_to.html",
@@ -567,9 +563,10 @@ panes.orm = {
 			"Has Many":		"packages/orm/relations/has_many.html",
 			"Many to Many":	"packages/orm/relations/many_many.html"
 		},
-                "Models": {
-                    "Soft Delete":	"packages/orm/model/soft.html"
-                },
+		"Models": {
+			"Soft Delete":      	"packages/orm/model/soft.html",
+			"Temporal/Revisions":	"packages/orm/model/temporal.html"
+		},
 		"EAV containers":		"packages/orm/eav.html",
 		"Observers": {
 			"Introduction":			"packages/orm/observers/intro.html",
