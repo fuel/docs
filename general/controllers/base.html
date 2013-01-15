@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Controller - General - FuelPHP Documentation</title>
+	<title>コントローラ - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,24 +44,24 @@
 
 		<div id="main">
 
-			<h2>Controllers</h2>
+			<h2>コントローラ</h2>
 
-			<h3 id="what_is_a_controller">What is a controller?</h3>
+			<h3 id="what_is_a_controller">コントローラとは?</h3>
 
 			<p>
-				Controllers are classes that can be reached through the URL and take care of handling the request.
-				A controller calls models and other classes to fetch the information. Finally, it will pass everything
-				to a view for output. If a URL like www.yoursite.com/example/index is requested, the first segment
-				("example") will be the controller that is called and the second segment ("index") will be the method
-				of that controller that is called.
+				コントローラは、URL を通じてアクセス可能なクラスです。リクエストを処理することができます。
+				コントローラはモデルや他のクラスを呼び出して情報を取得します。最終的に、出力用にビューにすべてを渡します。
+				www.yoursite.com/example/index という URL がリクエストされた場合、1 番目のセグメント
+				("example") は呼び出されるコントローラで、2 番目のセグメント ("index") は、
+				呼び出されるそのコントローラのメソッドです。
 			</p>
 
-			<h3 id="creating_a_controller">Creating a controller</h3>
+			<h3 id="creating_a_controller">コントローラを作成する</h3>
 
 			<p>
-				In FuelPHP, Controllers are put in the <kbd>fuel/app/classes/controller</kbd> directory, and are prefixed
-				with <kbd>"Controller_"</kbd>. 	Optionally, they should extend the <kbd>Controller</kbd> class for the full
-				feature set. Below is an example of the controller "example":
+				FuelPHP では、コントローラーは <kbd>fuel/app/classes/controller</kbd> ディレクトリに置きます。そして <kbd>"Controller_"</kbd> というプレフィックスを付けます。
+				必要に応じて <kbd>Controller</kbd> class を拡張する必要があります。
+				以下は "example" コントローラの例です:
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
@@ -75,10 +75,10 @@
 }</code></pre>
 
 			<p>
-				Methods that can be requested through the URL are prefixed with <kbd>"action_"</kbd>. This means
-				that you're not limited by PHP's constructs on which name you might use (example: method "list"
-				isn't allowed, "action_list" is no problem). But this also means you can give your controller public
-				methods that can be used from other classes but are not routable.
+				URL を通じてリクエストされたメソッドは、<kbd>"action_"</kbd> というプレフィックスを付けます。
+				これは PHP により使用する名前が制限を受けないことを意味します(例: "list" メソッドは許可されていないが、"action_list" は問題ない)。
+				しかし、これはコントローラに公開メソッドを与えることができることも意味します。
+				このメソッドは他のクラスからも使用できますが、ルーティングできません。
 			</p>
 
 			<h3 id="http_method_prefixed_actions">HTTP method prefixed action.</h3>
@@ -101,32 +101,36 @@
 }
 </code></pre>
 
-			<h4 id="controller_in_subdir">Controllers in Sub-Directories</h4>
+			<h4 id="controller_in_subdir">サブディレクトリ内のコントローラ</h4>
 
 			<p>
-				You can also put a controller in a subdirectory, like
-				<kbd>fuel/app/classes/controller/subdir/test.php</kbd>. In this case, the controller must include
-				the dirname in the classname like this: <var>Controller_Subdir_Test</var>.
+				<kbd>fuel/app/classes/controller/subdir/test.php</kbd> のように、サブディレクトリに
+				コントローラを配置することもできます。この例では、コントローラはディレクトリ名を含む
+				このようなクラス名にする必要があります： <var>Controller_Subdir_Test</var>。
 			</p>
 
 			<p>
-				Unlimited nested sub-directories are supported, so
-				<kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd>. would have a class name of
-				<var>Controller_Subdir1_Subdir2_Subdir3_Test</var>.
+				無制限の入れ子にされたサブディレクトリをサポートしますので、
+				 <kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd> はクラス名が
+				 <var>Controller_Subdir1_Subdir2_Subdir3_Test</var> になります。
 			</p>
 
-			<h4 id="controller_namespacing">Namespacing controllers</h4>
+			<h4 id="controller_namespacing">コントローラの名前空間</h4>
 
 			<p>
-				As mentioned in the introduction by default controllers are created in the <kbd>app/classes/controller</kbd> folder,
-				and are prefixed with <var>Controller_</var>. This prefix is defined in your <kbd>app/config/config.php</kbd> configuration file
-				(and if not this is the default), but can be changed if you want to namespace your controllers, or if you
-				want to move them to a different folder structure.
+				冒頭で述べた通りコントローラは <kbd>app/classes/controller</kbd> 置かれ、
+				そして <var>Controller_</var>というプレフィックスを付けます。
+				このプレフィックスはあなたの設定ファイル <kbd>app/config/config.php</kbd>で、
+				(この設定がデフォルトでは存在しなかったとしても)設定されます。
+				あなたがコントローラに名前空間を使用したい場合、
+				もしくはコントローラを別のフォルダへ移動させたい場合に、
+				この設定を変更することができます。
 			</p>
 
 			<p>
-				Lets move the example given above to the <kbd>Controller</kbd> namespace. You tell FuelPHP that you've done this by setting the
-				config setting <var>controller_prefix</var> to <kbd>'\\Controller\\'</kbd> in your app's config.php file.
+				では、前述のとおり名前空間 <kbd>Controller</kbd> へ expample コントローラを移動させましょう。
+				<var>controller_prefix</var> を <kbd>'\\Controller\\'</kbd> へ設定することで、
+				この変更を FuelPHP へ知らせます。
 			</p>
 
 			<pre class="php"><code>namespace Controller;
@@ -145,9 +149,10 @@ class Example extends Controller
 
 
 
-			<h4 id="more_parameters">Using more parameters from the URL</h4>
+			<h4 id="more_parameters">URL からの複数のパラメータの使用</h4>
 
-			<p>Let say we also have the following method in our Controller_Example: </p>
+
+			<p>例えば、Controller_Example の中に次のメソッドがあるとします: </p>
 
 	<pre class="php"><code>public function action_name_to_upper($name_1, $name_2)
 {
@@ -157,42 +162,42 @@ class Example extends Controller
 }</code></pre>
 
 			<p>
-				If we call this method using: <kbd>www.yoursite.com/example/name_to_upper/fuel/php</kbd>, it will
-				return the view <kbd>test/name_to_upper</kbd>. "FUEL" and "PHP" will be passed along as values
-				<var>$name_1</var> and <var>$name_2</var> in the <var>$data</var> array.
+				<kbd>www.yoursite.com/example/name_to_upper/fuel/php</kbd> を使用してこのメソッドを呼び出す場合、
+				<kbd>test/name_to_upper</kbd> ビューを返します。"FUEL" や "PHP" は <var>$data</var> 配列内の
+				<var>$name_1</var> や <var>$name_2</var> という値として渡されます。
 			</p>
 
-			<h4 id="returning_results">Returning the result</h4>
-
-			<p>
-				A controller action <strong>MUST</strong> return a Response object. Optionally you can specify special HTTP headers,
-				or a custom HTTP status code (a code other than "200 OK").
-			</p>
+			<h4 id="returning_results">結果を返す</h4>
 
 			<p>
-				If your controller extends one of the base controllers, your action can also return any value that can be cast to string,
-				like for example a View object. The after() method of the base controller will convert it into a Response object for you.
-			</p>
-			<p>
-				If your controller does not extend one of the base controllers, and you want to use this feature,
-				your controller must contain it's own after() method that will accept the actions return value, and has to wrap it into
-				a Reponse object which it must return.
+				コントローラアクションは Response オブジェクトを返さなければ<strong>なりません</strong>。オプションで、特別な HTTP ヘッダや、
+				カスタムの HTTP ステータスコードを指定できます ("200 OK" 以外のコード)。
 			</p>
 
-			<h3 id="special_methods">Special controller methods</h3>
+			<p>
+				あなたのコントローラがベースコントローラの 1 つを継承しているなら、アクションは文字列にキャストできる任意の値、
+				例えば、View オブジェクト、を返すことができます。ベースコントローラの after() メソッドがそれを Response オブジェクトに変換します。
+			</p>
+			<p>
+				もし、あなたのコントローラがベースコントローラの 1 つを継承していない場合で、この機能を使いたい場合、,
+				あなたのコントローラは、アクションの返り値を受け入れ、
+				返されるべき Response オブジェクトにラップする独自の after() メソッドを含む必要があります。
+			</p>
+
+			<h3 id="special_methods">特殊なコントローラのメソッド</h3>
 
 			<p class="note">
-				Don't overwrite the class constructor <kbd>__construct()</kbd>, use <kbd>before()</kbd> instead.
-				Unless you have studied the base Controller from the Core first and understand how it must be extended
-				not to break Fuel.
+				クラスのコンストラクタ <kbd>__construct()</kbd> をオーバーライドしないでください。
+				代わりに <kbd>before()</kbd> メソッドを使用します。
+				まず始めにコアからベースコントローラを学習しない限り、どのように Fuel を壊さないように継承するかを理解できません。
 			</p>
 
 			<article>
 				<h4 id="action_index">action_index()</h4>
 				<p>
-					This method will be called if the controller is called without a second parameter. In the above
-					example <kbd>www.yoursite.com/example/index</kbd> will be the same as
-					<kbd>www.yoursite.com/example</kbd>.
+					このメソッドは、コントローラが2番目のパラメータを指定しない場合に呼び出されます。
+					上記の例では、<kbd>www.yoursite.com/example/index</kbd> は、
+					<kbd>www.yoursite.com/example</kbd> と同じになります。
 				</p>
 			</article>
 
@@ -209,47 +214,47 @@ class Example extends Controller
 			<article>
 				<h4 id="after">after($response)</h4>
 				<p>
-					This method will be executed <strong>after</strong> the method from the URL was called successfully,
-					this will not be called if the method turns out not to exist. <a href="#response"><var>$response</var></a> parameter is required.
-					The after() method <strong>MUST</strong> return a Response object.
+					このメソッドは、URL からメソッドが正常に呼ばれた <strong>after</strong> に実行され、
+					メソッドが存在しない場合は実行されません。<a href="#response"><var>$response</var></a> パラメータが必要です。
+					after() メソッドは Response オブジェクトを返さねば <strong>なりません</strong>。
 				</p>
 			</article>
 
 			<article>
 				<h4 id="router">router($method, $params)</h4>
 				<p>
-					This method will take over the internal routing of the controller. Once the controller is loaded,
-					the router() method will be called and use the <var>$method</var> that is being passed in, instead
-					of the default method. It will also pass in <var>$params</var>, in an array, to that
-					<var>$method</var>. The before() and after() methods will still work as expected.
+					このメソッドはコントローラの内部ルーティングを上書きします。
+					コントローラが読み込まれると、router() メソッドが呼び出されデフォルトメソッドの代わりに、
+					渡された <var>$method</var> を使用します。
+                    <var>$method</var> に配列として <var>$params</var> で渡すこともできます。before() や after() メソッドは期待したとおりに動作します。
 				</p>
 			</article>
 
-			<h3 id="extending_other_controllers">Extending other controllers</h3>
+			<h3 id="extending_other_controllers">他のコントローラを継承する</h3>
 
 			<p>
-				Thanks to the autoloader, you can extend other controllers without writing anything more than its
-				name in the class definition:
+				オートローダのお陰で、クラス定義で名前以外のものを記述しないで
+				他のコントローラを継承できます:
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller_Welcome
 {
 
-	// your methods
+	// あなたのメソッド
 
 }</code></pre>
 
 			<p>
-				This may sound strange at first, but extending controllers allows you to share methods and create base
-				controllers really easily.
+				これは最初はおかしく感じるかもしれません。しかし、コントローラを継承することで、簡単にメソッドを共有し、
+				実際のベースコントローラを生成できます。
 			</p>
 
-			<h3>Creating Base Controllers</h3>
+			<h3>ベースコントローラを生成する</h3>
 
 			<p>
-				A base controller is a shared controller, like <kbd>Controller_Public</kbd> or <kbd>Controller_Admin</kbd> and are used to share logic between groups of controllers.
-				For example, the <kbd>Controller_Admin</kbd> controller could contain your login/logout actions and maybe a dashboard, but it could also contain a <kbd>before()</kbd> method
-				that checks to see if the user is logged in as an admin. Then all other controllers in your admin panel will extend this and automatically be secured.
+				ベースコントローラは、<kbd>Controller_Public</kbd> または <kbd>Controller_Admin</kbd> のような共有コントローラです。各コントローラ間でロジックを共有するために使用します。
+				例えば、<kbd>Controller_Admin</kbd> コントローラは login/logout アクションを持つことができます。または dashboard も持ちます。しかし、ユーザが管理者としてログインされているかどうかをチェックする <kbd>before()</kbd> メソッドを含むこともできます。
+				他のすべてのコントローラは管理者パネルでこれを継承し、自動的に安全になります。
 			</p>
 
 			<pre class="php"><code>class Controller_Admin extends Controller
@@ -257,38 +262,38 @@ class Example extends Controller
 
 	public function before()
 	{
-		// check for admin
+		// 管理者かどうかチェック
 	}
 
-	// your methods
+	// あなたのメソッド
 
 	public function action_index()
 	{
-		// load the dashboard
+		// ダッシュボードをロード
 	}
 
 	public function action_login()
 	{
-		// log in the user
+		// ユーザをログイン
 	}
 }</code></pre>
 
 			<p>
-				That code will go in <kbd>fuel/app/classes/controller/admin.php</kbd> and all of your other controllers
-				should go in <kbd>fuel/app/classes/controller/admin/</kbd>, like this one:
+				このコードは <kbd>fuel/app/classes/controller/admin.php</kbd> にあり、他のコントローラはすべて
+				<kbd>fuel/app/classes/controller/admin/</kbd> にあります。次のようになります:
 			</p>
 
-			<pre class="php"><code>class Controller_Admin_User extends Controller_Admin
+			<pre class="php"><code>class Controller_Admin_user extends Controller_Admin
 {
 
 	public function action_index()
 	{
-		// overrides the dashboard with the user index listing
+		// ダッシュボードをユーザの一覧でオーバーライドする
 	}
 
 	public function action_edit($id)
 	{
-		// edit users
+		// ユーザの編集
 	}
 }</code></pre>
 
@@ -297,6 +302,7 @@ class Example extends Controller
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.5/develop/general/controllers/base.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/general/controllers/base.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

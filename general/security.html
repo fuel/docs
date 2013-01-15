@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Security - General - FuelPHP Documentation</title>
+	<title>Security - General - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -43,106 +43,104 @@
 		</div>
 
 		<div id="main">
-
-			<h2>Security</h2>
+		
+			<h2>セキュリティ</h2>
 
 			<p>
-				Fuel takes security very serious, and as a result, has implemented the following measures to ensure the safety of your web applications:
+				Fuelはセキュリティをとても真剣に考え、その結果、あなたのWebアプリケーションの安全を確保するための次の対策を実装しました:
 			</p>
 
 			<ul>
-				<li><a href="#output">Output encoding</a></li>
-				<li><a href="#csrf">CSRF protection</a></li>
-				<li><a href="#xss">XSS filtering</a></li>
-				<li><a href="#input">Input filtering</a></li>
-				<li><a href="#sql">SQL injection</a></li>
+				<li><a href="#output">出力エンコーディング</a></li>
+				<li><a href="#csrf">CSRF保護</a></li>
+				<li><a href="#xss">XSSフィルタリング</a></li>
+				<li><a href="#input">入力フィルタリング</a></li>
+				<li><a href="#sql">SQLインジェクション</a></li>
 			</ul>
 			<p>
-				By default, Fuel doesn't filter POST and GET variables on input, and encodes everything on output.
-				Fuel also encodes the URI to prevent nasty surprises when using URI segments, and escapes everything going into the database.
+				デフォルトではFuelは入力時にPOSTやGET変数をフィルタしせず、出力時にすべてをエンコードします。
+				FuelはまたURIセグメントを使ったときに予期せぬ嫌なことが起こらないようにURIもエンコードし、データベースに入るすべてをエスケープします。
 			</p>
 			<p>
-				This page explains the general security measures Fuel offers, the <a href="../classes/security.html">Security
-				class</a> is documented under Classes. You will also find the details on configuring Fuels security class on that page.
+				このページではFuelが提供する一般的なセキュリティ対策を説明し、<a href="../classes/security.html">Security
+				クラス</a>はクラスのセクションにドキュメントされています。FuelのSecurityクラスの設定の詳細についてはそちらのページで見つけることができます。
 			</p>
 
 			<article id="output">
-				<h3>Output encoding</h3>
-
+				<h3>出力エンコーディング</h3>
 				<p>
-					By default, Fuel favors output encoding to input filtering. The reason behind this is twofold.
-					No matter where your data originates, and whether or not it is filtered, output encoding will make it harmless
-					when it is send to the client. It also means all input is stored in raw and unaltered form, so that no matter
-					what happens, you will always have access to the original data.
+					デフォルトでは、Fuelは入力フィルタリングより出力エンコーディングを好みます。その理由は2つの要素からなります。
+					あなたのデータがどこから来たものであろうと、そしてそれがフィルタされていようがいまいが、出力エンコーディングはそのデータを
+					クライアントに送信する際に無害にします。これは、すべての入力は生のまま、変更のないかたちで保存され、何が起ころうと、
+					あなたはいつでも元データにアクセスできるとことも意味します。
 				</p>
 				<p>
-					It also means you don't run into trouble when you need data in its unaltered form. One common example is the
-					data produced by html editors like TinyMCE or ckeditor, used in lots of application for enduser content editing.
-					In such cases you might want to run <a href="#xss">XSS Filtering</a> on these input variables to filter out
-					any nasty surprises that might have crept in, since this is a typical example of data you don't want
-					to encode on output either.
+					これは、あなたが変更のないかたちでのデータを必要とするときに、困ったことにならないことも意味します。ひとつの一般的な例は、
+					エンドユーザがコンテンツを編集するために多くのアプリケーションで利用されているTinyMCEやckeditorのようなHTMLエディタで生成されるデータです。
+					そのようなケースでは、あなたは忍び込むかもしれない予期せぬ嫌なことを取り除くために入力された変数に
+					<a href="#xss">XSSフィルタリング</a>を実行することを望むかもしれません。これはあなたが出力時にエンコードすることも
+					望まない典型的な例です。
 				</p>
 				<p>
-					Since output encoding can only happen on strings, you have to pay attention to objects you want to pass to your views.
-					Either make sure your object contains a <strong>__toString()</strong> method on which the encoding can take place, add your object class
-					to the class whitelist in the security configuration (don't forget the namespace!), or pass it to the view with the <strong>$encode</strong>
-					flag set to false.
-					You can also use the <a href="../classes/view.html#method_auto_encode">auto_encode</a> method to temporary disable automatic output encoding
-					on a per-view basis.
+					出力エンコーディングは文字列にだけ起こるため、あなたがビューにオブジェクトを渡したいときは注意しなければいけません。
+					あなたのオブジェクトが<strong>__toString()</strong>メソッドを持っているか、その場合はエンコーディングが起こります、あなたのオブジェクトをセキュリティ設定のクラスのホワイトリストに追加するか(名前空間を忘れずに!)、
+					オブジェクトを<strong>$encode</strong>をfalseにセットして
+					ビューに渡すかを確認してください。
+					あなたは、<a href="../classes/view.html#method_auto_encode">auto_encode</a>メソッドを使い、ビューごとに、自動出力エンコーディングを
+					一時的に無効にすることもできます。
 				</p>
 				<p>
-					See the section on <a href="views.html#security">view security</a> to see how this is implemented for views.
+					これがビューにどのように実装されているかは、<a href="views.html#security">ビューのセキュリティ</a>のセクションを参照してください。See the section on <a href="views.html#security">ビューのセキュリティ</a>。
 				</p>
 			</article>
 
 			<article id="csrf">
-				<h3>CSRF Protection</h3>
+				<h3>CSRF保護</h3>
 				<p>
-					Cross-site request forgery, also known as a one-click attack or session riding and abbreviated as CSRF, is a type of malicious exploit
-					of a website whereby unauthorized commands are transmitted from a user that the website trusts. Unlike cross-site scripting (XSS),
-					which exploits the trust a user has for a particular site, CSRF exploits the trust that a site	has in a user's browser.
-					The attack works by including a link or script in a page that accesses a site to which the user is known (or is supposed) to have been
-					authenticated.
+					ワンクリック攻撃またはセッションライディングとも言われ、CSRFと略されるクロスサイト・リクエストフォージェリは、Webサイトが信頼するユーザから送信される
+					承認されていない命令による悪意のある攻撃の一種です。クロスサイトスクリプティング(XSS)とは異なり、
+					ユーザが持つ特定のサイトでの信頼を悪用し、CSRFはユーザのブラウザの中にサイトが持つ信頼を悪用します。
+					攻撃は、ユーザが認証されていることが知られる(あるいは想定される)サイトにアクセスするリンクやスクリプトを含むページにより
+					なされます。
 				</p>
 				<p>
-					For example, one user, Bob, might be browsing a chat forum where another user, Mallory, has posted a message.
-					Suppose that Mallory has crafted an HTML image element that references an action on Bob's bank's website (rather than for example an image file).
-					If Bob's bank keeps his authentication information in a cookie, and if the cookie hasn't expired, then the attempt by Bob's browser to
-					load the image will submit the withdrawal form with his cookie, thus authorizing a transaction without Bob's approval.
-					<span style="float:right;font-style:italic;"><a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">source: wikipedia</a></span>
+					例えば、あるユーザ、ボブは、他のユーザ、マロリーがメッセージを投稿したチャットフォーラムをブラウズするとします。
+					マロリーは、ボブの銀行のWebサイトでのアクションを参照するHTMLイメージ要素を巧妙に作り上げたとします(画像ファイルではなく)。
+					もし、ボブの銀行が認証情報をクッキーに保存し、そのクッキーの期限が切れていなければ、ボブのブラウザが画像をロードしようとすると、
+					預金の引き出しフォームへクッキーとともに投稿してしまい、ボブが承認せずに正当な取引として処理されてしまいます。
+					<span style="float:right;font-style:italic;"><a href="http://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%B5%E3%82%A4%E3%83%88%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%AA">情報源: wikipedia</a></span>
 				</p>
 				<p>
-					Fuel provides you the tools to protect your forms against this kind of attacks, by including a security token in the form, which will
-					can be validated upon form submission, and will ensure that when validated, the form was submitted by the client that has requested the form.
+					Fuelは、フォームにセキュリティトークンを含ませることで、この種の攻撃からあなたのフォームを保護するツールを提供します。
+					フォームの投稿時にトークンは検証され、検証済みの場合、フォームはフォークをリクエストしたクライアントから投稿されたことが確認されます。
 				</p>
 				<p>
-					CSRF protection can be configured through the security section in the applications config/config.php file.
+					CSRF保護はアプリケーションのconfig/config.phpファイルのsecurityセクションで設定できます。
 				</p>
+				<p>CSRF保護を有効にするには、まず、フォームにトークンを追加します:</p>
+				<pre class="php"><code>// プレーンなHTMLで
 
-
-				<p>To enable CRSF protection, start by adding the token to your form:</p>
-				<pre class="php"><code>// in plain HTML
 &lt;input type="hidden" name="&lt;?php echo \Config::get('security.csrf_token_key');?&gt;" value="&lt;?php echo \Security::fetch_token();?&gt;" /&gt;
 
-// using the Form class
+// Formクラスを使って
 echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token());
 
-// using a form instance, will also add a validation rule to forms fieldset
+// formインスタンスを使い、フォームのフィールドセットに検証ルールを追加して
 $form = \Form::forge();
 $form->add_csrf();
 </code></pre>
-			<p>To manually check if the form has been submitted by the client that requested the form:</p>
-		<pre class="php"><code>// check if a form was submitted
+			<p>フォームをリクエストしてクライアントによって投稿されたかどうかを手動でチェックするには:</p>
+		<pre class="php"><code>// フォームが投稿されたかどうかチェック
 if ($_POST)
 {
-	// check for a valid CSRF token
+	// CSRFトークンが正しいかチェック
 	if ( ! \Security::check_token())
 	{
-		// CSRF attack or expired CSRF token
+		// CSRF攻撃またはCSRFトークンの期限切れ
 	}
 	else
 	{
-		// token is valid, you can process the form input
+		// トークンは正しいので、フォームの入力を処理する
 	}
 }
 </code></pre>
@@ -150,31 +148,31 @@ if ($_POST)
 			</article>
 
 			<article id="xss">
-				<h3>XSS filtering</h3>
+				<h3>XSSフィルタリング</h3>
 				<p>
-					Fuel provides XSS filtering using the <a href="http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/">HTMLawed</a> library,
-					a very fast and highly configurable library. By default it runs in safe and balanced mode.
+					Fuelは、とても高速で高度に設定可能な<a href="http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/">HTMLawed</a>ライブラリを使い、XSSフィルタリングを提供します。
+					ライブラリは、デフォルトではセーフおよびバランスモードで実行されます。
 				</p>
 				<p>
-					Safe refers to HTML that is restricted to reduce the vulnerability for scripting attacks (such as XSS) based on HTML code which
-					otherwise may still be legal and compliant with the HTML standard specs. When elements such as script and object, and attributes
-					such as onmouseover and style are allowed in the input text, an input writer can introduce malevolent HTML code.
+					セーフとは、HTML標準仕様に準拠した文法的に正しいかも知れないHTMLコードに基づく、スクリプティング攻撃(XSSのような)の脆弱性を減少させる
+					制限されたHTMLにします。
+					scriptやobjectのような要素、そしてonmousouverやstyleなのど属性が入力テキストで許可されるとき、入力者は悪意のあるHTMLコードを挿入することができます。
 				</p>
 				<p>
-					In balanced mode, HTMLawed checks and corrects the input to have properly balanced tags and legal element content
-					(i.e., any element nesting should be valid, and plain text may be present only in the content of elements that allow them).
+					バランスモードでは、HTMLawedは入力をチェックし、適切に閉じられたタグと文法的に正しい要素の内容に修正します
+					(すなわち、ネストされた要素は文法的に正しい必要があり、プレーンテキストは許可された要素の内容にのみ存在できます)。[訳注: 現在、バランスモードはオフに設定されています ]
 				</p>
 				<p class="note">
-					For performance reasons, it is recommended that you use the <a href="../classes/security.html#method_xss_clean">xss_clean</a> method
-					on individual input values, rather than as a generic input filter.
+					パフォーマンスの理由から、<a href="../classes/security.html#method_xss_clean">xss_clean</a>メソッドは包括的な入力フィルタとしてではなく、
+					個別の入力値に使うことをお薦めします。
 				</p>
 			</article>
 
 			<article id="input">
-				<h3>Input filtering</h3>
+				<h3>入力フィルタリング</h3>
 				<p>
-					Although not enabled by default, you can configure Fuel to filter all input ($_GET, $_POST and $_COOKIE) on every page request.
-					To do so, configure the functions or methods to be used to filter them in the application's config/config.php file.
+					デフォルトでは有効になっていませんが、すべてのページリクエストでFuelがすべての入力($_GET, $_POST and $_COOKIE)をフィルタするように設定できます。
+					そうするには、アプリケーションのconfig/config.phpファイルでフィルタに使用する関数やメソッドを設定します。
 				</p>
 				<pre class="php"><code>/**
  * Security settings
@@ -183,29 +181,29 @@ if ($_POST)
     'input_filter' => array(),
 )</code></pre>
 				<p>
-					Anything that is callable in PHP and accepts a single value as parameter can be used for filtering purposes.
-					This includes PHP functions like 'htmlentities', static class methods like '\\Security::xss_clean' or even object methods
-					which are defined as <strong>array($object, 'method')</strong>. If you use an object method, make sure the object is available
-					before Fuel is initialized, as input filtering happens very early in the request process.
+					引数として1つの値を受け入れるPHPで実行可能なものはすべてフィルタリングのために使用できます。
+					PHPの'htmlentities'のような関数、'\\Security::xss_clean'のような静的クラスメソッド、
+					あるいは<strong>array($object, 'method')</strong>のようなオブジェクトメソッドも使用できます。
+					もし、オブジェクトメソッドを使う場合は、Fuelが初期化される前にそのオブジェクトが利用できることを確認してください。入力フィルタはリクエストプロセスのとても初期段階で実行されます。
 				</p>
 			</article>
 
 			<article id="sql">
-				<h3>SQL injection</h3>
+				<h3>SQLインジェクション</h3>
 				<p>
-					SQL injection is a code injection technique that exploits a security vulnerability occurring in the database layer of an application
-					(like queries). The vulnerability is present when user input is either incorrectly filtered for string literal escape characters
-					embedded in SQL statements or user input is not strongly typed and thereby unexpectedly executed.
-					It is an instance of a more general class of vulnerabilities that can occur whenever one programming or scripting language is embedded
-					inside another. SQL injection attacks are also known as SQL insertion attacks.
+					SQLインジェクションはアプリケーションのデータベースレイヤー(SQLクエリーのような)で起こるセキュリティ脆弱性を悪用するコード挿入テクニックです。
+					脆弱性はユーザ入力の、SQL文に埋め込まれる文字列リテラルのエスケープ文字が正しくフィルタされていないか、ユーザ入力が強く型付けされておらず、
+					それゆえ予期せず実行される場合に存在します。
+					これは、もっと一般的な脆弱性の分類としては、1つのプログラミングまたはスクリプティング言語が別の言語に含まれる場合に起こるものの一例です。
+					SQLインジェクション攻撃は、SQL挿入攻撃とも言われます。
 					<br />
-					This form of SQL injection occurs when user input is not filtered for escape characters and is then passed into an SQL statement.
-					This results in the potential manipulation of the statements performed on the database by the end-user of the application.
-					<span style="float:right;font-style:italic;"><a href="http://en.wikipedia.org/wiki/SQL_injection">source: wikipedia</a></span>
+					この形式のSQLインジェクションは、ユーザ入力のエスケープ文字がフィルタされておらず、SQL文に渡される場合に起こります。
+					これは結果として、アプリケーションのエンドユーザによるデータベースで実行されるSQL文の潜在的な操作をもたらします。
+					<span style="float:right;font-style:italic;"><a href="http://ja.wikipedia.org/wiki/SQL%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">情報源: wikipedia</a></span>
 				</p>
 				<p>
-					Fuel protects against SQL injection by escaping all values passed to one of the Database class methods. Since this happens at the level
-					of Fuel's central Query Builder, all code that uses the Query Builder, including Fuel's ORM package, will automatically use escaping.
+					Fuelは、Databaseクラスのメソッドの1つに渡されるすべての値をエスケープすることにより、SQLインジェクションから保護します。
+					これはFuelの中心となるクエリビルダーのレベルで起こるため、クエリビルダーを使うすべてのコード、FuelのORMパッケージを含みます、は自動的にエスケープされます。
 				</p>
 
 			</article>
@@ -215,6 +213,7 @@ if ($_POST)
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.5/develop/general/security.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/general/security.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

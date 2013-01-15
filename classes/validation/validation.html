@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Validation - Classes - FuelPHP Documentation</title>
+	<title>Validation - Classes - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,61 +44,61 @@
 
 		<div id="main">
 
-			<h2>Validation Class</h2>
+			<h2>Validation クラス</h2>
 
-			<p>The Validation class helps you validate user input, if you want to create a form &amp; its validation at
-				the same time use the <a href="../fieldset.html">Fieldset</a> class instead.</p>
+			<p>Validation クラスは、ユーザ入力をバリデーションする際の手助けをします。
+				フォームの生成とバリデーションを同時にしたい場合は、代わりに <a href="../fieldset.html">Fieldset</a> クラスを使用してください。</p>
 
 			<ul>
-				<li><a href="#config">Configuration</a></li>
-				<li><a href="#usage">Usage</a></li>
-				<li><a href="#rules">Validation rules</a></li>
+				<li><a href="#config">設定</a></li>
+				<li><a href="#usage">使用方法</a></li>
+				<li><a href="#rules">バリデーションルール</a></li>
 				<li><a href="#extending_validation">Extending the Validation class</a></li>
 				<li><a href="errors.html">Validation Errors</a></li>
 				<li><a href="methods.html">Methods</a></li>
 			</ul>
 
 			<article>
-				<h3 id="config">Configuration</h3>
+				<h3 id="config">設定</h3>
 
-				<p>Optionally, the validation class can be configured through the global application configuration file, <strong>app/config/config.php</strong>. Define a section called '<strong>validation</strong>', in which the following settings can be defined:</p>
+				<p>オプションで、アプリケーション全体の設定ファイル <strong>app/config/config.php</strong> で validation クラスの設定を行うことができます。 '<strong>validation</strong>' セクションを定義し、以下の設定を行うことができます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Variable</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th class="description">Description</th>
+							<th>変数</th>
+							<th>型</th>
+							<th>規定値</th>
+							<th class="description">説明</th>
 						</tr>
 						<tr>
 							<th><kbd>no_errors</kbd></th>
 							<td>string</td>
 							<td><pre class="php"><code>''</code></pre></td>
-							<td>String to return if no validation errors were discovered.</td>
+							<td>バリデーションでエラーが見つからなかった場合に返す文字列。</td>
 						</tr>
 						<tr>
 							<th><kbd>open_list</kbd></th>
 							<td>string</td>
 							<td><pre class="php"><code>'&lt;ul&gt;'</code></pre></td>
-							<td>String to be prepended to the list of errors. Usually this is some form of HTML to format the list. By default, it's formatted as an unordered list.</td>
+							<td>エラーのリストの先頭に付加される文字列。通常、リストを定義する HTML タグになります。デフォルトでは、番号なしリストになります。</td>
 						</tr>
 						<tr>
 							<th><kbd>close_list</kbd></th>
 							<td>string</td>
 							<td><pre class="php"><code>'&lt;/ul&gt;'</code></pre></td>
-							<td>String to be appended to the list of errors.</td>
+							<td>エラーのリストの末尾に付加される文字列。</td>
 						</tr>
 						<tr>
 							<th><kbd>open_error</kbd></th>
 							<td>string</td>
 							<td><pre class="php"><code>'&lt;li&gt;'</code></pre></td>
-							<td>String to be prepended to each individual error message.</td>
+							<td>個々のエラーメッセージの先頭に付加される文字列。</td>
 						</tr>
 						<tr>
 							<th><kbd>close_error</kbd></th>
 							<td>string</td>
 							<td><pre class="php"><code>'&lt;/li&gt;'</code></pre></td>
-							<td>String to be appended to each individual error message.</td>
+							<td>個々のエラーメッセージの末尾に付加される文字列。</td>
 						</tr>
 						<tr>
 							<th><kbd>quote_label</kbd></th>
@@ -114,73 +114,73 @@
 						</tr>
 					</tbody>
 				</table>
-				<p>If one or more of these values are missing from the global configuration, the class will use the defaults as defined in this table.</p>
+				<p>これらの値が定義されない場合、上記の表に示したデフォルト値が使用されます。</p>
 
 			</article>
 
 			<article>
-				<h3 id="usage">Usage</h3>
+				<h3 id="usage">使用方法</h3>
 
-				<p>To start validation you need to create an object, this can be the default object named "default" or
-				you can name it if you need multiple validation objects.</p>
+				<p>バリデーションを開始するには、オブジェクトを生成する必要があります。
+					デフォルトでは "default" という名前のオブジェクトになりますが、複数のバリデーションオブジェクトが必要な場合は名前を付けることができます。</p>
 
-				<pre class="php"><code>// Use default
+				<pre class="php"><code>// デフォルトを使う
 $val = Validation::forge();
 
-// ... or name it
+// 名前を付ける
 $val = Validation::forge('my_validation');</code></pre>
 
-				<p>After having it instantiated you can start adding fields to it. This works exactly like the when using
-				the Fieldset class, however here we'll only document the preferred usage.</p>
+				<p>インスタンスを生成したら、フィールドを追加していきます。
+					Fieldset クラスを使用するときと全く同じように動作しますが、ここでは推奨する使用方法のみを示します。</p>
 
 				<pre class="php"><code>$val = Validation::forge('my_validation');
 
-// Add a field for username, give it the label "Your username" and make it required
+// ユーザ名用のフィールドを追加して "Your username" というラベルを付加し、入力必須にする
 $val->add('username', 'Your username')->add_rule('required');
 
-// Now add another field for password, and require it to contain at least 3 and at most 10 characters
+// そしてさらにパスワード用のフィールドを追加し、3文字以上10文字以下の入力必須にする
 $val->add('password', 'Your password')->add_rule('required')
     ->add_rule('min_length', 3)
     ->add_rule('max_length', 10);</code></pre>
 
-				<p>The first parameter of the add_rule() method can contain PHP native function names, any valid PHP
-				callback and Closures in addition to the provided validation methods. The method will get the value to
+				<p>add_rule() メソッドの第1引数には、本機能で提供するルールに加え、任意の PHP のネイティブ関数やコールバック関数、無名関数を指定することもできます。
+				The method will get the value to
 				be validated as its first argument and any further arguments can be given to the add_rule() method.</p>
 
 				<p>We also provide a shorter syntax which is very limited in comparison. It will not accept array-callbacks,
 				closures or parameters other than strings.</p>
 
-				<pre class="php"><code>// The same fields as the example above
+				<pre class="php"><code>// 上記の例と同じ動作をします
 $val = Validation::forge('my_validation');
 $val->add_field('username', 'Your username', 'required');
 $val->add_field('password', 'Your password', 'required|min_length[3]|max_length[10]');</code></pre>
 
-				<p>Once all the fields have been added you can run your validation. This will default to $_POST input, but
-				can be extended and overwritten when given an input array.</p>
+				<p>Once all the fields have been added you can run your validation. 
+				This will default to $_POST input, but be extended and overwritten when given an input array.</p>
 
 				<pre class="php"><code>// run validation on just post
 if ($val->run())
 {
-	// process your stuff when validation succeeds
+	// バリデーションに成功した場合の処理
 }
 else
 {
-	// validation failed
+	// 失敗
 }
 
 // alternative to above, overwriting the username in post, password will still be sought in post
 if ($val->run(array('username' => 'something')))</code></pre>
 
-				<p>When validation is ran there are three methods available for information about the input:</p>
+				<p>バリデーションが実行されたとき、there are three methods available for information about the input:</p>
 
-				<pre class="php"><code>// get an array of successfully validated fields => value pairs
+				<pre class="php"><code>// バリデートに成功したフィールドと値の組を配列で取得する
 $vars = $val->validated();
-// get an array of validation errors as field => error pairs
+// バリデーションエラーをフィールドとエラー内容の組の配列で取得する
 $errors = $val->error();
 // get an array of the input that was validated, this merged the post & input given to run()
 $input = $val->input();
 
-// all these methods can also get just the value for a single field
+// これらのメソッドでは、一つのフィールドにおいて値だけを取得することもできます
 $var = $val->validated('username');</code></pre>
 
 				<p>Validation can also run partially, in that case even required fields are ignored when they're not in
@@ -191,52 +191,52 @@ $val->run(array('password' => 'whatever'), true);</code></pre>
 			</article>
 
 			<article>
-				<h3 id="rules">Validation rules</h3>
+				<h3 id="rules">バリデーションルール</h3>
 
-				<p>Note that all methods (even min_length) will also return true on empty input. To also require the field
-				you must add the rule "required" as well.</p>
+				<p>すべてのメソッドは (min_length さえも)、空の入力に対して true を返すことに注意してください。
+				入力必須にするためには、"required" ルールを使う必要があります。</p>
 
-				<p>All these rules can be used like below:</p>
+				<p>これらのすべてのルールは、次のように使えます:</p>
 				<pre class="php"><code>// example normal usage with rule without and one with params
 $val->add('email', 'Email address')->add_rule('match_value', 'me@mydomain.com', true)->add_rule('valid_email');
 $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_email');</code></pre>
 
-				<h4 id="rules_table">Rules table</h4>
+				<h4 id="rules_table">ルール表</h4>
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Rule</th>
-							<th>Additional parameters</th>
-							<th>Description</th>
+							<th>ルール</th>
+							<th>追加パラメータ</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>required</th>
-							<td>(none)</td>
+							<td>(なし)</td>
 							<td>
-								The field must be set and have been given something other than <kbd>null</kbd>,
-								<kbd>false</kbd> or empty string.
+								フィールドがセットされ、<kbd>null</kbd>、<kbd>false</kbd>
+								および空の文字列以外の値が与えられているか。
 							</td>
 						</tr>
 						<tr>
 						  <th>required_with</th>
 						  <td><kbd>$fieldname</kbd></td>
 						  <td>
-						    The field must be set if the field with the given <kbd>$fieldname</kbd> is set.
+						    <kbd>$fieldname</kbd> フィールドがセットされている場合に、フィールドに値がセットされているか。
 						  </td>
 						</tr>
 						<tr>
 							<th>match_value</th>
 							<td><kbd>$compare</kbd>, <kbd>$strict</kbd> = false</td>
 							<td>
-								The field input must match <kbd>$compare</kbd>, will be done using == unless 2nd parameter
-								is also given as true (then === is used).
+								入力値が <kbd>$compare</kbd> と一致するかどうか。
+								比較には == が使用され、第2引数が true の場合は === が使用される。
 							</td>
 						</tr>
 						<tr>
 							<th>match_pattern</th>
 							<td><kbd>$pattern</kbd></td>
 							<td>
-								Will try to match the value against the given $pattern which must be a full PREG regex.
+								$pattern で与えられた PREG 正規表現にマッチするかどうか。
 							</td>
 						</tr>
 						<tr>
@@ -252,58 +252,58 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<th>min_length</th>
 							<td><kbd>$length</kbd></td>
 							<td>
-								Tests whether the string contains at least <kbd>$length</kbd>'s number of character.
+								文字数が <kbd>$length</kbd> 文字以上かどうか。
 							</td>
 						</tr>
 						<tr>
 							<th>max_length</th>
 							<td><kbd>$length</kbd></td>
 							<td>
-								Tests whether the string contains no more than <kbd>$length</kbd>'s number of character.
+								文字数が <kbd>$length</kbd> 文字以内かどうか。
 							</td>
 						</tr>
 						<tr>
 							<th>exact_length</th>
 							<td><kbd>$length</kbd></td>
 							<td>
-								Tests whether the string has precisely <kbd>$length</kbd>'s number of character.
+								文字数がちょうど <kbd>$length</kbd> 文字かどうか。
 							</td>
 						</tr>
 						<tr>
 							<th>valid_email</th>
-							<td>(none)</td>
+							<td>(なし)</td>
 							<td>
-								Validates if the given input is a valid email address.
+								有効な email アドレスかどうか。
 							</td>
 						</tr>
 						<tr>
 							<th>valid_emails</th>
 							<td><kbd>$separator</kbd> (optional)</td>
 							<td>
-								Validates multiple email addresses separated by commas (or <kbd>$separator</kbd>).
+								カンマ (または <kbd>$separator</kbd>) で区切られた、有効な email アドレスかどうか。
 							</td>
 						</tr>
 						<tr>
 							<th>valid_url</th>
-							<td>(none)</td>
+							<td>(なし)</td>
 							<td>
-								Validates if the given input is a valid URL.
+								有効な URL アドレスかどうか。
 							</td>
 						</tr>
 						<tr>
 							<th>valid_ip</th>
-							<td>(none)</td>
+							<td>(なし)</td>
 							<td>
-								Validates if the given input is a valid IP.
+								有効な IP アドレスかどうか。
 							</td>
 						</tr>
 						<tr>
 							<th>numeric_min</th>
 							<td><kbd>$min_val</kbd></td>
 							<td>
-								Tests whether the given input is a number that is greater than <kbd>$min_val</kbd>, it does
-								not check or cast the input to a numeric value so any non-numeric value will be considered
-								to be zero. Use the PHP function <kbd>is_numeric</kbd> to check that first.
+								数値が <kbd>$min_val</kbd> 以上かどうか。
+								入力値が数値かどうかのチェックやキャストはしないので、数値でない文字列はゼロとみなされます。
+								これをチェックするには、まず PHP の <kbd>is_numeric</kbd> 関数を使用してください。
 							</td>
 						</tr>
 						<tr>
@@ -327,64 +327,64 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<th>valid_string</th>
 							<td><kbd>$flags</kbd> = array('alpha', 'utf8')</td>
 							<td>
-								See below.
+								下記を参照。
 							</td>
 						</tr>
 					</tbody>
 				</table>
 
-				<h4 id="valid_string_rule">Valid string rule</h4>
-				<p>Validates whether a string adheres to the conditions set by the $flags parameter. The accepted flags
-				are:</p>
+				<h4 id="valid_string_rule">Valid string ルール</h4>
+				<p>$flags パラメータで与えられた条件を満たすかどうか検証します。
+				使用できる flag は次の通りです:</p>
 				<table class="config">
 					<tbody>
 						<tr class="header">
 							<th>Flag</th>
-							<th>Description</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>alpha</th>
-							<td>Allow alphabetical characters.</td>
+							<td>アルファベットの文字列</td>
 						</tr>
 						<tr>
 							<th>uppercase</th>
-							<td>Used in combination with alpha to only allow uppercase characters.</td>
+							<td>アルファベット大文字の文字列</td>
 						</tr>
 						<tr>
 							<th>lowercase</th>
-							<td>Used in combination with alpha to only allow lowercase characters.</td>
+							<td>アルファベット小文字の文字列</td>
 						</tr>
 						<tr>
 							<th>numeric</th>
-							<td>Allow numeric characters.</td>
+							<td>数字の文字列</td>
 						</tr>
 						<tr>
 							<th>spaces</th>
-							<td>Allow normal spaces.</td>
+							<td>(一文字または複数の) スペース</td>
 						</tr>
 						<tr>
 							<th>newlines</th>
-							<td>Allow newline character.</td>
+							<td>(一文字または複数の) 改行文字</td>
 						</tr>
 						<tr>
 							<th>tabs</th>
-							<td>Allow tabs.</td>
+							<td>(一文字または複数の) タブ</td>
 						</tr>
 						<tr>
 							<th>dots</th>
-							<td>Allow dots.</td>
+							<td>(一文字または複数の) ドット</td>
 						</tr>
 						<tr>
 							<th>commas</th>
-							<td>Allow commas.</td>
+							<td>(一文字または複数の) カンマ</td>
 						</tr>
 						<tr>
 							<th>punctuation</th>
-							<td>Allow dots, commas, exclamation marks, question marks, colons and semi-colons.</td>
+							<td>(一文字または複数の) ドット、カンマ、エクスクラメーションマーク、クエスチョンマーク、コロン、セミコロン</td>
 						</tr>
 						<tr>
 							<th>dashes</th>
-							<td>Allow dashes and underscores.</td>
+							<td>(一文字または複数の) ハイフンとアンダーバー</td>
 						</tr>
 						<tr>
 							<th>utf8</th>
@@ -395,14 +395,14 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 			</article>
 
 			<article>
-				<h4 id="extending_validation">Extending the Validation class</h4>
-				<p>There are few approaches to extend the validation class:</p>
-				<p>1. To extend the core class like described in the <a href="../../general/extending_core.html">Extending Core Classes</a></p>
-				<p>2. To create a class in <b>app/classes/myrules.php</b> (for example)</p>
+				<h4 id="extending_validation">Validation クラスを拡張する</h4>
+				<p>validation クラスを拡張する方法は、いくつかあります。</p>
+				<p>1. <a href="../../general/extending_core.html">コアクラスの拡張</a>で説明されているように、コアクラスを拡張する</p>
+				<p>2. (例えば) <b>app/classes/myrules.php</b> にクラスを作成する</p>
 				<pre class="php"><code>// app/classes/myrules.php
 class MyRules
 {
-	// note this is a static method
+	// 静的メソッドであることに注意する
 	public static function _validation_unique($val, $options)
 	{
 		list($table, $field) = explode('.', $options);
@@ -414,7 +414,7 @@ class MyRules
 		return ! ($result->count() > 0);
 	}
 
-	// note this is a non-static method
+	// 非静的メソッドであることに注意する
 	public function _validation_is_upper($val)
 	{
 		return $val === strtoupper($val);
@@ -422,38 +422,38 @@ class MyRules
 
 }
 
-// and call it like:
+// 以下のようにして呼び出す
 $val = Validation::forge();
 
-// Note the difference between static and non-static validation rules:
+// 静的ルールと非静的ルールの違いに注意する
 
-// Add it staticly, will only be able to use static methods
+// 静的に追加すると、静的メソッドのみ使用できる
 $val->add_callable('MyRules');
 
-// Adds it non-static, will be able to use both static and non-static methods
+// 非静的に追加すると、静的メソッドも非静的メソッドも使用できる
 $val->add_callable(new MyRules());
 
 $val->add('username', 'Your username', array(), array('trim', 'strip_tags', 'required', 'is_upper'))
 	->add_rule('unique', 'users.username');</code></pre>
 
-				<p>3. Calling callbacks from a model. It works like a method described above, but we only need to call it in other way:</p>
+				<p>3. モデルからコールバックを呼び出す。上述のメソッドのように動作するが、別の方法で呼び出す必要がある</p>
 
 				<pre class="php"><code>$val = Validation::forge();
 $val->add_model('Model_User');</code></pre>
 
 				<p class="note">
-					<strong>Note: </strong>
-					You need the '_validation_' prefix for a method to be available in validation.
+					<strong>注意: </strong>
+					バリデーションで利用可能にするには '_validation_' プレフィクスが必要です。
 				</p>
 
 				<p class="note">
-					<strong>Note: </strong>
-					if you pass the class name as a string, the validation method must be defined as static. If the method is not static, you will have to pass an object instance as callable().
+					<strong>注意: </strong>
+					クラス名を文字列として渡す場合は、バリデーションメソッドが静的メソッドで定義される必要があります。メソッドが非静的の場合は、オブジェクトインスタンスをを callable() として渡す必要があります。
 				</p>
 
-				<p>It can be useful to use <a href="methods.html#method_active">Validation::active()</a> and <a href="methods.html#method_active_field">Validation::active_field()</a> to get the currently active validation instance and field currently being validated, respectively.</p>
+				<p>現在アクティブなバリデーションインスタンスと、現在検証されているフィールドを取得するには、それぞれ <a href="methods.html#method_active">Validation::active()</a> と <a href="methods.html#method_active_field">Validation::active_field()</a> を使用すると便利でしょう。</p>
 
-				<p>For example, in the above you could do:</p>
+				<p>Validation::activeを利用した例です。</p>
 
 				<pre class="php"><code>public static function _validation_unique($val, $options)
 {
@@ -466,6 +466,7 @@ $val->add_model('Model_User');</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.5/develop/classes/validation/validation.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/classes/validation/validation.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Response::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Response - Classes - FuelPHP Documentation</title>
+	<title>Response - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,14 +45,14 @@
 
 		<div id="main">
 
-			<h2>Response Class</h2>
+			<h2>Response クラス</h2>
 
-			<p>The response class contains the methods to deal with HTTP response and browser output.</p>
+			<p>Response クラスは HTTP レスポンスとブラウザ出力を扱うメソッドを含んでいます。</p>
 
 			<article>
-				<h4>Setting the Status Header</h4>
-				<p>The status header is treated as a &quot;special&quot; header in Fuel.  You do not set it as you would
-					other headers. The status header is set as follows in the controller:</p>
+				<h4>ステータスヘッダを設定する</h4>
+				<p>Fuel において、ステータスヘッダは &quot;特別の&quot; ヘッダとして扱われます。設定の仕方も、他のヘッダとは同じではありません。
+					コントローラの中で次のように設定します:</p>
 				<pre class="php"><code>$response = new Response($body, 404);</code></pre>
 
 				<h4>Setting the Status Header and other headers</h4>
@@ -225,58 +225,58 @@ $response->set_status(404);</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><i>Required</i></td>
-									<td>Name of the header to add.</td>
+									<td><i>必須</i></td>
+									<td>付け加えるヘッダ名。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
-									<td>The string that needs to be added to the HTTP header.</td>
+									<td><i>説明</i></td>
+									<td>HTTP ヘッダに付加される必要がある文字列です。</td>
 								</tr>
 								<tr>
 									<th><kbd>$replace</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>All headers will replace any previous value for the same name by default. If you set
-										this parameter to <kbd>false</kbd> the header won't overwrite and can't be overwritten.</td>
+									<td>デフォルトでは同名のヘッダの値はすべて置き換えられます。<kbd>false</kbd> がセットされた場合は、ヘッダの書き換えはありませんし、書き換え出来ません。</td>
+
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$response = new Response();
 
-// We'll be outputting a PDF
+// PDF を出力します
 $response->set_header('Content-Type', 'application/pdf');
 
-// It will be called downloaded.pdf
+// downloaded.pdf がコールされます
 $response->set_header('Content-Disposition', 'attachment; filename="downloaded.pdf"');
 
-// Set no cache
+// キャッシュをなしにします
 $response->set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
 $response->set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
 $response->set_header('Pragma', 'no-cache');
 
-// More examples
+// 更なる例
 $response->set_header('Content-Language', 'en');
 $response->set_header('Content-Type', 'text/html; charset=utf-8');
 
@@ -385,19 +385,19 @@ $body = $response->body();</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
-						<td><i>None</i></td>
+						<th>パラメータ</th>
+						<td><i>なし</i></td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$response->send_headers();</code></pre>
 						</td>
@@ -413,17 +413,17 @@ $body = $response->body();</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$send_headers</kbd></th>
@@ -438,7 +438,7 @@ $body = $response->body();</code></pre>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// echo whatever the response body is
 $response->send();</code></pre>
@@ -453,6 +453,7 @@ $response->send();</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.5/develop/classes/response.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/classes/response.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

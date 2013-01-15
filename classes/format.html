@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Form::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Format - Classes - FuelPHP Documentation</title>
+	<title>Format - Classes - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,75 +45,9 @@
 
 		<div id="main">
 
-			<h2>Format Class</h2>
+			<h2>Format クラス</h2>
+
 			<p>The Format class helps you convert between various formats such as XML, JSON, CSV, etc.</p>
-
-			<article>
-				<h3 id="configuration">Configuration</h3>
-
-				<p>The Format class is configured through the <kbd>fuel/core/config/format.php</kbd> configuration file. It is already populated with a default configuration group. You can override this configuration by copying this config file to your application config directory, and modify that file as needed.</p>
-				<p>The following configuration settings can be defined:</p>
-
-				<h4>CSV</h4>
-				<table class="config">
-					<tbody>
-						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
-						</tr>
-						<tr>
-							<th>delimiter</th>
-							<td>string</td>
-							<td><pre class="php"><code>','</code></pre></td>
-							<td>The field delimiter</td>
-						</tr>
-						<tr>
-							<th>enclosure</th>
-							<td>string</td>
-							<td><pre class="php"><code>'"'</code></pre></td>
-							<td>The enclosure character</td>
-						</tr>
-						<tr>
-							<th>newline</th>
-							<td>string</td>
-							<td><pre class="php"><code>'\n'</code></pre></td>
-							<td>The newline character used by to_csv() method</td>
-						</tr>
-						<tr>
-							<th>regex_newline</th>
-							<td>string</td>
-							<td><pre class="php"><code>'\n'</code></pre></td>
-							<td>The newline character used by regex to convert input data</td>
-						</tr>
-						<tr>
-							<th>escape</th>
-							<td>string</td>
-							<td><pre class="php"><code>'\\'</code></pre></td>
-							<td>The escape character</td>
-						</tr>
-					</tbody>
-				</table>
-
-				<h4>XML</h4>
-				<table class="config">
-					<tbody>
-						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
-						</tr>
-						<tr>
-							<th>basenode</th>
-							<td>string</td>
-							<td><pre class="php"><code>'xml'</code></pre></td>
-							<td>XML basenode name</td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($data = null, $from_type = null)</h4>
@@ -125,13 +59,13 @@
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$data</kbd></th>
@@ -147,11 +81,11 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Fuel\Core\Format Object</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$array = array('foo' => 'bar');
 print_r(Format::forge($array));
@@ -181,13 +115,13 @@ Fuel\Core\Format Object
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$data</kbd></th>
@@ -198,11 +132,11 @@ Fuel\Core\Format Object
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
 print_r(Format::forge($json_string, 'json')->to_array());
@@ -230,13 +164,13 @@ Array
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$data</kbd></th>
@@ -257,11 +191,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
 print_r(Format::forge($array)->to_xml());
@@ -289,13 +223,13 @@ print_r(Format::forge($array)->to_xml());
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$data</kbd></th>
@@ -311,11 +245,11 @@ print_r(Format::forge($array)->to_xml());
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
 print_r(Format::forge($json_string, 'json')->to_csv());
@@ -339,11 +273,11 @@ print_r(Format::forge($json_string, 'json')->to_csv());
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
 print_r(Format::forge($array)->to_json());
@@ -367,11 +301,11 @@ print_r(Format::forge($array)->to_json());
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
 print_r(Format::forge($array)->to_serialized());
@@ -395,11 +329,11 @@ print_r(Format::forge($array)->to_serialized());
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$array = array(1, 2, array('a', 'b', 'c'));
 print_r(Format::forge($array)->to_php());
@@ -426,6 +360,7 @@ Array
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.5/develop/classes/format.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/classes/format.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

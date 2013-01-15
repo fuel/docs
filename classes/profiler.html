@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Profiler::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Profiler - Classes - FuelPHP Documentation</title>
+	<title>Profiler - Classes - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,15 +45,13 @@
 
 		<div id="main">
 
-			<h2>Profiler Class</h2>
-
-			<p>The profiler class allows you to add your own profiling information to the profiler.</p>
+			<h2>Profiler クラス</h2>
+			<p><strong>Profiler クラス</strong>を使うと、独自のプロファイリング情報をプロファイラに送ることができます。</p>
 
 			<article>
 				<h4 class="method" id="method_mark">mark($label)</h4>
 				<p>
-					The <strong>mark</strong> method will add a speed marker to the profiler.
-					This marker will show in the "Load Time" section of the profiler.
+					<strong>mark</strong>はスピードマーカーをプロファイラに追加します。<br />追加されたマーカーはプロファイラの"Load Time"セクションで確認することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -62,30 +60,32 @@
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th>Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th>説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$label</kbd></th>
-									<td><i>required</i></td>
-									<td>A text label to describe the marker to be set.</td>
+									<td><i>必須</i></td>
+									<td>
+									 スピードマーカーの説明
+									</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>Profiler::mark('start of this piece of code');</code></pre>
+							<pre class="php"><code>Profiler::mark('これはメソッドの開始地点です');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -95,9 +95,8 @@
 			<article>
 				<h4 class="method" id="method_mark_memory">mark_memory($var, $name)</h4>
 				<p>
-					The <strong>mark_memory</strong> method will add a memory marker to the profiler.
-					If you pass a variable, the memory usage of that variable will be logged.
-					If not, the memory usage at the time of marking will be logged.
+					<strong>mark_memory</strong>はメモリマーカーをプロファイラに追加します。<br/>
+					変数を渡した場合、その変数のメモリ使用量が記録されます。そうでない場合は、その時点でのメモリ使用量が記録されます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -106,35 +105,37 @@
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th>Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th>説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$var</kbd></th>
 									<td><kbd>false</kbd></td>
-									<td>The variable whose size has to be logged. If false or not specified, PHP memory usage will be logged.</td>
+									<td>サイズを取得したい変数。もし、falseを渡すか、何も渡さない場合は全体のメモリ使用量が記録されます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><kbd>'Memory&nbsp;Usage'</kbd></td>
-									<td>A text label to describe the marker to be set.</td>
+									<td>
+									 マーカーの説明
+									</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>Profiler::mark_memory($this, 'Controller_Welcome object');</code></pre>
+							<pre class="php"><code>Profiler::mark_memory($this, 'Controller_Welcome オブジェクトです');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -144,7 +145,7 @@
 			<article>
 				<h4 class="method" id="method_console">console($text)</h4>
 				<p>
-					The <strong>console</strong> method will add a log entry to the profiler.
+					<strong>console</strong> メソッドはログをプロファイラに追加します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -153,28 +154,30 @@
 						<td>Yes</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th>Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th>説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$text</kbd></th>
-									<td><i>required</i></td>
-									<td>A text to describe the log entry to be set.</td>
+									<td><i>必須</i></td>
+									<td>
+									 プロファイラへ追加するログ
+									</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>Profiler::console('start of this piece of code');</code></pre>
 						</td>
@@ -188,6 +191,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.5/develop/classes/profiler.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/classes/profiler.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

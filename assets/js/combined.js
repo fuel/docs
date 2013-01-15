@@ -348,52 +348,52 @@ var pane_names = {
 };
 
 panes.main = {
-	"Basic": {
-		"Home":			"index.html",
-		"Requirements":	"requirements.html",
-		"License":		"license.html",
-		"Contribute":	"contribute.html",
-		"Credits":		"credits.html"
+	"基本": {
+		"ホーム":			"index.html",
+		"要件":	"requirements.html",
+		"ライセンス":		"license.html",
+		"貢献":	"contribute.html",
+		"クレジット表示":		"credits.html"
 	},
-	"Installation": {
-		"Instructions":			"installation/instructions.html",
-		"Download":				"installation/download.html",
-		"Upgrade":				"installation/upgrade.html",
-		"Tutorials":			"installation/tutorials.html",
-		"Troubleshooting":		"installation/troubleshooting.html"
+	"インストール": {
+		"インストール方法":	"installation/instructions.html",
+		"ダウンロード":		"installation/download.html",
+		"アップグレード":	"installation/upgrade.html",
+		"チュートリアル":	"installation/tutorials.html",
+		"トラブルシューティング":		"installation/troubleshooting.html"
 	},
-	"General": {
-		"Classes": {
-			"Introduction":		"general/classes.html",
-			"Extending Core":	"general/extending_core.html"
+	"概要": {
+		"クラス": {
+			"イントロダクション":		"general/classes.html",
+			"Core の拡張":	"general/extending_core.html"
 		},
-		"Coding Standards":	"general/coding_standards.html",
-		"Configuration":	"general/configuration.html",
-		"Constants":		"general/constants.html",
-		"Environments":		"general/environments.html",
+		"コーディング標準":	"general/coding_standards.html",
+		"設定":	"general/configuration.html",
+		"定数":		"general/constants.html",
+		"複数環境":		"general/environments.html",
 		"Model-View-Controller":	"general/mvc.html",
-		"Models":			"general/models.html",
-		"Views":			"general/views.html",
-		"ViewModels":		"general/viewmodels.html",
-		"Controllers": {
+		"モデル":			"general/models.html",
+		"ビュー":			"general/views.html",
+		"ビューモデル":		"general/viewmodels.html",
+		"コントローラ": {
 			"Base" :		"general/controllers/base.html",
 			"Template":		"general/controllers/template.html",
 			"Rest":			"general/controllers/rest.html",
 			"Hybrid":		"general/controllers/hybrid.html"
 		},
-		"Routing":			"general/routing.html",
-		"Security":			"general/security.html",
-		"Modules":			"general/modules.html",
-		"Packages":			"general/packages.html",
-		"HMVC Requests":	"general/hmvc.html",
-		"Migrations":		"general/migrations.html",
-		"Tasks":			"general/tasks.html",
-		"Unit Testing":		"general/unit_testing.html",
-		"Error handling":	"general/error.html",
-		"Profiling":		"general/profiling.html",
+		"ルーティング":			"general/routing.html",
+		"セキュリティ":			"general/security.html",
+		"モジュール":			"general/modules.html",
+		"パッケージ":			"general/packages.html",
+		"HMVC リクエスト":	"general/hmvc.html",
+		"マイグレーション":		"general/migrations.html",
+		"タスク":			"general/tasks.html",
+		"ユニットテスト":		"general/unit_testing.html",
+		"エラー処理":	"general/error.html",
+		"プロファイリング":		"general/profiling.html",
 	},
-	"Third party": {
-		"Introduction":		"vendor/intro.html",
+	"サードパーティ": {
+		"イントロダクション":		"vendor/intro.html",
 		"htmLawed":			"vendor/htmlawed.html",
 		"Markdown":			"vendor/markdown.html",
 		"PHPQuickProfiler":	"vendor/phpquickprofiler.html",
@@ -524,7 +524,7 @@ panes.oil = {
 };
 
 panes.auth = {
-	"Auth Package": {
+	"Auth パッケージ": {
 		"Introduction":		"packages/auth/intro.html",
 		"Usage":			"packages/auth/usage.html",
 		"Writing drivers":	"packages/auth/drivers.html",
@@ -544,7 +544,7 @@ panes.auth = {
 
 
 panes.email = {
-	"Email Package": {
+	"Email パッケージ": {
 		"Introduction":		"packages/email/introduction.html",
 		"Usage":			"packages/email/usage.html",
 		"Methods":			"packages/email/methods.html"
@@ -552,7 +552,7 @@ panes.email = {
 };
 
 panes.orm = {
-	"Orm Package": {
+	"Orm パッケージ": {
 		"Introduction":		"packages/orm/intro.html",
 		"Creating Models":	"packages/orm/creating_models.html",
 		"CRUD":				"packages/orm/crud.html",
@@ -563,9 +563,6 @@ panes.orm = {
 			"Has Many":		"packages/orm/relations/has_many.html",
 			"Many to Many":	"packages/orm/relations/many_many.html"
 		},
-                "Models": {
-                    "Soft Delete":	"packages/orm/model/soft.html"
-                },
 		"EAV containers":		"packages/orm/eav.html",
 		"Observers": {
 			"Introduction":			"packages/orm/observers/intro.html",
@@ -576,7 +573,7 @@ panes.orm = {
 };
 
 panes.parser = {
-	"Parser Package": {
+	"Parser パッケージ": {
 		"Introduction":		"packages/parser/intro.html"
 	}
 };

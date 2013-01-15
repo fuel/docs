@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Introduction - Email Package - FuelPHP Documentation</title>
+	<title>Introduction - Email Package - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -43,27 +43,26 @@
 		</div>
 
 		<div id="main">
-			<h2>Email package</h2>
+			<h2>Email パッケージ</h2>
 
 			<p>
-				The Email package provides an interface for sending email using either php's mail function, sendmail
-				or SMTP. The package supports:
+				emailパッケージは、サポートされているSMTPもしくはPHPのmail関数を使って電子メールを送信するためのインタフェースを提供します。
 			</p>
 
 			<ul>
-				<li>Plain-text mails</li>
-				<li>HTML mails, with and optional alternative body</li>
-				<li>Attachments</li>
-				<li>Inline attachments.</li>
+				<li>プレーンテキストメール</li>
+				<li>HTMLメール、と、オプションの代替本文</li>
+				<li>添付ファイル</li>
+				<li>インラインの添付ファイル</li>
 			</ul>
 
 			<section>
-
-				<h3 id="installation">Installation</h3>
-
+			
+				<h3 id="installation">インストール</h3>
+				
 				<p>
-					The Email package is part of the official download (since version 1.1). You will have to enable the package
-					either in the app config or include it on the fly.
+					emailパッケージは、本体(1.1以降)に含まれています。
+					あなたは、設定ファイルもしくはオートロード設定で、パッケージを有効にする必要があります。
 				</p>
 
 					<pre class="php"><code>'always_load' => array(
@@ -72,7 +71,7 @@
 	),
 ),
 
-// Or in a controller:
+//もしくはControllerの上で...
 
 \Package::load('email');
 </code></pre>
@@ -80,33 +79,35 @@
 			</section>
 
 			<section>
-
-				<h3 id="configuration">Configuration</h3>
+			
+				<h3 id="configuration">構成</h3>
 
 				<p>
-					Create (or copy from the package) a config file at <em>app/config/email.php</em>. And change the settings needed.
+					app/config/email.php.をコピーもしくは新規作成してください。
+					そして設定を記載してください。
 				</p>
 
 				<p class="note">
 					<strong>Please note:</strong> The Email package loads the email config for you, so there is no need to autoload it.
 				</p>
 
-				<h4 id="general_config">General configuration</h4>
+				<h4 id="general_config">一般的な構成</h4>
+
 
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>タイプ</th>
+							<th>初期値</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>defaults</th>
 							<td>array</td>
 							<td><pre class="php"><code>array( /* default config array */ )</code></pre></td>
 							<td>
-								Default settings for every setup group to use. In your setup group you overwrite these values.
+								すべての設定グループのデフォルトの設定に使用します。セットアップグループでは、これらの値を上書きします。
 							</td>
 						</tr>
 						<tr>
@@ -114,7 +115,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'default'</code></pre></td>
 							<td>
-								The default setup to use if none is profided.
+								何もprofidedされていない場合に使用するデフォルトの設定。
 							</td>
 						</tr>
 						<tr>
@@ -124,28 +125,28 @@
 		'default' => array(),
 	)</code></pre></td>
 							<td>
-								A setups array with one default setup. Add your own or modify the default setup group.
+								デフォルトの設定とセットアップの配列。あなた自身を追加したり、デフォルトの設定のグループを変更します。
 							</td>
 						</tr>
 					</tbody>
 				</table>
 
-				<h4 id="group_config">Group configuration</h4>
+				<h4 id="group_config">グループ構成</h4>
 
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パターン</th>
+							<th>タイプ</th>
+							<th>初期値</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>useragent</th>
 							<td>string</td>
 							<td><pre class="php"><code>'FuelPHP, PHP 5.3 Framework'</code></pre></td>
 							<td>
-								The user agent.
+								ユーザエージェントです。
 							</td>
 						</tr>
 						<tr>
@@ -153,7 +154,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'mail'</code></pre></td>
 							<td>
-								The driver to use. Can be mail, smtp or sendmail. Must be lowercase.
+								ドライバを使用することでメール、SMTPやsendmailを使うことができます。小文字にする必要があります。
 							</td>
 						</tr>
 						<tr>
@@ -161,7 +162,7 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								Whether to send as html mail or as plain mail.
+								HTML形式のメールとして、もしくはプレーンメールとして送信するかどうかを決めます。
 							</td>
 						</tr>
 						<tr>
@@ -178,7 +179,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'utf-8'</code></pre></td>
 							<td>
-								The email message charset.
+								メールメッセージの文字セットを指定します。
 							</td>
 						</tr>
 						<tr>
@@ -186,7 +187,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'8bit'</code></pre></td>
 							<td>
-								The email message encoding. Can be 7bit, 8bit, quoted-printable and base64.
+								メールメッセージのエンコードを指定します。 7bit, 8bit, quoted-printable と base64が使用できます。
 							</td>
 						</tr>
 						<tr>
@@ -194,7 +195,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>\Email::P_NORMAL</code></pre></td>
 							<td>
-								The email's priority. Can be:
+								メールの優先順位を指定することができます。
 								<ul style="padding-bottom: 5px; padding-top: 5px;">
 									<li>\Email::P_LOWEST</li>
 									<li>\Email::P_LOW</li>
@@ -209,7 +210,7 @@
 							<td>string|false</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								Use this to set a default from email address.
+								デフォルト値のfrom mailを設定します。
 							</td>
 						</tr>
 						<tr>
@@ -217,7 +218,7 @@
 							<td>string|false</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								Use this to set a default from name.
+								デェフォルト値のfrom nameを設定します。
 							</td>
 						</tr>
 						<tr>
@@ -225,7 +226,7 @@
 							<td>bool</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								Set to false if you don't want to validate the addresses. Can result in failure in sending.
+								あなたがアドレスを検証したくない場合は、falseに設定します。送信に失敗することができます。
 							</td>
 						</tr>
 						<tr>
@@ -233,7 +234,7 @@
 							<td>bool</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								Whether to auto attach (background) images from a html body.
+								自動的に、HTML本文に背景画像を添付します。
 							</td>
 						</tr>
 						<tr>
@@ -241,7 +242,7 @@
 							<td>bool</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								Whether to automatically generate an alt body from a html body.
+								自動的にHTML本文からのaltを生成するかどうか指定します。
 							</td>
 						</tr>
 						<tr>
@@ -249,7 +250,8 @@
 							<td>int|false</td>
 							<td><pre class="php"><code>76</code></pre></td>
 							<td>
-								Word wrap size. If lower than anything above 0 will wrap. This setting is ignored when using base64 or quoted-printable.
+								ワードラップのサイズ。 0より上のものよりも低い場合は折り返されます。 
+								base64またはquoted - printableを使用している場合、この設定は無視されます。
 							</td>
 						</tr>
 						<tr>
@@ -257,7 +259,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'/usr/sbin/sendmail'</code></pre></td>
 							<td>
-								Path to sendmail.
+								sendmailのパス
 							</td>
 						</tr>
 						<tr>
@@ -265,7 +267,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>''</code></pre></td>
 							<td>
-								SMTP host.
+								SMTP ホスト
 							</td>
 						</tr>
 						<tr>
@@ -273,7 +275,7 @@
 							<td>int</td>
 							<td><pre class="php"><code>25</code></pre></td>
 							<td>
-								SMTP port.
+								SMTP ポート.
 							</td>
 						</tr>
 						<tr>
@@ -281,7 +283,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>''</code></pre></td>
 							<td>
-								SMTP username.
+								SMTP ユーザ名.
 							</td>
 						</tr>
 						<tr>
@@ -289,15 +291,14 @@
 							<td>string</td>
 							<td><pre class="php"><code>''</code></pre></td>
 							<td>
-								SMTP password.
-							</td>
+								SMTP パスワード</td>
 						</tr>
 						<tr>
 							<th>smtp.timeout</th>
 							<td>string</td>
 							<td><pre class="php"><code>''</code></pre></td>
 							<td>
-								SMTP timeout. Increase this when a SMTP servers times out during the sending proccess.
+								SMTPのタイムアウト 送信処理中にタイムアウトする場合はこの値を増やしてください。
 							</td>
 						</tr>
 						<tr>
@@ -305,7 +306,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>"\n"</code></pre></td>
 							<td>
-								New line.
+								新しい行
 							</td>
 						</tr>
 						<tr>
@@ -313,9 +314,9 @@
 							<td>array</td>
 							<td><pre class="php"><code>array('');</code></pre></td>
 							<td>
-								Array of attachment paths. When adding attachments,
-								the driver will look in these paths and attach the first on found.
-								Leave the empty ('') in there to allow absolute paths.
+								添付ファイルのパスを配列で設定します。
+								このドライバーは添付ファイルのパスを見て、見つかると添付します。<br>
+								空であった場合は、取り除きます。
 							</td>
 						</tr>
 						<tr>
@@ -336,6 +337,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.5/develop/packages/email/introduction.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/packages/email/introduction.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

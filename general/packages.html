@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Packages - General - FuelPHP Documentation</title>
+	<title>パッケージ - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,36 +44,37 @@
 
 		<div id="main">
 
-			<h2>Packages</h2>
+			<h2>パッケージ</h2>
 
 			<p>
-				When it comes to organizing, reuse and share your code, packages are a great way to allow you to do this.
-				They can contain all sorts of code like models, third-party libraries, configs and so on.
-				Packages also allow you to extend the core without messing up your app/classes directory.
-				To clarify what packages are, here are the "is" and "is not" on packages.
+				モジュール・サードパーティライブラリ・設定などといった、あらゆる種類のものを含むことができる
+				パッケージは、コードの組織化・再利用・共有のための素晴らしい手段です。
+				app/classes ディレクトリを滅茶苦茶することなくに core を拡張することもできます。
+				以下で、パッケージとは何であり、何でないのかを明らかにして行きましょう。
 			</p>
 
-			<h4 id="they_are">Packages...</h4>
+			<h4 id="they_are">パッケージは</h4>
 			<ul>
-				<li>are a great way to organize your code,</li>
-				<li>supply a place to keep third party libraries,</li>
-				<li>allow you to extend other packages without messing with someone's code,</li>
-				<li>a place to extend fuel without messing with core files.</li>
+				<li>コードをまとめ、</li>
+				<li>サードパーティライブラリを維持するための場所を提供し、</li>
+				<li>誰かが書いたコードを滅茶苦茶にすることなく拡張すること実現し、</li>
+				<li>core を目茶目茶にすることなく fuel の拡張をするための場所です。</li>
 			</ul>
 
-			<h4 id="they_are_not">But..</h4>
+			<h4 id="they_are_not">一方で</h4>
 			<ul>
-				<li>packages do not map to the URL,</li>
-				<li>and are not approachable through HMVC requests</li>
+				<li>パッケージは URL をマップすることはなく、</li>
+				<li>また、 HMVC リクエストからアプローチすることはできません。</li>
 			</ul>
 
-			<h3 id="installing">Installing packages</h3>
-			<p>Installing packages can be done manually and through <a href="../packages/oil/package.html">oil</a>. To install manually download the package source and place it into your package directory (default in fuel/packages).</p>
-			<p class="note">To actually be able to use your it you must either add it to <code>always_load</code> in
-			<code>app/config/config.php</code> or use <a href="../classes/package.html#method_load">Package::load()</a>.</p>
+			<h3 id="installing">パッケージのインストール</h3>
+			<p>パッケージのインストールは、手動もしくは <a href="../packages/oil/package.html">oil</a> から行えます。
+				手動でインストールするには、ダウンロードしたパッケージをパッケージディレクトリ (デフォルトでは fuel/packages)へ配置してください。</p>
+			<p class="note">パッケージを利用する際には、パッケージを <code>app/config/config.php</code> の <code>always_load</code> へ追加するか、
+				もしくは <a href="../classes/package.html#method_load">Package::load()</a> を呼び出す必要があります。</p>
 
-			<h3 id="creation">Creating packages</h3>
-			<p>To help people understand what you are doing it's best to structure your package like so:</p>
+			<h3 id="creation">パッケージの作成</h3>
+			<p>あなたが何をしているのかを他の人が理解しやすくするための、ベストなパッケージ構造:</p>
 
 			<pre><code>/packages
     /package
@@ -88,8 +89,8 @@
 </code></pre>
 
 			<p>
-				Every package is expected to have a <em>bootstrap.php</em> located at the base of the package.
-				Use the bootstrap to add the package namespace (to global if you wish). And add the classes for better perfomance.
+				すべてのパッケージはパッケージのベースに <em>bootstrap.php</em> を持つことが期待されます。
+				ブートストラップを使い、パッケージの名前空間を追加します (ご希望の場合、グローバルに)。そして、よりよいパフォーマンスのためにクラスを追加します。
 			</p>
 
 			<pre class="php"><code>// Add namespace, necessary if you want the autoloader to be able to find classes
@@ -112,14 +113,15 @@ Autoloader::add_classes(array(
 ));
 </code></pre>
 
-			<p>Once you have your classes in place you can now start using them.</p>
+			<p>クラスの準備が整ったら、それらを使用することができます。</p>
 
-			<p class="note">Note: if package namespaces aren't aliased to global you must supply it:</p>
 
-			<pre class="php"><code>// If aliased to global just use
+			<p class="note">Note: パッケージの名前空間がグローバルにエリアスされていない場合、名前空間を指定する必要があります:</p>
+
+			<pre class="php"><code>// もしグローバルにエリアスされていたら
 $instance = new Myclass;
 
-// When not aliased to global
+// グローバルにエリアスされていない場合
 $instance = new Mynamespace\Myclass;
 </code></pre>
 
@@ -128,6 +130,7 @@ $instance = new Mynamespace\Myclass;
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.5/develop/general/packages.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/general/packages.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Pagination::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Pagination - Classes - FuelPHP Documentation</title>
+	<title>Pagination - Classes - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,7 +45,7 @@
 
 		<div id="main">
 
-			<h2>Pagination Class</h2>
+			<h2>Pagination クラス</h2>
 
 			<p>The pagination class allows you to easily setup pagination for records you display.</p>
 
@@ -76,7 +76,7 @@ $this->render('welcome/index', $data);</code></pre>
 			</section>
 
 			<section>
-				<h3 id="configuration">Configuration</h3>
+				<h3 id="configuration">設定</h3>
 
 				<p>
 					You can configure the pagination instance in several ways. You can pass an array with the configuration when you
@@ -86,10 +86,10 @@ $this->render('welcome/index', $data);</code></pre>
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>型</th>
+							<th>規定値</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>pagination_url</th>
@@ -333,7 +333,7 @@ $this->render('welcome/index', $data);</code></pre>
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
@@ -355,11 +355,11 @@ $this->render('welcome/index', $data);</code></pre>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Pagination</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// create a new pagination instance
 $pagination = Pagination::forge('mypagination', array(
@@ -429,11 +429,11 @@ $pagination = Pagination::instance('mypagination');</code></pre>
 							<td>None</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>string</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// fetch a previously forged instance, and render it
 echo Pagination::instance('mypagination')->render();</code></pre>
@@ -453,13 +453,13 @@ echo Pagination::instance('mypagination')->render();</code></pre>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$marker</kbd></th>
@@ -633,7 +633,7 @@ echo Pagination::instance('mypagination')->last();</code></pre>
 							<td>mixed</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// fetch a previously forged instance, and render the "pages" link
 echo Pagination::instance('mypagination')->pages_render();</code></pre>
@@ -662,13 +662,13 @@ echo Pagination::instance('mypagination')->pages_render();</code></pre>
 							<td>Yes</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$name</kbd></th>
@@ -683,7 +683,7 @@ echo Pagination::instance('mypagination')->pages_render();</code></pre>
 							<td>mixed, properly value, or <kbd>null</kbd> if the property doesn't exist.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// fetch the current page number
 $page_number = Pagination::get('current_page');
@@ -732,7 +732,7 @@ $page_number = Pagination::instance()->current_page;</code></pre>
 							<td>void</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// set the total number of rows
 $page_number = Pagination::set('total_items', 610);
@@ -779,6 +779,7 @@ Model_Article::find()
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.5/develop/classes/pagination.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/classes/pagination.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

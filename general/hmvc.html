@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>HMVC Requests - General - FuelPHP Documentation</title>
+	<title>HMVC リクエスト - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,21 +44,21 @@
 
 		<div id="main">
 
-			<h2>HMVC requests</h2>
+			<h2>HMVC リクエスト</h2>
 
 			<p>
-				HMVC requests are a great way to separate logic and re-use controller logic in multiple places.
-				One common use of this is when you use a theme or template engine to generate your pages,
-				where every page is divided into sections, and sections are populated by widgets.
-				By using modules to produce the widget output, you can create a highly modular application with easy to re-use components.
+				HMVC リクエストは、複数の場所で、ロジックの分離とコントローラロジックを再利用するための優れた方法です。
+				1つのよくある使用法は、テーマやテンプレートエンジンを使用してページを生成するときに、
+				各ページはセクションに分かれていて、セクションはウィジェットによって表示されます。
+				モジュールを使用してウィジェットの出力を生成する、高度にモジュール化され簡単にコンポーネントを再利用できるアプリケーションを作成できます。			
 			</p>
 
-			<p>You call a module controller method using the <a href="../classes/request.html">Request</a> class:</p>
-			<pre class="php"><code>// fetch the output of a controller
+			<p><a href="../classes/request.html">Request</a> クラスを使うと、モジュールコントローラのメソッドを呼び出せます:</p>
+			<pre class="php"><code>// コントローラの出力を取得する
 $widget = Request::forge('mycontroller/mymethod/parms')->execute();
 echo $widget;
 
-// or fetch the output of a module
+// または、モジュールの出力を取得する
 $widget = Request::forge('mymodule/mycontroller/mymethod/parms', false)->execute();
 echo $widget;
 
@@ -68,16 +68,16 @@ echo $widget;
 
 </code></pre>
 			<p class="note">
-				By default, all requests made are processed by Fuel's routing engine. If you want to request something that isn't routable
-				(for example because you don't want a browser to request it), you should pass '<strong>false</strong>' as second parameter
-				to the forge() call. If you don't you will end up with a 404 error when you execute the request!
+				デフォルトでは、すべてのリクエストは、Fuel のルーティングエンジンによって処理されます。 もし、﻿ルーティング可能でないリクエストをしたい場合
+				﻿(たとえば、ブラウザからそれをリクエストされたくない場合)、'<strong>false</strong>' を 2 番目のパラメータとして
+				forge() の呼び出しに渡す必要があります。 そうしない場合、リクエストを実行すると、404 エラーで終了します!			
 			</p>
 
 			<p>
-				Loading views in HMVC request is the same as in normal requests and controllers accessed by HMVC request
-				are also approachable via the browser. However, in some cases you may not want the component (for example, a widget)
-				to be accessed through the browser. In those cases, you'll want to check if the request is made through HMVC or the browser.
-				The following example shows you how to check for a HMVC request:
+				HMVC リクエストでのビューのロードは、通常のリクエストの場合と同じで、HMVC リクエストによりアクセスされるコントローラも
+				ブラウザを経由してアプローチできます。 しかし、いくつかのケースではコンポーネント (例えば、ウィジェット) に
+				ブラウザ経由でアクセスされたくないことがあります。 これらのケースでは、リクエストが HMVC 経由かブラウザ経由かを、確認するとよいでしょう。
+				次の例は、HMVC リクエストを確認する方法を示しています:			
 			</p>
 
 			<pre class="php"><code>&lt;?php
@@ -99,10 +99,10 @@ class Controller_Widget extends Controller
 
 }</code></pre>
 
-			<h3>404 during HMVC requests</h3>
+			<h3>HMVC リクエスト中での 404</h3>
 
 			<p>
-				When a 404 occurs during a HMVC request, a <kbd>HttpNotFoundException</kbd> is thrown. If uncaught, it will trigger
+				HMVC リクエストの中で 404 が発生した場合、 <kbd>HttpNotFoundException</kbd> が投げられます。もし、キャッチされない場合、
 				the load of the frameworks default 404 page. However, you can prevent this and handle the 404
 				yourself:
 			</p>
@@ -117,18 +117,19 @@ catch (HttpNotFoundException $e)
 }
 </code></pre>
 
-			<h3>Traversing Request instances</h3>
+			<h3>リクエストインスタンスの横断</h3>
 
-			<p>If you want to access other Requests, you can traverse them using two methods:
-				<kbd>$request->parent()</kbd> and <kbd>$request->children()</kbd>. The parent is the Request during
-				which the current Request was created (<kbd>null</kbd> for the main Request). The children are all the Requests
-				created during the current Request.</p>
+			<p>あなたが他のリクエストにアクセスしたい場合は、次の 2 つの方法があります:
+				<kbd>$request->parent()</kbd> と <kbd>$request->children()</kbd> です。parent は現在のリクエストが作成されたリクエストです
+				(メインリクエストでは <kbd>null</kbd> になります)。children は、現在のリクエストの中で作成された
+				すべてのリクエストです。</p>
 
 		</div>
 
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.5/develop/general/hmvc.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/general/hmvc.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>

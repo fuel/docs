@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Environments - General - FuelPHP Documentation</title>
+	<title>環境 - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,50 +44,50 @@
 
 		<div id="main">
 
-			<h2>Environments</h2>
-
+			<h2>環境</h2>
+			
 			<p>
-				The support of environments helps FuelPHP and your app to make decisions based on the environment setting.
-				FuelPHP itself uses the environment setting to load/overwrite additional config setting based on which
-				environment is currently active.
+				環境のサポートは、FuelPHP やあなたのアプリケーションが、環境設定に基づいて意思決定することを助けます。
+				FuelPHP 自体は環境設定を使用して、現在有効な環境に基づいて追加の設定をロードしたり上書きしたりします。
 			</p>
-
-			<h3 id="possible_envs">Environments list</h3>
+			
+			<h3 id="possible_envs">環境のリスト</h3>
+			
 
 			<p>
-				FuelPHP has four predefined environments.
+				FuelPHP には 4 つの定義済みの環境があります。
 			</p>
 
 			<ul>
 				<li>
 					<strong>\Fuel::DEVELOPMENT</strong><br/>
-					The development environment.
+					開発環境。
 				</li>
 				<li>
 					<strong>\Fuel::TEST</strong><br/>
-					The test environment.
+					テスト環境。
 				</li>
 				<li>
 					<strong>\Fuel::STAGE</strong><br/>
-					The staging environment.
+					ステージング環境。
 				</li>
 				<li>
 					<strong>\Fuel::PRODUCTION</strong><br/>
-					The production environment.
+					製品環境。
 				</li>
 			</ul>
 
-			<h3 id="setting_env">Set Your Environment</h3>
+			<h3 id="setting_env">環境をセットする</h3>
 
 			<p>
-				Setting your environment is done by setting the <em>FUEL_ENV</em> server var or manually changing the
-				setting in <em>fuel/app/bootstrap.php</em>.
+				環境の設定は、サーバ変数 <em>FUEL_ENV</em> をセットするか、
+				手動で <em>fuel/app/bootstrap.php</em> 内の設定を変更することで設定します。
 			</p>
 
 			<pre class="php"><code>// Inside app/bootstrap.php
 
 /**
- * Your environment.  Can be set to any of the following:
+ * あなたの環境。次のいずれかをセットすることができます:
  *
  * Fuel::DEVELOPMENT
  * Fuel::TEST
@@ -96,12 +96,12 @@
  */
 Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOPMENT);</code></pre>
 
-			<h3 id="env_config">Environments and Config</h3>
+			<h3 id="env_config">環境と設定</h3>
 
 			<p>
-				Based on the environment the app is set to, the Config class looks for environment-specific config files.
-				The config class will look for the same config file name in a directory that's named after the current environment.
-				Here is an example to illustrate this:
+				アプリケーションがセットされた環境に基づいて、Config クラスは指定した環境の設定ファイルを検索します。
+				Config クラスはは現在の環境名が付けられたディレクトリ内にある同じ設定ファイル名を検索します。
+                こちらがサンプルになります:
 			</p>
 
 			<pre class="plain"><code>app/
@@ -113,22 +113,21 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOP
         stuff.php</code></pre>
 
 			<p>
-				When your environment is set to <kbd>\Fuel::DEVELOPMENT</kbd>, the settings from <em>stuff.php</em> are merged with <em>development/stuff.php</em>.
-				If the environment setting is set to any other than <kbd>\Fuel::DEVELOPMENT</kbd>, the extra config file is not loaded. The same goes
-				for any other environment setting you might use.
+				あなたの環境が <kbd>\Fuel::DEVELOPMENT</kbd> に設定されているとき、<em>stuff.php</em> の設定は <em>development/stuff.php</em> とマージされます。
+				環境が <kbd>\Fuel::DEVELOPMENT</kbd> 以外なら、追加の設定ファイルはロードされません。同じことが
+				他の環境設定にも当てはまります。
 			</p>
 
 			<p>
-				A real-life example for this is the database configuration. There are no default configuration settings (this is possibly
-				very dangerous).  There are only environment-specific config settings.
+				この実際のサンプルはデータベース設定です。デフォルトの設定はありません (これはおそらくとても危険です)。
+				環境固有の設定だけがあります。
 			</p>
 
-			<h3 id="env_apache">Using Apache configuration</h3>
+			<h3 id="env_apache">Apache で設定する</h3>
 
 			<p>
-				You can use the Apache configuration statement <strong>SetEnv</strong> to set the environment your application should run in.
-				In most cases this is easier then using an environment variable, and in some cases the only option if you don't have commandline
-				access to your server.
+				Apache Web サーバーの <strong>SetEnv</strong> ステートメントを使ってあなたのアプリケーションの環境設定をおこなうことができます。
+				ほとんどの場合、環境変数を使って、次のように簡単に設定することができます。また、あなたのサーバーがコマンドラインへのアクセス権を持っていない場合のオプションです。
 			</p>
 
 			<pre class="php"><code>// run this application in production mode
@@ -154,6 +153,7 @@ SetEnv FUEL_ENV production</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.5/develop/general/environments.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/general/environments.html">翻訳コミット履歴</a> ]
 			</p>
 		</footer>
 	</div>
