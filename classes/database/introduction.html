@@ -51,10 +51,10 @@
 				<h3 id="introduction">イントロダクション</h3>
 
 				<p>
-					Fuel はデータベース抽象化レイヤをベースにしたドライバを提供します。
-					執筆時点でのサポート対象ドライバは、MySQL, MySQLi および PDO です。 
-					Aside from regular database interaction, fuel also
-					comes with a DBUtil class to perform database operations such as creating databases, adding fields and much more.
+					Fuel はドライバベースのデータベース抽象化レイヤーを提供します。執筆時点のサポート対象ドライバは、
+					MySQL、MySQLi そして PDO です。Aside from regular database interaction, fuel also
+					comes with a DBUtil class to perform database operations such as creating databases,
+					adding fields and much more.
 				</p>
 
 				<p class="note">各ドライバにおいて、すべての機能をサポートしているわけではないことに注意してください。</p>
@@ -64,11 +64,14 @@
 				<h3 id="configuration">設定</h3>
 
 				<p>
-					In order to begin working with databases, you must change the database settings. The
-					database config file is located at <em>APPPATH/config/db.php</em>.
+					In order to begin working with databases, you must change the database settings. The global
+					settings, that are valid for all your <a href="../../general/environments.html">environments</a>,
+					are defined in <em>APPPATH/config/db.php</em>. You define environment specific database settings
+					in the <em>db.php</em> located in the appropriate environment configuration folder. The two will
+					be merged to form the complete database configuration.
 				</p>
 				<p>
-					データベースの設定のフォーマットはこんな感じです:
+					データベース設定は次のようなフォーマットです:
 				</p>
 					<pre class="php"><code>// MySQL ドライバの設定
 'development' => array(
@@ -80,6 +83,7 @@
 		'username'       => 'your_username',
 		'password'       => 'y0uR_p@ssW0rd',
 		'persistent'     => false,
+		'compress'       => false,
 	),
 	'identifier'   => '`',
 	'table_prefix'   => '',
@@ -96,6 +100,7 @@
 		'username'       => 'your_username',
 		'password'       => 'y0uR_p@ssW0rd',
 		'persistent'     => false,
+		'compress'       => false,
 	),
 	'identifier'   => '"',
 	'table_prefix'   => '',
@@ -114,7 +119,7 @@
 						<tr>
 							<th><kbd>type</kbd></th>
 							<td>string</td>
-							<td>接続に使う種類。mysq [訳注: mysql の誤植], mysqli または pdo です。</td>
+							<td>接続に使う種類。mysql、mysqli または pdo。</td>
 						</tr>
 						<tr>
 							<th><kbd>connection</kbd></th>
@@ -122,9 +127,9 @@
 							<td>接続情報の配列</td>
 						</tr>
 						<tr>
-							<th><kbd>connection.dns</kbd></th>
+							<th><kbd>connection.dsn</kbd></th>
 							<td>string</td>
-							<td>PDO の DNS [訳注: DSN の誤植]</td>
+							<td>PDO の DSN</td>
 						</tr>
 						<tr>
 							<th><kbd>connection.username</kbd></th>
@@ -140,6 +145,11 @@
 							<th><kbd>connection.persistent</kbd></th>
 							<td>boolean</td>
 							<td>持続的接続を開始するかどうか</td>
+						</tr>
+						<tr>
+							<th><kbd>connection.compress</kbd></th>
+							<td>boolean</td>
+							<td>Wether to use client compression when using MySQL / MySQLi.</td>
 						</tr>
 						<tr>
 							<th><kbd>identifier</kbd></th>
