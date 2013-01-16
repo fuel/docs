@@ -18,6 +18,8 @@
 
 日本語化途中のドキュメントは、以下から閲覧できます。
 
+- http://fuelphp.jp/docs/1.5/ ................. バージョン 1.5
+- http://fuelphp.jp/docs/1.4/ ................. バージョン 1.4
 - http://press.nekoget.com/fuelphp_doc/ ....... バージョン 1.3
 - http://press.nekoget.com/fuelphp_doc_1.2/ ... バージョン 1.2
 
