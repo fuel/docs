@@ -194,10 +194,28 @@
 				<li>対応フォーマットを含むなら、protected なプロパティである <kbd>$format</kbd> を使用する</li>
 				<li>対応フォーマットであるなら、URL の拡張子を使用する</li>
 				<li>対応フォーマットを含むなら、ルートの中で指定された <kbd>:format</kbd> 変数のフォーマットを使用する</li>
+				<li>use the format defined in the <kbd>HTTP_ACCEPT</kbd> header</li>
 				<li>あなたのクラスの <kbd>$rest_format</kbd> プロパティで定義されたデフォルト値を使用する</li>
 			</ul>
 
-			<h3 id="special_methods">特殊なコントローラのメソッド</h3>
+			<p>
+				In most cases the <kbd>HTTP_ACCEPT</kbd> is present and contains (at least) <u>text/html</u>, which is a valid
+				result format. This has the implication that the <kbd>$rest_format</kbd>, and any global default defined in the <strong>rest.php</strong>
+				configuration file, will never be used.
+			</p>
+
+			<p>
+				To disable the <kbd>HTTP_ACCEPT</kbd> as a valid format source, set the configuration key <strong>ignore_http_accept</strong>
+				in the <strong>rest.php</strong> to <code>false</code>.
+			</p>
+
+			<p class="note">
+				Note that it is considered bad practice to hardcode any result format in your REST controller. It should be up to the client
+				to specify in which format the result should be returned. In case of <kbd>HTTP_ACCEPT</kbd>, most ajax solutions like for example
+				<code>jQuery.ajax()</code> allow you to set the accept header to <u>application/json</u>.
+			</p>
+
+			<h3 id="special_methods">Special controller methods</h3>
 
 			<article>
 				<h4 id="response">response($data = array(), $http_code = 200)</h4>

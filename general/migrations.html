@@ -50,7 +50,61 @@
 
 			<p>データベーステーブル migration が、どのマイグレーションが実行されているかを記録しますので、アプリケーションファイルを更新し、どのマイグレーションが実行されるかを解決するために  <kbd>Migrate::current()</kbd> を呼び出すだけで済みます。現在のバージョンは、core/config/migration.php の中にありますので、他の設定ファイルと同様に app/config にコピーして変更します。</p>
 
-			<h3>マイグレーションの作成</h3>
+			<h3><a class="internal_link" href="#/config">Configuration</a></h3>
+
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Key</th>
+						<th>Type</th>
+						<th>Default</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>folder</th>
+						<td>string</td>
+						<td>
+							<pre class="php">
+								<code>'migrations/'</code>
+							</pre>
+						</td>
+						<td>
+							The folder in which migration files will be found.
+						</td>
+					</tr>
+					<tr>
+						<th>connection</th>
+						<td>string</td>
+						<td>
+							<pre class="php">
+								<code>null</code>
+							</pre>
+						</td>
+						<td>
+							Configuration name of a database connection to use to write migrations.
+						</td>
+					</tr>
+					<tr>
+						<th>table</th>
+						<td>string</td>
+						<td>
+							<pre class="php">
+								<code>'migration'</code>
+							</pre>
+						</td>
+						<td>
+							The database table used to store migration data.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p class="note">
+				<strong>Note: </strong>
+				After migrations have been run, the configuration file will be rewritten with version information included. These version numbers are used internally and should not be changed. 
+			</p>
+
+			<h3>Creating a Migration</h3>
 
 			<p>app/migrations フォルダにファイルを作成します。接頭辞は 001 から始まる増加する数字です。数字はスキップせずに、また同じ数字を使わないようにする必要があります。最初のファイルは、<kbd>app/migrations/001_example.php</kbd> のようになります。</p>
 			<pre class="php"><code>namespace Fuel\Migrations;
@@ -109,6 +163,17 @@ $ php oil refine migrate --version=10</code></pre>
 				config number so the current command will not be relevant in many situations.
 			</p>
 
+			<h3 id="skip_migrations">Skipping migrations</h3>
+
+			<p>
+				You can abort the migration process by having your <kbd>up()</kbd> or <kbd>down()</kbd> method return
+				<kbd>false</kbd>. This can be useful if your migration has external dependencies, for example the existence of a table created in a different
+				migration.
+			</p>
+			<p class="note">
+				This will only abort the migration stack currently being processed, either the application migrations, or the migrations in a single module or package.
+				All migrations in other stacks will be processed as normal.
+			</p>
 		</div>
 
 		<footer>

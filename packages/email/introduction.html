@@ -46,7 +46,8 @@
 			<h2>Email パッケージ</h2>
 
 			<p>
-				emailパッケージは、サポートされているSMTPもしくはPHPのmail関数を使って電子メールを送信するためのインタフェースを提供します。
+				The Email package provides an interface for sending email using either php's mail function, sendmail
+				or SMTP. The package supports:
 			</p>
 
 			<ul>
@@ -83,8 +84,7 @@
 				<h3 id="configuration">構成</h3>
 
 				<p>
-					app/config/email.php.をコピーもしくは新規作成してください。
-					そして設定を記載してください。
+					Create (or copy from the package) a config file at <em>app/config/email.php</em>. And change the settings needed.
 				</p>
 
 				<p class="note">
@@ -92,7 +92,6 @@
 				</p>
 
 				<h4 id="general_config">一般的な構成</h4>
-
 
 				<table class="config">
 					<tbody>
@@ -146,7 +145,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'FuelPHP, PHP 5.3 Framework'</code></pre></td>
 							<td>
-								ユーザエージェントです。
+								ユーザエージェント。
 							</td>
 						</tr>
 						<tr>
@@ -154,7 +153,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'mail'</code></pre></td>
 							<td>
-								ドライバを使用することでメール、SMTPやsendmailを使うことができます。小文字にする必要があります。
+								The driver to use. Can be mail, smtp, sendmail or noop (only logs writes to log). Must be lowercase.
 							</td>
 						</tr>
 						<tr>

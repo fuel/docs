@@ -90,7 +90,7 @@
 							<th>例</th>
 							<td>
 								<pre class="php"><code>// returns 'simpleacl'
-$id = Auth::instance('simpleacl')->get_id();
+$id = Auth::acl()->get_id();
 </code></pre>
 							</td>
 						</tr>
@@ -137,7 +137,7 @@ $id = Auth::instance('simpleacl')->get_id();
 							<th>例</th>
 							<td>
 								<pre class="php"><code>// set a config value on the simpleacl driver
-Auth::instance('simpleacl')->set_config('key', 'value');
+Auth::acl()->set_config('key', 'value');
 </code></pre>
 							</td>
 						</tr>
@@ -238,7 +238,7 @@ $key = Auth::instance(simpleacl)->get_config('key', false);
 							<th>例</th>
 							<td>
 								<pre class="php"><code>// check if user is allowed to comment
-if ( ! Auth::instance('simpleacl')->has_access('comments.create'), array('simplegroup', 1))
+if ( ! Auth::acl()->has_access('comments.create'), array('simplegroup', 1))
 {
 	Response::redirect('no_admin');
 }</code></pre>
