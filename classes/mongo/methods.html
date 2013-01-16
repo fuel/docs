@@ -168,6 +168,58 @@ foreach($result as $user)
 			</article>
 
 			<article>
+				<h4 class="method" id="method_get_cursor">get_cursor($collection = "")</h4>
+				<p>
+					The <strong>get_cursor</strong> method returns the mongodb cursor from the specified collection. The advantage it provides over the normal get() method is when processing large datasets as documents are only loaded into memory one at a time as they are accessed instead of all at once. Very useful for long running processes.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$collection</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>''</code></pre></td>
+									<td>The collection name.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>A <a href="http://php.net/manual/en/class.mongocursor.php">MongoCursor</a> object.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get an instance
+$mongodb = \Mongo_Db::instance();
+
+$result = $mongodb->get_cursor('documents');
+foreach($result as $document)
+{
+	// Do something with $document
+}
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_get">get_one($collection = "")</h4>
 				<p>
 					The <strong>get_one</strong> method returns one result from a collection.

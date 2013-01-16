@@ -103,7 +103,7 @@
 							<th>例</th>
 							<td>
 								<pre class="php"><code>// returns 'simpleauth'
-$id = Auth::instance('simplegroup')->get_id();
+$id = Auth::group()->get_id();
 </code></pre>
 							</td>
 						</tr>
@@ -150,7 +150,7 @@ $id = Auth::instance('simplegroup')->get_id();
 							<th>例</th>
 							<td>
 								<pre class="php"><code>// set a config value on the simplegroup driver
-Auth::instance('simplegroup')->set_config('key', 'value');
+Auth::group()->set_config('key', 'value');
 </code></pre>
 							</td>
 						</tr>
@@ -250,19 +250,19 @@ $key = Auth::instance(simplegroup)->get_config('key', false);
 							<th>例</th>
 							<td>
 								<pre class="php"><code>// check if user is allowed to comment
-if ( ! Auth::instance('simplegroup')->has_access('comments.create'), null)
+if ( ! Auth::group()->has_access('comments.create'), null)
 {
 	Response::redirect('no_admin');
 }
 
 // check if user can also update &amp; delete comments
-Auth::instance('simplegroup')->has_access('comments.[update,delete]', null);
+Auth::group()->has_access('comments.[update,delete]', null);
 
 // call statically (will use the default group driver instance)
 Auth::has_access('comments.[update,delete]');
 
 // The same with an array instead of a string
-Auth::instance('simplegroup')->has_access(array('comments', array('update', 'delete')), null);</code></pre>
+Auth::group()->has_access(array('comments', array('update', 'delete')), null);</code></pre>
 							</td>
 						</tr>
 						</tbody>
@@ -364,7 +364,7 @@ Auth::check(0, array('simplegroup', 'genericgroup'));</code></pre>
 							<th>例</th>
 							<td>
 								<pre class="php"><code>// get the display name of the admin group
-Auth::instance('simplegroup')->get_name('admin');</code></pre>
+Auth::group()->get_name('admin');</code></pre>
 							</td>
 						</tr>
 						</tbody>
