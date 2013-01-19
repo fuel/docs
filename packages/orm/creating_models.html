@@ -175,13 +175,33 @@
 				<h3 id="connection">protected static $_connection</h3>
 
 				<p>By default this property does not exist and Model::connection() returns <kbd>null</kbd>, but you can set
-				it to any other database name configured in <kbd>app/config/db.php</kbd>. Note however that relations don't
-				work across connections.</p>
+				it to any other database name configured in <kbd>app/config/db.php</kbd>.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model
+				<h3 id="write_connection">protected static $_write_connection</h3>
+
+				<p>If you have a master/slave setup for your database environment, you can use this property to define the
+				connection to use for the write master. If configured, the <kbd>$_connection</kbd> property will be used
+				to connect to the read slaves.</p>
+				<p>By default this property does not exist and Model::connection(true) returns either the configured <kbd>$_connection</kbd>,
+				or <kbd>null</kbd>, but you can set it to any other database name configured in <kbd>app/config/db.php</kbd>.</p>
+
+				<pre class="php"><code>// configuration for single database usage
+class Model_Article extends Orm\Model
 {
-	protected static $_connection = 'articles_database';
+	// 'articles_db' has to be configured in your db.php configuration file
+	protected static $_connection = 'articles_db';
+}
+
+// configuration for master/slave database usage
+class Model_Article extends Orm\Model
+{
+	// 'articles_master_db' and 'articles_slave_db' have to be configured in your db.php configuration file
+	protected static $_write_connection = 'articles_master_db';
+	protected static $_connection = 'articles_slave_db';
 }</code></pre>
+
+				<p class="note">Note that relations do not work across connections, so when you define your connections in the model,
+				make sure your related models have exactly the same configuration, both for reads and writes!</p>
 
 				<h3 id="to_array_exclude">protected static $_to_array_exclude</h3>
 
