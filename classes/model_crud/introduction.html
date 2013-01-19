@@ -166,10 +166,21 @@ class Model_Users extends \Model_Crud
 						<td>string</td>
 						<td><em>none</em></td>
 						<td>
-							The database connection to use.
+							The database connection to use, or the connection used for reads in a master/slave setup. If not configured, the DB config default will be used.
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_connection = null;</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<th><strong>$_write_connection</strong></th>
+						<td>string</td>
+						<td><em>none</em></td>
+						<td>
+							The database connection to use for writes in a master/slave setup.
+						</td>
+						<td>
+							<pre class="php"><code>protected static $_write_connection = 'master';</code></pre>
 						</td>
 					</tr>
 					<tr>
