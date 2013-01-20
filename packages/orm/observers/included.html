@@ -69,13 +69,12 @@
 				<h4 id="os_self">Observer_Self</h4>
 
 				<p>良い習慣ではありませんが、場合によっては、あなたのモデルとイベントメソッドだけを持っているのはおそらく最も
-					クリーンです。 もしモデルがイベントにちなんで命名され、<kbd>_event_</kbd>で始まるメソッドを持っている場合は、
-					Observer_Selfの出番です。たとえば <kbd>after_save</kbd> イベントの場合、 あなたは
-					public メソッドの <kbd>_event_after_save()</kbd> を 使っているmodelに追加する必要があり、それは 
-					モデル自体のオブザーバの呼び出しを持つことができます。
-				</p>
+					クリーンです。 もしモデルがイベントにちなんで命名され、<kbd>_event_</kbd> で始まるメソッドを持っている場合は、
+					Observer_Self の出番です。たとえば <kbd>after_save</kbd> イベントの場合、 あなたは
+					public メソッドの <kbd>_event_after_save()</kbd> を 使っているモデルに追加する必要があり、それは 
+					モデル自体のオブザーバの呼び出しを持つことができます。</p>
 
-				<pre class="php"><code>// オブザーバを追加します。
+				<pre class="php"><code>// オブザーバを追加します
 protected static $_observers = array('Orm\\Observer_Self');
 
 // But if you only observe some events you can optimize by only adding those
@@ -126,11 +125,9 @@ protected static $_observers = array(
 
 				<h4 id="os_validation">Observer_Validation</h4>
 
-				<p>このオブザーバのみ<kbd>before_save</kbd>に作用します。
-					これは、検証規則が失敗した場合の保存からモデルを防ぐために使用されます。
+				<p>このオブザーバのみ<kbd>before_save</kbd>に作用します。これは、検証規則が失敗した場合の保存からモデルを防ぐために使用されます。
 					それは、 <a href="../../../classes/fieldset.html">Fieldset</a>クラスを使用し、
-					またあなたのためのフォームを生成することができます。
-				</p>
+					またあなたのためのフォームを生成することができます。</p>
 
 				<p class="note">主要なキーは編集できませんし、検証にも、フォームにも追加されません。
                                  そしてほとんどの場合自動インクリメントとなります。それを創造の上に置いて、確認を必要とする場合、
@@ -142,14 +139,15 @@ protected static $_observers = array(
 protected static $_observers = array('Orm\\Observer_Validation');
 
 // But adding it just for before_save is enough
-protected static $_observers = array('Orm\\Observer_Validation' => array( 
+protected static $_observers = array('Orm\\Observer_Validation' => array(
 	'events' => array('before_save')
 ));</code></pre>
 
-				<p>検証ルールは<kbd>$_properties</kbd>でモデルで定義する必要があります。
-                                    これは、<a href="../creating_models.html#propperties">モデルの作成</a>に示されています。
-				    あなたが検証オブザーバーを追加した後、モデルのデータを保存する前に検証に失敗した場合、Orm\ValidationFailed に例外が投げられます。
-                                    このようにモデルの<kbd>保存</kbd>機能への呼び出しをtry/catchする必要があります。</p>
+				<p>検証ルールは <kbd>$_properties</kbd> でモデルで定義する必要があります。
+					これは、<a href="../creating_models.html#propperties">モデルの作成</a>に示されています。
+					あなたが検証オブザーバーを追加した後、モデルのデータを保存する前に検証に失敗した場合、Orm\ValidationFailed に例外が投げられます。
+					このようにモデルの <kbd>save</kbd> メソッドの呼び出しを try/catch する必要が
+					あります。</p>
 
 				<p>より広範な機能例/scaffoldingを以下に示します:</p>
 
@@ -253,7 +251,7 @@ echo $fieldset;</code></pre>
 protected static $_observers = array('Orm\\Observer_Typing');
 
 // But adding it just for these specific events is enough
-protected static $_observers = array('Orm\\Observer_Typing' => array( 
+protected static $_observers = array('Orm\\Observer_Typing' => array(
 	'events' => array('before_save', 'after_save', 'after_load')
 ));</code></pre>
 
@@ -339,8 +337,7 @@ protected static $_observers = array(
 protected static $_observers = array('Orm\\Observer_Slug' => array('before_insert'));</code></pre>
 
 				<p>
-					オブザーバは<a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a>を使用して
-					<kbd>タイトル</kbd>から<kbd>スラグ</kbd>を作成し、スラグが既に存在する場合は、インデックスを追加します。
+					オブザーバは <a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a> を使用して<kbd>title</kbd> から <kbd>slug</kbd> を作成し、スラグが既に存在する場合は、インデックスを追加します。
 				</p>
 			</article>
 
@@ -348,7 +345,7 @@ protected static $_observers = array('Orm\\Observer_Slug' => array('before_inser
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/packages/orm/observers/included.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/packages/orm/observers/included.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/packages/orm/observers/included.html">GitHubで修正</a> ]
 			</p>
 		</footer>

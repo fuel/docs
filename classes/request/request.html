@@ -130,8 +130,12 @@ $request = Request::forge('admin/login');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// 管理コントローラー、ログインメソッドのリクエストオブジェクトを生成し実行する。
-$request = Request::forge('admin/login')->execute();</code></pre>
+							<pre class="php"><code>// create and execute the request object for the admin controller, login method
+$request = Request::forge('admin/login')->execute();
+
+// pass an object to the login controller
+$object = new Object();
+$request = Request::forge('admin/login')->execute(array('object' => $object);</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -373,7 +377,8 @@ $children = Request::main()->children();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_main">main()</h4>
-				<p><strong>main</strong> メソッドはメインリクエストのインスタンス (最初のページリクエストで生成されたもの) を返します。</p>
+				<p><strong>main</strong> メソッドはメインリクエストのインスタンス (最初のページリクエストで生成されたもの) 
+					を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -397,7 +402,9 @@ $children = Request::main()->children();</code></pre>
 					</tbody>
 				</table>
 
-				<p class="note">これは最初に実行されたリクエストインスタンスであって、必ずしも現在のリクエストのルート親 (root parent) のインスタンスではありません。たとえば、メインリクエストが 404 で (<kbd>_404_</kbd> にルート付けられたものが実行された) その後に新しいリクエストを生成するという様なケースがそれにあたるでしょう。</p>
+				<p class="note">これは最初に実行されたリクエストインスタンスであって、必ずしも現在のリクエストのルート親 (root parent) のインスタンスではありません。
+					たとえば、メインリクエストが 404 で (<kbd>_404_</kbd> にルート付けられたものが実行された) 
+					その後に新しいリクエストを生成するという様なケースがそれにあたるでしょう。</p>
 			</article>
 
 			<article>
@@ -505,7 +512,7 @@ $paths = Request::active()->get_paths();</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/classes/request/request.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/classes/request/request.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/classes/request/request.html">GitHubで修正</a> ]
 			</p>
 		</footer>

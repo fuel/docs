@@ -50,7 +50,7 @@
                     <p>If the employee is soft deleted then, as far as the system is concerned, the employee no longer exists. The soft delete model provides a way to query this archived data so reports can still be generated using this “deleted” data.</p>
                     <p>Some people advocate avoiding soft (or logical) deletes. This model does not force you to use soft delete but provides a way for a quick implementation in your project if you decide that soft delete is for you.</p>
                 </section>
-                
+
                 <section>
                     <h2>Basic use</h2>
                     <p>Using the soft delete model is as easy as extending <kbd>Orm\Model_Soft</kbd> instead of <kbd>Orm\Model</kbd>. This marks your model as being a soft delete model and changes the default behaviour of the <kbd>delete()</kbd> and <kbd>find()</kbd> methods.</p>
@@ -60,7 +60,7 @@
 }</code></pre>
                     <p>The model is then set up like a normal <a href="../creating_models.html">ORM model</a>, including any relations or other properties that you wish to use.</p>
                 </section>
-                
+
                 <section>
                     <h2 id="settings">Settings</h2>
                     <p>There are currently two extra settings that can be set for soft delete models.</p>
@@ -75,19 +75,19 @@
     );
 }</code></pre>
                 </section>
-                
+
                 <section>
                     <h2 id="delete">Deleting</h2>
                     <p>To trigger the soft delete just call the normal <kbd>delete()</kbd> function on the object after selecting. This updates the database entry with the current timestamp and mark the entry as deleted. The entry will no longer show up in <kbd>find()</kbd> queries.</p>
                     <pre id="php"><code>$employee = Model_Employee::find(1);
 $employee->delete(); //The employee has now been soft deleted.</code></pre>
                 </section>
-                
+
                 <section>
                     <h2 id="find">Find</h2>
                     <p>Soft deleted entries are not listed with <kbd>find()</kbd> requests, they are excluded from the returned results because they have, as far as <kbd>Model_Soft</kbd> is concerned, been deleted. It is possible to query deleted entries by using <kbd>find_deleted()</kbd> or <kbd>deleted()</kbd>. These both work the same as <kbd>find()</kbd> and expect the same parameters.</p>
                 </section>
-                
+
                 <section>
                     <h2 id="restore">Restoring</h2>
                     <p>Entries that have been soft deleted can be restored at a later date. Say that one of our employees returns, we can just restore the soft deleted entry and have everything working for her again without having to create a new employee.</p>
@@ -99,7 +99,7 @@ $employee = Model_Employee::deleted(1);
 $employee->restore(); //The employee is no longer deleted.
 $employee->undelete(); //Does the same as above.</code></pre>
                 </section>
-                
+
                 <section>
                     <h2 id="relations">Relations</h2>
                     <h1>Delete</h1>
@@ -111,7 +111,7 @@ $employee->undelete(); //Does the same as above.</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/packages/orm/model/soft.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/packages/orm/model/soft.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/packages/orm/model/soft.html">GitHubで修正</a> ]
 			</p>
 		</footer>

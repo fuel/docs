@@ -68,8 +68,7 @@
 			</ul>
 
 			<h3 id="installing">パッケージのインストール</h3>
-			<p>パッケージのインストールは、手動もしくは <a href="../packages/oil/package.html">oil</a> から行えます。
-				手動でインストールするには、ダウンロードしたパッケージをパッケージディレクトリ (デフォルトでは fuel/packages)へ配置してください。</p>
+			<p>パッケージのインストールは、手動もしくは <a href="../packages/oil/package.html">oil</a> から行えます。手動でインストールするには、ダウンロードしたパッケージをパッケージディレクトリ (デフォルトでは fuel/packages)へ配置してください。</p>
 			<p class="note">パッケージを利用する際には、パッケージを <code>app/config/config.php</code> の <code>always_load</code> へ追加するか、
 				もしくは <a href="../classes/package.html#method_load">Package::load()</a> を呼び出す必要があります。</p>
 
@@ -115,13 +114,12 @@ Autoloader::add_classes(array(
 
 			<p>クラスの準備が整ったら、それらを使用することができます。</p>
 
+			<p class="note">Note: パッケージの名前空間がグローバルにエイリアスされていない場合、名前空間を指定する必要があります:</p>
 
-			<p class="note">Note: パッケージの名前空間がグローバルにエリアスされていない場合、名前空間を指定する必要があります:</p>
-
-			<pre class="php"><code>// もしグローバルにエリアスされていたら
+			<pre class="php"><code>// グローバルにエイリアスされている場合
 $instance = new Myclass;
 
-// グローバルにエリアスされていない場合
+// グローバルにエイリアスされていない場合
 $instance = new Mynamespace\Myclass;
 </code></pre>
 
@@ -129,7 +127,7 @@ $instance = new Mynamespace\Myclass;
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/general/packages.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/general/packages.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/general/packages.html">GitHubで修正</a> ]
 			</p>
 		</footer>

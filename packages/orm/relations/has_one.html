@@ -56,18 +56,16 @@
 
 				<p>もう一つのモデルとの１対１の関係を指定します。 対象モデルは、
 				反比例の関係を実現するために現在のモデルへの参照"<a href="belongs_to.html">Belongs To</a>"
-				を含める必要があります。
-				</p>
+				を含める必要があります。</p>
 
 				<h3>例</h3>
 
-				<p>modelの<kbd>Model_User</kbd>と、そして<em>hasOne 関係</em>にある<kbd>Model_Profile</kbd>があるとします。
-					（そしてそれは次に、ユーザーに属しています。）
-					Model_UserのIDは、独自のテーブルで
-					Model_Profileインスタンスに保存されます。 userテーブルは、プロファイルを言及ししていませんが
-					<kbd>profiles</kbd>テーブルは、カラム <kbd>user_id</kbd>を（または、設定他の何か）があることを意味します。
-					あなたが既定値を維持する場合に必要な作業は、Model_Userの静的プロパティ<kbd>$_has_one</kbd>に
-					<kbd>'profile'</kbd>を追加することだけです。</p>
+				<p>モデル <kbd>Model_User</kbd> と、そして <em>has_one</em> 関係にある <kbd>Model_Profile</kbd> があるとします
+					（そしてそれは次に、ユーザーに属しています）。Model_User の ID は、独自のテーブルで
+					Model_Profile インスタンスに保存されます。 user テーブルは、プロファイルを言及ししていませんが
+					<kbd>profiles</kbd> テーブルは、カラム <kbd>user_id</kbd> を（または、設定他の何か）があることを意味します。
+					あなたが既定値を維持する場合に必要な作業は、Model_Userの静的プロパティ <kbd>$_has_one</kbd> に
+					<kbd>'profile'</kbd> を追加することだけです。</p>
 
 				<pre class="php"><code>protected static $_has_one = array('profile');</code></pre>
 
@@ -106,7 +104,7 @@ protected static $_has_one = array(
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/packages/orm/relations/has_one.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/packages/orm/relations/has_one.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/packages/orm/relations/has_one.html">GitHubで修正</a> ]
 			</p>
 		</footer>

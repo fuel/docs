@@ -99,10 +99,11 @@
 	protected static $_primary_key = array('aid');
 }</code></pre>
 
-				<p class="note">主キーは、一意で普遍な本当の主キーでなければなりません。PKが変更するようには動かないだけでなく、
-					他の目的（1対1の関係で外部キーなど）のためにそれを使用しないでください。ORMはこれをチェックしません。それは一見しただけで動作するように見えるかもしれませんが
+				<p class="note">主キーは、一意で普遍な本当の主キーでなければなりません。PK が変更するようには動かないだけでなく、
+					他の目的（1対1の関係で外部キーなど）のためにそれを使用しないでください。
+					ORM はこれをチェックしません。それは一見しただけで動作するように見えるかもしれませんが
 					あなたをトラブルに巻き込むでしょう。<br />
-					それはPKには必要ありません。 auto_incrementにすべき（望ましい）です。PKを
+					それは PK には必要ありません。 auto_increment にすべき（望ましい）です。PK を
 					自分で初回のみ指定することができます。一度セットすると、それがセットされます。</p>
 
 				<h3 id="propperties">protected static $_properties</h3>
@@ -173,14 +174,34 @@
 
 				<h3 id="connection">protected static $_connection</h3>
 
-				<p>デフォルトでは、このプロパティが存在しません。そして Model::connection() は <kbd>null</kbd>を返します。 しかし、
-				<kbd>app/config/db.php</kbd>で設定された,任意の他のデータベース名に設定することができます。関係が接続の向こう側に動作しないことに
-				注意してください。</p>
+				<p>By default this property does not exist and Model::connection() returns <kbd>null</kbd>, but you can set
+				it to any other database name configured in <kbd>app/config/db.php</kbd>.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model
+				<h3 id="write_connection">protected static $_write_connection</h3>
+
+				<p>If you have a master/slave setup for your database environment, you can use this property to define the
+				connection to use for the write master. If configured, the <kbd>$_connection</kbd> property will be used
+				to connect to the read slaves.</p>
+				<p>By default this property does not exist and Model::connection(true) returns either the configured <kbd>$_connection</kbd>,
+				or <kbd>null</kbd>, but you can set it to any other database name configured in <kbd>app/config/db.php</kbd>.</p>
+
+				<pre class="php"><code>// configuration for single database usage
+class Model_Article extends Orm\Model
 {
-	protected static $_connection = 'articles_database';
+	// 'articles_db' has to be configured in your db.php configuration file
+	protected static $_connection = 'articles_db';
+}
+
+// configuration for master/slave database usage
+class Model_Article extends Orm\Model
+{
+	// 'articles_master_db' and 'articles_slave_db' have to be configured in your db.php configuration file
+	protected static $_write_connection = 'articles_master_db';
+	protected static $_connection = 'articles_slave_db';
 }</code></pre>
+
+				<p class="note">Note that relations do not work across connections, so when you define your connections in the model,
+				make sure your related models have exactly the same configuration, both for reads and writes!</p>
 
 				<h3 id="to_array_exclude">protected static $_to_array_exclude</h3>
 
@@ -207,14 +228,14 @@
 
 				<h3 id="observers">protected static $_observers</h3>
 
-				<p>追加オブザーバーについては <a href="observers/intro.html">Observers</a>で説明されています。</p>
+				<p>オブザーバーの追加については <a href="observers/intro.html">Observers</a>で説明されています。</p>
 			</section>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/packages/orm/creating_models.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/packages/orm/creating_models.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/packages/orm/creating_models.html">GitHubで修正</a> ]
 			</p>
 		</footer>
