@@ -254,7 +254,12 @@ Model_Article::query()-&gt;related(array('author', 'comments'));
 Model_Article::find('all', array('related' =&gt; array('author', 'comments')));
 
 // include conditions on the relation (only supported when chaining)
-Model_Article::query()-&gt;related('author', array('where' =&gt; array('active', '=', 1)));
+Model_Article::query()
+    -&gt;related('author', array('where' =&gt; array(array('active', '=', 1))));
+
+// include multiple conditions on the relation
+Model_Article::query()
+    -&gt;related('author', array('where' =&gt; array(array('active', '=', 1), array('status', '=', 'X'))));
 </code></pre>
 								</td>
 							</tr>
