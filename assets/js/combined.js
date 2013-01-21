@@ -364,7 +364,7 @@ panes.main = {
 	},
 	"概要": {
 		"クラス": {
-			"イントロダクション":		"general/classes.html",
+			"はじめに":		"general/classes.html",
 			"Core の拡張":	"general/extending_core.html"
 		},
 		"コーディング標準":	"general/coding_standards.html",
@@ -393,7 +393,7 @@ panes.main = {
 		"プロファイリング":		"general/profiling.html",
 	},
 	"サードパーティ": {
-		"イントロダクション":		"vendor/intro.html",
+		"はじめに":			"vendor/intro.html",
 		"htmLawed":			"vendor/htmlawed.html",
 		"Markdown":			"vendor/markdown.html",
 		"PHPQuickProfiler":	"vendor/phpquickprofiler.html",
@@ -425,12 +425,12 @@ panes.core = {
 		"Cookie":		"classes/cookie.html",
 		"Crypt":		"classes/crypt.html",
 		"Database": {
-			"Introduction":   	  "classes/database/introduction.html",
+			"はじめに":   	  "classes/database/introduction.html",
 			"Usage":          	  "classes/database/usage.html",
 			"DB class":       	  "classes/database/db.html",
 			"DBUtil class":   	  "classes/database/dbutil.html",
 			"Query Building":	{
-				"Introduction":			"classes/database/qb.html",
+				"はじめに":			"classes/database/qb.html",
 				"Insert builder":	"classes/database/qb_insert.html",
 				"Select builder":	"classes/database/qb_select.html",
 				"Update builder":	"classes/database/qb_update.html",
@@ -445,7 +445,7 @@ panes.core = {
 		// "Exception":	"todo.html",
 		"Fieldset":		"classes/fieldset.html",
 		"File": {
-			"Introduction":	"classes/file/intro.html",
+			"はじめに":	"classes/file/intro.html",
 			"Usage":		"classes/file/usage.html",
 			"Advanced":		"classes/file/advanced.html",
 			"Handlers":		"classes/file/handlers.html",
@@ -464,13 +464,13 @@ panes.core = {
 		"Markdown":		"classes/markdown.html",
 		"Migrate":		"classes/migrate.html",
 		"Model_Crud": {
-			"Introduction": "classes/model_crud/introduction.html",
+			"はじめに": "classes/model_crud/introduction.html",
 			"Methods": "classes/model_crud/methods.html"
 			//"Usage": "classes/model_crud/usage.html",
 		},
 		"Module":		"classes/module.html",
 		"Mongo_Db": {
-			"Introduction":	"classes/mongo/introduction.html",
+			"はじめに":	"classes/mongo/introduction.html",
 			"Methods":		"classes/mongo/methods.html"
 		},
 		"Num":			"classes/num.html",
@@ -493,7 +493,7 @@ panes.core = {
 		},
 		"Str": 			"classes/str.html",
 		"Theme": {
-			"Introduction":	"classes/theme/introduction.html",
+			"はじめに":	"classes/theme/introduction.html",
 			"Methods":	"classes/theme/methods.html",
 			"Advanced":	"classes/theme/advanced.html"
 		},
@@ -504,7 +504,7 @@ panes.core = {
 		},
 		"Uri":			"classes/uri.html",
 		"Validation": {
-			"Introduction": "classes/validation/validation.html",
+			"はじめに": "classes/validation/validation.html",
 			"Methods": "classes/validation/methods.html",
 			"Errors": "classes/validation/errors.html"
 		},
@@ -514,7 +514,7 @@ panes.core = {
 
 panes.oil = {
 	"Oil": {
-		"Introduction":		"packages/oil/intro.html",
+		"はじめに":		"packages/oil/intro.html",
 		"Generate":			"packages/oil/generate.html",
 		"Refine":			"packages/oil/refine.html",
 		"Package":			"packages/oil/package.html",
@@ -525,7 +525,7 @@ panes.oil = {
 
 panes.auth = {
 	"Auth パッケージ": {
-		"Introduction":		"packages/auth/intro.html",
+		"はじめに":		"packages/auth/intro.html",
 		"Usage":			"packages/auth/usage.html",
 		"Writing drivers":	"packages/auth/drivers.html",
 		"Driver types": {
@@ -534,7 +534,7 @@ panes.auth = {
 			"ACL":			"packages/auth/types/acl.html"
 		},
 		"SimpleAuth": {
-			"Introduction":	"packages/auth/simpleauth/intro.html",
+			"はじめに":	"packages/auth/simpleauth/intro.html",
 			"Login":		"packages/auth/simpleauth/login.html",
 			"Groups":		"packages/auth/simpleauth/groups.html",
 			"ACL":			"packages/auth/simpleauth/acl.html"
@@ -545,7 +545,7 @@ panes.auth = {
 
 panes.email = {
 	"Email パッケージ": {
-		"Introduction":		"packages/email/introduction.html",
+		"はじめに":		"packages/email/introduction.html",
 		"Usage":			"packages/email/usage.html",
 		"Methods":			"packages/email/methods.html"
 	}
@@ -553,11 +553,11 @@ panes.email = {
 
 panes.orm = {
 	"Orm パッケージ": {
-		"Introduction":		"packages/orm/intro.html",
+		"はじめに":		"packages/orm/intro.html",
 		"Creating Models":	"packages/orm/creating_models.html",
 		"CRUD":				"packages/orm/crud.html",
 		"Relating Models": {
-			"Introduction":	"packages/orm/relations/intro.html",
+			"はじめに":	"packages/orm/relations/intro.html",
 			"Belongs To":	"packages/orm/relations/belongs_to.html",
 			"Has One":		"packages/orm/relations/has_one.html",
 			"Has Many":		"packages/orm/relations/has_many.html",
@@ -565,7 +565,7 @@ panes.orm = {
 		},
 		"EAV containers":		"packages/orm/eav.html",
 		"Observers": {
-			"Introduction":			"packages/orm/observers/intro.html",
+			"はじめに":			"packages/orm/observers/intro.html",
 			"Included observers":	"packages/orm/observers/included.html",
 			"Writing your own":		"packages/orm/observers/creating.html"
 		}
@@ -574,7 +574,7 @@ panes.orm = {
 
 panes.parser = {
 	"Parser パッケージ": {
-		"Introduction":		"packages/parser/intro.html"
+		"はじめに":		"packages/parser/intro.html"
 	}
 };
 
