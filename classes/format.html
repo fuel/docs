@@ -46,8 +46,74 @@
 		<div id="main">
 
 			<h2>Format クラス</h2>
-
 			<p>The Format class helps you convert between various formats such as XML, JSON, CSV, etc.</p>
+
+			<article>
+				<h3 id="configuration">Configuration</h3>
+
+				<p>The Format class is configured through the <kbd>fuel/core/config/format.php</kbd> configuration file. It is already populated with a default configuration group. You can override this configuration by copying this config file to your application config directory, and modify that file as needed.</p>
+				<p>The following configuration settings can be defined:</p>
+
+				<h4>CSV</h4>
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<th>delimiter</th>
+							<td>string</td>
+							<td><pre class="php"><code>','</code></pre></td>
+							<td>The field delimiter</td>
+						</tr>
+						<tr>
+							<th>enclosure</th>
+							<td>string</td>
+							<td><pre class="php"><code>'"'</code></pre></td>
+							<td>The enclosure character</td>
+						</tr>
+						<tr>
+							<th>newline</th>
+							<td>string</td>
+							<td><pre class="php"><code>'\n'</code></pre></td>
+							<td>The newline character used by to_csv() method</td>
+						</tr>
+						<tr>
+							<th>regex_newline</th>
+							<td>string</td>
+							<td><pre class="php"><code>'\n'</code></pre></td>
+							<td>The newline character used by regex to convert input data</td>
+						</tr>
+						<tr>
+							<th>escape</th>
+							<td>string</td>
+							<td><pre class="php"><code>'\\'</code></pre></td>
+							<td>The escape character</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h4>XML</h4>
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<th>basenode</th>
+							<td>string</td>
+							<td><pre class="php"><code>'xml'</code></pre></td>
+							<td>XML basenode name</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($data = null, $from_type = null)</h4>
@@ -359,7 +425,7 @@ Array
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/classes/format.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/classes/format.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/classes/format.html">GitHubで修正</a> ]
 			</p>
 		</footer>

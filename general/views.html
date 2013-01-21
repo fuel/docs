@@ -127,17 +127,15 @@
 
 			<pre class="php"><code>class Controller_Example extends Controller
 {
-
 	public function action_index()
 	{
 		$view = \View::forge('example');
 
-		// add it unfiltered just like you added
-		// フィルタされて出力される: &amp;lt;strong&amp;gt;not bold because filtered&amp;lt;/strong&amp;gt;
+		// フィルタして追加する、出力: &amp;lt;strong&amp;gt;not bold because filtered&amp;lt;/strong&amp;gt;
 		$view->title = '&lt;strong&gt;not bold because filtered&lt;/strong&gt;';
 
-		// フィルタしないで追加する
-		$view->set('title', '&lt;strong&gt;not bold because filtered&lt;/strong&gt;', false);
+		// フィルタせず追加する、出力: &lt;strong&gt; bold because unfiltered&lt;/strong&gt;
+		$view->set('title', '&lt;strong&gt; bold because unfiltered&lt;/strong&gt;', false);
 
 		// or use the set_safe() method, which is identical to set() but defaults to 'false'
 		$view->set_safe('title', '&lt;strong&gt; bold because unfiltered&lt;/strong&gt;');
@@ -217,7 +215,6 @@
 
 			<pre class="php"><code>class Controller_Home extends Controller
 {
-
 	public function action_index()
 	{
 		// レイアウトビューを作成する
@@ -243,7 +240,6 @@
 
 			<pre class="php"><code>class Controller_Home extends Controller
 {
-
 	public function action_index()
 	{
 		//変数を割り当てる
@@ -290,7 +286,7 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/general/views.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/general/views.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/general/views.html">GitHubで修正</a> ]
 			</p>
 		</footer>

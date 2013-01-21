@@ -130,18 +130,43 @@ Autoloader::add_classes(array(
 					<li>And any class you use in your main <kbd>app/config/config.php</kbd></li>
 				</ul>
 
-				<h4>オートローダ</h4>
-				<p>Autoloader クラスは特別なクラスで、<code>Autoloader</code> として一度だけ拡張して使用可能です。
-				拡張した後は、<kbd>app/bootstrap.php</kbd> ファイルでオリジナルの <code>Fuel\Core\Autoloader</code> の後に
-					手動で読み込まなければなりません。
-					グローバルにコアクラスをエイリアスしている行を削除することを忘れないで下さい。</p>
+				<p>If you have activated the profiler in your configuration, you can not extend these classes from packages too:</p>
+
+				<ul>
+					<li><kbd>Cookie</kbd></li>
+					<li><kbd>Session</kbd></li>
+					<li><kbd>Session_Cookie</kbd> (or another session driver class, depending on your session configuration)</li>
+					<li><kbd>Session_Driver</kbd></li>
+					<li><kbd>Date</kbd></li>
+					<li><kbd>Profiler</kbd></li>
+				</ul>
+
+				<p>
+					You can work around some of these limitations by manually load your package in the <kbd>app/bootstrap.php</kbd> file,
+					by adding <kbd>Package::load('mypackagename');</kbd> just before the <kbd>Fuel::init()</kbd> call. If you do,
+					your package can only not extend:
+				</p>
+
+				<ul>
+					<li><kbd>Fuel</kbd></li>
+					<li><kbd>Config</kbd></li>
+					<li><kbd>Package</kbd></li>
+					<li><kbd>Arr</kbd></li>
+					<li><kbd>Finder</kbd></li>
+				</ul>
+
+				<h4>Autoloader</h4>
+				<p>The Autoloader class is a special case, you can only extend it once as <code>Autoloader</code> and
+					have it used. After extending it you have to require it manually in the <kbd>app/bootstrap.php</kbd>
+					file after the original <code>Fuel\Core\Autoloader</code>, don't forget to remove the line that
+					aliases the core class to global.</p>
 			</article>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/general/extending_core.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/general/extending_core.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/general/extending_core.html">GitHubで修正</a> ]
 			</p>
 		</footer>

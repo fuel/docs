@@ -53,8 +53,6 @@
 				Query_Builder_Where class, so all the methods are inherited.
 			</p>
 
-			<h2 id="methods">Methods</h2>
-
 			<article>
 				<h4 class="method" id="method_distinct">distinct($value = true)</h4>
 				<p>The <strong>distinct</strong> method sets whether to select distinct values.</p>
@@ -184,6 +182,12 @@ $query->select(
 										<td><em>必須</em></td>
 										<td>an array containing column names</td>
 									</tr>
+									<tr>
+										<th><kbd>$reset</kbd></th>
+										<td><em>bool</em></td>
+										<td><pre class="php"><code>false</code></pre></td>
+										<td>If true, do not append, but overwrite</td>
+									</tr>
 								</table>
 							</td>
 						</tr>
@@ -206,7 +210,16 @@ $query->select_array(array(
 	'birthdate'
 ));
 
-// SELECT `surname`, `email`, `is_active` as active, `birthdate` FROM `users ...
+// produces SELECT `surname`, `email`, `is_active` as active, `birthdate` FROM `users ...
+
+// Supply an array to use an alias and reset the previous select
+$query->select_array(array(
+	array('surname', 'name'),
+	'birthdate'
+), true);
+
+// produces SELECT `surname` as name, `birthdate` FROM `users ...
+
 </code></pre>
 							</td>
 						</tr>
@@ -789,50 +802,6 @@ $query->and_having_close();
 			</article>
 
 			<article>
-				<h4 class="method" id="method_and_having_close">and_having_close()</h4>
-				<p>The <strong>and_having_close</strong> method closes an SQL closure.</p>
-				<table class="method">
-					<tbody>
-						<tr>
-							<th>Static</th>
-							<td>No</td>
-						</tr>
-						<tr>
-							<th>パラメータ</th>
-							<td>
-								<em>None</em>
-							</td>
-						</tr>
-						<tr>
-							<th>返り値</th>
-							<td>Returns the current instance.</td>
-						</tr>
-						<tr>
-							<th>例</th>
-							<td>
-								<pre class="php"><code>// prepare a select statement
-$query = DB::select('*')->from('users');
-
-// Set a HAVING statement
-$query->having('email', 'like', '%@example.com');
-
-// Open a closure
-$query->and_having_open();
-
-// Set a HAVING statement
-$query->having('name', '=', 'John');
-$query->or_where('surname', 'Doe');
-
-$query->and_having_close();
-// SELECT * FROM `users` HAVING `email` LIKE "%example.com" AND (`name` = "John" OR `surname` = "Doe")
-</code></pre>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
 				<h4 class="method" id="method_or_having_close">or_having_close()</h4>
 				<p>The <strong>or_having_close</strong> method closes an SQL closure.</p>
 				<table class="method">
@@ -1029,7 +998,7 @@ $query->select('email')->from('admins')->where('role', 'superadmin');
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/classes/database/qb_select.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/classes/database/qb_select.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/classes/database/qb_select.html">GitHubで修正</a> ]
 			</p>
 		</footer>

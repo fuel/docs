@@ -92,7 +92,13 @@
 					</tr>
 				</tbody>
 			</table>
-			<p>これらの値のどれか、又は複数の値がアプリケーションの共通設定ファイルから欠落しているとき、cookie クラスはこの表に定義されている値をデフォルトとして使用します。</p>
+			<p>If one or more of these values are missing from the global configuration, the class will use the defaults as defined in this table.</p>
+			<p class="note">
+				When using cookies, make <strong>ABSOLUTELY</strong> sure that the timezone configured in your <em>app/config/config.php</em> and/or your
+				<em>php.ini</em> file matches the timezone set on your server. Since cookie expiry timestamps are in GMT, expiry time calculation goes
+				horribly wrong when you have a timezone mismatch, ranging from not expiring properly to cookies not set at all because they arrive at
+				the browser already expired.
+			</p>
 
 			<article>
 				<h4 class="method" id="method_get">get($name = null, $default = null)</h4>
@@ -285,7 +291,7 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/classes/cookie.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/classes/cookie.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/classes/cookie.html">GitHubで修正</a> ]
 			</p>
 		</footer>

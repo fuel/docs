@@ -166,10 +166,21 @@ class Model_Users extends \Model_Crud
 						<td>string</td>
 						<td><em>none</em></td>
 						<td>
-							The database connection to use.
+							The database connection to use, or the connection used for reads in a master/slave setup. If not configured, the DB config default will be used.
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_connection = null;</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<th><strong>$_write_connection</strong></th>
+						<td>string</td>
+						<td><em>none</em></td>
+						<td>
+							The database connection to use for writes in a master/slave setup.
+						</td>
+						<td>
+							<pre class="php"><code>protected static $_write_connection = 'master';</code></pre>
 						</td>
 					</tr>
 					<tr>
@@ -229,7 +240,7 @@ class Model_Users extends \Model_Crud
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.5/develop/classes/model_crud/introduction.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.5/develop_japanese/classes/model_crud/introduction.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.5/develop_japanese/classes/model_crud/introduction.html">GitHubで修正</a> ]
 			</p>
 		</footer>
