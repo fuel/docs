@@ -563,6 +563,9 @@ panes.orm = {
 			"Has Many":		"packages/orm/relations/has_many.html",
 			"Many to Many":	"packages/orm/relations/many_many.html"
 		},
+                "Models": {
+                    "Soft Delete":	"packages/orm/model/soft.html"
+                },
 		"EAV containers":		"packages/orm/eav.html",
 		"Observers": {
 			"はじめに":			"packages/orm/observers/intro.html",
