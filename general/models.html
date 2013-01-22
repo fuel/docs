@@ -122,22 +122,22 @@ class Controller_Welcome extends Controller
 
 			<p>ネイティブ SQL クエリとクエリビルダの利用については <a href="../classes/database/db.html">DB クラス</a> のドキュメントをご覧ください。</p>
 
-			<h3 id="model_crud_models">Using Model_Crud to create models</h3>
+			<h3 id="model_crud_models">モデル作成のために Model_Crud を使う</h3>
 
-			<p>One possible way of creating models is by using <a href="../classes/model_crud/introduction.html">Model_Crud</a>, which adds a commonly used functionality to your models for interacting with a database table. There's an example of its usage below.</p>
+			<p>モデルを作るための有効な方法の一つは <a href="../classes/model_crud/introduction.html">Model_Crud</a> を使うことです。これはデータベースのテーブルとのやりとりに必要な一般的な機能を提供し、以下のように使用します。</p>
 
-			<pre class="php"><code>// find all articles
+			<pre class="php"><code>// 全ての記事を探しだす
 $entry = Model_Article::find_all();
 
-// find all articles from category 1 order descending by date
+// 日付逆順でカテゴリ 1 に属する全ての記事を探し出す
 $entry = Model_Article::find(array(
     'where' => array('category_id', 1),
     'order_by' => array('date' => 'desc')
 ));</code></pre>
 
-			<h3 id="orm_models">Using the Orm to create models</h3>
+			<h3 id="orm_models">モデル作成のために Orm パッケージを使う</h3>
 
-			<p>For models with more functionality, like support for relations, you can use the <a href="../packages/orm/intro.html">Orm Package</a>, which adds a lot of functionality out-of-the-box to your models. There's an example of its usage below.</p>
+			<p>リレーションのサポートなどモデルのためのもっと多くの機能が必要なら、 Orm パッケージを使うこともできます。これはあなたのモデルにとんでもなく多くの機能を追加します。以下のように使用します。</p>
 
 			<pre class="php"><code>// 全ての記事を探し出す
 $entry = Model_Article::find('all');
@@ -148,7 +148,7 @@ $entry = Model_Article::find('all', array(
     'order_by' => array('date', 'desc')
 ));</code></pre>
 
-			<p>Model_Crud and the ORM package use similar syntax, which makes it simple to migrate once you require more functionality than Model_Crud can provide.</p>
+			<p>Model_Crud と ORM パッケージは似た構文を持っています。これは Model_Crud が提供するより多くの機能が必要になった時に、簡単に Orm に移行できるようにするためです。</p>
 
 		</div>
 
