@@ -81,22 +81,22 @@
 				このメソッドは他のクラスからも使用できますが、ルーティングできません。
 			</p>
 
-			<h3 id="http_method_prefixed_actions">HTTP method prefixed action.</h3>
+			<h3 id="http_method_prefixed_actions">HTTPメソッド名をアクション名の前につける</h3>
 
 			<p>
-				It's possible to route to HTTP method prefixed actions. Here is an example:
+			  HTTPメソッド名をアクション名の前につけることもできます。以下の例を見て下さい:
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
 {
 	public function get_index()
 	{
-		// This will be called when the HTTP method is GET.
+		// ここは HTTP メソッドが GET の時に呼び出されます
 	}
 
 	public function post_index()
 	{
-		// This will be called when the HTTP method is POST.
+		// ここは HTTP メソッドが POST の時に呼び出されます
 	}
 }
 </code></pre>
@@ -199,17 +199,14 @@ class Example extends Controller
 			<article>
 				<h4 id="before">before()</h4>
 				<p>
-					The before() method is used as a general pre-method prepping method, to execute code required in
-					every controller method called. This method will be executed <strong>before</strong> the method
-					from the URL is called on your controller. It will not be called if that method turns out not to exist.
-					You should not use this method for routing decisions. If you need that, use the <strong>router</strong> method instead.
+				  before() メソッドは、コントローラのメソッドが呼び出される時に、その手前で何らかの処理をしたいときに使用します。コントローラが URL から適切なメソッドを選びそれを呼び出す<strong>前に</strong>このメソッドは呼ばれます。このメソッドをルーティングの目的のために使用してはいけません。そのためには <strong>router</strong> を使用して下さい。
 				</p>
 			</article>
 
 			<article>
 				<h4 id="after">after($response)</h4>
 				<p>
-					このメソッドは、URL からメソッドが正常に呼ばれた <strong>after</strong> に実行され、
+					このメソッドは、URL からメソッドが正常に呼ばれた <strong>後で</strong> 実行され、
 					メソッドが存在しない場合は実行されません。<a href="#response"><var>$response</var></a> パラメータが必要です。
 					after() メソッドは Response オブジェクトを返さねば <strong>なりません</strong>。
 				</p>
