@@ -58,7 +58,7 @@
                 
                 <section>
                     <h2 id="use">Use</h2>
-                    <p>The table must be set up with a dual primary key of the entity ID, just a standard auto-incrementing number (for example), and the timestamps that represents the valid time span of the row.</p>
+                    <p>The table must be set up with a compound primary key of the entity ID, just a standard auto-incrementing number (for example), and the timestamps that represent the valid time span of the row.</p>
                     <pre id="php"><code>class Model_MyTemporal extends Orm\Model_Temporal
 {
 	protected static $_primary_key = array('id', 'temporal_start', 'temporal_end');
@@ -68,7 +68,7 @@
 		'mysql_timestamp' => true, //If set to false will use unix timestamps rather than MySQL timestamps
 	);
 }</code></pre>
-                    <p class="note">Please note that the primary key must be a dual key between the entity id and the temporal timestamps.</p>
+                    <p class="note">Please note that the primary key must be a compound key between the entity id and the temporal timestamps.</p>
                     <p class="note">Any relations that are defined using temporal models should relate only on the id and <strong>not</strong> both id and timestamp.</p>
                 </section>
                 
@@ -194,6 +194,7 @@
                             </tr>
                         </tbody>
                     </table>
+					<p class="note">Cascade delete will delete as normal. Any relations that are not Soft or Temporal will be deleted as normal.</p>
                 </article>
 				<article>
                     <h4 id="method_overwrite" class="method"><a class="interal_link" href="#/method_overwrite">overwrite($cascade = null, $use_transaction = false)</a></h4>
