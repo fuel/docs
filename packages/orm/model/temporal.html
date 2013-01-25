@@ -77,7 +77,7 @@
                 </article>
                 
                 <article>
-                    <h4 id="method_find_revision" class="method"><a class="interal_link" href="#/method_find">find_revision($id, $timestamp=null, $relations = array())</a></h4>
+                    <h4 id="method_find_revision" class="method"><a class="interal_link" href="#/method_find_revision">find_revision($id, $timestamp=null, $relations = array())</a></h4>
                     <p>This method can be used to query the state of an entity at the given time.</p>
                     <table class="method">
                         <tbody>
@@ -124,11 +124,10 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p class="note"><strong>Please note</strong> that returned relations will be the most current version of those entities.</p>
                 </article>
                 
                 <article>
-                    <h4 id="method_find_revision" class="method"><a class="interal_link" href="#/method_find">find_revisions_between($id, $earliestTime = null, $latestTime = null)</a></h4>
+                    <h4 id="method_find_revisions_between" class="method"><a class="interal_link" href="#/method_find_revisions_between">find_revisions_between($id, $earliestTime = null, $latestTime = null)</a></h4>
                     <p>This method will return the states of an entity between the given times.</p>
                     <table class="method">
                         <tbody>
@@ -176,6 +175,24 @@
                         </tbody>
                     </table>
                     <p class="note">It is currently not possible to select relations at the same time using find_revisions_between.</p>
+                </article>
+				<article>
+                    <h4 id="method_delete" class="method"><a class="interal_link" href="#/method_delete">delete($cascade = null, $use_transaction = false)</a></h4>
+                    <p>This method will delete the object from the database. It works in exactly the same way as the normal Model's delete function except that the information is not removed from the database. This means that you can still reference the object at a given time, but it is no longer valid for the present.</p>
+                    <table class="method">
+                        <tbody>
+                            <tr>
+                                <th class="legend">Static</th>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <th>Example</th>
+                                <td>
+                                    <pre class="php"><code>Model_Product::find(5)->delete();</code></pre>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </article>
             </div>
 
