@@ -50,7 +50,8 @@
                     <p>Usually in a database entities are represented by a row in a table, when this row is updated the old information is overwritten. The temporal model allows data to be referenced in time, it makes it possible to query the state of an entity at a given time.</p>
                     <p>For example, say you wanted to keep track of changes to products so when an order is placed you know the state of the product without having to duplicate data in the orders table. You can make the products temporal and use the time of the order to reference the state of the ordered products at that time rather than how they currently are, as would happen without using temporal data.</p>
                     <p>The temporal model could also be used for auditing changes to things like wiki pages. Any changes would be automatically logged without having to use a separate log table.</p>
-                    <p>This implementation of a temporal model stores revisions of entities in the same table as the original data, removing the need for duplicate “log” tables.</p>
+					<p>An "entity" would be any item in your design, for example, a product, a user, a gallery folder, anything that you would use as a Model can be considered an entity. The Temporal Model allows you to track changes to these entities over time by storing changes, each new set of changes is called a "revision". Because each revision is saved along with time (temporal) data it makes it possible to get the state of an entity at any given time.</p>
+                    <p>This implementation of a temporal model stores revisions of entities in the same table as the original data, removing the need for duplicate "log" tables. While the implementation here is not the only way of implementing revisions, it is the most flexible given the limitations of the ORM and the fact that it must work in multiple database environments.</p>
                     <h1>Why do this in the ORM and not just choose a database system that allows it?</h1>
                     <p>Implementing the temporal functionality within the ORM allows the mechanics to be abstracted out of the database level, this allows the use of any database that the ORM supports with temporal models, providing greater flexibility. This model does not replace the ability to use a database that supports temporal information but provides an "out of the box" implementation.</p>
                 </section>
@@ -210,6 +211,24 @@
 $product->name = 'Super Awesome 12000';
 //Product is updated without creating a new row in the database.
 $product->overwrite();</code></pre>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+				<article>
+                    <h4 id="method_restore" class="method"><a class="interal_link" href="#/method_restore">restore()</a></h4>
+                    <p>If an entity has been deleted this method restores the entity to the current state. Nothing will happen if the entity has not been deleted.</p>
+                    <table class="method">
+                        <tbody>
+                            <tr>
+                                <th class="legend">Static</th>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <th>Example</th>
+                                <td>
+                                    <pre class="php"><code>Model_Product::find_revision(5, '2012-11-09 12:04:00')->restore();</code></pre>
                                 </td>
                             </tr>
                         </tbody>
