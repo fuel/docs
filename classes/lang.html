@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -367,7 +367,7 @@ Lang::save('foo::custom', 'bar');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_delete">delete($item, $group = null, $language = null)</h4>
-				<p>The <strong>set</strong> method allows you to delete a specific line from the <em>loaded</em> language file.</p>
+				<p>The <strong>delete</strong> method allows you to delete a specific line from the <em>loaded</em> language file.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -418,6 +418,35 @@ Lang::delete('hello');
 				<p class="note">
 					Note that this deletes the language item stored in the language class, it does <em>NOT</em> delete it from the language file on disk!
 				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get_lang">get_lang()</h4>
+				<p>The <strong>get_lang</strong> method allows you to retrieve currently active language. Typically it will be same as <a href="../classes/config.html#method_get">Config::get('language')</a>.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td><i>None</i></td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><kbd>String</kbd> with currently active language.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// will return currently active language, most likely 'en'
+Lang::get_lang();
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
 			</article>
 
 			<h3 id="procedural_helpers">Procedural helpers</h3>
