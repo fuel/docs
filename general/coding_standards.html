@@ -277,7 +277,7 @@ if ( ! $var)</code></pre>
 
 			<pre class="php"><code>class Empty_Class { }</code></pre>
 
-			<h5 id="function_method">Function/Method/Closure Declarations</h5>
+			<h5 id="function_method">関数/メソッド/クロージャの宣言</h5>
 
 			<p>関数/メソッド/クロージャの開始ブレースは常に次の行から始め、
 				構文と同じインデントにします。</p>
@@ -333,18 +333,18 @@ $var = $some_var + $other_var; //算術演算子の前後にスペースをい�
 $var++; // 加算演算子の前にスペースをいれない
 ++$var; //加算演算子の後にスペースをいれない</code></pre>
 
-			<h5 id="dot-notation">Array dot-notation</h5>
+			<h5 id="dot-notation">配列のドット表記</h5>
 
 			<p>
-				Although strictly speaking it's not a coding standard, it's used a lot within the frameworks classes and this documentation,
-				and since it's not a common PHP notation, it might confuse people new to the framework.
+				厳密に言えば、コーディング標準ではありませんが、このフレームワークのクラス内やこのドキュメントで多用されていますが、
+				PHPでの表記として一般的でないため、このフレームワークに不慣れな人を混乱させるかも知れません。
 			</p>
-			<pre class="php"><code>// when you see "always_load.packages = array()", it is shorthand for:
+			<pre class="php"><code>// "always_load.packages = array()" は次のコードの省略表現です:
 array("always_load" => array("packages" => array(...) ) );
 </code></pre>
 
-			<p>This notation is used by the Arr class, but also the Lang, Config and Session classes, to quickly access individual elements from a multi-dimensional array.</p>
-			<pre class="php"><code>// when you have an array structure like this
+			<p>この表記は Arr クラスで使われますが、Lang クラス、Config クラスそして Session クラスでも、多次元配列から個々の要素に素早くアクセスするために使われます。</p>
+			<pre class="php"><code>// このような構造の配列がある場合
 $array = array(
     "always_load" => array(
         "packages" => array(
@@ -354,7 +354,7 @@ $array = array(
      )
 );
 
-// then this will return "/my/special/package.php":
+// 次のコードは "/my/special/package.php" を返します:
 $path = Arr::get($array, 'always_load.packages.package');
 </code></pre>
 
