@@ -72,8 +72,8 @@
 
 			<p class="note"><strong>注意: </strong> Template コントローラで before() メソッドを使う場合、
 				<kbd>parent::before();</kbd> を追加 <strong>しなければなりません</strong>。 そうしないと <kbd>$this->template</kbd> が
-				使えません。<strong>Make after() compatible</strong> with that of the Controller_Template:
-				use <kbd>after($response)</kbd> instead of just after().</p>
+				使えません。 Controller_Template の <strong>after() メソッドとの互換性を維持してください</strong>:
+				単なる after() ではなく、<kbd>after($response)</kbd> を使ってください。</p>
 
 
 	<pre><code>class Controller_Example extends Controller_Template
