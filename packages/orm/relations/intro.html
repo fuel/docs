@@ -261,7 +261,7 @@ $post = Model_Post::query()
 			<article id="join_types">
 				<h2>結合の種類</h2>
 
-				<p>デフォルトでは、ORMは''left' joinを使用してリレーションに参加します。異なるリレーションを指定するには、'join_type"条件を使用します:</p>
+				<p>デフォルトでは、ORMは'left' joinを使用してリレーションを結合します。異なるリレーションを指定するには、'join_type'条件を使用します:</p>
 
 				<pre class="php"><code>$post = Model_Post::find('first', array(
     'related' => array(
@@ -278,9 +278,9 @@ $post = Model_Post::query()
 				</code></pre>
 
 				<p>
-					Since 'where' clauses are executed before the JOIN is executed, you can not get a full OUTER JOIN results when
-					you include a 'where' clause, it will act like a pre-join filter. The solution is to define the filter on the
-					JOIN itself:
+					where句はjoin前に実行されるため、 where句が含まれている場合はouter joinにはならず、 
+					where句の条件は結合前フィルターのように動作します。
+					joinの条件を定義するためには以下のようにします:
 				</p>
 
 				<pre class="php"><code>$post = Model_Post::find('all', array(
@@ -296,7 +296,7 @@ $post = Model_Post::query()
     ),
 ));
 				</code></pre>
-				<p>This will make the selection criteria part of the ON clause, instead of the WHERE clause.</p>
+				<p>where句の条件の代わりに、on句の条件として追加します。</p>
 			</article>
 
 			<article id="relation_types">
