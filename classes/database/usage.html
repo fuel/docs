@@ -45,30 +45,30 @@
 
 		<div id="main">
 
-			<h2>Database Usage</h2>
+			<h2>Database 使い方</h2>
 			<p>
-				Normal database interactions are to go through the <a href="./db.html">DB class</a>.
-				The following examples will give you a feel for how to go about using databases in Fuel.
+				通常のデータベース命令は、<a href="./db.html">DB クラス</a>を通じて実行することになります。
+				Fuel ではどのようにデータベースを取り扱うかを以下の例で確認してみてください。
 			</p>
-			<p>Database usage is divided into a couple of segments:</p>
+			<p>データベースの使用法は大きく２つに分けられます:</p>
 
 			<ul>
-				<li><a href="#running-queries">Running queries</a></li>
-				<li><a href="#selecting">Selecting</a>,</li>
-				<li><a href="#results">Results</a>,</li>
-				<li><a href="#filtering">Filtering</a> (where, order by, limit, offset),</li>
-				<li><a href="#inserting">Inserting</a>,</li>
-				<li><a href="#updating">Updating</a>,</li>
-				<li><a href="#deleting">Deleting</a> data</li>
-				<li><a href="#joins">Joins</a></li>
-				<li><a href="#escaping">Escaping</a></li>
-				<li><a href="#binding">Query binding</a></li>
-				<li><a href="#caching">Query caching</a></li>
+				<li><a href="#running-queries">クエリの実行</a></li>
+				<li><a href="#selecting">SELECT 文</a></li>
+				<li><a href="#results">結果の取得</a></li>
+				<li><a href="#filtering">抽出条件</a> (WHERE 句、ORDER BY 句、LIMIT 句、OFFSET 句)</li>
+				<li><a href="#inserting">INSERT 文</a></li>
+				<li><a href="#updating">UPDATE 文</a></li>
+				<li><a href="#deleting">DELETE 文</a></li>
+				<li><a href="#joins">表の結合</a></li>
+				<li><a href="#escaping">エスケープ</a></li>
+				<li><a href="#binding">値のバインド</a></li>
+				<li><a href="#caching">クエリキャッシュ</a></li>
 			</ul>
 
 
 			<article>
-				<h3 id="running-queries">Running queries</h3>
+				<h3 id="running-queries">クエリの実行</h3>
 				<p>First we prepare a query using <a href="./db.html#method_query">DB::query</a>.</p>
 				<pre class="php"><code>// returns a new Database_Query
 $query = DB::query('SELECT * FROM `users`');
@@ -90,7 +90,7 @@ $result = DB::query('SELECT * FROM `users`')->execute();
 			</article>
 
 			<article>
-				<h3 id="selecting">Selection data</h3>
+				<h3 id="selecting">SELECT 文</h3>
 				<p>
 					First let's select data using <a href="./db.html#method_query">DB::query</a>.
 					As we are going to fetch a result from this query, we need to let the it know
@@ -142,7 +142,7 @@ Array
 */
 </code></pre>
 
-				<h3 id="results">Results</h3>
+				<h3 id="results">結果の取得</h3>
 				<p>
 					Executing a select query will generate a result object containing the requested database records.
 					By default the result is fetched as associative arrays. Here is an example how to influence this
@@ -205,8 +205,8 @@ foreach($key_value as $id => $email)
 
 			<article>
 
-				<h3 id="filtering">Filtering</h3>
-				<h4 id="where_statements">Where statements</h4>
+				<h3 id="filtering">抽出条件</h3>
+				<h4 id="where_statements">WHERE 句</h4>
 				<p>
 					In order to set the conditions on our queries we can set WHERE conditions.
 					These examples also apply to updating and deleting.
@@ -256,7 +256,7 @@ $users = DB::select()->from('users')->where('id', 'between', array(1, 10))->exec
 $users = DB::select()->from('users')->where('name', 'in', array('john', 'simon', 'dirk'))->execute();
 </code></pre>
 
-				<h4 id="order_by">Order by statement</h4>
+				<h4 id="order_by">ORDER BY 句</h4>
 
 				<p>For sorting data we use the order_by function.</p>
 				<pre class="php"><code>//SELECT * FROM `users` ORDER BY `name` ASC
@@ -270,7 +270,7 @@ DB::select()->from('users')->order_by('name','asc')->order_by('surname', 'desc')
 DB::select()->from('users')->order_by('name');
 </code></pre>
 
-				<h4 id="limit_offset">Limit and offset</h4>
+				<h4 id="limit_offset">LIMIT 句、OFFSET 句</h4>
 				<p>For limiting the number of rows fetched we use the limit and offset function. Note that the offset function is only available when selecting data.</p>
 				<pre class="php"><code>// SELECT * FROM `users` LIMIT 1
 DB::select()->from('users')->limit(1);
@@ -286,7 +286,7 @@ DB::select('users')->order_by('id','asc')->limit(10);
 
 			<article>
 
-				<h3 id="updating">Updating</h3>
+				<h3 id="updating">UPDATE 文</h3>
 				<p>
 					For updating data we use <a href="./db.html#method_update">DB::update</a>.
 					If successfully executed an update query will return an integer representing
@@ -318,7 +318,7 @@ $result = DB::update('users')
 
 			<article>
 
-				<h3 id="inserting">Inserting</h3>
+				<h3 id="inserting">INSERT 文</h3>
 				<p>
 					For inserting data we use <a href="./db.html#method_insert">DB::insert</a>.
 					If successfully executed an insert query will return an array containing a
@@ -347,7 +347,7 @@ list($insert_id, $rows_affected) = DB::insert('users')->columns(array(
 
 			<article>
 
-				<h3 id="deleting">Deleting</h3>
+				<h3 id="deleting">DELETE 文</h3>
 
 				<p>
 					To delete records, use <a href="./db.html#method_delete">DB::delete</a>.
@@ -364,7 +364,7 @@ $result = DB::delete('users')->where('email', 'like', '%@example.com')->execute(
 
 			<article>
 
-				<h3 id="joins">Joins</h3>
+				<h3 id="joins">表の結合</h3>
 				<p>When selecting data, you can also join other tables into the result.</p>
 
 				<pre class="php"><code>// Will execute SELECT * FROM `users` LEFT JOIN `roles` ON `roles`.`id` = `users`.`role_id`
@@ -378,7 +378,7 @@ $result = DB::select()->from('users')->join('roles','right outer')->on('roles.id
 
 			<article>
 
-				<h3 id="escaping">Escaping</h3>
+				<h3 id="escaping">エスケープ</h3>
 
 				<p>Fields and values in database calls are escaped by default. In some cases you'll want to not escape data. The DB class provides a method to create <em>database expressions</em>, <a href="./db.html#method_expr">DB::expr</a>. If you don't want a value to get escaped, just wrap it in a database expression.</p>
 				<p>Database expressions are especially helpful when dealing with thing like MySQL's native function (like <em>COUNT</em>) and predefined constants (like <em>DEFAULT</em>).</p>
@@ -402,7 +402,7 @@ $count = $result_arr['count'];
 
 			<article>
 
-				<h3 id="binding">Query binding</h3>
+				<h3 id="binding">値のバインド</h3>
 
 				<p>The query builder supports query binding, a technique that allows you to assign variables to your
 				hand-written queries in a safe and secure manner.</p>
@@ -469,7 +469,7 @@ $result = $query->execute();</code></pre>
 
 			<article>
 
-				<h3 id="caching">Query caching</h3>
+				<h3 id="caching">クエリキャッシュ</h3>
 
 				<p>The query builder also supports caching a query's result to help you bring down your database access.
 					For this goal it uses the Cache class behind the scenes but handles both retrieval and regeneration
