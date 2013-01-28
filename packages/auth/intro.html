@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>はじめに - Auth Package - FuelPHP ドキュメント</title>
+	<title>はじめに - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -45,34 +45,34 @@
 		<div id="main">
 			<h2>Auth パッケージ</h2>
 
-			<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
-			write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
-			consistent.</p>
+			<p>Auth パッケージは Fuel 上で標準化された認証インターフェイスを提供します。
+			これにより、ユーザは自分自身で新しいドライバを書くことができ、
+			基本的なメソッドを保ったまま、古いコードと一緒に動く新しいドライバを簡単に統合することもできます。</p>
 
 			<section>
 				<h2 id="intro">はじめに</h2>
 
-				<p>Creating an Auth package that will suit everyone or every implementation is impossible. As a framework
-				we don't want to force how you do Auth, but we do want to facilitate you creating your own or using the
-				work of others. This is where the Auth package comes in, which of course includes a simple implementation to
-				get you going.</p>
+				<p>すべての人、すべての実装に合う Auth パッケージを作るのは不可能です。フレームワークとして、
+				私たちは認証をどのように行うかを強制しません。しかし、ユーザが自分自身や他の人が作ったものを利用することの手助けをしたいと思っています。
+				これが、 Auth パッケージが作られた理由です。
+				もちろん、ユーザのためのシンプルな実装もその中に含まれています。</p>
 
-				<p>The interface contains 3 types of drivers (which can be extended to more types): login, groups &amp; ACL.
-				The login drivers handle a user login and can handle multiple login drivers at the same time. For example
-				one could make it possible for users to login through Twitter and their own native users at the same time
-				using 2 login drivers.<br />
-				As a next step you could group those 2 types of logins using a group driver that doesn't care about the
-				type of login you're using. And last but not least you can use an Acl driver to give specific rights to
-				those groups.</p>
+				<p>インターフェイスは 3 種類のドライバで構成されています（より多くの種類に拡張できます）：login、groups、 ACL です。
+				login ドライバはユーザのログインを扱います。また、同時に複数の login ドライバも扱えます。
+				例えば、 2 つの login ドライバを使うことで、Twitter 経由のユーザと固有のユーザとしてのログインの
+				両方を同時に行えます。<br />
+				次のステップとして、これらの 2 つの種類のログインを group ドライバを使って、どの種類のログインかに左右されることなく、
+				まとめてグループにすることができます。それらすべてに加えて、グループごとに Alc ドライバを使うことで
+				特定の権限をグループに与えることができます。</p>
 
-				<p>The above is just an example of how you might use it, not how you <em>have</em> to use it. Read on in
-				the next section to understand which methods are part of the generic interface and which will be driver
-				specific: <a href="usage.html">Basic usage</a> and <a href="drivers.html">Writing drivers</a>.</p>
+				<p>上記は、使い方のほんの一例です。上記のように使う<em>べき</em>というわけではありません。
+				次のセクションに読み進んで、どのメソッドがジェネリックインターフェイスの一部で、どれがドライバ固有なのかを
+				理解しましょう：<a href="usage.html">基本的な使い方</a>、および、<a href="drivers.html">ドライバを書く</a>.</p>
 
 				<section>
-					<h3 id="install">Installation</h3>
+					<h3 id="install">インストール</h3>
 
-					<p>The Auth package is included in the Fuel download. All you need to do is enable it in your config.</p>
+					<p>Auth パッケージは Fuel のダウンロードに含まれます。設定で有効化してください。</p>
 					<pre class="php"><code>'always_load' => array(
 	'packages' => array(
 		'auth',
@@ -83,7 +83,7 @@
 				<section>
 					<h3 id="configuration">設定</h3>
 
-					<p>Auth can be configured in a config/auth.php file and takes the following keys:</p>
+					<p>Auth パッケージは config/auth.php ファイルに、下記のパラメータで設定できます：</p>
 
 					<table class="config">
 						<tbody>
@@ -98,7 +98,7 @@
 								<td>string|array</td>
 								<td><pre class="php"><code>array('SimpleAuth')</code></pre></td>
 								<td>
-									Login drivers to load, the first will also be the default returned by Auth::instance().
+									ロードするログインドライバ、 Auth::instance() のデフォルト返り値。
 								</td>
 							</tr>
 							<tr>
@@ -106,8 +106,8 @@
 								<td>bool</td>
 								<td><pre class="php"><code>false</code></pre></td>
 								<td>
-									Whether checking for login continues after one driver has validated a login successfully,
-									this makes it possible to login in multiple ways at the same time.
+									ひとつのドライバでログインの成功を確認したあとにも、継続してログインのチェックを行うか。
+									これにより複数の方法でログインすることが可能。
 								</td>
 							</tr>
 							<tr>
@@ -115,29 +115,29 @@
 								<td>string</td>
 								<td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
 								<td>
-									The salt used for password hashing.
+									パスワードをハッシュにするときのサルト。
 								</td>
 							</tr>
 						</tbody>
 					</table>
 
 					<p class="note">
-						Note that 'verify_multiple_logins' is a driver level setting. It has no meaning for
-						login drivers, it does not mean "allow a user to be logged-in multiple times"!
+						'verify_multiple_logins' はドライバレベルの設定であることに注意。 login ドライバ
+						そのものを意味していないし、「ユーザに多重ログインすることを許可する」ということではありません！
 					</p>
 
-					<p>Your auth config file should look like this:</p>
+					<p>auth.php ファイルはこのようになります：</p>
 
 					<pre class="php"><code>&lt;?php
 
 return array(
-	// The drivers
+	// ドライバ
 	'driver' => array('SimpleAuth'),
 
-	// Set to true to allow multiple logins
+	// 複数ログインを有効にする場合、 true
 	'verify_multiple_logins' => true,
 
-	// Use your own salt for security reasons
+	// セキュリティのために、サルトを設定しましょう
 	'salt' => 'Th1s=mY0Wn_$@|+',
 );
 
