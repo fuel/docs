@@ -11,7 +11,7 @@
 		var class_prefix = "Auth::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Usage - Auth Package - FuelPHP ドキュメント</title>
+	<title>Usage - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -46,21 +46,21 @@
 		<div id="main">
 			<h2>Auth パッケージ</h2>
 
-			<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
-			write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
-			consistent.</p>
+			<p>Auth パッケージは Fuel における標準化された認証インターフェイスを提供します。
+			これにより、ユーザは自分自身で新しいドライバを書くことができ、
+			基本的なメソッドを保ったまま、古いコードと一緒に動く新しいドライバを簡単に統合することもできます。</p>
 
 			<section>
-				<h3 id="auth_interface">Interface</h3>
+				<h3 id="auth_interface">インターフェイス</h3>
 
-				<p>The Auth class provides a static interface for generic methods, and contains a __callStatic magic method
-					which allows you to fetch loaded driver instances, and call driver methods statically (only if multiple
-					concurrent drivers are disabled in the auth config!).</p>
+				<p>Auth クラスはジェネリックメソッドのための静的インターフェイスを提供します。
+					また、ロード済みのドライバのインスタンスを得るための __callStatic マジックメソッドを含み、
+					ドライバのメソッドを静的に呼び出します（これは、並列なドライバが Auth の設定で無効化されている場合に限ります）。</p>
 
 				<article>
 					<h4 id="method_forge" class="method">forge($custom = array())</h4>
-					<p>Instantiates the Auth driver or drivers defined in the Auth configuration file. Optionally, you can pass
-						a custom configuration array to define the driver that needs to be instantiated.</p>
+					<p> Auth ドライバ、あるいは Auth の構成ファイルで定義されたドライバをインスタンス化します。オプションとして、
+						インスタンス化すべきドライバを定義したカスタム構成配列を渡すことができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -79,42 +79,42 @@
 									<tr>
 										<th><kbd>$custom</kbd></th>
 										<td><i>mixed</i></td>
-										<td>Driver configuration array, or string containing the driver name to instantiate. If not given, the values from the Auth config file are used.</td>
+										<td>ドライバの構成配列、もしくは、インスタンス化するドライバ名の文字列。引数が渡されなければ、 Auth 構成ファイルの値が使われます。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Auth_Login_Driver instance</td>
+							<td>Auth_Login_Driver インスタンス</td>
 						</tr>
 						<tr>
 							<th>例外</th>
-							<td>AuthException, if the defined driver failed to load, or if another drivers is already instantiated using the same driver id.</td>
+							<td>AuthException、定義されたドライバがロードできなかった場合、もしくは、同じドライバ id で他のドライバがインスタンス化されている場合。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Create the default instance(s)
+								<pre class="php"><code>// デフォルトインスタンス（複数可）を作成
 Auth::forge();
 
-// Create the SimpleAuth instance
+// SimpleAuth のインスタンスを作成
 Auth::forge('simpleauth');
 
-// or specify multiple driver settings
+// あるいは、複数のドライバ設定を記述
 Auth::forge(array('driver' => 'simpleauth', 'id' => 'customid'));</code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If you only use a single Auth driver configured in the Auth configuration file, you don't need to call this method manually.
-						The default instance will be created automatically the first time the default instance is requested by one of the other methods.</p>
+					<p class="note">Auth 構成ファイルに書かれた単一の Auth ドライバのみを利用したい場合、このメソッドを手動で呼ぶ必要はありません。
+						デフォルトインスタンスは、他のメソッドが最初に必要としたときに自動的に作成されます。</p>
 				</article>
 
 				<article>
 					<h4 id="method_instance" class="method">instance($instance = null)</h4>
-					<p>Retrieves a loaded driver instance. When multiple drivers are set in config the first driver loaded will
-						be set as the default driver.</p>
+					<p>ロードされたドライバのインスタンスを取得します。複数のドライバが構成で設定されている場合、
+						最初にロードされたドライバがデフォルトドライバに設定されます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -133,7 +133,7 @@ Auth::forge(array('driver' => 'simpleauth', 'id' => 'customid'));</code></pre>
 									<tr>
 										<th><kbd>$instance</kbd></th>
 										<td><i>null</i></td>
-										<td>null to fetch the default driver, or a driver id to get a specific one</td>
+										<td>null でデフォルトドライバを取得、もしくは、ドライバ id で特定のドライバを取得。</td>
 									</tr>
 								</table>
 							</td>
@@ -145,22 +145,22 @@ Auth::forge(array('driver' => 'simpleauth', 'id' => 'customid'));</code></pre>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Logout the default driver
+								<pre class="php"><code>// デフォルトドライバをログアウト
 Auth::instance()->logout();
 
-// Login the SimpleAuth driver
+// SimpleAuth ドライバをログイン
 Auth::instance('simpleauth')->login(Input::post('username'), Input::post('password'));</code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If the default instance is requested, but none is loaded, instance() will call forge() to create the
-					default instance based on the settings defined in the Auth configuration file.</p>
+					<p class="note">デフォルトインスタンスが求められたときに、ロードされていない場合、 instance() は forge() を呼び、
+					Auth 構成ファイルで定義された設定に基づくデフォルトインスタンスを作成します。</p>
 				</article>
 
 				<article>
 					<h4 id="method_unload" class="method">unload($driver_id = null)</h4>
-					<p>Removes a loaded driver instance. If null, the default driver instance will be removed.</p>
+					<p>ロード済みドライバのインスタンスを削除します。引数が null の場合、デフォルトインスタンスが削除されます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -179,26 +179,26 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 									<tr>
 										<th><kbd>$driver_id</kbd></th>
 										<td><i>null</i></td>
-										<td>null to remove the default driver, or a driver id to remove a specific one</td>
+										<td>null でデフォルトドライバを削除、もしくは、ドライバ id で特定のドライバを削除。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean, <strong>true</strong> if the unload succeeded, <strong>false</strong> otherwise.</td>
+							<td>boolean、削除が成功した場合 <strong>true</strong> 、そうでなければ <strong>false</strong> 。</td>
 						</tr>
 						<tr>
 							<th>例外</th>
-							<td>AuthException, when $driver_id is not a valid driver.</td>
+							<td>AuthException、ドライバ id が正しくない場合。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Remove the default driver
+								<pre class="php"><code>// デフォルトドライバを削除する
 Auth::unload();
 
-// Remove the SimpleAuth driver
+// SimpleAuth ドライバを削除する
 Auth::unload('simpleauth');</code></pre>
 							</td>
 						</tr>
@@ -208,7 +208,7 @@ Auth::unload('simpleauth');</code></pre>
 
 				<article>
 					<h4 id="method_check" class="method">check($specific = null)</h4>
-					<p>Checks either all loaded Login drivers or just those specified as the parameter.</p>
+					<p>ロードされたすべてのドライバをチェック、もしくは、パラメータで指定されたものをチェックします。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -227,14 +227,14 @@ Auth::unload('simpleauth');</code></pre>
 									<tr>
 										<th><kbd>$specific</kbd></th>
 										<td><i>null</i></td>
-										<td>null to check all or one ore more driver id's (single string or array of strings)</td>
+										<td>null で全ドライバ、もしくは、ひとつ以上のドライバ id （文字列、または、文字列の配列）で特定のドライバをチェック。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>bool, whether one of the (given) drivers successfully validated the login</td>
+							<td>bool、（渡されたドライバのうち）ひとつでもログイン認証が成功したかどうか。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -244,10 +244,10 @@ Auth::unload('simpleauth');</code></pre>
 	Response::redirect('login');
 }
 
-// specific driver
+// 特定のドライバ
 Auth::check('simpleauth');
 
-// Multiple drivers
+// 複数のドライバ
 Auth::check(array('simpleauth', 'twitter'));</code></pre>
 							</td>
 						</tr>
@@ -257,7 +257,7 @@ Auth::check(array('simpleauth', 'twitter'));</code></pre>
 
 				<article>
 					<h4 id="method_verified" class="method">verified($specific = null)</h4>
-					<p>Get a specific verified driver or all verified drivers.</p>
+					<p>特定の認証済みドライバ、もしくは認証済みの全ドライバを取得します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -276,19 +276,19 @@ Auth::check(array('simpleauth', 'twitter'));</code></pre>
 									<tr>
 										<th><kbd>$specific</kbd></th>
 										<td><i>null</i></td>
-										<td>null to return all verified drivers in an array, or one specific driver id</td>
+										<td>null で返り値に認証済みの全ドライバ配列、もしくは、ひとつの特定のドライバ id 。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Array|Auth_Login_Driver|false. When</td>
+							<td>Auth_Login_Driver の配列か、単体の Auth_Login_Driver 、 または、 false 。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// check if the simpleauth driver is verified
+								<pre class="php"><code>// simpleauth ドライバが認証済みか確認
 $driver = Auth::verified('simpleauth');
 </code></pre>
 							</td>
@@ -299,12 +299,12 @@ $driver = Auth::verified('simpleauth');
 
 				<article>
 					<h4 id="method_logout" class="method">logout()</h4>
-					<p>Logout of all currently logged in drivers.</p>
+					<p>現在ログイン済みのすべてのドライバをログアウトします。</p>
 				</article>
 
 				<article>
 					<h4 id="method_register_driver_type" class="method">register_driver_type($type, $check_method)</h4>
-					<p>Registers a new driver type.</p>
+					<p>新しいドライバのタイプを登録します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -322,13 +322,13 @@ $driver = Auth::verified('simpleauth');
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
-										<td>required</td>
-										<td>Type of Auth driver to be registered.</td>
+										<td>必須</td>
+										<td>登録する Auth ドライバのタイプ。</td>
 									</tr>
 									<tr>
 										<th><kbd>$check_method</kbd></th>
-										<td>required</td>
-										<td>The driver method to be called when verifying drivers of this type.</td>
+										<td>必須</td>
+										<td>このタイプのドライバの認証確認時に呼ばれるドライバメソッド。</td>
 									</tr>
 								</table>
 							</td>
@@ -336,22 +336,22 @@ $driver = Auth::verified('simpleauth');
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// register the 'role' driver type
+								<pre class="php"><code>// 'role' タイプのドライバを登録
 if ( ! Auth::register_driver_type('role', 'check_role'))
 {
-	throw new AuthException('role could not be registered');
+	throw new AuthException('role が登録できませんした');
 }
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">Both type and method must be unique amongst all registered drivers. This method returns 'false' if this is not the case.</p>
+					<p class="note">すべての登録済みドライバに対して、タイプとメソッドはユニークでなければなりません。そうでなければ、このメソッドは 'false' を返します。</p>
 				</article>
 
 				<article>
 					<h4 id="method_unregister_driver_type" class="method">unregister_driver_type($type)</h4>
-					<p>Unregisters a driver type.</p>
+					<p>ドライバのタイプの登録を解除します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -369,8 +369,8 @@ if ( ! Auth::register_driver_type('role', 'check_role'))
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
-										<td>required</td>
-										<td>Type of Auth driver to be removed.</td>
+										<td>必須</td>
+										<td>削除する Auth ドライバのタイプ。</td>
 									</tr>
 								</table>
 							</td>
@@ -378,14 +378,14 @@ if ( ! Auth::register_driver_type('role', 'check_role'))
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// remove the 'role' driver type
+								<pre class="php"><code>// 'role' タイプのドライバを削除
 Auth::unregister_driver_type('role');
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">Note that the default drivers types, 'login', 'group' and 'acl' can not be unregistered!</p>
+					<p class="note">デフォルトのドライバタイプである　'login' 、 'group' 、 'acl' は登録解除できません。</p>
 				</article>
 			</section>
 
