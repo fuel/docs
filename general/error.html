@@ -57,15 +57,14 @@
 			<h3 id="code_errors">Code errors</h3>
 
 			<p>
-				FuelPHP's internal error handling is based on Exceptions. This allows you to catch them in your code, so your
-				application can handle the exception that occured gracefully and the user can continue using the application.
+				FuelPHPの内部的なエラー処理は、例外（Exception）に基づいています。あなたはコード中で例外をキャッチすることにより、
+				アプリケーションに適切に例外を処理させることができ、ユーザーは継続的にアプリケーションを使い続けることができます。
 			</p>
 			<p>
-				FuelPHP also alters the default PHP behaviour when it comes to PHP errors (which are not exceptions) from the
-				old procedural functions. Instead of continuing on all non-fatal errors, <strong>FuelPHP will throw a PhpErrorException
-				on all of these errors</strong>. This will force you to solve all errors, even an E_NOTICE which in the old days you
-				might have ignored. It will also allow you to catch PHP errors. For example to catch syntax errors in view files
-				when you have non-programmers creating views.
+				FuelPHPは、（例外でなない）PHPエラーに遭遇した場合、デフォルトのPHPの振る舞いを変更します。
+				FuelPHPは、致命的でないPHPエラーに遭遇した場合、処理を継続せず、 <strong>これらのすべてのエラーに対し、PhpErrorException
+				を投げます。</strong> これはあなたに、以前は無視していたような、E_NOTICE といったエラーを解決するように強要するでしょう。 
+				これは同時に、例えば非プログラマが作成したVIEWファイル中の構文エラーのような、PHPのエラーを捕らえることを可能にします。
 			</p>
 			<p>
 				You can alter this behaviour by adding PHP error types (like E_NOTICE or E_STRICT) to the <a href="./configuration.html#config">errors.continue_on</a> key
