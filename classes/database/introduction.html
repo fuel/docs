@@ -52,9 +52,9 @@
 
 				<p>
 					Fuel はドライバベースのデータベース抽象化レイヤーを提供します。執筆時点のサポート対象ドライバは、
-					MySQL、MySQLi そして PDO です。Aside from regular database interaction, fuel also
-					comes with a DBUtil class to perform database operations such as creating databases,
-					adding fields and much more.
+					MySQL、MySQLi そして PDO です。標準のデータベース処理に加えて、Fuel には
+					データベースの生成や列追加など、データベース操作のための DBUtil クラスも
+					用意されています。
 				</p>
 
 				<p class="note">各ドライバにおいて、すべての機能をサポートしているわけではないことに注意してください。</p>
@@ -64,11 +64,11 @@
 				<h3 id="configuration">設定</h3>
 
 				<p>
-					In order to begin working with databases, you must change the database settings. The global
-					settings, that are valid for all your <a href="../../general/environments.html">environments</a>,
-					are defined in <em>APPPATH/config/db.php</em>. You define environment specific database settings
-					in the <em>db.php</em> located in the appropriate environment configuration folder. The two will
-					be merged to form the complete database configuration.
+					データベースの操作を行うには、データベース設定を変更する必要があります。
+					まずは、全ての<a href="../../general/environments.html">環境</a>で適用される、グローバルとなる設定を
+					<em>APPPATH/config/db.php</em> に定義します。次に、適切な環境設定フォルダ内の
+					<em>db.php</em> に、環境別のデータベース設定を定義します。
+					これら２つは、完全なデータベース設定としてマージされます。
 				</p>
 				<p>
 					データベース設定は次のようなフォーマットです:
@@ -149,7 +149,7 @@
 						<tr>
 							<th><kbd>connection.compress</kbd></th>
 							<td>boolean</td>
-							<td>Wether to use client compression when using MySQL / MySQLi.</td>
+							<td>MySQL または MySQLi を使用する際に、クライアントでの圧縮プロトコルを使用するかどうか</td>
 						</tr>
 						<tr>
 							<th><kbd>identifier</kbd></th>
@@ -169,7 +169,7 @@
 						<tr>
 							<th><kbd>enable_cache</kbd></th>
 							<td>boolean</td>
-							<td>キャッシュ機能を使うかどうか。will overwrite query cache settings on a connection basis.</td>
+							<td>キャッシュ機能を使うかどうか。接続の基本設定のクエリキャッシュ設定を上書きします</td>
 						</tr>
 						<tr>
 							<th><kbd>profiling</kbd></th>
