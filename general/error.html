@@ -54,7 +54,7 @@
 				今何が起きているのかを知らせる方法でもあります。
 			</p>
 			
-			<h3 id="code_errors">Code errors</h3>
+			<h3 id="code_errors">コード エラー</h3>
 
 			<p>
 				FuelPHPの内部的なエラー処理は、例外（Exception）に基づいています。あなたはコード中で例外をキャッチすることにより、
@@ -63,20 +63,21 @@
 			<p>
 				FuelPHPは、（例外でなない）PHPエラーに遭遇した場合、デフォルトのPHPの振る舞いを変更します。
 				FuelPHPは、致命的でないPHPエラーに遭遇した場合、処理を継続せず、 <strong>これらのすべてのエラーに対し、PhpErrorException
-				を投げます。</strong> これはあなたに、以前は無視していたような、E_NOTICE といったエラーを解決するように強要するでしょう。 
+				をスローします。</strong> これはあなたに、以前は無視していたような、E_NOTICE といったエラーを解決するように強要するでしょう。 
 				これは同時に、例えば非プログラマが作成したVIEWファイル中の構文エラーのような、PHPのエラーを捕らえることを可能にします。
 			</p>
 			<p>
-				You can alter this behaviour by adding PHP error types (like E_NOTICE or E_STRICT) to the <a href="./configuration.html#config">errors.continue_on</a> key
-				in your applications config/config.php file. Errors defined here will allow your script to continue. No exception
-				is being thrown for these errors, so you can no longer catch these.
+				あなたのアプリケーションの config/config.php ファイルにある、<a href="./configuration.html#config">errors.continue_on</a> というキーに
+				に、E_NOTICE や E_STRICTといったPHPエラータイプを追加することにより、この振る舞いを変更することができます。
+				ここに定義したエラーでは、あなたのスクリプトの処理を継続させることができます。
+				これらのエラーでは、例外はスローされず、よってあなたはこれらの例外をキャッチすることもできなくなります。
 			 </p>
 			 <p class="note">
-				 It is strongly adviced not to continue on errors, as it might lead to bugs in your code that are
-				 very difficult to find once your application moves into production!
+			 	エラー時に処理を継続しないことを強く推奨します。それは、あなたのコードにバグを発生させる原因となり、一度プロダクションとしてリリースされてしまうと
+			 	見つけることが非常に困難となります。
 			 </p>
 
-			<h3 id="application_errors">Application logic errors</h3>
+			<h3 id="application_errors">アプリケーション ロジック エラー</h3>
 
 			<h4 id="config">404 エラー</h4>
 
