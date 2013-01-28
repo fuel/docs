@@ -133,22 +133,22 @@
 &lt;/IfModule>
 </code>
 </pre>
-			<h3 id="install_inside_root2">This is too complicated. Anything simpler?</h3>
+			<h3 id="install_inside_root2">もっと簡単な方法</h3>
 
 			<p>
-				There is an alternative that involves removing the public folder from your installation.
-				Just copy the entire zipfile into your webserver's document root, and then do the following:
+				public フォルダを除いてインストールする方法がもう一つあります。
+				zipファイルをそのままwebサーバにコピーし、以下を実行します：
 			</p>
 			<ul>
-				<li>move everything in the /public folder one level up, to the document root</li>
-				<li>delete the now empty public folder</li>
-				<li>open <strong>index.php</strong> in your editor, and remove "/.." from APPPATH, COREPATH and PKGPATH</li>
+				<li>全てのファイルを /public フォルダの一階層上、ドキュメントルートに移動します</li>
+				<li>空になったpublicフォルダを削除します</li>
+				<li><strong>index.php</strong> をエディタで開き、APPPATHとCOREPATH、PKGPATHから "/.." を取ります</li>
 			</ul>
 
-			<h3 id="install_inside_subfolders">Ok. And what about subfolders?</h3>
-			<p>Follow the same procedure as in the previous section. Then execute one more step:</p>
+			<h3 id="install_inside_subfolders">サブフォルダにインストールする場合</h3>
+			<p>上記と同じ手順に加えて、次のステップを実行します：</p>
 			<ul>
-				<li>open the <strong>.htaccess</strong> file in your editor, and change the RewriteRule to read <em>RewriteRule ^(.*)$ /yoursubfolder/index.php/$1</em></li>
+				<li><strong>.htaccess</strong> ファイルをエディタで開き、<em>RewriteRule ^(.*)$ /[サブフォルダのディレクトリ]/index.php/$1</em> の部分を変更します。</li>
 			</ul>
 
 			<h2 id="setting_the_environment">環境を設定する</h2>
