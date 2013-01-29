@@ -11,7 +11,7 @@
 		var class_prefix = "Auth::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Usage - Auth パッケージ - FuelPHP ドキュメント</title>
+	<title>使用方法 - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -59,8 +59,8 @@
 
 				<article>
 					<h4 id="method_forge" class="method">forge($custom = array())</h4>
-					<p> Auth ドライバ、あるいは Auth の構成ファイルで定義されたドライバをインスタンス化します。オプションとして、
-						インスタンス化すべきドライバを定義したカスタム構成配列を渡すことができます。</p>
+					<p> Auth ドライバ、あるいは Auth の config ファイルで定義されたドライバをインスタンス化します。オプションとして、
+						インスタンス化すべきドライバを定義したカスタムな設定配列を渡すことができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -79,7 +79,7 @@
 									<tr>
 										<th><kbd>$custom</kbd></th>
 										<td><i>mixed</i></td>
-										<td>ドライバの構成配列、もしくは、インスタンス化するドライバ名の文字列。引数が渡されなければ、 Auth 構成ファイルの値が使われます。</td>
+										<td>ドライバの設定配列、もしくは、インスタンス化するドライバ名の文字列。引数が渡されなければ、 Auth config ファイルの値が使われます。</td>
 									</tr>
 								</table>
 							</td>
@@ -107,13 +107,13 @@ Auth::forge(array('driver' => 'simpleauth', 'id' => 'customid'));</code></pre>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">Auth 構成ファイルに書かれた単一の Auth ドライバのみを利用したい場合、このメソッドを手動で呼ぶ必要はありません。
+					<p class="note">Auth config ファイルに書かれた単一の Auth ドライバのみを利用したい場合、このメソッドを手動で呼ぶ必要はありません。
 						デフォルトインスタンスは、他のメソッドが最初に必要としたときに自動的に作成されます。</p>
 				</article>
 
 				<article>
 					<h4 id="method_instance" class="method">instance($instance = null)</h4>
-					<p>ロードされたドライバのインスタンスを取得します。複数のドライバが構成で設定されている場合、
+					<p>ロードされたドライバのインスタンスを取得します。複数のドライバが config で設定されている場合、
 						最初にロードされたドライバがデフォルトドライバに設定されます。</p>
 					<table class="method">
 						<tbody>
@@ -155,7 +155,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 						</tbody>
 					</table>
 					<p class="note">デフォルトインスタンスが求められたときに、ロードされていない場合、 instance() は forge() を呼び、
-					Auth 構成ファイルで定義された設定に基づくデフォルトインスタンスを作成します。</p>
+					Auth config ファイルで定義された設定に基づくデフォルトインスタンスを作成します。</p>
 				</article>
 
 				<article>
@@ -385,7 +385,7 @@ Auth::unregister_driver_type('role');
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">デフォルトのドライバタイプである　'login' 、 'group' 、 'acl' は登録解除できません。</p>
+					<p class="note">デフォルトのドライバタイプである　'login' 、 'group' 、 'acl' は登録解除できないことに注意！</p>
 				</article>
 			</section>
 
