@@ -69,22 +69,22 @@
 
 			<article>
 				<h3 id="running-queries">クエリの実行</h3>
-				<p>First we prepare a query using <a href="./db.html#method_query">DB::query</a>.</p>
-				<pre class="php"><code>// returns a new Database_Query
+				<p>始めに、<a href="./db.html#method_query">DB::query</a> を使用してクエリを準備します。</p>
+				<pre class="php"><code>// 返り値: Database_Query オブジェクト
 $query = DB::query('SELECT * FROM `users`');
 </code></pre>
-				<p>Now we can execute that query:</p>
+				<p>これで、クエリを実行できます:</p>
 				<pre class="php"><code>$query = DB::query('SELECT * FROM `users`');
 
-// return a new Database_MySQLi_Result
+// 返り値: Database_MySQLi_Result オブジェクト
 $query->execute();
 
-// Or execute is on a different database group
+// 別のデータベース接続に対して実行したい場合
 $query->execute('another_group');
-// or
+// もしくは
 $query->execute(Database_Connection::instance('another_group'));
 
-// And we can chain then like this:
+// 以下のようにメソッドチェーンが可能です:
 $result = DB::query('SELECT * FROM `users`')->execute();
 </code></pre>
 			</article>
@@ -92,36 +92,36 @@ $result = DB::query('SELECT * FROM `users`')->execute();
 			<article>
 				<h3 id="selecting">SELECT 文</h3>
 				<p>
-					First let's select data using <a href="./db.html#method_query">DB::query</a>.
-					As we are going to fetch a result from this query, we need to let the it know
-					what kind of query we are going to run.
+					まずは <a href="./db.html#method_query">DB::query</a> を使用してデータを取得してみましょう。
+					結果を取得するにあたり、どのようなクエリを
+					実行しようとしているか見ていきましょう。
 				</p>
 				<pre class="php"><code>
 $result = DB::query('SELECT * FROM `users`', DB::SELECT)->execute();
 </code></pre>
 				<p>
-					We can also select data using <a href="./db.html#method_select">DB::select</a>
+					<a href="./db.html#method_select">DB::select</a> を使用してデータを取得することもできます。
 				</p>
-				<pre class="php"><code>// Will execute SELECT `id`, `name` FROM `users`
+				<pre class="php"><code>// 「SELECT `id`, `name` FROM `users`;」 が実行されます
 $result = DB::select('id','name')->from('users')->execute();
 </code></pre>
 				<p>
-					or use <a href="./db.html#method_select_array">DB::select_array</a> which
-					allows you to dynamically build your array of column names.
+					または <a href="./db.html#method_select_array">DB::select_array</a> を使用して、
+					カラム名をキーとした配列データを取得することもできます。
 				</p>
-				<pre class="php"><code>// Will execute SELECT `id`, `name` FROM `users`
+				<pre class="php"><code>// 「SELECT `id`, `name` FROM `users`;」 が実行されます
 $colums = array('id', 'name');
 $result = DB::select_array($columns)->from('users')->execute();
 </code></pre>
 
-				<p>If you want to alias columns, use arrays instead of strings</p>
+				<p>列にエイリアス（別名）を付けたい場合は、代わりの文字列を配列で指定します。</p>
 
-				<pre class="php"><code>// Will execute SELECT `name` as `the_name` FROM `users`;
+				<pre class="php"><code>// 「SELECT `name` as `the_name` FROM `users`;」 が実行されます
 $result = DB::select(array('name','the_name'))->from('users')->execute();
 </code></pre>
 
-				<p>To select distinct values set distinct to <em>true</em>:</p>
-				<pre class="php"><code>// SELECT DISTINCT `name` FROM `users`
+				<p>distinct に <em>true</em> を指定して、重複のないデータを取得します:</p>
+				<pre class="php"><code>// 「SELECT DISTINCT `name` FROM `users`;」 が実行されます
 $users = DB::select('name')->from('users')->distinct(true)->execute();
 
 print_r($users->as_array());
