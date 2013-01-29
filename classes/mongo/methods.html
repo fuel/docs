@@ -45,27 +45,27 @@
 
 		<div id="main">
 
-			<h2>Mongo_Db Class Methods</h2>
+			<h2>Mongo_Db クラス・メソッド</h2>
 
 			<p>
-				The Mongo_Db class allows you to interact with MongoDB databases. While in some cases it's
-				similar to interacting with databases like MySQL there are some distinct differences.
+				Mongo_Db クラスは、MongoDBデータベースとの対話を可能にします。
+				Mongo_Db クラスは、MySQLのようなデータベースの扱いに似ているものの、いくつかの点で、はっきりとした違いがあります。
 			</p>
 
 			<p class="note">
-				All sorting options (order by and indexes) use -1, false, 'desc' or 'DESC' as <em>DESC</em>. Any other value will be <em>ASC</em>.
+				すべてのソートオプション(order by や indexes) は、<em>DESC</em>の意味として、-1、 false、 'desc' または 'DESC' を使用します。 それら以外の値はすべて <em>ASC</em> として扱われます。
 			</p>
 
 
 			<article>
 				<h4 class="method" id="method_instance">instance($name = 'default')</h4>
 				<p>
-					The <strong>instance</strong> method returns a new Mongo_Db instance. Use the $name parameter
-					to specify which configuration and database to use.
+					<strong>instance</strong> メソッドは、 新しい Mongo_Db インスタンスを返却します。
+					使用したい設定、データベース用の $name パラメータを指定して使用してください。
 				</p>
 				<p class="note">
-					By default <strong>$name</strong> is <em>'default'</em> which requires you to have a default configuration in you
-					db.php config file. <a href="introduction.html#config">Read more about Mongo_Db configuration.</a>
+					デフォルトでは、 <strong>$name</strong> は <em>'default'</em> が使用されます。そのため、db.php の設定として、'default' が設定されている必要があります。
+					<a href="introduction.html#config">Mongo_Db 設定の詳細はこちらを参照ください。</a>
 				</p>
 				<table class="method">
 					<tbody>
@@ -87,7 +87,7 @@
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>'default'</code></pre></td>
-									<td>The name of the config group to use.</td>
+									<td>使用したい config group の名前を指定します。</td>
 								</tr>
 							</table>
 						</td>
@@ -118,7 +118,7 @@ $mongodb = \Mongo_Db::instance('my_group');
 			<article>
 				<h4 class="method" id="method_get">get($collection = "")</h4>
 				<p>
-					The <strong>get</strong> method returns the result from a collection.
+					<strong>get</strong> メソッドは、 コレクションの検索結果を返却します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -170,7 +170,7 @@ foreach($result as $user)
 			<article>
 				<h4 class="method" id="method_get_cursor">get_cursor($collection = "")</h4>
 				<p>
-					The <strong>get_cursor</strong> method returns the mongodb cursor from the specified collection. The advantage it provides over the normal get() method is when processing large datasets as documents are only loaded into memory one at a time as they are accessed instead of all at once. Very useful for long running processes.
+					<strong>get_cursor</strong> メソッドは、指定したコレクションから MongoDB カーソル を返却します。通常の get() メソッドに対するアドバンテージは、巨大なデータセットを処理する際、一度にすべてロードするのではなく、アクセスごとに都度メモリ上にロードされることです。これは、長い時間かかる処理の際にとても有用です。
 				</p>
 				<table class="method">
 					<tbody>
@@ -222,7 +222,7 @@ foreach($result as $document)
 			<article>
 				<h4 class="method" id="method_get">get_one($collection = "")</h4>
 				<p>
-					The <strong>get_one</strong> method returns one result from a collection.
+					<strong>get_one</strong> メソッドは、コレクションから1つの結果を返します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -270,8 +270,8 @@ $user = $mongodb->get_one('users');
 			<article>
 				<h4 class="method" id="method_get_where">get_where($collection = "", $where = array(), $limit = 99999)</h4>
 				<p>
-					The <strong>get_where</strong> method returns the result from a collection. In addition to that you can supply
-					an array for conditioning the result and provide a limit.
+					<strong>get_where</strong> メソッドは、指定した検索条件、取得数上限のコレクションの結果を返却します。
+					検索条件は、配列で指定することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -314,7 +314,7 @@ $user = $mongodb->get_one('users');
 							<pre class="php"><code>// Get an instance
 $mongodb = \Mongo_Db::instance();
 
-// Get the first 10 result where 'active' is "yes"
+// 'active' が "yes" の条件に合致する、最初の 10 件を取得します。
 $result = $mongodb->get_where('users', array(
 	'active' => 'yes',
 ), 10);
