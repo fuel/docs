@@ -81,21 +81,20 @@
 
 			<article>
 
-				<h3 id="signal_bus_error">I get "child pid [xxxx] exit signal Bus error" in autoloader.php</h3>
+				<h3 id="signal_bus_error">autoloader.php で "child pid [xxxx] exit signal Bus error" が発生する</h3>
 
-				<h4>Happens When...</h4>
+				<h4>いつ発生するか...</h4>
 
-				<p>Under unknown circumstances when using multibyte support.</p>
+				<p>マルチバイト文字を扱う未知の状況下で発生する</p>
 
-				<h4>Solution</h4>
+				<h4>解決策</h4>
 
 				<p>
-					This seems to be a PHP bug, for which at the time of writing no fix has been released.
-					Most people using PHP 5.3.x and multi-byte support don't report this issue.
-					We have not seen reports of users with PHP 5.4.x that experience this same error.
+					PHPのバグらしく、このドキュメント（英語版）執筆時点では修正されていません。
+					殆どの人はPHP5.3.xを利用しており、マルチバイト環境ではこの問題は報告されていません。
+					FuelPHP開発チームにおいては、PHP5.4.xの利用者で同じエラーに遭遇したという例はまだありません。
 				</p>
-
-				<p>As a workaround, it is suggested to disable zend-multibyte and mbstring, or try using a different version of PHP.</p>
+				<p>回避策として、 zend-multibyteとmbstringを無効にするか、違うバージョンのPHPを使うことが推奨されています。</p>
 
 			</article>
 
@@ -213,11 +212,11 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 				<h3 id="assets_error">index.php の場所を変更した後、Asset が動作しない</h3>
 
-				<h4>Happens When...</h4>
+				<h4>いつ発生するか...</h4>
 
-				<p>That is because your path is not defined correctly, the Asset class uses a path relative to index.php.</p>
+				<p>パスが正しく定義されていないことが原因で、Assetクラスではindex.phpへの相対パスが使われています。</p>
 
-				<h4>Solution</h4>
+				<h4>解決策</h4>
 
 				<p>修正するためには app/config/asset.php を正しいパスにセットするように変更しなければなりません。DOCROOT という定数 が index.php 内で定義されています。</p>
 
@@ -233,11 +232,11 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 				<h3 id="symlinks_error">シンボリックリンクを変更した後、Core、App、Packages が見つからない</h3>
 
-				<h4>Happens When...</h4>
+				<h4>いつ発生するか...</h4>
+				
+				<p>DOCROOT/index.phpでrealpth()が相対パスを解決するために使われていて、シンボリックリンクを含むパス情報をキャッシュすることが原因です。</p>
 
-				<p>This my happen because in DOCROOT/index.php, realpath() is used to deal with relative paths, which will cache path information, including the symlink.</p>
-
-				<h4>Solution</h4>
+				<h4>解決策</h4>
 
 				<p>
 					これを修正するには、DOCROOT/index.php を変更し、キャッシュをクリアするシンボリックリンクを含むそれぞれのパスに
@@ -249,18 +248,18 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 			<article>
 
-				<h3 id="stack_frame_error">Exception thrown without a stack frame</h3>
+				<h3 id="stack_frame_error">例外発生時にスタックフレームに何も入ってこない</h3>
 
-				<h4>Happens When...</h4>
+				<h4>いつ発生するか...</h4>
 
-				<p>The cause of this message is that an error occured while PHP is already in it's tear-down phase, and no error handler is available anymore.</p>
+				<p>PHPがすでにティアダウンフェーズ（SSLトラフィックを搬送していない状態）の時にエラーが起こり、エラーハンドラが利用できない状態にあることが原因です。</p>
 
-				<h4>Solution</h4>
+				<h4>解決策</h4>
 
 				<p>
-					There are a lot of reasons why this can happen. We'll try do document the most obvious ones here:
+					発生し得る原因は沢山ありますが、最もわかりやすい例を記しておきます：
 					<ul>
-						<li>Your webserver doesn't have write rights to the folder that stores the logfiles (by default APPPATH.'logs').</li>
+						<li>webサーバが（デフォルトのAPPPATH、'logs'）ログファイルを格納するフォルダへの正しいアクセス権を持っていない</li>
 					</ul>
 				</p>
 
