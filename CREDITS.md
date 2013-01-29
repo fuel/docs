@@ -3,3 +3,4 @@
 ## Version 1.5
 
 * Kenji Suzuki <https://github.com/kenjis>
+* Hitoshi Asano <https://github.com/orcaaoshi>
