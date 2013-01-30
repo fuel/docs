@@ -10,7 +10,7 @@
 		var path = './../../../';
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
-	<title>Soft Delete Model - Orm Package - FuelPHP Documentation</title>
+	<title>論理削除モデル - Orm パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -52,7 +52,7 @@
                 </section>
 
                 <section>
-                    <h2>Basic use</h2>
+                    <h2>基本的な使用</h2>
                     <p>Using the soft delete model is as easy as extending <kbd>Orm\Model_Soft</kbd> instead of <kbd>Orm\Model</kbd>. This marks your model as being a soft delete model and changes the default behaviour of the <kbd>delete()</kbd> and <kbd>find()</kbd> methods.</p>
                     <pre id="php"><code>class Model_Employee extends \Orm\Model_Soft
 {
@@ -62,7 +62,7 @@
                 </section>
 
                 <section>
-                    <h2 id="settings">Settings</h2>
+                    <h2 id="settings">設定</h2>
                     <p>There are currently two extra settings that can be set for soft delete models.</p>
                     <p><kbd>deleted_field</kbd> is the field that stores the timestamp. In the database this should be either a MySQL or unix timestamp and default to <kbd>NULL</kbd>. Any entries with a <kbd>NULL</kbd> timestamp are not deleted. The column name defaults to deleted_at.</p>
                     <p><kbd>mysql_timestamp</kbd> is if the timestamp generated should be a MySQL timestamp or a unix timestamp. This defaults to <kbd>true</kbd> (use a MySQL timestamp).</p>
@@ -77,19 +77,19 @@
                 </section>
 
                 <section>
-                    <h2 id="delete">Deleting</h2>
+                    <h2 id="delete">削除</h2>
                     <p>To trigger the soft delete just call the normal <kbd>delete()</kbd> function on the object after selecting. This updates the database entry with the current timestamp and mark the entry as deleted. The entry will no longer show up in <kbd>find()</kbd> queries.</p>
                     <pre id="php"><code>$employee = Model_Employee::find(1);
 $employee->delete(); //The employee has now been soft deleted.</code></pre>
                 </section>
 
                 <section>
-                    <h2 id="find">Find</h2>
+                    <h2 id="find">検索</h2>
                     <p>Soft deleted entries are not listed with <kbd>find()</kbd> requests, they are excluded from the returned results because they have, as far as <kbd>Model_Soft</kbd> is concerned, been deleted. It is possible to query deleted entries by using <kbd>find_deleted()</kbd> or <kbd>deleted()</kbd>. These both work the same as <kbd>find()</kbd> and expect the same parameters.</p>
                 </section>
 
                 <section>
-                    <h2 id="restore">Restoring</h2>
+                    <h2 id="restore">リストア</h2>
                     <p>Entries that have been soft deleted can be restored at a later date. Say that one of our employees returns, we can just restore the soft deleted entry and have everything working for her again without having to create a new employee.</p>
                     <p>This is done simply by calling <kbd>restore()</kbd> or <kbd>undelete()</kbd> on a deleted entry.</p>
                     <pre id="php"><code>$employee = Model_Employee::find_deleted(1);
@@ -101,7 +101,7 @@ $employee->undelete(); //Does the same as above.</code></pre>
                 </section>
 
                 <section>
-                    <h2 id="relations">Relations</h2>
+                    <h2 id="relations">リレーション</h2>
                     <h1>Delete</h1>
                     <p>The delete function will soft delete related models providing that <kbd>cascade_delete</kbd> is true. If the related model is not soft delete as well then a <kbd>RelationNotSoft</kbd> exception is thrown.</p>
                     <h1>Restore</h1>
