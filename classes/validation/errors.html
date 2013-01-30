@@ -71,8 +71,7 @@
 				<pre class="php"><code>// バリデーションオブジェクトに対してエラーメッセージを変更する方法
 $val->set_message('required', ':label フィールドは必須です。');
 
-// フィールドを指定してメッセージを変更する方法 (実際にこのフィールドがエラーしてるかの考慮はなし)
-// (訳注: エラーがない場合は $val->error('username') が false を返すため例外エラーになります)
+// 実際にこのフィールドがエラーかどうかに関われず、フィールドを指定してメッセージを変更する (訳注: エラーがない場合は $val->error('username') が false を返すため例外エラーになります)
 echo $val->error('username')->get_message('ユーザー認証には :label フィールドを入力してください');
 // username フィールドのバリデーションが失敗された場合、 "ユーザー認証には username フィールドを入力してください" が出力される
 // それか、バリデーション未実行もしくはバリデーション成功の場合には何も出力しない</code></pre>
@@ -151,8 +150,7 @@ $field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
 
 				<p><code>$error->rule</code> 失敗したバリデーションルールの名前。
 					基本的にバリデーションルールとして渡された文字列になりますが、
-					<a href="#naming_rules">独自に名前付けされた場合</a>には別の文字列になる場合もあります。
-					<br />
+					<a href="#naming_rules">独自に名前付けされた場合</a>には別の文字列になる場合もあります。<br />
 					<code>'Class::method'</code>, <code>array('Class', 'method')</code> または、
 					<code>array($object, 'method')</code> などのコールバックとして渡された場合はシンプルに、
 					<code>'Classname:methodname'</code>という形式になります。</p>
@@ -160,8 +158,7 @@ $field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
 				<h4 id="property_params">$params</h4>
 
 				<p>バリデーションルールに渡された追加パラメータになります。
-					例えば、<code>->add_rule('max_length', 25)</code> をした場合は、<code>array(25)</code>
-					というようになります。</p>
+					例えば、<code>->add_rule('max_length', 25)</code> をした場合は、<code>array(25)</code> というようになります。</p>
 
 				<article>
 					<h4 class="method" id="method_get_message">get_message($msg = false, $open = '', $close = '')</h4>
@@ -192,8 +189,7 @@ $field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
 											<td><pre class="php"><code>false</code></pre></td>
 											<td><code>false</code> 指定した場合は、自身が所属するバリデーションインスタンスから、
 												またはコンフィグファイルから、メッセージの取得を試みます。
-												入力が空の場合、またはコンフィグにメッセージが見つからない場合は、
-												デフォルトの代替用メッセージを返します。
+												入力が空の場合、またはコンフィグにメッセージが見つからない場合は、デフォルトの代替用メッセージを返します。
 												文字列を指定した場合は、その文字列をメッセージとして使用し、
 												内包する変数を置換して返します。</td>
 										</tr>
