@@ -59,25 +59,25 @@
 			</p>
 
 			<p class="note">
-				To overwrite settings from feature specific configs, either create a new file in app/config or copy
-				the corresponding file from core/config to app/config.
+				特定の設定ファイルが提供する設定内容を上書きするには、app/config 内に新しいファイルを作成するか、
+				対応するファイルを core/config から app/config にコピーして下さい。
 			</p>
 
 			<h3 id="config">Configuration options</h3>
 
 			<p>
-				These are the options that can be defined in the applications basic configuration file, <kbd>app/config/config.php</kbd>.
-				When you have just installed FuelPHP, this file is empty. All default values, as defined below, are defined in the
-				corresponding file in the <kbd>core/config</kbd> folder. When you want to override a default, add the key to the array
-				in your app config file, and modify the value. Alternatively, copy the section from the core file to the app file, and
-				modify it.
+				アプリケーションのファイル <kbd>app/config/config.php</kbd> に基いて定義される設定項目があります。
+				FuelPHP をインストールした時点では、このファイルは空の状態です。
+				以下に定義されているように、全てのデフォルト値は <kbd>core/config</kbd> フォルダ内の対応するファイルにより定義されています。
+				デフォルトの値をオーバーライドしたい場合、app の config ファイル内の配列にキーを追加して値を修正して下さい。
+				または、app のファイルにコアファイルから部分をコピーしてきて修正することもできます。
 			</p>
 
 			<p class="note">
-				FuelPHP uses "<em>dot-notation</em>" when handling arrays. It is a convenient way of accessing elements of a multi-dimensional
-				array. This notation is used in the documenation as well, as it provides an easy to type array reference. For example:
+				FuelPHP は配列を処理する際に"ドット記法"を使っています。これは、多次元配列の要素にアクセスするのに便利な方法です。
+				この記法はドキュメンテーションにも用いられており、配列への参照をタイプするのを容易にしています。例えば:
 			</p>
-			<pre class="php"><code>// when you see "always_load.packages = array()", it is shorthand for:
+			<pre class="php"><code>// "always_load.packages = array()" とある場合、これは以下の略記となります:
 array("always_load" => array("packages" => array(...) ) );
 </code></pre>
 
@@ -120,9 +120,9 @@ array("always_load" => array("packages" => array(...) ) );
 						<td>string</td>
 						<td><pre class="php"><code>'Controller_'</code></pre></td>
 						<td>
-							The class prefix used to find controllers when mapping the URI to the controller class name.
-							You have to change this if you want your controllers namespaced or in a different folder then
-							app/classes/controller.
+							URIをコントローラのクラス名にマッピングする際にコントローラを見つけるのに仕様されるクラスのプレフィックス。
+							コントローラを名前空間に置きたい、または app/classes/controller とは別の場所に置きたい場合に、
+							この値を変更する必要があります。
 						</td>
 					</tr>
 					<tr>
@@ -162,7 +162,7 @@ array("always_load" => array("packages" => array(...) ) );
 						<td>callback</td>
 						<td><pre class="php"><code>null</code></pre></td>
 						<td>
-							Callback given to ob_start(), set to ob_gzhandler to enable gzip encoding of output.
+							ob_start() に与えられるコールバックで、gzip 圧縮による出力を可能にする ob_gzhandler に設定される。
 						</td>
 					</tr>
 					<tr>
@@ -173,7 +173,7 @@ array("always_load" => array("packages" => array(...) ) );
 						<th>errors</th>
 						<td>array</td>
 						<td colspan="2">
-							<strong>Array, containing the configuration keys to control behaviour when detecting errors:</strong>
+							<strong>エラーが検出された際の挙動を決める設定キーを格納する配列:</strong>
 						</td>
 					</tr>
 					<tr>
@@ -182,7 +182,7 @@ array("always_load" => array("packages" => array(...) ) );
 						<td><pre class="php"><code>array(
 )</code></pre></td>
 						<td>
-							On which php errors to proceed execution. See <a href="./error.html">Error handling</a>.
+							どの PHP エラーが発生したときに実行を続けるか。<a href="./error.html">エラー処理を参照する</a>.
 						</td>
 					</tr>
 					<tr>
@@ -243,15 +243,15 @@ array("always_load" => array("packages" => array(...) ) );
 						<td>string</td>
 						<td><pre class="php"><code>'UTC'</code></pre></td>
 						<td>
-							The server timezone.
+							サーバのタイムゾーン。
 						</td>
 					</tr>
 					<tr>
 						<td colspan="4">
 						<p class="note">
-							If you set this value, make <strong>ABSOLUTELY</strong> sure that the timezone configured matches the timezone set on your server.
-							Since timezone calculations work by converting to GMT, it goes horribly wrong when you have a timezone mismatch. This will cause
-							time displays in your application to be incorrect, and cookie/session issues due to incorrect expiry time calculations!
+							この値を設定する場合、タイムゾーンの設定があなたのWebサーバに設定されているタイムゾーンに一致することを<strong>必ずしっかりと確認</strong>して下さい。
+							タイムゾーンの計算はグリニッジ標準時に変換することで動作しているため、タイムゾーンがずれているととんでもなくおかしなことになります。
+							時間の表示も正しく表示されなかったり、クッキーやセッションが期限切れであると誤って計算されてしまうでしょう。
 						</p>
 						</td>
 					</tr>
@@ -260,7 +260,7 @@ array("always_load" => array("packages" => array(...) ) );
 						<td>int</td>
 						<td><pre class="php"><code>Fuel::L_WARNING</code></pre></td>
 						<td>
-							The logging threshold. From what level of message to log, or an array of specific message levels that should be logged. <a href="../classes/fuel.html#log_constants">Read about the possible values</a>
+							ログの閾値。どのレベルのメッセージからログを取るか、またはログを取りたいレベルの配列。 <a href="../classes/fuel.html#log_constants">取り得る値について</a>
 						</td>
 					</tr>
 					<tr>
@@ -276,7 +276,7 @@ array("always_load" => array("packages" => array(...) ) );
 						<td>string</td>
 						<td><pre class="php"><code>'Y-m-d H:i:s'</code></pre></td>
 						<td>
-							The date/time format used in the logs.
+							date/time のフォーマットがログで仕様されます。
 						</td>
 					</tr>
 					<tr>
@@ -288,7 +288,7 @@ array("always_load" => array("packages" => array(...) ) );
 						<th>security</th>
 						<td>array</td>
 						<td colspan="2">
-							<strong>Array, containing the configuration keys to control your application security:</strong>
+							<strong>アプリケーションのセキュリティを操作する設定キーを格納する配列:</strong>
 						</td>
 					</tr>
 					<tr>
@@ -360,8 +360,8 @@ array("always_load" => array("packages" => array(...) ) );
 'Closure'
 )</code></pre></td>
 						<td>
-							With output encoding switched on all objects passed will be converted to strings or throw exceptions
-							unless they are instances of the classes in this array.
+							出力エンコーディングがオンになった場合、この配列の中のクラスのインスタンスでない限り、
+							渡された全てのオブジェクトが文字列に変換されるか、例外をスローします。
 						</td>
 					</tr>
 					<tr>
@@ -373,7 +373,7 @@ array("always_load" => array("packages" => array(...) ) );
 						<th>cookie</th>
 						<td>array</td>
 						<td colspan="2">
-							<strong>Array, containing the configuration keys define the global cookie settings:</strong>
+							<strong>グローバルなクッキーの設定を定義する設定キーを格納する配列：</strong>
 						</td>
 					</tr>
 					<tr>
@@ -421,7 +421,7 @@ array("always_load" => array("packages" => array(...) ) );
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
-							Paths to module directories. Used when adding a module without specifying the location.
+							モジュールのディレクトリへのパス。場所を指定せずにモジュールを追加するときに使われます。
 						</td>
 					</tr>
 					<tr>
@@ -433,7 +433,7 @@ array("always_load" => array("packages" => array(...) ) );
 						<th>always_load</th>
 						<td>array</td>
 						<td colspan="2">
-							<strong>Array, containing the items the framework has to load when it initializes:</strong>
+							<strong>初期化時にフレームワークが読み込まなければならないアイテムを格納する配列：</strong>
 						</td>
 					</tr>
 					<tr>
@@ -441,7 +441,7 @@ array("always_load" => array("packages" => array(...) ) );
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
-							Which packages to autoload. Specify like so: <strong>array('package')</strong> or <strong>array('package' => PKGPATH.'path/to/package')</strong>. In order for this to work a package path must be set in <em>package_paths</em>
+							どのパッケージをオートロードするか。<strong>array('package')</strong> あるいは <strong>array('package' => PKGPATH.'path/to/package')</strong> のように指定します。これが動作するためには、パッケージのパスが <em>package_paths</em> で設定されていなければなりません。
 						</td>
 					</tr>
 					<tr>
@@ -458,8 +458,8 @@ array("always_load" => array("packages" => array(...) ) );
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
-							Which classes to autoload and initiate. When you want to autoload a class from a package or module, make sure
-							that is autoloaded too!
+							どのクラスをオートロードし、初期化するか。
+							パッケージやモジュールからクラスをオートロードする場合は、必ずそれもオートロードするようにしましょう。
 						</td>
 					</tr>
 					<tr>
