@@ -5,3 +5,4 @@
 * Kenji Suzuki <https://github.com/kenjis>
 * Hitoshi Asano <https://github.com/orcaaoshi>
 * Yoshiaki Sato <https://github.com/yoshiakist>
+* Fumito Mizuno <https://github.com/ounziw>
