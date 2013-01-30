@@ -51,7 +51,7 @@
 			<ol>
 				<li>from のアドレス
 				<li>to のアドレス</li>
-				<li>And last but not least, the message</li>
+				<li>そして、送りたいメッセージ</li>
 			</ol>
 
 			<h3 id="sending_mails">メールを送ってみましょう。</h3>
@@ -79,7 +79,7 @@ $email->to(array(
 $email->body('This is my message');
 </code></pre>
 
-			<p>この時点んで、メールを送信する準備ができました。</p>
+			<p>この時点で、メールを送信する準備ができました。</p>
 
 			<h3 id="exception">例外</h3>
 
@@ -87,7 +87,7 @@ $email->body('This is my message');
 
 			<ul>
 				<li><strong>\EmailValidationFailedException</strong>: 1つ以上のメールアドレスがバリデーションを通過しない場合に投げられます。</li>
-				<li><strong>\EmailSendingFailedException</strong>: thrown when the driver failed to send the exception</li>
+				<li><strong>\EmailSendingFailedException</strong>: ドライバの例外でメール送信出来なかった場合</li>
 			</ul>
 
 			<p>下記の例では、これらの例外を扱う方法を示します。</p>
@@ -123,7 +123,7 @@ $email->alt_body('This is my alt body, for non-html viewers.');</code></pre>
 			<p>
 				Email パッケージは、通常の添付とインラインの2種類の添付をサポートします。
 				メールの本文中に使いたい場合は、インライン添付を用います。例えば、図を挿入して、オフラインでも表示できるようにしたいときなどです。
-				Some clients don't cache that, and yes that's dumb. But it's the interwebs and stuff like that happens.
+				ただし、受信側のメーラーによっては対応していないことに注意してください。
 			</p>
 
 			<pre class="php"><code>// 添付ファイルを追加する
