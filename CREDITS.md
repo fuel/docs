@@ -9,3 +9,4 @@
 * Shiro Matsuo <https://github.com/mazzo46>
 * Tetsuji Koyama <https://github.com/koyhoge>
 * Mamoru Otsuka <https://github.com/mp-php>
+* Makoto Taniguchi <https://github.com/h2ospace>
