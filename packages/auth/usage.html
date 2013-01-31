@@ -48,12 +48,12 @@
 
 			<p>Auth パッケージは Fuel における標準化された認証インターフェイスを提供します。
 			これにより、ユーザは自分自身で新しいドライバを書くことができ、
-			基本的なメソッドを保ったまま、古いコードと一緒に動く新しいドライバを簡単に統合することもできます。</p>
+			基本的なメソッドを保つことで、古いコードに新しいドライバを簡単に統合することもできます。</p>
 
 			<section>
 				<h3 id="auth_interface">インターフェイス</h3>
 
-				<p>Auth クラスはジェネリックメソッドのための静的インターフェイスを提供します。
+				<p>Auth クラスは汎用メソッドのための静的インターフェイスを提供します。
 					また、ロード済みのドライバのインスタンスを得るための __callStatic マジックメソッドを含み、
 					ドライバのメソッドを静的に呼び出します（これは、並列なドライバが Auth の設定で無効化されている場合に限ります）。</p>
 
@@ -186,7 +186,7 @@ Auth::instance('simpleauth')->login(Input::post('username'), Input::post('passwo
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean、削除が成功した場合 <strong>true</strong> 、そうでなければ <strong>false</strong> 。</td>
+							<td>論理型、削除が成功した場合 <strong>true</strong> 、そうでなければ <strong>false</strong> 。</td>
 						</tr>
 						<tr>
 							<th>例外</th>
@@ -234,7 +234,7 @@ Auth::unload('simpleauth');</code></pre>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>bool、（渡されたドライバのうち）ひとつでもログイン認証が成功したかどうか。</td>
+							<td>論理型、（渡されたドライバのうち）ひとつでもログイン認証が成功したかどうか。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -299,12 +299,12 @@ $driver = Auth::verified('simpleauth');
 
 				<article>
 					<h4 id="method_logout" class="method">logout()</h4>
-					<p>現在ログイン済みのすべてのドライバをログアウトします。</p>
+					<p>現在ログイン中のすべてのドライバをログアウトします。</p>
 				</article>
 
 				<article>
 					<h4 id="method_register_driver_type" class="method">register_driver_type($type, $check_method)</h4>
-					<p>新しいドライバのタイプを登録します。</p>
+					<p>新しいドライバタイプを登録します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -323,7 +323,7 @@ $driver = Auth::verified('simpleauth');
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td>必須</td>
-										<td>登録する Auth ドライバのタイプ。</td>
+										<td>登録する Auth ドライバタイプ。</td>
 									</tr>
 									<tr>
 										<th><kbd>$check_method</kbd></th>
@@ -351,7 +351,7 @@ if ( ! Auth::register_driver_type('role', 'check_role'))
 
 				<article>
 					<h4 id="method_unregister_driver_type" class="method">unregister_driver_type($type)</h4>
-					<p>ドライバのタイプの登録を解除します。</p>
+					<p>ドライバタイプの登録を解除します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -370,7 +370,7 @@ if ( ! Auth::register_driver_type('role', 'check_role'))
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td>必須</td>
-										<td>削除する Auth ドライバのタイプ。</td>
+										<td>削除する Auth ドライバタイプ。</td>
 									</tr>
 								</table>
 							</td>
