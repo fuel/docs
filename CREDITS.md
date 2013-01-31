@@ -10,3 +10,4 @@
 * Tetsuji Koyama <https://github.com/koyhoge>
 * Mamoru Otsuka <https://github.com/mp-php>
 * Makoto Taniguchi <https://github.com/h2ospace>
+* Mizuki Yamanaka <https://github.com/charlesvineyard>
