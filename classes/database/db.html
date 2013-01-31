@@ -82,7 +82,7 @@
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Will prepare: SELECT * FROM `users`
+								<pre class="php"><code>// 生成されるクエリ: SELECT * FROM `users`
 $query = DB::query('SELECT * FROM `users`');
 </code></pre>
 							</td>
@@ -169,10 +169,10 @@ echo DB::last_query();
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Will prepare: SELECT *
+								<pre class="php"><code>// 生成されるクエリ: SELECT *
 $query = DB::select();
 
-// Will prepare: SELECT `id`, `name`
+// 生成されるクエリ: SELECT `id`, `name`
 $query = DB::select('id', 'name');
 </code></pre>
 							</td>
@@ -214,10 +214,10 @@ $query = DB::select('id', 'name');
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Will prepare: SELECT *
+								<pre class="php"><code>// 生成されるクエリ: SELECT *
 $query = DB::select_array();
 
-// Will prepare: SELECT `id`, `name`
+// 生成されるクエリ: SELECT `id`, `name`
 $query = DB::select_array(array('id', 'name'));
 </code></pre>
 							</td>
@@ -247,12 +247,12 @@ $query = DB::select_array(array('id', 'name'));
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The table to insert into.</td>
+										<td class="description">insert するテーブル</td>
 									</tr>
 									<tr>
 										<th><kbd>$columns</kbd></th>
 										<td><strong>array();</strong></td>
-										<td class="description">Array of columns to select.</td>
+										<td class="description">insert するカラムの配列</td>
 									</tr>
 								</table>
 							</td>
@@ -264,10 +264,10 @@ $query = DB::select_array(array('id', 'name'));
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Will prepare: INSERT INTO `table_name`
+								<pre class="php"><code>// 生成されるクエリ: INSERT INTO `table_name`
 $query = DB::insert('table_name');
 
-// Will prepare: INSERT INTO `table_name` (`id`, `name`)
+// 生成されるクエリ: INSERT INTO `table_name` (`id`, `name`)
 $query = DB::insert('table_name', array('id', 'name'));
 </code></pre>
 							</td>
@@ -309,7 +309,7 @@ $query = DB::insert('table_name', array('id', 'name'));
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Will prepare: UPDATE `table_name`
+								<pre class="php"><code>// 生成されるクエリ: UPDATE `table_name`
 $query = DB::update('table_name');
 </code></pre>
 							</td>
@@ -351,7 +351,7 @@ $query = DB::update('table_name');
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Will prepare: DELETE FROM `table_name`
+								<pre class="php"><code>// 生成されるクエリ: DELETE FROM `table_name`
 $query = DB::delete('table_name');
 </code></pre>
 							</td>
@@ -393,18 +393,18 @@ $query = DB::delete('table_name');
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// returns new Database_Expression('COUNT(table_name.table_column)');
+								<pre class="php"><code>// 返り値: Database_Expression('COUNT(table_name.table_column)');
 $expr = DB::expr('COUNT(table_name.table_column)');
 
-// prevents incorrect quoting of this expression in the generated query
+// 生成されるクエリの意図しない位置にクオートが付かないようにする
 $expr = DB::expr('columnname + 1');</code></pre>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				<p class="note">
-					You have to use DB:expr() in your query for all expressions, i.e. for everything that is not a fieldname,
-					to make sure the value you pass isn't enclosed in quotes or backticks.
+					クエリ内でフィールド名として扱われたくない箇所をクオートやバッククオートで囲まれないようにするには、
+					DB::expr() を使用してください。
 				</p>
 			</article>
 
@@ -835,7 +835,7 @@ DB::list_tables('%sessions%');
 
 			<article>
 				<h4 class="method" id="method_datatypes">datatype($type, $db = null)</h4>
-				<p>The <strong>datatype</strong> method returns a normalized array describing the SQL data type.</p>
+				<p><strong>datatype</strong> メソッドは、 SQL データ型を PHP のデータ型の表現に変換した配列で返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -854,7 +854,7 @@ DB::list_tables('%sessions%');
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><em>必須</em></td>
-										<td class="description">The SQL data type.</td>
+										<td class="description">SQL データ型</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
@@ -866,7 +866,7 @@ DB::list_tables('%sessions%');
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns a normalized array describing the SQL data type.</td>
+							<td>SQL データ型を PHP のデータ型の表現に変換した配列で返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -980,7 +980,7 @@ DB::count_last_query();
 
 			<article>
 				<h4 class="method" id="method_set_charset">set_charset($charset, $db)</h4>
-				<p><strong>set_charset</strong> メソッドは、コネクションの文字セットを設定します。This is called automatically by [static::connect].</p>
+				<p><strong>set_charset</strong> メソッドは、コネクションの文字セットを設定します。このメソッドは static::connect で自動的に呼ばれます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -1025,7 +1025,7 @@ DB::count_last_query();
 
 			<article>
 				<h4 class="method" id="method_error_info">error_info()</h4>
-				<p>The <strong>error_info</strong> returns an array with information about the last database error.</p>
+				<p><strong>error_info</strong> メソッドは、最後に発生したデータベースエラー情報の配列を返します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
