@@ -11,7 +11,7 @@
 		var class_prefix = "$object->";
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
-	<title>Login - Driver types - Auth Package - FuelPHP ドキュメント</title>
+	<title>Login - ドライバタイプ - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -46,45 +46,45 @@
 		<div id="main">
 			<h2>Auth パッケージ</h2>
 
-			<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
-			write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
-			consistent.</p>
+			<p>Auth パッケージは Fuel における標準化された認証インターフェイスを提供します。
+			これにより、ユーザは自分自身で新しいドライバを書くことができ、
+			基本的なメソッドを保つことで、古いコードに新しいドライバを簡単に統合することもできます。</p>
 
 			<section>
 				<h2 id="driver_types">Auth_Login_Driver</h2>
 
 				<p>
-					This driver is the base class for all Auth login drivers. It is defined as an abstract class which contains
-					all methods generic to all login drivers, and abstract method definitions for all methods any login driver
-					MUST implement.
+					このドライバは、すべての Auth Login ドライバの基底クラスです。抽象クラスとして定義されており、
+					すべての Login ドライバに汎用なメソッド、 Login ドライバが必ず実装しなければならないメソッドの
+					抽象メソッドの定義が含まれています。
 				</p>
 
-				<h3 id="driver_config">Driver configuration</h3>
+				<h3 id="driver_config">ドライバの設定</h3>
 
 				<p>
-					A group driver can load additional drivers that it depends on. Generally, these are ACL drivers. But your implementation
-					could introduce and use custom driver types as well. To do so, add this structure to your driver class:
+					Group ドライバは必要に応じて追加のドライバをロードできます。一般的には、 ACL ドライバがこれにあたります。
+					しかし、実装次第では、カスタムタイプのドライバを導入して利用することも可能です。そのためには、ドライバクラスに次の構造を追加してください：
 				</p>
 
-								<pre class="php"><code>// autoload the SimpleGroup group driver when loading this login driver
-// this also defines the additional user record fields this driver has a getter for
+								<pre class="php"><code>// SimpleGroup という Group ドライバを、この Login ドライバのロード時にオートロード
+// さらに、ドライバが getter メソッドを持つ追加のユーザレコードフィールドを定義
 	protected $config = array(
 		'drivers' => array('group' => array('SimpleGroup')),
 		'additional_fields' => array('profile_fields'),
 	);
 </code></pre>
-				<h3 id="generic_methods">Generic methods</h3>
+				<h3 id="generic_methods">汎用メソッド</h3>
 
 				<p>
-					Generic methods are defined in the login base driver, and are available to all Auth login drivers through
-					extension. These methods provide functions to create and retrieve instances, to set and get configuration
-					values, as well as generic method for password hashing and access to the <a href="acl.html">ACL</a> and <a href="group.html">Group</a> drivers.
+					汎用メソッドは、 Login 基底ドライバに定義されており、継承によりすべての Auth Login ドライバから使うことができます。
+					これらのメソッドが提供する関数には、インスタンスを生成・取得したり、 config の値を設定・取得したり、パスワードをハッシュ値にする汎用メソッドや
+					<a href="acl.html">ACL</a> ・ <a href="group.html">Group</a> ドライバにアクセスするものがあります。
 				</p>
-				<p class="note">The methods defined in the classes but not documented here are used internally, and should not be called directly.</p>
+				<p class="note">クラスに定義されているメソッドのうち、ドキュメントに記載されていないものは内部で利用されてるものなので、直接呼び出さないようにしてください。</p>
 
 				<article>
 					<h4 id="method_get_id" class="method">get_id()</h4>
-					<p>Returns the drivers unique id. This can be used to identify the driver, or to select a specific driver instance.</p>
+					<p>ドライバのユニーク id を返します。ドライバを区別したり、特定のドライバのインスタンスを選択するために使います。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -99,12 +99,12 @@
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>The drivers id string.</td>
+							<td>ドライバ id の文字列</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// returns 'simpleauth'
+								<pre class="php"><code>// 'simpleauth' を返す
 $id = Auth::instance('simpleauth')->get_id();
 </code></pre>
 							</td>
@@ -115,7 +115,7 @@ $id = Auth::instance('simpleauth')->get_id();
 
 				<article>
 					<h4 id="method_set_config" class="method">set_config($key, $value)</h4>
-					<p>Sets a driver configuration value.</p>
+					<p>ドライバの config の値を設定します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -133,13 +133,13 @@ $id = Auth::instance('simpleauth')->get_id();
 									</tr>
 									<tr>
 										<th><kbd>$key</kbd></th>
-										<td>required</td>
-										<td>Configuration key name</td>
+										<td>必須</td>
+										<td>config のキー名</td>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
-										<td>required</td>
-										<td>Value for this configuration key</td>
+										<td>必須</td>
+										<td>config のキーの値</td>
 									</tr>
 								</table>
 							</td>
@@ -151,7 +151,7 @@ $id = Auth::instance('simpleauth')->get_id();
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// set a config value
+								<pre class="php"><code>// config に値を設定
 Auth::instance()->set_config('key', 'value');
 </code></pre>
 							</td>
@@ -162,7 +162,7 @@ Auth::instance()->set_config('key', 'value');
 
 				<article>
 					<h4 id="method_get_config" class="method">get_config($key, $default = null)</h4>
-					<p>Gets a driver configuration value.</p>
+					<p>ドライバの config の値を取得します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -180,13 +180,13 @@ Auth::instance()->set_config('key', 'value');
 									</tr>
 									<tr>
 										<th><kbd>$key</kbd></th>
-										<td>required</td>
-										<td>Configuration key name</td>
+										<td>必須</td>
+										<td>config のキー名</td>
 									</tr>
 									<tr>
 										<th><kbd>$default</kbd></th>
 										<td><i>null</i></td>
-										<td>Default value to be returned if the requested key does not exist</td>
+										<td>要求したキーに値がなかったときに返されるデフォルト値</td>
 									</tr>
 								</table>
 							</td>
@@ -198,7 +198,7 @@ Auth::instance()->set_config('key', 'value');
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// get a config value, return false if it doesn't exist
+								<pre class="php"><code>// config の値を取得し、値がなければ false を返す
 $key = Auth::instance()->get_config('key', false);
 </code></pre>
 							</td>
@@ -209,7 +209,7 @@ $key = Auth::instance()->get_config('key', false);
 
 				<article>
 					<h4 id="method_guest_login" class="method">guest_login()</h4>
-					<p>Returns if the driver supports guest logins (a non-authenticated guest user).</p>
+					<p>ドライバがゲストログイン（認証されないゲストユーザ）を許可しているかどうかを返す。 </p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -219,20 +219,20 @@ $key = Auth::instance()->get_config('key', false);
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None.
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean</td>
+							<td>論理型</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// check if the default instance supports guests
+								<pre class="php"><code>// デフォルトインスタンスがゲストログインをサポートしているか
 if (Auth::instance()->guest_login())
 {
-	// this driver supports guest logins!
+	// このドライバはゲストログインをサポートしています！
 }
 </code></pre>
 							</td>
@@ -240,16 +240,16 @@ if (Auth::instance()->guest_login())
 						</tbody>
 					</table>
 
-					<p class="note">By default, this method returns 'false'. If your login driver supports guest logins, overload this
-						method in your driver class.</p>
+					<p class="note">デフォルトでは、このメソッドは 'false' を返します。ゲストログインをサポートしたいときは、
+						このメソッドを拡張クラスでオーバーライドしてください。</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_user_array" class="method">get_user_array(Array $additional_fields = array())</h4>
-					<p>Returns an array describing the current logged in user, always includes at least a screenname and
-					an emailaddress. Additional fields can be configured in the driver config or requested through the
-					$additional_fields array, but they must have a get_user_<em>fieldname</em>() method within the driver
-					to be gettable.</p>
+					<p>現在ログイン中のユーザの配列を少なくとも表示名とメールアドレスを含んで返します。
+					追加フィールドは、ドライバの config で設定するか、 $additional_fields 配列を通じてリクエストできます。
+					ただし、追加フィールドが getter メソッドで取得できるように get_user_<em>フィールド名</em>() メソッドが
+					ドライバ内になければなりません。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -268,25 +268,25 @@ if (Auth::instance()->guest_login())
 									<tr>
 										<th><kbd>$additional_fields</kbd></th>
 										<td><i>array()</i></td>
-										<td>an array with fieldnames to fetch</td>
+										<td>取得するフィールド名</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>array</td>
+							<td>配列</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// call the method on the default instance
+								<pre class="php"><code>// デフォルトインスタンスのメソッドを呼ぶ
 $user = Auth::instance()->get_user_array();
 
-// call the method on a specific instance
+// 特定のインスタンスのメソッドを呼ぶ
 $user = Auth::instance('simpleauth')->get_user_array();
 
-// static call (if "verify_multiple_logins" is set to false)
+// 静的な呼び出し（"verify_multiple_logins" が false の場合）
 $user = Auth::get_user_array();
 </code></pre>
 							</td>
@@ -294,12 +294,12 @@ $user = Auth::get_user_array();
 						</tbody>
 					</table>
 
-					<p class="note">You can define the 'additional_fields' in the driver configuration array to have them included by default when you call this method.</p>
+					<p class="note">'additional_fields' をドライバの設定配列に定義することで、このメソッドを呼び出したときに追加したフィールドをデフォルトで返り値に含めるようにできます。</p>
 				</article>
 
 				<article>
 					<h4 id="method_hash_password" class="method">hash_password($password)</h4>
-					<p>Returns a base64 encoded hash of the given password. This method uses the very secure <a href="http://en.wikipedia.org/wiki/PBKDF2">pbkdf2</a> hashing algorithm.</p>
+					<p>渡されたパスワードのハッシュ値を base64 エンコードで返します。このメソッドは非常にセキュアな <a href="http://en.wikipedia.org/wiki/PBKDF2">pbkdf2</a> ハッシュアルゴリズムを使用しています。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -317,20 +317,20 @@ $user = Auth::get_user_array();
 									</tr>
 									<tr>
 										<th><kbd>$password</kbd></th>
-										<td>required</td>
-										<td>The password to hash</td>
+										<td>必須</td>
+										<td>ハッシュ化するパスワード</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>string</td>
+							<td>文字列</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// hash a users password
+								<pre class="php"><code>// ユーザのパスワードをハッシュ化
 $password = Auth::instance()->hash_password($password);
 </code></pre>
 							</td>
@@ -339,15 +339,15 @@ $password = Auth::instance()->hash_password($password);
 					</table>
 				</article>
 
-				<h3 id="abstract_methods">Abstract methods</h3>
+				<h3 id="abstract_methods">抽象メソッド</h3>
 
 				<p>
-					Every login driver you develop MUST provide all of these methods, and the MUST return the values documented here.
+					どの自作 Login ドライバも、以下のメソッドを用意しなければなりません。また、ここで記載されたとおりに値を返さなければなりません。
 				</p>
 
 				<article>
 					<h4 id="method_perform_check" class="method">perform_check()</h4>
-					<p>Internal class method which checks if there is a valid session for the current user. It is up to you how your driver will determine this.</p>
+					<p>内部のクラスメソッドで、現在のユーザについて認証済みセッションがあるかをチェックします。自作ドライバでは、このメソッドをどう定義するかを決める必要があります。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -357,21 +357,21 @@ $password = Auth::instance()->hash_password($password);
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean, <strong>true</strong> if there is a valid user session, <strong>false</strong> if there isn't.</td>
+							<td>論理型、認証済みのユーザセッションがある場合 <strong>true</strong> 、そうでなければ <strong>false</strong> 。</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">This method is called by Auth::check(), it should not be called directly by the application.</p>
+					<p class="note">このメソッドは Auth::check() から呼ばれます。アプリケーションから直接呼び出さないようにしてください。</p>
 				</article>
 
 				<article>
 					<h4 id="method_validate_user" class="method">validate_user()</h4>
-					<p>The <strong>validate_user</strong> method validates a login request. It is up to you how your driver will do this.</p>
+					<p><strong>validate_user</strong> メソッドはログインを検証します。自作ドライバでは、このメソッドがどう振る舞うかを決める必要があります。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -381,21 +381,21 @@ $password = Auth::instance()->hash_password($password);
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. it should return <strong>false</strong> if the user didn't pass validation. Any value that evaluates to true is considered to be valid.</td>
+							<td>mixed 。ユーザからのログインリクエストが失敗した場合、 <strong>false</strong> を返す必要があります。 true と評価されうるすべての返り値は検証に成功したものとして扱われます。</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">Applications calling this method should not make assumptions about the return value if it isn't <strong>false</strong>!</p>
+					<p class="note">このメソッドをアプリケーションから呼び出すときは、 <strong>false</strong> 以外の返り値に何がくるか決めつけてはいけません！</p>
 				</article>
 
 				<article>
 					<h4 id="method_login" class="method">login()</h4>
-					<p>The <strong>login</strong> method performs a login request. It should call the validate_user() to validate the request. It is up to you how your driver will do this.</p>
+					<p><strong>login</strong> メソッドはログインリクエストを扱います。リクエストを検証するために validate_user() 呼び出す必要があります。自作ドライバでは、このメソッドがどう振る舞うかを決める必要があります。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -405,21 +405,21 @@ $password = Auth::instance()->hash_password($password);
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. returns <strong>true</strong> if the login was succesful, <strong>false</strong> otherwise.</td>
+							<td>論理型。ログインが成功し場合、 <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it should setup the guest before returning <strong>false</strong>.</p>
+					<p class="note">ゲストユーザをサポートする場合は、 <strong>false</strong> を返す前にゲストのセットアップをしてください。</p>
 				</article>
 
 				<article>
 					<h4 id="method_logout" class="method">logout()</h4>
-					<p>The <strong>logout</strong> method logs out the current logged-in user. It is up to you how your driver will do this.</p>
+					<p><strong>logout</strong> メソッドは現在ログイン中のユーザをログアウトさせます。自作ドライバでは、このメソッドがどう振る舞うかを決める必要があります。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -429,21 +429,21 @@ $password = Auth::instance()->hash_password($password);
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. returns <strong>true</strong> if the logout was succesful, <strong>false</strong> otherwise.</td>
+							<td>論理型。ログアウトが成功し場合、 <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it should setup the guest as current user after a succesful logout.</p>
+					<p class="note">ゲストユーザをサポートする場合は、ログアウト成功後に現在のユーザとしてゲストをセットアップしてください。</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_user_id" class="method">get_user_id()</h4>
-					<p>The <strong>get_user_id</strong> method returns an array structure containing the drivers id value, and the id of the currently logged-in user.</p>
+					<p><strong>get_user_id</strong> メソッドは、 ドライバ id の値、現在ログイン中のユーザの id を配列で返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -453,21 +453,21 @@ $password = Auth::instance()->hash_password($password);
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. returns an array in the form <strong>array(driver_id, user_id)</strong> if a user is logged in, or <strong>false</strong> otherwise.</td>
+							<td>mixed 。 ユーザがログイン中なら <strong>array(driver_id, user_id)</strong> 形式の配列を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it should return the array with the (dummy) user_id of your guest, and not <strong>false</strong>!</p>
+					<p class="note">ゲストユーザをサポートする場合は、 （ダミーの） ユーザ id が入った配列を返してください。 <strong>false</strong> を返してはいけません！</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_groups" class="method">get_groups()</h4>
-					<p>The <strong>get_groups</strong> method returns the user groups assigned to the currently logged-in user.</p>
+					<p><strong>get_groups</strong> メソッドは、現在ログイン中のユーザが属しているユーザグループを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -477,21 +477,21 @@ $password = Auth::instance()->hash_password($password);
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. returns an array in the form <strong>array(array(driver_id, group_id), array(driver_id, group_id), etc)</strong> if a user is logged in, or <strong>false</strong> otherwise.</td>
+							<td>mixed 。ユーザがログイン中なら、 <strong>array(array(driver_id, group_id), array(driver_id, group_id), etc)</strong> 形式の配列を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it should return the array your guest user groups, and not <strong>false</strong>!</p>
+					<p class="note">ゲストユーザをサポートする場合は、ゲストユーザグループの配列を返してください。 <strong>false</strong> では駄目です！</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_email" class="method">get_email()</h4>
-					<p>The <strong>get_email</strong> method returns the email address assigned to the currently logged-in user.</p>
+					<p><strong>get_email</strong> メソッドは、現在ログイン中のユーザに対応するメールアドレスを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -501,21 +501,21 @@ $password = Auth::instance()->hash_password($password);
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. returns an email address if a user is logged in, or <strong>false</strong> if no email address is defined for the current user, or there is no user logged-in.</td>
+							<td>mixed 。 ユーザがログイン中ならメールアドレスを、現在のユーザにメールアドレスがない場合やログイン中のユーザがいない場合は <strong>false</strong> を返す。</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, don't forget to return <strong>false</strong> if the guest does not have an email address defined!</p>
+					<p class="note">ゲストユーザをサポートする場合は、ゲストユーザ用にメールアドレスを指定していないときに <strong>false</strong> を返すことを忘れずに！</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_screen_name" class="method">get_screen_name()</h4>
-					<p>The <strong>get_screen_name</strong> method returns the screen- or display name of the currently logged-in user.</p>
+					<p><strong>get_screen_name</strong> メソッドは、現在ログイン中のユーザの表示名を返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -525,16 +525,16 @@ $password = Auth::instance()->hash_password($password);
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. returns a string containing the name, or <strong>false</strong> if there is no user logged-in.</td>
+							<td>mixed 。表示名の文字列を返す。ログイン中のユーザがいなければ <strong>false</strong> を返す。</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it should return the guests display name, and not <strong>false</strong>!</p>
+					<p class="note">ゲストユーザをサポートする場合は、ゲスト用の表示名を返してください。 <strong>false</strong> では駄目です！</p>
 				</article>
 
 			</section>
