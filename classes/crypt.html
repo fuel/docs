@@ -48,18 +48,18 @@
 			<h2>Crypt クラス</h2>
 
 			<p>
-				The Crypt class allows encrypt or decrypt a string. The Crypt class is also used internally by for example the Fuel Sessions class.
+				Crypt クラスにより文字列を暗号化や複号が可能になります。例えば、Sessions クラスにおいても Crypt クラスが内部で使用されています。
 			</p>
-			<p>It uses the encryption and hashing methods provided by PHPSecLib, so it's not dependent on external modules being available, such as mcrypt.</p>
+			<p>PHPSecLib により提供される暗号化とハッシング関数が使われているため、mcrypt のような利用可能なモジュールに影響されません。</p>
 
 			<section>
 				<h3 id="configuration">設定</h3>
 
 				<p>
-					The Crypt class is configured through the <kbd>app/config/crypt.php</kbd> configuration file. It will be generated and populated with random values when you first use the Crypt class or if one of the required configuration values is missing.
+					Crypt クラスの設定は <kbd>app/config/crypt.php</kbd> にて行います。これは、Crypt クラスを初めて利用するときか、必要な設定ファイルが無い場合に、乱数とともに生成・追加されます。
 				</p>
 				<p class="note">
-					Note that this will require write access to app/config/crypt.php! If this is not possible, make sure all configuration settings are set!
+					app/config/crypt.php への書き込み権限が必要です！ もし不可能な場合、全ての設定項目が設定されているかどうか確認してください！
 				</p>
 				<p>The following configuration settings can be defined:</p>
 				<table class="config">
@@ -75,7 +75,7 @@
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								Random encryption key value used in the encryption routines. Make sure you set this to something unique and random!
+								暗号ルーチンで使われるランダムな暗号キー。ユニークでランダムな値を設定するようにしてください！
 							</td>
 						</tr>
 						<tr>
@@ -83,7 +83,7 @@
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								Random encryption initialisation vector used in the encryption routines. Make sure you set this to something unique and random!
+								暗号ルーチンにおけるランダムな暗号初期ベクター。ユニークでランダムな値を設定するようにしてください！
 							</td>
 						</tr>
 						<tr>
@@ -91,19 +91,19 @@
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								Random value used in the Hash-based Message Authentication Code (HMAC) routines. Make sure you set this to something unique and random!
+								ハッシュに基づくメッセージ認証コード (HMAC) にて使われる乱数。ユニークでランダムな値を設定するようにしてください！
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				<p class="note">
-					If you assign keys manually, note that they are base64_encoded, and the length must be a multiple of 4 to be able to decode it. Make sure the length is correct!
+					もしキーを手入力で指定する場合、キーはbase64エンコードした文字列で、デコードするために長さは4の倍数でなければなりません。必ず正しい長さになるよう指定してください！
 				</p>
 			</section>
 
 			<article>
 				<h4 class="method" id="method_encode">encode($value, $key = false)</h4>
-				<p>The <strong>encode</strong> method encrypts a string value, optionally with a custom encryption key.</p>
+				<p><strong>encode</strong> メソッドは文字列を暗号化します。オプションとして暗号キーが設定できます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -122,12 +122,12 @@
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><i>必須</i></td>
-									<td>String value to encode.</td>
+									<td>エンコードする文字列</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Optional custom key value to be used to encode the value passed. If false, the config value '<strong>crypto_key</strong>' is used.</td>
+									<td>エンコードに使われる任意のキー。false の場合、設定値である '<strong>crypto_key</strong>' が適用されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -139,7 +139,7 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// encode a variable with a custom key
+							<pre class="php"><code>// カスタムキーにより変数をエンコードする
 $value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 						</td>
 					</tr>
@@ -149,7 +149,7 @@ $value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_decode">decode($value, $key = false)</h4>
-				<p>The <strong>decode</strong> method decrypts a string value, optionally with a custom key.</p>
+				<p><strong>decode</strong> メソッドは文字列を複号します。オプションとして暗号キーが設定できます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -168,24 +168,24 @@ $value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><i>必須</i></td>
-									<td>String value to decode.</td>
+									<td>デコードされる文字列</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Optional custom key value to be used to decode the value passed. If false, the config value '<strong>crypto_key</strong>' is used.</td>
+									<td>デコードに使われる任意のキー。false の場合、設定値である '<strong>crypto_key</strong>' が適用される。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed - String value with the decoded value, or <kbd>false</kbd> if the value could not be decoded.</td>
+						<td>mixed - デコードされた文字列か、デコードできなかった場合は <kbd>false</kbd> を返します。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// decode a variable with a custom key
+							<pre class="php"><code>// キーにより変数をデコードする
 $value = Crypt::decode($value, 'R@nd0mK~Y');</code></pre>
 						</td>
 					</tr>
