@@ -61,8 +61,9 @@
 
 				<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
 
-				<p class="note">この方式はデータベースからモデルのプロパティを取得する必要があるため、mysqlドライバとmysqliドライバでのみ動作します。
-                    しかし、カラムの名前を取得するために常に一つのモデル毎に余分なクエリが一つ実行されるため、大変非効率であり、この方式を使うことは<strong>推奨されません</strong>。</p>
+				<p class="note">この方式はデータベースからモデルのプロパティを取得する必要があるため、
+                mysqlドライバとmysqliドライバでのみ動作します。しかし、カラムの名前を取得するために常に一つのモデル毎に
+                余分なクエリが一つ実行されるため、大変非効率であり、この方式を使うことは<strong>推奨されません</strong>。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -73,13 +74,15 @@
 
 				<p>あなたはモデルを設定するために静的なプロパティを追加することができます。<br />
                     先ほど示したように、<kbd>$_properties</kbd>を設定することは必須ではありませんが、設定を行う事を推奨します。
-					これらのプロパティは <kbd>public</kbd>もしくは<kbd>protected</kbd>で宣言します。<kbd>private</kbd>で宣言すべきではありません。<br />
+					これらのプロパティは <kbd>public</kbd>もしくは<kbd>protected</kbd>で宣言します。
+                    <kbd>private</kbd>で宣言すべきではありません。<br />
 					すべての設定プロパティーは、カラム名との衝突を避けるために先頭に&quot;_&quot;(一つのアンダースコア)がつけられていることに注意して下さい。</p>
 
 				<h3 id="table_name">protected static $_table_name</h3>
 
-				<p>このプロパティが設定されていないとき、クラス名から<kbd>Model_</kbd>プリフィクスを削除し、英単語が複数形にされたものがテーブル名として期待されます。"Model_Article"クラスはテーブル名として"articles"を期待します。
-                    もしこの規約に従わない場合は、<kbd>$_table_name</kbd>プロパティを設定することでテーブル名を変更することができます。</p>
+				<p>このプロパティが設定されていないとき、クラス名から<kbd>Model_</kbd>プリフィクスを削除し、英単語が複数形にされたものがテーブル名として期待されます。
+                "Model_Article"クラスはテーブル名として"articles"を期待します。
+                もしこの規約に従わない場合は、<kbd>$_table_name</kbd>プロパティを設定することでテーブル名を変更することができます。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -105,7 +108,8 @@
 
 				<h3 id="propperties">protected static $_properties</h3>
 
-                <p>すでに、モデルのプロパティを追加するシンプルな例は提示しました。カラムに対して、型、ラベル、バリデーションを設定することも可能です。</p>
+                <p>すでに、モデルのプロパティを追加するシンプルな例は提示しました。
+                カラムに対して、型、ラベル、バリデーションを設定することも可能です。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -137,13 +141,17 @@
 
 				<p>この例に示すように、フォームの属性を配列の形で渡すことができます。</p>
 
-                <p>例のように、バリデーションのルールは<kbd>array('required')</kbd>のような単純なルールでも、<kbd>array('min_length' => array(3))</kbd>のようにパラメータつきのもののどちらでも渡すことができます。
-                バリデーションクラスの規約の完全な説明は<a href="../../classes/validation/validation.html">Core</a>を参照してください。</p>
+                <p>例のように、バリデーションのルールは<kbd>array('required')</kbd>のような単純なルールでも、
+                <kbd>array('min_length' => array(3))</kbd>のようにパラメータつきのもののどちらでも渡すことができます。
+                バリデーションクラスの規約の完全な説明は<a href="../../classes/validation/validation.html">Core</a>を
+                参照してください。</p>
 
 				<h3 id="conditions">protected static $_conditions</h3>
 
-                <p>既定ではこのプロパティはセットされておらず、<kbd>Model::condition()</kbd>は<kbd>array()</kbd>を返します。
-                もし、それぞれのクエリが実行される時に何かの条件を指定したければ、モデル上で設定することが可能です。現時点では'order_by'条件と'where'条件が指定可能です。</p>
+                <p>既定ではこのプロパティはセットされておらず、
+                <kbd>Model::condition()</kbd>は<kbd>array()</kbd>を返します。
+                もし、それぞれのクエリが実行される時に何かの条件を指定したければ、モデル上で設定することが可能です。
+                現時点では'order_by'条件と'where'条件が指定可能です。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -156,7 +164,8 @@
 	);
 }</code></pre>
 				<p class="note">
-                    <kbd>order_by</kbd>条件は他のorder_by節が定義されていないときのみ有効です。<kbd>where</kbd>条件は他のwhere節が定義されている場合、<kbd>and</kbd>で追加されます。
+                    <kbd>order_by</kbd>条件は他のorder_by節が定義されていないときのみ有効です。
+                    <kbd>where</kbd>条件は他のwhere節が定義されている場合、<kbd>and</kbd>で追加されます。
 				</p>
 
 				<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many</h3>
@@ -170,8 +179,11 @@
 
 				<h3 id="write_connection">protected static $_write_connection</h3>
 
-                <p>もし、データベースがmaster/slave環境で構成されている場合、masterに対するwriteに使用するconnectionを指定することができます。もしこのプロパティが設定されている場合、<kbd>$_connection</kbd>はslaveに対するreadに利用されます。</p>
-                <p>既定ではこのプロパティはセットされておらず、Model::connection(true)は設定された<kbd>$_connection</kbd>、もしくはnullを返します。<kbd>app/config/db.php</kbd>で設定された他のデータベースを設定することも可能です。</p>
+                <p>もし、データベースがmaster/slave環境で構成されている場合、masterに対するwriteに使用するconnectionを指定することができます。
+                もしこのプロパティが設定されている場合、<kbd>$_connection</kbd>はslaveに対するreadに利用されます。</p>
+                <p>既定ではこのプロパティはセットされておらず、Model::connection(true)は設定された<kbd>$_connection</kbd>、
+                もしくはnullを返します。
+                <kbd>app/config/db.php</kbd>で設定された他のデータベースを設定することも可能です。</p>
 
 				<pre class="php"><code>// シングル構成のデータベースを利用する場合の設定
 class Model_Article extends Orm\Model
@@ -188,16 +200,19 @@ class Model_Article extends Orm\Model
 	protected static $_connection = 'articles_slave_db';
 }</code></pre>
 
-				<p class="note">リレーションは同じコネクション上でしか利用できません。このため、もし、モデル内でコネクションを設定する場合は、リレーションを設定するモデルがread、writeの両方で同じコネクションを使うように十分注意してください。</p>
+				<p class="note">リレーションは同じコネクション上でしか利用できません。
+                このため、もし、モデル内でコネクションを設定する場合は、リレーションを設定するモデルがread、writeの両方で同じコネクションを使うように十分注意してください。</p>
 
 				<h3 id="to_array_exclude">protected static $_to_array_exclude</h3>
 
 				<p>
                     APIドリブンなアプリケーションを作成する場合、しばしばAPIに公開するカラムを制限したくなる場合があります。
-                    たとえば、userを管理するレコードをAPIから参照する場合、パスワードやログインハッシュ、saltを公開する必要はありません。
+                    たとえば、userを管理するレコードをAPIから参照する場合、
+                    パスワードやログインハッシュ、saltを公開する必要はありません。
 				</p>
 				<p>
-                    モデルの定義において、<strong>to_array_exclude</strong>にカラム名を追加することで、to_array()の結果から除外することができます。
+                    モデルの定義において、<strong>to_array_exclude</strong>にカラム名を追加することで、
+                    to_array()の結果から除外することができます。
 				</p>
 				<pre class="php"><code>class Model_User extends Orm\Model
 {
