@@ -112,7 +112,7 @@
 				</ul>
 
 				<p class="note">
-					When you use the <kbd>save()</kbd> method, it calls the <kbd>insert()</kbd> or <kbd>update()</kbd> method <em>only</em> if the object datas changed. Therefore, if you use observers to add datas to objects that are exclusiveley coming from posted <kbd>$_FILES</kbd>, you should use the <kbd>before_save</kbd> event to ensure that your object datas are saved.
+					<kbd>before_insert</kbd> and <kbd>before_update</kbd> are triggered <em>only</em> if the object has been changed. If you need to trigger an event even if the object has not been changed (ex.: to handle $_FILES datas), you should use <kbd>before_save</kbd>.
 				</p>
 
 			</article>
