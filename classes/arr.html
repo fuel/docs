@@ -70,14 +70,14 @@
 								<tr>
 									<th><kbd>$arr</kbd></th>
 									<td><em>必須</em></td>
-									<td>The array to check.</td>
+									<td>チェックする配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$all_keys</kbd></th>
 									<td>
 										<pre class="php"><span class="keyword">false</span></pre>
 									</td>
-									<td>Check that all elements are arrays.</td>
+									<td>trueの場合は全ての要素が多次元配列かをチェックします。</td>
 								</tr>
 							</table>
 						</td>
@@ -92,18 +92,18 @@
 							<pre class="php"><code>// Single array
 $arr = array('one' => 1, 'two' => 2);
 echo Arr::is_multi($arr);
-// Result: false
+// 実行結果: false
 
-// Multi-dimensional array
+// 多次元配列
 $arr = array('one' => array('test' => 1), 'two' => array('test' => 2), 'three' => array('test' => 3));
 echo Arr::is_multi($arr);
-// Result: true
+// 実行結果: true
 
-// Multi-dimensional array with elements check
+// 多次元配列で全ての要素をチェック
 $arr = array('one' => array('test' => 1), 'two' => array('test' => 2), 'three' => 3);
 
-echo Arr::is_multi($arr, false); // Result: true
-echo Arr::is_multi($arr, true);  // Result: false
+echo Arr::is_multi($arr, false); // 実行結果: true
+echo Arr::is_multi($arr, true);  // 実行結果: false
 </code></pre>
 						</td>
 					</tr>
@@ -132,7 +132,7 @@ echo Arr::is_multi($arr, true);  // Result: false
 								<tr>
 									<th><kbd>$arr</kbd></th>
 									<td><em>必須</em></td>
-									<td>The array to check.</td>
+									<td>チェックする配列。</td>
 								</tr>
 							</table>
 						</td>
@@ -146,19 +146,19 @@ echo Arr::is_multi($arr, true);  // Result: false
 						<td>
 							<pre class="php"><code>$arr = array('foo', 'bar', 'baz', 'yay');
 echo Arr::is_assoc($arr);
-// Result: false
+// 実行結果: false
 
 $arr = array('foo' => 'foo', 'bar' => 'bar', 'baz' => 'baz', 'yay' => 'yay');
 echo Arr::is_assoc($arr);
-// Result: true
+// 実行結果: true
 
 /*
- * Note that even if the '2' is defined as a string, PHP will store this internally
- * as an integer, and therefore this is NOT seen as an assoc array!
+ * たとえもし '2' が string で定義されていたとしても、PHPは内部的に integer として保管するため、
+ * 連想配列とは認識されません!
  */
 $arr = array(0 => 'foo', 1 => 'bar', '2' => 'baz', 3 => 'yay');
 echo Arr::is_assoc($arr);
-// Result: false!
+// 実行結果: false!
 </code></pre>
 						</td>
 					</tr>
@@ -168,7 +168,7 @@ echo Arr::is_assoc($arr);
 
 			<article>
 				<h4 class="method" id="method_to_assoc">to_assoc($arr)</h4>
-				<p>The <strong>to_assoc</strong> method turns a non-associative array into an associative array if it has an even number of segments.</p>
+				<p><strong>to_assoc</strong> メソッドは連想配列でない配列を連想配列に変換します。もし元の配列に数値が入っていたとしても変換します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -187,7 +187,7 @@ echo Arr::is_assoc($arr);
 								<tr>
 									<th><kbd>$arr</kbd></th>
 									<td><em>必須</em></td>
-									<td>The array to convert.</td>
+									<td>変換する配列。</td>
 								</tr>
 							</table>
 						</td>
@@ -198,8 +198,7 @@ echo Arr::is_assoc($arr);
 					</tr>
 					<tr>
 						<th>例外</th>
-						<td><kbd>BadMethodCallException</kbd> when the number of values in the given array is
-							uneven</td>
+						<td><kbd>BadMethodCallException</kbd> 引数の配列の要素数が奇数のとき</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -207,7 +206,7 @@ echo Arr::is_assoc($arr);
 							<pre class="php"><code>$arr = array('foo', 'bar', 'baz', 'yay');
 print_r(Arr::to_assoc($arr));
 
-// Result:
+// 実行結果:
 Array
 (
     ["foo"] => 'bar'
@@ -216,7 +215,7 @@ Array
 
 $arr = array('foo', 'bar', 'baz');
 echo Arr::to_assoc($arr);
-// Result: null
+// 実行結果: null
 </code></pre>
 						</td>
 					</tr>
@@ -226,7 +225,7 @@ echo Arr::to_assoc($arr);
 
 			<article>
 				<h4 id="method_assoc_to_keyval" class="method">assoc_to_keyval($assoc = null, $key_field = null, $val_field = null)</h4>
-				<p>The <strong>assoc_to_keyval</strong> method turns a multi-dimensional array into a key=>val array.</p>
+				<p><strong>assoc_to_keyval</strong> メソッドは多次元配列を key=>val の配列に変換します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -245,17 +244,17 @@ echo Arr::to_assoc($arr);
 								<tr>
 									<th><kbd>$assoc</kbd></th>
 									<td><em>必須</em></td>
-									<td>The array to transform.</td>
+									<td>変換する配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$key_field</kbd></th>
 									<td><em>必須</em></td>
-									<td>The associative array field to map as the key.</td>
+									<td>key となる連想配列の添字。</td>
 								</tr>
 								<tr>
 									<th><kbd>$val_field</kbd></th>
 									<td><em>必須</em></td>
-									<td>The associative array field to map as the value.</td>
+									<td>value となる連想配列の添字。</td>
 								</tr>
 							</table>
 						</td>
@@ -266,8 +265,7 @@ echo Arr::to_assoc($arr);
 					</tr>
 					<tr>
 						<th>例外</th>
-						<td><kbd>InvalidArgumentException</kbd> when the first argument isn't an array or doesn't
-							implement the Iterator interface.</td>
+						<td><kbd>InvalidArgumentException</kbd> 1番目の引数が配列でないか、Iteratorインターフェイスを実装していないとき。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -285,7 +283,7 @@ echo Arr::to_assoc($arr);
 
 print_r(Arr::assoc_to_keyval($people, 'name', 'age'));
 
-// Result:
+// 実行結果:
 Array
 (
 	["Jack"] => 21
@@ -300,7 +298,7 @@ Array
 
 			<article>
 				<h4 id="method_average" class="method">average($array = null)</h4>
-				<p>The <strong>average</strong> method takes all values of an array and returns the average value.</p>
+				<p><strong>average</strong> メソッドは全ての配列の値から平均値を求めて返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -319,7 +317,7 @@ Array
 								<tr>
 									<th><kbd>$array</kbd></th>
 									<td><em>必須</em></td>
-									<td>Array of values to average.</td>
+									<td>平均値を求める配列。</td>
 								</tr>
 							</table>
 						</td>
@@ -332,7 +330,7 @@ Array
 						<th>例</th>
 						<td>
 							<pre class="php"><code>echo Arr::average(array('1', 2, 4, '8'));
-// Result: 3.75</code></pre>
+// 実行結果: 3.75</code></pre>
 						</td>
 					</tr>
 					</tbody>
