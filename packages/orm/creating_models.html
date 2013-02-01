@@ -55,15 +55,15 @@
 				<h2 id="creation">モデルの作成</h2>
 
 				<p>モデルは少しの時間で作る事ができます, 規則では <kbd>Model_</kbd>
-					プレフィックスをクラスにつけます。 (ファイル名が、article.phpなら、Model_Articleとします。) 
+					プレフィックスをクラス名につけます。 (ファイル名が、article.phpなら、Model_Articleとします。) 
 					そして、 <kbd>app/classes/model/</kbd>に従って設置をしますが、あなたが選択した任意の名前を
 					自由に使用することができます。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
 
-				<p class="note">The above only works with the MySQL and MySQLi drivers because it needs to fetch the model
-					properties from the database. It is however not very efficient and thus <strong>discouraged</strong> to use it this way
-					because you'll always need that one extra query per model just to fetch the column names.</p>
+				<p class="note">この方式はデータベースからモデルのプロパティを取得する必要があるため、
+                mysqlドライバとmysqliドライバでのみ動作します。しかし、カラムの名前を取得するために常に一つのモデル毎に
+                余分なクエリが一つ実行されるため、大変非効率であり、この方式を使うことは<strong>推奨されません</strong>。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -72,17 +72,17 @@
 
 				<h2 id="config">設定</h2>
 
-				<p>あなたはそれを構成するためにモデルに静的なプロパティを追加することができます。これまで見てきたように、どれも必要ありませんが
-					<kbd>$_properties</kbd>を設定する事が推奨されています。 これらのすべては <kbd>public</kbd> と
-					<kbd>protected</kbd> です。 <kbd>private</kbd>ではありません。<br />
-					すべての設定プロパティーにプレフィックスが着いている事に注意し、
-					列名との衝突を防止するために強調している。</p>
+				<p>あなたはモデルを設定するために静的なプロパティを追加することができます。<br />
+                    先ほど示したように、<kbd>$_properties</kbd>を設定することは必須ではありませんが、設定を行う事を推奨します。
+					これらのプロパティは <kbd>public</kbd>もしくは<kbd>protected</kbd>で宣言します。
+                    <kbd>private</kbd>で宣言すべきではありません。<br />
+					すべての設定プロパティーは、カラム名との衝突を避けるために先頭に&quot;_&quot;(一つのアンダースコア)がつけられていることに注意して下さい。</p>
 
 				<h3 id="table_name">protected static $_table_name</h3>
 
-				<p>When this isn't set the <kbd>Model_</kbd> prefix is removed from the class name and the class name is
-					pluralized. Thus "Model_Article" expects table "articles". If you don't follow this convention you can
-					change it by setting the <kbd>$_table_name</kbd> property.</p>
+				<p>このプロパティが設定されていないとき、クラス名から<kbd>Model_</kbd>プリフィクスを削除し、英単語が複数形にされたものがテーブル名として期待されます。
+                "Model_Article"クラスはテーブル名として"articles"を期待します。
+                もしこの規約に従わない場合は、<kbd>$_table_name</kbd>プロパティを設定することでテーブル名を変更することができます。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -108,13 +108,13 @@
 
 				<h3 id="propperties">protected static $_properties</h3>
 
-				<p>There's already a simple example above of adding all model properties, they can also be configured by
-				using the column name as the key and setting options like type, label and validation.</p>
+                <p>すでに、モデルのプロパティを追加するシンプルな例は提示しました。
+                カラムに対して、型、ラベル、バリデーションを設定することも可能です。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
 	protected static $_properties = array(
-		'id', // 両方の検証 &amp; タイピングのオブザーバーは、PKを無視します。
+		'id', // PKではバリデーション、型、オブザーバは無視されます
 		'name' => array(
 			'data_type' => 'varchar',
 			'label' => 'Article Name',
@@ -139,19 +139,19 @@
 	);
 }</code></pre>
 
-				<p>この例に示すように、フォームの属性は配列の形で渡すことができます。</p>
+				<p>この例に示すように、フォームの属性を配列の形で渡すことができます。</p>
 
-				<p>Validation rules can be passed as either just the rule: <kbd>array('required')</kbd> or as the rule
-					with an array of params: <kbd>array('min_length' => array(3))</kbd> both are shown in the example
-					above. A full explanation of the Validation class and it's rule can be found under
-					<a href="../../classes/validation/validation.html">Core</a>.</p>
+                <p>例のように、バリデーションのルールは<kbd>array('required')</kbd>のような単純なルールでも、
+                <kbd>array('min_length' => array(3))</kbd>のようにパラメータつきのもののどちらでも渡すことができます。
+                バリデーションクラスの規約の完全な説明は<a href="../../classes/validation/validation.html">Core</a>を
+                参照してください。</p>
 
 				<h3 id="conditions">protected static $_conditions</h3>
 
-				<p>By default this property does not exist and Model::condition() returns <kbd>array()</kbd>, but you can set
-				on the model if you want any conditions defined on every query run. Currently 'order_by' and 'where' conditions
-				are supported.
-				</p>
+                <p>既定ではこのプロパティはセットされておらず、
+                <kbd>Model::condition()</kbd>は<kbd>array()</kbd>を返します。
+                もし、それぞれのクエリが実行される時に何かの条件を指定したければ、モデル上で設定することが可能です。
+                現時点では'order_by'条件と'where'条件が指定可能です。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -164,8 +164,8 @@
 	);
 }</code></pre>
 				<p class="note">
-					The <kbd>order_by</kbd> condition is only applied if no other order by clause is defined.
-					The <kbd>where</kbd> conditions are added using <kbd>and</kbd> to any other defined where clauses.
+                    <kbd>order_by</kbd>条件は他のorder_by節が定義されていないときのみ有効です。
+                    <kbd>where</kbd>条件は他のwhere節が定義されている場合、<kbd>and</kbd>で追加されます。
 				</p>
 
 				<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many</h3>
@@ -174,45 +174,45 @@
 
 				<h3 id="connection">protected static $_connection</h3>
 
-				<p>By default this property does not exist and Model::connection() returns <kbd>null</kbd>, but you can set
-				it to any other database name configured in <kbd>app/config/db.php</kbd>.</p>
+                <p>既定ではこのプロパティはセットされておらず、<kbd>Model::connection()</kbd>は<kbd>null</kbd>を返します。
+                もし、<kbd>app/config/db.php</kbd>で設定された他のデータベースを設定することも可能です。</p>
 
 				<h3 id="write_connection">protected static $_write_connection</h3>
 
-				<p>If you have a master/slave setup for your database environment, you can use this property to define the
-				connection to use for the write master. If configured, the <kbd>$_connection</kbd> property will be used
-				to connect to the read slaves.</p>
-				<p>By default this property does not exist and Model::connection(true) returns either the configured <kbd>$_connection</kbd>,
-				or <kbd>null</kbd>, but you can set it to any other database name configured in <kbd>app/config/db.php</kbd>.</p>
+                <p>もし、データベースがmaster/slave環境で構成されている場合、masterに対するwriteに使用するconnectionを指定することができます。
+                もしこのプロパティが設定されている場合、<kbd>$_connection</kbd>はslaveに対するreadに利用されます。</p>
+                <p>既定ではこのプロパティはセットされておらず、Model::connection(true)は設定された<kbd>$_connection</kbd>、
+                もしくはnullを返します。
+                <kbd>app/config/db.php</kbd>で設定された他のデータベースを設定することも可能です。</p>
 
-				<pre class="php"><code>// configuration for single database usage
+				<pre class="php"><code>// シングル構成のデータベースを利用する場合の設定
 class Model_Article extends Orm\Model
 {
-	// 'articles_db' has to be configured in your db.php configuration file
+	// 'articles_db' は db.php で設定されている必要がある
 	protected static $_connection = 'articles_db';
 }
 
-// configuration for master/slave database usage
+// master/slave構成のデータベースを利用する場合の設定
 class Model_Article extends Orm\Model
 {
-	// 'articles_master_db' and 'articles_slave_db' have to be configured in your db.php configuration file
+	// 'articles_master_db' と 'articles_slave_db' は db.php で設定されている必要がある
 	protected static $_write_connection = 'articles_master_db';
 	protected static $_connection = 'articles_slave_db';
 }</code></pre>
 
-				<p class="note">Note that relations do not work across connections, so when you define your connections in the model,
-				make sure your related models have exactly the same configuration, both for reads and writes!</p>
+				<p class="note">リレーションは同じコネクション上でしか利用できません。
+                このため、もし、モデル内でコネクションを設定する場合は、リレーションを設定するモデルがread、writeの両方で同じコネクションを使うように十分注意してください。</p>
 
 				<h3 id="to_array_exclude">protected static $_to_array_exclude</h3>
 
 				<p>
-					If you are writing an API driven application, often you want to limit the columns that are exposed to the
-					API interface. For example, when exposing a user record, you would not want to expose the user's password,
-					login hash or salt.
+                    APIドリブンなアプリケーションを作成する場合、しばしばAPIに公開するカラムを制限したくなる場合があります。
+                    たとえば、userを管理するレコードをAPIから参照する場合、
+                    パスワードやログインハッシュ、saltを公開する必要はありません。
 				</p>
 				<p>
-					In your model definition, you can add a list of columns to the <strong>to_array_exclude</strong> array to exclude
-					them from being exported using to_array().
+                    モデルの定義において、<strong>to_array_exclude</strong>にカラム名を追加することで、
+                    to_array()の結果から除外することができます。
 				</p>
 				<pre class="php"><code>class Model_User extends Orm\Model
 {
@@ -221,9 +221,9 @@ class Model_Article extends Orm\Model
 	);
 }</code></pre>
 				<p class="note">
-					By default the to_array() method exports both column and relation data loaded in the current model object.
-					Optionally, it allows you to export the custom properties too. Array exclusion works on column names,
-					custom properties and relations, allowing you to exclude properties from all of them.
+                    既定ではto_array()メソッドは現在のモデルのカラムとリレーションにより読み出されたデータの両方を出力します。
+                    必要に応じてカスタムプロパティも出力することが可能です。
+                    配列による除外は、カラム、カスタムプロパティ、リレーションのすべてを除外することができます。
 				</p>
 
 				<h3 id="observers">protected static $_observers</h3>
