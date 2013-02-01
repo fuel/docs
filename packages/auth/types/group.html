@@ -11,7 +11,7 @@
 		var class_prefix = "$object->";
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
-	<title>Group - Driver types - Auth Package - FuelPHP ドキュメント</title>
+	<title>Group - ドライバタイプ - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -46,43 +46,43 @@
 		<div id="main">
 			<h2>Auth パッケージ</h2>
 
-			<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
-			write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
-			consistent.</p>
+			<p>Auth パッケージは Fuel における標準化された認証インターフェイスを提供します。
+			これにより、ユーザは自分自身で新しいドライバを書くことができ、
+			基本的なメソッドを保つことで、古いコードに新しいドライバを簡単に統合することもできます。</p>
 
 			<section>
 				<h2 id="driver_types">Auth_Group_Driver</h2>
 
 				<p>
-					This driver is the base class for all Auth group drivers. It is defined as an abstract class which contains
-					all methods generic to all group drivers, and abstract method definitions for all methods any group driver
-					MUST implement.
+					このドライバは、すべての Auth Group ドライバの基底クラスです。抽象クラスとして定義されており、
+					すべての Group ドライバに汎用なメソッド、 Group ドライバが必ず実装しなければならないメソッドの
+					抽象メソッドの定義が含まれています。
 				</p>
 
-				<h3 id="driver_config">Driver configuration</h3>
+				<h3 id="driver_config">ドライバの設定</h3>
 
 				<p>
-					A group driver can load additional drivers that it depends on. Generally, these are ACL drivers. But your implementation
-					could introduce and use custom driver types as well. To do so, add this structure to your driver class:
+					Group ドライバは必要に応じて追加のドライバをロードできます。一般的には、 ACL ドライバがこれにあたります。
+					しかし、実装次第では、カスタムタイプのドライバを導入して利用することも可能です。そのためには、ドライバクラスに次の構造を追加してください：
 				</p>
 
-								<pre class="php"><code>// autoload the SimpleAcl acl driver when loading this group driver
+								<pre class="php"><code>// SimpleAcl という ACL ドライバを、この Group ドライバのロード時にオートロード
 	protected $config = array(
 		'drivers' => array('acl' => array('SimpleAcl'))
 	);
 </code></pre>
 
-				<h3 id="generic_methods">Generic methods</h3>
+				<h3 id="generic_methods">汎用メソッド</h3>
 
 				<p>
-					Generic methods are defined in the group base driver, and are available to all Auth group drivers through
-					extension. These methods provide functions to interact with groups, and to check for access.
+					汎用メソッドは、 Group 基底ドライバに定義されており、継承によりすべての Auth Group ドライバから使うことができます。
+					これらのメソッドが提供する関数には、グループ間のやり取りを行ったり、アクセス権を確認するものがあります。
 				</p>
-				<p class="note">The methods defined in the classes but not documented here are used internally, and should not be called directly.</p>
+				<p class="note">クラスに定義されているメソッドのうち、ドキュメントに記載されていないものは内部で利用されてるものなので、直接呼び出さないようにしてください。</p>
 
 				<article>
 					<h4 id="method_get_id" class="method">get_id()</h4>
-					<p>Returns the drivers unique id. This can be used to identify the driver, or to select a specific driver instance.</p>
+					<p>ドライバのユニーク id を返します。ドライバを区別したり、特定のドライバのインスタンスを選択するために使います。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -92,17 +92,17 @@
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>The drivers id string.</td>
+							<td>ドライバ id の文字列</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// returns 'simpleauth'
+								<pre class="php"><code>// 'simpleauth' を返す
 $id = Auth::group()->get_id();
 </code></pre>
 							</td>
@@ -113,7 +113,7 @@ $id = Auth::group()->get_id();
 
 				<article>
 					<h4 id="method_set_config" class="method">set_config($key, $value)</h4>
-					<p>Sets a driver configuration value.</p>
+					<p>ドライバの config の値を設定します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -131,13 +131,13 @@ $id = Auth::group()->get_id();
 									</tr>
 									<tr>
 										<th><kbd>$key</kbd></th>
-										<td>required</td>
-										<td>Configuration key name</td>
+										<td>必須</td>
+										<td>config のキー名</td>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
 										<td>required</td>
-										<td>Value for this configuration key</td>
+										<td>config のキーの値</td>
 									</tr>
 								</table>
 							</td>
@@ -149,7 +149,7 @@ $id = Auth::group()->get_id();
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// set a config value on the simplegroup driver
+								<pre class="php"><code>// simplegroup ドライバの config に値を設定する
 Auth::group()->set_config('key', 'value');
 </code></pre>
 							</td>
@@ -160,7 +160,7 @@ Auth::group()->set_config('key', 'value');
 
 				<article>
 					<h4 id="method_get_config" class="method">get_config($key, $default = null)</h4>
-					<p>Gets a driver configuration value.</p>
+					<p>ドライバの config の値を取得します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -178,13 +178,13 @@ Auth::group()->set_config('key', 'value');
 									</tr>
 									<tr>
 										<th><kbd>$key</kbd></th>
-										<td>required</td>
-										<td>Configuration key name</td>
+										<td>必須</td>
+										<td>config のキー名</td>
 									</tr>
 									<tr>
 										<th><kbd>$default</kbd></th>
 										<td><i>null</i></td>
-										<td>Default value to be returned if the requested key does not exist</td>
+										<td>要求したキーに値がなかったときに返されるデフォルト値</td>
 									</tr>
 								</table>
 							</td>
@@ -196,7 +196,7 @@ Auth::group()->set_config('key', 'value');
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// get a config value of the simplegroup driver, return false if it doesn't exist
+								<pre class="php"><code>// simplegroup ドライバ の config の値を取得し、値がなければ false を返す
 $key = Auth::instance(simplegroup)->get_config('key', false);
 </code></pre>
 							</td>
@@ -207,7 +207,7 @@ $key = Auth::instance(simplegroup)->get_config('key', false);
 
 				<article>
 					<h4 id="method_has_access" class="method">has_access($condition, $driver, $group = null)</h4>
-					<p>The <strong>has_access</strong> method uses the defined ACL drivers to check the users access according to the given condition.</p>
+					<p><strong>has_access</strong> メソッドは、定義済みの ACL ドライバ を使って、ユーザがその状況に対してアクセス権を持っているか確認します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -225,43 +225,43 @@ $key = Auth::instance(simplegroup)->get_config('key', false);
 									</tr>
 									<tr>
 										<th><kbd>$condition</kbd></th>
-										<td>required</td>
-										<td>takes a location and the required rights on the location as either a string or
-											an array</td>
+										<td>必須</td>
+										<td>ロケーションとそこでの求められる権限を文字列、
+											または配列で受け取る</td>
 									</tr>
 									<tr>
 										<th><kbd>$driver</kbd></th>
-										<td>required</td>
-										<td>ACL driver to query, or <strong>null</strong> if all loaded drivers should be called to check for access.</td>
+										<td>必須</td>
+										<td>問い合わせる ACL ドライバ、 <strong>null</strong> ならロードされているすべてのドライバを使ってアクセス権を確認する。</td>
 									</tr>
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td><i>null</i></td>
-										<td>Optionally, only check this group structure, instead of against all defined groups.</td>
+										<td>オプションで、定義済みのすべての Group ドライバに代わり、与えられた Group ドライバのみをチェックする。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean, <strong>true</strong> if access was granted, <strong>false</strong> if not.</td>
+							<td>論理型、アクセス権が承認された場合 <strong>true</strong> 、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// check if user is allowed to comment
+								<pre class="php"><code>// ユーザがコメント可能か確認
 if ( ! Auth::group()->has_access('comments.create'), null)
 {
 	Response::redirect('no_admin');
 }
 
-// check if user can also update &amp; delete comments
+// ユーザがコメントの更新と変更が可能かも確認
 Auth::group()->has_access('comments.[update,delete]', null);
 
-// call statically (will use the default group driver instance)
+// 静的に呼び出す （デフォルト Group ドライバのインスタンスを利用）
 Auth::has_access('comments.[update,delete]');
 
-// The same with an array instead of a string
+// 上記を、文字列ではなく配列で
 Auth::group()->has_access(array('comments', array('update', 'delete')), null);</code></pre>
 							</td>
 						</tr>
@@ -269,16 +269,16 @@ Auth::group()->has_access(array('comments', array('update', 'delete')), null);</
 					</table>
 				</article>
 
-				<h3 id="abstract_methods">Abstract methods</h3>
+				<h3 id="abstract_methods">抽象メソッド</h3>
 
 				<p>
-					Every group driver you develop MUST provide all of these methods, and the MUST return the values documented here.
+					どの自作 Group ドライバも、以下のメソッドを用意しなければなりません。また、ここで記載されたとおりに値を返さなければなりません。
 				</p>
 
 				<article>
 					<h4 id="method_member" class="method">member($group, $specific = null)</h4>
-					<p>Checks if user is a member of the given group in either all loaded Group drivers or just those
-						specified as the 2nd parameter.</p>
+					<p>ユーザが与えられたグループのメンバかどうか、ロード済みのすべての Group ドライバ、
+						もしくは第 2 引数で指定した特定の Group ドライバについて確認します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -296,20 +296,20 @@ Auth::group()->has_access(array('comments', array('update', 'delete')), null);</
 									</tr>
 									<tr>
 										<th><kbd>$group</kbd></th>
-										<td><i>required</i></td>
-										<td>group id</td>
+										<td><i>必須</i></td>
+										<td>グループ id</td>
 									</tr>
 									<tr>
 										<th><kbd>$specific</kbd></th>
 										<td><i>null</i></td>
-										<td>null to check all or one ore more driver id's (single string or array of strings)</td>
+										<td>null で全ドライバ、もしくは、ひとつ以上のドライバ id （文字列、または、文字列の配列）で特定のドライバをチェック。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>bool, whether one of the (given) drivers had the current user registered as a member</td>
+							<td>論理型、（渡されたドライバのうち）ひとつでもユーザがメンバになっているかどうか。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -319,10 +319,10 @@ Auth::group()->has_access(array('comments', array('update', 'delete')), null);</
 	Response::redirect('no_admin');
 }
 
-// specific driver
+// 特定のドライバ
 Auth::member(1, 'simplegroup');
 
-// Multiple drivers
+// 複数のドライバ
 Auth::check(0, array('simplegroup', 'genericgroup'));</code></pre>
 							</td>
 						</tr>
@@ -332,7 +332,7 @@ Auth::check(0, array('simplegroup', 'genericgroup'));</code></pre>
 
 				<article>
 					<h4 id="method_get_name" class="method">get_name($group)</h4>
-					<p>Get the display name of the given group name.</p>
+					<p>グループの表示名を取得します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -351,19 +351,19 @@ Auth::check(0, array('simplegroup', 'genericgroup'));</code></pre>
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td><i>null</i></td>
-										<td>name of the group you want to get the display name of</td>
+										<td>グループの表示名を取得したいドライバの名前。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed, the retrieved group display name, or <strong>false</strong> if the given group does not exist.</td>
+							<td>mixed 。取得されたグループの表示名を、グループが存在しない場合は <strong>false</strong> を、返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// get the display name of the admin group
+								<pre class="php"><code>// admin グループの表示名を取得
 Auth::group()->get_name('admin');</code></pre>
 							</td>
 						</tr>
