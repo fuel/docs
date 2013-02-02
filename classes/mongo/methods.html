@@ -94,11 +94,11 @@
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A new Mongo_Db instance</td>
+						<td>新しい Mongo_Db インスタンス</td>
 					</tr>
 					<tr>
 						<th>例外</th>
-						<td>Mongo_DbException, when no config if found for the given instance name.</td>
+						<td>Mongo_DbException 指定されたインスタンス名に対応する設定が見つからなかった場合。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -140,14 +140,14 @@ $mongodb = \Mongo_Db::instance('my_group');
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection name.</td>
+									<td>コレクション名</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A stdClass object containing the result arrays.</td>
+						<td>結果の配列を含む stdClass オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -179,7 +179,7 @@ foreach($result as $user)
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
@@ -192,17 +192,17 @@ foreach($result as $user)
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection name.</td>
+									<td>コレクション名</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>A <a href="http://php.net/manual/en/class.mongocursor.php">MongoCursor</a> object.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// Get an instance
 $mongodb = \Mongo_Db::instance();
@@ -244,7 +244,7 @@ foreach($result as $document)
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection name.</td>
+									<td>コレクション名</td>
 								</tr>
 							</table>
 						</td>
@@ -293,7 +293,7 @@ $user = $mongodb->get_one('users');
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection name.</td>
+									<td>コレクション名</td>
 								</tr>
 								<tr>
 									<th><kbd>$where</kbd></th>
@@ -623,7 +623,7 @@ $users = $mongodb->get('users');
 			<article>
 				<h4 class="method" id="method_where_not_in">where_not_in($field = "", $in = array())</h4>
 				<p>
-					The <strong>where_not_in</strong> method sets the 'where not in' statement.
+					<strong>where_not_in</strong> メソッドは、'where not in' ステートメントをセットします。
 				</p>
 				<table class="method">
 					<tbody>
@@ -1119,7 +1119,7 @@ $users = $mongodb->get('users');
 									<th><kbd>$enable_start_wildcard</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>When set to <em>true</em> the beginning of the string must match.</td>
+									<td><em>true</em> がセットされた場合、the beginning of the string must match.</td>
 								</tr>
 								<tr>
 									<th><kbd>$enable_end_wildcard</kbd></th>
@@ -1360,7 +1360,7 @@ $num_users = $mongodb->count('users');
 			<article>
 				<h4 class="method" id="method_insert">insert($collection = '', $insert = array())</h4>
 				<p>
-					The <strong>insert</strong> method inserts a row into the given collection.
+					<strong>insert</strong> メソッドは、指定されたコレクションにレコードを追加します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -1419,7 +1419,7 @@ $insert_id = $mongodb->insert('users', array(
 			<article>
 				<h4 class="method" id="method_update">update($collection = "", $data = array(), $options = array())</h4>
 				<p>
-					The <strong>update</strong> method updates a given collection.
+					<strong>update</strong> メソッドは、指定されたコレクションをアップデートします。
 				</p>
 				<p class="note">
 					If you do not set the <em>"multiple"</em> option to <em>true</em> only the first encountered record will be updated.
@@ -1491,7 +1491,7 @@ $bool = $mongodb->where(array('id' => $an_id))->update('users', array(
 			<article>
 				<h4 class="method" id="method_update_all">update_all($collection = "", $data = array())</h4>
 				<p>
-					The <strong>update_all</strong> method updates all records in a given collection.
+					<strong>update_all</strong> メソッドは、指定されたコレクションのすべてのレコードをアップデートします。
 				</p>
 				<table class="method">
 					<tbody>
@@ -1548,7 +1548,7 @@ $bool = $mongodb->where('name', 'Spammer')->update_all('users', array(
 			<article>
 				<h4 class="method" id="method_delete">delete($collection = "")</h4>
 				<p>
-					The <strong>delete</strong> method deletes the first record in a given collection.
+					<strong>delete</strong> メソッドは、与えられたコレクションの最初のレコードを削除します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -1597,7 +1597,7 @@ $bool = $mongodb->where(array('name' => 'Spammer'))->delete('users');
 			<article>
 				<h4 class="method" id="method_delete_all">delete_all($collection = "")</h4>
 				<p>
-					The <strong>delete_all</strong> method deletes all records in a given collection.
+					<strong>delete_all</strong> メソッドは、与えられたコレクションのすべてのレコードを削除します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -1646,7 +1646,7 @@ $bool = $mongodb->where(array('name' => 'Spammer'))->delete_all('users');
 			<article>
 				<h4 class="method" id="method_command">command($query = array())</h4>
 				<p>
-					The <strong>command</strong> method runs a MongoDB command. Find out more about commands at
+					<strong>command</strong> メソッドは、MongoDB コマンドを実行します。コマンドについての詳細については、こちらをご参照ください。
 					<a href="http://www.mongodb.org/display/DOCS/Commands" target="_blank">the MongoDB docs</a>.
 				</p>
 				<table class="method">
@@ -1700,7 +1700,7 @@ $mongodb->command(array(
 			<article>
 				<h4 class="method" id="method_add_index">add_index($collection = "", $keys = array(), $options = array())</h4>
 				<p>
-					The <strong>add_index</strong> method adds an index of the keys in a collection with optional parameters. Read more about the options at
+					<strong>add_index</strong> メソッドはコレクションのキーにインデックスを追加します。 指定可能なオプションについては、こちらをご覧ください。					
 					<a href="http://php.net/manual/en/mongocollection.ensureindex.php#refsect1-mongocollection.ensureindex-parameters" target="_blank">php.net</a>.
 				</p>
 				<table class="method">
@@ -1766,7 +1766,7 @@ $mongodb->add_index('my_collection', array(
 			<article>
 				<h4 class="method" id="method_remove_index">remove_index($collection = "", $keys = array())</h4>
 				<p>
-					The <strong>remove_index</strong> method removes one or more indexes from a collection.
+					<strong>remove_index</strong> メソッドは、コレクションから一つ以上のインデックスを削除します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -1827,7 +1827,7 @@ $mongodb->remove_index('first_name');
 			<article>
 				<h4 class="method" id="method_remove_all_indexes">remove_all_indexes($collection = "")</h4>
 				<p>
-					The <strong>remove_all_indexes</strong> method removes all indexes from a collection.
+					<strong>remove_all_indexes</strong> メソッドは、コレクションのすべてのインデックスを削除します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -1875,7 +1875,7 @@ $mongodb->remove_all_indexes('my_collection');
 			<article>
 				<h4 class="method" id="method_list_indexes">list_indexes($collection = "")</h4>
 				<p>
-					The <strong>list_indexes</strong> method returns an array of index names for this collection.
+					<strong>list_indexes</strong> メソッドは、インデックス名を配列で返却します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -1923,7 +1923,7 @@ $indexes = $mongodb->list_indexes('my_collection');
 			<article>
 				<h4 class="method" id="get_collection">get_collection($collection = "")</h4>
 				<p>
-					The <strong>get_collection</strong> method returns a MongoCollection object from the core MongoDB PHP Driver. <a href="http://www.php.net/manual/en/book.mongo.php">(?)</a>
+					<strong>get_collection</strong> メソッドは、MongoDB PHP Driver から、MongoCollection オブジェクトを返却します。<a href="http://www.php.net/manual/en/book.mongo.php">(?)</a>
 				</p>
 				<table class="method">
 					<tbody>
