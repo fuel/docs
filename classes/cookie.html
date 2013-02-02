@@ -92,12 +92,12 @@
 					</tr>
 				</tbody>
 			</table>
-			<p>If one or more of these values are missing from the global configuration, the class will use the defaults as defined in this table.</p>
+			<p>もしこれらのうち１つあるいは複数の値が設定から抜けていた場合、Cookie クラスは表に定義されているデフォルトの値が適用されます。</p>
 			<p class="note">
-				When using cookies, make <strong>ABSOLUTELY</strong> sure that the timezone configured in your <em>app/config/config.php</em> and/or your
-				<em>php.ini</em> file matches the timezone set on your server. Since cookie expiry timestamps are in GMT, expiry time calculation goes
-				horribly wrong when you have a timezone mismatch, ranging from not expiring properly to cookies not set at all because they arrive at
-				the browser already expired.
+				クッキーを利用する場合、<em>app/config/config.php</em> 及び <em>php.ini</em> の設定が
+				サーバのタイムゾーンと合っていることを必ず確認して下さい。
+				クッキーの有効期限のタイムスタンプはグリニッジ標準時なので、タイムゾーンにずれがあると有効期限が誤って計算され、
+				正しく有効期限切れにならなかったり、ブラウザが既に有効期限切れになってしまいクッキーが全く効かなくなってしまいます。
 			</p>
 
 			<article>
@@ -220,7 +220,7 @@
 				<h4 class="method" id="method_delete">delete($name, $path = null, $domain = null, $secure = null, $httponly = null)</h4>
 				<p><strong>delete</strong> 関数は $_COOKIE 変数から値を削除します。</p>
 				<p class="note">
-					When a cookie was created under a specified path or/or domain etc. you must also supply this to the delete function.
+					クッキーが特定のパスあるいはドメインにおいて生成された時、delete 関数も与えておく必要があります。
 				</p>
 				<table class="method">
 					<tbody>
@@ -272,13 +272,13 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Delete normal cookie
+							<pre class="php"><code>// 通常のクッキーを削除する
 \Cookie::delete('theme');
 
-// Set a cookie with a path
+// パスとともにクッキーを設定する
 \Cookie::set('theme', 'fuel', null, '/account/');
 
-// Delete that cookie
+// パスで設定したクッキーを削除する
 \Cookie::delete('theme', '/account/');
 </code></pre>
 						</td>
