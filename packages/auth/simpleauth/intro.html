@@ -186,29 +186,29 @@
 {
 	$data = array();
 
-	// If so, you pressed the submit button. let's go over the steps
+	// If so, you pressed the submit button. Let's go over the steps.
 	if (Input::post())
 	{
-		// first of all, let's get a auth object
+		// First of all, let's get a auth object.
 		$auth = Auth::instance();
 
-		// check the credentials. This assumes that you have the previous table created and
+		// Check the credentials. This assumes that you have the previous table created and
 		// you have used the table definition and configuration as mentioned above.
 		if ($auth->login())
 		{
-			// credentials ok, go right in
+			// Credentials ok, go right in.
 			Response::redirect('success_page');
 		}
 		else
 		{
-			// Oops, no soup for you. try to login again. Set some values to
-			// repopulate the username field and give some error text back to the view
+			// Oops, no soup for you. Try to login again. Set some values to
+			// repopulate the username field and give some error text back to the view.
 			$data['username']    = Input::post('username');
 			$data['login_error'] = 'Wrong username/password combo. Try again';
 		}
 	}
 
-	// Show the login form
+	// Show the login form.
 	echo View::forge('auth/login',$data);
 }</code></pre>
 
