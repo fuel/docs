@@ -121,9 +121,9 @@
 
 			<h3 id="security">セキュリティ</h3>
 
-			<p>Views use output encoding to sanitize anything you pass to them. In a default installation, the security method
-				Security::htmlentities() is defined as output filter. You can modify the filters in your applications config.php file.
-				If you want to pass something unfiltered, you can use the method <kbd>set($name, $value, false)</kbd>.</p>
+			<p>ビューに渡される変数は全てサニタイズされて出力されます。デフォルトの状態では、セキュリティ関数である
+				Security::htmlentities() が出力フィルタとして定義されています。フィルタはアプリケーションの config.php ファイルにて修正できます。
+				もしフィルタリングせずに変数を渡したい場合、<kbd>set($name, $value, false)</kbd> メソッドを使います。</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
 {
@@ -137,19 +137,19 @@
 		// フィルタせず追加する、出力: &lt;strong&gt; bold because unfiltered&lt;/strong&gt;
 		$view->set('title', '&lt;strong&gt; bold because unfiltered&lt;/strong&gt;', false);
 
-		// or use the set_safe() method, which is identical to set() but defaults to 'false'
+		// または、set_safe() メソッドを使う。これは set() メソッドと同じだが、'false' が初期値
 		$view->set_safe('title', '&lt;strong&gt; bold because unfiltered&lt;/strong&gt;');
 
 		return $view;
 	}
 }</code></pre>
 
-			<p>If you don't want your View to work like this, you can pass <kbd>false</kbd> as third argument <kbd>View::forge()</kbd>
-			Now anything added to this View object will be unfiltered.  If you then do want some values filtered, you can use
-			<kbd>set($name, $value, true)</kbd>.<br />
-			You can also globally disable the output filter by setting the application
-			configuration value <kbd>security.auto_filter_output</kbd> to <kbd>false</kbd>. For security reasons it is highly recommended
-			that you don't do this!</p>
+			<p>もしこのように View を出力させたくない場合、<kbd>false</kbd> を <kbd>View::forge()</kbd> の第三引数として渡すことで、
+			その View オブジェクトに追加されるものがフィルタリングされないようにできます。
+			その後、フィルタリングさせたい変数があれば、<kbd>set($name, $value, true)</kbd> を使います。<br />
+			また、アプリケーションの設定値である <kbd>security.auto_filter_output</kbd> を <kbd>false</kbd> にすることで、
+			出力フィルタをグローバルに無効化することができます。しかし、セキュリティ上の理由から、この設定を行わないしないことを
+			強く推奨します。</p>
 
 			<p class="note"><strong>オブジェクトについての注意:</strong> 渡されるオブジェクトが View、ViewModel あるいは Closure のインスタンスでない限り、 
 			オブジェクトは <kbd>__toString()</kbd> メソッドを持つことが期待され、出力フィルタリングが有効なとき文字列に強制変換されます。どうしても渡したい場合は、
@@ -266,21 +266,21 @@
 {
 	public function action_index()
 	{
-		// create the layout view
+		// レイアウトビューを生成
 		$view = View::forge('layout');
 
-		//local view variables, lazy rendering
+		// ローカルなビュー内の変数（遅延ロード）
 		$view->head = View::forge('head', array('title' =&gt; 'Home'));
 		$view->header = View::forge('header', array('site_title' =&gt; 'My Website'));
 		$view->content = View::forge('content', array('username' =&gt; 'Joe14', 'title' =&gt; 'Home'));
 		$view->footer = View::forge('footer', array('site_title' =&gt; 'My Website'));
 
-		// return the view object to the Request
+		// リクエストに対し view オブジェクトを返す
 		return $view;
 	}
 }</code></pre>
 
-			<p>See the <a href="../classes/view.html">View Class in the classes section</a> for View's function descriptions.</p>
+			<p>View の関数についての説明は、<a href="../classes/view.html">「クラス」の項の View クラス</a>を参照して下さい。</p>
 
 		</div>
 
