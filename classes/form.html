@@ -95,10 +95,10 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns &lt;form action="http://mydomain.com/uri/to/form" accept-charset="utf-8" method="post"&gt;
+							<pre class="php"><code>// &lt;form action="http://mydomain.com/uri/to/form" accept-charset="utf-8" method="post"&gt; を出力
 echo Form::open('uri/to/form');
 
-// returns &lt;form action="http://google.com/" accept-charset="utf-8" method="get"&gt;
+// &lt;form action="http://google.com/" accept-charset="utf-8" method="get"&gt; を出力
 echo Form::open(array('action' => 'http://google.com/', 'method' => 'get'));</code></pre>
 						</td>
 					</tr>
@@ -108,7 +108,7 @@ echo Form::open(array('action' => 'http://google.com/', 'method' => 'get'));</co
 
 			<article>
 				<h4 class="method" id="method_close">close()</h4>
-				<p>Create a form close tag.</p>
+				<p>フォームの閉じタグ（&lt;/form&gt;）を出力します</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -126,7 +126,7 @@ echo Form::open(array('action' => 'http://google.com/', 'method' => 'get'));</co
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns &lt;/form&gt;
+							<pre class="php"><code>// &lt;/form&gt; を出力
 echo Form::close();</code></pre>
 						</td>
 					</tr>
@@ -137,8 +137,8 @@ echo Form::close();</code></pre>
 			<article>
 				<h4 class="method" id="method_input">input($field, $value = null, $attributes = array())</h4>
 				<p>
-					Creates an html input element. It can be set using the fieldname, its value and tag attributes or all
-					in one array as the first argument.
+					入力要素を出力します。最初のパラメータに配列を指定することで、name属性、value属性や
+					その他、HTML属性を指定することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -158,17 +158,17 @@ echo Form::close();</code></pre>
 								<tr>
 									<th><kbd>$field</kbd></th>
 									<td><i>必須</i></td>
-									<td>Either a string for the fieldname or an array of tag attributes.</td>
+									<td>フィールド名（name属性）や、その他の属性を指定します</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Field value, will be ignored when the first param is an array.</td>
+									<td>1つめのパラメータが配列ではない場合、ここで値（value属性）を指定します</td>
 								</tr>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>These will be used as html tag properties.</td>
+									<td>HTMLの属性を配列で指定します</td>
 								</tr>
 							</table>
 						</td>
