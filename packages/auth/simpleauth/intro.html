@@ -10,7 +10,7 @@
 		var path = './../../../';
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
-	<title>はじめに - SimpleAuth - Auth Package - FuelPHP ドキュメント</title>
+	<title>はじめに - SimpleAuth - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -46,32 +46,32 @@
 			<h2>SimpleAuth - はじめに</h2>
 
 			<p>
-				SimpleAuth is, as it's name implies, a simple authentication system which is included in the Auth package.
-				Besides being a working Auth implementation, it is also an example for other Auth drivers.
-				You can use this as a reference when building your own driver.
+				SimpleAuth は、その名前が示すように、Auth パッケージに含まれているシンプルな認証システムです。
+				機能する Auth の実装としてだけでなく、他の Auth ドライバの例の意味もあります。
+				自作ドライバを作るときの参考として利用できます。
 			</p>
 
-			<h3 id="setup">Auth setup</h3>
+			<h3 id="setup">Auth のセットアップ</h3>
 
 			<p>
-				Configuration starts with telling the Auth package that you are going to use the SimpleAuth driver.
-				This is done through the auth.php configuration file. A default file is provided in the Auth package.
-				You should copy this file to your app/config folder before making any changes. The default file is already
-				configured for the SimpleAuth package. You will find an explaination of this config file <a href="../intro.html#/configuration">here</a>.
+				設定は、 Auth パッケージに SimpleAuth ドライバの使用を通知することからはじまります。
+				これには auth.php の config ファイルを利用します。デフォルトのファイルが Auth パッケージで用意されています。
+				このファイルをコピーし、自分の app/config フォルダに入れてください。中身の変更はその後に行います。デフォルトのファイルは、
+				SimpleAuth パッケージ向けに設定されています。<a href="../intro.html#/configuration">こちらに</a> config ファイルについての説明があります。
 			</p>
 			<p>
-				After you have done this, you can choose to autoload the package through the <strong>always_load</strong> section of the app/config/config.php.
+				上記の後に、パッケージをオートロードするかどうかを app/config/config.php の <strong>always_load</strong> セクションで指定します。
 			</p>
 
 			<h3 id="configuration">設定</h3>
 
 			<p>
-				The SimpleAuth authentication system is configured through a configuration file, not suprisingly through the
-				'simpleauth' configuration file. A default file is provided in the Auth package. You should copy this file
-				to your app/config folder before making any changes.
+				SimpleAuth 認証システムの設定は config ファイル、当然のことながら 'simpleauth' config ファイルで行います。
+				デフォルトのファイルが Auth パッケージに用意されています。 このファイルをコピーし、自分の app/config フォルダに入れてください。
+				中身の変更はその後に行います。
 			</p>
 
-				<p>The following configuration values can be defined:</p>
+				<p>下記の設定値が定義されています：</p>
 				<table class="config">
 					<tbody>
 						<tr class="header">
@@ -82,133 +82,133 @@
 						</tr>
 						<tr>
 							<th>db_connection</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>null</code></pre>
 							</td>
 							<td>
-								Name of the database connection to use. This should match the definition in your applications db.php configuration file.
-								Set it to <strong>null</strong> to use the default DB instance.
+								利用するデータベース接続の名前。 db.php の config ファイルでの名称と一致させる必要があります。
+								<strong>null</strong> でデフォルトの DB インスタンスを使います。
 							</td>
 						</tr>
 						<tr>
 							<th>table_name</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>'users'</code></pre>
 							</td>
 							<td>
-								Name of the users table to use.
+								利用するユーザ情報を定義したテーブル名。
 							</td>
 						</tr>
 						<tr>
 							<th>table_columns</th>
-							<td>array</td>
+							<td>配列</td>
 							<td><pre class="php"><code>array('*')</code></pre>
 							</td>
 							<td>
-								List of columns to select from the users table, or '*' to select all columns. You have to at least include
-								'username', 'password', 'email', 'last_login', 'login_hash', 'group' and 'profile_fields'.
+								ユーザ情報のテーブルのうち、 select するカラムのリスト。　'*' で全カラムを select 。少なくとも、
+								'username', 'password', 'email', 'last_login', 'login_hash', 'group', 'profile_fields' を含んでいる必要があります。
 							</td>
 						</tr>
 						<tr>
 							<th>guest_login</th>
-							<td>boolean</td>
+							<td>論理型</td>
 							<td><pre class="php"><code>true</code></pre>
 							</td>
 							<td>
-								If true a dummy 'guest' user will be created if no one is logged in. This allows you to use the group and
-								acl drivers even when no one is logged in.
+								true の場合、ログイン中のユーザがいなければ、ダミーの　'guest' ユーザが作成されます。これを使うことで、
+								ログインしていないユーザに対しても Group ドライバと ACL ドライバが利用できます。
 							</td>
 						</tr>
 						<tr>
 							<th>groups</th>
-							<td>array</td>
+							<td>配列</td>
 							<td><pre class="php"><code>array()</code></pre>
 							</td>
 							<td>
-								Defined groups, to be used by the SimpleAuth groups driver. See <a href="./groups.html">here</a> for an
-								description of the groups array structure.
+								SimpleAuth Group ドライバで利用する定義済みの Group 。詳細な Group 配列については、
+								<a href="./groups.html">こちら</a>を参照。
 							</td>
 						</tr>
 						<tr>
 							<th>roles</th>
-							<td>array</td>
+							<td>配列</td>
 							<td><pre class="php"><code>array()</code></pre>
 							</td>
 							<td>
-								Defined roles, to be used by the SimpleAuth acl driver. See <a href="./acl.html">here</a> for an
-								description of the roles array structure.
+								SimpleAuth ACL ドライバで利用する定義済みの ACL 。詳細な ACL 配列については、
+								<a href="./acl.html">こちら</a>を参照。
 							</td>
 						</tr>
 						<tr>
 							<th>login_hash_salt</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>'put_some_salt_in_here'</code></pre>
 							</td>
 							<td>
-								To make the passwords used by the SimpleAuth drivers extra secure, a salt value is used when hashing
-								the passwords to store them into the database. Make sure you change this default to a very random string!
-								To hash passwords, SimpleAuth uses <a href="http://en.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a>, a very secure hashing mechanism.
+								SimpleAuth で利用されるパスワードをよりセキュアにするために、パスワードのハッシュ値をデータベースに保存する際に、サルトが使われています。
+								デフォルトのものから、ランダムな文字列に変更することを忘れないように！
+								パスワードのハッシュ化にあたり、 SimpleAuth は非常にセキュアな機構である <a href="http://en.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a>　を利用しています。
 							</td>
 						</tr>
 						<tr>
 							<th>username_post_key</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>'username'</code></pre>
 							</td>
 							<td>
-								Name of the input field on the login form that contains the username.
+								ログインフォームのユーザ名を入力するフィールド名。
 							</td>
 						</tr>
 						<tr>
 							<th>password_post_key</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>'password'</code></pre>
 							</td>
 							<td>
-								Name of the input field on the login form that contains the password.
+								ログインフォームのパスワードを入力するフィールド名。
 							</td>
 						</tr>
 					</tbody>
 				</table>
 
-			<h3 id="database">Database table</h3>
+			<h3 id="database">データベーステーブル</h3>
 
 			<p>
-				SimpleAuth relies on a single table. The Auth package contains a migration file in the examples folder for this table.
-				Just copy it to your migrations folder, and run <code>oil refine migrate</code> to have the table created for you.
+				SimpleAuth ひとつのテーブルのみに依存します。 Auth パッケージには、 example フォルダに、このテーブル向けのマイグレーションファイルを用意しています。
+				このファイルをマイグレーション先のフォルダにコピーし、 <code>oil refine migrate</code> を実行すれば、テーブルが作成されます。
 			</p>
 
 			<h3 id="example">例</h3>
 
-			<p>This is a sample login action:</p>
+			<p>これはログイン処理のサンプルです：</p>
 
 			<pre class="php"><code>public function action_login()
 {
 	$data = array();
 
-	// If so, you pressed the submit button. let's go over the steps
+	// submit ボタンが押されました。処理を追っていきます
 	if (Input::post())
 	{
-		// first of all, let's get a auth object
+		// まず、 Auth オブジェクトを取得します
 		$auth = Auth::instance();
 
-		// check the credentials. This assumes that you have the previous table created and
-		// you have used the table definition and configuration as mentioned above.
+		// 認証情報をチェックします。ここでは、テーブルが作成済みで、
+		// 上記で記載した通りのテーブル定義を行なっているものと仮定します。
 		if ($auth->login())
 		{
-			// credentials ok, go right in
+			// 認証情報は OK 、ただちに下記へ
 			Response::redirect('success_page');
 		}
 		else
 		{
-			// Oops, no soup for you. try to login again. Set some values to
-			// repopulate the username field and give some error text back to the view
+			// 残念、おめーの席ねえから！（訳注：原文は Oops, no soup for you） 再度ログインを。 
+			// ビューにユーザ名を戻し、エラーメッセージを渡すために、いくつかの値をセット。
 			$data['username']    = Input::post('username');
 			$data['login_error'] = 'Wrong username/password combo. Try again';
 		}
 	}
 
-	// Show the login form
+	// ログインフォームを表示
 	echo View::forge('auth/login',$data);
 }</code></pre>
 
