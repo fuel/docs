@@ -52,14 +52,13 @@
 				サーバー上の様々なストレージに変数を格納し、それらを次のページリクエストに再度呼び出すことが出来ます。
 			</p>
 			<p>
-				The static methods documented on this page use the session driver configured in the configuration via the <kbd>driver</kbd> setting.
-				When you have set the <kbd>auto_initialize</kbd> setting to <kbd>true</kbd>, a session will be initialized when the Session class is loaded.
-				If it is set to <kbd>false</kbd>, you will have to use one of the methods below, or start a session instance manually, to initialize the session.
+				本ページに記載されている静的メソッドは<kbd>driver</kbd> で設定されたセッションドライバーを使用します。
+				<kbd>auto_initialize</kbd>を<kbd>true</kbd>に設定した場合、セッションはセッションクラスロード時に初期化されます。
+				<kbd>false</kbd>に設定した場合、下記のメソッドのいずれかを使用するか、またはセッションインスタンスを初期化するためにセッションインスタンスをマニュアルで開始する必要があります。
 			</p>
 			<p class="note">
-				If your application needs session support, either "<kbd>always_load</kbd>" your session class, or make sure your (base) controllers
-				will load it. If you do load it, but you choose not to <kbd>auto_initialize</kbd> the session, and you don't use any of the session methods,
-				the session will not be refreshed! This can cause unexpected behaviour of your application due to an expired session.
+				アプリケーションがセッションのサポートをを必要とする場合、セッションクラスを"<kbd>always_load</kbd>"とするか、必ず（ベース）コントローラーがロードするようにすべきです。
+				ロードを行い、セッションを<kbd>auto_initialize</kbd>とせず、かつどのセッションメソッドも使用しなかった場合、セッションはリフレッシュされません！このことにより、期限切れのセッションによってアプリケーションに予期せぬ挙動を引き起こす可能性があります。
 			</p>
 
 			<h3 id="gc">Garbage Collection</h3>
