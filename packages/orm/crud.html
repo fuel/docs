@@ -45,11 +45,11 @@
 		<div id="main">
 			<h2>Orm</h2>
 
-			<p>ORMは<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
-				関係マッピング</a>の略です。 これは、2つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
+			<p>ORM は<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
+				関係マッピング</a>の略です。 これは、2 つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
 				それはあなたがそれらのオブジェクト間の関係を確立することができます。<br />
 				それは <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">
-				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
+				Active Record パターン</a>に従いますが、他のシステムに影響も受けます。</p>
 
 			<section>
 				<h2 id="crud">CRUD: 作成、読み取り、更新、削除</h2>
@@ -70,8 +70,8 @@ $new = Model_Example::forge();
 $new->property = 'something';
 $new->save();</code></pre>
 
-					<p class="note"><kbd>save()</kbd> した後の model は、データベースに保存されていると、主キー
-						主キーに <kbd>auto_increment</kbd> を使用している場合は、自動的に保存された後、インスタンスに保存されます。
+					<p class="note"><kbd>save()</kbd> した後、 model がデータベースに保存されていて、
+						主キーに <kbd>auto_increment</kbd> を使用している場合は、保存後に自動的にインスタンスに設定されます。
 						</p>
 
 					<p>配列からモデルのプロパティを設定することができます:</p>
@@ -99,7 +99,7 @@ $new->save();</code></pre>
 					<pre class="php"><code>// ID=2の記事を検索する
 $entry = Model_Article::find(2);
 
-// 複合プライマリーキーを使用している場合
+// 複合主キーを使用している場合
 $entry = Model_Article::find(array(2, 'foo'));</code></pre>
 
 					<p>この例では、ID が見つからなかったときは Model_Article インスタンスまたは null を返します。</p>
@@ -119,7 +119,7 @@ $entry = Model_Article::find('last', array('order_by' =&gt; 'date'));</code></pr
 					<pre class="php"><code>// すべての記事を検索する。
 $entry = Model_Article::find('all');
 
-// date カラムを降順にし、category_id カラムの値が 1 の記事を検索する。
+// category_id カラムの値が 1 の記事を検索し、 date カラムを降順に並び替える。
 $entry = Model_Article::find('all', array(
 	'where' =&gt; array(
 		array('category_id', 1),
@@ -161,7 +161,7 @@ $number_of_articles = $query->min('date');
 // 1 件だけ取得した場合。
 $newest_article = $query->get_one();
 
-// 以前のクエリに復帰制限を加えて、複数の記事を取得するために再使用します。
+// 以前のクエリに取得したい件数の制限を加えて、複数の記事を取得する場合。
 $all_articles = $query->limit(15)->get();</code></pre>
 
 					<p>All these methods are equally valid, the four other methods of find actually use the Query object as
