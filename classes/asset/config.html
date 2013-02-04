@@ -47,7 +47,7 @@
 
 			<h2>Asset クラス</h2>
 
-			<p>asset クラスは、assets (js, css, img) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
+			<p>asset クラスは、アセット (js、css、img) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
 
 			<section>
 				<h3 id="config">設定</h3>
@@ -71,7 +71,7 @@
 							<td>array</td>
 							<td><pre class="php"><code>array('assets/')</code></pre></td>
 							<td>
-								デフォルトの asset ルートパス。末尾にスラッシュが必要。
+								デフォルトのアセットのルートパス。末尾にスラッシュが必要。
 							</td>
 						</tr>
 						<tr>
@@ -108,7 +108,7 @@
 ),
 </code></pre></td>
 							<td>
-								asset の種類に応じて、asset を指定してください。
+								アセットの種類に応じて、アセットを指定してください。
 							</td>
 						</tr>
 						<tr>
@@ -116,7 +116,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>\Config::get('base_url')</code></pre></td>
 							<td>
-								asset のルートの URL。asset をロードするとき、asset パスと asset 名が URL に付加される。
+								アセットのルートの URL。アセットをロードするとき、アセットのパスとアセット名が URL に付加される。
 							</td>
 						</tr>
 						<tr>
@@ -124,7 +124,7 @@
 							<td>bool</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								asset の最終更新時刻を url に付加するかどうかを指定する。asset キャッシングの助けとなるので、使用を推奨する。
+								アセットの最終更新時刻を url に付加するかどうかを指定する。アセットのキャッシングの助けとなるので、使用を推奨する。
 							</td>
 						</tr>
 						<tr>
@@ -140,7 +140,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>"\t"</code></pre></td>
 							<td>
-								生成された HTML をインデントする文字列。デフォルトはタブ1つ。
+								生成された HTML をインデントする文字列。デフォルトはタブ 1 つ。
 							</td>
 						</tr>
 						<tr>
@@ -148,8 +148,8 @@
 							<td>bool</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								グループ名無しで asset メソッドを呼び出したとき、生成された HTML を返すかどうかを指定する。
-								false の場合、asset はデフォルトグループに追加され、後でレンダリングされる。
+								グループ名無しでアセットのメソッドを呼び出したとき、生成された HTML を返すかどうかを指定する。
+								false の場合、アセットはデフォルトグループに追加され、後でレンダリングされる。
 							</td>
 						</tr>
 						<tr>
@@ -157,8 +157,8 @@
 							<td>bool</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								true に設定すると、asset ファイルが見つからなかった場合に例外を返さない。
-								その asset は無視される。
+								true に設定すると、アセットファイルが見つからなかった場合に例外を返さない。
+								そのアセットは無視される。
 							</td>
 						</tr>
 					</tbody>
@@ -166,11 +166,11 @@
 			</section>
 
 			<section>
-				<h3 id="asset_paths">Asset paths</h3>
+				<h3 id="asset_paths">アセットのパス</h3>
 
 				<p>
-					asset パスを定義する方法はいくつかあります。asset の 'root' を定義するグローバル asset 検索パスを定義する。
-					asset を探すとき、ロードする asset に定義されているフォルダをパスに追加します。
+					アセットのパスを定義する方法はいくつかあります。アセットの 'root' を定義するグローバルアセット検索パスを定義する。
+					アセットを探すとき、ロードするアセットに定義されているフォルダをパスに追加します。
 					複数のグローバル検索パスを使用する場合、同一のフォルダ構造にしなければなりません。
 					<pre class="php"><code>// 想定:
 // - URL が "http://example.org/"
@@ -182,8 +182,8 @@ echo Asset::img('icons/myicon.png');
 				</p>
 
 				<p>
-					標準のフォルダ構造を好まない場合、あるいは assetパスが定義済みの既存の環境を維持する必要がある場合は、
-					Asset クラスは、サポートされる asset の種類ごとに、
+					標準のフォルダ構造を好まない場合、あるいはアセットのパスが定義済みの既存の環境を維持する必要がある場合は、
+					Asset クラスは、サポートされるアセットの種類ごとに、
 					個別の検索フォルダを定義できます。
 					<pre class="php"><code>// 下記の設定の場合で
 // 'folders' => array(
@@ -202,15 +202,15 @@ echo Asset::img('myicon.png');
 			</section>
 
 			<section>
-				<h3 id="static_assets">Static assets</h3>
+				<h3 id="static_assets">静的なアセット</h3>
 
 				<p>
-					asset (の一部)がアプリケーションのドキュメントルートではなく、異なるホストを使用している場合は、
-					asset をロードするのに、以下のテクニックが使えます。
-					<pre class="php"><code>// 個別に、asset 毎に
+					アセット (の一部) がアプリケーションのドキュメントルートではなく、異なるホストを使用している場合は、
+					アセットをロードするのに、以下のテクニックが使えます。
+					<pre class="php"><code>// 個別に、アセット毎に
 echo Asset::img('http://static.example.org/icons/myicon.png');
 
-// 全て、Asset URL に 'http://static.example.org/' を設定する
+// 全てのセットに対して、アセット URL を 'http://static.example.org/' を設定する
 echo Asset::img('icons/myicon.png');
 </code></pre>
 					この場合、検索パスは無視されます。
