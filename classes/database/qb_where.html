@@ -118,19 +118,19 @@
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
-// Set the first where statement
+// 最初の where ステートメントをセット
 $query->where('name', '!=', 'John');
 
-// and append a new condition
+// あたらしい条件を追加
 $query->and_where('surname', 'Doe');
 
-// nested where through callback
+// ネストした where をコールバックで
 $query->where(function($query){
 	$query->where('email', 'jim@jim.com')
 		->or_where('email', 'haha@joke.com');
 });
 
-// Resulting in:
+// 結果:
 // SELECT * FROM `users` WHERE `name` != "John" AND `surname` = "Doe"
 // AND (`email` = "jim@jim.com" OR `email` = "haha@joke.com")
 </code></pre>
@@ -142,7 +142,7 @@ $query->where(function($query){
 
 			<article>
 				<h4 class="method" id="method_or_where">or_where($column, $op = null, $value = null)</h4>
-				<p>The <strong>or_where</strong> method appends an OR WHERE statement.</p>
+				<p><strong>or_where</strong> メソッドは OR WHERE ステートメントを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -190,10 +190,10 @@ $query->where(function($query){
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
-// Set the first where statement
+// 最初の where ステートメントをセット
 $query->where('name', '=', 'John');
 
-// and append a new condition
+// あたらしい条件を追加
 $query->or_where('surname', 'Doe');
 
 // nested where through callback
@@ -214,12 +214,12 @@ $query->or_where(function($query){
 
 			<article>
 				<h4 class="method" id="method_where_open">where_open()</h4>
-				<p>The <strong>where_open</strong> method is an alias for <a href="#method_and_where_open">and_where_open</a>.</p>
+				<p><strong>where_open</strong> メソッドは、<a href="#method_and_where_open">and_where_open</a>のエイリアスです。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_and_where_open">and_where_open()</h4>
-				<p>The <strong>and_where_open</strong> method opens an SQL closure and appends it using AND.</p>
+				<p><strong>and_where_open</strong> メソッドは、 SQL クロージャ を開き、それを AND で追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -242,10 +242,10 @@ $query->or_where(function($query){
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
-// Set a where statement
+// where ステートメントをセット
 $query->where('name', 'john');
 
-// Open a closure
+// クロージャを開く
 $query->and_where_open();
 
 // SELECT * FROM `users` WHERE `name` = "John" AND (
@@ -258,7 +258,7 @@ $query->and_where_open();
 
 			<article>
 				<h4 class="method" id="method_or_where_open">or_where_open()</h4>
-				<p>The <strong>or_where_open</strong> method opens an SQL closure and appends it using OR.</p>
+				<p><strong>or_where_open</strong> メソッドは SQL クロージャを開き、それを OR で追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -281,10 +281,10 @@ $query->and_where_open();
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
-// Set a where statement
+// where ステートメントをセット
 $query->where('name', 'john');
 
-// Open a closure
+// クロージャを開く
 $query->or_where_open();
 
 // SELECT * FROM `users` WHERE `name` = "John" OR (
@@ -297,12 +297,12 @@ $query->or_where_open();
 
 			<article>
 				<h4 class="method" id="method_where_close">where_close()</h4>
-				<p>The <strong>where_close</strong> method is an alias for <a href="#method_and_where_close">and_where_close</a>.</p>
+				<p><strong>where_close</strong> メソッドは <a href="#method_and_where_close">and_where_close</a>のエイリアスです。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_and_where_close">and_where_close()</h4>
-				<p>The <strong>and_where_close</strong> method closes an SQL closure.</p>
+				<p><strong>and_where_close</strong> メソッドは、SQL クロージャを閉じます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -325,13 +325,13 @@ $query->or_where_open();
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
-// Set a where statement
+// where ステートメントをセット
 $query->where('email', 'like', '%@example.com');
 
-// Open a closure
+// クロージャを開く
 $query->and_where_open();
 
-// Set a where statement
+// where ステートメントをセット
 $query->where('name', 'John');
 $query->or_where('surname', 'Doe');
 
@@ -370,13 +370,13 @@ $query->and_where_close();
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
-// Set a where statement
+// where ステートメントをセット
 $query->where('email', 'like', '%@example.com');
 
-// Open a closure
+// クロージャを開く
 $query->or_where_open();
 
-// Set a where statement
+// where ステートメントをセット
 $query->where('name', 'John');
 $query->and_where('surname', 'Doe');
 
@@ -433,7 +433,7 @@ $query->or_where_close();
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
-// Set the order by
+// order by をセット
 $query->order_by('name');
 $query->order_by('email', 'asc');
 $query->order_by('surname', 'desc');
@@ -484,7 +484,7 @@ $query->order_by('surname', 'desc');
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
 
-// Set the limit
+// limit句をセット
 $query->limit(10);
 
 // SELECT * FROM `users` LIMIT 10
