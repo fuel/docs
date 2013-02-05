@@ -52,7 +52,7 @@
 
 			<article>
 				<h4 class="method" id="method_forge">forge($timestamp = null, $timezone = null)</h4>
-				<p><strong>forge</strong> メソッドは new date オブジェクトを返します。</p>
+				<p><strong>forge</strong> メソッドは新しい Date オブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -90,7 +90,7 @@
 						<td>
 							<pre class="php"><code>print_r(Date::forge(1294176140));
 
-// Returns
+// 結果
 Fuel\Core\Date Object
 (
     [timestamp:protected] => 1294176140
@@ -181,7 +181,7 @@ Fuel\Core\Date Object
 						<th>例</th>
 						<td>
 							<pre class="php"><code>// ディスプレイタイムゾーンに 'America/Lima' を設定する
-Date::display_timezone('America/Lima'));</code></pre>
+Date::display_timezone('America/Lima');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -233,7 +233,7 @@ Date::display_timezone('America/Lima'));</code></pre>
 						<td>
 							<pre class="php"><code>print_r(Date::create_from_string("01/04/2011" , "us"));
 
-// Returns
+// 結果
 Fuel\Core\Date Object
 (
     [timestamp:protected] => 1322956800
@@ -253,7 +253,7 @@ Fuel\Core\Date Object
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -290,10 +290,10 @@ Fuel\Core\Date Object
 						<th>例</th>
 						<td>
 							<pre class="php"><code>$start = time();
-$end = $start + 604800; // Plus 1 week
+$end = $start + 604800; // 1週間後
 print_r(Date::range_to_array($start, $end, "+2 days"));
 
-// Returns
+// 結果
 Array
 (
     [0] => Fuel\Core\Date Object
@@ -404,7 +404,7 @@ echo Date::days_in_month(2, 2000); // 29
 								<tr>
 									<th><kbd>$period</kbd></th>
 									<td><i>任意</i></td>
-									<td>返される結果の時間単位。'econd', 'minute', 'hour', 'day', 'week', 'month', 'year', 'decade'（10年）が指定可能。なにも指定されない場合、可能な限り大きい単位で結果が返される。</td>
+									<td>返される結果の時間単位。'econd', 'minute', 'hour', 'day', 'week', 'month', 'year', 'decade' (10年) が指定可能。なにも指定されない場合、可能な限り大きい単位で結果が返される。</td>
 								</tr>
 							</table>
 						</td>
@@ -429,14 +429,14 @@ echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'yea
 			<article>
 				<h4 class="method" id="method_format">format($pattern_key = 'local', $timezone = null)</h4>
 				<p>
-					<strong>formatted</strong> メソッドはパターンキーで指定した書式の日付を返します。
+					<strong>format</strong> メソッドはパターンキーで指定した書式の日付を返します。
 					パターンは <kbd>fuel/core/config/date.php</kbd> にて定義されており、
 					<kbd>app/config</kbd> に同様のファイルを作成することで自分で定義したフォーマットを設定することができます。
 				</p>
 				<p class="note">このメソッドでは、i18n をサポートするため、 <kbd>date()</kbd> ではなく
 				<a href="http://www.php.net/manual/en/function.strftime.php" target="_blank">strftime()</a> 関数のパターンを使います</p>
 				<p>
-					タイムゾーンを渡さたない場合、出力結果をフォーマットをする際に現在の Date オブジェクトがタイムゾーンにセットされます。
+					タイムゾーンを渡たさない場合、出力結果をフォーマットをする際に現在の Date オブジェクトがタイムゾーンにセットされます。
 					既に <kbd>set_timezone()</kbd> メソッドによりタイムゾーンを設定し直していない限り、デフォルトではシステムのタイムゾーンが適用されます。
 					また、<kbd>true</kbd> を渡すことで、グローバルな display_timezone を適用させることもできます。
 				</p>
@@ -461,12 +461,12 @@ echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'yea
 								<tr>
 									<th><kbd>$pattern_key</kbd></th>
 									<td>"local"</td>
-									<td>パターンキー(config/date.php を参照)</td>
+									<td>パターンキー (config/date.php を参照)</td>
 								</tr>
 								<tr>
 									<th><kbd>$timezone</kbd></th>
 									<td>null</td>
-									<td>The timezone to use when generating the formatted output</td>
+									<td>出力結果のタイムゾーンを指定することができます</td>
 								</tr>
 							</table>
 						</td>
@@ -543,12 +543,12 @@ echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M", true);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_get_timezone_abbr">get_timezone_abbr($display_timezone = false)</h4>
-				<p>The <strong>get_timezone_abbr</strong> method returns the abbreviated timezone for either the timezone set in the Date object, or for the display timezone.</p>
+				<p><strong>get_timezone_abbr</strong> メソッドは Date オブジェクトに設定されているタイムゾーンの略称を返します。もしくはグローバルなタイムゾーンの略称を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 						<th>パラメータ</th>
 						<td>
