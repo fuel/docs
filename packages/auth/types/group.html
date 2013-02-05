@@ -250,7 +250,7 @@ $key = Auth::instance(simplegroup)->get_config('key', false);
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>// check if user is allowed to comment
-if ( ! Auth::group()->has_access('comments.create'), null)
+if ( ! Auth::group()->has_access('comments.create', null) )
 {
 	Response::redirect('no_admin');
 }
@@ -314,7 +314,7 @@ Auth::group()->has_access(array('comments', array('update', 'delete')), null);</
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>if ( ! Auth::member(100))
+								<pre class="php"><code>if ( ! Auth::member(100) )
 {
 	Response::redirect('no_admin');
 }
@@ -323,7 +323,7 @@ Auth::group()->has_access(array('comments', array('update', 'delete')), null);</
 Auth::member(1, 'simplegroup');
 
 // Multiple drivers
-Auth::check(0, array('simplegroup', 'genericgroup'));</code></pre>
+Auth::member(0, array('simplegroup', 'genericgroup'));</code></pre>
 							</td>
 						</tr>
 						</tbody>
