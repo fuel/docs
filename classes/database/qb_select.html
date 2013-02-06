@@ -49,13 +49,13 @@
 			<p>(extends <a href="qb_where.html">Query_Builder_Where</a>)</p>
 
 			<p>
-				The Query_Builder_Select class handles all the select operations for the query building process. It extends the
-				Query_Builder_Where class, so all the methods are inherited.
+				Query_Builder_Select クラスは、クエリ構築のための、すべてのSELECT 操作を扱います。
+				これは、Query_Builder_Where を継承しており、 すべてのメソッドが引き継がれます。 
 			</p>
 
 			<article>
 				<h4 class="method" id="method_distinct">distinct($value = true)</h4>
-				<p>The <strong>distinct</strong> method sets whether to select distinct values.</p>
+				<p>The <strong>distinct</strong> メソッドは、 値を重複なしで取得するかをセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -76,7 +76,7 @@
 										<th><kbd>$value</kbd></th>
 										<td><em>bool</em></td>
 										<td><pre class="php"><code>true</code></pre></td>
-										<td>set to false if you don't want to select distinct values</td>
+										<td>もし値の重複排除を望まないのであれば、false を指定します。</td>
 									</tr>
 								</table>
 							</td>
@@ -91,7 +91,7 @@
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('name')->from('users');
 
-// Set it to distinct
+// 重複なしを指定します
 $query->distinct();
 
 // SELECT DISTINCT `name` FROM `users`
@@ -104,7 +104,7 @@ $query->distinct();
 
 			<article>
 				<h4 class="method" id="method_select">select($columns = null)</h4>
-				<p>The <strong>select</strong> method appends columns to select.</p>
+				<p><strong>select</strong> メソッドは、取得するカラムを指定します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -159,7 +159,7 @@ $query->select(
 
 			<article>
 				<h4 class="method" id="method_select_array">select_array(array $columns)</h4>
-				<p>The <strong>select_array</strong> method appends columns to select.</p>
+				<p><strong>select_array</strong> メソッドは、取得するカラムを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -180,13 +180,13 @@ $query->select(
 										<th><kbd>$columns</kbd></th>
 										<td><em>array</em></td>
 										<td><em>必須</em></td>
-										<td>an array containing column names</td>
+										<td>カラム名の配列</td>
 									</tr>
 									<tr>
 										<th><kbd>$reset</kbd></th>
 										<td><em>bool</em></td>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If true, do not append, but overwrite</td>
+										<td> trueを指定した場合追加ではなく、上書きします。</td>
 									</tr>
 								</table>
 							</td>
@@ -201,10 +201,10 @@ $query->select(
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('name')->from('users');
 
-// Append other columns to select
+// 取得したい別のカラムを追加します。
 $query->select('surname', 'email');
 
-// Supply an array to use an alias
+// カラムの別名を使いたい場合は、配列を指定します。
 $query->select_array(array(
 	array('is_active', 'active'),
 	'birthdate'
@@ -212,7 +212,7 @@ $query->select_array(array(
 
 // produces SELECT `surname`, `email`, `is_active` as active, `birthdate` FROM `users ...
 
-// Supply an array to use an alias and reset the previous select
+// カラムの別名を使用し、前回のSELECTで使用したカラムをリセット（上書き）します。
 $query->select_array(array(
 	array('surname', 'name'),
 	'birthdate'
@@ -229,7 +229,7 @@ $query->select_array(array(
 
 			<article>
 				<h4 class="method" id="method_from">from($tables)</h4>
-				<p>The <strong>from</strong> method appends tables to select from.</p>
+				<p><strong>from</strong> メソッドは、取得するテーブルを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -265,7 +265,7 @@ $query->select_array(array(
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select()->from('users');
 
-// Append tables to select from
+// 取得するテーブルを指定
 $query->from(
 	'admins',
 	array('comments', 'cmmnts')
