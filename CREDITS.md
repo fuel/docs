@@ -13,3 +13,4 @@
 * Mizuki Yamanaka <https://github.com/charlesvineyard>
 * Taiji Inoue <https://github.com/inouet>
 * Sohei Iwahori <https://github.com/egmc>
+* Toru Tamura <https://github.com/torut>
