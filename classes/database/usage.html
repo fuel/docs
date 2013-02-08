@@ -144,30 +144,28 @@ Array
 
 				<h3 id="results">結果の取得</h3>
 				<p>
-					Executing a select query will generate a result object containing the requested database records.
-					By default the result is fetched as associative arrays. Here is an example how to influence this
-					behaviour.
+					SELECTクエリの実行は、要求されたデータベースのレコードの値を含む結果オブジェクトを生成します。
+					デフォルトでは、結果は連想配列で取得します。以下に、この振る舞いを変更する例を示します。
 				</p>
-				<pre class="php"><code>// Will fetch the result as an associative array.
+				<pre class="php"><code>// 連想配列として結果が返ります。
 $result = DB::select('id','name')->from('users')->as_assoc()->execute();
 
-// Will fetch the result as an object.
+// オブジェクトとして結果が返ります。
 $result = DB::select('id','name')->from('users')->as_object()->execute();
 
-// Will fetch the result as an Model_Users object.
+// Model_Users オブジェクトとして結果が返ります。
 $result = DB::select()->from('users')->as_object('Model_Users')->execute();
 
-// Will fetch the result as an Model_Users object (a model from the Users module).
+// Model_Users オブジェクトとして結果が返ります。 (Usersモジュールのmodel)
 $result = DB::select()->from('users')->as_object('\\Users\\Model_Users')->execute();
 </code></pre>
 				<p class="note">
-					When you pass a class name to as_object(), make sure you include any namespace if needed. If the class
-					specified does not exist, as_object() will be ignored and an indexed array will be returned.
+				クラス名を as_object() に渡す場合、必要があれば namespace を含めてください。もし指定されたクラスが存在しない場合、 as_object() は無視され、インデックス付きの配列が返却されるでしょう。
 				</p>
-				<p>Want to know how many records you have fetched? It's dead simple!</p>
+				<p>何レコードが取得できたか知りたいって？それは超シンプルです！</p>
 				<pre class="php"><code>
 $result = DB::select('*')->from('users')->execute();
-// Just count the results, it returns an int.
+// ただ結果をカウントするだけ。int が返ります。
 $num_rows = count($result);
 </code></pre>
 				<p>To access these results you either loop through the result object directly, or get the result array.</p>
