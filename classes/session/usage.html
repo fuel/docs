@@ -62,17 +62,17 @@
 				このことにより、期限切れのセッションによってアプリケーションに予期せぬ挙動を引き起こす可能性があります。
 			</p>
 
-			<h3 id="gc">Garbage Collection</h3>
+			<h3 id="gc">ガベージコレクション</h3>
 
 			<p>
-				There session drivers have a built-in garbage collection mechanism to remove stale entries. Storage backends that
-				have built-in support for data expiration, such as APC, Memcached or Redis, will use that feature, and
-				will auto expire stale cache entries.
+				セッションドライバーは不要なエントリーを削除するためのガベージコレクション機構を持ちます。
+				APC、Memcached、Redis等のexpireをビルトインでサポートするストレージの場合、その機能を使用し、
+				自動で不要なキャッシュエントリーを期限切れとしてます。
 			</p>
 			<p>
-				Storage backends that don't, for example the database or file system drivers, use the gc_probability setting to determine if
-				garbage collection is needed. If so, they will run it in a shutdown event, after the page has been send to the user.
-				Downside of this method is that if this takes some time, the page will not finished to be "loading..." until GC is completed.
+				データベースやファイルシステムのようにそれを行わないストレージの場合、gc_probabilityの設定によりガベージコレクションが必要か判断します。
+				必要な場合、ユーザーにページが送られた後、シャットダウンイベントにて実行されます。
+				この方法のよくない点は、　処理に時間がかかる場合、GCが完了するまでページが"loading…"となることです。
 			</p>
 
 			<p class="note">
