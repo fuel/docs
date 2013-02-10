@@ -72,14 +72,14 @@
 			<p>
 				データベースやファイルシステムのようにそれを行わないストレージの場合、gc_probabilityの設定によりガベージコレクションが必要か判断します。
 				必要な場合、ユーザーにページが送られた後、シャットダウンイベントにて実行されます。
-				この方法のよくない点は、　処理に時間がかかる場合、GCが完了するまでページが"loading…"となることです。
+				この方法のよくない点は、処理に時間がかかる場合、GCが完了するまでページが"loading…"となることです。
 			</p>
 
 			<p class="note">
-				When using sessions, make <strong>ABSOLUTELY</strong> sure that the timezone configured in your <em>app/config/config.php</em> and/or your
-				<em>php.ini</em> file matches the timezone set on your server. Since cookie expiry timestamps are in GMT, expiry time calculation goes
-				horribly wrong when you have a timezone mismatch, ranging from not expiring properly to session cookies not set at all because they arrive
-				at the browser already expired.
+				セッションを使用する際は、 <strong>必ず</strong> <em>app/config/config.php</em> のタイムゾーン設定およびまたは
+				<em>php.ini</em>の設定をあなたのサーバーのタイムゾーン設定と合わせてください。
+				クッキーの有効期限タイムスタンプがGMTとなり、タイムゾーンのミスマッチが有効期限の計算を狂わせると、期限切れでない適切なセッションクッキーがブラウザ到達時に期限切れとして扱われ
+				まったくセットされなくなります。
 			</p>
 
 			<article>
