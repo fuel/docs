@@ -44,42 +44,42 @@
 		</div>
 
 		<div id="main">
-			<h2 id="simplegroup">SimpleAuth Group</h2>
+			<h2 id="simplegroup">SimpleAuth グループ</h2>
 
 			<p>
-				As said in the <a href="../intro.html">はじめに</a> of the Auth package, an authentication system comes with
-				three different drivers, each dealing with a part of the system.
+			  Auth パッケージの <a href="../intro.html">はじめに</a> で書いたように、
+			  認証システムはシステムに付属する 3 つの異なったドライバによって成り立っています。
 			</p>
 			<p>
-				The SimpleAuth group driver stores it's group definitions in the simpleauth configuration file.	It provides the logic
-				for checking if a user is a member of a group, and for retrieving group information, or the roles defined to to a group.
+			  SimpleAuth グループドライバは、グループ定義情報を simpleauth.php 設定ファイルに保持しています。
+			  これは、ユーザーがグループのメンバーであるかどうかやグループそのものの情報、またグループに定義されているロールを取得するためのロジックを提供します。
 			</p>
 
 			<h3 id="configuration">設定</h3>
 
 			<p>
-				The SimpleAuth group driver stores it's group definitions in the simpleauth configuration file. The groups are defined
-				as a multi-dimensional array, which must have the following structure:
+			  SimpleAuth グループドライバは、グループ定義情報を simpleauth.php 設定ファイルに保持しています。
+			  グループは多次元配列として定義され、以下の構造を持っていなければいけません：
 			</p>
 
 			<pre class="php"><code>array(
-	&lt;id&gt; => array(				// where &lt;id&gt; is a number that identifies the group
-		'name' => 'name-of-this-group',		// the name that identifies this group, like 'Administrators' or 'Guests'
-		'roles' => array('role', 'otherrole'),	// list of roles assigned to this group
+	&lt;id&gt; => array(				//  &lt;id&gt; グループを識別するための番号
+		'name' => 'name-of-this-group',		// グループを識別するための名前、'Administrators' や 'Guests' など
+		'roles' => array('role', 'otherrole'),	// このグループに割り当てられたロール
 	),
 ),</code></pre>
-			<p>The simpleauth config file supplied with the Auth package contains some examples that you can use.</p>
+			<p>Authパッケージに含まれる simpleauth.php 設定ファイルには、使用可能ないくつかの例が含まれています。</p>
 
-			<h3 id="classmethods">Class methods</h3>
+			<h3 id="classmethods">Class メソッド</h3>
 
 				<article>
 					<h4 id="method_member" class="method">member($group, $user = null)</h4>
-					<p>The <strong>member</strong> method allows you to check if a user is member of a given group.</p>
+					<p><strong>member</strong> メソッドは、ユーザーがそのグループのメンバーかどうかをチェックします。</p>
 					<table class="method">
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -92,20 +92,20 @@
 									</tr>
 									<tr>
 										<th><kbd>$group</kbd></th>
-										<td>required</td>
-										<td>The id of the group you want to check for membership</td>
+										<td>必須</td>
+										<td>チェックしたいグループの id</td>
 									</tr>
 									<tr>
 										<th><kbd>$user</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A specific user, identified by the result of get_user_id(), or <strong>null</strong> for the currently logged-in user.</td>
+										<td>チェックしたいユーザー。get_user_id()の返されるユーザーidか、<strong>null</strong> の場合は現在ログインしているユーザー。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. <strong>true</strong> if the user is member of the group, or <strong>false</strong> if not.</td>
+							<td>ユーザーがそのグループのメンバーならば <strong>true</strong> を、そうでなければ <strong>false</strong> を返します。
 						</tr>
 						</tbody>
 					</table>
@@ -113,12 +113,12 @@
 
 				<article>
 					<h4 id="method_get_name" class="method">get_name($group = null)</h4>
-					<p>The <strong>get_name</strong> method allows you to fetch the name of a given group id.</p>
+					<p><strong>get_name</strong> メソッドはグループ id からグループ名を返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -132,28 +132,28 @@
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The id of the group you want to get the name of</td>
+										<td>グループ名を取得したいグループの id </td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. <strong>false</strong> if the group id does not exist, or the defined name of the group.</td>
+							<td>mixed. もしグループが存在しなければ <strong>false</strong>、そうでなければグループ名が返ります。</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If no group id is given, the name of the first defined group is returned.</p>
+					<p class="note">グループ id が引数に渡されなかった時は、最初に定義されたグループの名前が返ります。</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_roles" class="method">get_roles($group = null)</h4>
-					<p>The <strong>get_name</strong> method allows you to fetch the roles defined for a given group id.</p>
+					<p><strong>get_roles</strong> メソッドは、グループ id からそのグループ用に定義されたロールを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -167,14 +167,14 @@
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The id of the group you want to get the roles of</td>
+										<td>ロールを知りたいグループの id</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>array. If the group id does not exist, an empty array is returned. If no group id is given, the roles of the first group are returned.</td>
+							<td>array. もし渡されたグループ id が存在しなければ空の配列が返ります。渡されたグループ id が null だったら、最初に定義されたグループのロールが返ります。</td>
 						</tr>
 						</tbody>
 					</table>
