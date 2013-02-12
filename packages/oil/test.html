@@ -49,41 +49,41 @@
 
 				<p><code>oil test</code> (or <code>oil t</code>) コマンドは Web アプリ、モジュール、パッケージに関連した PHPUnit のテストを実行します。FuelPHP でのユニットテストに関する完全なドキュメントは <a href="../../general/unit_testing.html">ユニットテスト</a> のドキュメントページにあり、PHPUnit に関する完全なドキュメントは <a href="http://www.phpunit.de/manual/current/ja/index.html">PHPUnit の Web サイト</a> にあります。</p>
                 <h3 id="configuration">設定</h3>
-                <p>The oil utility itself does not need much configuration, but if your instance of PHPUnit is not installed globally on your machine (for example, if you installed PHPUnit to your project using Composer), you'll want to configure oil to address your PHPUnit installation. Create (or copy from the oil package) a config file at <code>app/config/oil.php</code>, and change these settings as needed:</p>
+                <p>oil ユーティリティはそれ自身はさほど多くの設定を必要としません。しかし PHPUnit がシステムグローバルな環境にインストールされていない場合 (例えば、PHPUnit を Composer を使ってプロジェクト内にインストールしている場合)、oil に対して PHPUnit がインストールされている場所を知らせないといけません。<code>app/config/oil.php</code>設定ファイルを新規に作成 (または oil パッケージの中からコピー) して、必要ならば以下の設定を変更します：</p>
                 <h4 id="phpunit_configuration">PHPUnit の設定</h4>
                 <table class="config">
                     <tr class="header">
-                        <th>Param</th>
-                        <th>Type</th>
-                        <th>Default</th>
-                        <th>Description</th>
+                        <th>項目</th>
+                        <th>型</th>
+                        <th>デフォルト</th>
+                        <th>説明</th>
                     </tr>
                     <tr>
                         <th>phpunit.autoload_path</th>
                         <td>string</td>
                         <td><pre class="php"><code class="php">'PHPUnit/Autoload.php'</code></pre></td>
-                        <td>The path to PHPUnit's Autoload file.</td>
+                        <td>PHPUnit の Autoload ファイルの場所。</td>
                     </tr>
                     <tr>
                         <th>phpunit.binary_path</th>
                         <td>string</td>
                         <td><pre class="php"><code class="php">'phpunit'</code></pre></td>
-                        <td>This is the command (including full path, if necessary) to run the phpunit executable.</td>
+                        <td>phpunit を実行するコマンド (必要ならばフルパスで)。</td>
                     </tr>
                 </table>
 				<h4 id="cli_options">コマンドラインオプション</h4>
-				<p>Test supports several PHPUnit command line options:</p>
-				<p><code>--group</code> Only runs tests from the specified group(s).</p>
-				<p><code>--exclude-group</code> Exclude tests from the specified group(s).</p>
-				<p><code>--coverage-clover &lt;file&gt;</code> Generate code coverage report in Clover XML format.</p>
-				<p><code>--coverage-html &lt;dir&gt;</code> Generate code coverage report in HTML format.</p>
-				<p><code>--coverage-php &lt;file&gt;</code> Serialize PHP_CodeCoverage object to file.</p>
-				<p><code>--coverage-text=&lt;file&gt;</code> Generate code coverage report in text format.</p>
-                <p>For more information on these command line options and what they do, please see the <a
-                        href="http://www.phpunit.de/manual/current/en/textui.html#textui.clioptions">PHPUnit Documentation</a>.</p>
+				<p>テストでは、いくつかの PHPUnit コマンドラインオプションをサポートしています：</p>
+				<p><code>--group</code> 指定されたグループのテストのみを行います。</p>
+				<p><code>--exclude-group</code> 指定されたグループ以外のテストを行います。</p>
+				<p><code>--coverage-clover &lt;file&gt;</code> テストカバレッジレポートを Clover XML フォーマットで出力します。</p>
+				<p><code>--coverage-html &lt;dir&gt;</code> テストカバレッジレポートを HTML フォーマットで出力します。</p>
+				<p><code>--coverage-php &lt;file&gt;</code> PHP_CodeCoverage オブジェクトをシリアライズしてファイルに出力します。</p>
+				<p><code>--coverage-text=&lt;file&gt;</code> テストカバレッジレポートをテキストファイルで出力します。</p>
+                <p>これらのコマンドラインオプションが何をするのかより詳しく知りたい方は
+		  <a href="http://www.phpunit.de/manual/current/en/textui.html#textui.clioptions">PHPUnit のマニュアルページ</a> を参照して下さい。</p>
                 <h4 id="phpunit_config">PHPUnit テストランナーの設定</h4>
-				<p>Oil will by default pass to PHPUnit the <code>phpunit.xml</code> test runner configuration file located in the <code>COREPATH</code> directory.</p>
-                <p>Fuel's basic phpunit.xml at <code>fuel/core/phpunit.xml</code> contains:</p>
+				<p><code>COREPATH</code> に存在するテストランナー用の設定ファイル <code>phpunit.xml</code> を、Oil はデフォルトではそのまま PHPUnit に渡します。</p>
+				<p>Fuel の phpunit.xml 基本ファイル、<code>fuel/core/phpunit.xml</code> は以下を含んでいます:</p>
 				<pre class='xml'><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;phpunit colors="true" stopOnFailure="false" bootstrap="../core/bootstrap_phpunit.php"&gt;
 	&lt;php&gt;
@@ -105,8 +105,8 @@
 	&lt;/testsuites&gt;
 &lt;/phpunit&gt;
 </code></pre>
-				<p>If you need to change this configuration file, copy it into your <code>APPPATH</code> directory and edit that copy. Oil will recognize the new configuration file in place of the default and will use your custom configuration.</p>
-                <p>For example, if you develop in Modules, you may want the following additional test suite in your custom test configuration file:</p>
+				<p>もしこの設定ファイルを変更する必要があるなら、<code>APPPATH</code> にコピーして、そのコピーしたものを編集して下さい。Oil はデフォルトの代わりに新しい設定ファイルを認識し、あなたのカスタム設定を使用します。</p>
+				<p>例えばモジュールを開発しているならば、当然そのための以下の様なテストスイートを設定に追加したいと思うでしょう：</p>
 <pre class='xml'><code>		&lt;testsuite name="modules"&gt;
 			&lt;directory suffix=".php"&gt;../modules/*/tests&lt;/directory&gt;
 		&lt;/testsuite&gt;
