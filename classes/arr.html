@@ -1930,6 +1930,116 @@ Array
 					</tbody>
 				</table>
 			</article>
+			<article>
+				<h4 id="method_search" class="method">search($array, $value, $default = null, $recursive = false, $delimiter = '.')</h4>
+				<p>The <strong>search</strong> method searches the array for a given value and returns the corresponding key or default value.<br />
+				- If $recursive is set to true, then the <strong>search</strong> method will return a delimiter-notated key using $delimiter.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>array</em></td>
+									<td><em>required</em></td>
+									<td>The array to search</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>mixed</em></td>
+									<td><em>required</em></td>
+									<td>The searched value</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The key to be returned if the requested value does not exist</td>
+								</tr>
+								<tr>
+									<th><kbd>$recursive</kbd></th>
+									<td><em>boolean</em></td>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Whether to get keys recursively</td>
+								</tr>
+								<tr>
+									<th><kbd>$delimiter</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>'.'</code></pre></td>
+									<td>The delimiter when $recursive is true</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>int|string|null</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>
+							<kbd>InvalidArgumentException</kbd> when first argument is not array.
+							<kbd>InvalidArgumentException</kbd> $default argument is not string or int or null.
+							<kbd>InvalidArgumentException</kbd> $delimiter argument is not string.
+						</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$arr = array(
+	'one' => 1,
+	'two' => 2,
+	'three' => array(
+		'a' => 4,
+		'b' => 'foo'
+	),
+	'four',
+	array(
+			null,
+			array(
+				null,
+				null,
+				null,
+				array(
+					'deep'
+				)
+			)
+		),
+	);
+);
+
+echo Arr::search($arr, 1);
+// one
+
+echo Arr::search($arr, 'four');
+// 0
+
+var_dump(Arr::search($arr, 5));
+// NULL
+
+echo Arr::search($arr, 4, null, true);
+// three.a
+
+echo Arr::search($arr, 'deep', null, true);
+// 1.1.3.0
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 			<h3 id="procedural_helpers">Procedural helpers</h3>
 
 			<article>
