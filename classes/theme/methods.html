@@ -930,10 +930,12 @@ $themes = $theme->all();
 			<article>
 				<h4 class="method" id="method_use_modules">use_modules($enable = true)</h4>
 				<p>
-					The <strong>use_modules</strong> method enables or disables the auto prefixing feature for modules.
-					When loading a theme view, if enabled the view file is prefixed with the name of the current active
-					module. If not found, it's checked again without the prefix, allowing for global views from inside
-					a module.
+					The <strong>use_modules</strong> method enables or disables the prefixing feature for views loaded from a
+					module. If <em>true</em>, the views loaded via the Theme class will be prefixed by the current active module
+					name (if any). If a string is passed, it will be prefixed as well, allowing you to store all modules in a
+					separate directory, to avoid name conficts between module names and non-prefixed view names. If the view can
+					not be found, it's checked again without the prefix, allowing for global views from inside a module. If that
+					doesn't exist either, the View class will be called to load the view the regular way.
 				</p>
 				<table class="method">
 					<tbody>
@@ -953,9 +955,9 @@ $themes = $theme->all();
 								</tr>
 								<tr>
 									<th><kbd>$enable</kbd></th>
-									<td><em>boolean</em></td>
+									<td><em>boolean</em> | <em>string</em></td>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>True to enable the feature, false to disable it.</td>
+									<td>True or a string containing a folder name to enable the feature, false to disable it.</td>
 								</tr>
 							</table>
 						</td>
@@ -970,8 +972,11 @@ $themes = $theme->all();
 							<pre class="php"><code>// Get the default instance
 $theme = \Theme::instance();
 
-// when in the module 'test', this will load the theme view 'test/view'
-$info = $theme->use_modules()->set_partial('content', 'view')->use_modules(false);
+// when in the module 'test', this will load the theme view 'test/controller/view'
+$info = $theme->use_modules()->set_partial('content', 'controller/view')->use_modules(false);
+
+// when in the module 'test', this will load the theme view 'modules/test/controller/view'
+$info = $theme->use_modules('modules')->set_partial('content', 'controller/view')->use_modules(false);
 </code></pre>
 						</td>
 					</tr>
