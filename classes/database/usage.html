@@ -145,7 +145,8 @@ Array
 				<h3 id="results">結果の取得</h3>
 				<p>
 					SELECTクエリの実行は、要求されたデータベースのレコードの値を含む結果オブジェクトを生成します。
-					デフォルトでは、結果は連想配列で取得します。以下に、この振る舞いを変更する例を示します。
+					デフォルトでは、結果は連想配列で取得します。以下に、
+					この振る舞いを変更する例を示します。
 				</p>
 				<pre class="php"><code>// 連想配列として結果が返ります。
 $result = DB::select('id','name')->from('users')->as_assoc()->execute();
@@ -160,7 +161,8 @@ $result = DB::select()->from('users')->as_object('Model_Users')->execute();
 $result = DB::select()->from('users')->as_object('\\Users\\Model_Users')->execute();
 </code></pre>
 				<p class="note">
-				クラス名を as_object() に渡す場合、必要があれば namespace を含めてください。もし指定されたクラスが存在しない場合、 as_object() は無視され、インデックス付きの配列が返却されるでしょう。
+				クラス名を as_object() に渡す場合、必要があれば namespace を含めてください。もし指定されたクラスが存在しない場合、
+				as_object() は無視され、インデックス付きの配列が返却されるでしょう。
 				</p>
 				<p>何レコードが取得できたか知りたいって？それは超シンプルです！</p>
 				<pre class="php"><code>
