@@ -65,14 +65,6 @@
 							<th>Description</th>
 						</tr>
 						<tr>
-							<th>csrf_autoload</th>
-							<td>boolean</td>
-							<td><pre class="php"><code>true</code></pre></td>
-							<td>
-								When true, load and check the CSRF token using check_token() automatically.
-							</td>
-						</tr>
-						<tr>
 							<th>csrf_token_key</th>
 							<td>string</td>
 							<td><pre class="php"><code>'fuel_csrf_token'</code></pre></td>
@@ -146,8 +138,18 @@
 								array will be exempt from auto encoding.
 							</td>
 						</tr>
+						<tr>
+							<th>csrf_autoload</th>
+							<td>boolean</td>
+							<td><pre class="php"><code>true</code></pre></td>
+							<td>
+								When true, load and check the CSRF token using check_token() automatically. A SecurityException will be thrown if the check fails.
+							</td>
+						</tr>
 					</tbody>
 				</table>
+				<p class="note">Note that if you enable "csrf_autoload", <strong>ALL</strong> your POSTs to the application <strong>MUST</strong> contain a CSRF token, or the validation will fail and a SecurityException will be thrown.</p>
+				<p class="note">If you want to deal with CSRF validation failures when autoload is enabled, you can catch the SecurityException in your index.php.</p>
 			</section>
 
 			<article>
@@ -255,7 +257,14 @@ echo Security::js_fetch_token();
 
 			<article>
 				<h4 class="method" id="method_js_set_token">js_set_token()</h4>
-				<p>The <strong>js_set_token</strong> method allows you to produce JavaScript fuel_set_csrf_token() function that will set the current CSRF token field in the form when called. Use this on an onsubmit of a form, to update the hidden token field in the form with the current value of the csrf cookie.</p>
+				<p>
+					The <strong>js_set_token</strong> method allows you to produce JavaScript
+					fuel_set_csrf_token() function that will set the current CSRF token field
+					in the form when called. Use this on an onsubmit of a form, to update the
+					hidden token field in the form with the current value of the csrf cookie.
+					You have to use this when you want to allow multiple windows open, and
+					use a strict rotation and expiry of the CSRF token.
+				</p>
 				<table class="method">
 					<tbody>
 					<tr>
