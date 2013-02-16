@@ -87,7 +87,7 @@
 				The following logic is used to determine the location of the theme asset files:
 				<ul>
 					<li>
-						If your asset folder is a URL, it is suffixed by the theme name, and used are the base URL for your assets.
+						If your asset folder is a URL, it is suffixed by the theme name, and used as the base URL for your assets.
 					</li>
 					<li>
 						If the theme folder is <u>inside</u> the <strong>DOCROOT</strong>, and it contains a folder with the name of the configured
@@ -131,13 +131,15 @@
 			<p>
 				'Chrome' is a term used in UI interface design, and describes the design and styling of a window border. In the context of the Theme
 				class, it is a view that can be used to encapsulate a template partial section, which allows you to style that section independent
-				of the template itself and of the partial output. Chrome will only be generated if there were partials to render.
+				of the template itself and of the partial output. Chrome will only be generated if there are partials to render. A chrome template
+				will encapsulate a partial section, which may contain multiple partials.
 			</p>
 			<p>
 				For example, if you have a UI with windows, some of which can be opened and closed, some of which can be moved, and some are static,
 				you can use different chrome templates assigned to each of the template sections representing such a window. Each chrome template
-				will contain the HTML and javascript code to achieve the desired functionality. From your application code, you can control this
-				by simply assigning the correct chrome template.
+				contains the HTML and javascript code to achieve the desired functionality. From your application code, you can control the window
+				behaviour by simply assigning the correct chrome template. This can be particularly useful in CMS type applications, where the user
+				can control the behaviour of the UI.
 			</p>
 
 			<p>Example:</p>
@@ -167,7 +169,7 @@ class Homepage extends \Controller
 
 		// set the partials for the homepage sidebar content
 		$this->theme->set_partial('sidebar', 'homepage/widgets/login');
-		$this->theme->set_partial('sidebar', 'homepage/widgets/news')->set('users', Model_News::latest(5));
+		$this->theme->set_partial('sidebar', 'homepage/widgets/news')->set('news', Model_News::latest(5));
 
 		// call the user model to get the list of logged in users, pass that to the users sidebar partial
 		$this->theme->set_partial('sidebar', 'homepage/widgets/users')->set('users', Model_User::logged_in_users());
@@ -183,7 +185,7 @@ class Homepage extends \Controller
 		$this->theme->set_partial('banner', 'homepage/banner');
 
 		// a block of static content
-		$this->theme->set_partial('banner', 'homepage/content');
+		$this->theme->set_partial('content', 'homepage/content');
 
 		// and two link lists and a copyright block
 		$this->theme->set_partial('footerleft', 'homepage/shortcuts');
@@ -274,9 +276,13 @@ class Homepage extends \Controller
 					</tr>
 					<tr>
 						<th>use_modules</th>
-						<td>boolean</td>
+						<td>boolean|string</td>
 						<td><pre class="php"><code>false</code></pre></td>
-						<td>Whether to automatically prefix the view filename with the current module name.</td>
+						<td>
+							Whether to automatically prefix the view filename with the current module name. If it contains a string,
+							it will be used to prefix the theme view path. This allows you to move all module theme views into a
+							separate folder, and avoid collisions between module names and app views...
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -296,6 +302,7 @@ return array(
 	'info_file_name' => 'theme.info',
 	'require_info_file' => false,
 	'info_file_type' => 'php',
+	'use_modules' => true,
 );
 	</code></pre>
 
