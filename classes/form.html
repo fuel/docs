@@ -244,23 +244,23 @@ echo Form::close();</code></pre>
 			<article>
 				<h4 class="method" id="method_hidden">hidden($field, $value = null, $attributes = array())</h4>
 
-				<p>This is an alias for <kbd>Form::input()</kbd> that automatically sets the <kbd>type</kbd> attribute to
-				<kbd>'hidden'</kbd>.</p>
+				<p>このメソッドは、<kbd>Form::input()</kbd> メソッドのエイリアスです。<kbd>type</kbd> 属性を自動的に
+				<kbd>'hidden'</kbd>に設定します</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_password">password($field, $value = null, $attributes = array())</h4>
 
-				<p>This is an alias for <kbd>Form::input()</kbd> that automatically sets the <kbd>type</kbd> attribute to
-				<kbd>'password'</kbd>.</p>
+				<p>このメソッドは、<kbd>Form::input()</kbd> メソッドのエイリアスです。<kbd>type</kbd> 属性を自動的に
+				<kbd>'password'</kbd>に設定します</p>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_radio">radio($field, $value = null, $attributes = array())</h4>
+				<h4 class="method" id="method_radio">radio($field, $value = null, $checked = null, $attributes = array())</h4>
 
-				<p>This is an alias for <kbd>Form::input()</kbd> that automatically sets the <kbd>type</kbd> attribute to
-				<kbd>'radio'</kbd>.<br />
-				<em>For backwards compatibility this method also accepts: <kbd>checkbox($field, $value = null, array $attributes = array())</kbd></em></p>
+				<p>このメソッドは、<kbd>Form::input()</kbd> メソッドのエイリアスです。 <kbd>type</kbd> 属性を自動的に
+				<kbd>'radio'</kbd> に設定します<br />
+				<em>下位バージョンとの互換性のため、<kbd>radio($field, $value = null, array $attributes = array())</kbd> という書き方も可能です</em></p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -279,23 +279,24 @@ echo Form::close();</code></pre>
 								<tr>
 									<th><kbd>$field</kbd></th>
 									<td><i>必須</i></td>
-									<td>Either a string for the fieldname or an array of tag attributes.</td>
+									<td>フィールド名を文字列で指定するか、配列で属性などをまとめて指定します</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Field value, will be ignored when the first param is an array.</td>
+									<td>1つめのパラメータが配列でない場合、「値」を指定します</td>
 								</tr>
 								<tr>
 									<th><kbd>$checked</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Whether checked (if bool) or matches $value (if string), will be ignored when
-										the first param is an array.</td>
+									<td>1つめのパラメータが配列でない場合、
+										チェックの状態を、ブール値または $value と一致する値で設定します
+										</td>
 								</tr>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>These will be used as html tag properties.</td>
+									<td>HTML属性を配列で指定します</td>
 								</tr>
 							</table>
 						</td>
