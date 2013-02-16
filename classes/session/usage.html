@@ -84,7 +84,7 @@
 
 			<article>
 				<h4 class="method" id="method_instance">instance($instance = null)</h4>
-				<p>The <strong>instance</strong> method returns the default session instance, or a specific instance, identified by name.</p>
+				<p><strong>instance</strong> メソッドはデフォルトのセッションインスタンス、またはnameにより区別された特定のインタンスを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -129,7 +129,7 @@ $session = Session::instance('myappcookie');
 
 			<article>
 				<h4 class="method" id="method_set">set($variable, $value = null)</h4>
-				<p>The <strong>set</strong> method allows you to set a session variable.</p>
+				<p><strong>set</strong> メソッドはセッション変数をセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -197,7 +197,7 @@ Session::set('userid', $userid)->set('foo', 'bar');
 
 			<article>
 				<h4 class="method" id="method_get">get($variable = null, $default = null)</h4>
-				<p>The <strong>get</strong> method allows you to retrieve stored variables from the session.</p>
+				<p><strong>get</strong> メソッドは格納済みのセッション変数を取り出します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -256,7 +256,7 @@ $vars = Session::get();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_delete">delete($variable)</h4>
-				<p>The <strong>delete</strong> method allows you to delete a stored session variable.</p>
+				<p><strong>delete</strong> メソッドは格納済のセッション変数を削除します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -301,7 +301,7 @@ Session::delete('array.varC');
 
 			<article>
 				<h4 class="method" id="method_set_flash">set_flash($variable, $value = null)</h4>
-				<p>The <strong>set_flash</strong> method allows you to set a session flash variable. Flash variables have a limited lifespan. Depending on the configuration, they will be deleted after the next page request, or after they are retrieved.</p>
+				<p><strong>set_flash</strong> メソッドはセッションにフラッシュ変数をセットします。フラッシュ変数は限定されたライフスパンを持ちます。設定に依存し、次のページリクエストか取り出された後に削除されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -358,7 +358,7 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 
 			<article>
 				<h4 class="method" id="method_get_flash">get_flash($variable, $default = null, $expire = false)</h4>
-				<p>The <strong>get_flash</strong> method allows you to get a session flash variable. Flash variables have a limited lifespan. Depending on the configuration, they will be deleted after the next page request, or after they are retrieved.</p>
+				<p><strong>get_flash</strong> メソッドはセッションからフラッシュ変数を取り出します。フラッシュ変数は限定されたライフスパンを持ちます。設定に依存し、次のページリクエストか取り出された後に削除されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -411,7 +411,7 @@ $step = Session::get_flash('step');
 
 			<article>
 				<h4 class="method" id="method_keep_flash">keep_flash($variable)</h4>
-				<p>The <strong>keep_flash</strong> method resets a flash variable stored in the session to an 'unrequested' state. This allows you to get a flash variable, and still pass it on to the next page request.</p>
+				<p><strong>keep_flash</strong> メソッドはセッションに格納されたフラッシュ変数を 'unrequested' な状態にリセットします。フラッシュ変数を取得し、次のページリクエストまで変数をパスします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -453,7 +453,7 @@ Session::keep_flash('step');
 
 			<article>
 				<h4 class="method" id="method_delete_flash">delete_flash($variable)</h4>
-				<p>The <strong>delete_flash</strong> method allows you to delete a stored flash variable.</p>
+				<p><strong>delete_flash</strong> メソッドは格納されたフラッシュ変数を削除します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -495,7 +495,7 @@ Session::delete_flash('userid');
 
 			<article>
 				<h4 class="method" id="method_create">create()</h4>
-				<p>The <strong>create</strong> method allows you to create a new session. If a session is already present, it will be destroyed when the new one is created.</p>
+				<p><strong>create</strong> メソッドは新しいセッションを生成します。セッションが既に存在する場合、セッションが新たに生成された際に破棄されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -524,7 +524,7 @@ Session::create();
 
 			<article>
 				<h4 class="method" id="method_destroy">destroy()</h4>
-				<p>The <strong>destroy</strong> method allows you to destroy an existing session.</p>
+				<p><strong>destroy</strong> メソッドは存在しているセッションを破棄します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -553,7 +553,7 @@ Session::destroy();
 
 			<article>
 				<h4 class="method" id="method_read">read()</h4>
-				<p>The <strong>read</strong> method allows you to manually read a session. The session is automatically read when the session class is initialized, so under normal circumstances there is no need to use this method.</p>
+				<p><strong>read</strong> メソッドは手動でセッションの読み込みを行います。セッションはセッションクラスの初期化時に自動的に読み込まれますので、通常このメソッドを使用する必要はありません。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -582,7 +582,7 @@ Session::read();
 
 			<article>
 				<h4 class="method" id="method_write">write()</h4>
-				<p>The <strong>write</strong> method allows you to manually write the session. Under normal circumstances, the session is automatically written when the script ends.</p>
+				<p><strong>write</strong> メソッドは手動でセッションを書き込みます。通常、セッションはスクリプト終了時に自動的に書き込まれます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -612,10 +612,10 @@ Session::write();
 			<article>
 				<h4 class="method" id="method_rotate">rotate()</h4>
 				<p>
-					The <strong>rotate</strong> method allows you to manually rotate the session id.
-					Under normal circumstances, the session id is automatically rotated periodically,
-					as defined in the configuration. You might want to manually rotate it as an extra
-					security measure, for example when you change the rights of the logged-in user.
+					<strong>rotate</strong> メソッドは手動でセッションIDを変更します。
+					通常、セッションIDは設定により定期的に自動で変更されます。
+					例えばログインユーザーの権限を変更したような場合などにセキュリティ上の判断により
+					手動での変更を行いたいことがあるかもしれません。
 				</p>
 				<table class="method">
 					<tbody>
@@ -646,8 +646,8 @@ Session::rotate();
 			<article>
 				<h4 class="method" id="method_key">key()</h4>
 				<p>
-					The <strong>key</strong> method allows you retrieve elements of the session key,
-					which uniquely identifies the session.
+					<strong>key</strong> メソッドはユニークにセッションを識別する、
+					セッションキー要素を取得します。
 				</p>
 				<table class="method">
 					<tbody>
