@@ -763,14 +763,14 @@ Model_Article::find()
 	->order_by('date', 'ASC')
 	->rows_offset(\Pagination::$offset)
 	->rows_limit(\Pagination::$per_page)
-	->get());
+	->get();
 
 // new usage:
 Model_Article::find()
 	->order_by('date', 'ASC')
 	->rows_offset(\Pagination::get('offset'))
 	->rows_limit(\Pagination::get('per_page'))
-	->get());
+	->get();
 </code></pre>
 			</section>
 
