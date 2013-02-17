@@ -100,12 +100,12 @@ var customSearchControl;
 
 if(typeof google != 'undefined')
 {
-google.load('search', '1', {language : 'en'});
+google.load('search', '1', {language : 'ja'});
 google.setOnLoadCallback(function() {
 	// fuelphp.com/docs
 	// customSearchControl = new google.search.CustomSearchControl('006268519150918941486:vg1sweimb7m');
 	// fuelphp.com/dev-docs
-	customSearchControl = new google.search.CustomSearchControl('006268519150918941486:avkdxx7rmmc');
+	customSearchControl = new google.search.CustomSearchControl('012250717400967371289:_zveystzets');
 	customSearchControl.setResultSetSize(4);
 	var options = new google.search.DrawOptions();
 	options.setSearchFormRoot('cse-search-form');
