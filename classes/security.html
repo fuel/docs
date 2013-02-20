@@ -65,6 +65,14 @@
 							<th>Description</th>
 						</tr>
 						<tr>
+							<th>token_salt</th>
+							<td>string</td>
+							<td><pre class="php"><code>'put your salt value here...'</code></pre></td>
+							<td>
+								Salt used to generate secure tokens. Make sure this contains something random to make sure your tokens are not predictable.
+							</td>
+						</tr>
+						<tr>
 							<th>csrf_token_key</th>
 							<td>string</td>
 							<td><pre class="php"><code>'fuel_csrf_token'</code></pre></td>
@@ -151,12 +159,12 @@
 							<td>array</td>
 							<td><pre class="php"><code>array('post', 'put', 'delete')</code></pre></td>
 							<td>
-								When csrf_autoload is true, and request http method in this array, will check the CSRF token automatically.
+								When csrf_autoload is true, the CSRF token will be validated for all http methods in this array.
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<p class="note">Note that if you enable "csrf_autoload", <strong>ALL</strong> your POSTs to the application <strong>MUST</strong> contain a CSRF token, or the validation will fail and a SecurityException will be thrown.</p>
+				<p class="note">Note that if you enable "csrf_autoload", <strong>ALL</strong> your HTTP requests of the specified type <strong>MUST</strong> contain a CSRF token, or the validation will fail and a SecurityException will be thrown.</p>
 				<p class="note">If you want to deal with CSRF validation failures when autoload is enabled, you can catch the SecurityException in your index.php.</p>
 			</section>
 
@@ -299,6 +307,37 @@ echo Security::js_set_token();
 	&lt;!-- do your stuff here --&gt;
 &lt;/form&gt;
 </code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_generate_token">generate_token()</h4>
+				<p>
+					The <strong>generate_token</strong> method allows you to generate a secury token.
+					This method is used to generate CSRF tokens, but can be used anywhere in your application where you need
+					a secure random token.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$token = Security::generate_token();</code></pre>
 						</td>
 					</tr>
 					</tbody>
