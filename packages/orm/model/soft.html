@@ -65,13 +65,13 @@
                     <h2 id="settings">Settings</h2>
                     <p>There are currently two extra settings that can be set for soft delete models.</p>
                     <p><kbd>deleted_field</kbd> is the field that stores the timestamp. In the database this should be either a MySQL or unix timestamp and default to <kbd>NULL</kbd>. Any entries with a <kbd>NULL</kbd> timestamp are not deleted. The column name defaults to deleted_at.</p>
-                    <p><kbd>mysql_timestamp</kbd> is if the timestamp generated should be a MySQL timestamp or a unix timestamp. This defaults to <kbd>true</kbd> (use a MySQL timestamp).</p>
+                    <p><kbd>mysql_timestamp</kbd> is if the timestamp generated should be a MySQL timestamp or a unix timestamp. This defaults to <kbd>false</kbd> (use a unix timestamp).</p>
                     <p>Example model with default settings:</p>
                     <pre id="php"><code>class Model_Employee extends \Orm\Model_Soft
 {
     protected static $_soft_delete = array(
         'deleted_field' => 'deleted',
-        'mysql_timestamp' => true,
+        'mysql_timestamp' => false,
     );
 }</code></pre>
                 </section>
