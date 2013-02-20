@@ -65,7 +65,7 @@
 	protected static $_temporal = array(
 		'start_column' => 'temporal_start', //The name of the column that contains the time this row is valid from
 		'end_column' => 'temporal_end', //The name of the column that contains the time this row is valid to
-		'mysql_timestamp' => true, //If set to false will use unix timestamps rather than MySQL timestamps
+		'mysql_timestamp' => false, //If set to true will use MySQL timestamps rather than unix timestamps
 	);
 }</code></pre>
                     <p class="note">Please note that the primary key must be a compound key between the entity id and the temporal timestamps.</p>
@@ -125,8 +125,8 @@
                             </tr>
                         </tbody>
                     </table>
+					<p class="note">Any model fetched through <kbd>find_revision</kbd> or <kbd>find_revisions</kbd> should be considered <strong>read only</strong> as it should not be possible to modify the past!.</p>
                 </article>
-                
                 <article>
                     <h4 id="method_find_revisions_between" class="method"><a class="interal_link" href="#/method_find_revisions_between">find_revisions_between($id, $earliestTime = null, $latestTime = null)</a></h4>
                     <p>This method will return the states of an entity between the given times.</p>
@@ -247,7 +247,7 @@ $product->overwrite();</code></pre>
                             <tr>
                                 <th>Example</th>
                                 <td>
-                                    <pre class="php"><code>Model_Product::find_revision(5)->purge();</code></pre>
+                                    <pre class="php"><code>Model_Product::find(5)->purge();</code></pre>
                                 </td>
                             </tr>
                         </tbody>
