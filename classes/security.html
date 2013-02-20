@@ -146,6 +146,14 @@
 								When true, load and check the CSRF token using check_token() automatically. A SecurityException will be thrown if the check fails.
 							</td>
 						</tr>
+						<tr>
+							<th>csrf_autoload_methods</th>
+							<td>array</td>
+							<td><pre class="php"><code>array('post', 'put', 'delete')</code></pre></td>
+							<td>
+								When csrf_autoload is true, and request http method in this array, will check the CSRF token automatically.
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				<p class="note">Note that if you enable "csrf_autoload", <strong>ALL</strong> your POSTs to the application <strong>MUST</strong> contain a CSRF token, or the validation will fail and a SecurityException will be thrown.</p>
