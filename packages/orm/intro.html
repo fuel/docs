@@ -45,11 +45,11 @@
 		<div id="main">
 			<h2>Orm</h2>
 
-			<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-				Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-				to establish relations between those objects.<br />
-				It follows the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
-				Active Record Pattern</a> closely, but was also influenced by other systems.</p>
+            <p>Ormは <a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E9%96%A2%E4%BF%82%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0" target="_blank">Object Relational Mapper</a> の省略です。
+            データベースの行をオブジェクトにマッピングする、これらのオブジェクト間の関係を確立させるという二つの機能があります。
+
+            <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">Active Record パターン</a>をよく踏襲していますが、他のシステムの影響も受けています。
+            </p>
 
 			<section>
 				<h2 id="intro">はじめに</h2>
@@ -62,7 +62,7 @@
 			<section>
 				<h2 id="install">インストール</h2>
 
-				<p>The Orm package is included in the Fuel download. All you need to do is enable it in your config.</p>
+                <p>Orm パッケージは Fuel の配布物に含まれています。 設定で有効にするだけで利用できます。</p>
 					<pre class="php"><code>'always_load' => array(
 	'packages' => array(
 		'orm',
@@ -90,20 +90,20 @@
 					これは、<em>あなたがその空間にいる場合でも</em>名前空間が含まれています。
 					文字列内のクラス名は、常にグローバルコンテキストから取得されます。現在の名前空間コンテキストは関係ありません。</p>
 
-				<h3>I get an Orm\FrozenObject exception</h3>
+				<h3>Orm\FrozenObject 例外を受け取りました</h3>
 				<p>Objects can't be edited while being saved to the database, that prevents circular saving and resaving
 					already saved objects. This shouldn't happen during normal usage and is most often caused by faulty
 					configuration of relations.<br />
 					Sometimes this can be caused by a bug, especially when you're not using a stable release.</p>
 
-				<h3>I have defined a limit and offset, but the results are not correct</h3>
-				<p>The ORM always makes sure that query results are consistent. If you run a query that contains related
-					models, a subquery will be generated to make sure the entire related resultset is fetched. Even if this
-					means more records then the limit you have set will be fetched. This is because once you start manipulating
-					incomplete resultsets, very bad things might happen to your related models.</p>
-				<p>If you are absolutely sure you are not going to manipulate the results, for example because you need them
-					for pagination only, you can use <kbd>rows_limit()</kbd> and <kbd>rows_offset()</kbd> instead, which will
-					forces them on the entire query.</p>
+				<h3>Limit 及び Offset を定義したが、結果が正しくありません</h3>
+                <p>ORM は常にクエリの結果に一貫性があることを確認します。関連するモデルが含まれているクエリを実行すると、
+                すべての関連する結果がフェッチされたかどうかを確認するためにサブクエリが生成されます。
+                これは、limit で定義した以上のレコードがフェッチされることを意味しています。
+                一旦不完全な結果セットを操作し始めると、関連するモデルにとてもわるい影響が起こるためです。</p>
+                <p>もしあなたがその結果を絶対に操作しないことが確信できる場合(たとえば pagination のみに利用する場合)
+                代わりに <kbd>rows_limit()</kbd> と <kbd>rows_offset()</kbd> を利用する事で
+                クエリに対して limit, offset を強制することができます。</p>
 			</section>
 
 		</div>
