@@ -188,6 +188,30 @@ $this->render('welcome/index', $data);</code></pre>
 							</td>
 						</tr>
 						<tr>
+							<th>first-inactive</th>
+							<td>string</td>
+							<td>none</td>
+							<td>
+								Markup that will be used to generate the first page markup, if this page is first or single.
+							</td>
+						</tr>
+						<tr>
+							<th>first-inactive-link</th>
+							<td>string</td>
+							<td>none</td>
+							<td>
+								Markup that will be used to generate the first page link, if this page is first or single.
+							</td>
+						</tr>
+						<tr>
+							<th>first-marker</th>
+							<td>string</td>
+							<td><pre class="html"><code>&amp;laquo;&amp;laquo;</code></pre></td>
+							<td>
+								Markup that will be used to generate the marker of first page.
+							</td>
+						</tr>
+						<tr>
 							<th>first-link</th>
 							<td>string</td>
 							<td><pre class="html"><code>\t\t&lt;a href="{uri}"&gt;{page}&lt;/a&gt;\n</code></pre></td>
@@ -201,6 +225,14 @@ $this->render('welcome/index', $data);</code></pre>
 							<td><pre class="html"><code>&lt;span class="previous"&gt;\n\t{link}\n&lt;/span&gt;\n</code></pre></td>
 							<td>
 								Markup that will be used to generate the previous page markup.
+							</td>
+						</tr>
+						<tr>
+							<th>previous-marker</th>
+							<td>string</td>
+							<td><pre class="html"><code>&amp;laquo;</code></pre></td>
+							<td>
+								Markup that will be used to generate the marker of previous page.
 							</td>
 						</tr>
 						<tr>
@@ -268,6 +300,14 @@ $this->render('welcome/index', $data);</code></pre>
 							</td>
 						</tr>
 						<tr>
+							<th>next-marker</th>
+							<td>string</td>
+							<td><pre class="html"><code>&amp;raquo;</code></pre></td>
+							<td>
+								Markup that will be used to generate the marker of next page.
+							</td>
+						</tr>
+						<tr>
 							<th>next-link</th>
 							<td>string</td>
 							<td><pre class="html"><code>\t\t&lt;a href="{uri}" rel="next"&gt;{page}&lt;/a&gt;\n</code></pre></td>
@@ -300,6 +340,14 @@ $this->render('welcome/index', $data);</code></pre>
 							</td>
 						</tr>
 						<tr>
+							<th>last-marker</th>
+							<td>string</td>
+							<td><pre class="html"><code>&amp;raquo;&amp;raquo;</code></pre></td>
+							<td>
+								Markup that will be used to generate the marker of last page.
+							</td>
+						</tr>
+						<tr>
 							<th>last-link</th>
 							<td>string</td>
 							<td><pre class="html"><code>\t\t&lt;a href="{uri}"&gt;{page}&lt;/a&gt;\n</code></pre></td>
@@ -307,10 +355,27 @@ $this->render('welcome/index', $data);</code></pre>
 								Markup that will be used to generate the last page link.
 							</td>
 						</tr>
+						<tr>
+							<th>last-inactive</th>
+							<td>string</td>
+							<td>none</td>
+							<td>
+								Markup that will be used to generate the last page markup, if this page is last or single.
+							</td>
+						</tr>
+						<tr>
+							<th>last-inactive-link</th>
+							<td>string</td>
+							<td>none</td>
+							<td>
+								Markup that will be used to generate the last page link, if this page is last or single.
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				<p>
-					In the template, <strong>{uri}</strong> will be replaced by the generated pagination link, and <strong>{page}</strong> by the page number
+					In the template, <strong>{uri}</strong> will be replaced by the generated pagination link
+					(by <strong>#</strong> if inactive template), and <strong>{page}</strong> by the page number
 					or the previous / next marker. If you want to use an image for these markers, just modify the corresponding
 					link definitions in the template, replacing <strong>{page}</strong> by the markup for the image.
 				</p>
