@@ -299,6 +299,79 @@ class Create_posts
 	}
 }</code></pre>
 
+				<h4 id="model_soft">Generating Model using Model_Soft</h4>
+				
+				<p>
+					FuelPHP v1.5 added a Model_Soft based ORM model. Add <code>--soft-delete</code> to use Model_Soft.
+				</p>
+				
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --soft-delete</code></pre>
+				
+				<p>Which will give you:</p>
+
+				<pre class="php"><code>&lt;?php
+
+class Model_Post extends \Orm\Model_Soft
+{
+	protected static $_properties = array(
+		'id',
+		'title',
+		'body',
+		'user_id',
+		'created_at',
+		'updated_at',
+		'deleted_at',
+	);
+
+	protected static $_observers = array(
+		'Orm\Observer_CreatedAt' => array(
+			'events' => array('before_insert'),
+			'mysql_timestamp' => false,
+		),
+		'Orm\Observer_UpdatedAt' => array(
+			'events' => array('before_update'),
+			'mysql_timestamp' => false,
+		),
+	);
+
+	protected static $_soft_delete = array(
+		'mysql_timestamp' => false,
+	);
+}
+</code></pre>
+
+<pre class="php"><code>&lt;?php
+
+namespace Fuel\Migrations;
+
+class Create_posts
+{
+	public function up()
+	{
+		\DBUtil::create_table('posts', array(
+			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true, 'unsigned' => true),
+			'title' => array('constraint' => 50, 'type' => 'varchar'),
+			'body' => array('type' => 'text'),
+			'user_id' => array('constraint' => 11, 'type' => 'int'),
+			'created_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
+			'updated_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
+			'deleted_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
+
+		), array('id'));
+	}
+
+	public function down()
+	{
+		\DBUtil::drop_table('posts');
+	}
+}</code></pre>
+
+				<p>
+					If you wish changing deleted_at field name. Use the <code>--deleted-at</code> option to set your own field name.
+				</p>
+				
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --soft-delete --deleted-at=mydeleted</code></pre>
+
 				<h3 id="viewmodels">Viewmodels</h3>
 
 				<p>
