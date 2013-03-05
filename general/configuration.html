@@ -292,6 +292,30 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
+						<td colspan="4">
+						<p class="note">
+							In 1.5.2, some important default settings were changed.
+							In concrete, <strong>uri_filter</strong>, <strong>output_filter</strong>, and <strong>whitelisted_classes</strong>.
+							If you use the default settings then your View will not be properly escaped.
+							If you want to be 1.4 (or more older's) behavior, add below in <strong>app/config/config.php</strong>.
+							
+								<pre class="php"><code>
+	'security' => array(
+		'uri_filter' => array('htmlentities'),
+		'output_filter' => array('Security::htmlentities'),
+		'whitelisted_classes' => array(
+			'Fuel\\Core\\Response',
+			'Fuel\\Core\\View',
+			'Fuel\\Core\\ViewModel',
+			'Closure',
+		)
+	),
+								</code></pre>
+							
+						</p>
+						</td>
+					</tr>
+					<tr>
 						<th>security.csrf_autoload</th>
 						<td>bool</td>
 						<td><pre class="php"><code>false</code></pre></td>
@@ -319,7 +343,7 @@ array("always_load" => array("packages" => array(...) ) );
 					<tr>
 						<th>security.uri_filter</th>
 						<td>array</td>
-						<td><pre class="php"><code>array('htmlentities')</code></pre></td>
+						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
 							What php functions to use to filter the URI.
 						</td>
@@ -352,13 +376,8 @@ array("always_load" => array("packages" => array(...) ) );
 					</tr>
 					<tr>
 						<th>security.whitelisted_classes</th>
-						<td>array()</td>
-						<td><pre class="php"><code>array(
-'stdClass',
-'Fuel\\Core\\View',
-'Fuel\\Core\\ViewModel',
-'Closure'
-)</code></pre></td>
+						<td>array</td>
+						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
 							With output encoding switched on all objects passed will be converted to strings or throw exceptions
 							unless they are instances of the classes in this array.
