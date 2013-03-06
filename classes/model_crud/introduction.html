@@ -162,6 +162,39 @@ class Model_Users extends \Model_Crud
 						</td>
 					</tr>
 					<tr>
+						<th><strong>$_mass_whitelist</strong></th>
+						<td>array</td>
+						<td><em>none</em></td>
+						<td>
+							Array of columns which can be set with:<br />__construct,<br />::forge<br />->set()
+						</td>
+						<td>
+							<pre class="php"><code>protected static $_mass_whitelist = array(
+	'first_name',
+	'last_name'
+	'age',
+);</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<th><strong>$_mass_blacklist</strong></th>
+						<td>array</td>
+						<td><em>none</em></td>
+						<td>
+							Array of columns which could not be set with: __construct, ::forge and ->set() method.
+						</td>
+						<td>
+							<pre class="php"><code>protected static $_mass_blacklist = array(
+	'password',
+	'is_admin'
+);</code></pre>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5"><p class="note">$_mass_whitelist is like a firewall for a mass assignments. You specify an array of fields which could be mass assigned, so later safely pass Input::post() to the model, and not bother if someone want to pass for example: `is_admin` parameter.<br />
+						$_mass_blacklist blocks only protected fields from specified arrays. It is like $_mass_whitelist but works vice-versa.</p></td>
+					</tr>
+					<tr>
 						<th><strong>$_connection</strong></th>
 						<td>string</td>
 						<td><em>none</em></td>
