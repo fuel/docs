@@ -47,16 +47,16 @@
 
 			<h2>Uri クラス</h2>
 
-			<p>UriクラスはURIを対話的に扱うのを可能にします。</p>
+			<p>Uri クラスは URI を対話的に扱うのを可能にします。</p>
 
 			<article>
 				<h4 class="method" id="method_base">base($include_index = true)</h4>
 				<p>
-					<strong>base</strong> メソッドはベース URL を返します。なお、$include_index を <em>false</em> にセットした場合は、インデックスファイル index_file 名を除去して、
+					<strong>base</strong> メソッドはベース URL を返します。なお、 $include_index を <em>false</em> にセットした場合は、インデックスファイル index_file 名を除去して、
 					その URL を返します。
 				</p>
 				<p class="note">
-					次の点に留意してください。: もしapp/config/config.phpでindex_fileがセットされていない場合は<strong>$include_index</strong>変数は無視されます。
+					次の点に留意してください。: もし app/config/config.php で index_file がセットされていない場合は <strong>$include_index</strong> 変数は無視されます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -76,7 +76,7 @@
 								<tr>
 									<th><kbd>$include_index</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>返り値のurlに対してインデックスを付加するかどうかを決めます。</td>
+									<td>返り値の url に対してインデックスを付加するかどうかを決めます。</td>
 								</tr>
 							</table>
 						</td>
@@ -101,7 +101,7 @@ echo Uri::base(false);
 
 			<article>
 				<h4 class="method" id="method_create">create($uri = null, $variables = array(), $get_variables = array(), $secure = null)</h4>
-				<p><strong>create</strong>メソッドは、URIを加えたURLを生成することが出来ます。そのURLにはベースURLを含みます。</p>
+				<p><strong>create</strong> メソッドは、 URI を加えた URL を生成することが出来ます。その URL にはベース URL を含みます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -125,7 +125,7 @@ echo Uri::base(false);
 								<tr>
 									<th><kbd>$variables</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>URLのための各種変数</td>
+									<td>URL のための各種変数</td>
 								</tr>
 								<tr>
 									<th><kbd>$get_variables</kbd></th>
@@ -136,7 +136,7 @@ echo Uri::base(false);
 								<tr>
 									<th><kbd>$secure</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>生成されるURLは、本項がfalseの場合はhttp, trueの場合はhttpsとなります。</td>
+									<td>生成される URL は、本項が false の場合は http, true の場合は https となります。</td>
 								</tr>
 							</table>
 						</td>
@@ -158,7 +158,7 @@ echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' 
 // http://www.example.org/thing?what=more が返ります。
 
 echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' => 'more'), array('what' => ':and'), true);
-// https://www.example.org/thing?what=more が返ります。</code></pre> 
+// https://www.example.org/thing?what=more が返ります。</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -167,7 +167,7 @@ echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' 
 
 			<article>
 				<h4 class="method" id="method_current">current()</h4>
-				<p><strong>current</strong> メソッドを用いると、現在のURLを取得出来ます。URLにはHMVCパターン内部で定義されているベースURLが含まれます。</p>
+				<p><strong>current</strong> メソッドを用いると、現在の URL を取得出来ます。URL には HMVC パターン内部で定義されているベース URL が含まれます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -195,7 +195,7 @@ echo Uri::current(); // http://localhost/module/controller/method が返りま�
 
 			<article>
 				<h4 class="method" id="method_main">main()</h4>
-				<p><strong>main</strong>メソッドでベースURLを含む現在のURLを取得することが出来ます。</p>
+				<p><strong>main</strong> メソッドでベース URL を含む現在の URL を取得することが出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -223,7 +223,7 @@ echo Uri::main(); // returns http://localhost/controller/method</code></pre>
 
 			<article>
 				<h4 class="method" id="method_segment">segment($segment, $default = null)</h4>
-				<p><strong>segment</strong>メソッドを用いると、取得したい特定のurlセグメントを得ることができます。そのセグメントが存在しない場合は、falseが返されます。</p>
+				<p><strong>segment</strong> メソッドを用いると、取得したい特定の url セグメントを得ることができます。そのセグメントが存在しない場合は、 false が返されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -269,7 +269,7 @@ echo Uri::segment(3); // param1 が返ります。</code></pre>
 
 			<article>
 				<h4 class="method" id="method_segments">segments()</h4>
-				<p><strong>segments</strong>メソッドによって、現在のURIセグメント全てを配列で取得することが出来ます。</p>
+				<p><strong>segments</strong> メソッドによって、現在の URI セグメント全てを配列で取得することが出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -404,7 +404,7 @@ array(
 
 			<article>
 				<h4 class="method" id="method_string">string()</h4>
-				<p><strong>string</strong> メソッドを用いると、現在のURIを取得出来ます。</p>
+				<p><strong>string</strong> メソッドを用いると、現在の URI を取得出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
