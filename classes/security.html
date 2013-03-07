@@ -67,7 +67,7 @@
 						<tr>
 							<th>csrf_autoload</th>
 							<td>boolean</td>
-							<td><pre class="php"><code>true</code></pre></td>
+							<td><pre class="php"><code>true</code></pre><br> （訳注：バージョン1.5.2では core/config/config.php で <pre class="php"><code>false</code></pre> がセットされています。）</td>
 							<td>
 								When true, load and check the CSRF token using check_token() automatically.
 							</td>
@@ -91,7 +91,7 @@
 						<tr>
 							<th>uri_filter</th>
 							<td>array</td>
-							<td><pre class="php"><code>array('htmlentities')</code></pre></td>
+							<td><pre class="php"><code>array('htmlentities')</code></pre><br> （訳注：バージョン1.5.2では core/config/config.php で <pre class="php"><code>array()</code></pre> がセットされています。<br> app/config/config.php で上記の値をセットされることを推奨します。）</td>
 							<td>
 								Array of callable items (PHP functions, object methods, static class methods) used to filter the URI. By default, it uses PHP's htmlentities internal function.
 							</td>
@@ -107,7 +107,7 @@
 						<tr>
 							<th>output_filter</th>
 							<td>array</td>
-							<td><pre class="php"><code>array('Security::htmlentities')</code></pre></td>
+							<td><pre class="php"><code>array('Security::htmlentities')</code></pre><br> （訳注：バージョン1.5.2では core/config/config.php で <pre class="php"><code>array()</code></pre> がセットされています。<br> app/config/config.php で上記の値をセットされることを推奨します。）</td>
 							<td>
 								Array of callable items (PHP functions, object methods, static class methods) used to filter variables send to a View or Viewmodel.
 								For security reasons, you are <strong>required</strong> to define an output filter.
@@ -116,7 +116,7 @@
 						<tr>
 							<th>htmlentities_flags</th>
 							<td>integer</td>
-							<td><pre class="php"><code>null</code></pre></td>
+							<td><pre class="php"><code>null</code></pre><br> （訳注：バージョン1.5.2では core/config/config.php で <pre class="php"><code>ENT_QUOTES</code></pre> がセットされています。）</td>
 							<td>
 								Flags to be used when encoding HTML entities. Defaults to ENT_QUOTES if nothing is defined.
 							</td>
@@ -124,13 +124,13 @@
 						<tr>
 							<th>htmlentities_double_encode</th>
 							<td>boolean</td>
-							<td><pre class="php"><code>null</code></pre></td>
+							<td><pre class="php"><code>null</code></pre><br> （訳注：バージョン1.5.2では core/config/config.php で <pre class="php"><code>false</code></pre> がセットされています。）</td>
 							<td>
 								Whether of not already encoded entities should be encoded again. Defaults to <strong>false</strong> if nothing is defined.
 							</td>
 						</tr>
 						<tr>
-							<th>auto_encode_view_data</th>
+							<th>auto_encode_view_data<br> （訳注：バージョン1.5.2ではパラメータ名が auto_filter_output に変更されています。）</th>
 							<td>boolean</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
@@ -140,7 +140,7 @@
 						<tr>
 							<th>whitelisted_classes</th>
 							<td>array</td>
-							<td><pre class="php"><code>array('stdClass', 'Fuel\\Core\\View',<br /> 'Fuel\\Core\\ViewModel', 'Closure')</code></pre></td>
+							<td><pre class="php"><code>array('stdClass', 'Fuel\\Core\\View',<br /> 'Fuel\\Core\\ViewModel', 'Closure')</code></pre><br> （訳注：バージョン1.5.2では core/config/config.php で <pre class="php"><code>array()</code></pre> がセットされています。<br> app/config/config.php で上記の値をセットされることを推奨します。）</td>
 							<td>
 								When auto encoding of view variables is enabled, you can run into issues when passing objects to the view. Classes defined in this
 								array will be exempt from auto encoding.
