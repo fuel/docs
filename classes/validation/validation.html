@@ -148,7 +148,8 @@ $val->add('password', 'Your password')->add_rule('required')
 				be validated as its first argument and any further arguments can be given to the add_rule() method.</p>
 
 				<p>We also provide a shorter syntax which is very limited in comparison. It will not accept array-callbacks,
-				closures or parameters other than strings.</p>
+				closures or parameters other than strings. You can also not use the pipe symbol in your pattern when you use
+				the 'match_pattern' rule, as that is used to separate the defined rules.</p>
 
 				<pre class="php"><code>// The same fields as the example above
 $val = Validation::forge('my_validation');
@@ -237,6 +238,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td><kbd>$pattern</kbd></td>
 							<td>
 								Will try to match the value against the given $pattern which must be a full PREG regex.
+								<p class="note"><strong>Note:</strong> you can <strong>NOT</strong> use the pipe symbol (|) in your pattern when you're using short syntax, as that symbol is used to split the rules in the string.</p>
 							</td>
 						</tr>
 						<tr>
