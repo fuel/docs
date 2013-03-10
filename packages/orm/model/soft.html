@@ -45,28 +45,28 @@
             <div id="main">
                 <section>
                     <h2 id="introduction">はじめに</h2>
-                    <p>Soft deleting is essentially the ability to hide an entry in the database instead of removing every trace of the entry. This means that data can be retrieved for use at a later date. Another way to think of it is archiving the data.</p>
-                    <p>For example you might have a system that records employee working hours. Every day an employee logs their time so reports can be generated to weed out lazy people. If a person gets fired you no longer want them to be able to access the system but it may still be useful to retain the data on hours worked.</p>
-                    <p>If the employee is soft deleted then, as far as the system is concerned, the employee no longer exists. The soft delete model provides a way to query this archived data so reports can still be generated using this “deleted” data.</p>
-                    <p>Some people advocate avoiding soft (or logical) deletes. This model does not force you to use soft delete but provides a way for a quick implementation in your project if you decide that soft delete is for you.</p>
+                    <p>論理削除は、データベースのレコードを実際に削除する代わりに、全ての操作からそのレコードを隠す機能です。これは、あとでデータを復活できることを意味しています。それをするもう一つの方法はデータをアーカイブすることです。</p>
+                    <p> 例えば、従業員の労働時間を記録するシステムがあるとします。従業員は毎日自分の時間を記録し、その結果サボっている人をクビにするためのレポートが生成できるようになります。その人が解雇された場合、それ以降その人がシステムにアクセスできないようにしたいでしょうが、何時間働いていたかを示すデータは保持しておく必要があります。</p>
+                    <p>その従業員が論理削除されたら、システムに関する限りその従業員はもはや存在しないことになります。論理削除モデルは、この「削除された」データを使用してレポートを生成することができるように、アーカイブされたデータを照会する方法を提供します。</p>
+                    <p>一部の人々は論理削除を使わない事を提唱しています。このモデルは論理削除を使用することを強制はしませんが、もし論理削除が適していいるとあなたが判断したならば、それを迅速に実装する手段を提供します。</p>
                 </section>
 
                 <section>
                     <h2>基本的な使用</h2>
-                    <p>Using the soft delete model is as easy as extending <kbd>Orm\Model_Soft</kbd> instead of <kbd>Orm\Model</kbd>. This marks your model as being a soft delete model and changes the default behaviour of the <kbd>delete()</kbd> and <kbd>find()</kbd> methods.</p>
+                    <p> 論理削除モデルを使用するのは大変簡単で、単に <kbd>Orm\Model</kbd> の代わりに <kbd>Orm\Model_Soft</kbd> を継承するだけです。これによりそのモデルは論理削除に対応し、 <kdb>delete()</kbd> と <kbd>find()</kbd> メソッドの通常の振る舞いが変更されます。</p>
                     <pre id="php"><code>class Model_Employee extends \Orm\Model_Soft
 {
     ...
 }</code></pre>
-                    <p>The model is then set up like a normal <a href="../creating_models.html">ORM model</a>, including any relations or other properties that you wish to use.</p>
+                    <p>このモデルは、テーブル間の関係や使用したいプロパティ部分も含めて、通常の<a href="../creating_models.html">ORM モデル</a>のように設定します。</p>
                 </section>
 
                 <section>
                     <h2 id="settings">設定</h2>
-                    <p>There are currently two extra settings that can be set for soft delete models.</p>
-                    <p><kbd>deleted_field</kbd> is the field that stores the timestamp. In the database this should be either a MySQL or unix timestamp and default to <kbd>NULL</kbd>. Any entries with a <kbd>NULL</kbd> timestamp are not deleted. The column name defaults to deleted_at.</p>
-                    <p><kbd>mysql_timestamp</kbd> is if the timestamp generated should be a MySQL timestamp or a unix timestamp. This defaults to <kbd>true</kbd> (use a MySQL timestamp).</p>
-                    <p>Example model with default settings:</p>
+                    <p>現在のところ、論理削除モデルに2つの柄設定を行うことができます。</p>
+		    <p><kbd>delete_field</kbd> はタイムスタンプを保持するフィールドです。データベースではこの値は MySQL か unix のタイムスタンプでなければなりません。そしてデフォルト値は <kbd>NULL</kbd> です。<kbd>NULL</kbd> タイムスタンプを持つエントリは削除されることはありません。カラム名のデフォルト値は deleted_at です。</p>
+                    <p><kbd>mysql_timestamp</kbd> はタイムスタンプが MySQL のものか unix タイムスタンプかを表します。デフォルト値は <kbd>true</kbd> (MySQL のタイムスタンプを使う) になります。</p>
+                    <p>デフォルト設定のサンプルモデル:</p>
                     <pre id="php"><code>class Model_Employee extends \Orm\Model_Soft
 {
     protected static $_soft_delete = array(
@@ -78,34 +78,34 @@
 
                 <section>
                     <h2 id="delete">削除</h2>
-                    <p>To trigger the soft delete just call the normal <kbd>delete()</kbd> function on the object after selecting. This updates the database entry with the current timestamp and mark the entry as deleted. The entry will no longer show up in <kbd>find()</kbd> queries.</p>
+                    <p>論理削除は、オブジェクトを選択した後の通常の <kbd>delete()</kbd> メソッドの呼び出しで実行されます。これはデータベースの該当エントリにその時のタイムスタンプを記録し、エントリが削除されたマークとします。そのエントリは <kbd>find()</kbd> による検索に表れる事はなくなります。</p>
                     <pre id="php"><code>$employee = Model_Employee::find(1);
-$employee->delete(); //The employee has now been soft deleted.</code></pre>
+$employee->delete(); // この従業員はまさに論理削除されました</code></pre>
                 </section>
 
                 <section>
                     <h2 id="find">検索</h2>
-                    <p>Soft deleted entries are not listed with <kbd>find()</kbd> requests, they are excluded from the returned results because they have, as far as <kbd>Model_Soft</kbd> is concerned, been deleted. It is possible to query deleted entries by using <kbd>find_deleted()</kbd> or <kbd>deleted()</kbd>. These both work the same as <kbd>find()</kbd> and expect the same parameters.</p>
+                    <p>論理削除されたエントリは <kbd>find()</kbd> によってリストされることはありません。それらは <kbd>Model_Soft</kbd> の中においては削除されていることになっているので、結果からも取り除かれます。削除されたエントリを見つけることは、 <kbd>find_deleted()</kbd> や <kbd>deleted()</kbd> を用いることで可能です。これらは <kdb>find()</kbd> メソッドと同じパラメータで期待したように動作します。</p>
                 </section>
 
                 <section>
-                    <h2 id="restore">リストア</h2>
-                    <p>Entries that have been soft deleted can be restored at a later date. Say that one of our employees returns, we can just restore the soft deleted entry and have everything working for her again without having to create a new employee.</p>
-                    <p>This is done simply by calling <kbd>restore()</kbd> or <kbd>undelete()</kbd> on a deleted entry.</p>
+                    <h2 id="restore">復元</h2>
+                    <p> 論理削除されたエントリは後で復元することができます。つまり従業員の誰かが再び戻った場合は、論理削除されたエントリを復元するだけで、新しく従業員エントリを作成すること無く、再び彼女のためにすべてがきちんと動作するようになります。</p>
+                    <p>これは削除されたエントリに対して <kbd>restore()</kbd> か <kbd>undelete()</kbd> を単に呼び出すだけで完了します。</p>
                     <pre id="php"><code>$employee = Model_Employee::find_deleted(1);
-// OR
+// または
 $employee = Model_Employee::deleted(1);
 
-$employee->restore(); //The employee is no longer deleted.
-$employee->undelete(); //Does the same as above.</code></pre>
+$employee->restore(); // 従業員はもう削除されていません
+$employee->undelete(); // こちらも同じ意味です</code></pre>
                 </section>
 
                 <section>
                     <h2 id="relations">リレーション</h2>
-                    <h1>Delete</h1>
-                    <p>The delete function will soft delete related models providing that <kbd>cascade_delete</kbd> is true. If the related model is not soft delete as well then a <kbd>RelationNotSoft</kbd> exception is thrown.</p>
-                    <h1>Restore</h1>
-                    <p>The restore function will also restore related entries providing the <kbd>cascade_delete</kbd> is true for the relation.</p>
+                    <h1>削除</h1>
+                    <p>delete メソッドは、 <kbd>cascade_delete</kbd> が true である関係を持ったモデルも論理削除します。その関係モデルが論理削除モデルでなかった場合は、 <kbd>RelationNotSoft</kbd> 例外が投げられます。</p>
+                    <h1>復元</h1>
+                    <p>restore メソッドも <kbd>cascade_delete</kbd> が true の場合は、同様に関連するエントリを復元します。</p>
                 </section>
             </div>
 
