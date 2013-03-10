@@ -170,7 +170,7 @@ $result = DB::select('*')->from('users')->execute();
 // ただ結果をカウントするだけ。int が返ります。
 $num_rows = count($result);
 </code></pre>
-				<p>To access these results you either loop through the result object directly, or get the result array.</p>
+				<p>取得した結果にアクセスするには、結果オブジェクトを直接ループするか、結果の配列を取得します。</p>
 				<pre class="php"><code>$result = DB::select()->from('users')->execute();
 foreach($result as $item)
 {
@@ -184,7 +184,7 @@ foreach($result_array as $item)
 }
 </code></pre>
 
-				<p>Optionaly we specify the array key and value to be returned from <em>as_array</em></p>
+				<p>オプションとして、<em>as_array</em>から返る配列のキーと値を指定することもできます。 </p>
 				<pre class="php"><code>$result = DB::select()->from('users')->execute();
 $on_key = $result->as_array('id');
 foreach($on_key as $id => $item)
@@ -208,8 +208,8 @@ foreach($key_value as $id => $email)
 				<h3 id="filtering">抽出条件</h3>
 				<h4 id="where_statements">WHERE 句</h4>
 				<p>
-					In order to set the conditions on our queries we can set WHERE conditions.
-					These examples also apply to updating and deleting.
+					クエリに条件を追加するために、私たちは、WHERE 句をセットすることができます。
+					これらの例は、UPDATE句とDELETE句にも当てはまります。
 				</p>
 				<pre class="php"><code>// Will execute SELECT * FROM `users` WHERE `id` = 1
 $result = DB::select()->from('users')->where('id', 1)->execute();
