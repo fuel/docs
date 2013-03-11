@@ -2090,6 +2090,87 @@ $result = Arr::unique($array);
 				</table>
 			</article>
 
+			<article>
+				<h4 id="method_sum" class="method">sum($array, $key)</h4>
+				<p>The <strong>sum</strong> method calculate the sum of values in an array plucked by the $key.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>array</em></td>
+									<td><em>required</em></td>
+									<td>the array containing the values</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>string</em></td>
+									<td><em>required</em></td>
+									<td>The key to pluck from the arrays</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>int</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td><kbd>InvalidArgumentException</kbd> when one of the passed arguments is no array.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$collection = array(
+	array(
+		'age' => 20,
+		'name' => 'Bill',
+		'scores' => array(
+			'math' => 10,
+		),
+	),
+	array(
+		'age' => 25,
+		'name' => 'Chris',
+		'scores' => array(
+			'math' => 15,
+		),
+	),
+	array(
+		'age' => 38,
+		'name' => 'Bert',
+		'scores' => array(
+			'math' => 5,
+		),
+	),
+);
+
+// Calculate sum of an array of age's
+$total_age = Arr::sum($collection, 'age'); // 83
+
+// Calculate sum of an array plucked by 'scores.math'
+$total_score = Arr::sum($collection, 'scores.math'); // 30
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<h3 id="procedural_helpers">Procedural helpers</h3>
 
 			<article>
