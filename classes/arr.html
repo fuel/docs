@@ -2040,6 +2040,56 @@ echo Arr::search($arr, 'deep', null, true);
 					</tbody>
 				</table>
 			</article>
+
+			<article>
+				<h4 id="method_unique" class="method">unique($array)</h4>
+				<p>
+					The <strong>unique</strong> returns an array with all unique values in the source array.
+					The first value matched will be kept, duplicates will be discarded. Keys will be preserved.
+					This method works like <kbd>array_unique()</kbd>, but doesn't sort the array first, and
+					allows you to dedup arrays that contain objects or closures.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>array</em></td>
+									<td><em>required</em></td>
+									<td>the array to de-duplicate</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$array = array(
+	'val1' => 'test', 'val2' => 'test', 'val1' => 'dup',
+);
+
+// Result: array('val1' => 'test', 'val2' => 'test')
+$result = Arr::unique($array);
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<h3 id="procedural_helpers">Procedural helpers</h3>
 
 			<article>
