@@ -125,8 +125,9 @@ protected static $_observers = array(
 
 				<h4 id="os_validation">Observer_Validation</h4>
 
-				<p>This observer only acts on <kbd>before_save</kbd>. It is used to prevent the model from saving if
-					validation rules fail. It uses the <a href="../../../classes/fieldset.html">Fieldset</a> class
+				<p>This observer can act on <kbd>before_insert</kbd> and/or <kbd>before_update</kbd>, or on <kbd>before_save</kbd>.
+					Do not use both <kbd>before_save</kbd> and one of the others, that would cause your rules to be called twice.
+					It is used to prevent the model from saving if validation rules fail. It uses the <a href="../../../classes/fieldset.html">Fieldset</a> class
 					and can also generate the form for you.</p>
 
 				<p class="note">The primary key(s) are not added to Validation nor to the Form as they're not editable
@@ -135,13 +136,12 @@ protected static $_observers = array(
 
 				<p>The observer can be loaded as follows:</p>
 
-				<pre class="php"><code>// Just add the Observer
-protected static $_observers = array('Orm\\Observer_Validation');
-
-// But adding it just for before_save is enough
+				<pre class="php"><code>// Just add the Observer, and define the required event
 protected static $_observers = array('Orm\\Observer_Validation' => array(
 	'events' => array('before_save')
 ));</code></pre>
+
+				<p class="note">Do not define this observer without event types, as that will cause it to be called twice!</p>
 
 				<p>Validation rules should be defined in your model in <kbd>$_properties</kbd>. This is demonstrated
 					in <a href="../creating_models.html#propperties">Creating Models</a>. After you have added the
