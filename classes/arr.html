@@ -2041,8 +2041,8 @@ echo Arr::search($arr, 'deep', null, true);
 				</table>
 			</article>
 			<article>
-				<h4 id="method_sum" class="method">sum($array, $key = null)</h4>
-				<p>The <strong>sum</strong> method calculate the sum of values in an array. If the $key is specified, then calculate the sum of an array plucked by the $key.</p>
+				<h4 id="method_sum" class="method">sum($array, $key)</h4>
+				<p>The <strong>sum</strong> method calculate the sum of values in an array plucked by the $key.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -2065,7 +2065,7 @@ echo Arr::search($arr, 'deep', null, true);
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
-									<td><pre class="php"><code>null</code></pre></td>
+									<td><em>required</em></td>
 									<td>The key to pluck from the arrays</td>
 								</tr>
 							</table>
@@ -2107,10 +2107,10 @@ echo Arr::search($arr, 'deep', null, true);
 );
 
 // Calculate sum of an array of age's
-$total_age = \Arr::sum($collection, 'age'); // 83
+$total_age = Arr::sum($collection, 'age'); // 83
 
 // Calculate sum of an array plucked by 'scores.math'
-$total_score = \Arr::sum($collection, 'scores.math'); // 30
+$total_score = Arr::sum($collection, 'scores.math'); // 30
 </code></pre>
 						</td>
 					</tr>
