@@ -90,8 +90,170 @@
 
 			<p class="note">
 				You'll notice that instead of the usual "action_" prefix the Rest Controller uses the HTTP method as a prefix.
-				When no function the corresponding HTTP method prefix is found it will fall back to the "action_" prefix.
-				The HTTP methods that Rest Controller supports are the following:
+				When no method with the corresponding HTTP method prefix is found it will fall back to the "action_" prefix.
+				All common HTTP methods are supported by the Rest Controller, such as:
+			</p>
+
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>HTTP Method</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>GET</th>
+						<td>
+							Used to fetch information about an existing resource. This is used by browsers when you
+							enter a URL and hit go, or when you click on a link, so it perfect for fetching information
+							on one of your resources (like user). Forms can also use this method to fetch information submitting a query string (i.e. Search forms).
+						</td>
+					</tr>
+					<tr>
+						<th>POST</th>
+						<td>
+							Used to create a new resource. It is also used to update a resource because of the lack of HTML support for the PUT method. Most forms use POST method except when their intend is to fetch information submitting a query string.
+						</td>
+					</tr>
+					<tr>
+						<th>PUT</th>
+						<td>
+							Used to create or update a resource with a known id. Less commonly used as it is not yet supported by HTML (v.5). It is although supported for XMLHttpRequests by most browsers.
+						</td>
+					</tr>
+					<tr>
+						<th>DELETE</th>
+						<td>
+							Used to delete an existing resource. As for PUT, it is not supported by HTML (v.5) but supported for XMLHttpRequests by most browsers.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3 id="output">Output</h3>
+
+			<pre class="javascript"><code>{
+	"foo":"bar",
+	"baz":[1,50,219],
+	"empty":null
+}</code></pre>
+
+			<p>
+				This is output as json because a file extension was defined in the URL. By default, responses will be
+				formatted as XML or whichever format is set in <em>fuel/core/config/rest.php</em>.
+			</p>
+
+			<h3 id="config">Configuration</h3>
+
+			<p>
+				The REST controllers can be globally configured via the <strong>fuel/core/config/rest.php</strong> configuration file. It
+				is already populated with a default configuration. You can override this configuration adding a config file
+				with the same name to your application config directory, and set the values you want to change there. These
+				will overwrite the core config but keep what you didn't overwrite.
+			</p>
+
+			<p>The following global configuration values can be defined:</p>
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Param</th>
+						<th>Type</th>
+						<th>Default</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>default_format</th>
+						<td>string</td>
+						<td><pre class="php"><code>'xml'</code></pre></td>
+						<td>
+							The default format to return the result in. This will only be used when no format is defined in the
+							controller, and all autodetection mechanisms fail.
+						</td>
+					</tr>
+					<tr>
+						<th>xml_basenode</th>
+						<td>string</td>
+						<td><pre class="php"><code>'xml'</code></pre></td>
+						<td>
+							The <a href="#xml_basenode">basenode XML tag</a> to be used when outputting XML structures.
+						</td>
+					</tr>
+					<tr>
+						<th>realm</th>
+						<td>string</td>
+						<td><pre class="php"><code>'REST API'</code></pre></td>
+						<td>
+							The name for the password protected REST API displayed on login dialogs.
+						</td>
+					</tr>
+					<tr>
+						<th>auth</th>
+						<td>string</td>
+						<td><pre class="php"><code>''</code></pre></td>
+						<td>
+							Defines the type of authentication needed. Valid values are 'basic' and 'digest'. You can also define a
+							name of controller method which must be called to check authorization. This method must return a boolean.
+							Leave this empty if no autorization need to be performed.
+						</td>
+					</tr>
+					<tr>
+						<th>valid_logins</th>
+						<td>array</td>
+						<td><pre class="php"><code>array('admin' => '1234')</code></pre></td>
+						<td>
+							An array of key/value pairs, defining valid usernames and passwords for the 'basic' and 'digest' authorization methods.
+						</td>
+					</tr>
+					<tr>
+						<th>ignore_http_accept</th>
+						<td>boolean</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>
+							Whether or not the HTTP_ACCEPT header should be parsed on a REST request to determine the format to return.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3 id="formats">Supported Formats</h3>
+
+			<ul>
+				<li><strong>xml</strong> - almost any programming language can read XML</li>
+				<li><strong>json</strong> - useful for JavaScript and increasingly PHP apps.</li>
+				<li><strong>csv</strong> - open with spreadsheet programs</li>
+				<li><strong>html</strong> - a simple HTML table</li>
+				<li><strong>php</strong> - Representation of PHP code that can be <kbd>eval()</kbd>'ed</li>
+				<li><strong>serialize</strong> - Serialized data that can be unserialized in PHP</li>
+			</ul>
+
+			<h3 id="format_determination">Format determination</h3>
+
+			<p>
+				To determine the format in which the result should be returned, the REST controller uses the following algorithm:
+			</p>
+			<ul>
+				<li>use the protected property <kbd>$format</kbd> if it contains a supported format</li>
+				<li>use the URL extension if it is a supported format</li>
+				<li>use the format specified by the <kbd>:format</kbd> variable in the route if it contains a supported format</li>
+				<li>use the format defined in the <kbd>HTTP_ACCEPT</kbd> header</li>
+				<li>use the default value defined by the <kbd>$rest_format</kbd> property of your class</li>
+				<li>use the <kbd>default_format</kbd> value defined in the global configuration file</li>
+			</ul>
+
+			<p>
+				In most cases the <kbd>HTTP_ACCEPT</kbd> is present and contains (at least) <u>text/html</u>, which is a valid
+				result format. This has the implication that the <kbd>$rest_format</kbd>, and any global default defined in the <strong>rest.php</strong>
+				configuration file, will never be used.
+			</p>
+
+			<p>
+				To disable the <kbd>HTTP_ACCEPT</kbd> as a valid format source, set the configuration key <strong>ignore_http_accept</strong>
+				in the <strong>rest.php</strong> to <code>false</code>.
+			</p>
+
+			<p class="note">
+				Note that it is considered bad practice to hardcode any result format in your REST controller. It should be up to the client
+				to specify in which format the result should be returned. In case of <kbd>HTTP_ACCEPT</kbd>, most ajax solutions like for example
+				<code>jQuery.ajax()</code> allow you to set the accept header to <u>application/json</u>.
 			</p>
 
 			<h3 id="xml_basenode">XML Base Node Name</h3>
@@ -119,99 +281,6 @@
 		));
 	}
 }</code></pre>
-
-			<p class="note">
-				You can also set the XML basenode app-globally by changing the <code>rest.xml_basenode</code> config setting.
-			</p>
-
-			<table class="config">
-				<tbody>
-					<tr class="header">
-						<th>HTTP Method</th>
-						<th>Description</th>
-					</tr>
-					<tr>
-						<th>GET</th>
-						<td>
-							Used to fetch information about an existing resource. This is used by browsers when you
-							enter a URL and hit go, or when you click on a link, so it perfect for fetching information
-							on one of your resources (like user). Forms can also use this method to fetch information submitting a query string (i.e. Search forms).
-						</td>
-					</tr>
-					<tr>
-						<th>POST</th>
-						<td>
-							Used to create a new resource. It is also used to update a resource because of the lack of HTML support for the PUT method. Most forms use POST method except when their intend is to fetch information submitting a query string.
-						</td>
-					</tr>
-					<tr>
-						<th>PUT</th>
-						<td>
-							Used to create or update a resource with a known id. Less commonly used as it is not yet supported by HTML (v.5). It is although supported for XMLHttpRequests by most browsers.  
-						</td>
-					</tr>
-					<tr>
-						<th>DELETE</th>
-						<td>
-							Used to delete an existing resource. As for PUT, it is not supported by HTML (v.5) but supported for XMLHttpRequests by most browsers.
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
-			<h3 id="output">Output</h3>
-
-			<pre class="javascript"><code>{
-	"foo":"bar",
-	"baz":[1,50,219],
-	"empty":null
-}</code></pre>
-
-			<p>
-				This is output as json because a file extension was defined in the URL. By default, responses will be
-				formatted as XML or whichever format is set in <em>fuel/core/config/rest.php</em>.
-			</p>
-
-			<h3 id="formats">Supported Formats</h3>
-
-			<ul>
-				<li><strong>xml</strong> - almost any programming language can read XML</li>
-				<li><strong>json</strong> - useful for JavaScript and increasingly PHP apps.</li>
-				<li><strong>csv</strong> - open with spreadsheet programs</li>
-				<li><strong>html</strong> - a simple HTML table</li>
-				<li><strong>php</strong> - Representation of PHP code that can be <kbd>eval()</kbd>'ed</li>
-				<li><strong>serialize</strong> - Serialized data that can be unserialized in PHP</li>
-			</ul>
-
-			<h3 id="format_determination">Format determination</h3>
-
-			<p>
-				To determine the format in which the result should be returned, the REST controller uses the following algorithm:
-			</p>
-			<ul>
-				<li>use the protected property <kbd>$format</kbd> if it contains a supported format</li>
-				<li>use the URL extension if it is a supported format</li>
-				<li>use the format specified by the <kbd>:format</kbd> variable in the route if it contains a supported format</li>
-				<li>use the format defined in the <kbd>HTTP_ACCEPT</kbd> header</li>
-				<li>use the default value defined by the <kbd>$rest_format</kbd> property of your class</li>
-			</ul>
-
-			<p>
-				In most cases the <kbd>HTTP_ACCEPT</kbd> is present and contains (at least) <u>text/html</u>, which is a valid
-				result format. This has the implication that the <kbd>$rest_format</kbd>, and any global default defined in the <strong>rest.php</strong>
-				configuration file, will never be used.
-			</p>
-
-			<p>
-				To disable the <kbd>HTTP_ACCEPT</kbd> as a valid format source, set the configuration key <strong>ignore_http_accept</strong>
-				in the <strong>rest.php</strong> to <code>false</code>.
-			</p>
-
-			<p class="note">
-				Note that it is considered bad practice to hardcode any result format in your REST controller. It should be up to the client
-				to specify in which format the result should be returned. In case of <kbd>HTTP_ACCEPT</kbd>, most ajax solutions like for example
-				<code>jQuery.ajax()</code> allow you to set the accept header to <u>application/json</u>.
-			</p>
 
 			<h3 id="special_methods">Special controller methods</h3>
 
