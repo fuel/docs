@@ -47,11 +47,11 @@
 
 			<h2>Redis クラス</h2>
 
-			<p>The Redis class allows you to interact with a <a href="http://redis.io/">Redis</a> key-value store.</p>
+			<p>Redis クラスは key-value ストアである <a href="http://redis.io/">Redis</a> とデータをやり取りすることができます。</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($name = 'default', $config = array())</h4>
-				<p>Create a new named redis instance, optionally with a custom configuration</p>
+				<p>新しい名前の redis インスタンスを生成します。必要に応じて、設定を変更することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -70,12 +70,12 @@
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><i><pre class="php"><code>'default'</code></pre></i></td>
-									<td>The name of the new redis instance, as defined the application config db.php file.</td>
+									<td>新しい redis インスタンスの名前。アプリケーションの db.php 設定ファイルであらかじめ定義しておくことができます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$config</kbd></th>
 									<td><i><pre class="php"><code>array()</code></pre></i></td>
-									<td>custom configuration, which will override the values defined in the db.php file.</td>
+									<td>設定。 db.php 設定ファイルで設定している設定を上書きすることができます。</td>
 								</tr>
 							</table>
 						</td>
@@ -87,7 +87,7 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// create the Redis 'mystore' instance
+							<pre class="php"><code>// 'mystore' という名前の redis インスタンスを生成
 $redis = Redis::forge('mystore');</code></pre>
 						</td>
 					</tr>
@@ -97,7 +97,7 @@ $redis = Redis::forge('mystore');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_instance">instance($name = 'default')</h4>
-				<p>Return a named instance that was created earlier.</p>
+				<p>以前に生成したインスタンスを名前を指定して返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -105,30 +105,30 @@ $redis = Redis::forge('mystore');</code></pre>
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><i><pre class="php"><code>'default'</code></pre></i></td>
-									<td>The name of the redis instance requested, as created using forge().</td>
+									<td>forge() メソッドで事前に生成されているインスタンスの名前。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Fuel\Core\Redis Object</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// retrieve the Redis 'mystore' instance
+							<pre class="php"><code>// 'mystore' という名前の redis インスタンスを取り出す
 $redis = Redis::instance('mystore');</code></pre>
 						</td>
 					</tr>
@@ -137,24 +137,24 @@ $redis = Redis::instance('mystore');</code></pre>
 			</article>
 
 			<article>
-				<h4 id="redis_commands">Redis commands</h4>
-				<p>Once you have created a redis object using the instance() method, every valid redis command (see the <a href="http://redis.io/commands">Redis Documentation</a>) as a method of that object.</p>
-				<p>Some examples:</p>
-				<pre class="php"><code>// create the Redis 'mystore' instance
+				<h4 id="redis_commands">Redis のコマンド</h4>
+				<p>一度 redis オブジェクトを生成したらあとは instance() メソッドを使います。様々な redis コマンド (see the <a href="http://redis.io/commands">Redis Documentation</a>) はオブジェクトのメソッドののように使うことができます。</p>
+				<p>いくつかの例:</p>
+				<pre class="php"><code>// 'mystore' という名前の redis インスタンスを生成
 $redis = Redis::forge('mystore');
 
-// create some test data
+// テストデータを作成
 $redis->rpush('particles', 'proton');
 $redis->rpush('particles', 'electron');
 $redis->rpush('particles', 'neutron');
 
-// fetch the range
+// 範囲を指定して取り出す
 $particles = $redis->lrange('particles', 0, -1);
 
-// count the number of elements
+// 要素の数を取得
 $particle_count = $redis->llen('particles');
 
-// display the results
+// 結果を表示
 echo "&lt;p>The {$particle_count} particles that make up atoms are:&lt;/p>";
 echo "&lt;ul>";
 foreach ($particles as $particle) {
@@ -165,13 +165,13 @@ echo "&lt;/ul>";
 			</article>
 
 			<article>
-				<h4 id="redis_pipelining">Pipelining</h4>
-				<p>You can add multiple Redis commands into a command pipeline, and execute them all at once.</p>
-				<p>An example:</p>
-				<pre class="php"><code>// create the Redis 'mystore' instance
+				<h4 id="redis_pipelining">パイプ</h4>
+				<p>いくつかの Redis コマンドをつなげることができ、それは1度だけ実行されます。</p>
+				<p>例:</p>
+				<pre class="php"><code>// 'mystore' という名前の redis インスタンスを生成
 $redis = Redis::forge('mystore');
 
-// pipeline some redis commands, then execute them
+// いくつかの redis コマンドをパイプして実行
 $result = $redis->pipeline()
 	->sadd('list', 4)
 	->sadd('list', 1)
