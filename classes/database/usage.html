@@ -234,7 +234,7 @@ $who = "john%";
 $result = DB::select()->from('users')->where('id', 'like', $who)->execute();
 </code></pre>
 
-				<p id="grouped_where">Grouped where statements are also supported:</p>
+				<p id="grouped_where">グループ化されたWHERE句もサポートされています：</p>
 
 				<pre class="php"><code>// SELECT * FROM `users` WHERE (`name` = 'John' AND `email` = 'john@example.com')
 // OR (`name` = 'mike' OR `name` = 'dirk')
@@ -248,7 +248,7 @@ $result = DB::select()->from('users')->where_open()
 ->or_where_close()->execute();
 </code></pre>
 
-				<p id="where_between_in">The <em>BETWEEN</em> and <em>IN</em> also go through the <em>where</em> method:</p>
+				<p id="where_between_in"><em>BETWEEN</em>句と、<em>IN</em>句も <em>where</em>メソッドで指定できます。</p>
 				<pre class="php"><code>// SELECT * FROM `users` WHERE `id` BETWEEN 1 AND 10
 $users = DB::select()->from('users')->where('id', 'between', array(1, 10))->execute();
 
@@ -258,7 +258,7 @@ $users = DB::select()->from('users')->where('name', 'in', array('john', 'simon',
 
 				<h4 id="order_by">ORDER BY 句</h4>
 
-				<p>For sorting data we use the order_by function.</p>
+				<p>データをソートするためには、order_by メソッドを使用します。</p>
 				<pre class="php"><code>//SELECT * FROM `users` ORDER BY `name` ASC
 DB::select()->from('users')->order_by('name','asc');
 
@@ -271,7 +271,7 @@ DB::select()->from('users')->order_by('name');
 </code></pre>
 
 				<h4 id="limit_offset">LIMIT 句、OFFSET 句</h4>
-				<p>For limiting the number of rows fetched we use the limit and offset function. Note that the offset function is only available when selecting data.</p>
+				<p>取得するレコード数を制限するには、limit メソッド及び、offset メソッドを使用します。 offsetメソッドは、データを取得する際にのみ利用可能なことに注意してください。</p>
 				<pre class="php"><code>// SELECT * FROM `users` LIMIT 1
 DB::select()->from('users')->limit(1);
 
@@ -288,12 +288,12 @@ DB::select('users')->order_by('id','asc')->limit(10);
 
 				<h3 id="updating">UPDATE 文</h3>
 				<p>
-					For updating data we use <a href="./db.html#method_update">DB::update</a>.
-					If successfully executed an update query will return an integer representing
-					the amount of affected rows.
+					データを更新するためには、<a href="./db.html#method_update">DB::update</a>を使用します。
+					もし更新クエリの実行が成功した場合には、更新が影響したレコード数を
+					整数値で返却します。
 				</p>
 
-				<p>To update a single column.</p>
+				<p>１カラムを更新する</p>
 				<pre class="php"><code>// Will execute UPDATE `users` SET `name` = "John Random" WHERE `id` = "2";
 $result = DB::update('users')
 	->value("name", "John Random")
@@ -301,7 +301,7 @@ $result = DB::update('users')
 	->execute();
 </code></pre>
 
-				<p>To update multiple columns.</p>
+				<p>複数カラムを更新する</p>
 				<pre class="php"><code>// Will execute UPDATE `users`
 // SET `group` = "Peter Griffon", `email` = "peter@thehindenpeter.com"
 // WHERE `id` = "16";
@@ -320,9 +320,9 @@ $result = DB::update('users')
 
 				<h3 id="inserting">INSERT 文</h3>
 				<p>
-					For inserting data we use <a href="./db.html#method_insert">DB::insert</a>.
-					If successfully executed an insert query will return an array containing a
-					list of insert id and rows created.
+					データをインサートするには、<a href="./db.html#method_insert">DB::insert</a>を使用します。
+					インサート文が成功した場合には、インサートされたIDのリストと、インサートされた
+					レコード数を含む配列が返却されます。
 				</p>
 				<pre class="php"><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`)
 // VALUES ("John Random", "john@example.com", "s0_s3cr3t")
@@ -332,7 +332,7 @@ list($insert_id, $rows_affected) = DB::insert('users')->set(array(
 	'password' => 's0_s3cr3t',
 ))->execute();
 </code></pre>
-				<p>You can also set the columns and values separately</p>
+				<p>カラム名と値を別々にセットすることもできます。</p>
 
 				<pre class="php"><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`)
 // VALUES ("John Random", "john@example.com", "s0_s3cr3t")
@@ -350,8 +350,8 @@ list($insert_id, $rows_affected) = DB::insert('users')->columns(array(
 				<h3 id="deleting">DELETE 文</h3>
 
 				<p>
-					To delete records, use <a href="./db.html#method_delete">DB::delete</a>.
-					When executed it will return the number of rows affected.
+					レコードを削除するには、<a href="./db.html#method_delete">DB::delete</a>を使用します。
+					実行された場合、削除されたレコード数が返却されます。
 				</p>
 				<pre class="php"><code>// Empty the whole users table
 $result = DB::delete('users')->execute(); // (int) 20
@@ -365,7 +365,7 @@ $result = DB::delete('users')->where('email', 'like', '%@example.com')->execute(
 			<article>
 
 				<h3 id="joins">表の結合</h3>
-				<p>When selecting data, you can also join other tables into the result.</p>
+				<p>データを取得する際、他のテーブルを 結合させることができます。</p>
 
 				<pre class="php"><code>// Will execute SELECT * FROM `users` LEFT JOIN `roles` ON `roles`.`id` = `users`.`role_id`
 $result = DB::select()->from('users')->join('roles','LEFT')->on('roles.id', '=', 'users.role_id');
@@ -380,10 +380,10 @@ $result = DB::select()->from('users')->join('roles','right outer')->on('roles.id
 
 				<h3 id="escaping">エスケープ</h3>
 
-				<p>Fields and values in database calls are escaped by default. In some cases you'll want to not escape data. The DB class provides a method to create <em>database expressions</em>, <a href="./db.html#method_expr">DB::expr</a>. If you don't want a value to get escaped, just wrap it in a database expression.</p>
-				<p>Database expressions are especially helpful when dealing with thing like MySQL's native function (like <em>COUNT</em>) and predefined constants (like <em>DEFAULT</em>).</p>
+				<p>データベース操作の際、カラム名と値 は、デフォルトでエスケープされます。いくつかの場面で値をエスケープしたくないと思うでしょう。DBクラスは<em>データベース表現</em>を作成する機能、<a href="./db.html#method_expr">DB::expr</a> を提供します。もし値をエスケープされるのを望まない場合、データベース表現の中でそれを囲んでください。</p>
+				<p>データベース表現は <em>COUNT</em>のようなMySQLのネイティブ関数  や<em>DEFAULT</em> のような定数を扱う際に特に有用です。 </p>
 
-				<pre class="php"><code>// Set a field to its default
+				<pre class="php"><code>// カラムにデフォルト値でセットする
 DB::update('users')->where('id', '=', 1)->set(array(
 	'some_column' => DB::expr('DEFAULT'),
 ))->execute();
@@ -404,18 +404,18 @@ $count = $result_arr['count'];
 
 				<h3 id="binding">値のバインド</h3>
 
-				<p>The query builder supports query binding, a technique that allows you to assign variables to your
-				hand-written queries in a safe and secure manner.</p>
+				<p>クエリービルダは、安全かつ確実なやり方で手書きのクエリに変数を割り当てる、
+				バインディング機能を提供します。</p>
 
-				<p>Query binding works by placing uniquely identifyable placeholders in your SQL. The query builder will
-				replace these placeholders by their corresponding values when the query is compiled for execution (so not
-				when you bind it!).</p>
+				<p>クエリバインディングは、 SQLの中でユニークなプレースホルダを置くことにより動作します。 クエリビルダは、
+				 (バインドした時ではなく)クエリが実行のためにコンパイルされる際に、
+				 これらのプレースホルダを対応する値で置換します。</p>
 
-				<p>You define placeholder using the FuelPHP standard notation, which is a string, prefixed by a colon
-				(:varname).</p>
+				<p>あなたはFuelPHP標準記法を使用して、プレースホールダーを定義します。それはコロンから始まる文字列です。
+				例 (:varname)</p>
 
-				<pre class="php"><code>$name = 'John'; // set the variable we're going to bind
-$query = "SELECT * FROM users WHERE username = :name"; // our query
+				<pre class="php"><code>$name = 'John'; // 割り当てたい変数をセット
+$query = "SELECT * FROM users WHERE username = :name"; // 実行したいクエリ
 
 // bind the variable and run the query, produces SELECT * FROM users WHERE username = 'John'
 $result = DB::query($query)->bind('name', $name)->execute();</code></pre>
@@ -459,11 +459,11 @@ $query->parameters(array('name' => &amp;$name, 'state' => 'new'));
 // and run the query, produces SELECT * FROM users WHERE username = 'John' AND state = 'new'
 $result = $query->execute();</code></pre>
 
-				<p class="note">Some frameworks use question marks as placeholders. This works for them because their
-				binding system is positional, the first question mark gets replaced by the first variable bound, and
-				so on. In FuelPHP, order of binding is not relevant, there is a one-to-one link between the placeholder
-				and the variable bound. It also means you can use the same placeholder multiple times in a single
-				query.</p>
+				<p class="note">いくつかのフレームワークは、クエスチョンマーク（?）をプレースホルダに使用します。 そのバインディングシステムは、
+				最初のクエスチョンマークが最初の値で置換される、といった順番に依存し動作します。
+				しかし、FuelPHPでは、順番によるバインディングは適切ではなく、 プレースホールダーと値には1対1の対応があります。
+				それは同様に、１つのクエリでプレースホルダを複数回使用できることを意味します。
+				</p>
 
 			</article>
 
