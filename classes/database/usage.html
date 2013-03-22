@@ -380,10 +380,10 @@ $result = DB::select()->from('users')->join('roles','right outer')->on('roles.id
 
 				<h3 id="escaping">エスケープ</h3>
 
-				<p>Fields and values in database calls are escaped by default. In some cases you'll want to not escape data. The DB class provides a method to create <em>database expressions</em>, <a href="./db.html#method_expr">DB::expr</a>. If you don't want a value to get escaped, just wrap it in a database expression.</p>
-				<p>Database expressions are especially helpful when dealing with thing like MySQL's native function (like <em>COUNT</em>) and predefined constants (like <em>DEFAULT</em>).</p>
+				<p>データベース操作の際、カラム名と値 は、デフォルトでエスケープされます。いくつかの場面で値をエスケープしたくないと思うでしょう。DBクラスは<em>データベース表現</em>を作成する機能、<a href="./db.html#method_expr">DB::expr</a> を提供します。もし値をエスケープされるのを望まない場合、データベース表現の中でそれを囲んでください。</p>
+				<p>データベース表現は <em>COUNT</em>のようなMySQLのネイティブ関数  や<em>DEFAULT</em> のような定数を扱う際に特に有用です。 </p>
 
-				<pre class="php"><code>// Set a field to its default
+				<pre class="php"><code>// カラムにデフォルト値でセットする
 DB::update('users')->where('id', '=', 1)->set(array(
 	'some_column' => DB::expr('DEFAULT'),
 ))->execute();
@@ -404,18 +404,18 @@ $count = $result_arr['count'];
 
 				<h3 id="binding">値のバインド</h3>
 
-				<p>The query builder supports query binding, a technique that allows you to assign variables to your
-				hand-written queries in a safe and secure manner.</p>
+				<p>クエリービルダは、安全かつ確実なやり方で手書きのクエリに変数を割り当てる、
+				バインディング機能を提供します。</p>
 
-				<p>Query binding works by placing uniquely identifyable placeholders in your SQL. The query builder will
-				replace these placeholders by their corresponding values when the query is compiled for execution (so not
-				when you bind it!).</p>
+				<p>クエリバインディングは、 SQLの中でユニークなプレースホルダを置くことにより動作します。 クエリビルダは、
+				 (バインドした時ではなく)クエリが実行のためにコンパイルされる際に、
+				 これらのプレースホルダを対応する値で置換します。</p>
 
-				<p>You define placeholder using the FuelPHP standard notation, which is a string, prefixed by a colon
-				(:varname).</p>
+				<p>あなたはFuelPHP標準記法を使用して、プレースホールダーを定義します。それはコロンから始まる文字列です。
+				例 (:varname)</p>
 
-				<pre class="php"><code>$name = 'John'; // set the variable we're going to bind
-$query = "SELECT * FROM users WHERE username = :name"; // our query
+				<pre class="php"><code>$name = 'John'; // 割り当てたい変数をセット
+$query = "SELECT * FROM users WHERE username = :name"; // 実行したいクエリ
 
 // bind the variable and run the query, produces SELECT * FROM users WHERE username = 'John'
 $result = DB::query($query)->bind('name', $name)->execute();</code></pre>
@@ -459,11 +459,11 @@ $query->parameters(array('name' => &amp;$name, 'state' => 'new'));
 // and run the query, produces SELECT * FROM users WHERE username = 'John' AND state = 'new'
 $result = $query->execute();</code></pre>
 
-				<p class="note">Some frameworks use question marks as placeholders. This works for them because their
-				binding system is positional, the first question mark gets replaced by the first variable bound, and
-				so on. In FuelPHP, order of binding is not relevant, there is a one-to-one link between the placeholder
-				and the variable bound. It also means you can use the same placeholder multiple times in a single
-				query.</p>
+				<p class="note">いくつかのフレームワークは、クエスチョンマーク（?）をプレースホルダに使用します。 そのバインディングシステムは、
+				最初のクエスチョンマークが最初の値で置換される、といった順番に依存し動作します。
+				しかし、FuelPHPでは、順番によるバインディングは適切ではなく、 プレースホールダーと値には1対1の対応があります。
+				それは同様に、１つのクエリでプレースホルダを複数回使用できることを意味します。
+				</p>
 
 			</article>
 
