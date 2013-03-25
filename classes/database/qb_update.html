@@ -50,13 +50,13 @@
 			<p>(extends <a href="qb_where.html">Query_Builder_Where</a>)</p>
 
 			<p>
-				The Query_Builder_Update class handles all the update operations for the query building process. It extends the
-				Query_Builder_Where class, so all the methods are inherited.
+				Query_Builder_Update クラスは、クエリ構築のためのすべてのアップデート 操作を扱います。
+				これは、Query_Builder_Where クラスを拡張しており、すべてのメソッドが継承されます。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_table">table($table)</h4>
-				<p>The <strong>table</strong> method sets/changes the table to update.</p>
+				<p><strong>table</strong> メソッドは、 アップデートするテーブル名をセット/変更します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -77,7 +77,7 @@
 										<th><kbd>$table</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 								</table>
 							</td>
@@ -92,7 +92,7 @@
 								<pre class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Set the table to update
+// アップデートするテーブル名をセット
 $query->table('admins');
 
 // UPDATE `admins` ...
@@ -106,7 +106,7 @@ $query->table('admins');
 
 			<article>
 				<h4 class="method" id="method_value">value($column, $value)</h4>
-				<p>The <strong>value</strong> method sets a column and value to update.</p>
+				<p><strong>value</strong> メソッドは、アップデートするカラム名と値をセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -127,13 +127,13 @@ $query->table('admins');
 										<th><kbd>$column</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>the column to update</td>
+										<td>カラム名</td>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
 										<td><em>mixed</em></td>
 										<td><em>必須</em></td>
-										<td>the new value</td>
+										<td>新しい値</td>
 									</tr>
 								</table>
 							</td>
@@ -148,7 +148,7 @@ $query->table('admins');
 								<pre class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Set the columns
+// カラムに値をセット
 $query->value('name', 'Frank');
 
 // UPDATE `users` SET `name` = "Frank"
@@ -161,7 +161,7 @@ $query->value('name', 'Frank');
 
 			<article>
 				<h4 class="method" id="method_set">set(array $pairs)</h4>
-				<p>The <strong>set</strong> method sets the columns and values to update.</p>
+				<p><strong>set</strong> メソッドは、アップデートする複数のカラムと値をセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -182,7 +182,7 @@ $query->value('name', 'Frank');
 										<th><kbd>$pairs</kbd></th>
 										<td><em>array</em></td>
 										<td><em>必須</em></td>
-										<td>associative array of columns and values</td>
+										<td>カラム名と値の連想配列</td>
 									</tr>
 								</table>
 							</td>
@@ -197,7 +197,7 @@ $query->value('name', 'Frank');
 								<pre class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Set the columns and vales
+// カラム名と値をセット
 $query->set(array(
 	'name' => 'John',
 	'surname' => 'Doe',
@@ -213,7 +213,7 @@ $query->set(array(
 
 			<article>
 				<h4 class="method" id="method_compile">compile(\Database_Connection$db)</h4>
-				<p>The <strong>compile</strong> method returns the update SQL query as a string.</p>
+				<p><strong>compile</strong> メソッドは、アップデートを行うSQL クエリを文字列で返却します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -234,14 +234,14 @@ $query->set(array(
 										<th><kbd>$db</kbd></th>
 										<td><em>object</em></td>
 										<td><em>必須</em></td>
-										<td>A database connection</td>
+										<td>データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the SQL query as a string.</td>
+							<td>SQL文の文字列</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -249,16 +249,16 @@ $query->set(array(
 								<pre class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Set two values
+// ２つの値をセット
 $query->set(array(
 	'name' => 'Bert',
 	'surname' => 'Klaassen',
 ));
 
-// Get the database connection
+// データベース接続を取得
 $connection = Database_Connection::instance();
 
-// Get the sql query
+// SQL文を取得
 $sql = $query->compile($connection);
 </code></pre>
 							</td>
@@ -269,7 +269,7 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_reset">reset()</h4>
-				<p>The <strong>reset</strong> method resets all values of the current instance.</p>
+				<p><strong>reset</strong> メソッドは、現在のインスタンスのすべての値をリセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -292,22 +292,22 @@ $sql = $query->compile($connection);
 								<pre class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Set two values
+// ２つの値をセット
 $query->set(array(
 	'name' => 'Bert',
 	'surname' => 'Klaassen',
 ));
 
-// Reset it
+// 上記をリセット
 $query->reset();
 
-// Just set one
+// １つ値をセット
 $query->value('name', 'Hank');
 
-// Get the database connection
+// データベース接続を取得
 $connection = Database_Connection::instance();
 
-// Get the sql query
+// SQL文を取得
 $sql = $query->compile($connection);
 
 // UPDATE `users` SET `name` = "Hank"
@@ -320,7 +320,7 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_join">join($table, $type = null)</h4>
-				<p>The <strong>join</strong> method appends tables to join.</p>
+				<p><strong>join</strong> メソッドは、JOINするテーブルを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -347,7 +347,7 @@ $sql = $query->compile($connection);
 										<th><kbd>$type</kbd></th>
 										<td><em>mixed</em></td>
 										<td><pre class="php"><code>true</code></pre></td>
-										<td>join type (LEFT, RIGHT, INNER, etc)</td>
+										<td>JOINタイプ (LEFT, RIGHT, INNER, など)</td>
 									</tr>
 								</table>
 							</td>
@@ -359,7 +359,7 @@ $sql = $query->compile($connection);
 						<tr>
 							<th>例</th>
 							<td>
-								<a href="#join_example">View example here</a>
+								<a href="#join_example">こちらの例を参照ください。</a>
 							</td>
 						</tr>
 					</tbody>
@@ -368,7 +368,7 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_on">on($c1, $op, $c2)</h4>
-				<p>The <strong>on</strong> method adds "ON ..." conditions for the last created JOIN statement.</p>
+				<p><strong>on</strong> メソッドは、最後に作られたJOINステートメントに対し、 "ON ..." 条件を追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -416,11 +416,11 @@ $sql = $query->compile($connection);
 								<pre id="join_example" class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Join a table
+// テーブルをJOIN
 $query->join('profiles');
 $query->on('users.id', '=', 'profiles.user_id');
 
-// Use a Database_Expression so the value does not get escaped.
+// 値がエスケープされないように、 Database_Expression を使用します。
 $query->value('users.profile_type', \DB::expr('`profiles`.`type`'));
 
 // UPDATE `users` JOIN `profiles` ON `users`.`id` = `profiles`.`user_id` SET `users`.`profile_type` = `profiles`.`type`
