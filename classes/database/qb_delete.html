@@ -52,13 +52,13 @@
 			</p>
 
 			<p>
-				The Query_Builder_Delete class handles all the delete operations for the query building process. It extends the
-				Query_Builder_Where class, so all the methods are inherited.
+				The Query_Builder_Delete クラスは、クラスは、クエリ構築のためのすべてのデリート 操作を扱います。 
+				これは、Query_Builder_Where クラスを拡張しており、すべてのメソッドが継承されます。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_table">table($table)</h4>
-				<p>The <strong>table</strong> method sets/changes the table to delete from.</p>
+				<p><strong>table</strong> メソッドは、削除するテーブルをセット/変更します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -94,7 +94,7 @@
 								<pre class="php"><code>// prepare an update statement
 $query = DB::delete('users');
 
-// Set the table to delete from
+// 削除するテーブルをセットする
 $query->table('admins');
 
 // DELETE `admins` ...
@@ -107,7 +107,7 @@ $query->table('admins');
 
 			<article>
 				<h4 class="method" id="method_compile">compile(\Database_Connection$db)</h4>
-				<p>The <strong>compile</strong> method returns the delete SQL query as a string.</p>
+				<p><strong>compile</strong> メソッドは、デリートを行うSQL クエリを文字列で返却します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -128,14 +128,14 @@ $query->table('admins');
 										<th><kbd>$db</kbd></th>
 										<td><em>object</em></td>
 										<td><em>必須</em></td>
-										<td>A database connection</td>
+										<td>データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the SQL query as a string.</td>
+							<td>SQL文の文字列</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -143,13 +143,13 @@ $query->table('admins');
 								<pre class="php"><code>// prepare an update statement
 $query = DB::delete('users');
 
-// Set a where statement
+// WHERE句をセット
 $query->where('looks', 'like', '%spammer%');
 
-// Get the database connection
+// データベース接続を取得
 $connection = Database_Connection::instance();
 
-// Get the sql query
+// SQL文を取得
 $sql = $query->compile($connection);
 
 // DELETE FROM `users` WHERE `looks` LIKE "%spammer%"
@@ -162,7 +162,7 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_reset">reset()</h4>
-				<p>The <strong>reset</strong> method resets all values of the current instance.</p>
+				<p><strong>reset</strong> メソッドは、現在のインスタンスのすべての値をリセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -185,19 +185,19 @@ $sql = $query->compile($connection);
 								<pre class="php"><code>// prepare an update statement
 $query = DB:delete('users');
 
-// Set a where statement
+// WHERE句をセット
 $query->where('it_look', 'ok to me');
 
-// Reset it
+// 上記をリセット
 $query->reset();
 
-// Just an other where statement
+// 別のWHERE句をセット
 $query->where('looks', 'like', '%bad mister%');
 
-// Get the database connection
+// データベース接続を取得
 $connection = Database_Connection::instance();
 
-// Get the sql query
+// SQL文を取得
 $sql = $query->compile($connection);
 
 // DELETE FROM `users` WHERE `looks` LIKE "%bad mister%"

@@ -420,40 +420,40 @@ $query = "SELECT * FROM users WHERE username = :name"; // 実行したいクエ�
 // bind the variable and run the query, produces SELECT * FROM users WHERE username = 'John'
 $result = DB::query($query)->bind('name', $name)->execute();</code></pre>
 
-				<p>Variables are bound by reference, so you can define your query and your bindings early in your code
-				and modify the bound variable later.</p>
+				<p>変数は、リファレンスにより割り当てられます。したがって、あなたは最初にクエリと割り当てたい変数を最初に定義し、 
+				後から割り当てた値を変更することができます。</p>
 
-				<pre class="php"><code>// create the query object
+				<pre class="php"><code>// クエリオブジェクトを生成
 $query = DB::query("SELECT * FROM users WHERE username = :name");
 
-$name = 'unknown';                // set the variable with a default value
-$query->bind('name', $name);     // and bind it to the query
+$name = 'unknown';                // デフォルト値で変数をセットし、
+$query->bind('name', $name);     // クエリに割り当てる。
 
-// after some code, change the bound variable
+// いくつかのコードのあとで、割り当てた変数を変更する。
 $name = 'Sally';
 
 // bind the variable and run the query, produces SELECT * FROM users WHERE username = 'Sally'
 $result = $query->execute();</code></pre>
 
-				<p>Because the variable is bound by reference, you can NOT bind a literal. If you
-				do, you'll get a "Cannot pass parameter 2 by reference" exception!</p>
+				<p>変数はリファレンスで割り当てられるので、リテラルでは割り当てられ”ません”  もしそうした場合、
+				 "Cannot pass parameter 2 by reference" という例外が発生します！</p>
 
-				<pre class="php"><code>// this will generate an exception!
+				<pre class="php"><code>// これは例外が発生します。
 $query = DB::query("SELECT * FROM users WHERE username = :name")->bind('name', 'value')->execute();</code></pre>
 
-				<p>You can assign by value using the param() method:</p>
+				<p>下記のように、param() メソッドを使って割り当てることができます：</p>
 
-				<pre class="php"><code>// this will work though
+				<pre class="php"><code>// これなら動くでしょう。
 $query = DB::query("SELECT * FROM users WHERE username = :name")->param('name', 'value')->execute();</code></pre>
 
-				<p>And finally, you can use the parameters() method if you want to mix the two:</p>
+				<p>最後に、あなたが２つを混ぜたい場合、parameters() メソッドを使うことができます：</p>
 
-				<pre class="php"><code>// create the query object
+				<pre class="php"><code>// クエリオブジェクトを生成
 $query = DB::query("SELECT * FROM users WHERE username = :name AND state = :state");
 
-$name = 'John'; // set the variable we're going to bind
+$name = 'John'; // 割り当てたい変数に値をセットする。 
 
-// bind the variable and literal
+// 変数と リテラルを割り当てる
 $query->parameters(array('name' => &amp;$name, 'state' => 'new'));
 
 // and run the query, produces SELECT * FROM users WHERE username = 'John' AND state = 'new'
@@ -471,33 +471,33 @@ $result = $query->execute();</code></pre>
 
 				<h3 id="caching">クエリキャッシュ</h3>
 
-				<p>The query builder also supports caching a query's result to help you bring down your database access.
-					For this goal it uses the Cache class behind the scenes but handles both retrieval and regeneration
-					of the caches.<br />
-					The <code>cached()</code> method takes 3 arguments: the expiration time (cache validity in seconds)
-					a second argument to set a custom key for the query (by default a md5 hash of the SQL), and a boolean
-					that can be used to indicate that you don't want to cache empty results. Using a custom cache key
-					will allow you to manually delete specific queries more easily and group sets of query caches into
-					specific directories.</p>
+				<p>クエリビルダは、クエリ結果のキャッシュもサポートします。これによりデータベースアクセスを減らすことができます。
+					これは、バックエンドでキャッシュクラスを使用し、キャッシュの読み込みと再生成の両方を行います。
+					<br />
+					<code>cached()</code> メソッドは、３つの引数をとります： 第一引数は有効期限 (キャッシュが有効となる秒数)、
+					第二引数は、クエリのカスタムキー (デフォルトでは、SQLのmd5 ハッシュ値)、そして最後は、あなたが空の結果をキャッシュしたくないか
+					を指定する、boolean値です。 カスタムキャッシュキーを使用すると、
+					手動で特定のクエリのキャッシュを削除したり、特定の階層へクエリキャッシュのセットを
+					グループ化したりできるようになります。</p>
 
-				<pre class="php"><code>// Run a query and cache it for 1 hour
-// If you run the exact same query the next time it will return the cached result.
-// This will happens within the 3600 seconds of the cached one, if not it will run
-// and cache another time.
+				<pre class="php"><code>// クエリを実行し、１時間キャッシュします。
+// もしまったく同じクエリが次回実行された場合、キャッシュされた値が返ります。
+// これは、 3600 秒間有効です。もし有効期限後にクエリが実行された場合、
+// 再度クエリが走り、再度 3600秒間キャッシュされるでしょう。
 $query = DB::query("SELECT * FROM users")->cached(3600)->execute();
 
-// You can specify a key to handle the delete of cached results, useful if you
-// know that will be updated and need to delete it before it gets shown.
-// Empty query results will not be cached.
+// キャッシュされた結果を削除するために、キーを指定します。 
+// これは、データが更新され、キャッシュを削除するのが必要だと知っている場合に有用です。
+// 空の結果はキャッシュされません。
 $query = DB::query("SELECT * FROM users")->cached(3600, "foo.bar", false)->execute();
 
-// This delete the previous query from cache
+// これは前回のクエリのキャッシュを削除します。
 Cache::delete("foo.bar");
-// Or delete all caches in the "foo" directory
+// もしくは、 "foo" ディレクトリのキャッシュをすべて削除します。
 Cache::delete_all("foo");
 
-// By default all queries are put in a "db" directory
-// Thus to delete all query caches for which the key wasn't set manully
+// デフォルトでは、すべてのクエリは、 "db" ディレクトリに配置されます。
+// したがって、明示的にキーがセットされていない、すべてのクエリキャッシュを削除するためには、次のように行います。
 Cache::delete_all("db");</code></pre>
 
 			</article>
