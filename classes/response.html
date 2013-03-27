@@ -55,7 +55,7 @@
 					コントローラの中で次のように設定します:</p>
 				<pre class="php"><code>$response = new Response($body, 404);</code></pre>
 
-				<h4>Setting the Status Header and other headers</h4>
+				<h4>ステータスヘッダと他のヘッダをセットする</h4>
 				<pre class="php"><code>$headers = array (
     'Cache-Control'     => 'no-cache, no-store, max-age=0, must-revalidate',
     'Expires'           => 'Mon, 26 Jul 1997 05:00:00 GMT',
@@ -66,7 +66,7 @@ $response = new Response($body, 404, $headers);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($body = null, $status = 200, array $headers = array())</h4>
-				<p>The <strong>forge</strong> method creates a new instance of the Response class.</p>
+				<p><strong>forge</strong> メソッドは、Response クラスの新しいインスタンスを生成します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -90,12 +90,12 @@ $response = new Response($body, 404, $headers);</code></pre>
 								<tr>
 									<th><kbd>$status</kbd></th>
 									<td><pre class="php"><code>200</code></pre></td>
-									<td>HTTP status code for this response. Defaults to 200 OK.</td>
+									<td>HTTP ステータスコード。デフォルトは、200 OKです。</td>
 								</tr>
 								<tr>
 									<th><kbd>$headers</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Any HTTP headers that should be part of the response.</td>
+									<td>レスポンスになりうる、あらゆる HTTP ヘッダ</td>
 								</tr>
 							</table>
 						</td>
@@ -121,7 +121,7 @@ return Response::forge(View::forge('errors/404page'), 404);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_redirect">redirect($url = '', $method = 'location', $redirect_code = 302)</h4>
-				<p>The <strong>redirect</strong> method offers different methods of redirecting to a new URL.</p>
+				<p><strong>redirect</strong>メソッドは、 新しいURLにリダイレクトする方法を提供します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -145,7 +145,7 @@ return Response::forge(View::forge('errors/404page'), 404);</code></pre>
 								<tr>
 									<th><kbd>$method</kbd></th>
 									<td><pre class="php"><code>'location'</code></pre></td>
-									<td>Redirection method to use. Supported are 'location' and 'refresh'.</td>
+									<td>リダイレクト方法。'location' と 'refresh'がサポートされます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$redirect_code</kbd></th>
