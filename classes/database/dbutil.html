@@ -126,22 +126,22 @@ DBUtil::set_connection(null);
 									<tr>
 										<th><kbd>$database</kbd></th>
 										<td><em>必須</em></td>
-										<td>the database name</td>
+										<td>データベース名</td>
 									</tr>
 									<tr>
 										<th><kbd>$charset</kbd></th>
 										<td><em>null</em></td>
-										<td>the default charset</td>
+										<td>デフォルトの文字コード</td>
 									</tr>
 									<tr>
 										<th><kbd>$if_not_exists</kbd></th>
 										<td><strong>true</strong></td>
-										<td>whether to use <em>IF NOT EXISTS</em></td>
+										<td><em>IF NOT EXISTS</em>をつけるかどうか</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -157,7 +157,7 @@ DBUtil::set_connection(null);
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Create a database named `my_database`
+								<pre class="php"><code>// `my_database` というデータベースを作成します。
 DBUtil::create_database('my_database');
 
 // Catch the exception
@@ -170,7 +170,7 @@ catch(\Database_Exception $e)
 	// Creation failed...
 }
 
-// You can also set a default charset.
+// デフォルトの文字コードもセットできます。
 // CREATE DATABASE IF NOT EXISTS `new_database` DEFAULT CHARACTER SET 'utf8'
 DBUtil::create_database('new_database', 'utf8');
 
@@ -205,12 +205,12 @@ DBUtil::create_database('new_database', 'utf8_unicode_ci');
 									<tr>
 										<th><kbd>$database</kbd></th>
 										<td><em>必須</em></td>
-										<td>the database name</td>
+										<td>データベース名</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -271,14 +271,14 @@ catch(\Database_Exception $e)
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns true if table exists, false if it does not.</td>
+							<td>テーブルが存在する場合 true、存在しない場合 falseが返ります</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -324,7 +324,7 @@ if(DBUtil::table_exists('my_table'))
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -340,7 +340,7 @@ if(DBUtil::table_exists('my_table'))
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Drop a table named `my_table`
+								<pre class="php"><code>//  `my_table` というテーブルを削除します。
 DBUtil::drop_table('my_table');
 
 // Catch the exception
@@ -401,7 +401,7 @@ catch(\Database_Exception $e)
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Rename `my_table` to `my_new_table`
+								<pre class="php"><code>//  `my_table` というテーブルを `my_new_table`にリネームします。
 DBUtil::rename_table('my_table', 'my_new_table');
 
 // Catch the exception
@@ -476,7 +476,7 @@ catch(\Database_Exception $e)
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -636,7 +636,7 @@ CREATE TABLE `users` (
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -695,7 +695,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -753,7 +753,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -807,7 +807,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -875,7 +875,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -937,7 +937,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -1099,7 +1099,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -1148,7 +1148,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -1197,7 +1197,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -1246,7 +1246,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -1295,7 +1295,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
