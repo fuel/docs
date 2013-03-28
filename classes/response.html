@@ -85,7 +85,7 @@ $response = new Response($body, 404, $headers);</code></pre>
 								<tr>
 									<th><kbd>$body</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The response body, i.e. the response you want to return to the caller.</td>
+									<td>レスポンス本文。つまりあなたがユーザに返したいレスポンス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$status</kbd></th>
@@ -178,7 +178,7 @@ Response::redirect('site/about');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set_status">set_status($status = 200)</h4>
-				<p>The <strong>set_status</strong> method allows you to update the HTTP status code set on a Response object.</p>
+				<p><strong>set_status</strong> メソッドは、ResponseオブジェクトのHTTP ステータスコードを更新します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -197,7 +197,7 @@ Response::redirect('site/about');</code></pre>
 								<tr>
 									<th><kbd>$status</kbd></th>
 									<td><pre class="php"><code>200</code></pre></td>
-									<td>HTTP status code for this response. Defaults to 200 OK.</td>
+									<td>HTTP ステータスコード。デフォルトは、200 OK です。</td>
 								</tr>
 							</table>
 						</td>
@@ -221,7 +221,7 @@ $response->set_status(404);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set_header">set_header($name, $value, $replace)</h4>
-				<p>The <strong>set_header</strong> method allows set custom HTTP headers.</p>
+				<p><strong>set_header</strong> メソッドは、カスタムHTTP ヘッダをセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -285,12 +285,12 @@ return $response;</code></pre>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note"> Note that names are unique, overwriting each other if the same name is used.</p>
+				<p class="note">名前はユニークであることに注意してください。同じ名前が使用された場合、上書きされます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_header">get_header($name = null)</h4>
-				<p>The <strong>get_header</strong> method allows you to retrieve a custom HTTP headers set previously.</p>
+				<p><strong>get_header</strong> メソッドは、セットされたカスタムHTTPヘッダを取得します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -309,14 +309,14 @@ return $response;</code></pre>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><i>optional</i></td>
-									<td>Name of the header to get. If not given, all headers are returned.</td>
+									<td>取得したいヘッダの名称。指定しない場合にはすべてのヘッダが返却されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Mixed. String in case of a single header, Array in case all headers are returned.</td>
+						<td>Mixed. １つのヘッダを指定した場合には文字列、すべてのヘッダが返却される場合には配列。</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -337,7 +337,7 @@ $header = $response->get_header();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_body">body($value = false)</h4>
-				<p>The <strong>body</strong> method allows get the current response body, or set a new one.</p>
+				<p><strong>body</strong> メソッドは、現在のレスポンス本文を取得、もしくは新しい値をセットすることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -356,14 +356,14 @@ $header = $response->get_header();</code></pre>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><i>optional</i></td>
-									<td>Response body to set. If not given, the current response body is returned.</td>
+									<td>セットするレスポンス本文。もし本文を与えなかった場合、現在のレスポンス本文が返ります。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Mixed. Current response body, or the current response object for chaining.</td>
+						<td>Mixed. 現在のレスポンス本文、もしくは、現在のレスポンスオブジェクト。</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -381,7 +381,7 @@ $body = $response->body();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_send_headers">send_headers()</h4>
-				<p>The <strong>send_headers</strong> method sends the set headers out to the browser, including the HTTP status of the request.</p>
+				<p><strong>send_headers</strong> メソッドは、セットされたヘッダおよび、HTTP ステータスコードをブラウザに出力します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -404,12 +404,12 @@ $body = $response->body();</code></pre>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">Note that you normally don't have to call this method manually. Fuel will take care of this as part of processing the request.</p>
+				<p class="note">通常は、このメソッドを手動で呼ぶ必要はありません。 Fuel はリクエストを処理する過程でこれらを自動的に行います。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_send">send($send_headers = false)</h4>
-				<p>The <strong>send</strong> method sends the response body to the output buffer (i.e. it is echo'd out).</p>
+				<p><strong>send</strong>メソッドは、出力バッファに、レスポンス本文を送ります。   (つまり出力されます)</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -446,7 +446,7 @@ $response->send();</code></pre>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">Note that you normally don't have to call this method manually. Fuel will take care of this as part of processing the request.</p>
+				<p class="note">通常は、このメソッドを手動で呼ぶ必要はありません。 Fuel はリクエストを処理する過程でこれらを自動的に行います。</p>
 			</article>
 		</div>
 
