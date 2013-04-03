@@ -47,15 +47,15 @@
 
 			<h2>DBUtil クラス</h2>
 
-			<p>The DBUtil class allows you to manage and perform routine operations on your databases.</p>
+			<p>DBUtilクラスは、データベースに対するルーチン操作を管理し、行なうことを可能にします。</p>
 
 			<h3 id="managing">Managing functions</h3>
 
-			<p>DBUtil allows you to create, rename, alter and drop database fields.</p>
+			<p>DBUtilは、データベースのカラムを作成、リネーム、変更、および削除することを可能にします。</p>
 
 			<article>
 				<h4 class="method" id="method_set_connection">set_connection($connection)</h4>
-				<p>The <strong>set_connection</strong> method sets the default DBUtil connection for all methods.</p>
+				<p><strong>set_connection</strong>メソッドは、すべてのメソッドのための、デフォルトの データベース接続をセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -74,7 +74,7 @@
 									<tr>
 										<th><kbd>$connection</kbd></th>
 										<td><strong>required</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -106,8 +106,8 @@ DBUtil::set_connection(null);
 			</article>
 
 			<article>
-				<h4 class="method" id="method_create_database">create_database($database, charset = null, $if_not_exists = true, $db = null)</h4>
-				<p>The <strong>create_database</strong> method creates a database.  Will throw a Database_Exception if it cannot.</p>
+				<h4 class="method" id="method_create_database">create_database($database, $charset = null, $if_not_exists = true, $db = null)</h4>
+				<p><strong>create_database</strong> メソッドは、データベースを作成します。もし失敗した場合には、例外 Database_Exception がスローされます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -126,22 +126,22 @@ DBUtil::set_connection(null);
 									<tr>
 										<th><kbd>$database</kbd></th>
 										<td><em>必須</em></td>
-										<td>the database name</td>
+										<td>データベース名</td>
 									</tr>
 									<tr>
 										<th><kbd>$charset</kbd></th>
 										<td><em>null</em></td>
-										<td>the default charset</td>
+										<td>デフォルトの文字コード</td>
 									</tr>
 									<tr>
 										<th><kbd>$if_not_exists</kbd></th>
 										<td><strong>true</strong></td>
-										<td>whether to use <em>IF NOT EXISTS</em></td>
+										<td><em>IF NOT EXISTS</em>をつけるかどうか</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -157,7 +157,7 @@ DBUtil::set_connection(null);
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Create a database named `my_database`
+								<pre class="php"><code>// `my_database` というデータベースを作成します。
 DBUtil::create_database('my_database');
 
 // Catch the exception
@@ -170,7 +170,7 @@ catch(\Database_Exception $e)
 	// Creation failed...
 }
 
-// You can also set a default charset.
+// デフォルトの文字コードもセットできます。
 // CREATE DATABASE IF NOT EXISTS `new_database` DEFAULT CHARACTER SET 'utf8'
 DBUtil::create_database('new_database', 'utf8');
 
@@ -181,12 +181,12 @@ DBUtil::create_database('new_database', 'utf8_unicode_ci');
 						</tr>
 					</tbody>
 				</table>
-				<p>If no charset is provided it will fall back to the charset of the active db group.</p>
+				<p>もし、文字コードが指定されなかった場合、アクティブなDBグループの文字コードが適用されます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_drop_database">drop_database($database, $db = null)</h4>
-				<p>The <strong>drop_database</strong> method drops a database.  Will throw a Database_Exception if it cannot.</p>
+				<p><strong>drop_database</strong> メソッドは、データベースを削除します。もし失敗した場合には、例外 Database_Exception がスローされます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -205,12 +205,12 @@ DBUtil::create_database('new_database', 'utf8_unicode_ci');
 									<tr>
 										<th><kbd>$database</kbd></th>
 										<td><em>必須</em></td>
-										<td>the database name</td>
+										<td>データベース名</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -247,7 +247,7 @@ catch(\Database_Exception $e)
 
 			<article>
 				<h4 class="method" id="method_table_exists">table_exists($table, $db = null)</h4>
-				<p>The <strong>table_exists</strong> method checks if a given table exists.</p>
+				<p><strong>table_exists</strong> メソッドは、与えられたテーブルが存在するかチェックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -266,19 +266,19 @@ catch(\Database_Exception $e)
 									<tr>
 										<td><kbd>$table</kbd></td>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns true if table exists, false if it does not.</td>
+							<td>テーブルが存在する場合 true、存在しない場合 falseが返ります</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -300,7 +300,7 @@ if(DBUtil::table_exists('my_table'))
 
 			<article>
 				<h4 class="method" id="method_drop_table">drop_table($table, $db = null)</h4>
-				<p>The <strong>drop_table</strong> method drops a table.  Will throw a Database_Exception if it cannot.</p>
+				<p><strong>drop_table</strong>メソッドは、テーブルを削除します。もし失敗した場合には、例外 Database_Exception がスローされます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -319,12 +319,12 @@ if(DBUtil::table_exists('my_table'))
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -340,7 +340,7 @@ if(DBUtil::table_exists('my_table'))
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Drop a table named `my_table`
+								<pre class="php"><code>//  `my_table` というテーブルを削除します。
 DBUtil::drop_table('my_table');
 
 // Catch the exception
@@ -361,7 +361,7 @@ catch(\Database_Exception $e)
 
 			<article>
 				<h4 class="method" id="method_rename_table">rename_table($table, $new_table_name, $db = null)</h4>
-				<p>The <strong>rename_table</strong> method renames a table.</p>
+				<p><strong>rename_table</strong> メソッドは、テーブルをリネームします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -401,7 +401,7 @@ catch(\Database_Exception $e)
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Rename `my_table` to `my_new_table`
+								<pre class="php"><code>//  `my_table` というテーブルを `my_new_table`にリネームします。
 DBUtil::rename_table('my_table', 'my_new_table');
 
 // Catch the exception
@@ -422,7 +422,7 @@ catch(\Database_Exception $e)
 
 			<article>
 				<h4 class="method" id="method_create_table">create_table($table, $fields, $primary_keys = array(), $if_not_exists = true, $engine = false, $charset = null, $foreign_keys = array(), $db = null)</h4>
-				<p>The <strong>create_table</strong> method creates a table.</p>
+				<p><strong>create_table</strong> メソッドは、テーブルを作成します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -441,7 +441,7 @@ catch(\Database_Exception $e)
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$fields</kbd></th>
@@ -476,7 +476,7 @@ catch(\Database_Exception $e)
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -607,7 +607,7 @@ CREATE TABLE `users` (
 
 			<article>
 				<h4 class="method" id="method_field_exists">field_exists($table, $columns, $db = null)</h4>
-				<p>The <strong>field_exists</strong> method checks if given field(s) in a given table exists.</p>
+				<p><strong>field_exists</strong> メソッドは、与えられたテーブルに与えられたカラムが存在しているかチェックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -626,7 +626,7 @@ CREATE TABLE `users` (
 									<tr>
 										<td>$table</td>
 										<td>required</td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<td>$columns</td>
@@ -636,7 +636,7 @@ CREATE TABLE `users` (
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -666,7 +666,7 @@ else
 
 			<article>
 				<h4 class="method" id="method_add_fields">add_fields($table, $fields, $db = null)</h4>
-				<p>The <strong>add_fields</strong> method adds fields to a table.</p>
+				<p><strong>add_fields</strong> メソッドは、テーブルにカラムを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -685,7 +685,7 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$fields</kbd></th>
@@ -695,7 +695,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -724,7 +724,7 @@ else
 
 			<article>
 				<h4 class="method" id="method_drop_fields">drop_fields($table, $fields, $db = null)</h4>
-				<p>The <strong>drop_fields</strong> method drops fields from a table.</p>
+				<p><strong>drop_fields</strong>メソッドは、テーブルからカラムを削除します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -743,7 +743,7 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td>string of the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$fields</kbd></th>
@@ -753,7 +753,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -778,7 +778,7 @@ else
 
 			<article>
 				<h4 class="method" id="method_modify_fields">modify_fields($table, $fields, $db = null)</h4>
-				<p>The <strong>modify_fields</strong> method alters fields in a table.</p>
+				<p><strong>modify_fields</strong> メソッドは、テーブルのカラムを変更します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -797,7 +797,7 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$fields</kbd></th>
@@ -807,7 +807,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -836,7 +836,7 @@ else
 
 			<article>
 				<h4 class="method" id="method_create_index">create_index($table, $index_columns, $index_name, $index = '', $db = null)</h4>
-				<p>The <strong>create_index</strong> method allows you to create secondary indexes on a table.</p>
+				<p><strong>create_index</strong> メソッドは、テーブルにインデックスを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -855,7 +855,7 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$index_columns</kbd></th>
@@ -875,7 +875,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -908,7 +908,7 @@ else
 
 			<article>
 				<h4 class="method" id="method_drop_index">drop_index($table, $index_name, $db = null)</h4>
-				<p>The <strong>drop_index</strong> method allows you to drop a secondary index from a table.</p>
+				<p><strong>drop_index</strong> メソッドは、テーブルからインデックスを削除します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -927,7 +927,7 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$index_name</kbd></th>
@@ -937,7 +937,7 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -964,7 +964,7 @@ else
 
 			<article>
 				<h4 class="method" id="method_add_foregin_key">add_foregin_key($table, $foreign_key)</h4>
-				<p>The <strong>add_foreign_key</strong> method allows you to add a foreign key to a table after it's creation.</p>
+				<p><strong>add_foreign_key</strong> メソッドは、既存テーブルに外部キーを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -983,7 +983,7 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$foreign_key</kbd></th>
@@ -1022,7 +1022,7 @@ else
 
 			<article>
 				<h4 class="method" id="method_drop_foreign_key">drop_foreign_key($table, $fk_name)</h4>
-				<p>The <strong>drop_foreign_key</strong> method allows you to drop a foreign key from a table.</p>
+				<p><strong>drop_foreign_key</strong> メソッドは、テーブルから外部キーを削除します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -1041,7 +1041,7 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$fk_name</kbd></th>
@@ -1094,12 +1094,12 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td class="description">the table name.</td>
+										<td class="description">テーブル名.</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -1143,12 +1143,12 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td class="description">the table name.</td>
+										<td class="description">テーブル名.</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -1192,12 +1192,12 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td class="description">the table name.</td>
+										<td class="description">テーブル名.</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -1241,12 +1241,12 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td class="description">the table name.</td>
+										<td class="description">テーブル名.</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
@@ -1290,12 +1290,12 @@ else
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>必須</em></td>
-										<td class="description">the table name.</td>
+										<td class="description">テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
