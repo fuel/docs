@@ -144,6 +144,14 @@ $this->param('id');</code></pre>
     'blog/(:any)' => array(array('GET', new Route('blog/show/$1'))),
 );</code></pre>
 
+			<p>You can also specify if this route is supported for only http, or only https, by passing <kbd>false</kbd> or <kbd>true</kbd> as third parameter:</p>
+
+	        <pre class="php"><code>// route only valid if this is an https request
+return array(
+    'blog/(:any)' => array(array('GET', new Route('blog/show/$1'), true)),
+);</code></pre>
+
+
 			<h3 id="named_routes">Named routes and reverse routing</h3>
 
 			<p>The idea of reversed routing is like this: say you got an admin area and you have a route setup for it.
