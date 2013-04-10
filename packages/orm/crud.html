@@ -306,6 +306,16 @@ Model_Article::find('all', array('order_by' => array(array('name' =&gt; 'desc', 
 								</td>
 							</tr>
 							<tr>
+								<th>from_cache</th>
+								<td>bool<kbd>$cache</kbd></td>
+								<td>
+									<pre class="php"><code>// disable the ORM object cache on this query
+Model_Article::query()-&gt;from_cache(false);
+Model_Article::find('all', array('from_cache' =&gt; false));
+</code></pre>
+								</td>
+							</tr>
+							<tr>
 								<th>limit</th>
 								<td>int <kbd>$limit</kbd></td>
 								<td>
@@ -348,7 +358,7 @@ Model_Article::find('all', array('rows_offset' =&gt; 10));
 						</tbody>
 					</table>
 					<p class="note">
-						Do not mix the two! A combination of <kbd>limit</kbd> and <kbd>rows_offset</kbd> (or the other way around) will
+						Do not mix the two limit/offset types! A combination of <kbd>limit</kbd> and <kbd>rows_offset</kbd> (or the other way around) will
 						lead to unexpected results!
 					</p>
 					<p class="note">
