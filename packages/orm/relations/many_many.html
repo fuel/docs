@@ -98,6 +98,22 @@
 					</tbody>
 				</table>
 
+				<h4>Ordering on a column in the through table</h4>
+
+				<p>
+					In addition to the normal default order you can define in a relationship definition, you can also
+					define now the records from <kbd>table_through</kbd> need to be ordered:
+
+				<pre class="php"><code>protected static $_many_many = array(
+	'users' => array(
+		'table_through' => 'posts_users', 	// both models plural without prefix in alphabetical order
+		'order_by' => array(
+			'posts_users.status' => 'ASC'	// define custom through table ordering
+		),
+	)
+);
+// other fields that may be required have been ommitted for this example</code></pre>
+
 				<h3>Example</h3>
 
 				<p>Let's say we have a model <kbd>Model_Post</kbd> and it <em>has many and belongs to many</em>
