@@ -257,7 +257,7 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 
 				<p>
 					For this observer to work you must have your the <kbd>$_properties</kbd> static variable set in your
-					model, or not set at all using detection with <kbd>DB::list_columns()</kbd> (mySQL only!). When
+					model, or not set at all using detection with <kbd>DB::list_columns()</kbd> (MySQL only!). When
 					configuring it yourself the following settings are available:
 				</p>
 
@@ -270,7 +270,7 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 						</tr>
 						<tr>
 							<th>data_type</th>
-							<td>varchar, int, integer, tinyint, smallint, mediumint, bigint, float, double, decimal,
+							<td>varchar, int, integer, tinyint, smallint, mediumint, bigint, float, double, decimal[:d],
 								text, tinytext, mediumtext, longtext, enum, set, bool, boolean, serialize, json,
 								time_unix, time_mysql</td>
 							<td>
@@ -281,7 +281,7 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 							<th>null</th>
 							<td>bool</td>
 							<td>
-								Whether <kbd>null</kbd> is allowed as a value
+								Whether <kbd>null</kbd> is allowed as a value, default <kbd>true</kbd>
 							</td>
 						</tr>
 						<tr>
@@ -315,6 +315,11 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 						</tr>
 					</tbody>
 				</table>
+				<p class="note">
+					In case of data_type "decimal", you can suffix the type with the number of decimals required. If defined,
+					the value returned is a string, formatted with the defined number of decimal digits, and taking the
+					current defined locale into account.
+				</p>
 
 				<h3 id="os_slug">Observer_Slug</h3>
 
