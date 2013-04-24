@@ -132,7 +132,10 @@ function clear_search()
 {
 	$('body').undelegate('#content', 'click');
 	$('#cse').hide();
-	customSearchControl.clearAllResults();
+	if(typeof customSearchControl != 'undefined')
+	{
+		customSearchControl.clearAllResults();
+	}
 }
 
 function set_key_controls()
@@ -250,6 +253,7 @@ var max_navtable_height = 0;
 					'margin-top': 0
 				}, 300);
 			}
+			Cookie.create('menu',opened);
 		});
 
 		var count = 0;
@@ -334,6 +338,11 @@ function setup()
 	var title = $('#header div h1').html();
 	$('#header div h1').html(title.replace('</strong>', '</strong><span>'+DocVersion+' '));
 	$('#header div h1').append('</span>');
+
+	if(Cookie.read('menu') === 'true') 
+	{
+		$('#toc_handle').click();
+	}
 };
 
 var panes = {};
@@ -685,6 +694,34 @@ function nav_html(contents)
 	}
 	});
 	return html + '</ul>';
+}
+
+/* 
+	Simple cookie handler
+	Thanks http://stackoverflow.com/a/1460174 for the basic cookie design.
+*/
+var Cookie = {
+	create: function create(name, value, days) {
+	    if (days) {
+	        var date = new Date();
+	        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+	        var expires = "; expires=" + date.toGMTString();
+	    } else var expires = "";
+	    document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+	},
+	read: function read(name) {
+	    var nameEQ = escape(name) + "=";
+	    var ca = document.cookie.split(';');
+	    for (var i = 0; i < ca.length; i++) {
+	        var c = ca[i];
+	        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+	        if (c.indexOf(nameEQ) == 0) return unescape(c.substring(nameEQ.length, c.length));
+	    }
+	    return null;
+	},
+	erase: function (name) {
+	    self.create(name, "", -1);
+	}
 }
 
 $("document").ready(function(){
