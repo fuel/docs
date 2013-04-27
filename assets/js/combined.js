@@ -339,7 +339,7 @@ function setup()
 	$('#header div h1').html(title.replace('</strong>', '</strong><span>'+DocVersion+' '));
 	$('#header div h1').append('</span>');
 
-	if(Cookie.read('menu') === 'true') 
+	if(Cookie.read('menu') === 'true')
 	{
 		$('#toc_handle').click();
 	}
@@ -535,18 +535,19 @@ panes.oil = {
 panes.auth = {
 	"Auth Package": {
 		"Introduction":		"packages/auth/intro.html",
-		"Usage":			"packages/auth/usage.html",
 		"Writing drivers":	"packages/auth/drivers.html",
 		"Driver types": {
 			"Login":		"packages/auth/types/login.html",
 			"Group":		"packages/auth/types/group.html",
 			"ACL":			"packages/auth/types/acl.html"
 		},
-		"SimpleAuth": {
+		"Simpleauth": {
 			"Introduction":	"packages/auth/simpleauth/intro.html",
-			"Login":		"packages/auth/simpleauth/login.html",
-			"Groups":		"packages/auth/simpleauth/groups.html",
-			"ACL":			"packages/auth/simpleauth/acl.html"
+			"Usage":		"packages/auth/simpleauth/usage.html"
+		},
+		"Ormauth": {
+			"Introduction":	"packages/auth/ormauth/intro.html",
+			"Usage":		"packages/auth/ormauth/usage.html"
 		}
 	}
 };
@@ -696,7 +697,7 @@ function nav_html(contents)
 	return html + '</ul>';
 }
 
-/* 
+/*
 	Simple cookie handler
 	Thanks http://stackoverflow.com/a/1460174 for the basic cookie design.
 */

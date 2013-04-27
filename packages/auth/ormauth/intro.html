@@ -10,7 +10,7 @@
 		var path = './../../../';
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
-	<title>Introduction - SimpleAuth - Auth Package - FuelPHP Documentation</title>
+	<title>Introduction - OrmAuth - Auth Package - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
@@ -43,31 +43,39 @@
 		</div>
 
 		<div id="main">
-			<h2>SimpleAuth - Introduction</h2>
+			<h2>OrmAuth - Introduction</h2>
 
 			<p>
-				Simpleauth is, as it's name implies, a simple authentication system which is included in the Auth package.
-				Besides being a working Auth implementation, it is also an example for other Auth drivers.
-				You can use this as a reference when building your own driver.
+				Ormauth is a set of authentication and authorisation drivers that provide a similar functionality as Simpleauth,
+				but stores it's data in the database instead of in a configuration file. The data is accessed through ORM models.
+			</p>
+			<p>
+				Besides this, it also comes with additional functionality. Unlike Simpleauth, Ormauth supports roles assigned directly
+				to users, and permissions assigned to both users and groups, allowing for a much more fine-grained permission system.
+				It stores the user's metadata not in a serialized array, but in a separate metadata table, using the ORM's EAV functionality,
+				allowing you to access metadata like any other property of the user. It also keeps track of the previous login time,
+				which can be displayed to the user at login time as an additional security measure.
 			</p>
 
 			<h3 id="setup">Auth setup</h3>
 
 			<p>
-				Configuration starts with telling the Auth package that you are going to use the Simpleauth driver.
+				Configuration starts with telling the Auth package that you are going to use the Ormauth driver.
 				This is done through the auth.php configuration file. A default file is provided in the Auth package.
-				You should copy this file to your app/config folder before making any changes. The default file is already
-				configured for the Simpleauth package. You will find an explaination of this config file <a href="../intro.html#/configuration">here</a>.
+				You should copy this file to your app/config folder before making any changes. The default file is configured
+				for the Simpleauth drivers, so you need to change that. You will find an explaination of this config file <a href="../intro.html#/configuration">here</a>.
 			</p>
 			<p>
 				After you have done this, you can choose to autoload the package through the <strong>always_load</strong> section of the app/config/config.php.
 			</p>
 
+			<p class="note">As OrmAuth uses the ORM to access the database, make sure you have added the 'orm' package to the <strong>always_load</strong> section too!</p>
+
 			<h3 id="configuration">Configuration</h3>
 
 			<p>
-				The Simpleauth authentication system is configured through a configuration file, not suprisingly called
-				'simpleauth.php'. A default file is provided in the Auth package. You should copy this file
+				The Ormauth authentication system is configured through a configuration file, not suprisingly called
+				'ormauth.php'. A default file is provided in the Auth package. You should copy this file
 				to your app/config folder before making any changes.
 			</p>
 
@@ -110,6 +118,15 @@
 							</td>
 						</tr>
 						<tr>
+							<th>cache_prefix</th>
+							<td>string</td>
+							<td><pre class="php"><code>'auth'</code></pre>
+							</td>
+							<td>
+								Prefix used for cache keys when caching ORM data.
+							</td>
+						</tr>
+						<tr>
 							<th>guest_login</th>
 							<td>boolean</td>
 							<td><pre class="php"><code>true</code></pre>
@@ -130,34 +147,14 @@
 							</td>
 						</tr>
 						<tr>
-							<th>groups</th>
-							<td>array</td>
-							<td><pre class="php"><code>array()</code></pre>
-							</td>
-							<td>
-								Defined groups, to be used by the SimpleAuth groups driver. See <a href="./groups.html">here</a> for an
-								description of the groups array structure.
-							</td>
-						</tr>
-						<tr>
-							<th>roles</th>
-							<td>array</td>
-							<td><pre class="php"><code>array()</code></pre>
-							</td>
-							<td>
-								Defined roles, to be used by the SimpleAuth acl driver. See <a href="./acl.html">here</a> for an
-								description of the roles array structure.
-							</td>
-						</tr>
-						<tr>
 							<th>login_hash_salt</th>
 							<td>string</td>
 							<td><pre class="php"><code>'put_some_salt_in_here'</code></pre>
 							</td>
 							<td>
-								To make the passwords used by the SimpleAuth drivers extra secure, a salt value is used when hashing
+								To make the passwords used by the OrmAuth drivers extra secure, a salt value is used when hashing
 								the passwords to store them into the database. Make sure you change this default to a very random string!
-								To hash passwords, SimpleAuth uses <a href="http://en.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a>, a very secure hashing mechanism.
+								To hash passwords, OrmAuth uses <a href="http://en.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a>, a very secure hashing mechanism.
 							</td>
 						</tr>
 						<tr>
@@ -184,7 +181,7 @@
 			<h3 id="database">Database table</h3>
 
 			<p>
-				SimpleAuth relies on a single table. The Auth package contains the required migration files to create this table.<br />
+				OrmAuth relies on a quite a few tables to store all information. The Auth package contains the required migration files to create these tables.<br />
 				Just run <code>oil refine migrate --packages=auth</code> to have the table created for you.
 			</p>
 

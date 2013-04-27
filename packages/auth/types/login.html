@@ -62,17 +62,37 @@
 				<h3 id="driver_config">Driver configuration</h3>
 
 				<p>
-					A group driver can load additional drivers that it depends on. Generally, these are ACL drivers. But your implementation
+					A group driver can load additional drivers that it depends on. Generally, these are Group drivers. But your implementation
 					could introduce and use custom driver types as well. To do so, add this structure to your driver class:
 				</p>
 
-								<pre class="php"><code>// autoload the SimpleGroup group driver when loading this login driver
+								<pre class="php"><code>// autoload the Simplegroup group driver when loading this login driver
 // this also defines the additional user record fields this driver has a getter for
 	protected $config = array(
-		'drivers' => array('group' => array('SimpleGroup')),
+		'drivers' => array('group' => array('Simplegroup')),
 		'additional_fields' => array('profile_fields'),
 	);
 </code></pre>
+				<h3 id="static">Static interface</h3>
+
+				<p>For ease of use, the Auth package provides a static interface on the public methods of the Login driver.
+				for this reason, the login base driver also defines the methods <kbd>member()</kbd> and <kbd>has_access()</kbd>,
+				which provide static access to these methods in the group and ACL driver.</p>
+
+				<p>Using the static interface, you can do</p>
+
+								<pre class="php"><code>// returns 'simpleauth'
+$id = Auth::get_id();
+</code></pre>
+
+				<p>instead of</p>
+
+								<pre class="php"><code>// returns 'simpleauth'
+$id = Auth::instance()->get_id();
+</code></pre>
+				<p class="note">This only works if "verify_multiple_logins" is set to <kbd>false</kbd> in the Auth config, as you can
+				not map a static interface to multiple active login drivers!</p>
+
 				<h3 id="generic_methods">Generic methods</h3>
 
 				<p>
@@ -414,7 +434,7 @@ $password = Auth::instance()->hash_password($password);
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it should setup the guest before returning <strong>false</strong>.</p>
+					<p class="note">If your driver has guest user support, it must setup the guest before returning <strong>false</strong>.</p>
 				</article>
 
 				<article>
@@ -438,7 +458,7 @@ $password = Auth::instance()->hash_password($password);
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it should setup the guest as current user after a succesful logout.</p>
+					<p class="note">If your driver has guest user support, it must setup the guest as current user after a succesful logout.</p>
 				</article>
 
 				<article>
@@ -462,7 +482,7 @@ $password = Auth::instance()->hash_password($password);
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it should return the array with the (dummy) user_id of your guest, and not <strong>false</strong>!</p>
+					<p class="note">If your driver has guest user support, it must return the array with the (dummy) user_id of your guest, and not <strong>false</strong>!</p>
 				</article>
 
 				<article>
@@ -486,7 +506,7 @@ $password = Auth::instance()->hash_password($password);
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it should return the array your guest user groups, and not <strong>false</strong>!</p>
+					<p class="note">If your driver has guest user support, it must return the array your guest user groups, and not <strong>false</strong>!</p>
 				</article>
 
 				<article>
@@ -534,7 +554,7 @@ $password = Auth::instance()->hash_password($password);
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it should return the guests display name, and not <strong>false</strong>!</p>
+					<p class="note">If your driver has guest user support, it must return the guests display name, and not <strong>false</strong>!</p>
 				</article>
 
 			</section>

@@ -54,20 +54,47 @@
 
 				<p>Creating an Auth package that will suit everyone or every implementation is impossible. As a framework
 				we don't want to force how you do Auth, but we do want to facilitate you creating your own or using the
-				work of others. This is where the Auth package comes in, which of course includes a simple implementation to
-				get you going.</p>
+				work of others. This is where the Auth package comes in.</p>
 
-				<p>The interface contains 3 types of drivers (which can be extended to more types): login, groups &amp; ACL.
+				<p>The interface contains 3 types of drivers (which can be extended to more types): <strong>login</strong>,
+				<strong>group</strong> &amp; <strong>ACL</strong>.
 				The login drivers handle a user login and can handle multiple login drivers at the same time. For example
 				one could make it possible for users to login through Twitter and their own native users at the same time
-				using 2 login drivers.<br />
-				As a next step you could group those 2 types of logins using a group driver that doesn't care about the
+				using 2 login drivers.</p>
+
+				<p>As a next step you could group those 2 types of logins using a group driver that doesn't care about the
 				type of login you're using. And last but not least you can use an Acl driver to give specific rights to
 				those groups.</p>
 
 				<p>The above is just an example of how you might use it, not how you <em>have</em> to use it. Read on in
 				the next section to understand which methods are part of the generic interface and which will be driver
-				specific: <a href="usage.html">Basic usage</a> and <a href="drivers.html">Writing drivers</a>.</p>
+				specific: <a href="drivers.html">Writing drivers</a>.</p>
+
+				<section>
+					<h3 id="included">Included drivers</h3>
+
+					<p>The Auth packages comes with two sets of drivers which provide local access, using one or more database tables.</p>
+
+					<h4 id="simpleauth">Simpleauth</h4>
+
+					<p>As the same implies, this is a basic driver set. It uses a database table to store the user information, and
+					a configuration file to store information about groups, roles, and ACLs. It stores user metadata in a serialized
+					array in the user record. It doesn't have a lot of functionality, but for most applications it can do the job.
+					It is documented <a href="simpleauth/intro.html">here</a>.
+					</p>
+
+					<h4 id="ormauth">Ormauth</h4>
+
+					<p>This driver set provides similar functionality as the Simpleauth drivers, but stores all information about
+					users, groups, roles and permissions in the database and uses ORM models to access this information. In addition to
+					this, it doesn't store user metadata in an array, but in a separate table, using ORM's EAV container feature to
+					access it. It's API is almost compatible with Simpleauth, the difference is that methods that return user, group or role
+					data now return ORM objects instead of arrays.
+					It is documented <a href="ormauth/intro.html">here</a>.
+
+					<p class="note">The Auth package contains the required migration files to create the table structures needed for these
+					drivers. It uses the Auth configuration file to determine what to create, so you need to configure that first.</p>
+				</section>
 
 				<section>
 					<h3 id="install">Installation</h3>
@@ -96,7 +123,7 @@
 							<tr>
 								<th>driver</th>
 								<td>string|array</td>
-								<td><pre class="php"><code>array('SimpleAuth')</code></pre></td>
+								<td><pre class="php"><code>array('Simpleauth')</code></pre></td>
 								<td>
 									Login drivers to load, the first will also be the default returned by Auth::instance().
 								</td>
@@ -123,7 +150,7 @@
 								<td>integer</td>
 								<td><pre class="php"><code>10000</code></pre></td>
 								<td>
-									The number of iterations(number of "encryptions" made to the password) made in the password hashing process(PBKDF2).
+									The number of iterations(number of "encryptions" made to the password) made in the password hashing process(Auth uses PBKDF2).
 									More iterations means safer passwords but using more time. Too many iterations may crash your server!
 								</td>
 							</tr>
@@ -141,7 +168,7 @@
 
 return array(
 	// The drivers
-	'driver' => array('SimpleAuth'),
+	'driver' => array('Simpleauth'),
 
 	// Set to true to allow multiple logins
 	'verify_multiple_logins' => true,
@@ -149,8 +176,6 @@ return array(
 	// Use your own salt for security reasons
 	'salt' => 'Th1s=mY0Wn_$@|+',
 );
-
-/* End of file auth.php */
 </code></pre>
 
 				</section>

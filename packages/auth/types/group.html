@@ -66,10 +66,20 @@
 					could introduce and use custom driver types as well. To do so, add this structure to your driver class:
 				</p>
 
-								<pre class="php"><code>// autoload the SimpleAcl acl driver when loading this group driver
+								<pre class="php"><code>// autoload the Simpleacl acl driver when loading this group driver
 	protected $config = array(
-		'drivers' => array('acl' => array('SimpleAcl'))
+		'drivers' => array('acl' => array('Simpleacl'))
 	);
+</code></pre>
+
+				<h3 id="static">Static interface</h3>
+
+				<p>For ease of use, the <kbd>member()</kbd> method is exposed through the generic Auth static interface.</p>
+
+				<p>Using the static interface, you can do</p>
+
+								<pre class="php"><code>// returns true if the current user is member of group 16.
+$is_member = Auth::member(16);
 </code></pre>
 
 				<h3 id="generic_methods">Generic methods</h3>
@@ -199,70 +209,6 @@ Auth::group()->set_config('key', 'value');
 								<pre class="php"><code>// get a config value of the simplegroup driver, return false if it doesn't exist
 $key = Auth::instance(simplegroup)->get_config('key', false);
 </code></pre>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</article>
-
-				<article>
-					<h4 id="method_has_access" class="method">has_access($condition, $driver, $group = null)</h4>
-					<p>The <strong>has_access</strong> method uses the defined ACL drivers to check the users access according to the given condition.</p>
-					<table class="method">
-						<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
-									</tr>
-									<tr>
-										<th><kbd>$condition</kbd></th>
-										<td>required</td>
-										<td>takes a location and the required rights on the location as either a string or
-											an array</td>
-									</tr>
-									<tr>
-										<th><kbd>$driver</kbd></th>
-										<td>required</td>
-										<td>ACL driver to query, or <strong>null</strong> if all loaded drivers should be called to check for access.</td>
-									</tr>
-									<tr>
-										<th><kbd>$group</kbd></th>
-										<td><i>null</i></td>
-										<td>Optionally, only check this group structure, instead of against all defined groups.</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>boolean, <strong>true</strong> if access was granted, <strong>false</strong> if not.</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>// check if user is allowed to comment
-if ( ! Auth::group()->has_access('comments.create', null) )
-{
-	Response::redirect('no_admin');
-}
-
-// check if user can also update &amp; delete comments
-Auth::group()->has_access('comments.[update,delete]', null);
-
-// call statically (will use the default group driver instance)
-Auth::has_access('comments.[update,delete]');
-
-// The same with an array instead of a string
-Auth::group()->has_access(array('comments', array('update', 'delete')), null);</code></pre>
 							</td>
 						</tr>
 						</tbody>
