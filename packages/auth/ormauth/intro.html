@@ -71,6 +71,44 @@
 
 			<p class="note">As OrmAuth uses the ORM to access the database, make sure you have added the 'orm' package to the <strong>always_load</strong> section too!</p>
 
+			<h3 id="caching">Caching</h3>
+
+			<p>
+				To reduce database I/O, the OrmAuth drivers make heavy use of caching, to avoid having to retrieve the entire permission set for the
+				logged-in user on every page request. Make sure your cache configuration is setup before you start using OrmAuth.
+			</p>
+
+			<p>
+				All cache entries are created with the prefix defined in the OrmAuth configuration file. They are created without expiration timestamp,
+				so when you design your admin backend, make sure do delete the required cache entries after an update, so the cache can be refreshed.
+			</p>
+
+			<p>
+				The following cache keys are used by OrmAuth:
+			</p>
+			<ul>
+				<li><strong>&lt;prefix&gt;.groups</strong> - complete list of all defined groups</li>
+				<li><strong>&lt;prefix&gt;.roles</strong> - complete list of all defined roles</li>
+				<li><strong>&lt;prefix&gt;.permissions.user_&lt;id&gt;</strong> - effective permissions for user &lt;id&gt;</li>
+			</ul>
+
+			<p>
+				After an update to the permissions system, make sure to flush the cached permissions, and, if you have changed either role or group
+				definitions, flush them too.
+			</p>
+
+<pre class="php"><code>// flush all the cached permissions
+\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.permissions');
+
+// flush all the cached groups
+\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.groups');
+
+// flush all the cached roles
+\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.roles');
+
+// flush the permissions of a single user (with id 12211)
+\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.permissions.user_12211');</code></pre>
+
 			<h3 id="configuration">Configuration</h3>
 
 			<p>
