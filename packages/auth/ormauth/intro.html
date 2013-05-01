@@ -94,10 +94,15 @@
 			</p>
 
 			<ul>
-				<li>Users with this role have all access. This is typically used for a 'super-admin' role. It overrules all permissions set.</li>
-				<li>Users with this role have no access. This is typically used for a 'banned' role. It overrules all permissions set.</li>
-				<li>Permissions set on this role will be removed from the aggregated role set.</li>
+				<li>"All access". Users with this role have all access. This is typically used for a 'super-admin' role. It overrules all permissions set.</li>
+				<li>"No access". Users with this role have no access. This is typically used for a 'banned' role. It overrules all permissions set.</li>
+				<li>"Revoke permissions". Permissions set on this role will be removed from the aggregated permissions set.</li>
 			</ul>
+
+			<p class="note">
+				Note that "revoked" permissions are checked before all others. This allows you to create permission constructs like "all access
+				for this super-admin, except to the top-secret area of the application"...
+			</p>
 
 			<p>
 				When checking for access, you specify the required access as either <code>area.permission</code> (when you want to check for
