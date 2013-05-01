@@ -63,6 +63,24 @@
 				After you have done this, you can choose to autoload the package through the <strong>always_load</strong> section of the app/config/config.php.
 			</p>
 
+			<h3 id="acl">ACL's</h3>
+
+			<p>
+				SimpleAuth comes with an ACL driver that supports the following ACL structure:
+			</p>
+
+			<ul>
+				<li>Every user is a member of one, and exactly one, group</li>
+				<li>Every group has zero or more roles assigned to it</li>
+				<li>Every role can have zero or more rights assigned to it</li>
+			</ul>
+
+			<p>
+				When checking for access, you specify the required access as either <code>role.right</code> (when you want to check for
+				a single right, or <code>role.[right,right]</code> when you want to check for multiple rights at once. This is an AND check,
+				so when you specify multiple rights, the user must have ALL of them assigned to be granted access.
+			</p>
+
 			<h3 id="configuration">Configuration</h3>
 
 			<p>

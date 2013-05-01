@@ -71,6 +71,49 @@
 
 			<p class="note">As OrmAuth uses the ORM to access the database, make sure you have added the 'orm' package to the <strong>always_load</strong> section too!</p>
 
+			<h3 id="acl">ACL's</h3>
+
+			<p>
+				OrmAuth has a much more fine-grained ACL system then SimpleAuth. It has the following structure:
+			</p>
+
+			<ul>
+				<li>Every user is a member of one, and exactly one, group</li>
+				<li>Every user has zero or more roles assigned to it</li>
+				<li>Every group has zero or more roles assigned to it</li>
+				<li>Every user can have zero or more permissions assigned to it</li>
+				<li>Every group can have zero or more permissions assigned to it</li>
+				<li>Every role can have zero or more permissions assigned to it</li>
+				<li>Every permission belongs to a permission area</li>
+				<li>Every permission can have zero or more associated actions</li>
+			</ul>
+
+			<p>
+				All the permissions are aggregated per user. A role can have special permission flags, that may alter the
+				assigned aggregated permissions. These are:
+			</p>
+
+			<ul>
+				<li>Users with this role have all access. This is typically used for a 'super-admin' role. It overrules all permissions set.</li>
+				<li>Users with this role have no access. This is typically used for a 'banned' role. It overrules all permissions set.</li>
+				<li>Permissions set on this role will be removed from the aggregated role set.</li>
+			</ul>
+
+			<p>
+				When checking for access, you specify the required access as either <code>area.permission</code> (when you want to check for
+				a single right, <code>area.[permission,permission,...]</code> when you want to check for multiple permissions at once, or if you
+				want to check for associated actions, you can use <code>area.permission[action,action,...]</code>. This is an AND check,
+				so when you specify multiple rights, the user must have ALL of them assigned to be granted access.
+				This will allow you to construct checks like <code>blog.comments[read,create,write,write-own,delete,delete-own]</code>.
+			</p>
+
+			<p>
+				Actions are stored as an indexed array of strings, serialized and unserialized automatically by the ORM. You can define
+				as many actions as you want, and chose any strings you like. If needed this allows you to set a permission on each and every
+				action on a form, more fine-grained then you would probably ever need!
+			</p>
+
+
 			<h3 id="caching">Caching</h3>
 
 			<p>

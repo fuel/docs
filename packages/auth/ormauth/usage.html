@@ -1118,28 +1118,34 @@ $name = Auth::group('Ormgroup')->get_name(100);	// returns 'Administrators'
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>// check if the user has access to read blog posts
-if (Auth::has_access('blog.read'))
+if (Auth::has_access('blog.comments'))
 {
 	// yes, the user has access
 }
 
 // if you have multiple login instances, use the instance to call this method.
-// you can also check for multiple rights in one go
-if (Auth::instance('Ormauth')->has_access('blog.[read,write,delete]'))
+// you can also check for multiple permissions in one go
+if (Auth::instance('Ormauth')->has_access('blog.[posts,comments]'))
 {
-	// yes, the user has access and may read, write and delete
+	// yes, the user has access to both blog posts and blog comments
 }
 
-// you can also specify the rights to check as an array
-if (Auth::has_access(array('blog' => array('read'), 'comments' => array('read')))
+// you can also specify the permissions to check as an array
+if (Auth::has_access(array('blog' => array('post'), 'comments' => array('post')))
 {
-	// yes, the user has access to read blogs and comments
+	// yes, the user has access to read both blogs and comments posts
 }
 
 // if you have multiple login instances, you can also pick a specific ACL driver
-if (Auth::acl('Ormacl')->has_access('blog.[read,write,delete]'))
+if (Auth::acl('Ormacl')->has_access('blog.[posts,comments]'))
 {
-	// yes, the user has access and may read, write and delete
+	// yes, the user has access to both blog posts and blog comments
+}
+
+// you can get more fine-grained permissions by using permission actions.
+if (Auth::has_access('blog.comments[read,create,update,delete]'))
+{
+	// yes, the user has all access to blog comments
 }
 </code></pre>
 							</td>
