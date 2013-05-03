@@ -239,7 +239,7 @@ class Create_posts
 }
 </code></pre>
 
-				<h4 id="timestamp_fields">Changing Timestamp Fields</h4>
+				<h4 id="timestamp_fields">Changing the Timestamp and Timestamp Fields</h4>
 
 				<p>
 					When you're using the timestamp fields in either ORM models or CRUD models (\Model_Crud) you can
@@ -247,7 +247,12 @@ class Create_posts
 					options to set your own field names.
 				</p>
 
-				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --created-at=my_created</code></pre>
+				<p>
+					By default, when you enable timestamps, the timestamps are stored in unixtime, as an integer. If you
+					prefer the MySQL DATETIME format, you can use the <code>--mysql-timestamp</code> option.
+				</p>
+
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --mysql-timestamp --created-at=my_created</code></pre>
 
 				<p>Which will give you:</p>
 
@@ -267,12 +272,12 @@ class Model_Post extends \Orm\Model
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),
-			'mysql_timestamp' => false,
+			'mysql_timestamp' => true,
 			'property' => 'my_created',
 		),
 		'Orm\Observer_UpdatedAt' => array(
 			'events' => array('before_save'),
-			'mysql_timestamp' => false,
+			'mysql_timestamp' => true,
 		),
 	);
 }</code></pre>
