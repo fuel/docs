@@ -101,7 +101,8 @@ $query = DB::query('SELECT * FROM `users`');
 				<p class="note">
 					Note that it is important to pass the correct type when not using a SELECT type query. The database driver
 					will treat them differently. For example, running an INSERT and not specifying the type will not return
-					the insert_id and affected rows.
+					the insert_id and affected rows. If you have a query that must return a resultset, but is not a SELECT, use
+					DB::SELECT to make sure the result is returned correctly.
 				</p>
 			</article>
 
