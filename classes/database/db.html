@@ -50,8 +50,12 @@
 			<p>The DB class allows you to build and execute database queries and fetch the result.</p>
 
 			<article>
-				<h4 class="method" id="method_query">query($query)</h4>
-				<p>The <strong>query</strong> method returns a new <a href="qb_select.html">Database_Query_Builder_Select</a> object.</p>
+				<h4 class="method" id="method_query">query($sql, $type = null)</h4>
+				<p>
+					The <strong>query</strong> method returns a new Database_Query_Builder object. The exact
+					object depends on the type passed. If no type was passed, it will default to DB::SELECT, and it will return a
+					<a href="qb_select.html">Database_Query_Builder_Select</a> object.
+				</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -72,12 +76,17 @@
 										<td><em>required</em></td>
 										<td>SQL query</td>
 									</tr>
+									<tr>
+										<th><kbd>$type</kbd></th>
+										<td><em>null</em></td>
+										<td>SQL query type. Possible types are: DB::SELECT, DB::INSERT, DB::UPDATE and DB::DELETE.</td>
+									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>Returns a <a href="qb_select.html">Database_Query_Builder_Select</a> object.</td>
+							<td>Returns a Database_Query_Builder</a> object of the requested type.</td>
 						</tr>
 						<tr>
 							<th>Example</th>
@@ -89,6 +98,11 @@ $query = DB::query('SELECT * FROM `users`');
 						</tr>
 					</tbody>
 				</table>
+				<p class="note">
+					Note that it is important to pass the correct type when not using a SELECT type query. The database driver
+					will treat them differently. For example, running an INSERT and not specifying the type will not return
+					the insert_id and affected rows.
+				</p>
 			</article>
 
 			<article>
