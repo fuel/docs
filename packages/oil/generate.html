@@ -166,10 +166,13 @@ class Create_posts
 	}
 }</code></pre>
 
-				<p>If you do not wish to generate a migration, simply supply the <strong>--no-migration</strong>:</p>
+				<p>If you do not wish to generate a migration, simply supply the <code>--no-migration</code>:</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --no-migration
 	Created model: APPPATH/classes/model/post.php</code></pre>
+
+				<p>By default, the class name is generated singular (it represents one post), but the corresponding table is generated
+				in plural (in contains multiple posts). You can make the table use the same name as the model by using <code>--singular</code>.</p>
 
 				<h4>Generating Model using Model_Crud</h4>
 
@@ -240,7 +243,7 @@ class Create_posts
 
 				<p>
 					When you're using the timestamp fields in either ORM models or CRUD models (\Model_Crud) you can
-					chose your own field names. Use the <strong>--created-at</strong> and <strong>--updated-at</strong>
+					chose your own field names. Use the <code>--created-at</code> and <code>--updated-at</code>
 					options to set your own field names.
 				</p>
 
@@ -300,13 +303,13 @@ class Create_posts
 }</code></pre>
 
 				<h4 id="model_soft">Generating Model using Model_Soft</h4>
-				
+
 				<p>
 					FuelPHP v1.5 added a Model_Soft based ORM model. Add <code>--soft-delete</code> to use Model_Soft.
 				</p>
-				
+
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --soft-delete</code></pre>
-				
+
 				<p>Which will give you:</p>
 
 				<pre class="php"><code>&lt;?php
@@ -369,7 +372,7 @@ class Create_posts
 				<p>
 					If you wish changing deleted_at field name. Use the <code>--deleted-at</code> option to set your own field name.
 				</p>
-				
+
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --soft-delete --deleted-at=mydeleted</code></pre>
 
 				<h3 id="viewmodels">Viewmodels</h3>
