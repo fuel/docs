@@ -58,13 +58,18 @@
 
 			<p>Now you can just use 'oil' instead of 'php oil' in your projects.</p>
 
+			<p class="note">If you had installed the oil script before version 1.6, you have to re-install it to have it run composer too!</p>
+
 			<p>To create a new project simply run:</p>
 
 			<pre class="cli"><code>$ oil create &lt;project_name&gt;</code></pre>
 
 			<p>This will create a folder in the directory you are in with the project name you gave.  It will then clone the repository and all submodules into that directory.</p>
 
-			<p>Note: This will also run <code class="cli">$ oil refine install</code>, which makes the necessary directories writable.</p>
+			<p>
+				Note: This will also run <code class="cli">$ oil refine install</code> which makes the necessary directories writable,
+				and <code class="cli">$ php composer.phar update</code> to pull in the defined composer dependencies.
+			</p>
 
 			<h3 id="manual">Manual Installation Instructions</h3>
 
@@ -105,6 +110,21 @@
 </pre>
 				</li>
 			</ol>
+
+			<h2 id="composer">Composer</h2>
+
+			<p>
+				As of version 1.6, FuelPHP uses the <a href="http://getcomposer.org">Composer</a> package manager to dynamically pull dependencies it,
+				either from <a href="http://packagist.org">Packagist</a>, from Github, or from a custom defined location. Composer is controlled via
+				the composer.json file, which you will find in the root of your FuelPHP installation. For your convienience, we have included the
+				composer.phar library so you can run composer directly:
+			</p>
+
+<pre class="cli"><code>$ php composer.phar self-update
+php composer.phar update
+</code>
+</pre>
+			<p class="note">If you don't execute this step, FuelPHP will not start, as vital framework components are being loaded through composer!</p>
 
 			<h2 id="configuration">Configuration</h2>
 
