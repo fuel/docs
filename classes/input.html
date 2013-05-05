@@ -862,6 +862,37 @@ echo Input::extension(); // 'html'
 					</tbody>
 				</table>
 			</article>
+			<article>
+				<h4 class="method" id="method_headers">headers()</h4>
+				<p>The <strong>headers</strong> method returns all HTTP headers of the current request.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre><code class="php">// check if there was a content length specified
+if ($headers = \Input::headers() and array_key_exists('Content-Length', $headers))
+{
+	echo 'The content length set on this request is', $headers['Content-Length'];
+}
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 		</div>
 
 		<footer>
