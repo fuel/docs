@@ -70,101 +70,113 @@
 				the next section to understand which methods are part of the generic interface and which will be driver
 				specific: <a href="drivers.html">Writing drivers</a>.</p>
 
-				<section>
-					<h3 id="included">Included drivers</h3>
+				<h3 id="included">Included drivers</h3>
 
-					<p>The Auth packages comes with two sets of drivers which provide local access, using one or more database tables.</p>
+				<p>The Auth packages comes with two sets of drivers which provide local access, using one or more database tables.</p>
 
-					<h4 id="simpleauth">Simpleauth</h4>
+				<h4 id="simpleauth">Simpleauth</h4>
 
-					<p>As the same implies, this is a basic driver set. It uses a database table to store the user information, and
-					a configuration file to store information about groups, roles, and ACLs. It stores user metadata in a serialized
-					array in the user record. It doesn't have a lot of functionality, but for most applications it can do the job.
-					It is documented <a href="simpleauth/intro.html">here</a>.
-					</p>
+				<p>As the same implies, this is a basic driver set. It uses a database table to store the user information, and
+				a configuration file to store information about groups, roles, and ACLs. It stores user metadata in a serialized
+				array in the user record. It doesn't have a lot of functionality, but for most applications it can do the job.
+				It is documented <a href="simpleauth/intro.html">here</a>.
+				</p>
 
-					<h4 id="ormauth">Ormauth</h4>
+				<h4 id="ormauth">Ormauth</h4>
 
-					<p>This driver set provides similar functionality as the Simpleauth drivers, but stores all information about
-					users, groups, roles and permissions in the database and uses ORM models to access this information. In addition to
-					this, it doesn't store user metadata in an array, but in a separate table, using ORM's EAV container feature to
-					access it. It's API is almost compatible with Simpleauth, the difference is that methods that return user, group or role
-					data now return ORM objects instead of arrays.
-					It is documented <a href="ormauth/intro.html">here</a>.
+				<p>This driver set provides similar functionality as the Simpleauth drivers, but stores all information about
+				users, groups, roles and permissions in the database and uses ORM models to access this information. In addition to
+				this, it doesn't store user metadata in an array, but in a separate table, using ORM's EAV container feature to
+				access it. It's API is almost compatible with Simpleauth, the difference is that methods that return user, group or role
+				data now return ORM objects instead of arrays.
+				It is documented <a href="ormauth/intro.html">here</a>
+				</p>
 
-					<p class="note">The Auth package contains the required migration files to create the table structures needed for these
-					drivers. It uses the Auth configuration file to determine what to create, so you need to configure that first.</p>
-				</section>
+				<p class="note">The Auth package contains the required migration files to create the table structures needed for these
+				drivers. It uses the Auth configuration file to determine what to create, so you need to configure that first.</p>
 
-				<section>
-					<h3 id="install">Installation</h3>
+				<h3 id="supporting">Supporting classes</h3>
 
-					<p>The Auth package is included in the Fuel download. All you need to do is enable it in your config.</p>
-					<pre class="php"><code>'always_load' => array(
+				<p>Besides full driver sets, the Auth package also contains supporting classes, classes that provide additional functionality
+				to one or all of the drivers.</p>
+
+				<h4 id="opauth">Opauth</h4>
+
+				<p>Opauth is a multi-provider authentication framework for PHP, and is installed as a composer package. It provides generic
+				authentication using the OAuth or OpenID protocols, and has a substantial list of ready-made strategies for authentication
+				against popular OAuth platforms like Facebook, Twitter, Github, etc.</p>
+
+				<p>The Opauth driver included in the Auth package will interface between Opauth and (currently) either Simpleauth or Ormauth,
+				so that you can link OAuth accounts to local accounts, use local ACL's for OAuth accounts, etc.
+				It is documented <a href="opauth/intro.html">here</a>.
+				</p>
+
+				<h3 id="install">Installation</h3>
+
+				<p>The Auth package is included in the Fuel download. All you need to do is enable it in your config.</p>
+				<pre class="php"><code>'always_load' => array(
 	'packages' => array(
 		'auth',
 	),
 ),</code></pre>
-				</section>
 
-				<section>
-					<h3 id="configuration">Configuration</h3>
+				<h3 id="configuration">Configuration</h3>
 
-					<p>Auth can be configured in a config/auth.php file and takes the following keys:</p>
+				<p>Auth can be configured in a config/auth.php file and takes the following keys:</p>
 
-					<table class="config">
-						<tbody>
-							<tr class="header">
-								<th>Param</th>
-								<th>Type</th>
-								<th>Default</th>
-								<th>Description</th>
-							</tr>
-							<tr>
-								<th>driver</th>
-								<td>string|array</td>
-								<td><pre class="php"><code>array('Simpleauth')</code></pre></td>
-								<td>
-									Login drivers to load, the first will also be the default returned by Auth::instance().
-								</td>
-							</tr>
-							<tr>
-								<th>verify_multiple_logins</th>
-								<td>bool</td>
-								<td><pre class="php"><code>false</code></pre></td>
-								<td>
-									Whether checking for login continues after one driver has validated a login successfully,
-									this makes it possible to login in multiple ways at the same time.
-								</td>
-							</tr>
-							<tr>
-								<th>salt</th>
-								<td>string</td>
-								<td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
-								<td>
-									The salt used for password hashing.
-								</td>
-							</tr>
-							<tr>
-								<th>iterations</th>
-								<td>integer</td>
-								<td><pre class="php"><code>10000</code></pre></td>
-								<td>
-									The number of iterations(number of "encryptions" made to the password) made in the password hashing process(Auth uses PBKDF2).
-									More iterations means safer passwords but using more time. Too many iterations may crash your server!
-								</td>
-							</tr>
-						</tbody>
-					</table>
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<th>driver</th>
+							<td>string|array</td>
+							<td><pre class="php"><code>array('Simpleauth')</code></pre></td>
+							<td>
+								Login drivers to load, the first will also be the default returned by Auth::instance().
+							</td>
+						</tr>
+						<tr>
+							<th>verify_multiple_logins</th>
+							<td>bool</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								Whether checking for login continues after one driver has validated a login successfully,
+								this makes it possible to login in multiple ways at the same time.
+							</td>
+						</tr>
+						<tr>
+							<th>salt</th>
+							<td>string</td>
+							<td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
+							<td>
+								The salt used for password hashing.
+							</td>
+						</tr>
+						<tr>
+							<th>iterations</th>
+							<td>integer</td>
+							<td><pre class="php"><code>10000</code></pre></td>
+							<td>
+								The number of iterations(number of "encryptions" made to the password) made in the password hashing process(Auth uses PBKDF2).
+								More iterations means safer passwords but using more time. Too many iterations may crash your server!
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
-					<p class="note">
-						Note that 'verify_multiple_logins' is a driver level setting. It has no meaning for
-						login drivers, it does not mean "allow a user to be logged-in multiple times"!
-					</p>
+				<p class="note">
+					Note that 'verify_multiple_logins' is a driver level setting. It has no meaning for
+					login drivers, it does not mean "allow a user to be logged-in multiple times"!
+				</p>
 
-					<p>Your auth config file should look like this:</p>
+				<p>Your auth config file should look like this:</p>
 
-					<pre class="php"><code>&lt;?php
+				<pre class="php"><code>&lt;?php
 
 return array(
 	// The drivers
@@ -177,8 +189,6 @@ return array(
 	'salt' => 'Th1s=mY0Wn_$@|+',
 );
 </code></pre>
-
-				</section>
 
 			</section>
 
