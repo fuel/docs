@@ -137,6 +137,13 @@
 			\Response::redirect($url);
 		}
 
+		// deal with Opauth exceptions
+		catch (\OpauthException $e)
+		{
+			\Messages::error($e->getMessage());
+			\Response::redirect_back();
+		}
+
 		// catch a user cancelling the authentication attempt (some providers allow that)
 		catch (\OpauthCancelException $e)
 		{
