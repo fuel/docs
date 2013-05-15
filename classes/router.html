@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Router::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Router - Classes - FuelPHP Documentation</title>
+	<title>Router - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,35 +45,35 @@
 
 		<div id="main">
 
-			<h2>Router Class</h2>
+			<h2>Router クラス</h2>
 
-			<p>The <kbd>Router</kbd> class determines which controller needs to be loaded, based on the request passed to it, and the routes defined.</p>
+			<p><kbd>Router</kbd> クラスは、渡されたリクエストと、定義されたルートに従い、どのコントローラがロードされるべきかを決定します。 </p>
 
 			<article>
 				<h4 class="method" id="method_process">process(\Request $request, $route = true)</h4>
 				<p>
-					The <strong>process</strong> method takes a request object, and will try to find a route match for the URI contained in the request.
-					If no route can be matched, the router will create a new route based on the information in the URI, and following the controller/method or
-					module/controller/method URI scheme. It will not check if the determined route is valid!
+					<strong>process</strong> メソッドは、リクエストオブジェクトを受け取り、リクエストに含まれるURIから、マッチするルートを見つけようとするでしょう。
+					もし、どのルートにもマッチしなかった場合、router は、URIの情報、 controller/method もしくは、
+					module/controller/method といったURIスキーマから 新しい ルートを作成するでしょう。決定されたルートが有効かどうかはチェックされません。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$request</kbd></th>
-									<td><i>required</i></td>
+									<td><i>必須</i></td>
 									<td>A valid Request object.</td>
 								</tr>
 								<tr>
@@ -88,15 +88,15 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><i>Route object, or null if no valid route object could be constructed</i></td>
 					</tr>
 					</tbody>
 				</table>
 
 				<p class="note">
-					Under normal circumstances you won't be needing this method, it is used internally in the framework to load
-					controllers.
+					通常の使用方法では、このメソッドは必要としないでしょう。これは、コントローラをロードするために、
+					フレームワークの内部で使用されます。
 				</p>
 			</article>
 
@@ -110,21 +110,21 @@
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$path</kbd></th>
-									<td><i>required</i></td>
+									<td><i>必須</i></td>
 									<td>The URI path to be matched. This is the left side of your routes.php route definition.</td>
 								</tr>
 								<tr>
@@ -146,11 +146,11 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><i>void</i></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// load a new route for 'this/that' => 'something/else'
 Router::add('this/that', 'something/else');
@@ -178,17 +178,17 @@ Router::add($path, new Route($path, 'something/else', false));
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
@@ -204,11 +204,11 @@ Router::add($path, new Route($path, 'something/else', false));
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><kbd>bool|array</kbd></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// if your routes are defined like this:
 return array(
@@ -263,21 +263,21 @@ echo Router::get('user', array('name' => 'john', 'article'));
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$path</kbd></th>
-									<td><i>required</i></td>
+									<td><i>必須</i></td>
 									<td>The URI path to be matched. This is the left side of your routes.php route definition.</td>
 								</tr>
 								<tr>
@@ -289,11 +289,11 @@ echo Router::get('user', array('name' => 'john', 'article'));
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><i>void</i></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// delete the route for 'this/that'
 Router::delete('this/that');
@@ -315,6 +315,7 @@ Router::delete('module/controller(:any)');
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/router.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/router.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/router.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

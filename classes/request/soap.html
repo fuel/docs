@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Request_Soap::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Request_Soap - Classes - FuelPHP Documentation</title>
+	<title>Request_Soap - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,30 +45,30 @@
 
 		<div id="main">
 
-			<h2>Request_Soap Class</h2>
+			<h2>Request_Soap クラス</h2>
 
 			<p>
-				The Request_Soap class is intended to process SOAP requests through PHP's <a href="http://php.net/manual/en/class.soapclient.php">SoapClient</a> extension.
-				Your PHP installation must be compiled with "--enable-soap". You can check the output of <strong>phpinfo()</strong> to see if this is the case.
+				Request_SoapクラスはPHPの<a href="http://php.net/manual/ja/class.soapclient.php">SoapClient</a>拡張を介してSOAPリクエストを処理するためにあります。
+				PHPのインストールには、"--enable-soap"のオプションをつける必要があります。<strong>phpinfo()</strong>でそれを確認する事ができます。
 			</p>
 
-			<h3>Creating an instance</h3>
+			<h3>インスタンスの作成</h3>
 
 			<p>
-				You can forge an instance of this class through the Request class:
+				あなたは、Requestクラスを使用してこのクラスのインスタンスを作ることが出来ます。
 			</p>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap objectを作る
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// note that this only creates the object, it does not execute the request!</code></pre>
+// これは、オブジェクトを作成するだけで、リクエストを実行するわけではない事に注意してください!</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set_params">set_params($params)</h4>
-				<p>The <strong>set_params</strong> method allows you to set parameters to pass on the SOAP request call.</p>
+				<p><strong>set_params</strong>を使用すると、SOAP要求の呼び出し時に渡すパラメータを設定することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -83,7 +83,7 @@ $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 								<tr>
 									<th><kbd>$params</kbd></th>
 									<td><i>required</i></td>
-									<td>Array of parameters for the request.</td>
+									<td>リクエストのパラメータの配列</td>
 								</tr>
 							</table>
 						</td>
@@ -93,12 +93,12 @@ $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 						<td>Request_Soap, for chaining</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap objectを作成する。
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// set some parameters
+// いくつかのパラメータを設定
 $soap->set_params(array('userid' => 12, 'data' => $payload));
 </code></pre>
 						</td>
@@ -118,7 +118,7 @@ $soap->set_params(array('userid' => 12, 'data' => $payload));
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -168,7 +168,7 @@ $soap->set_option('login', $username);
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -217,7 +217,7 @@ $soap->set_options(array(
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -270,7 +270,7 @@ $soap->add_param('data', $payload);
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -321,7 +321,7 @@ $soap->set_header('auth-token', 'WV4YaeV8QeWVVVOE');
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -358,7 +358,7 @@ $headers = $soap->get_headers();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -403,7 +403,7 @@ $soap->set_auto_format(true);
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -448,7 +448,7 @@ $result = $soap->execute();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -509,7 +509,7 @@ $soap->set_response($body, $this->response_info('http_code', 200), 'xml', array(
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -546,7 +546,7 @@ $result = $soap->response();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -600,7 +600,7 @@ $size = $soap->response_info('SOAPAction', false);
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -645,7 +645,7 @@ $soap->set_function('GetUserInfo');
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -680,7 +680,7 @@ $functions = $soap->get_functions();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -717,7 +717,7 @@ $request = $soap->get_request_xml();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -754,7 +754,7 @@ $headers = $soap->get_request_headers();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -791,7 +791,7 @@ $response = $soap->get_response_xml();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -828,7 +828,7 @@ $response = $soap->get_response_headers();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -863,7 +863,7 @@ $types = $soap->get_types();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -909,7 +909,7 @@ $soap->set_cookie('auth-token', 'WV4YaeV8QeWVVVOE');
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -949,6 +949,7 @@ $soap->set_location('http://moresoap.example.org/api/v2/other/info');
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/request/soap.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/request/soap.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/request/soap.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

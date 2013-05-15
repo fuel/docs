@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = 'Query_Builder_Update::';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Query Builder Update - Classes - FuelPHP Documentation</title>
+	<title>Query Builder Update - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,54 +45,54 @@
 
 		<div id="main">
 
-			<h2 id="introduction">Query_Builder_Update class</h2>
+			<h2 id="introduction">Query_Builder_Update クラス</h2>
 
 			<p>(extends <a href="qb_where.html">Query_Builder_Where</a>)</p>
 
 			<p>
-				The Query_Builder_Update class handles all the update operations for the query building process. It extends the
-				Query_Builder_Where class, so all the methods are inherited.
+				Query_Builder_Update クラスは、クエリ構築のためのすべてのアップデート 操作を扱います。
+				これは、Query_Builder_Where クラスを拡張しており、すべてのメソッドが継承されます。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_table">table($table)</h4>
-				<p>The <strong>table</strong> method sets/changes the table to update.</p>
+				<p><strong>table</strong> メソッドは、 アップデートするテーブル名をセット/変更します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>string</em></td>
-										<td><em>required</em></td>
-										<td>the table name</td>
+										<td><em>必須</em></td>
+										<td>テーブル名</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Set the table to update
+// アップデートするテーブル名をセット
 $query->table('admins');
 
 // UPDATE `admins` ...
@@ -106,49 +106,49 @@ $query->table('admins');
 
 			<article>
 				<h4 class="method" id="method_value">value($column, $value)</h4>
-				<p>The <strong>value</strong> method sets a column and value to update.</p>
+				<p><strong>value</strong> メソッドは、アップデートするカラム名と値をセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$column</kbd></th>
 										<td><em>string</em></td>
-										<td><em>required</em></td>
-										<td>the column to update</td>
+										<td><em>必須</em></td>
+										<td>カラム名</td>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
 										<td><em>mixed</em></td>
-										<td><em>required</em></td>
-										<td>the new value</td>
+										<td><em>必須</em></td>
+										<td>新しい値</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Set the columns
+// カラムに値をセット
 $query->value('name', 'Frank');
 
 // UPDATE `users` SET `name` = "Frank"
@@ -161,43 +161,43 @@ $query->value('name', 'Frank');
 
 			<article>
 				<h4 class="method" id="method_set">set(array $pairs)</h4>
-				<p>The <strong>set</strong> method sets the columns and values to update.</p>
+				<p><strong>set</strong> メソッドは、アップデートする複数のカラムと値をセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$pairs</kbd></th>
 										<td><em>array</em></td>
-										<td><em>required</em></td>
-										<td>associative array of columns and values</td>
+										<td><em>必須</em></td>
+										<td>カラム名と値の連想配列</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Set the columns and vales
+// カラム名と値をセット
 $query->set(array(
 	'name' => 'John',
 	'surname' => 'Doe',
@@ -213,52 +213,52 @@ $query->set(array(
 
 			<article>
 				<h4 class="method" id="method_compile">compile(\Database_Connection$db)</h4>
-				<p>The <strong>compile</strong> method returns the update SQL query as a string.</p>
+				<p><strong>compile</strong> メソッドは、アップデートを行うSQL クエリを文字列で返却します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><em>object</em></td>
-										<td><em>required</em></td>
-										<td>A database connection</td>
+										<td><em>必須</em></td>
+										<td>データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns the SQL query as a string.</td>
+							<th>返り値</th>
+							<td>SQL文の文字列</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Set two values
+// ２つの値をセット
 $query->set(array(
 	'name' => 'Bert',
 	'surname' => 'Klaassen',
 ));
 
-// Get the database connection
+// データベース接続を取得
 $connection = Database_Connection::instance();
 
-// Get the sql query
+// SQL文を取得
 $sql = $query->compile($connection);
 </code></pre>
 							</td>
@@ -269,45 +269,45 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_reset">reset()</h4>
-				<p>The <strong>reset</strong> method resets all values of the current instance.</p>
+				<p><strong>reset</strong> メソッドは、現在のインスタンスのすべての値をリセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<em>None</em>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Set two values
+// ２つの値をセット
 $query->set(array(
 	'name' => 'Bert',
 	'surname' => 'Klaassen',
 ));
 
-// Reset it
+// 上記をリセット
 $query->reset();
 
-// Just set one
+// １つ値をセット
 $query->value('name', 'Hank');
 
-// Get the database connection
+// データベース接続を取得
 $connection = Database_Connection::instance();
 
-// Get the sql query
+// SQL文を取得
 $sql = $query->compile($connection);
 
 // UPDATE `users` SET `name` = "Hank"
@@ -320,46 +320,46 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_join">join($table, $type = null)</h4>
-				<p>The <strong>join</strong> method appends tables to join.</p>
+				<p><strong>join</strong> メソッドは、JOINするテーブルを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>mixed</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>table name or array($table, $alias)</td>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><em>mixed</em></td>
 										<td><pre class="php"><code>true</code></pre></td>
-										<td>join type (LEFT, RIGHT, INNER, etc)</td>
+										<td>JOINタイプ (LEFT, RIGHT, INNER, など)</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<a href="#join_example">View example here</a>
+								<a href="#join_example">こちらの例を参照ください。</a>
 							</td>
 						</tr>
 					</tbody>
@@ -368,59 +368,59 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_on">on($c1, $op, $c2)</h4>
-				<p>The <strong>on</strong> method adds "ON ..." conditions for the last created JOIN statement.</p>
+				<p><strong>on</strong> メソッドは、最後に作られたJOINステートメントに対し、 "ON ..." 条件を追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$c1</kbd></th>
 										<td><em>mixed</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>table name or array($table, $alias)</td>
 									</tr>
 									<tr>
 										<th><kbd>$op</kbd></th>
 										<td><em>string</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>logical operator</td>
 									</tr>
 									<tr>
 										<th><kbd>$c2</kbd></th>
 										<td><em>mixed</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>table name or array($table, $alias)</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre id="join_example" class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
-// Join a table
+// テーブルをJOIN
 $query->join('profiles');
 $query->on('users.id', '=', 'profiles.user_id');
 
-// Use a Database_Expression so the value does not get escaped.
+// 値がエスケープされないように、 Database_Expression を使用します。
 $query->value('users.profile_type', \DB::expr('`profiles`.`type`'));
 
 // UPDATE `users` JOIN `profiles` ON `users`.`id` = `profiles`.`user_id` SET `users`.`profile_type` = `profiles`.`type`
@@ -436,6 +436,7 @@ $query->value('users.profile_type', \DB::expr('`profiles`.`type`'));
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/database/qb_update.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/database/qb_update.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/database/qb_update.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Usage - Email Package - FuelPHP Documentation</title>
+	<title>Usage - Email Package - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,53 +44,53 @@
 
 		<div id="main">
 
-			<h2>Using the Email package</h2>
+			<h2>Email パッケージの使用方法</h2>
 
-			<p>The email package needs only 3 things from you in order to start sending emails.</p>
+			<p>email パッケージでメールを送るために必要な項目は、次の3つだけです。</p>
 
 			<ol>
-				<li>An address to 'send from'.</li>
-				<li>An address to send to.</li>
-				<li>And last but not least, the message</li>
+				<li>from のアドレス
+				<li>to のアドレス</li>
+				<li>そして、送りたいメッセージ</li>
 			</ol>
 
-			<h3 id="sending_mails">Let's send mails.</h3>
+			<h3 id="sending_mails">メールを送ってみましょう。</h3>
 
-			<pre class="php"><code>// Create an instance
+			<pre class="php"><code>// インスタンスを生成する
 $email = Email::forge();
 
-// Set the from address
+// from を指定する
 $email->from('my@email.me', 'My Name');
 
-// Set the to address
+// to を指定する
 $email->to('receiver@elsewhere.co.uk', 'Johny Squid');
 
-// Set a subject
+// 件名を指定する
 $email->subject('This is the subject');
 
-// Set multiple to addresses
+// 複数の to を指定する場合
 
 $email->to(array(
 	'example@mail.com',
 	'another@mail.com' => 'With a Name',
 ));
 
-// And set the body.
+// 本文を指定する
 $email->body('This is my message');
 </code></pre>
 
-			<p>At this point we're ready to start sending the mail.</p>
+			<p>この時点で、メールを送信する準備ができました。</p>
 
-			<h3 id="exception">Exceptions</h3>
+			<h3 id="exception">例外</h3>
 
-			<p>When sending a mail. You can encounter 2 exception types.</p>
+			<p>メールを送信する際、次の2種類の例外に遭遇する可能性があります。</p>
 
 			<ul>
-				<li><strong>\EmailValidationFailedException</strong>: thrown when one or more email addresses doesn't pass validation</li>
-				<li><strong>\EmailSendingFailedException</strong>, thrown when the driver failed to send the exception</li>
+				<li><strong>\EmailValidationFailedException</strong>: 1つ以上のメールアドレスがバリデーションを通過しない場合に投げられます。</li>
+				<li><strong>\EmailSendingFailedException</strong>: ドライバの例外でメール送信出来なかった場合</li>
 			</ul>
 
-			<p>The example blow shows you how to handle those exceptions.</p>
+			<p>下記の例では、これらの例外を扱う方法を示します。</p>
 
 			<pre class="php"><code>try
 {
@@ -98,69 +98,69 @@ $email->body('This is my message');
 }
 catch(\EmailValidationFailedException $e)
 {
-	// The validation failed
+	// バリデーションが失敗したとき
 }
 catch(\EmailSendingFailedException $e)
 {
-	// The driver could not send the email
+	// ドライバがメールを送信できなかったとき
 }</code></pre>
 
-			<h3 id="html_mails">HTML mails.</h3>
+			<h3 id="html_mails">HTML メール</h3>
 
-			<p>Sending HTML mail is not very different from sending normal mails:</p>
+			<p>HTML メールの送信も、普通のメールの送信とあまり変わりません:</p>
 
-			<pre class="php"><code>// Set a html body message
+			<pre class="php"><code>// HTML の本文を指定する
 $email->html_body(\View::forge('email/template', $email_data));
 
-/** By default this will also generate an alt body from the html,
-	and attach any inline files (not paths like http://...)       **/
+/** デフォルトでは、この機能は HTML から代替テキストも生成します。
+	また、本文中のファイルを添付します (http://... のようなパスでなく)。       **/
 
-// Set an alt body, this is optional.
+// オプションで、代替テキストを指定する
 $email->alt_body('This is my alt body, for non-html viewers.');</code></pre>
 
-			<h3 id="attachments">Attachments</h3>
+			<h3 id="attachments">添付ファイル</h3>
 
 			<p>
-				The Email package supports two kinds of attachments: normal (attachment), and inline. Use an inline attachment if
-				you want to use in inside the mail. You might, for instance, want to have a graphic in your mail, and you want people to
-				that image offline also. Some clients don't cache that, and yes that's dumb. But it's the interwebs and stuff like that happens.
+				Email パッケージは、通常の添付とインラインの2種類の添付をサポートします。
+				メールの本文中に使いたい場合は、インライン添付を用います。例えば、図を挿入して、オフラインでも表示できるようにしたいときなどです。
+				ただし、受信側のメーラーによっては対応していないことに注意してください。
 			</p>
 
-			<pre class="php"><code>// Add an attachment
+			<pre class="php"><code>// 添付ファイルを追加する
 $email->attach(DOCROOT.'dir/my_img.png');
 
-// Add an inline attachment
-// Add a cid here to point to the html
+// インライン添付を追加する
+// HTML に挿入するために cid を追加する
 $email->attach(DOCROOT.'dir/my_img.png', true, 'cid:my_conten_id');
 </code></pre>
 
-			<p>You can also add string attachments:</p>
+			<p>テキストファイルを添付することもできます:</p>
 
 			<pre class="php"><code>$contents = file_get_contents($my_file);
 $email->string_attach($contents, $filename);
 	</code></pre>
 
 			<p>
-				By default html images are auto included, but it only includes local files.
-				Look at the following html to see how it works.
+				デフォルトでは、HTML 中の画像は自動的に添付されます。ただし、ローカルにあるファイルのみです。
+				どのように動作するかは、下記の HTML を見てください。
 			</p>
 
-			<pre class="html"><code>&lt;!-- This is included --&gt;
+			<pre class="html"><code>&lt;!-- これは添付される --&gt;
 &lt;img src="path/to/my/file.png" /&gt;
 
-&lt;!-- This is not included --&gt;
+&lt;!-- これは添付されない --&gt;
 &lt;img src="http://remote_host/file.jpeg" /&gt;
 
-&lt;!-- This is not included --&gt;
+&lt;!-- これは添付されない --&gt;
 &lt;img src="cid:my_conten_id" /&gt;
 	</code></pre>
 
-			<p>The last tag you saw (with the cid:) is also not included. In this situation the email expects you to attach that file yourself using an inline attachment.</p>
+			<p>最後のタグ (cid:) も、自動的には添付されません。この例では、インライン添付を用いて、自分自身で添付する必要があります。</p>
 
-			<h3 id="priorities">Priority</h3>
+			<h3 id="priorities">優先度</h3>
 
 			<p>
-				Alter a mail's priority by using the <a href="./methods.html#method_priority">priority</a> method.
+				メールの優先度を変更するには、<a href="./methods.html#method_priority">priority</a> メソッドを使用します。
 			</p>
 
 			<pre class="php"><code>$email->priority(\Email::P_HIGH);</code></pre>
@@ -170,6 +170,7 @@ $email->string_attach($contents, $filename);
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/packages/email/usage.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/packages/email/usage.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/packages/email/usage.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

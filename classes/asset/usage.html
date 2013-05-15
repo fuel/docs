@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Asset::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Asset Usage - Classes - FuelPHP Documentation</title>
+	<title>Asset 使い方 - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,17 +45,17 @@
 
 		<div id="main">
 
-			<h2>Asset Class</h2>
+			<h2>Asset クラス</h2>
 
-			<p>The asset class is a set of methods to help with the collection, grouping and displaying of assets (js, css, img).</p>
+			<p>asset クラスは、assets (js, css, img) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
 
 			<section>
-				<h3 id="usage">Usage</h3>
+				<h3 id="usage">使用方法</h3>
 
 				<p>
-					Using assets can be done in 2 ways: through static usage of the Asset class and through asset objects
-					returned by the Asset::forge() or Asset::instance(). This section covers static usage which will always work
-					with the default instance using the configuration specified in the <a href="config.html">configuration</a>.
+					asset は 2 通りの方法で使用できます。Asset クラスの静的な使用と、
+					Asset::forge() or Asset::instance() が返す asset オブジェクトです。このセクションでは、静的な使用を紹介します。
+					<a href="config.html">configuration</a> で指定した設定を使用したデフォルトインスタンスで必ず動作します。
 				</p>
 
 				<p class="note">
@@ -65,7 +65,7 @@
 				</p>
 
 				<p>
-					Using asset objects, Asset::instance() and Asset::forge() is explained in the <a href="advanced.html">advanced</a> section.
+					asset オブジェクトの使用、Asset::instance() および Asset::forge() は <a href="advanced.html">advanced</a> セクションで解説します。
 				</p>
 
 				<article>
@@ -77,21 +77,21 @@
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$path</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>The path to add to the front of the assets path array (RELATIVE to the asset url and WITH trailing slash).</td>
 									</tr>
 									<tr>
@@ -107,11 +107,11 @@
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>current instance</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>/*
  * These paths would need to have subfolders as defined in the config
@@ -153,21 +153,21 @@ Asset::add_path('resources/templates/dark/')
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$stylesheets</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>An array/string of stylesheet filename(s) to be added to the group or be returned as tags.</td>
 									</tr>
 									<tr>
@@ -189,11 +189,11 @@ Asset::add_path('resources/templates/dark/')
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Rendered asset string or current instance when adding to group.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// adds file to group and returns '' if group is not null
 Asset::css(array('header.css', 'footer.css'), array(), 'layout', false);
@@ -224,26 +224,26 @@ echo Asset::css('inline.css', array(), null, true);</code></pre>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$file</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>The name of the file you are searching for.</td>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>The type of asset being searched (css, js, img).</td>
 									</tr>
 									<tr>
@@ -255,11 +255,11 @@ echo Asset::css('inline.css', array(), null, true);</code></pre>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Either the path to the file or false if not found</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// find a css file
 $path = Asset::find_file('layout.css', 'css');
@@ -278,21 +278,21 @@ $path = Asset::find_file('icon.png', 'img','icons/');</code></pre>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$images</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>An array/string of image filename(s) to be applied to the group or returned as tags.</td>
 									</tr>
 									<tr>
@@ -309,11 +309,11 @@ $path = Asset::find_file('icon.png', 'img','icons/');</code></pre>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Rendered asset string or current instance when adding to group.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>/* returns
  * &lt;img src="../assets/img/logo.png" id="logo"&gt;
@@ -335,21 +335,21 @@ Asset::img(array('bob.jpg', 'joe.jpg', 'sally.jpg'), array('class' => 'thumbnail
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$scripts</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>An array/string of stylesheet filename(s) to be added to the group or be returned as tags.</td>
 									</tr>
 									<tr>
@@ -371,11 +371,11 @@ Asset::img(array('bob.jpg', 'joe.jpg', 'sally.jpg'), array('class' => 'thumbnail
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Rendered asset string or current instance when adding to group.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// returns '' if $raw is set to false
 Asset::js(array('jquery.js', 'jqueryui.js'), array(), 'jquery', false);
@@ -402,30 +402,30 @@ echo Asset::js('jquery.js');</code></pre>
 
 				<article>
 					<h4 id="method_get_file" class="method">get_file($file, $type, $folder = '')</h4>
-					<p>The <strong>get_file</strong> method allows you to get the URL to an asset file.</p>
+					<p><strong>get_file</strong> メソッドを用いると、アセットファイルの URL を取得することができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$file</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>Name of the asset to look for.</td>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>Type of asset to search for. 'img', 'css', and 'js' are supported types.</td>
 									</tr>
 									<tr>
@@ -437,11 +437,11 @@ echo Asset::js('jquery.js');</code></pre>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Fully qualified asset URL (depending on the base_url defined) or false if not found.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// returns something like 'http://example.org/assets/js/jquery.js'
 echo Asset::get_file('jquery.js', 'js');</code></pre>
@@ -460,21 +460,21 @@ echo Asset::get_file('jquery.js', 'js');</code></pre>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$path</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>The path to from the assets path array.</td>
 									</tr>
 									<tr>
@@ -489,11 +489,11 @@ echo Asset::get_file('jquery.js', 'js');</code></pre>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>The current instance</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>/*
  * Remove global search paths
@@ -531,17 +531,17 @@ Asset::remove_path('resources/templates/dark/')
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$group</kbd></th>
@@ -557,11 +557,11 @@ Asset::remove_path('resources/templates/dark/')
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>string</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>/* returns
  * &lt;link href="../assets/css/header.css" rel="stylesheet" /&gt;
@@ -584,6 +584,7 @@ echo Asset::render();</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/asset/usage.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/asset/usage.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/asset/usage.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

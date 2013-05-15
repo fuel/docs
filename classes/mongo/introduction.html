@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Mongo_Db Introduction - Classes - FuelPHP Documentation</title>
+	<title>Mongo_Db はじめに - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,69 +44,69 @@
 
 		<div id="main">
 
-			<h2>Mongo_Db class</h2>
+			<h2>Mongo_Db クラス</h2>
 
-			<h3 id="intro">Introduction</h3>
+			<h3 id="intro">はじめに</h3>
 			<p>
-				The Mongo_Db class provides methods to interact with
-				<a href="http://www.mongodb.org/" target="_blank">Mongo databases</a>.
+				Mongo_Db クラスは、
+				<a href="http://www.mongodb.org/" target="_blank">Mongo データベース</a> と対話する方法を提供します。
 			</p>
 			<p>
-				Besides providing the normal insert, select, delete and update functionality it has some management
-				methods to help you with database utility operations.
+				通常のインサート、セレクト、デリート、アップデートといった機能に加え、
+				Mongo_Db クラスは、データベース操作を助ける機能を提供します。
 			</p>
 
-			<h3 id="config">Configuration</h3>
+			<h3 id="config">設定</h3>
 
 			<p>
-				For every Mongo database connection there must be a config in mongo array in <em>app/config/db.php</em>.
-				Configuration options and explanation are listed below. Every config requires to contain a hostname
-				and database name.
+				すべての Mongo データベースの接続設定は、<em>app/config/db.php</em> の中の mongo という配列にされている必要があります。
+				設定オプションと説明は次のとおりです。
+				すべての設定には、ホスト名 と データベース名が必須となります。
 			</p>
 
 			<table class="config">
 				<tbody>
 					<tr class="header">
-						<th>Param</th>
-						<th>Type</th>
+						<th>パラメータ</th>
+						<th>型</th>
 						<th>Required</th>
-						<th>Description</th>
+						<th>説明</th>
 					</tr>
 					<tr>
 						<th>hostname</th>
 						<td>string</td>
-						<td>yes</td>
-						<td>the hostname</td>
+						<td>はい</td>
+						<td>ホスト名</td>
 					</tr>
 					<tr>
 						<th>database</th>
 						<td>string</td>
-						<td>yes</td>
-						<td>the database name</td>
+						<td>はい</td>
+						<td>データベース名</td>
 					</tr>
 					<tr>
 						<th>port</th>
 						<td>number</td>
 						<td>no</td>
-						<td>the port to use in the connection</td>
+						<td>接続するポート番号</td>
 					</tr>
 					<tr>
 						<th>replicaset</th>
 						<td>string</td>
 						<td>no</td>
-						<td>the name of the replicaset to use for the connection</td>
+						<td>接続に使用するレプリカセット名</td>
 					</tr>
 					<tr>
 						<th>username</th>
 						<td>string</td>
 						<td>no</td>
-						<td>username used for authentication, ignored if no password has been set</td>
+						<td>認証で使用するユーザ名（パスワードがセットされない場合には無視されます）</td>
 					</tr>
 					<tr>
 						<th>password</th>
 						<td>string</td>
 						<td>no</td>
-						<td>password used for authentication, ignored if no password has been set</td>
+						<td>認証で使用するパスワード（パスワードがセットされない場合には無視されます）</td>
 					</tr>
 				</tbody>
 			</table>
@@ -116,7 +116,7 @@
 			<pre class="php"><code>// Inside app/config/db.php
 
 		'mongo' => array(
-			// This group is used when no instance name has been provided.
+			// このグループは、インスタンス名が省略された場合に使用されます。
 			'default' => array(
 				'hostname'   => 'localhost',
 				'database'   => 'mongo_fuel',
@@ -133,11 +133,11 @@
 		),
 	</code></pre>
 
-			<p>Once you have your setting in place you can start using MongoDB.</p>
+			<p>いったん設定が完了すれば、 MongoDB の利用を開始することができます。</p>
 
 			<p class="note">
-				In order to use MongoDB this must be available on your server. To see if you have mongo
-				support on you server, look for the Mongo section in your <em>phpinfo()</em> or ask you hosting company.
+				MongoDB を使用するには、あなたのサーバーで利用できなければなりません。 
+				あなたのサーバーでMongoDBがサポートされているか確認するには、<em>phpinfo()</em> の Mongo セクションを参照するか、ホスティング会社に確認してください。
 			</p>
 
 		</div>
@@ -145,6 +145,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/mongo/introduction.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/mongo/introduction.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/mongo/introduction.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

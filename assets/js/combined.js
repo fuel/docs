@@ -96,12 +96,12 @@ var customSearchControl;
 
 if(typeof google != 'undefined')
 {
-google.load('search', '1', {language : 'en'});
+google.load('search', '1', {language : 'ja'});
 google.setOnLoadCallback(function() {
 	// fuelphp.com/docs
 	// customSearchControl = new google.search.CustomSearchControl('006268519150918941486:vg1sweimb7m');
 	// fuelphp.com/dev-docs
-	customSearchControl = new google.search.CustomSearchControl('006268519150918941486:avkdxx7rmmc');
+	customSearchControl = new google.search.CustomSearchControl('012250717400967371289:_zveystzets');
 	customSearchControl.setResultSetSize(4);
 	var options = new google.search.DrawOptions();
 	options.setSearchFormRoot('cse-search-form');
@@ -365,52 +365,52 @@ var pane_names = {
 };
 
 panes.main = {
-	"Basic": {
-		"Home":			"index.html",
-		"Requirements":	"requirements.html",
-		"License":		"license.html",
-		"Contribute":	"contribute.html",
-		"Credits":		"credits.html"
+	"基本": {
+		"ホーム":			"index.html",
+		"要件":	"requirements.html",
+		"ライセンス":		"license.html",
+		"貢献":	"contribute.html",
+		"クレジット表示":		"credits.html"
 	},
-	"Installation": {
-		"Instructions":			"installation/instructions.html",
-		"Download":				"installation/download.html",
-		"Upgrade":				"installation/upgrade.html",
-		"Tutorials":			"installation/tutorials.html",
-		"Troubleshooting":		"installation/troubleshooting.html"
+	"インストール": {
+		"インストール方法":	"installation/instructions.html",
+		"ダウンロード":		"installation/download.html",
+		"アップグレード":	"installation/upgrade.html",
+		"チュートリアル":	"installation/tutorials.html",
+		"トラブルシューティング":		"installation/troubleshooting.html"
 	},
-	"General": {
-		"Classes": {
-			"Introduction":		"general/classes.html",
-			"Extending Core":	"general/extending_core.html"
+	"概要": {
+		"クラス": {
+			"はじめに":		"general/classes.html",
+			"Core の拡張":	"general/extending_core.html"
 		},
-		"Coding Standards":	"general/coding_standards.html",
-		"Configuration":	"general/configuration.html",
-		"Constants":		"general/constants.html",
-		"Environments":		"general/environments.html",
+		"コーディング標準":	"general/coding_standards.html",
+		"設定":	"general/configuration.html",
+		"定数":		"general/constants.html",
+		"複数環境":		"general/environments.html",
 		"Model-View-Controller":	"general/mvc.html",
-		"Models":			"general/models.html",
-		"Views":			"general/views.html",
-		"ViewModels":		"general/viewmodels.html",
-		"Controllers": {
+		"モデル":			"general/models.html",
+		"ビュー":			"general/views.html",
+		"ビューモデル":		"general/viewmodels.html",
+		"コントローラ": {
 			"Base" :		"general/controllers/base.html",
 			"Template":		"general/controllers/template.html",
 			"Rest":			"general/controllers/rest.html",
 			"Hybrid":		"general/controllers/hybrid.html"
 		},
-		"Routing":			"general/routing.html",
-		"Security":			"general/security.html",
-		"Modules":			"general/modules.html",
-		"Packages":			"general/packages.html",
-		"HMVC Requests":	"general/hmvc.html",
-		"Migrations":		"general/migrations.html",
-		"Tasks":			"general/tasks.html",
-		"Unit Testing":		"general/unit_testing.html",
-		"Error handling":	"general/error.html",
-		"Profiling":		"general/profiling.html",
+		"ルーティング":			"general/routing.html",
+		"セキュリティ":			"general/security.html",
+		"モジュール":			"general/modules.html",
+		"パッケージ":			"general/packages.html",
+		"HMVC リクエスト":	"general/hmvc.html",
+		"マイグレーション":		"general/migrations.html",
+		"タスク":			"general/tasks.html",
+		"ユニットテスト":		"general/unit_testing.html",
+		"エラー処理":	"general/error.html",
+		"プロファイリング":		"general/profiling.html",
 	},
-	"Third party": {
-		"Introduction":		"vendor/intro.html",
+	"サードパーティ": {
+		"はじめに":			"vendor/intro.html",
 		"htmLawed":			"vendor/htmlawed.html",
 		"Markdown":			"vendor/markdown.html",
 		"PHPQuickProfiler":	"vendor/phpquickprofiler.html",
@@ -442,12 +442,12 @@ panes.core = {
 		"Cookie":		"classes/cookie.html",
 		"Crypt":		"classes/crypt.html",
 		"Database": {
-			"Introduction":   	  "classes/database/introduction.html",
+			"はじめに":   	  "classes/database/introduction.html",
 			"Usage":          	  "classes/database/usage.html",
 			"DB class":       	  "classes/database/db.html",
 			"DBUtil class":   	  "classes/database/dbutil.html",
 			"Query Building":	{
-				"Introduction":			"classes/database/qb.html",
+				"はじめに":			"classes/database/qb.html",
 				"Insert builder":	"classes/database/qb_insert.html",
 				"Select builder":	"classes/database/qb_select.html",
 				"Update builder":	"classes/database/qb_update.html",
@@ -462,7 +462,7 @@ panes.core = {
 		// "Exception":	"todo.html",
 		"Fieldset":		"classes/fieldset.html",
 		"File": {
-			"Introduction":	"classes/file/intro.html",
+			"はじめに":	"classes/file/intro.html",
 			"Usage":		"classes/file/usage.html",
 			"Advanced":		"classes/file/advanced.html",
 			"Handlers":		"classes/file/handlers.html",
@@ -481,13 +481,13 @@ panes.core = {
 		"Markdown":		"classes/markdown.html",
 		"Migrate":		"classes/migrate.html",
 		"Model_Crud": {
-			"Introduction": "classes/model_crud/introduction.html",
+			"はじめに": "classes/model_crud/introduction.html",
 			"Methods": "classes/model_crud/methods.html"
 			//"Usage": "classes/model_crud/usage.html",
 		},
 		"Module":		"classes/module.html",
 		"Mongo_Db": {
-			"Introduction":	"classes/mongo/introduction.html",
+			"はじめに":	"classes/mongo/introduction.html",
 			"Methods":		"classes/mongo/methods.html"
 		},
 		"Num":			"classes/num.html",
@@ -510,7 +510,7 @@ panes.core = {
 		},
 		"Str": 			"classes/str.html",
 		"Theme": {
-			"Introduction":	"classes/theme/introduction.html",
+			"はじめに":	"classes/theme/introduction.html",
 			"Methods":	"classes/theme/methods.html",
 			"Advanced":	"classes/theme/advanced.html"
 		},
@@ -521,7 +521,7 @@ panes.core = {
 		},
 		"Uri":			"classes/uri.html",
 		"Validation": {
-			"Introduction": "classes/validation/validation.html",
+			"はじめに": "classes/validation/validation.html",
 			"Methods": "classes/validation/methods.html",
 			"Errors": "classes/validation/errors.html"
 		},
@@ -531,7 +531,7 @@ panes.core = {
 
 panes.oil = {
 	"Oil": {
-		"Introduction":		"packages/oil/intro.html",
+		"はじめに":		"packages/oil/intro.html",
 		"Generate":			"packages/oil/generate.html",
 		"Refine":			"packages/oil/refine.html",
 		"Package":			"packages/oil/package.html",
@@ -541,8 +541,8 @@ panes.oil = {
 };
 
 panes.auth = {
-	"Auth Package": {
-		"Introduction":		"packages/auth/intro.html",
+	"Auth パッケージ": {
+		"はじめに":		"packages/auth/intro.html",
 		"Writing drivers":	"packages/auth/drivers.html",
 		"Driver types": {
 			"Login":		"packages/auth/types/login.html",
@@ -550,7 +550,7 @@ panes.auth = {
 			"ACL":			"packages/auth/types/acl.html"
 		},
 		"Simpleauth": {
-			"Introduction":	"packages/auth/simpleauth/intro.html",
+			"はじめに":	"packages/auth/simpleauth/intro.html",
 			"Usage":		"packages/auth/simpleauth/usage.html"
 		},
 		"Ormauth": {
@@ -562,20 +562,20 @@ panes.auth = {
 
 
 panes.email = {
-	"Email Package": {
-		"Introduction":		"packages/email/introduction.html",
+	"Email パッケージ": {
+		"はじめに":		"packages/email/introduction.html",
 		"Usage":			"packages/email/usage.html",
 		"Methods":			"packages/email/methods.html"
 	}
 };
 
 panes.orm = {
-	"Orm Package": {
-		"Introduction":		"packages/orm/intro.html",
+	"Orm パッケージ": {
+		"はじめに":		"packages/orm/intro.html",
 		"Creating Models":	"packages/orm/creating_models.html",
 		"CRUD":				"packages/orm/crud.html",
 		"Relating Models": {
-			"Introduction":	"packages/orm/relations/intro.html",
+			"はじめに":	"packages/orm/relations/intro.html",
 			"Belongs To":	"packages/orm/relations/belongs_to.html",
 			"Has One":		"packages/orm/relations/has_one.html",
 			"Has Many":		"packages/orm/relations/has_many.html",
@@ -587,7 +587,7 @@ panes.orm = {
 		},
 		"EAV containers":		"packages/orm/eav.html",
 		"Observers": {
-			"Introduction":			"packages/orm/observers/intro.html",
+			"はじめに":			"packages/orm/observers/intro.html",
 			"Included observers":	"packages/orm/observers/included.html",
 			"Writing your own":		"packages/orm/observers/creating.html"
 		}
@@ -595,8 +595,8 @@ panes.orm = {
 };
 
 panes.parser = {
-	"Parser Package": {
-		"Introduction":		"packages/parser/intro.html"
+	"Parser パッケージ": {
+		"はじめに":		"packages/parser/intro.html"
 	}
 };
 

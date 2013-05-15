@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Uri::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Uri - Classes - FuelPHP Documentation</title>
+	<title>Uri - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,48 +45,48 @@
 
 		<div id="main">
 
-			<h2>Uri Class</h2>
+			<h2>Uri クラス</h2>
 
-			<p>The Uri class allows you to interact with the URI.</p>
+			<p>Uri クラスは URI を対話的に扱うのを可能にします。</p>
 
 			<article>
 				<h4 class="method" id="method_base">base($include_index = true)</h4>
 				<p>
-					The <strong>base</strong> method return  the base URL, excluding the index_file when <strong>$include_index</strong>
-					is set to <em>false</em>.
+					<strong>base</strong> メソッドはベース URL を返します。なお、 $include_index を <em>false</em> にセットした場合は、インデックスファイル index_file 名を除去して、
+					その URL を返します。
 				</p>
 				<p class="note">
-					Please note: <strong>$include_index</strong> will be ignored if index_file is not set app/config/config.php
+					次の点に留意してください。: もし app/config/config.php で index_file がセットされていない場合は <strong>$include_index</strong> 変数は無視されます。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>初期値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$include_index</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>Wether to append the index to the returned url.</td>
+									<td>返り値の url に対してインデックスを付加するかどうかを決めます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>string, the base url with optional index file appended</td>
+						<th>返り値</th>
+						<td>文字列, オプションとしてインデックスファイル名が付加されることがあるベースurlを返します。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo Uri::base();
 // http://localhost/index.php
@@ -101,64 +101,64 @@ echo Uri::base(false);
 
 			<article>
 				<h4 class="method" id="method_create">create($uri = null, $variables = array(), $get_variables = array(), $secure = null)</h4>
-				<p>The <strong>create</strong> method allows you to create a URL with the given URI, including the base URL.</p>
+				<p><strong>create</strong> メソッドは、 URI を加えた URL を生成することが出来ます。その URL にはベース URL を含みます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>初期値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$uri</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The URL.</td>
+									<td>URL</td>
 								</tr>
 								<tr>
 									<th><kbd>$variables</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>The variables for the URL.</td>
+									<td>URL のための各種変数</td>
 								</tr>
 								<tr>
 									<th><kbd>$get_variables</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>The query string additions to the URL, its values &amp; keys can use variables from
-										the $variables array.</td>
+									<td>URL に付加されるクエリー文字列。その値とキーは $variables 配列から得られた変数を
+										利用することが出来ます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$secure</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Set to false to force http, or to true to force https on the created URL</td>
+									<td>生成される URL は、本項が false の場合は http, true の場合は https となります。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>string</td>
+						<th>返り値</th>
+						<td>文字列</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo Uri::create('controller/method');
-// returns http://localhost/controller/method
+// http://localhost/controller/method が返ります。
 
 echo Uri::create('controller/:some', array('some' => 'thing', 'and' => 'more'), array('what' => ':and'));
-// returns http://localhost/controller/thing?what=more
+// http://localhost/controller/thing?what=more が返ります。
 
 echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' => 'more'), array('what' => ':and'));
-// returns http://www.example.org/thing?what=more
+// http://www.example.org/thing?what=more が返ります。
 
 echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' => 'more'), array('what' => ':and'), true);
-// returns https://www.example.org/thing?what=more</code></pre>
+// https://www.example.org/thing?what=more が返ります。</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -167,26 +167,26 @@ echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' 
 
 			<article>
 				<h4 class="method" id="method_current">current()</h4>
-				<p>The <strong>current</strong> method allows you to fetch the current URL, including the base URL inside HMVC pattern.</p>
+				<p><strong>current</strong> メソッドを用いると、現在の URL を取得出来ます。URL には HMVC パターン内部で定義されているベース URL が含まれます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
-						<td>None</td>
+						<th>パラメタ</th>
+						<td>無し</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>string</td>
+						<th>返り値</th>
+						<td>文字列</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Example URL: http://localhost/module/controller/method
-echo Uri::current(); // returns http://localhost/module/controller/method</code></pre>
+							<pre class="php"><code>// URL例: http://localhost/module/controller/method
+echo Uri::current(); // http://localhost/module/controller/method が返ります。</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -195,25 +195,25 @@ echo Uri::current(); // returns http://localhost/module/controller/method</code>
 
 			<article>
 				<h4 class="method" id="method_main">main()</h4>
-				<p>The <strong>main</strong> method allows you to fetch the current URL, including the base URL.</p>
+				<p><strong>main</strong> メソッドでベース URL を含む現在の URL を取得することが出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
-						<td>None</td>
+						<th>パラメタ</th>
+						<td>無し</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>string</td>
+						<th>返り値</th>
+						<td>文字列</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Example URL: http://localhost/controller/method
+							<pre class="php"><code>// URLの例: http://localhost/controller/method
 echo Uri::main(); // returns http://localhost/controller/method</code></pre>
 						</td>
 					</tr>
@@ -223,44 +223,44 @@ echo Uri::main(); // returns http://localhost/controller/method</code></pre>
 
 			<article>
 				<h4 class="method" id="method_segment">segment($segment, $default = null)</h4>
-				<p>The <strong>segment</strong> method allows you to return the desired segment, or false if it does not exist.</p>
+				<p><strong>segment</strong> メソッドを用いると、取得したい特定の url セグメントを得ることができます。そのセグメントが存在しない場合は、 false が返されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>初期値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$segment</kbd></th>
-									<td><i>Required</i></td>
-									<td>The segment number.</td>
+									<td><i>必須</i></td>
+									<td>セグメント番号</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The default?</td>
+									<td>デフォルト?(The default?)</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>string</td>
+						<th>返り値</th>
+						<td>文字列</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Example URL: http://localhost/controller/method/param1/param2
-echo Uri::segment(3); // returns param1</code></pre>
+							<pre class="php"><code>// URLの例: http://localhost/controller/method/param1/param2
+echo Uri::segment(3); // param1 が返ります。</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -269,26 +269,26 @@ echo Uri::segment(3); // returns param1</code></pre>
 
 			<article>
 				<h4 class="method" id="method_segments">segments()</h4>
-				<p>The <strong>segments</strong> method allows you to fetch the current URI segments in an array.</p>
+				<p><strong>segments</strong> メソッドによって、現在の URI セグメント全てを配列で取得することが出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
-						<td>None</td>
+						<th>パラメタ</th>
+						<td>無し</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>array</td>
+						<th>返り値</th>
+						<td>配列</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Example URL: http://localhost/controller/method
-echo Uri::segments(); // returns array(0 => 'controller', 1 => 'method')</code></pre>
+							<pre class="php"><code>// URL例: http://localhost/controller/method
+echo Uri::segments(); // array(0 => 'controller', 1 => 'method')が返ります。</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -301,8 +301,8 @@ echo Uri::segments(); // returns array(0 => 'controller', 1 => 'method')</code><
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -347,12 +347,12 @@ echo Uri::segment_replace('http://localhost/this/that/*/other');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_to_assoc">to_assoc($start = 1)</h4>
-				<p>The <strong>to_assoc</strong> method takes the segments array and turns it into an associative array if the number of segments is even.  If the number of segments is odd, the last array key will have a value of <code>null</code>.</p>
+				<p><strong>to_assoc</strong> メソッドはセグメントが偶数の場合、それを配列化して連想配列にします。奇数の場合は、最後のキーの値は <code>null</code> を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -376,19 +376,19 @@ echo Uri::segment_replace('http://localhost/this/that/*/other');</code></pre>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Uri is /welcome/index/page/4
+							<pre class="php"><code>// Uri が /welcome/index/page/4 の場合
 $arr = Uri::to_assoc();
 /*
-Result:
+結果:
 array(
     'welcome' => 'index',
     'page'    => 4,
 );
 */
 
-// Uri is /welcome
+// Uri が /welcome の場合
 $arr = Uri::to_assoc();
 /*
 Result:
@@ -404,26 +404,26 @@ array(
 
 			<article>
 				<h4 class="method" id="method_string">string()</h4>
-				<p>The <strong>string</strong> method allows you to fetch the current URI.</p>
+				<p><strong>string</strong> メソッドを用いると、現在の URI を取得出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
-						<td>None</td>
+						<th>パラメタ</th>
+						<td>無し</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>string</td>
+						<th>返り値</th>
+						<td>文字列</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Example URL: http://localhost/controller/method
-echo Uri::string(); // returns controller/method</code></pre>
+							<pre class="php"><code>// URL例: http://localhost/controller/method
+echo Uri::string(); // controller/method が返ります。</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -435,6 +435,7 @@ echo Uri::string(); // returns controller/method</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/uri.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/uri.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/uri.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

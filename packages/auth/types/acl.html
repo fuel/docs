@@ -11,7 +11,7 @@
 		var class_prefix = "$object->";
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
-	<title>ACL - Driver types - Auth Package - FuelPHP Documentation</title>
+	<title>ACL - ドライバタイプ - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,19 +44,19 @@
 		</div>
 
 		<div id="main">
-			<h2>Auth package</h2>
+			<h2>Auth パッケージ</h2>
 
-			<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
-			write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
-			consistent.</p>
+			<p>Auth パッケージは Fuel における標準化された認証インターフェイスを提供します。
+			これにより、ユーザは自分自身で新しいドライバを書くことができ、
+			基本的なメソッドを保つことで、古いコードに新しいドライバを簡単に統合することもできます。</p>
 
 			<section>
 				<h2 id="driver_types">Auth_Acl_Driver</h2>
 
 				<p>
-					This driver is the base class for all Auth acl drivers. It is defined as an abstract class which contains
-					all methods generic to all acl drivers, and abstract method definitions for all methods any acl driver
-					MUST implement.
+					このドライバは、すべての Auth ACL ドライバの基底クラスです。抽象クラスとして定義されており、
+					すべての ACL ドライバに汎用なメソッド、 ACL ドライバが必ず実装しなければならないメソッドの
+					抽象メソッドの定義が含まれています。
 				</p>
 
 
@@ -73,34 +73,34 @@ $may_access_comments = Auth::has_access('comments[read,write]');
 				<h3 id="generic_methods">Generic methods</h3>
 
 				<p>
-					Generic methods are defined in the acl base driver, and are available to all Auth acl drivers through
-					extension. These methods provide functions to interact with specific acls, and to check for access.
+					汎用メソッドは、 ACL 基底ドライバに定義されており、継承によりすべての Auth ACL ドライバから使うことができます。
+					これらのメソッドが提供する関数には、特定の ACL とやり取りしたり、アクセス権を確認するものがあります。
 				</p>
-				<p class="note">The methods defined in the classes but not documented here are used internally, and should not be called directly.</p>
+				<p class="note">クラスに定義されているメソッドのうち、ドキュメントに記載されていないものは内部で利用されてるものなので、直接呼び出さないようにしてください。</p>
 
 				<article>
 					<h4 id="method_get_id" class="method">get_id()</h4>
-					<p>Returns the drivers unique id. This can be used to identify the driver, or to select a specific driver instance.</p>
+					<p>ドライバのユニーク id を返します。ドライバを区別したり、特定のドライバのインスタンスを選択するために使います。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
+							<th class="legend">静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>The drivers id string.</td>
+							<th>返り値</th>
+							<td>ドライバ id の文字列。</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// returns 'simpleacl'
+								<pre class="php"><code>// 'simpleacl' を返す
 $id = Auth::acl()->get_id();
 </code></pre>
 							</td>
@@ -111,43 +111,43 @@ $id = Auth::acl()->get_id();
 
 				<article>
 					<h4 id="method_set_config" class="method">set_config($key, $value)</h4>
-					<p>Sets a driver configuration value.</p>
+					<p>ドライバの config の値を設定します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
+							<th class="legend">静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$key</kbd></th>
-										<td>required</td>
-										<td>Configuration key name</td>
+										<td>必須</td>
+										<td>config のキー名</td>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
-										<td>required</td>
-										<td>Value for this configuration key</td>
+										<td>必須</td>
+										<td>config のキーの値</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>void</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// set a config value on the simpleacl driver
+								<pre class="php"><code>// simpleacl ドライバの config に値を設定する
 Auth::acl()->set_config('key', 'value');
 </code></pre>
 							</td>
@@ -158,43 +158,43 @@ Auth::acl()->set_config('key', 'value');
 
 				<article>
 					<h4 id="method_get_config" class="method">get_config($key, $default = null)</h4>
-					<p>Gets a driver configuration value.</p>
+					<p>ドライバの config の値を取得します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
+							<th class="legend">静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$key</kbd></th>
-										<td>required</td>
-										<td>Configuration key name</td>
+										<td>必須</td>
+										<td>config のキー名</td>
 									</tr>
 									<tr>
 										<th><kbd>$default</kbd></th>
 										<td><i>null</i></td>
-										<td>Default value to be returned if the requested key does not exist</td>
+										<td>要求したキーに値がなかったときに返されるデフォルト値</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>mixed</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// get a config value of the simpleacl driver, return false if it doesn't exist
+								<pre class="php"><code>// simpleacl ドライバ の config の値を取得し、値がなければ false を返す
 $key = Auth::instance(simpleacl)->get_config('key', false);
 </code></pre>
 							</td>
@@ -203,52 +203,52 @@ $key = Auth::instance(simpleacl)->get_config('key', false);
 					</table>
 				</article>
 
-				<h3 id="abstract_methods">Abstract methods</h3>
+				<h3 id="abstract_methods">抽象メソッド</h3>
 
 				<p>
-					Every acl driver you develop MUST provide all of these methods, and the MUST return the values documented here.
+					どの自作 ACL ドライバも、以下のメソッドを用意しなければなりません。また、ここで記載されたとおりに値を返さなければなりません。
 				</p>
 
 				<article>
 					<h4 id="method_has_access" class="method">has_access($condition, Array $entity)</h4>
-					<p>The <strong>has_access</strong> method uses the defined ACL drivers to check the users access according to the given condition.</p>
+					<p><strong>has_access</strong> メソッドは定義済みの ACL ドライバを使って、ユーザがその状況に対してアクセス権を持っているか確認します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
+							<th class="legend">静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$condition</kbd></th>
-										<td>required</td>
-										<td>takes a location and the required rights on the location as either a string or
-											an array</td>
+										<td>必須</td>
+										<td>ロケーションとそこでの求められる権限を文字列、
+											または配列で受け取る</td>
 									</tr>
 									<tr>
 										<th><kbd>$entity</kbd></th>
-										<td>required</td>
-										<td>user or group identifier in the form of array(driver_id, id).</td>
+										<td>必須</td>
+										<td>ユーザ、またはグループの識別情報を array(driver_id, id) の形式で。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>boolean, <strong>true</strong> if access was granted, <strong>false</strong> if not.</td>
+							<th>返り値</th>
+							<td>論理型、アクセス権が承認された場合 <strong>true</strong> 、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// check if user is allowed to comment
+								<pre class="php"><code>// ユーザがコメント可能か確認
 if ( ! Auth::acl()->has_access('comments.create'), array('simplegroup', 1))
 {
 	Response::redirect('no_admin');
@@ -266,6 +266,7 @@ if ( ! Auth::acl()->has_access('comments.create'), array('simplegroup', 1))
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/packages/auth/types/acl.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/packages/auth/types/acl.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/packages/auth/types/acl.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

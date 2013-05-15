@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Arr::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Arr - Classes - FuelPHP Documentation</title>
+	<title>Arr - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,65 +45,65 @@
 
 		<div id="main">
 
-			<h2>Arr Class</h2>
+			<h2>Arr クラス</h2>
 
-			<p>The arr class is a set of helper functions for working with arrays.</p>
+			<p>Arr クラスは、配列を扱うヘルパー関数を集めたものです。</p>
 
 			<article>
 				<h4 class="method" id="method_is_multi">is_multi($arr, $all_keys = false)</h4>
-				<p>The <strong>is_multi</strong> method checks if the array passed is multi-dimensional array or not.</p>
+				<p><strong>is_multi</strong> メソッドは、与えられた配列が多次元配列であるかチェックします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$arr</kbd></th>
-									<td><em>required</em></td>
-									<td>The array to check.</td>
+									<td><em>必須</em></td>
+									<td>チェックする配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$all_keys</kbd></th>
 									<td>
 										<pre class="php"><span class="keyword">false</span></pre>
 									</td>
-									<td>Check that all elements are arrays.</td>
+									<td>trueの場合は全ての要素が多次元配列かをチェックします。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>bool</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// Single array
 $arr = array('one' => 1, 'two' => 2);
 echo Arr::is_multi($arr);
-// Result: false
+// 実行結果: false
 
-// Multi-dimensional array
+// 多次元配列
 $arr = array('one' => array('test' => 1), 'two' => array('test' => 2), 'three' => array('test' => 3));
 echo Arr::is_multi($arr);
-// Result: true
+// 実行結果: true
 
-// Multi-dimensional array with elements check
+// 多次元配列で全ての要素をチェック
 $arr = array('one' => array('test' => 1), 'two' => array('test' => 2), 'three' => 3);
 
-echo Arr::is_multi($arr, false); // Result: true
-echo Arr::is_multi($arr, true);  // Result: false
+echo Arr::is_multi($arr, false); // 実行結果: true
+echo Arr::is_multi($arr, true);  // 実行結果: false
 </code></pre>
 						</td>
 					</tr>
@@ -113,52 +113,52 @@ echo Arr::is_multi($arr, true);  // Result: false
 
 			<article>
 				<h4 class="method" id="method_is_assoc">is_assoc($arr)</h4>
-				<p>The <strong>is_assoc</strong> method checks if the array passed is an associative array or not.</p>
+				<p><strong>is_assoc</strong> メソッドは、与えられた配列が連想配列であるかチェックします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$arr</kbd></th>
-									<td><em>required</em></td>
-									<td>The array to check.</td>
+									<td><em>必須</em></td>
+									<td>チェックする配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>bool</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$arr = array('foo', 'bar', 'baz', 'yay');
 echo Arr::is_assoc($arr);
-// Result: false
+// 実行結果: false
 
 $arr = array('foo' => 'foo', 'bar' => 'bar', 'baz' => 'baz', 'yay' => 'yay');
 echo Arr::is_assoc($arr);
-// Result: true
+// 実行結果: true
 
 /*
- * Note that even if the '2' is defined as a string, PHP will store this internally
- * as an integer, and therefore this is NOT seen as an assoc array!
+ * たとえもし '2' が string で定義されていたとしても、PHPは内部的に integer として保管するため、
+ * 連想配列とは認識されません!
  */
 $arr = array(0 => 'foo', 1 => 'bar', '2' => 'baz', 3 => 'yay');
 echo Arr::is_assoc($arr);
-// Result: false!
+// 実行結果: false!
 </code></pre>
 						</td>
 					</tr>
@@ -168,46 +168,46 @@ echo Arr::is_assoc($arr);
 
 			<article>
 				<h4 class="method" id="method_to_assoc">to_assoc($arr)</h4>
-				<p>The <strong>to_assoc</strong> method turns a non-associative array into an associative array if it has an even number of segments.</p>
+				<p><strong>to_assoc</strong> メソッドは連想配列でない配列を連想配列に変換します。もし元の配列に数値が入っていたとしても変換します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$arr</kbd></th>
-									<td><em>required</em></td>
-									<td>The array to convert.</td>
+									<td><em>必須</em></td>
+									<td>変換する配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array|null</td>
 					</tr>
 					<tr>
-						<th>Throws</th>
-						<td><kbd>BadMethodCallException</kbd> when the number of values in the given array is
-							uneven</td>
+						<th>例外</th>
+						<td><kbd>BadMethodCallException</kbd> 引数の配列の要素数が
+							奇数のとき</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$arr = array('foo', 'bar', 'baz', 'yay');
 print_r(Arr::to_assoc($arr));
 
-// Result:
+// 実行結果:
 Array
 (
     ["foo"] => 'bar'
@@ -216,7 +216,7 @@ Array
 
 $arr = array('foo', 'bar', 'baz');
 echo Arr::to_assoc($arr);
-// Result: null
+// 実行結果: null
 </code></pre>
 						</td>
 					</tr>
@@ -226,51 +226,51 @@ echo Arr::to_assoc($arr);
 
 			<article>
 				<h4 id="method_assoc_to_keyval" class="method">assoc_to_keyval($assoc = null, $key_field = null, $val_field = null)</h4>
-				<p>The <strong>assoc_to_keyval</strong> method turns a multi-dimensional array into a key=>val array.</p>
+				<p><strong>assoc_to_keyval</strong> メソッドは多次元配列を key=>val の配列に変換します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$assoc</kbd></th>
-									<td><em>required</em></td>
-									<td>The array to transform.</td>
+									<td><em>必須</em></td>
+									<td>変換する配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$key_field</kbd></th>
-									<td><em>required</em></td>
-									<td>The associative array field to map as the key.</td>
+									<td><em>必須</em></td>
+									<td>key となる連想配列の添字。</td>
 								</tr>
 								<tr>
 									<th><kbd>$val_field</kbd></th>
-									<td><em>required</em></td>
-									<td>The associative array field to map as the value.</td>
+									<td><em>必須</em></td>
+									<td>value となる連想配列の添字。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Throws</th>
-						<td><kbd>InvalidArgumentException</kbd> when the first argument isn't an array or doesn't
-							implement the Iterator interface.</td>
+						<th>例外</th>
+						<td><kbd>InvalidArgumentException</kbd> 1番目の引数が配列でないか、
+							Iterator インターフェイスを実装していないとき。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$people = array(
 	array(
@@ -285,7 +285,7 @@ echo Arr::to_assoc($arr);
 
 print_r(Arr::assoc_to_keyval($people, 'name', 'age'));
 
-// Result:
+// 実行結果:
 Array
 (
 	["Jack"] => 21
@@ -300,39 +300,39 @@ Array
 
 			<article>
 				<h4 id="method_average" class="method">average($array = null)</h4>
-				<p>The <strong>average</strong> method takes all values of an array and returns the average value.</p>
+				<p><strong>average</strong> メソッドは全ての配列の値から平均値を求めて返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
-									<td>Array of values to average.</td>
+									<td><em>必須</em></td>
+									<td>平均値を求める配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo Arr::average(array('1', 2, 4, '8'));
-// Result: 3.75</code></pre>
+// 実行結果: 3.75</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -345,21 +345,21 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to flatten.</td>
 								</tr>
 								<tr>
@@ -376,11 +376,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$indexed = array(
 	array("a"),
@@ -409,21 +409,21 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to flatten.</td>
 								</tr>
 								<tr>
@@ -440,11 +440,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$people = array(
 	array(
@@ -492,21 +492,21 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to unflatten.</td>
 								</tr>
 								<tr>
@@ -518,11 +518,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$flattened = array(
 	'0_name' => 'James',
@@ -560,21 +560,21 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to filter.</td>
 								</tr>
 								<tr>
@@ -591,11 +591,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$arr = array(
 	"user_name" => "John",
@@ -635,21 +635,21 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to remove from.</td>
 								</tr>
 								<tr>
@@ -661,11 +661,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$arr = array(
 	"user_name" => "John",
@@ -695,8 +695,8 @@ Array
                 <table class="method">
                     <tbody>
                     <tr>
-                        <th class="legend">Static</th>
-                        <td>Yes</td>
+                        <th class="legend">静的</th>
+                        <td>はい</td>
                     </tr>
                     <tr>
                         <th>Parameters</th>
@@ -770,8 +770,8 @@ Array
                 <table class="method">
                     <tbody>
                     <tr>
-                        <th class="legend">Static</th>
-                        <td>Yes</td>
+                        <th class="legend">静的</th>
+                        <td>はい</td>
                     </tr>
                     <tr>
                         <th>Parameters</th>
@@ -830,26 +830,26 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to filter.</td>
 								</tr>
 								<tr>
 									<th><kbd>$keys</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Array of keys to filter the above array with.</td>
 								</tr>
 								<tr>
@@ -861,11 +861,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$arr = array(
 	"user_name" => "John",
@@ -905,8 +905,8 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -1002,26 +1002,26 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to access</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The key requested in $array. If <strong>null</strong> is passed as key, the entire array is returned.</td>
 								</tr>
 								<tr>
@@ -1033,11 +1033,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed. If you pass an array of keys, the return value will be an array with the result of all requested keys.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$person = array(
 	"name" => "Jack",
@@ -1071,26 +1071,26 @@ echo Arr::get($person, "location.city", "Unknown City");
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to access</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The key requested in $array. If no key is passed, or <strong>null</strong> is passed as key value, the array is unset. If you pass an array of key -> value pairs, all the values in the array will be set.</td>
 								</tr>
 								<tr>
@@ -1102,11 +1102,11 @@ echo Arr::get($person, "location.city", "Unknown City");
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$person = array(
 	"name" => "Jack",
@@ -1139,26 +1139,26 @@ Arr::set($person, array("name" => "John", "location.city" => "Philadelphia"));</
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to pluck from</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The key to pluck from the arrays.</td>
 								</tr>
 								<tr>
@@ -1170,11 +1170,11 @@ Arr::set($person, array("name" => "John", "location.city" => "Philadelphia"));</
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$collection = array(
 	array(
@@ -1215,37 +1215,37 @@ $names = \Arr::pluck($collection, 'name', 'id');
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to access</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The key requested in $array. If no key is passed, or <strong>null</strong> is passed as key value, the array is unset.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed, <strong>true</strong> if the key was deleted, <strong>false</strong> if the key didn't exist. If you pass an array of keys, the return value will be an array with the result of all requested deletes.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$person = array(
 	"name" => "Jack",
@@ -1280,42 +1280,42 @@ $result = Arr::delete($person, array("name", "location.doesnotexist"));
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$original</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to use</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The value(s) to insert</td>
 								</tr>
 								<tr>
 									<th><kbd>$pos</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The numeric position at which to insert, negative to count from the end backwards</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>boolean</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$people = array("Jack", "Jill");
 
@@ -1377,42 +1377,42 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$original</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to use</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The value(s) to insert</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The key before which to insert</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>boolean</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$people = array("Jack", "Jill");
 
@@ -1440,31 +1440,31 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$original</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to use</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The value(s) to insert</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The key after which to insert</td>
 								</tr>
 								<tr>
@@ -1476,11 +1476,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>boolean</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$people = array("Jack", "Jill");
 
@@ -1508,31 +1508,31 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$original</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to use</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The value(s) to insert</td>
 								</tr>
 								<tr>
 									<th><kbd>$search</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The value after which to insert</td>
 								</tr>
 								<tr>
@@ -1544,11 +1544,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>boolean</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$people = array("Jack", "Jill");
 
@@ -1575,26 +1575,26 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to sort</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The key requested to sort by in $array.</td>
 								</tr>
 								<tr>
@@ -1611,11 +1611,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$data = array(
 	array(
@@ -1678,26 +1678,26 @@ array(
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to sort</td>
 								</tr>
 								<tr>
 									<th><kbd>$conditions</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Array of sorting conditions.</td>
 								</tr>
 								<tr>
@@ -1709,11 +1709,11 @@ array(
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$collection = array(
 	'i5' => array(
@@ -1800,26 +1800,26 @@ Array
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$needle</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The value to search for</td>
 								</tr>
 								<tr>
 									<th><kbd>$haystack</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The array to search in.</td>
 								</tr>
 								<tr>
@@ -1831,11 +1831,11 @@ Array
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>bool</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$arr = array('one' => 1, 2, 3, array(56), 87);
 
@@ -1862,8 +1862,8 @@ echo Arr::in_array_recursive(87, $arr, true);
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -2189,36 +2189,36 @@ $total_score = Arr::sum($collection, 'scores.math'); // 30
 				<table class="method">
 					<tbody>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>型</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$needle</kbd></th>
 									<td><em>string</em></td>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>the value to search for</td>
 								</tr>
 								<tr>
 									<th><kbd>$haystrack</kbd></th>
 									<td><em>array</em></td>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>the array to search in</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>bool</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>echo in_arrayi('This', array('something','tHis'));
 // Result: true
@@ -2236,6 +2236,7 @@ echo in_arrayi('Thi', array('something','tHis'));
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/arr.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/arr.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/arr.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

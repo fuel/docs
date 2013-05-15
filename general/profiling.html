@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Profiling - General - FuelPHP Documentation</title>
+	<title>Profiling - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -43,53 +43,53 @@
 		</div>
 
 		<div id="main">
-			<h2>Profiling</h2>
+			<h2>プロファイリング</h2>
 
-			<p>The application profiler bundled with FuelPHP is based on <a href="http://particletree.com/features/php-quick-profiler/">PHP Quick Profiler</a>.</p>
+			<p>FuelPHP に同梱のアプリケーションプロファイラは、<a href="http://particletree.com/features/php-quick-profiler/">PHP Quick Profiler</a> をベースにしています。</p>
 
-			<h3 id="what_is_profiling">What is profiling?</h3>
+			<h3 id="what_is_profiling">プロファイリングとは?</h3>
 
 			<p>
-				The profiler provides profiling and debugging related information without having to add a lot of programmatic overhead
-				to the code. You only need to toggle one config setting to true and you have access to an automated tool to help create a
-				faster and more consistent review experience. Since anyone can use it, the profiler also gives you an idea of where the code
+				プロファイラは、多くの余計なコードを追加することなく、プロファイリングとデバッグに関係する情報を提供します。
+				あなたは設定を true に切り替えて、an automated tool to help create a faster and more consistent review experience にアクセスするだけです。
+				Since anyone can use it, the profiler also gives you an idea of where the code
 				stands before the review.
 			</p>
 
-			<p>The profiler provides you with a tabbed interface, in which you can find the following information:</p>
+			<p>プロファイラは、タブ化されたインターフェイスを提供し、これにより以下の情報を見つけられます:</p>
 			<ul>
-				<li>Console. This is the default tab, and gives you information about errors, log entries, memory usage or execution timings.</li>
-				<li>Load time. This is the request load time. It will display execution details in the body of the tab.</li>
-				<li>Database. The number of queries executed, the execution time, and if supported, a query analysis.</li>
-				<li>Memory. Total peak memory used by the request.</li>
-				<li>Files. The fully qualified name of all PHP files included, and their size.</li>
-				<li>Config. The contents of the configuration store at the end of the request.</li>
-				<li>Session. The contents of the session store at the end of the request.</li>
-				<li>GET. The contents of the $_GET array.</li>
-				<li>POST. The contents of the $_POST array.</li>
+				<li>Console. デフォルトのタブ。エラー、ログ、メモリ使用量や実行タイミングに関する情報を提供します。</li>
+				<li>Load time. リクエストのロード時間。タブ内で詳細を表示します。</li>
+				<li>Database. 実行されたクエリ数や実行時間および、もしサポートされていればクエリの解析。</li>
+				<li>Memory. リクエストの処理に要したメモリ使用量。</li>
+				<li>Files. 読み込まれた PHP ファイルのフルパス名と、それらの容量。</li>
+				<li>Config. 処理の終了時点における、設定値の内容。</li>
+				<li>Session. 処理の終了時点における、セッション値の内容。</li>
+				<li>GET. $_GET 配列の内容。</li>
+				<li>POST. $_POST 配列の内容。</li>
 			</ul>
 
-			<p>A typical profiler screen looks like this:<img width="850" src="../assets/img/profiler.png" /></p>
+			<p>典型的なプロファイラの画面はこんな感じです:<img width="850" src="../assets/img/profiler.png" /></p>
 
-			<p>At the bottom of the profiler screen, you will find three options:</p>
+			<p>プロファイラの画面の最下部に、次の3つのオプションがあります:</p>
 			<ul>
 				<li>Bottom. By default, the profiler is an overlay. Click on this option if you want to see all output, the profiler will move past the end of your output. Click again and it will move back.</li>
-				<li>Height. Toggle between a large (like in the screenshot) or small profiler panel.</li>
-				<li>Details. Toggle the profiler details. If switched off, only the tab bar will be visible.</li>
+				<li>Height. プロファイラのパネルの大小を切り替えます。</li>
+				<li>Details. プロファイラの詳細表示を切り替えます。off にすると、タブバーだけが表示されます。</li>
 			</ul>
 
-			<h3 id="application_profiling">Application profiling</h3>
+			<h3 id="application_profiling">アプリケーションのプロファイリング</h3>
 
 				<p>
-					Profiling your application is disabled by default. You can configure Fuel to activate the profiler via your applications config/config.php file.
+					デフォルトでは、アプリケーションのプロファイリングは無効になっています。アプリケーションの config/config.php ファイルで、プロファイラを有効化できます。
 				</p>
 				<pre class="php"><code>'profiling'  => true,
 </code></pre>
 				<p>
-					After the profiler has been enabled, you will see it pop up at the bottom of your browser window.
+					プロファイラが有効化されると、ブラウザの画面の最下部にポップアップで表示されます。
 				</p>
 
-			<h3 id="database_profiling">Database profiling</h3>
+			<h3 id="database_profiling">データベースのプロファイリング</h3>
 
 				<p>
 					Database profiling is disabled by default too. Database profiling is activated per defined database, and is
@@ -99,17 +99,18 @@
 
 				<pre class="php"><code>'profiling'  => true,
 </code></pre>
-				<p class="note">If you use multiple environments, make sure to select the correct db.php configuration file.</p>
+				<p class="note">複数の環境を使用している場合、設定する db.php ファイルが正しいか確認してください。</p>
 
-			<h3 id="adding_profiler_information">Add information to the profiler</h3>
+			<h3 id="adding_profiler_information">プロファイラに情報を追加する</h3>
 
-				<p>See the documentation of the <a href="../classes/profiler.html">Profiler</a> class to see how you can interact with the profiler.</p>
+				<p>どのようにしてプロファイラとやり取りするかは、<a href="../classes/profiler.html">Profiler</a> クラスのドキュメントを参照してください。</p>
 
 		</div>
 
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/general/profiling.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/general/profiling.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/general/profiling.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

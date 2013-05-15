@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "DBUtil::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>DBUtil - Classes - FuelPHP Documentation</title>
+	<title>DBUtil - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,50 +45,50 @@
 
 		<div id="main">
 
-			<h2>DBUtil Class</h2>
+			<h2>DBUtil クラス</h2>
 
-			<p>The DBUtil class allows you to manage and perform routine operations on your databases.</p>
+			<p>DBUtilクラスは、データベースに対するルーチン操作を管理し、行なうことを可能にします。</p>
 
 			<h3 id="managing">Managing functions</h3>
 
-			<p>DBUtil allows you to create, rename, alter and drop database fields.</p>
+			<p>DBUtilは、データベースのカラムを作成、リネーム、変更、および削除することを可能にします。</p>
 
 			<article>
 				<h4 class="method" id="method_set_connection">set_connection($connection)</h4>
-				<p>The <strong>set_connection</strong> method sets the default DBUtil connection for all methods.</p>
+				<p><strong>set_connection</strong>メソッドは、すべてのメソッドのための、デフォルトの データベース接続をセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$connection</kbd></th>
 										<td><strong>required</strong></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the number of affected rows.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Set an alternative database connection for DBUtil
 DBUtil::set_connection('my_database_group');
@@ -106,58 +106,58 @@ DBUtil::set_connection(null);
 			</article>
 
 			<article>
-				<h4 class="method" id="method_create_database">create_database($database, charset = null, $if_not_exists = true, $db = null)</h4>
-				<p>The <strong>create_database</strong> method creates a database.  Will throw a Database_Exception if it cannot.</p>
+				<h4 class="method" id="method_create_database">create_database($database, $charset = null, $if_not_exists = true, $db = null)</h4>
+				<p><strong>create_database</strong> メソッドは、データベースを作成します。もし失敗した場合には、例外 Database_Exception がスローされます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$database</kbd></th>
-										<td><em>required</em></td>
-										<td>the database name</td>
+										<td><em>必須</em></td>
+										<td>データベース名</td>
 									</tr>
 									<tr>
 										<th><kbd>$charset</kbd></th>
 										<td><em>null</em></td>
-										<td>the default charset</td>
+										<td>デフォルトの文字コード</td>
 									</tr>
 									<tr>
 										<th><kbd>$if_not_exists</kbd></th>
 										<td><strong>true</strong></td>
-										<td>whether to use <em>IF NOT EXISTS</em></td>
+										<td><em>IF NOT EXISTS</em>をつけるかどうか</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the number of affected rows.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// Create a database named `my_database`
+								<pre class="php"><code>// `my_database` というデータベースを作成します。
 DBUtil::create_database('my_database');
 
 // Catch the exception
@@ -170,7 +170,7 @@ catch(\Database_Exception $e)
 	// Creation failed...
 }
 
-// You can also set a default charset.
+// デフォルトの文字コードもセットできます。
 // CREATE DATABASE IF NOT EXISTS `new_database` DEFAULT CHARACTER SET 'utf8'
 DBUtil::create_database('new_database', 'utf8');
 
@@ -181,50 +181,50 @@ DBUtil::create_database('new_database', 'utf8_unicode_ci');
 						</tr>
 					</tbody>
 				</table>
-				<p>If no charset is provided it will fall back to the charset of the active db group.</p>
+				<p>もし、文字コードが指定されなかった場合、アクティブなDBグループの文字コードが適用されます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_drop_database">drop_database($database, $db = null)</h4>
-				<p>The <strong>drop_database</strong> method drops a database.  Will throw a Database_Exception if it cannot.</p>
+				<p><strong>drop_database</strong> メソッドは、データベースを削除します。もし失敗した場合には、例外 Database_Exception がスローされます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$database</kbd></th>
-										<td><em>required</em></td>
-										<td>the database name</td>
+										<td><em>必須</em></td>
+										<td>データベース名</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the number of affected rows.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Drop a database named `my_database`
 DBUtil::drop_database('my_database');
@@ -247,41 +247,41 @@ catch(\Database_Exception $e)
 
 			<article>
 				<h4 class="method" id="method_table_exists">table_exists($table, $db = null)</h4>
-				<p>The <strong>table_exists</strong> method checks if a given table exists.</p>
+				<p><strong>table_exists</strong> メソッドは、与えられたテーブルが存在するかチェックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<td><kbd>$table</kbd></td>
-										<td><em>required</em></td>
-										<td>the table name</td>
+										<td><em>必須</em></td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns true if table exists, false if it does not.</td>
+							<th>返り値</th>
+							<td>テーブルが存在する場合 true、存在しない場合 falseが返ります</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// Check if table named 'my_table' exists
 if(DBUtil::table_exists('my_table'))
@@ -300,47 +300,47 @@ if(DBUtil::table_exists('my_table'))
 
 			<article>
 				<h4 class="method" id="method_drop_table">drop_table($table, $db = null)</h4>
-				<p>The <strong>drop_table</strong> method drops a table.  Will throw a Database_Exception if it cannot.</p>
+				<p><strong>drop_table</strong>メソッドは、テーブルを削除します。もし失敗した場合には、例外 Database_Exception がスローされます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td>the table name</td>
+										<td><em>必須</em></td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the number of affected rows.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// Drop a table named `my_table`
+								<pre class="php"><code>//  `my_table` というテーブルを削除します。
 DBUtil::drop_table('my_table');
 
 // Catch the exception
@@ -361,47 +361,47 @@ catch(\Database_Exception $e)
 
 			<article>
 				<h4 class="method" id="method_rename_table">rename_table($table, $new_table_name, $db = null)</h4>
-				<p>The <strong>rename_table</strong> method renames a table.</p>
+				<p><strong>rename_table</strong> メソッドは、テーブルをリネームします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>The old table name</td>
 									</tr>
 									<tr>
 										<th><kbd>$new_table_name</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>The new table name</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the number of affected rows.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// Rename `my_table` to `my_new_table`
+								<pre class="php"><code>//  `my_table` というテーブルを `my_new_table`にリネームします。
 DBUtil::rename_table('my_table', 'my_new_table');
 
 // Catch the exception
@@ -422,30 +422,30 @@ catch(\Database_Exception $e)
 
 			<article>
 				<h4 class="method" id="method_create_table">create_table($table, $fields, $primary_keys = array(), $if_not_exists = true, $engine = false, $charset = null, $foreign_keys = array(), $db = null)</h4>
-				<p>The <strong>create_table</strong> method creates a table.</p>
+				<p><strong>create_table</strong> メソッドは、テーブルを作成します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td>the table name</td>
+										<td><em>必須</em></td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$fields</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>array containing fields</td>
 									</tr>
 									<tr>
@@ -476,21 +476,21 @@ catch(\Database_Exception $e)
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the number of affected rows.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>\DBUtil::create_table(
 	'users',
@@ -545,8 +545,8 @@ CREATE TABLE `users` (
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>name</kbd></th>
@@ -607,26 +607,26 @@ CREATE TABLE `users` (
 
 			<article>
 				<h4 class="method" id="method_field_exists">field_exists($table, $columns, $db = null)</h4>
-				<p>The <strong>field_exists</strong> method checks if given field(s) in a given table exists.</p>
+				<p><strong>field_exists</strong> メソッドは、与えられたテーブルに与えられたカラムが存在しているかチェックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<td>$table</td>
 										<td>required</td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<td>$columns</td>
@@ -636,17 +636,17 @@ CREATE TABLE `users` (
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns true if field/column exists, false otherwise</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>
 if(DBUtil::field_exists('my_table', array('my_field_or_column')))
@@ -666,50 +666,50 @@ else
 
 			<article>
 				<h4 class="method" id="method_add_fields">add_fields($table, $fields, $db = null)</h4>
-				<p>The <strong>add_fields</strong> method adds fields to a table.</p>
+				<p><strong>add_fields</strong> メソッドは、テーブルにカラムを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td>the table name</td>
+										<td><em>必須</em></td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$fields</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>array containing fields</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the number of affected rows.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>\DBUtil::add_fields('users', array(
 	'surname' => array('constraint' => 100, 'type' => 'varchar'),
@@ -724,50 +724,50 @@ else
 
 			<article>
 				<h4 class="method" id="method_drop_fields">drop_fields($table, $fields, $db = null)</h4>
-				<p>The <strong>drop_fields</strong> method drops fields from a table.</p>
+				<p><strong>drop_fields</strong>メソッドは、テーブルからカラムを削除します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td>string of the table name</td>
+										<td><em>必須</em></td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$fields</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>string or array containing fields</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the number of affected rows.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>\DBUtil::drop_fields('users', 'surname');</code></pre>
 							</td>
@@ -778,50 +778,50 @@ else
 
 			<article>
 				<h4 class="method" id="method_modify_fields">modify_fields($table, $fields, $db = null)</h4>
-				<p>The <strong>modify_fields</strong> method alters fields in a table.</p>
+				<p><strong>modify_fields</strong> メソッドは、テーブルのカラムを変更します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td>the table name</td>
+										<td><em>必須</em></td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$fields</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>array containing fields</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the number of affected rows.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>\DBUtil::modify_fields('users2', array(
 	'name' => array('constraint' => 100, 'type' => 'varchar', 'charset' => 'utf8_general_ci'),
@@ -836,30 +836,30 @@ else
 
 			<article>
 				<h4 class="method" id="method_create_index">create_index($table, $index_columns, $index_name, $index = '', $db = null)</h4>
-				<p>The <strong>create_index</strong> method allows you to create secondary indexes on a table.</p>
+				<p><strong>create_index</strong> メソッドは、テーブルにインデックスを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td>the table name</td>
+										<td><em>必須</em></td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$index_columns</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>mixed, string or array of strings containing fields</td>
 									</tr>
 									<tr>
@@ -875,21 +875,21 @@ else
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the result of the database operation.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>\DBUtil::create_index('table', 'name');
 // produces CREATE INDEX name ON table ( `name` )
@@ -908,50 +908,50 @@ else
 
 			<article>
 				<h4 class="method" id="method_drop_index">drop_index($table, $index_name, $db = null)</h4>
-				<p>The <strong>drop_index</strong> method allows you to drop a secondary index from a table.</p>
+				<p><strong>drop_index</strong> メソッドは、テーブルからインデックスを削除します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td>the table name</td>
+										<td><em>必須</em></td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$index_name</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>name of the index to be dropped</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the result of the database operation.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>\DBUtil::drop_index('table', 'name');
 // produces DROP INDEX name ON table
@@ -964,45 +964,45 @@ else
 
 			<article>
 				<h4 class="method" id="method_add_foregin_key">add_foregin_key($table, $foreign_key)</h4>
-				<p>The <strong>add_foreign_key</strong> method allows you to add a foreign key to a table after it's creation.</p>
+				<p><strong>add_foreign_key</strong> メソッドは、既存テーブルに外部キーを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td>the table name</td>
+										<td><em>必須</em></td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$foreign_key</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>array containing the foreign key definition.</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the result of the database operation.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\InvalidArgumentException on invalid input, \Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>\DBUtil::add_foreign_key('users', array(
 	'constraint' => 'constraintA',
@@ -1022,45 +1022,45 @@ else
 
 			<article>
 				<h4 class="method" id="method_drop_foreign_key">drop_foreign_key($table, $fk_name)</h4>
-				<p>The <strong>drop_foreign_key</strong> method allows you to drop a foreign key from a table.</p>
+				<p><strong>drop_foreign_key</strong> メソッドは、テーブルから外部キーを削除します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td>the table name</td>
+										<td><em>必須</em></td>
+										<td>テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$fk_name</kbd></th>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>name of the foreign key to be dropped</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the result of the database operation.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception on failure</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>\DBUtil::drop_foreign_key('table', 'name');
 // produces ALTER TABLE `table` DROP FOREIGN KEY name
@@ -1079,41 +1079,41 @@ else
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">the table name.</td>
+										<td><em>必須</em></td>
+										<td class="description">テーブル名.</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the number of affected rows.</td>
 						</tr>
 						<tr>
-							<th>Throws</th>
+							<th>例外</th>
 							<td>\Database_Exception when not supported</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>\DBUtil::truncate_table('my_table');</code></pre>
 							</td>
@@ -1128,37 +1128,37 @@ else
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">the table name.</td>
+										<td><em>必須</em></td>
+										<td class="description">テーブル名.</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td><em>True</em> if the table is OK. <em>False</em> when needs attention. If not supported it logs the error message.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>if(\DBUtil::analyze_table('table_name') === false)
 {
@@ -1177,37 +1177,37 @@ else
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">the table name.</td>
+										<td><em>必須</em></td>
+										<td class="description">テーブル名.</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td><em>True</em> if the table is OK. <em>False</em> when needs attention. If not supported it logs the error message.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>if(\DBUtil::check_table('table_name') === false)
 {
@@ -1226,37 +1226,37 @@ else
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">the table name.</td>
+										<td><em>必須</em></td>
+										<td class="description">テーブル名.</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td><em>True</em> if the table is OK or optimized. <em>False</em> on failure. If not supported or failed it logs the error message.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>if(\DBUtil::optimize_table('table_name') === false)
 {
@@ -1275,37 +1275,37 @@ else
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
-							<td>Yes</td>
+							<th>静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
-										<td><em>required</em></td>
-										<td class="description">the table name.</td>
+										<td><em>必須</em></td>
+										<td class="description">テーブル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td class="description">The database connection.</td>
+										<td class="description">データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td><em>True</em> if the table is OK or repaired. <em>false</em> on failure. If not supported or failed it logs the error message.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>if(\DBUtil::repair_table('table_name') === false)
 {
@@ -1323,6 +1323,7 @@ else
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/database/dbutil.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/database/dbutil.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/database/dbutil.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

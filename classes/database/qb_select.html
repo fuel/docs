@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = 'Query_Builder_Select::';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Query Builder Select - Classes - FuelPHP Documentation</title>
+	<title>Query Builder Select - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,54 +44,54 @@
 		</div>
 
 		<div id="main">
-			<h2 id="introduction">Query_Builder_Select class</h2>
+			<h2 id="introduction">Query_Builder_Select クラス</h2>
 
 			<p>(extends <a href="qb_where.html">Query_Builder_Where</a>)</p>
 
 			<p>
-				The Query_Builder_Select class handles all the select operations for the query building process. It extends the
-				Query_Builder_Where class, so all the methods are inherited.
+				Query_Builder_Select クラスは、クエリ構築のための、すべてのSELECT 操作を扱います。
+				これは、Query_Builder_Where を継承しており、 すべてのメソッドが引き継がれます。 
 			</p>
 
 			<article>
 				<h4 class="method" id="method_distinct">distinct($value = true)</h4>
-				<p>The <strong>distinct</strong> method sets whether to select distinct values.</p>
+				<p><strong>distinct</strong> メソッドは、 値を重複なしで取得するかをセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
 										<td><em>bool</em></td>
 										<td><pre class="php"><code>true</code></pre></td>
-										<td>set to false if you don't want to select distinct values</td>
+										<td>もし値の重複排除を望まないのであれば、false を指定します。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('name')->from('users');
 
-// Set it to distinct
+// 重複なしを指定します
 $query->distinct();
 
 // SELECT DISTINCT `name` FROM `users`
@@ -104,22 +104,22 @@ $query->distinct();
 
 			<article>
 				<h4 class="method" id="method_select">select($columns = null)</h4>
-				<p>The <strong>select</strong> method appends columns to select.</p>
+				<p><strong>select</strong> メソッドは、取得するカラムを指定します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$columns</kbd></th>
@@ -131,11 +131,11 @@ $query->distinct();
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('name')->from('users');
@@ -158,53 +158,53 @@ $query->select(
 			</article>
 
 			<article>
-				<h4 class="method" id="method_select_array">select_array(array $columns, $reset = false)</h4>
-				<p>The <strong>select_array</strong> method appends columns to select.</p>
+				<h4 class="method" id="method_select_array">select_array(array $columns)</h4>
+				<p><strong>select_array</strong> メソッドは、取得するカラムを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$columns</kbd></th>
 										<td><em>array</em></td>
-										<td><em>required</em></td>
-										<td>an array containing column names</td>
+										<td><em>必須</em></td>
+										<td>カラム名の配列</td>
 									</tr>
 									<tr>
 										<th><kbd>$reset</kbd></th>
 										<td><em>bool</em></td>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If true, do not append, but overwrite</td>
+										<td> trueを指定した場合追加ではなく、上書きします。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('name')->from('users');
 
-// Append other columns to select
+// 取得したい別のカラムを追加します。
 $query->select('surname', 'email');
 
-// Supply an array to use an alias
+// カラムの別名を使いたい場合は、配列を指定します。
 $query->select_array(array(
 	array('is_active', 'active'),
 	'birthdate'
@@ -212,7 +212,7 @@ $query->select_array(array(
 
 // produces SELECT `surname`, `email`, `is_active` as active, `birthdate` FROM `users ...
 
-// Supply an array to use an alias and reset the previous select
+// カラムの別名を使用し、前回のSELECTで使用したカラムをリセット（上書き）します。
 $query->select_array(array(
 	array('surname', 'name'),
 	'birthdate'
@@ -229,43 +229,43 @@ $query->select_array(array(
 
 			<article>
 				<h4 class="method" id="method_from">from($tables)</h4>
-				<p>The <strong>from</strong> method appends tables to select from.</p>
+				<p><strong>from</strong> メソッドは、取得するテーブルを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$tables</kbd></th>
 										<td><em>mixed</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>table names or array($table, $alias)</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select()->from('users');
 
-// Append tables to select from
+// 取得するテーブルを指定
 $query->from(
 	'admins',
 	array('comments', 'cmmnts')
@@ -281,27 +281,27 @@ $query->from(
 
 			<article>
 				<h4 class="method" id="method_join">join($table, $type = null)</h4>
-				<p>The <strong>join</strong> method appends tables to join.</p>
+				<p><strong>join</strong> メソッドは、JOINするテーブルを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>mixed</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>table name or array($table, $alias)</td>
 									</tr>
 									<tr>
@@ -314,11 +314,11 @@ $query->from(
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select()->from('users');
@@ -345,50 +345,50 @@ $query->join('pictures', 'RIGHT OUTER');
 
 			<article>
 				<h4 class="method" id="method_on">on($c1, $op, $c2)</h4>
-				<p>The <strong>on</strong> method adds "ON ..." conditions for the last created JOIN statement.</p>
+				<p><strong>on</strong>メソッドは、最後に作られたJOINステートメントに対し、 "ON ..." 条件を追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$c1</kbd></th>
 										<td><em>mixed</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>table name or array($table, $alias)</td>
 									</tr>
 									<tr>
 										<th><kbd>$op</kbd></th>
 										<td><em>string</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>logical operator</td>
 									</tr>
 									<tr>
 										<th><kbd>$c2</kbd></th>
 										<td><em>mixed</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>table name or array($table, $alias)</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select()->from('users');
@@ -407,16 +407,16 @@ $query->on('users.id', '=', 'profiles.user_id');
 
 			<article>
 				<h4 class="method" id="method_and_on">and_on()</h4>
-				<p>The <strong>and_on</strong> method is an alias for <a href="#method_on">on</a>.</p>
+				<p><strong>and_on</strong>メソッドは、<a href="#method_on">on</a>メソッドのエイリアスです。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_or_on">or_ on($c1, $op, $c2)</h4>
-				<p>The <strong>on</strong> method adds "OR ON ..." conditions for the last created JOIN statement.</p>
+				<p><strong>or_on</strong> メソッドは、最後に作られたJOINステートメントに対し、 "OR ON ..." 条件を追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
@@ -477,38 +477,38 @@ $query->or_on('users.id', '=', 'profiles.other_id');
 
 			<article>
 				<h4 class="method" id="method_group_by">group_by($columns)</h4>
-				<p>The <strong>group_by</strong> method creates a "GROUP BY ..." filter.</p>
+				<p><strong>group_by</strong>メソッドは、 "GROUP BY ..."  フィルタを作成します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$columns</kbd></th>
 										<td><em>mixed</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>table name</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select()->from('articles');
@@ -526,32 +526,32 @@ $query->group_by('genre', 'category');
 
 			<article>
 				<h4 class="method" id="method_having">having($column, $op, $value = NULL)</h4>
-				<p>The <strong>having</strong> method is an alias for <a href="#method_and_having">and_having</a>.</p>
+				<p><strong>having</strong>メソッドは、<a href="#method_and_having">and_having</a>メソッドのエイリアスです。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_and_having">and_having($column, $op, $value = NULL)</h4>
-				<p>The <strong>and_having</strong> method appends a "AND HAVING" statement.</p>
+				<p><strong>and_having</strong> メソッドは、"AND HAVING" 句を追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$column</kbd></th>
 										<td><em>string</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>Column name or array($column, $alias), object or callback</td>
 									</tr>
 									<tr>
@@ -570,11 +570,11 @@ $query->group_by('genre', 'category');
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
@@ -603,27 +603,27 @@ $query->and_having(function($query){
 
 			<article>
 				<h4 class="method" id="method_or_having">or_having($column, $op, $value = NULL)</h4>
-				<p>The <strong>or_having</strong> method appends a "OR HAVING" statement.</p>
+				<p><strong>or_having</strong>メソッドは、"OR HAVING" 句を追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$column</kbd></th>
 										<td><em>string</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>Column name or array($column, $alias), object or callback</td>
 									</tr>
 									<tr>
@@ -675,30 +675,30 @@ $query->or_having(function($query){
 
 			<article>
 				<h4 class="method" id="method_having_open">having_open()</h4>
-				<p>The <strong>having_open</strong> method is an alias for <a href="#method_and_having_open">and_having_open</a>.</p>
+				<p><strong>having_open</strong> メソッドは、<a href="#method_and_having_open">and_having_open</a>メソッドのエイリアスです。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_and_having_open">and_having_open()</h4>
-				<p>The <strong>and_having_open</strong> method opens an SQL closure and appends it using AND.</p>
+				<p><strong>and_having_open</strong> メソッドは、SQLクロージャを開始し、それをANDで追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<em>None</em>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
@@ -719,25 +719,25 @@ $query->and_having_open();
 
 			<article>
 				<h4 class="method" id="method_or_having_open">or_having_open()</h4>
-				<p>The <strong>or_having_open</strong> method opens an SQL closure and appends it using OR.</p>
+				<p><strong>or_having_open</strong> メソッドは、SQLクロージャを開始し、それをORで追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<em>None</em>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
@@ -758,30 +758,30 @@ $query->or_having_open();
 
 			<article>
 				<h4 class="method" id="method_having_close">having_close()</h4>
-				<p>The <strong>having_close</strong> method is an alias for <a href="#method_and_having_close">and_having_close</a>.</p>
+				<p><strong>having_close</strong>メソッドは、<a href="#method_and_having_close">and_having_close</a>のエイリアスです。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_and_having_close">and_having_close()</h4>
-				<p>The <strong>and_having_close</strong> method closes an SQL closure.</p>
+				<p><strong>and_having_close</strong>メソッドは、SQLクロージャを閉じます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<em>None</em>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
@@ -803,25 +803,25 @@ $query->and_having_close();
 
 			<article>
 				<h4 class="method" id="method_or_having_close">or_having_close()</h4>
-				<p>The <strong>or_having_close</strong> method closes an SQL closure.</p>
+				<p><strong>or_having_close</strong>メソッドは、SQL クロージャを閉じます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<em>None</em>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
@@ -847,34 +847,34 @@ $query->or_having_close();
 
 			<article>
 				<h4 class="method" id="method_offset">offset($number)</h4>
-				<p>The <strong>offset</strong> method sets row number to start from when selecting/updating/deleting.</p>
+				<p><strong>offset</strong>メソッドはSELECT/UPDATE/DELETEの際に、どの行から開始するかをセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$number</kbd></th>
 										<td><em>int</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>The row number to start from</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance</td>
 						</tr>
 						<tr>
@@ -898,38 +898,38 @@ $query->offset(5);
 
 			<article>
 				<h4 class="method" id="method_compile">compile(\Database_Connection$db)</h4>
-				<p>The <strong>compile</strong> method returns the select SQL query as a string.</p>
+				<p><strong>compile</strong> メソッドは、SELECTを行うSQL クエリを文字列で返却します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><em>object</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>A database connection</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the SQL query as a string.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
@@ -952,25 +952,25 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_reset">reset()</h4>
-				<p>The <strong>reset</strong> method resets all values of the current instance.</p>
+				<p><strong>reset</strong>メソッドは、現在のインスタンスのすべての値をリセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<em>None</em>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare a select statement
 $query = DB::select('*')->from('users');
@@ -999,6 +999,7 @@ $query->select('email')->from('admins')->where('role', 'superadmin');
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/database/qb_select.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/database/qb_select.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/database/qb_select.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

@@ -10,7 +10,7 @@
 		var path = './../../../';
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
-	<title>Introduction - SimpleAuth - Auth Package - FuelPHP Documentation</title>
+	<title>はじめに - SimpleAuth - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -43,7 +43,7 @@
 		</div>
 
 		<div id="main">
-			<h2>SimpleAuth - Introduction</h2>
+			<h2>SimpleAuth - はじめに</h2>
 
 			<p>
 				Simpleauth is, as it's name implies, a simple authentication system which is included in the Auth package.
@@ -51,7 +51,7 @@
 				You can use this as a reference when building your own driver.
 			</p>
 
-			<h3 id="setup">Auth setup</h3>
+			<h3 id="setup">Auth のセットアップ</h3>
 
 			<p>
 				Configuration starts with telling the Auth package that you are going to use the Simpleauth driver.
@@ -60,7 +60,7 @@
 				configured for the Simpleauth package. You will find an explaination of this config file <a href="../intro.html#/configuration">here</a>.
 			</p>
 			<p>
-				After you have done this, you can choose to autoload the package through the <strong>always_load</strong> section of the app/config/config.php.
+				上記の後に、パッケージをオートロードするかどうかを app/config/config.php の <strong>always_load</strong> セクションで指定します。
 			</p>
 
 			<h3 id="acl">ACL's</h3>
@@ -89,47 +89,47 @@
 				to your app/config folder before making any changes.
 			</p>
 
-				<p>The following configuration values can be defined:</p>
+				<p>下記の設定値が定義されています：</p>
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>型</th>
+							<th>規定値</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>db_connection</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>null</code></pre>
 							</td>
 							<td>
-								Name of the database connection to use. This should match the definition in your applications db.php configuration file.
-								Set it to <strong>null</strong> to use the default DB instance.
+								利用するデータベース接続の名前。 db.php の config ファイルでの名称と一致させる必要があります。
+								<strong>null</strong> でデフォルトの DB インスタンスを使います。
 							</td>
 						</tr>
 						<tr>
 							<th>table_name</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>'users'</code></pre>
 							</td>
 							<td>
-								Name of the users table to use.
+								利用するユーザ情報を定義したテーブル名。
 							</td>
 						</tr>
 						<tr>
 							<th>table_columns</th>
-							<td>array</td>
+							<td>配列</td>
 							<td><pre class="php"><code>array('*')</code></pre>
 							</td>
 							<td>
-								List of columns to select from the users table, or '*' to select all columns. You have to at least include
-								'username', 'password', 'email', 'last_login', 'login_hash', 'group' and 'profile_fields'.
+								ユーザ情報のテーブルのうち、 select するカラムのリスト。　'*' で全カラムを select 。少なくとも、
+								'username', 'password', 'email', 'last_login', 'login_hash', 'group', 'profile_fields' を含んでいる必要があります。
 							</td>
 						</tr>
 						<tr>
 							<th>guest_login</th>
-							<td>boolean</td>
+							<td>論理型</td>
 							<td><pre class="php"><code>true</code></pre>
 							</td>
 							<td>
@@ -149,66 +149,66 @@
 						</tr>
 						<tr>
 							<th>groups</th>
-							<td>array</td>
+							<td>配列</td>
 							<td><pre class="php"><code>array()</code></pre>
 							</td>
 							<td>
-								Defined groups, to be used by the SimpleAuth groups driver. See <a href="./groups.html">here</a> for an
-								description of the groups array structure.
+								SimpleAuth Group ドライバで利用する定義済みの Group 。詳細な Group 配列については、
+								<a href="./groups.html">こちら</a>を参照。
 							</td>
 						</tr>
 						<tr>
 							<th>roles</th>
-							<td>array</td>
+							<td>配列</td>
 							<td><pre class="php"><code>array()</code></pre>
 							</td>
 							<td>
-								Defined roles, to be used by the SimpleAuth acl driver. See <a href="./acl.html">here</a> for an
-								description of the roles array structure.
+								SimpleAuth ACL ドライバで利用する定義済みの ACL 。詳細な ACL 配列については、
+								<a href="./acl.html">こちら</a>を参照。
 							</td>
 						</tr>
 						<tr>
 							<th>login_hash_salt</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>'put_some_salt_in_here'</code></pre>
 							</td>
 							<td>
-								To make the passwords used by the SimpleAuth drivers extra secure, a salt value is used when hashing
-								the passwords to store them into the database. Make sure you change this default to a very random string!
-								To hash passwords, SimpleAuth uses <a href="http://en.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a>, a very secure hashing mechanism.
+								SimpleAuth で利用されるパスワードをよりセキュアにするために、パスワードのハッシュ値をデータベースに保存する際に、サルトが使われています。
+								デフォルトのものから、ランダムな文字列に変更することを忘れないように！
+								パスワードのハッシュ化にあたり、 SimpleAuth は非常にセキュアな機構である <a href="http://en.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a>　を利用しています。
 							</td>
 						</tr>
 						<tr>
 							<th>username_post_key</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>'username'</code></pre>
 							</td>
 							<td>
-								Name of the input field on the login form that contains the username.
+								ログインフォームのユーザ名を入力するフィールド名。
 							</td>
 						</tr>
 						<tr>
 							<th>password_post_key</th>
-							<td>string</td>
+							<td>文字列</td>
 							<td><pre class="php"><code>'password'</code></pre>
 							</td>
 							<td>
-								Name of the input field on the login form that contains the password.
+								ログインフォームのパスワードを入力するフィールド名。
 							</td>
 						</tr>
 					</tbody>
 				</table>
 
-			<h3 id="database">Database table</h3>
+			<h3 id="database">データベーステーブル</h3>
 
 			<p>
 				SimpleAuth relies on a single table. The Auth package contains the required migration files to create this table.<br />
 				Just run <code>oil refine migrate --packages=auth</code> to have the table created for you.
 			</p>
 
-			<h3 id="example">Example</h3>
+			<h3 id="example">例</h3>
 
-			<p>This is a sample login action:</p>
+			<p>これはログイン処理のサンプルです：</p>
 
 			<pre class="php"><code>public function action_login()
 {
@@ -221,7 +221,7 @@
 		// you have used the table definition and configuration as mentioned above.
 		if (Auth::login())
 		{
-			// Credentials ok, go right in.
+			// 認証情報は OK 、ただちに下記へ
 			Response::redirect('success_page');
 		}
 		else
@@ -233,7 +233,7 @@
 		}
 	}
 
-	// Show the login form.
+	// ログインフォームを表示
 	echo View::forge('auth/login',$data);
 }</code></pre>
 
@@ -242,6 +242,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/packages/auth/simpleauth/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/packages/auth/simpleauth/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/packages/auth/simpleauth/intro.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

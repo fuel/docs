@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = 'Query_Builder_Delete::';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Query Builder Delete - Classes - FuelPHP Documentation</title>
+	<title>Query Builder Delete - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,56 +45,56 @@
 
 		<div id="main">
 
-			<h2 id="introduction">Query_Builder_Delete class</h2>
+			<h2 id="introduction">Query_Builder_Delete クラス</h2>
 
 			<p>
 				(extends <a href="qb_where.html">Query_Builder_Where</a>)
 			</p>
 
 			<p>
-				The Query_Builder_Delete class handles all the delete operations for the query building process. It extends the
-				Query_Builder_Where class, so all the methods are inherited.
+				The Query_Builder_Delete クラスは、クラスは、クエリ構築のためのすべてのデリート 操作を扱います。 
+				これは、Query_Builder_Where クラスを拡張しており、すべてのメソッドが継承されます。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_table">table($table)</h4>
-				<p>The <strong>table</strong> method sets/changes the table to delete from.</p>
+				<p><strong>table</strong> メソッドは、削除するテーブルをセット/変更します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$table</kbd></th>
 										<td><em>string</em></td>
-										<td><em>required</em></td>
+										<td><em>必須</em></td>
 										<td>the table name</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare an update statement
 $query = DB::delete('users');
 
-// Set the table to delete from
+// 削除するテーブルをセットする
 $query->table('admins');
 
 // DELETE `admins` ...
@@ -107,49 +107,49 @@ $query->table('admins');
 
 			<article>
 				<h4 class="method" id="method_compile">compile(\Database_Connection$db)</h4>
-				<p>The <strong>compile</strong> method returns the delete SQL query as a string.</p>
+				<p><strong>compile</strong> メソッドは、デリートを行うSQL クエリを文字列で返却します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>規定値</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><em>object</em></td>
-										<td><em>required</em></td>
-										<td>A database connection</td>
+										<td><em>必須</em></td>
+										<td>データベース接続</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Returns the SQL query as a string.</td>
+							<th>返り値</th>
+							<td>SQL文の文字列</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare an update statement
 $query = DB::delete('users');
 
-// Set a where statement
+// WHERE句をセット
 $query->where('looks', 'like', '%spammer%');
 
-// Get the database connection
+// データベース接続を取得
 $connection = Database_Connection::instance();
 
-// Get the sql query
+// SQL文を取得
 $sql = $query->compile($connection);
 
 // DELETE FROM `users` WHERE `looks` LIKE "%spammer%"
@@ -162,42 +162,42 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_reset">reset()</h4>
-				<p>The <strong>reset</strong> method resets all values of the current instance.</p>
+				<p><strong>reset</strong> メソッドは、現在のインスタンスのすべての値をリセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th>Static</th>
+							<th>静的</th>
 							<td>No</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<em>None</em>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>Returns the current instance.</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>// prepare an update statement
 $query = DB:delete('users');
 
-// Set a where statement
+// WHERE句をセット
 $query->where('it_look', 'ok to me');
 
-// Reset it
+// 上記をリセット
 $query->reset();
 
-// Just an other where statement
+// 別のWHERE句をセット
 $query->where('looks', 'like', '%bad mister%');
 
-// Get the database connection
+// データベース接続を取得
 $connection = Database_Connection::instance();
 
-// Get the sql query
+// SQL文を取得
 $sql = $query->compile($connection);
 
 // DELETE FROM `users` WHERE `looks` LIKE "%bad mister%"
@@ -213,6 +213,7 @@ $sql = $query->compile($connection);
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/database/qb_delete.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/database/qb_delete.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/database/qb_delete.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Session::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Session Usage - Classes - FuelPHP Documentation</title>
+	<title>Session 使い方 - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,60 +45,60 @@
 
 		<div id="main">
 
-			<h2>Session Class</h2>
+			<h2>Session クラス</h2>
 
 			<p>
-				The session class allows you to maintain state for your application in the stateless environment of the web.
-				It allows you to store variables on the server using a variety of storage solutions, and recall these variables on the next page request.
+				セッションクラスを使用することでステートレスな Web 環境において、アプリケーションの状態を管理出来るようになります。
+				サーバー上の様々なストレージに変数を格納し、それらを次のページリクエストに再度呼び出すことが出来ます。
 			</p>
 			<p>
-				The static methods documented on this page use the session driver configured in the configuration via the <kbd>driver</kbd> setting.
-				When you have set the <kbd>auto_initialize</kbd> setting to <kbd>true</kbd>, a session will be initialized when the Session class is loaded.
-				If it is set to <kbd>false</kbd>, you will have to use one of the methods below, or start a session instance manually, to initialize the session.
+				本ページに記載されている静的メソッドは <kbd>driver</kbd> で設定されたセッションドライバーを使用します。
+				<kbd>auto_initialize</kbd> を <kbd>true</kbd> に設定した場合、セッションはセッションクラスロード時に初期化されます。
+				<kbd>false</kbd> に設定した場合、下記のメソッドのいずれかを使用するか、またはセッションインスタンスを初期化するためにセッションインスタンスをマニュアルで開始する必要があります。
 			</p>
 			<p class="note">
-				If your application needs session support, either "<kbd>always_load</kbd>" your session class, or make sure your (base) controllers
-				will load it. If you do load it, but you choose not to <kbd>auto_initialize</kbd> the session, and you don't use any of the session methods,
-				the session will not be refreshed! This can cause unexpected behaviour of your application due to an expired session.
+				アプリケーションがセッションのサポートをを必要とする場合、セッションクラスを "<kbd>always_load</kbd>" とするか、必ず（ベース）コントローラーがロードするようにすべきです。
+				ロードを行い、セッションを <kbd>auto_initialize</kbd> とせず、かつどのセッションメソッドも使用しなかった場合、セッションはリフレッシュされません！
+				このことにより、期限切れのセッションによってアプリケーションに予期せぬ挙動を引き起こす可能性があります。
 			</p>
 
-			<h3 id="gc">Garbage Collection</h3>
+			<h3 id="gc">ガベージコレクション</h3>
 
 			<p>
-				There session drivers have a built-in garbage collection mechanism to remove stale entries. Storage backends that
-				have built-in support for data expiration, such as APC, Memcached or Redis, will use that feature, and
-				will auto expire stale cache entries.
+				セッションドライバーは不要なエントリーを削除するためのガベージコレクション機構を持ちます。
+				APC、Memcached、Redis等のexpireをビルトインでサポートするストレージの場合、その機能を使用し、
+				自動で不要なキャッシュエントリーを期限切れとしてます。
 			</p>
 			<p>
-				Storage backends that don't, for example the database or file system drivers, use the gc_probability setting to determine if
-				garbage collection is needed. If so, they will run it in a shutdown event, after the page has been send to the user.
-				Downside of this method is that if this takes some time, the page will not finished to be "loading..." until GC is completed.
+				データベースやファイルシステムのようにそれを行わないストレージの場合、gc_probabilityの設定によりガベージコレクションが必要か判断します。
+				必要な場合、ユーザーにページが送られた後、シャットダウンイベントにて実行されます。
+				この方法のよくない点は、処理に時間がかかる場合、GCが完了するまでページが"loading…"となることです。
 			</p>
 
 			<p class="note">
-				When using sessions, make <strong>ABSOLUTELY</strong> sure that the timezone configured in your <em>app/config/config.php</em> and/or your
-				<em>php.ini</em> file matches the timezone set on your server. Since cookie expiry timestamps are in GMT, expiry time calculation goes
-				horribly wrong when you have a timezone mismatch, ranging from not expiring properly to session cookies not set at all because they arrive
-				at the browser already expired.
+				セッションを使用する際は、 <strong>必ず</strong> <em>app/config/config.php</em> のタイムゾーン設定およびまたは
+				<em>php.ini</em>の設定をあなたのサーバーのタイムゾーン設定と合わせてください。
+				クッキーの有効期限タイムスタンプがGMTとなり、タイムゾーンのミスマッチが有効期限の計算を狂わせると、期限切れでない適切なセッションクッキーがブラウザ到達時に期限切れとして扱われ
+				まったくセットされなくなります。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_instance">instance($instance = null)</h4>
-				<p>The <strong>instance</strong> method returns the default session instance, or a specific instance, identified by name.</p>
+				<p><strong>instance</strong> メソッドはデフォルトのセッションインスタンス、またはnameにより区別された特定のインタンスを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$instance</kbd></th>
@@ -109,11 +109,11 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed - session object, or <kbd>false</kbd> in case the requested instance does not exist.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// get the default session instance (identified by the 'driver' configuration setting).
 $session = Session::instance();
@@ -129,27 +129,27 @@ $session = Session::instance('myappcookie');
 
 			<article>
 				<h4 class="method" id="method_set">set($variable, $value = null)</h4>
-				<p>The <strong>set</strong> method allows you to set a session variable.</p>
+				<p><strong>set</strong> メソッドはセッション変数をセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>型</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
 									<td><em>string|array</em></td>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the session variable to set or associative array of values.</td>
 								</tr>
 								<tr>
@@ -165,11 +165,11 @@ $session = Session::instance('myappcookie');
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// store the userid in the session
 Session::set('userid', $userid);
@@ -197,21 +197,21 @@ Session::set('userid', $userid)->set('foo', 'bar');
 
 			<article>
 				<h4 class="method" id="method_get">get($variable = null, $default = null)</h4>
-				<p>The <strong>get</strong> method allows you to retrieve stored variables from the session.</p>
+				<p><strong>get</strong> メソッドは格納済みのセッション変数を取り出します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
@@ -227,11 +227,11 @@ Session::set('userid', $userid)->set('foo', 'bar');
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed - Dependent on the type of the stored <var>$variable</var>. The method returns <kbd>null</kbd> if the requested variable does not exist.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// get the stored userid from the session
 $userid = Session::get('userid');
@@ -256,36 +256,36 @@ $vars = Session::get();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_delete">delete($variable)</h4>
-				<p>The <strong>delete</strong> method allows you to delete a stored session variable.</p>
+				<p><strong>delete</strong> メソッドは格納済のセッション変数を削除します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the session variable to delete.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// delete the stored userid from the session
 Session::delete('userid');
@@ -301,25 +301,25 @@ Session::delete('array.varC');
 
 			<article>
 				<h4 class="method" id="method_set_flash">set_flash($variable, $value = null)</h4>
-				<p>The <strong>set_flash</strong> method allows you to set a session flash variable. Flash variables have a limited lifespan. Depending on the configuration, they will be deleted after the next page request, or after they are retrieved.</p>
+				<p><strong>set_flash</strong> メソッドはセッションにフラッシュ変数をセットします。フラッシュ変数は限定されたライフスパンを持ちます。設定に依存し、次のページリクエストか取り出された後に削除されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the session flash variable to set.</td>
 								</tr>
 								<tr>
@@ -334,11 +334,11 @@ Session::delete('array.varC');
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// tell the next page request which step to process
 Session::set_flash('step', 2);
@@ -358,25 +358,25 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 
 			<article>
 				<h4 class="method" id="method_get_flash">get_flash($variable, $default = null, $expire = false)</h4>
-				<p>The <strong>get_flash</strong> method allows you to get a session flash variable. Flash variables have a limited lifespan. Depending on the configuration, they will be deleted after the next page request, or after they are retrieved.</p>
+				<p><strong>get_flash</strong> メソッドはセッションからフラッシュ変数を取り出します。フラッシュ変数は限定されたライフスパンを持ちます。設定に依存し、次のページリクエストか取り出された後に削除されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the session variable to get.</td>
 								</tr>
 								<tr>
@@ -393,11 +393,11 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed - Dependent on the type of the stored <var>$variable</var>. The method returns <kbd>null</kbd> if the requested variable does not exist.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// find out which step to process
 $step = Session::get_flash('step');
@@ -411,36 +411,36 @@ $step = Session::get_flash('step');
 
 			<article>
 				<h4 class="method" id="method_keep_flash">keep_flash($variable)</h4>
-				<p>The <strong>keep_flash</strong> method resets a flash variable stored in the session to an 'unrequested' state. This allows you to get a flash variable, and still pass it on to the next page request.</p>
+				<p><strong>keep_flash</strong> メソッドはセッションに格納されたフラッシュ変数を 'unrequested' な状態にリセットします。フラッシュ変数を取得し、次のページリクエストまで変数をパスします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the flash variable to keep.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// keep the step value for one more page request
 Session::keep_flash('step');
@@ -453,36 +453,36 @@ Session::keep_flash('step');
 
 			<article>
 				<h4 class="method" id="method_delete_flash">delete_flash($variable)</h4>
-				<p>The <strong>delete_flash</strong> method allows you to delete a stored flash variable.</p>
+				<p><strong>delete_flash</strong> メソッドは格納されたフラッシュ変数を削除します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$variable</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the flash variable to delete.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// delete the step from the session
 Session::delete_flash('userid');
@@ -495,23 +495,23 @@ Session::delete_flash('userid');
 
 			<article>
 				<h4 class="method" id="method_create">create()</h4>
-				<p>The <strong>create</strong> method allows you to create a new session. If a session is already present, it will be destroyed when the new one is created.</p>
+				<p><strong>create</strong> メソッドは新しいセッションを生成します。セッションが既に存在する場合、セッションが新たに生成された際に破棄されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// create a new session
 Session::create();
@@ -524,23 +524,23 @@ Session::create();
 
 			<article>
 				<h4 class="method" id="method_destroy">destroy()</h4>
-				<p>The <strong>destroy</strong> method allows you to destroy an existing session.</p>
+				<p><strong>destroy</strong> メソッドは存在しているセッションを破棄します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// destroy a session
 Session::destroy();
@@ -553,23 +553,23 @@ Session::destroy();
 
 			<article>
 				<h4 class="method" id="method_read">read()</h4>
-				<p>The <strong>read</strong> method allows you to manually read a session. The session is automatically read when the session class is initialized, so under normal circumstances there is no need to use this method.</p>
+				<p><strong>read</strong> メソッドは手動でセッションの読み込みを行います。セッションはセッションクラスの初期化時に自動的に読み込まれますので、通常このメソッドを使用する必要はありません。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// read the session
 Session::read();
@@ -582,23 +582,23 @@ Session::read();
 
 			<article>
 				<h4 class="method" id="method_write">write()</h4>
-				<p>The <strong>write</strong> method allows you to manually write the session. Under normal circumstances, the session is automatically written when the script ends.</p>
+				<p><strong>write</strong> メソッドは手動でセッションを書き込みます。通常、セッションはスクリプト終了時に自動的に書き込まれます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// write the session
 Session::write();
@@ -612,27 +612,27 @@ Session::write();
 			<article>
 				<h4 class="method" id="method_rotate">rotate()</h4>
 				<p>
-					The <strong>rotate</strong> method allows you to manually rotate the session id.
-					Under normal circumstances, the session id is automatically rotated periodically,
-					as defined in the configuration. You might want to manually rotate it as an extra
-					security measure, for example when you change the rights of the logged-in user.
+					<strong>rotate</strong> メソッドは手動でセッションIDを変更します。
+					通常、セッションIDは設定により定期的に自動で変更されます。
+					例えばログインユーザーの権限を変更したような場合などにセキュリティ上の判断により
+					手動での変更を行いたいことがあるかもしれません。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>FuelCoreSession_Driver - is chainable</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// rotate the session
 Session::rotate();
@@ -646,23 +646,23 @@ Session::rotate();
 			<article>
 				<h4 class="method" id="method_key">key()</h4>
 				<p>
-					The <strong>key</strong> method allows you retrieve elements of the session key,
-					which uniquely identifies the session.
+					<strong>key</strong> メソッドはユニークにセッションを識別する、
+					セッションキー要素を取得します。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
@@ -677,11 +677,11 @@ Session::rotate();
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed - element value, or <kbd>false</kbd> if the requested element does not exist.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// get the current session id
 $session_id = Session::key('session_id');
@@ -696,6 +696,7 @@ $session_id = Session::key('session_id');
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/session/usage.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/session/usage.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/session/usage.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

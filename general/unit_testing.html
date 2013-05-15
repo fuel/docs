@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Unit Testing - General - FuelPHP Documentation</title>
+	<title>ユニットテスト - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,21 +45,21 @@
 		<div id="main">
 
 			<h2 id="unit_testing">
-				<a class="internal_link" href="#unit_testing">Unit Testing</a>
+				<a class="internal_link" href="#unit_testing">ユニットテスト</a>
 			</h2>
 
 			<p>
-				FuelPHP is built with automated unit testing in mind, and it includes tests and test classes based on the <a title="The PHPUnit Testing Framework" href="http://www.phpunit.de/manual/current/en/index.html">PHPUnit</a> testing framework.
+			  FuelPHP は自動ユニットテストを念頭に置いて作られていて、<a title="PHPUnitテストフレームワーク" href="http://www.phpunit.de/manual/current/ja/index.html">PHPUnit</a> テストフレームワークを基にしたテストクラスとテストそのものが含まれています。
 			</p>
 
 			<h3 id="what_is_a_unit_test">
-				<a class="internal_link" href="#what_is_a_unit_test">What is a Unit Test?</a>
+				<a class="internal_link" href="#what_is_a_unit_test">ユニットテストとは?</a>
 			</h3>
 
 			<p>
-				Unit Tests are automated tests written to make sure a unit of code (typically a function or method) is doing what it was designed to do.
-				These tests also help developers to be sure any changes they make to a system do not break anything that is already working.
-				Unit tests are also the key driving force behind the discipline of Test Driven Development (TDD).
+			  ユニットテストは、あるコード単位(通常は関数やメソッド)が設計されたとおりに動作することを確認するために書かれた、自動化された一連のテスト群のことです。
+			  これらのテストはまた、開発者がシステムに加えた変更が、すでに動作している何物をも壊していないことを確認するために役立ちます。
+			  またユニットテストは、テスト駆動開発 (TDD: Test Driven Development) の考えのベースになっている主要な技術でもあります。
 			</p>
 
 			<h3 id="prerequisite">
@@ -67,21 +67,21 @@
 			</h3>
 
 			<p>
-				You'll need to have <a title="The PHPUnit Testing Framework" href="http://www.phpunit.de/manual/current/en/index.html">PHPUnit</a> installed locally if you want to run the tests that ship with FuelPHP, and if you want to use Oil to run your tests.
-				If you don't already have PHPUnit installed, please refer to the PHPUnit installation documentation at: <a title="PHPUnit Installation" href="http://www.phpunit.de/manual/current/en/installation.html">http://www.phpunit.de/manual/current/en/installation.html</a>.
+			  FuelPHP のテストを利用したい場合や、oil コマンドで作成したテストを実行したい場合は、まず <a title="PHPUnit テストフレームワーク" href="http://www.phpunit.de/manual/current/ja/index.html">PHPUnit</a> がローカル環境にインストールされている必要があります。
+			  もしまだ PHPUnit がインストールされていない場合は、以下の PHPUnit インストールマニュアルを参照して下さい。 <a title="PHPUnit Installation" href="http://www.phpunit.de/manual/current/ja/installation.html">http://www.phpunit.de/manual/current/ja/installation.html</a>.
 			</p>
 
 			<p>
-				If you aren't interested in running unit tests with FuelPHP, then there is no need for you to install PHPUnit.
+			  FuelPHP でのユニットテストに興味がなければ、特に PHPUnit をインストールする必要はありません。
 			</p>
 
 			<h3 id="running_unit_tests">
-				<a class="internal_link" href="#running_unit_tests">Running Unit Tests</a>
+				<a class="internal_link" href="#running_unit_tests">ユニットテストの実行</a>
 			</h3>
 
 			<p>
-				FuelPHP's included command-line utility Oil is already configured to run your unit tests.
-				You can run all the tests in your FuelPHP project from the command line using the Oil command line utility:
+			  FuelPHP に含まれる Oil コマンドラインユーティリティは、ユニットテストの実行も可能なように作られています。
+			  あなたが作成した FuelPHP プロジェクトの全てのテストは以下の Oil コマンドで実行出来ます。
 			</p>
 
 			<pre class="cli"><code>$ php oil test
@@ -101,19 +101,19 @@ Time: 6 seconds, Memory: 22.25Mb
 OK (251 tests, 206 assertions)</code></pre>
 
 			<h3 id="creating_unit_tests">
-				<a class="internal_link" href="#creating_unit_tests">Creating Unit Tests</a>
+				<a class="internal_link" href="#creating_unit_tests">ユニットテストの作成</a>
 			</h3>
 
 			<p>
-				In FuelPHP, tests are located in the fuel/app/tests directory and its subdirectories.
-				If this directory does not exist, go ahead and create it.
-				By convention, test files are placed in the same subpath of fuel/app/tests as the tested class is of fuel/app/classes, so a test for the class at fuel/app/classes/model/login.php would be in the file fuel/app/tests/model/login.php.
+			  FuelPHP では、テストファイルは fuel/app/tests とそのサブディレクトリに配置されます。
+			  もし上記のディレクトリがまだ存在しなかったら、どうぞ作って下さい。
+			  慣例では、テストファイルは fuel/app/tests に、テストされるクラスファイルは fuel/app/classes に、それぞれ同じ名前で配置されます。例えば fuel/app/classes/model/login.php にあるクラスをテストするファイルは fuel/app/tests/model/login.php となります。
 			</p>
 
 			<p>
-				Tests are classes that extend the TestCase class.
-				TestCase is FuelPHP's extension of PHPUnit's PHPUnit_Framework_TestCase class, so you'll be able to use all the usual PHPUnit assertions and methods in your test.
-				By convention, test classes are named after the class they test, prefixed with Test_, so a test for the Model_Login class would be named Test_Model_Login.
+			  テストは TestCase クラスを継承したクラスになります。
+			  TestCase クラスは PHPUnit_Framework_TestCase を FuelPHP で拡張したクラスですので、PHPUnit のすべてのアサーションとメソッドをテスト内で使用できます。
+			  慣例では、テストクラスは Test_ ではじまり、テストしたいクラスの名前が続くクラス名になっています。例えば Model_Login をテストするクラスは Test_Model_Login になります。
 			</p>
 
 			<pre class="php"><code>class Test_Model_Login extends TestCase
@@ -124,16 +124,16 @@ OK (251 tests, 206 assertions)</code></pre>
 }</code></pre>
 
 			<p>
-				You can find further information about writing tests in the PHPUnit documentation at: <a href="http://www.phpunit.de/manual/current/en/writing-tests-for-phpunit.html">http://www.phpunit.de/manual/current/en/writing-tests-for-phpunit.html</a>.
+			  テストを書くための更なる情報は、以下の PHPUnit のマニュアルを見て下さい。 <a href="http://www.phpunit.de/manual/current/ja/writing-tests-for-phpunit.html">http://www.phpunit.de/manual/current/ja/writing-tests-for-phpunit.html</a>.
 			</p>
 
 			<h3 id="test_groups">
-				<a class="internal_link" href="#test_groups">Test Groups</a>
+				<a class="internal_link" href="#test_groups">テストグループ</a>
 			</h3>
 
 			<p>
-				If you want to run only a subset of tests during development, you can use test groups.
-				Run <code>php oil test</code> with the <code>--group=</code> command switch.
+			  もし開発中にテストの一部だけを実行したいと考えたなら、テストグループを使うことができます。
+			  <code>php oil test</code> コマンドに <code>--group=</code> スイッチを付けて実行します。
 			</p>
 
 			<pre class="cli"><code>$ php oil test --group=App</code></pre>
@@ -155,23 +155,23 @@ class Test_Model_Login extends TestCase
 }</code></pre>
 
 			<h2 id="advanced_configuration">
-				<a class="internal_link" href="#advanced_configuration">Advanced Configuration</a>
+				<a class="internal_link" href="#advanced_configuration">高度な設定</a>
 			</h2>
 
 			<p>
-				If you need to customize the contents of the phpunit.xml file, copy fuel/core/phpunit.xml into the fuel/app directory.
-				FuelPHP will recognize your new configuration file in place of the old one in fuel/core.
+			  もし phpunit.xml に書かれている内容を変更する必要がある場合は、 fuel/core/phpunit.xml を fuel/app にコピーして下さい。
+			  FuelPHP は fuel/core の古いものの代わりに、コピーされた新しいファイルを認識してそちらを使用します。
 			</p>
 
 
 			<h3 id="unit_tests_for_modules">
-				<a class="internal_link" href="#unit_tests_for_modules">Unit Tests for Modules</a>
+				<a class="internal_link" href="#unit_tests_for_modules">モジュールのユニットテスト</a>
 			</h3>
 
 			<p>
-				If you're developing a large system in FuelPHP, the recommended practice is to develop in modules.
-				But since module paths are configurable, the module paths must be configured in phpunit.xml in order for the tests to be recognized and run.
-				For example, if you are developing modules in fuel/app/modules, you'll want to add this test suite to your phpunit configuration:
+			  もし FuelPHP を用いて大規模システムを開発している場合は、モジュールを用いての開発が推奨されます。
+			  しかしモジュールの配置場所が設定可能になっているために、モジュールのテストを実行するためには phpunit.xml 内のモジュールの場所も同様に変更しないといけません。
+			  例えば fuel/app/modules にモジュールを置いているならば、以下のテストスイート設定を PHPUnit 設定に追加したいと思うでしょう。
 			</p>
 
 			<pre class="xml"><code>&lt;testsuite name="modules"&gt;
@@ -184,9 +184,9 @@ class Test_Model_Login extends TestCase
 			</h3>
 
 			<p>
-				If you've renamed your fuel directory to something else, the system variables (document root, core path, etc.) set in the phpunit.xml file have become bad references.
-				While changes to the paths in the Oil script in your root will help with the other Oil commands, PHPUnit loads its own environment, so a renamed fuel directory will break testing.
-				To fix this, edit the copy of phpunit.xml in your app/ directory and update the server variable paths to reflect your new file structure.
+			  何らかの理由で fuel ディレクトリの名前を変更した場合は、phpunit.xml に設定されているシステム変数 (ドキュメントルート、コアパスなど) は間違った参照になっています。
+			  あなたのルートにある oil スクリプト内にあるパスを変更することは、他の Oil コマンドにとっては役に立ちますが、PHPUnit はそれとは別の独自の環境で動作しますので、ディレクトリ名を fuel から変更した環境ではテストは動作しないでしょう。
+			  この問題を修正するには、app/ ディレクトリの phpunit.xml ファイルを修正して、新しいファイル構造を反映するようにシステム変数を変更します。
 			</p>
 
 
@@ -197,6 +197,7 @@ class Test_Model_Login extends TestCase
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/general/unit_testing.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/general/unit_testing.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/general/unit_testing.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "File_Handler_File::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>File Handlers - Classes - FuelPHP Documentation</title>
+	<title>ファイルハンドラ - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,61 +45,61 @@
 
 		<div id="main">
 
-			<h2>Handlers</h2>
+			<h2>ハンドラ</h2>
 
 			<article>
-				<h3 id="introduction">Introduction</h3>
+				<h3 id="introduction">はじめに</h3>
 
 				<p>
-					Fuel allows you to wrap directories and files in objects. By doing this it allows you to access
-					and modify filesystem items (files and directories) on a OO basis.
+					Fuel ではディレクトリとファイルをオブジェクトでラップ出来ます。これによって、
+					オブジェクト指向ベースでファイルシステムのアイテム (ファイルとディレクトリ) にアクセスし、またそれを変更することが出来ます。
 				</p>
 
 				<p>
-					The objects received from the File class (or file areas) are <em>File Handlers</em>. Fuel
-					has two core file handlers: <em>File Handler</em> and <em>Directory Handler</em>.
-					Like you would expect these classes handle the files and directories.
+					File クラス (あるいはファイルエリア) によって得られたオブジェクトのことを <em>ファイルハンドラ</em> といいます。
+					Fuel では 2 つの核となるファイルハンドラがあります: <em>ファイルハンドラ</em> と <em>ディレクトリハンドラ</em> です。
+					おわかりのように、それらハンドラに関するクラスは、それぞれファイルとディレクトリを扱います。
 				</p>
 
-				<h3 id="topics">Topics</h3>
+				<h3 id="topics">トピックス</h3>
 				<ul>
-					<li><a href="#usage">Usage</a></li>
-					<li><a href="#file_handler">File handler</a></li>
-					<li><a href="#directory_handler">Directory handler</a></li>
-					<li><a href="#writing_handlers">Writing handlers</a></li>
+					<li><a href="#usage">使用法</a></li>
+					<li><a href="#file_handler">ファイルハンドラ</a></li>
+					<li><a href="#directory_handler">ディレクトリハンドラ</a></li>
+					<li><a href="#predefined_handlers">ハンドラを書く</a></li>
 				</ul>
 
 			</article>
 
 			<article>
 
-				<h3 id="usage">Usage</h3>
+				<h3 id="usage">使用法</h3>
 
 				<p>
-					Every helper class comes with a set of methods that allow you to perform operations on the
-					files or directories wrapped inside the object. Here is are some examples using
-					<a href="usage.html#method_get">File::get</a>:
+					ハンドラに関するヘルパークラスは、それぞれメソッド一式を持っています。
+					それらクラスのメソッドを使ってオブジェクトにラップされたファイルあるいはディレクトリを処理することが出来ます。
+					以下、<a href="usage.html#method_get">File::get</a> を使った幾つかの例を示します。
 				</p>
 
-				<pre class="php"><code> // First we'll get a file
+				<pre class="php"><code> // まずファイルを取得します
 $file = \File::get(DOCROOT.'/here_is_my/textfile.txt');
 </code></pre>
 
-			<p>Now we've got the file handler, we can use its methods to get something done.</p>
+			<p>ファイルハンドラを得ることができたので、以下、なにか動作するメソッドを使います。</p>
 
-			<pre class="code"><code>// Let's rename rename it.
+			<pre class="code"><code>// リネームします。
 $file->rename('new_name');
 
-// Get the file's content
+// ファイルの中身を取得します
 $content = $file->read();
 
-// And rename it back to the original name
+// 元々のファイル名にリネームし直します。
 $file->rename('textfile');
 </code></pre>
 
 				<p>
-					As you can see in the example above, when renaming the file you don't need to refetch the handler.
-					You can reuse the same object over and over, untill you delete the file or unset the var.
+					以上の例でわかるように、ファイルをリネームする時、そのハンドラを再度取得する必要はありません。
+					同じオブジェクトを繰り返し再利用出来ます。ファイルを削除するか、値を unset する時まで再利用は可能です。
 				</p>
 
 
@@ -107,61 +107,61 @@ $file->rename('textfile');
 
 			<section>
 
-				<h3 id="file_handler">File handler</h3>
+				<h3 id="file_handler">ファイルハンドラ</h3>
 
 				<p>
-					The file handlers handles the basic interaction with files. Each example assumes the <strong>
-					$handler</strong> var is the fetched handler. Want to know how to get the handler?
-					Look at the <a href="#usage">usage section</a>.
+					ファイルハンドラは、基本的なファイルの操作を取り扱います。以下の例では、
+					<strong>$handler</strong> 変数が取得されたハンドラである、とします。
+					ハンドラを得る方法を知りたい場合は <a href="#usage">使用法のセクション</a> を参照してください。
 				</p>
 
 				<article>
 					<h4 class="method" id="method_file_forge">forge($path, $config = array(), $area = null, $content = array())</h4>
-					<p>The <strong>forge</strong> method returns a new File_Handler_File object.</p>
+					<p><strong>forge</strong> メソッドは生成した File_Handler_File オブジェクトを返します。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>Yes</td>
+								<th>静的</th>
+								<td>はい</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$path</kbd></th>
-											<td><em>required</em></td>
-											<td>path to the file</td>
+											<td><em>必須</em></td>
+											<td>ファイルのパス</td>
 										</tr>
 										<tr>
 											<th><kbd>$config</kbd></th>
 											<td><em>array()</em></td>
-											<td>optional config array</td>
+											<td>オプションで、config の配列を書けます。</td>
 										</tr>
 										<tr>
 											<th><kbd>$area</kbd></th>
 											<td><em>null</em></td>
-											<td>File_Area instance</td>
+											<td>File_Area インスタンス</td>
 										</tr>
 										<tr>
 											<th><kbd>$content</kbd></th>
-											<td><em>array</em></td>
-											<td><em>ignored</em></td>
+											<td><em>配列</em></td>
+											<td><em>無視</em></td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>Returns a new File_Handler_File object.</td>
+								<th>返り値</th>
+								<td>生成した File_Handler_File オブジェクトを返します。</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$handler = File_Handler_File::forge('path/to/file.txt', $config_array, $my_file_area);</code></pre>
 								</td>
@@ -172,36 +172,36 @@ $file->rename('textfile');
 
 				<article>
 					<h4 class="method" id="method_file_read">read($as_string = false)</h4>
-					<p>The <strong>read</strong> method is a shortcut to <a href="usage.html#method_read">File::read</a>.</p>
+					<p><strong>read</strong> メソッドは <a href="usage.html#method_read">File::read</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$as_string</kbd></th>
 											<td><em>false</em></td>
-											<td>set to <em>true</em> to use file_get_contents() instead of readfile()</td>
+											<td><em>true</em> なら、readfile() のかわりに file_get_contents() を使います。</td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>Returns IO or string (file contents)</td>
+								<th>返り値</th>
+								<td>IO か文字列 (ファイルの中身) を返します。</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$file_content = $handler->read(true);</code></pre>
 								</td>
@@ -212,41 +212,41 @@ $file->rename('textfile');
 
 				<article>
 					<h4 class="method" id="method_file_rename">rename($new_name, $new_extension = false)</h4>
-					<p>The <strong>rename</strong> method is a shortcut to <a href="usage.html#method_rename">File::rename</a>.</p>
+					<p><strong>rename</strong> メソッドは <a href="usage.html#method_rename">File::rename</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$new_name</kbd></th>
-											<td><em>required</em></td>
-											<td>the new filename</td>
+											<td><em>必須</em></td>
+											<td>新しいファイル名</td>
 										</tr>
 										<tr>
 											<th><kbd>$new_extension</kbd></th>
 											<td><em>false</em></td>
-											<td>the new filename extension</td>
+											<td>新しいファイル拡張子</td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>boolean, result form <em>rename()</em></td>
+								<th>返り値</th>
+								<td><em>rename() が返す boolean</em></td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$handler->rename('new_name');</code></pre>
 								</td>
@@ -257,36 +257,36 @@ $file->rename('textfile');
 
 				<article>
 					<h4 class="method" id="method_file_move">move($new_path)</h4>
-					<p>The <strong>move</strong> method is a shortcut to <a href="usage.html#method_move">File::move</a>.</p>
+					<p><strong>move</strong> メソッドは <a href="usage.html#method_move">File::move</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$new_path</kbd></th>
-											<td><em>required</em></td>
-											<td>path to new directory, must be valid</td>
+											<td><em>必須</em></td>
+											<td>新しいディレクトリパス。有効なパスでなければなりません</td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>boolean, result form <em>rename()</em></td>
+								<th>返り値</th>
+								<td><em>rename()が返すboolean。</em></td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$handler->move(DOCROOT.'/new/parent/directory/');</code></pre>
 								</td>
@@ -297,36 +297,36 @@ $file->rename('textfile');
 
 				<article>
 					<h4 class="method" id="method_file_copy">copy($new_path)</h4>
-					<p>The <strong>copy</strong> method is a shortcut to <a href="usage.html#method_copy">File::copy</a>.</p>
+					<p><strong>copy</strong> メソッドは <a href="usage.html#method_copy">File::copy</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$new_path</kbd></th>
-											<td><em>required</em></td>
-											<td>path to directory to copy to, must be valid</td>
+											<td><em>必須</em></td>
+											<td>コピー先の新しいディレクトリパス。有効なパスでなければなりません</td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>boolean, result form <em>copy()</em></td>
+								<th>返り値</th>
+								<td><em>copy() が返す boolean</em></td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$handler->copy(DOCROOT.'/directory/');</code></pre>
 								</td>
@@ -337,36 +337,36 @@ $file->rename('textfile');
 
 				<article>
 					<h4 class="method" id="method_file_update">update($new_content)</h4>
-					<p>The <strong>update</strong> method is a shortcut to <a href="usage.html#method_update">File::update</a>.</p>
+					<p><strong>update</strong> メソッドは <a href="usage.html#method_update">File::update</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$new_content</kbd></th>
-											<td><em>required</em></td>
-											<td>the new file content</td>
+											<td><em>必須</em></td>
+											<td>新しいファイルコンテント</td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>true on success</td>
+								<th>返り値</th>
+								<td>成功すればtrue</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$handler->update('the new content');</code></pre>
 								</td>
@@ -377,19 +377,19 @@ $file->rename('textfile');
 
 				<article>
 					<h4 class="method" id="method_file_delete">delete()</h4>
-					<p>The <strong>delete</strong> method is a shortcut to <a href="usage.html#method_delete">File::delete</a>.</p>
+					<p><strong>delete</strong> メソッドは <a href="usage.html#method_delete">File::delete</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>bool, result from <em>unlink()</em></td>
+								<th>返り値</th>
+								<td><em>unlink()</em>が返すbool。</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$handler->delete();</code></pre>
 								</td>
@@ -400,19 +400,19 @@ $file->rename('textfile');
 
 				<article>
 					<h4 class="method" id="method_file_get_url">get_url()</h4>
-					<p>The <strong>get_url</strong> method is a shortcut to <a href="usage.html#method_get_url">File::get_url</a>.</p>
+					<p><strong>get_url</strong> メソッドは <a href="usage.html#method_get_url">File::get_url</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>The public url</td>
+								<th>返り値</th>
+								<td>public url</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$url = $handler->get_url();</code></pre>
 								</td>
@@ -423,19 +423,19 @@ $file->rename('textfile');
 
 				<article>
 					<h4 class="method" id="method_file_get_permissions">get_permissions()</h4>
-					<p>The <strong>get_permissions</strong> method is a shortcut to <a href="usage.html#method_get_permissions">File::get_permissions</a>.</p>
+					<p><strong>get_permissions</strong> メソッドは <a href="usage.html#method_get_permissions">File::get_permissions</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>The octal file permissions</td>
+								<th>返り値</th>
+								<td>8進数のファイルパーミッション</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$permissions = $handler->get_permissions();</code></pre>
 								</td>
@@ -446,41 +446,41 @@ $file->rename('textfile');
 
 				<article>
 					<h4 class="method" id="method_file_get_time">get_time($type = 'modified')</h4>
-					<p>The <strong>get_time</strong> method is a shortcut to <a href="usage.html#method_get_time">File::get_time</a>.</p>
+					<p><strong>get_time</strong> メソッドは <a href="usage.html#method_get_time">File::get_time</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$type</kbd></th>
 											<td><em>'modified'</em></td>
-											<td>What time needs to be returned. Can only be <strong>created</strong> or <strong>modified</strong>.</td>
+											<td>必要な時刻が返されます。<strong>created</strong> か <strong>modified</strong> の 2 つのみ利用出来ます。</td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>The file's created or modified timestamp</td>
+								<th>返り値</th>
+								<td>ファイル作成時、変更時のタイムスタンプ。</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$created_at = $handler->get_time('created');
 
 $modified_at = $handler->get_time('modified');
-// or short
+// 省略も可能
 $modified_at = $handler->get_time();
 </code></pre>
 								</td>
@@ -491,19 +491,19 @@ $modified_at = $handler->get_time();
 
 				<article>
 					<h4 class="method" id="method_file_get_size">get_size()</h4>
-					<p>The <strong>get_time</strong> method is a shortcut to <a href="usage.html#method_get_size">File::get_size</a>.</p>
+					<p><strong>get_time</strong> メソッドは <a href="usage.html#method_get_size">File::get_size</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
+								<th>返り値</th>
 								<td>The file size in bytes</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$file_size = $handler->get_size();</code></pre>
 								</td>
@@ -516,61 +516,61 @@ $modified_at = $handler->get_time();
 
 			<section>
 
-				<h2 id="directory_handler">Directory handler</h2>
+				<h2 id="directory_handler">ディレクトリハンドラ</h2>
 
 				<p>
-					The directory handler handles the basic interaction with directories. Each example assumes the <strong>
-					$handler</strong> var is the fetched handler. Want to know how to get the handler?
-					Look at the <a href="#usage">usage section</a>.
+					ディレクトリハンドラは、ディレクトリを大元のところから対話的に取り扱います。以下の例では、
+					<strong>$handler</strong> が取得されたハンドラである、とします。
+					ハンドラを得る方法を知りたい場合は <a href="#usage">使用法のセクション</a> を見てください。
 				</p>
 
 				<article>
 					<h4 class="method" id="method_directory_forge" data-class="File_Handler_Directory">forge($path, $config = array(), $area = null, $content = array())</h4>
-					<p>The <strong>forge</strong> method returns a new File_Handler_Directory object.</p>
+					<p><strong>forge</strong> メソッドは生成された File_Handler_Directory オブジェクトを返します。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>Yes</td>
+								<th>静的</th>
+								<td>はい</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$path</kbd></th>
-											<td><em>required</em></td>
-											<td>path to the directory</td>
+											<td><em>必須</em></td>
+											<td>ディレクトリのパス</td>
 										</tr>
 										<tr>
 											<th><kbd>$config</kbd></th>
 											<td><em>array()</em></td>
-											<td>optional config array</td>
+											<td>オプションで、config の配列を書けます。</td>
 										</tr>
 										<tr>
 											<th><kbd>$area</kbd></th>
 											<td><em>null</em></td>
-											<td>File_Area instance</td>
+											<td>File_Area インスタンス</td>
 										</tr>
 										<tr>
 											<th><kbd>$content</kbd></th>
 											<td><em>array</em></td>
-											<td><em>the content of the directory</em></td>
+											<td><em>ディレクトリのコンテント</em></td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>Returns a new File_Handler_File object.</td>
+								<th>返り値</th>
+								<td>生成した File_Handler_File オブジェクトが返ります。</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$handler = File_Handler_Directory::forge('path/to/dir');</code></pre>
 								</td>
@@ -581,41 +581,41 @@ $modified_at = $handler->get_time();
 
 				<article>
 					<h4 class="method" id="method_directory_read" data-class="File_Handler_Directory">read($depth = 0, $filters = null)</h4>
-					<p>The <strong>read</strong> method is a shortcut to <a href="usage.html#method_read_dir">File::read_dir</a>.</p>
+					<p><strong>read</strong> メソッドは <a href="usage.html#method_read_dir">File::read_dir</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$depth</kbd></th>
 											<td><em>0</em></td>
-											<td>depth to recurse directory, 1 is only current and 0 or smaller is unlimited</td>
+											<td>再帰的なディレクトリの深さ。1 なら現在のカレントのみ。0 あるいはそれ以下なら無限に再帰</td>
 										</tr>
 										<tr>
 											<th><kbd>$filters</kbd></th>
 											<td><em>null</em></td>
-											<td>array of partial regexes or non-array for default</td>
+											<td>部分的な正規表現配列。デフォルトは配列なし。</td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>Returns directory contents in an array</td>
+								<th>返り値</th>
+								<td>ディレクトリコンテントの配列を返します。</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$dir_contents = $handler->read();</code></pre>
 								</td>
@@ -626,37 +626,37 @@ $modified_at = $handler->get_time();
 
 				<article>
 					<h4 class="method" id="method_directory_rename" data-class="File_Handler_Directory">rename($new_name)</h4>
-					<p>The <strong>rename</strong> method is a shortcut to <a href="usage.html#method_rename_dir">File::rename_dir</a>.</p>
+					<p><strong>rename</strong> メソッドは <a href="usage.html#method_rename_dir">File::rename_dir</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$new_name</kbd></th>
-											<td><em>required</em></td>
-											<td>the new directory name</td>
+											<td><em>必須</em></td>
+											<td>新しいディレクトリ名</td>
 										</tr>
 
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>boolean, result form <em>rename()</em></td>
+								<th>返り値</th>
+								<td><em>rename() が返す boolean</em></td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$handler->rename('new_name');</code></pre>
 								</td>
@@ -667,36 +667,36 @@ $modified_at = $handler->get_time();
 
 				<article>
 					<h4 class="method" id="method_directory_move" data-class="File_Handler_Directory">move($new_path)</h4>
-					<p>The <strong>move</strong> method is a shortcut to <a href="usage.html#method_move">File::move</a>.</p>
+					<p><strong>move</strong> メソッドは <a href="usage.html#method_move">File::move</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$new_path</kbd></th>
-											<td><em>required</em></td>
-											<td>path to new directory, must be valid</td>
+											<td><em>必須</em></td>
+											<td>新しいディレクトリパス。有効なパスでなければなりません</td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>boolean, result form <em>rename()</em></td>
+								<th>返り値</th>
+								<td><em>rename()が返すboolean。</em></td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$handler->move(DOCROOT.'/new/parent/directory/');</code></pre>
 								</td>
@@ -707,36 +707,36 @@ $modified_at = $handler->get_time();
 
 				<article>
 					<h4 class="method" id="method_directory_copy" data-class="File_Handler_Directory">copy($new_path)</h4>
-					<p>The <strong>copy</strong> method is a shortcut to <a href="usage.html#method_copy_dir">File::copy_dir</a>.</p>
+					<p><strong>copy</strong> メソッドは <a href="usage.html#method_copy_dir">File::copy_dir</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$new_path</kbd></th>
-											<td><em>required</em></td>
-											<td>path to directory to copy to, must be valid</td>
-										</tr>
+											<td><em>必須</em></td>
+											<td>コピー先の新しいディレクトリパス。有効なパスでなければなりません。</td>
+　									</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>boolean, result form <em>copy()</em></td>
+								<th>返り値</th>
+								<td><em>copy() が返す boolean</em></td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$handler->copy(DOCROOT.'/directory/');</code></pre>
 								</td>
@@ -747,41 +747,41 @@ $modified_at = $handler->get_time();
 
 				<article>
 					<h4 class="method" id="method_directory_delete" data-class="File_Handler_Directory">delete($recursive = true, $delete_top = true)</h4>
-					<p>The <strong>delete</strong> method is a shortcut to <a href="usage.html#method_delete_dir">File::delete_dir</a>.</p>
+					<p><strong>delete</strong> メソッドは <a href="usage.html#method_delete_dir">File::delete_dir</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$recursive</kbd></th>
 											<td><em>true</em></td>
-											<td>whether to also delete contents of subdirectories</td>
+											<td>サブディレクトリのコンテンツも消去するかどうか。</td>
 										</tr>
 										<tr>
 											<th><kbd>$delete_top</kbd></th>
 											<td><em>true</em></td>
-											<td>whether to delete the parent dir itself when empty</td>
+											<td>もし空ならば、親ディレクトリを消去するかどうか。</td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>true on success</td>
+								<th>返り値</th>
+								<td>成功すると true</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$handler->delete();</code></pre>
 								</td>
@@ -792,19 +792,19 @@ $modified_at = $handler->get_time();
 
 				<article>
 					<h4 class="method" id="method_directory_get_permissions" data-class="File_Handler_Directory">get_permissions()</h4>
-					<p>The <strong>get_permissions</strong> method is a shortcut to <a href="usage.html#method_get_permissions">File::get_permissions</a>.</p>
+					<p><strong>get_permissions</strong> メソッドは <a href="usage.html#method_get_permissions">File::get_permissions</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>The octal directory permissions</td>
+								<th>返り値</th>
+								<td>8 進数のディレクトリパーミッション</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$permissions = $handler->get_permissions();</code></pre>
 								</td>
@@ -815,41 +815,42 @@ $modified_at = $handler->get_time();
 
 				<article>
 					<h4 class="method" id="method_directory_get_time" data-class="File_Handler_Directory">get_time($type = 'modified')</h4>
-					<p>The <strong>get_time</strong> method is a shortcut to <a href="usage.html#method_get_time">File::get_time</a>.</p>
+					<p><strong>get_time</strong> メソッドは <a href="usage.html#method_get_time">File::get_time</a> のショートカットです。</p>
 					<table class="method">
 						<tbody>
 							<tr>
-								<th>Static</th>
-								<td>No</td>
+								<th>静的</th>
+								<td>いいえ</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメタ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$type</kbd></th>
 											<td><em>'modified'</em></td>
-											<td>What time needs to be returned. Can only be <strong>created</strong> or <strong>modified</strong>.</td>
+
+											<td>必要な時刻が返されます。<strong>created</strong> か <strong>modified</strong> の 2 つのみ利用出来ます。</td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
-								<td>The directory's created or modified timestamp</td>
+								<th>返り値</th>
+								<td>ディレクトリ作成時、変更時のタイムスタンプ。</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
 									<pre class="php"><code>$created_at = $handler->get_time('created');
 
 $modified_at = $handler->get_time('modified');
-// or short
+// 次のように省略可能
 $modified_at = $handler->get_time();
 </code></pre>
 								</td>
@@ -862,20 +863,19 @@ $modified_at = $handler->get_time();
 
 			<article>
 
-				<h2 id="writing_handlers">Writing handlers</h2>
+				<h2 id="writing_handlers">ハンドラを書く</h2>
 
 				<p>
-					As mentioned before Fuel comes with two predefined handlers. One for directories and one for
-					files. By writing your own handlers you can alter the behaviour and add functionalities by
-					filetype. For instance, when dealing with csv files you might want to auto-parse them when
-					reading, or be able to fetch a image object from image files.
+					以上述べて来たように、Fuel はあらかじめ設定されたハンドラを 2 つ持っています。
+					ディレクトリとファイルに関するハンドラです。これに加えて、ハンドラを書くことで、ファイルタイプ毎の動作を変化させたり新しい機能を付け加えることができます。
+					たとえば、csv ファイルを読み込み時に自動パースしたい、あるいは画像ファイルから画像オブジェクトを取得したい、というようなことです。
 				</p>
 
-				<h4 id="writing_handlers_how_to">How to write them...</h4>
+				<h4 id="writing_handlers_how_to">どのように書くか...</h4>
 
 				<p>
-					Handlers are classes that extend the File Handler class (<strong>\File_Handler_File</strong>).
-					Here is an example:
+					ハンドラは File Handler クラス (<strong>\File_Handler_File</strong>) の拡張クラスです。
+					次に例を示します。
 				</p>
 
 				<pre class="php"><code>&lt;?php
@@ -884,7 +884,7 @@ class File_Handler_XML extends \File_Handler_File
 {
 
 	/**
-	 * Read method specific to how this handler will handle the file contents
+	 * ハンドラにおけるファイル内容処理の仕方を定めたメソッドを読み込む
 	 */
 	public function read()
 	{
@@ -895,15 +895,15 @@ class File_Handler_XML extends \File_Handler_File
 /* End of file xml.php */
 </code></pre>
 
-				<p class="note">Note the <strong>$this->path</strong>. This will always hold the path to the current file, even when moving or renaming.</p>
+				<p class="いいえte">上記の <strong>$this->path</strong> に留意ください。このプロパティは、ファイルの移動やリネーム時にも、カレントファイルのパスを常に保持します。</p>
 
-				<h4 id="writing_handlers_adding">Adding them...</h4>
+				<h4 id="writing_handlers_adding">ハンドラに付加する...</h4>
 
 				<p>
-					File handlers can be assigned by adding them in the file config.
-					By adding them to the base config all files from a certain extension wil be fetched as the
-					desired handler. You can also assign handlers on an area basis by adding them to the area config
-					you'd like to use them in.
+					ファイルの config に付け加えることで、ファイルハンドラを割り当てることが出来ます。
+					ベースの config に加えれば、ある拡張子をもつ全てのファイルが、得たいハンドラとして取得されます。
+					エリア内で使いたい場合は、エリアの config に付け加えれば
+					エリアベースのハンドラとして割り付けることも出来ます。
 				</p>
 
 				<pre class="php"><code>// In app/config/file.php
@@ -930,6 +930,7 @@ class File_Handler_XML extends \File_Handler_File
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/file/handlers.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/file/handlers.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/file/handlers.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

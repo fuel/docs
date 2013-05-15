@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Package::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Package - Classes - FuelPHP Documentation</title>
+	<title>Package - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,59 +45,59 @@
 
 		<div id="main">
 
-			<h2>Package Class</h2>
+			<h2>Package クラス</h2>
 
-			<p>The <kbd>Package</kbd> class allows you to easily load, unload, check if a package is loaded, or get all packages loaded.</p>
+			<p><kbd>Package</kbd> クラスは、パッケージをロードする／アンロードする、パッケージがロードされているか調べる、全てのパッケージをロードする、を容易にします。</p>
 
 			<article>
 				<h4 class="method" id="method_load">load($package, $path = null)</h4>
-				<p>The <strong>load</strong> method allows you to load one or more packages at runtime.  If the package cannot be found a <kbd>PackageNotFoundException</kbd> will be thrown.</p>
+				<p><strong>load</strong> メソッドは、実行時に1つまたは複数のパッケージをロードします。パッケージが見つからない場合は、<kbd>PackageNotFoundException</kbd> を投げます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$package</kbd></th>
-									<td><i>required</i></td>
-									<td>Name of the package to be loaded, or an array of packages and package paths.</td>
+									<td><i>必須</i></td>
+									<td>ロードするパッケージ名、またはパッケージとパッケージパスからなる配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><code>PKGPATH</code></td>
-									<td>Path to the folder in which the package is installed.</td>
+									<td>パッケージがインストールされているフォルダのパス。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><i>void</i></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// load the orm package
+							<pre class="php"><code>// orm パッケージをロードする
 Package::load('orm');
 
-// load the parser package from a specific directory
+// 指定したディレクトリから parser パッケージをロードする
 Package::load('parser', '/path/to/packages/dir/');
 
-// load multiple packages from a single package installation
+// 単一のパッケージインストールから複数のパッケージをロードする
 Package::load( array('First' => PKGPATH.'my'.DS.'first'.DS, 'Last' => PKGPATH.'my'.DS.'last'.DS) );
 
-// load the non-existent package
-Package::load('awesome'); // Throws a PackageNotFoundException
+// 存在しないパッケージをロードする
+Package::load('awesome'); // PackageNotFoundException を投げる
 </code></pre>
 						</td>
 					</tr>
@@ -107,38 +107,38 @@ Package::load('awesome'); // Throws a PackageNotFoundException
 
 			<article>
 				<h4 class="method" id="method_unload">unload($package)</h4>
-				<p>The <strong>unload</strong> method allows you to unload a package at runtime.</p>
+				<p><strong>unload</strong> メソッドは、実行時にパッケージをアンロードします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$package</kbd></th>
-									<td><i>required</i></td>
-									<td>Name of the package to be unloaded.</td>
+									<td><i>必須</i></td>
+									<td>アンロードするパッケージ名。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><i>void</i></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// unload the orm package
+							<pre class="php"><code>// orm パッケージをアンロードする
 Package::unload('orm');
 </code></pre>
 						</td>
@@ -149,41 +149,41 @@ Package::unload('orm');
 
 			<article>
 				<h4 class="method" id="method_loaded">loaded($package = null)</h4>
-				<p>The <strong>loaded</strong> method allows you to check if a package is currently loaded.  If no package name is given then all loaded packages are returned.</p>
+				<p><strong>loaded</strong> メソッドは、パッケージが現在ロードされているかどうかを調べます。パッケージ名を省略すると、現在ロードされているパッケージ全てを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$package</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Name of the package to be checked.</td>
+									<td>ロードされているか調べるパッケージ名。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><kbd>bool|array</kbd></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Check if the orm package is loaded
+							<pre class="php"><code>// orm パッケージがロードされているか調べる
 $loaded = Package::loaded('orm');
 
-// Get all loaded packages
+// ロードされている全パッケージを取得する
 $loaded = Package::loaded();
 /*
 Returns something like:
@@ -204,6 +204,7 @@ array(
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/package.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/package.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/package.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

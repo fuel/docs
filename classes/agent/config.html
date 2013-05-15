@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Agent::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Agent Config - Classes - FuelPHP Documentation</title>
+	<title>Agent 設定 - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,26 +45,26 @@
 
 		<div id="main">
 
-			<h2>Agent Class</h2>
+			<h2>Agent クラス</h2>
 
-			<p>The agent class allows you to retrieve information about browser type, version, platform or operating system, etc, based on the clients User Agent string.</p>
+			<p>Agent クラスは、ブラウザ種別、バージョン、プラットフォーム、OSなど、クライアントのユーザーエージェント文字列に関する情報を取得可能にします。</p>
 
 			<section>
-				<h3 id="config">Configuration</h3>
+				<h3 id="config">設定</h3>
 
 				<p>
-					The agent class uses the PHP function <a href="http://php.net/manual/en/function.get-browser.php">get_browser()</a>,
-					which attempts to determine the capabilities of the user's browser, by looking up the browser's information in the browscap.ini file.
+					Agent クラスは、PHP 関数 <a href="http://php.net/manual/en/function.get-browser.php">get_browser()</a>　を使用し、
+					ユーザーのブラウザの機能を調査します。これは、browscap.ini ファイルのブラウザ情報をもとに行われます。
 				</p>
 
-				<p>The following global configuration values can be defined:</p>
+				<p>設定可能な値は次のとおりです。</p>
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>型</th>
+							<th>規定値</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>browscap</th>
@@ -77,7 +77,7 @@
 )</code></pre>
 							</td>
 							<td>
-								browscap.ini retrieval configuration.
+								browscap.ini 取得設定
 							</td>
 						</tr>
 						<tr>
@@ -90,45 +90,45 @@
 )</code></pre>
 							</td>
 							<td>
-								browscap.ini caching configuration.
+								browscap.ini キャッシュ設定
 							</td>
 						</tr>
 					</tbody>
 				</table>
 
 				<section>
-					<h5 id="browsercap_config">Browscap.ini configuration</h5>
+					<h5 id="browsercap_config">Browscap.ini の設定</h5>
 
 					<p>
-						If PHP has not been configured to use the browscap.ini file, the agent class will retrieve the file from the location defined in
-						the <strong>config/agent.php</strong> config file, and cached locally for re-use. This cache will be updated on a regular basis, based
-						on the timeout value defined in the configuration.
+						もしPHPに browscap.ini ファイルを使用する設定がなされていない場合, Agent クラスは 設定ファイル <strong>config/agent.php</strong> に定義された
+						ファイルのパスから取得し、再利用のためにローカルにキャッシュします。
+						このキャッシュは、設定ファイルに定義されたキャッシュ期限により、定期的に更新されます。
 					</p>
 
 					<table class="config">
 						<tbody>
 							<tr class="header">
-								<th>Param</th>
-								<th>Type</th>
-								<th>Default</th>
-								<th>Description</th>
+								<th>パラメータ</th>
+								<th>型</th>
+								<th>規定値</th>
+								<th>説明</th>
 							</tr>
 							<tr>
 								<th>enabled</th>
 								<td>boolean</td>
 								<td><pre class="php"><code>true</code></pre></td>
-								<td>Enable download of the browscap.ini file. If disabled, and PHP has not been configured to the browscap functionality through get_browser(), browser detection is disabled, and the agent class will return 'unknown'.</td>
+								<td>browscap.ini ファイルをダウンロードすることを可能にします。 無効に設定され、かつ PHP が get_browser() 関数からbrowscap 機能が使えるように設定されていない場合, ブラウザ判定は無効になり、Agent クラスは 'unknown' を返します。</td>
 							</tr>
 							<tr>
 								<th>method</th>
 								<td>string</td>
 								<td><pre class="php"><code>'wrapper'</code></pre></td>
 								<td>
-									Method used to retrieve the browscap.ini file. Supported methods are:<ul style="margin:0;">
-										<li>'wrapper': This method uses <strong>file_get_contents()</strong>. This is the preferred option, but it might be disabled by your hosting provider.</li>
-										<li>'curl': This method <strong>curl</strong> extensions. You can use this in case the 'wrapper' method doesn't work.</li>
-										<li>'local': Use an external method to download the browscap.ini file (for example a cron job).</li>
-										<li>'sockets': <em><strong>reserved for future use</strong></em></li>
+									browscap.ini ファイルを取得するための方法。サポートされる方法は次のとおりです。<ul style="margin:0;">
+										<li>'wrapper': この方法は、 <strong>file_get_contents()</strong>を使用します。 これは推奨される設定ですが、ホスティングプロバイダーにより無効にされているかもしれません。</li>
+										<li>'curl': この方法は <strong>curl</strong> 拡張モジュールを使用します。  'wrapper' が使用できない場合、この設定を行います。</li>
+										<li>'local': 外部的な方法（例えばcronジョブ)により、 browscap.ini ファイルをダウンロードする際に設定します。</li>
+										<li>'sockets': <em><strong>将来的な使用のために予約されています。</strong></em></li>
 									</ul>
 								</td>
 							</tr>
@@ -136,46 +136,46 @@
 								<th>url</th>
 								<td>string</td>
 								<td><pre class="php"><code>'http://browsers.garykeith.com/stream.asp?BrowsCapINI'</code></pre></td>
-								<td>For the methods 'wrapper', 'curl' and 'sockets', the url to download an update of the browscap.ini file.</td>
+								<td> 取得方法に、'wrapper', 'curl' ,'sockets' が設定された場合の browscap.ini ファイル ダウンロードURL </td>
 							</tr>
 							<tr>
 								<th>file</th>
 								<td>string</td>
 								<td><pre class="php"><code>'/tmp/php_browscap.ini'</code></pre></td>
-								<td>For the method 'local', the name and location of the browscap.ini file on a local storage system.</td>
+								<td>取得方法に、'local' が指定された場合の、 browscap.ini ファイルのローカルストレージ上のパス</td>
 							</tr>
 						</tbody>
 					</table>
 				</section>
 
 				<section>
-					<h5 id="cache_config">Cache configuration</h5>
+					<h5 id="cache_config">キャッシュの設定</h5>
 
 					<p>
-						It the agent class is configured to process a browscap.ini file, it will cache the result of both the ini file parser and individual user agent requests
-						in order to increase the response time of the class. These configuration settings determine how the data is cached. For more information, see the <a href="../cache/config.html">Cache</a> class documentation.
+						Agent クラスは browscap.ini ファイルを読み込むように設定され、 レスポンスタイムを短くするために、iniファイルのパース結果と個別のユーザーエージェントのリクエストの結果の両方をキャッシュします。
+						これらの設定は、どのようにデータがキャッシュされるかを決定します。詳しくは、 <a href="../cache/config.html">Cache</a> クラスのドキュメントを参照ください。
 					</p>
 
 					<table class="config">
 						<tbody>
 							<tr class="header">
-								<th>Param</th>
-								<th>Type</th>
-								<th>Default</th>
-								<th>Description</th>
+								<th>パラメータ</th>
+								<th>型</th>
+								<th>規定値</th>
+								<th>説明</th>
 							</tr>
 							<tr>
 								<th>driver</th>
 								<td>string</td>
 								<td><pre class="php"><code>''</code></pre></td>
-								<td>Cache driver to use to cache the agent data. If you leave this empty, the default cache driver, configured in the cache configuration, will be used.</td>
+								<td>エージェントデータをキャッシュする Cache ドライバ。 もし何も指定しない場合、キャッシュ設定にて設定された、デフォルトの Cache ドライバが使われます。</td>
 							</tr>
 							<tr>
 								<th>expiry</th>
 								<td>integer</td>
 								<td><pre class="php"><code>604800</code></pre></td>
-								<td>Number of seconds until the cached data expires. By default, this is 7 days, since the browscap.ini file doesn't change that often. It is recommended not to refresh more frequent than once a day.
-									<br />The minumum setting is 7200 seconds (two hours), your server will be banned from the browscap website if you download more often!</td>
+								<td>キャッシュ有効期限（秒）。 デフォルトでは、7 日。 browscap.ini ファイルは さほど頻繁に更新されないので、 １日１回以上の頻度での更新は推奨しません。
+									<br />最小の設定は 7200 秒 (2時間)。それ以上の頻度でダウンロードした場合、あなたのサーバはbrowscap のウエブサイトからアクセス禁止にされるでしょう！</td>
 							</tr>
 							<tr>
 								<th>identifier</th>
@@ -194,6 +194,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/agent/config.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/agent/config.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/agent/config.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

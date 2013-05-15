@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Response::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Response - Classes - FuelPHP Documentation</title>
+	<title>Response - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,17 +45,17 @@
 
 		<div id="main">
 
-			<h2>Response Class</h2>
+			<h2>Response クラス</h2>
 
-			<p>The response class contains the methods to deal with HTTP response and browser output.</p>
+			<p>Response クラスは HTTP レスポンスとブラウザ出力を扱うメソッドを含んでいます。</p>
 
 			<article>
-				<h4>Setting the Status Header</h4>
-				<p>The status header is treated as a &quot;special&quot; header in Fuel.  You do not set it as you would
-					other headers. The status header is set as follows in the controller:</p>
+				<h4>ステータスヘッダを設定する</h4>
+				<p>Fuel において、ステータスヘッダは &quot;特別の&quot; ヘッダとして扱われます。設定の仕方も、他のヘッダとは同じではありません。
+					コントローラの中で次のように設定します:</p>
 				<pre class="php"><code>$response = new Response($body, 404);</code></pre>
 
-				<h4>Setting the Status Header and other headers</h4>
+				<h4>ステータスヘッダと他のヘッダをセットする</h4>
 				<pre class="php"><code>$headers = array (
     'Cache-Control'     => 'no-cache, no-store, max-age=0, must-revalidate',
     'Expires'           => 'Mon, 26 Jul 1997 05:00:00 GMT',
@@ -66,12 +66,12 @@ $response = new Response($body, 404, $headers);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($body = null, $status = 200, array $headers = array())</h4>
-				<p>The <strong>forge</strong> method creates a new instance of the Response class.</p>
+				<p><strong>forge</strong> メソッドは、Response クラスの新しいインスタンスを生成します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -85,17 +85,17 @@ $response = new Response($body, 404, $headers);</code></pre>
 								<tr>
 									<th><kbd>$body</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The response body, i.e. the response you want to return to the caller.</td>
+									<td>レスポンス本文。つまりあなたがユーザに返したいレスポンス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$status</kbd></th>
 									<td><pre class="php"><code>200</code></pre></td>
-									<td>HTTP status code for this response. Defaults to 200 OK.</td>
+									<td>HTTP ステータスコード。デフォルトは、200 OKです。</td>
 								</tr>
 								<tr>
 									<th><kbd>$headers</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Any HTTP headers that should be part of the response.</td>
+									<td>レスポンスになりうる、あらゆる HTTP ヘッダ</td>
 								</tr>
 							</table>
 						</td>
@@ -121,12 +121,12 @@ return Response::forge(View::forge('errors/404page'), 404);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_redirect">redirect($url = '', $method = 'location', $redirect_code = 302)</h4>
-				<p>The <strong>redirect</strong> method offers different methods of redirecting to a new URL.</p>
+				<p><strong>redirect</strong>メソッドは、 新しいURLにリダイレクトする方法を提供します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -140,24 +140,24 @@ return Response::forge(View::forge('errors/404page'), 404);</code></pre>
 								<tr>
 									<th><kbd>$url</kbd></th>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>URL to redirect to.</td>
+									<td>リダイレクトするURL</td>
 								</tr>
 								<tr>
 									<th><kbd>$method</kbd></th>
 									<td><pre class="php"><code>'location'</code></pre></td>
-									<td>Redirection method to use. Supported are 'location' and 'refresh'.</td>
+									<td>リダイレクト方法。'location' と 'refresh'がサポートされます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$redirect_code</kbd></th>
 									<td><pre class="php"><code>302</code></pre></td>
-									<td>HTTP status code to send back as part of the redirect.</td>
+									<td>リダイレクトとして送信されるHTTPステータスコード</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>This method terminates the current script, it does not return.</td>
+						<td>このメソッドは、現在のスクリプトを終了し、値を返却しません。</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -172,17 +172,17 @@ Response::redirect('site/about');</code></pre>
 					</tbody>
 				</table>
 				<p class="note">
-					This method supports wildcard replacement in the URL. See <a href="uri.html#method_segment_replace">Uri::segment_replace()</a> for more information.
+					このメソッドは、URLのワイルドカードによる置換をサポートします。 詳しくは、<a href="uri.html#method_segment_replace">Uri::segment_replace()</a> を参照してください。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_set_status">set_status($status = 200)</h4>
-				<p>The <strong>set_status</strong> method allows you to update the HTTP status code set on a Response object.</p>
+				<p><strong>set_status</strong> メソッドは、ResponseオブジェクトのHTTP ステータスコードを更新します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -197,7 +197,7 @@ Response::redirect('site/about');</code></pre>
 								<tr>
 									<th><kbd>$status</kbd></th>
 									<td><pre class="php"><code>200</code></pre></td>
-									<td>HTTP status code for this response. Defaults to 200 OK.</td>
+									<td>HTTP ステータスコード。デフォルトは、200 OK です。</td>
 								</tr>
 							</table>
 						</td>
@@ -221,62 +221,62 @@ $response->set_status(404);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set_header">set_header($name, $value, $replace)</h4>
-				<p>The <strong>set_header</strong> method allows set custom HTTP headers.</p>
+				<p><strong>set_header</strong> メソッドは、カスタムHTTP ヘッダをセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><i>Required</i></td>
-									<td>Name of the header to add.</td>
+									<td><i>必須</i></td>
+									<td>付け加えるヘッダ名。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
-									<td>The string that needs to be added to the HTTP header.</td>
+									<td><i>説明</i></td>
+									<td>HTTP ヘッダに付加される必要がある文字列です。</td>
 								</tr>
 								<tr>
 									<th><kbd>$replace</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>All headers will replace any previous value for the same name by default. If you set
-										this parameter to <kbd>false</kbd> the header won't overwrite and can't be overwritten.</td>
+									<td>デフォルトでは同名のヘッダの値はすべて置き換えられます。<kbd>false</kbd> がセットされた場合は、ヘッダの書き換えはありませんし、書き換え出来ません。</td>
+
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$response = new Response();
 
-// We'll be outputting a PDF
+// PDF を出力します
 $response->set_header('Content-Type', 'application/pdf');
 
-// It will be called downloaded.pdf
+// downloaded.pdf がコールされます
 $response->set_header('Content-Disposition', 'attachment; filename="downloaded.pdf"');
 
-// Set no cache
+// キャッシュをなしにします
 $response->set_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
 $response->set_header('Expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
 $response->set_header('Pragma', 'no-cache');
 
-// More examples
+// 更なる例
 $response->set_header('Content-Language', 'en');
 $response->set_header('Content-Type', 'text/html; charset=utf-8');
 
@@ -285,16 +285,16 @@ return $response;</code></pre>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note"> Note that names are unique, overwriting each other if the same name is used.</p>
+				<p class="note">名前はユニークであることに注意してください。同じ名前が使用された場合、上書きされます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_header">get_header($name = null)</h4>
-				<p>The <strong>get_header</strong> method allows you to retrieve a custom HTTP headers set previously.</p>
+				<p><strong>get_header</strong> メソッドは、セットされたカスタムHTTPヘッダを取得します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -309,14 +309,14 @@ return $response;</code></pre>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><i>optional</i></td>
-									<td>Name of the header to get. If not given, all headers are returned.</td>
+									<td>取得したいヘッダの名称。指定しない場合にはすべてのヘッダが返却されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Mixed. String in case of a single header, Array in case all headers are returned.</td>
+						<td>Mixed. １つのヘッダを指定した場合には文字列、すべてのヘッダが返却される場合には配列。</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -337,11 +337,11 @@ $header = $response->get_header();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_body">body($value = false)</h4>
-				<p>The <strong>body</strong> method allows get the current response body, or set a new one.</p>
+				<p><strong>body</strong> メソッドは、現在のレスポンス本文を取得、もしくは新しい値をセットすることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -356,14 +356,14 @@ $header = $response->get_header();</code></pre>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><i>optional</i></td>
-									<td>Response body to set. If not given, the current response body is returned.</td>
+									<td>セットするレスポンス本文。もし本文を与えなかった場合、現在のレスポンス本文が返ります。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>Mixed. Current response body, or the current response object for chaining.</td>
+						<td>Mixed. 現在のレスポンス本文、もしくは、現在のレスポンスオブジェクト。</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -381,54 +381,54 @@ $body = $response->body();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_send_headers">send_headers()</h4>
-				<p>The <strong>send_headers</strong> method sends the set headers out to the browser, including the HTTP status of the request.</p>
+				<p><strong>send_headers</strong> メソッドは、セットされたヘッダおよび、HTTP ステータスコードをブラウザに出力します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
-						<td><i>None</i></td>
+						<th>パラメータ</th>
+						<td><i>なし</i></td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$response->send_headers();</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">Note that you normally don't have to call this method manually. Fuel will take care of this as part of processing the request.</p>
+				<p class="note">通常は、このメソッドを手動で呼ぶ必要はありません。 Fuel はリクエストを処理する過程でこれらを自動的に行います。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_send">send($send_headers = false)</h4>
-				<p>The <strong>send</strong> method sends the response body to the output buffer (i.e. it is echo'd out).</p>
+				<p><strong>send</strong>メソッドは、出力バッファに、レスポンス本文を送ります。   (つまり出力されます)</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$send_headers</kbd></th>
 									<td><i>optional</i></td>
-									<td>If true, send any defined HTTP headers before sending the response body.</td>
+									<td>もしtrueがセットされた場合、レスポンス本文を出力する前に、HTTP ヘッダを送信します。</td>
 								</tr>
 							</table>
 						</td>
@@ -438,7 +438,7 @@ $body = $response->body();</code></pre>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// echo whatever the response body is
 $response->send();</code></pre>
@@ -446,13 +446,14 @@ $response->send();</code></pre>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">Note that you normally don't have to call this method manually. Fuel will take care of this as part of processing the request.</p>
+				<p class="note">通常は、このメソッドを手動で呼ぶ必要はありません。 Fuel はリクエストを処理する過程でこれらを自動的に行います。</p>
 			</article>
 		</div>
 
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/response.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/response.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/response.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

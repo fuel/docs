@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Test - Oil Package - FuelPHP Documentation</title>
+	<title>テスト - Oil パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,30 +45,30 @@
 		<div id="main">
 			<section>
 
-				<h2 id="test">Test</h2>
+				<h2 id="test">テスト</h2>
 
-				<p>The <code>oil test</code> (or <code>oil t</code>) command runs the PHPUnit tests associated with your web app, modules and packages. Full documentation on unit testing with FuelPHP can be found on the <a href="../../general/unit_testing.html">Unit Testing</a> documentation page, and full documentation on PHPUnit can be found on the <a href="http://www.phpunit.de/manual/current/en/index.html">PHPUnit Website</a>.</p>
-                <h3 id="configuration">Configuration</h3>
-                <p>The oil utility itself does not need much configuration, but if your instance of PHPUnit is not installed globally on your machine (for example, if you installed PHPUnit to your project using Composer), you'll want to configure oil to address your PHPUnit installation. Create (or copy from the oil package) a config file at <code>app/config/oil.php</code>, and change these settings as needed:</p>
-                <h4 id="phpunit_configuration">PHPUnit Configuration</h4>
+				<p><code>oil test</code> (or <code>oil t</code>) コマンドは Web アプリ、モジュール、パッケージに関連した PHPUnit のテストを実行します。FuelPHP でのユニットテストに関する完全なドキュメントは <a href="../../general/unit_testing.html">ユニットテスト</a> のドキュメントページにあり、PHPUnit に関する完全なドキュメントは <a href="http://www.phpunit.de/manual/current/ja/index.html">PHPUnit の Web サイト</a> にあります。</p>
+                <h3 id="configuration">設定</h3>
+                <p>oil ユーティリティはそれ自身はさほど多くの設定を必要としません。しかし PHPUnit がシステムグローバルな環境にインストールされていない場合 (例えば、PHPUnit を Composer を使ってプロジェクト内にインストールしている場合)、oil に対して PHPUnit がインストールされている場所を知らせないといけません。<code>app/config/oil.php</code>設定ファイルを新規に作成 (または oil パッケージの中からコピー) して、必要ならば以下の設定を変更します：</p>
+                <h4 id="phpunit_configuration">PHPUnit の設定</h4>
                 <table class="config">
                     <tr class="header">
-                        <th>Param</th>
-                        <th>Type</th>
-                        <th>Default</th>
-                        <th>Description</th>
+                        <th>項目</th>
+                        <th>型</th>
+                        <th>デフォルト</th>
+                        <th>説明</th>
                     </tr>
                     <tr>
                         <th>phpunit.autoload_path</th>
                         <td>string</td>
                         <td><pre class="php"><code class="php">'PHPUnit/Autoload.php'</code></pre></td>
-                        <td>The path to PHPUnit's Autoload file.</td>
+                        <td>PHPUnit の Autoload ファイルの場所。</td>
                     </tr>
                     <tr>
                         <th>phpunit.binary_path</th>
                         <td>string</td>
                         <td><pre class="php"><code class="php">'phpunit'</code></pre></td>
-                        <td>This is the command (including full path, if necessary) to run the phpunit executable.</td>
+                        <td>phpunit を実行するコマンド (必要ならばフルパスで)。</td>
                     </tr>
                 </table>
 				<h4 id="cli_options">Command Line Options</h4>
@@ -107,8 +107,8 @@
 	&lt;/testsuites&gt;
 &lt;/phpunit&gt;
 </code></pre>
-				<p>If you need to change this configuration file, copy it into your <code>APPPATH</code> directory and edit that copy. Oil will recognize the new configuration file in place of the default and will use your custom configuration.</p>
-                <p>For example, if you develop in Modules, you may want the following additional test suite in your custom test configuration file:</p>
+				<p>もしこの設定ファイルを変更する必要があるなら、<code>APPPATH</code> にコピーして、そのコピーしたものを編集して下さい。Oil はデフォルトの代わりに新しい設定ファイルを認識し、あなたのカスタム設定を使用します。</p>
+				<p>例えばモジュールを開発しているならば、当然そのための以下の様なテストスイートを設定に追加したいと思うでしょう：</p>
 <pre class='xml'><code>		&lt;testsuite name="modules"&gt;
 			&lt;directory suffix=".php"&gt;../modules/*/tests&lt;/directory&gt;
 		&lt;/testsuite&gt;
@@ -120,6 +120,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/packages/oil/test.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/packages/oil/test.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/packages/oil/test.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

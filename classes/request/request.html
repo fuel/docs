@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Request::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Request - Classes - FuelPHP Documentation</title>
+	<title>Request - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,52 +45,52 @@
 
 		<div id="main">
 
-			<h2>Request Class</h2>
+			<h2>Request クラス</h2>
 
-			<p>The Request class processes URI requests. It is used by Fuel in index.php to process the users URI request, and you need it to generate requests in an HMVC context.</p>
+			<p>Request クラスは URI リクエストを処理します。Fuel は index.php 内で、ユーザーからの URI リクエストを処理するために同クラスを使用しています。また、HMVC コンテクストの中でリクエストを生成するためには、このクラスを使う必要があります。</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($uri = null, $route = true)</h4>
-				<p>The <strong>forge</strong> method returns a new request object.</p>
+				<p><strong>forge</strong> メソッドは新しいリクエストオブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメタ</th>
+									<th>初期値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$uri</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The URI being requested. If this parameter is not present, the URI class will be used to detect the URI.</td>
+									<td>リクエストされている URI。このパラメタが存在しない場合は、URI を見つけるために URI クラスが使われます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$route</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>If true, the URI passed or detected will be processed by the routing class. If no route is present, a 404 will be generated. If you request a non-public URI, set this to <strong>false</strong>.</td>
+									<td>もし true であれば、渡された (passed) あるいは見つけだされた URI は Routing クラスで処理されます。もし経路 (ルート) が存在しないのであれば 404 が生成されます。もし非公開の URI をリクエストするのであれば、このパラメタには <strong>false</strong> を設定してください。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Fuel\Core\Request Object</td>
+						<th>返り値</th>
+						<td>Fuel\Core\Request オブジェクト</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// create the request object for the admin controller, login method
+							<pre class="php"><code>// 管理コントローラーのログインメソッドのリクエストオブジェクトを生成する。
 $request = Request::forge('admin/login');
 
-// note that this only creates the object, it does not execute the request!</code></pre>
+// 注意：オブジェクトを生成するだけであって、リクエストを実行するわけではない！。</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -104,7 +104,7 @@ $request = Request::forge('admin/login');
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
@@ -125,11 +125,11 @@ $request = Request::forge('admin/login');
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Fuel\Core\Request Object</td>
+						<th>返り値</th>
+						<td>Fuel\Core\Request オブジェクト</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// create and execute the request object for the admin controller, login method
 $request = Request::forge('admin/login')->execute();
@@ -145,29 +145,29 @@ $request = Request::forge('admin/login')->execute(array('object' => $object);</c
 
 			<article>
 				<h4 class="method" id="method_response">response()</h4>
-				<p>The <strong>response</strong> method fetches the response object of the executed request.</p>
+				<p><strong>response</strong> メソッドは、実行されたリクエストのレスポンスオブジェクトを取得します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Fuel\Core\Response Object</td>
+						<th>返り値</th>
+						<td>Fuel\Core\Response オブジェクト</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// execute the request, fetch the response, and display it
+							<pre class="php"><code>// リクエストを実行し、レスポンスを取得し、それを表示する。
 $response = Request::forge('admin/login')->execute()->response();
 echo $response;
 
-// The Request object contains a __toString() method as an alternative way to fetch the output
+// リクエストオブジェクトには、出力取得の別の方法として __toString() メソッドが含まれている。
 $output = Request::forge('admin/login')->execute();
 echo $output;</code></pre>
 						</td>
@@ -182,19 +182,19 @@ echo $output;</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// get the list of named parameters
 $params = Request::active()->params();</code></pre>
@@ -210,19 +210,19 @@ $params = Request::active()->params();</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>none</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Request method</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// Get the request method on a forged request
 $method = Request::main()->get_method();</code></pre>
@@ -238,17 +238,17 @@ $method = Request::main()->get_method();</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$method</kbd></th>
@@ -259,11 +259,11 @@ $method = Request::main()->get_method();</code></pre>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>current instance</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// Set the request method on a forged request
 $params = Request::forge('some/route')->set_method('POST');</code></pre>
@@ -279,17 +279,17 @@ $params = Request::forge('some/route')->set_method('POST');</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$param</kbd></th>
@@ -305,11 +305,11 @@ $params = Request::forge('some/route')->set_method('POST');</code></pre>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// get a specific named parameter called 'name'
 $param = Request::active()->param('name', 'none');</code></pre>
@@ -322,25 +322,25 @@ $param = Request::active()->param('name', 'none');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_parent">parent()</h4>
-				<p>The <strong>Request</strong> that created this Request.</p>
+				<p>リクエストを生成した<strong>リクエスト</strong></p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Fuel\Core\Request Object or null when it's the main request</td>
+						<th>返り値</th>
+						<td>Fuel\Core\Request オブジェクト。メインリクエストの場合はnull。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the parent of the current active Request
+							<pre class="php"><code>// 現在実行されているリクエストの親を取得
 $parent = Request::active()->parent();</code></pre>
 						</td>
 					</tr>
@@ -350,25 +350,25 @@ $parent = Request::active()->parent();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_children">children()</h4>
-				<p>The <strong>Request</strong> objects that were created during this Request.</p>
+				<p>リクエスト処理中に生成された<strong>リクエスト</strong>の各種オブジェクト。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Array of Fuel\Core\Request Objects</td>
+						<th>返り値</th>
+						<td>Fuel\Core\Request オブジェクトの配列</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the Requests that were created during the main Request
+							<pre class="php"><code>// メインリクエスト処理中に生成された各種リクエストを取得
 $children = Request::main()->children();</code></pre>
 						</td>
 					</tr>
@@ -378,24 +378,24 @@ $children = Request::main()->children();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_main">main()</h4>
-				<p>The <strong>main</strong> method returns the main Request instance (the one created by the initial
-					page request).</p>
+				<p><strong>main</strong> メソッドはメインリクエストのインスタンス (最初のページリクエストで生成されたもの) 
+					を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Fuel\Core\Request Object, or false if no main request instance exists.</td>
+						<th>返り値</th>
+						<td>Fuel\Core\Request オブジェクト、あるいはメインリクエストインスタンスが存在しない場合は false を返す。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$main = Request::main();</code></pre>
 						</td>
@@ -403,30 +403,30 @@ $children = Request::main()->children();</code></pre>
 					</tbody>
 				</table>
 
-				<p class="note">This is the first executed Request instance, not necessarily the root parent of the
-					current Request. That might be the case for example if the main Request 404s and you create a new
-					Request after that (which is what happens in the <kbd>_404_</kbd> route).</p>
+				<p class="note">これは最初に実行されたリクエストインスタンスであって、必ずしも現在のリクエストのルート親 (root parent) のインスタンスではありません。
+					たとえば、メインリクエストが 404 で (<kbd>_404_</kbd> にルート付けられたものが実行された) 
+					その後に新しいリクエストを生成するという様なケースがそれにあたるでしょう。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_active">active()</h4>
-				<p>The <strong>active</strong> method returns the currently active Request instance.</p>
+				<p><strong>active</strong> メソッドはアクティブなリクエストインスタンスを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Fuel\Core\Request Object, or false if no active request instance exists.</td>
+						<th>返り値</th>
+						<td>Fuel\Core\Request オブジェクト、 あるいはアクティブなリクエストインスタンスが存在しない場合は false を返す。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$active = Request::active();</code></pre>
 						</td>
@@ -441,39 +441,39 @@ $children = Request::main()->children();</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメタ</th>
+									<th>初期値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$path</kbd></th>
-									<td><i>required</i></td>
-									<td>Path to be added to the list of Request local search paths</td>
+									<td><i>必須</i></td>
+									<td>リクエスト一覧に、ローカルサーチパスを加える</td>
 								</tr>
 								<tr>
 									<th><kbd>$prefix</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>If <strong>false</strong>, the path will be appended to the search path. If <strong>true</strong>, it will be prepended.</td>
+									<td><strong>false</strong> なら、パスはサーチパスの後ろに、<strong>true</strong> ならサーチパスの前に付加されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><i>void</i></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// add the applications myfiles folder to the search path of the active request instance
+							<pre class="php"><code>// アプリケーションの myfiles フォルダをアクティブなリクエストインスタンスのサーチパスに付け加える。
 Request::active()->add_path(APPPATH.'myfiles'.DS);</code></pre>
 						</td>
 					</tr>
@@ -483,25 +483,25 @@ Request::active()->add_path(APPPATH.'myfiles'.DS);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_get_paths">get_paths()</h4>
-				<p>The <strong>get_paths</strong> method returns the defined list of search paths.</p>
+				<p><strong>get_paths</strong> メソッドは設定されているサーチパス一覧を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメタ</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td><i>void</i></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the defined search paths of the active request instance
+							<pre class="php"><code>// アクティブなリクエストインスタンス内で設定されているサーチパスを取得
 $paths = Request::active()->get_paths();</code></pre>
 						</td>
 					</tr>
@@ -514,6 +514,7 @@ $paths = Request::active()->get_paths();</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/request/request.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/request/request.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/request/request.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

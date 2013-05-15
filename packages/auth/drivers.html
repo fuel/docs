@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Writing your own drivers - Auth Package - FuelPHP Documentation</title>
+	<title>自作ドライバを書く - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -43,14 +43,14 @@
 		</div>
 
 		<div id="main">
-			<h2>Auth package</h2>
+			<h2>Auth パッケージ</h2>
 
-			<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
-			write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
-			consistent.</p>
+			<p>Auth パッケージは Fuel における標準化された認証インターフェイスを提供します。
+			これにより、ユーザは自分自身で新しいドライバを書くことができ、
+			基本的なメソッドを保つことで、古いコードに新しいドライバを簡単に統合することもできます。</p>
 
 			<section>
-				<h2 id="writing_drivers">Writing your own drivers</h2>
+				<h2 id="writing_drivers">自作ドライバを書く</h2>
 
 				<p>
 					Writing drivers can be done in two ways. Either by extending the Auth driver classes
@@ -58,52 +58,52 @@
 				</p>
 
 				<p>
-					An Auth driver consists of three types of classes working together. These are:
+					Auth ドライバは、組になって機能する 3 つのタイプのクラスから構成されています。その 3 つは：
 				</p>
 
 				<ul>
-					<li><a href="types/login.html">Login</a> (Auth_Login_Driver).</li>
-					<li><a href="types/group.html">Group</a> (Auth_Group_Driver).</li>
-					<li><a href="types/acl.html">Acl</a> (Auth_Acl_Driver).</li>
+					<li><a href="types/login.html">Login</a> (Auth_Login_Driver) 。</li>
+					<li><a href="types/group.html">Group</a> (Auth_Group_Driver) 。</li>
+					<li><a href="types/acl.html">Acl</a> (Auth_Acl_Driver) 。</li>
 				</ul>
 
-				<h3 id="extending">Extending auth classes</h3>
+				<h3 id="extending">Auth クラスの継承</h3>
 
-				<p>Extend these classes like so:</p>
+				<p>このようにクラスを継承します：</p>
 
 				<pre class="php"><code>&lt;?php
 
 class Auth_Login_Mydriver extends \Auth\Auth_Login_Driver
 {
 
-	// Implement all the needed functions and variables defined in the driver class.
+	// ドライバクラスに定義されている必要な関数と変数をすべて実装してください。
 
 }
 
 /* End of file app/classes/auth/login/mydriver.php */
 </code></pre>
 
-				<h3 id="implementing_function">Implementing functions</h3>
+				<h3 id="implementing_function">関数の実装</h3>
 
 				<p>
-					When extending the Auth driver classes take note on the expected return values of each function that needs to be implemented.
-					Every method supplies an example so you know what needs to be returned. Here is an example:
+					Auth ドライバクラスを継承したときは、実装が必要な各々の関数に期待される返り値に注意してください。
+					どのメソッドもサンプルが提供されているので、何が返されるべきかわかります。例を挙げると：
 				</p>
 
 				<pre class="php"><code>/**
- * Get User Identifier of the current logged in user
- * in the form: array(driver_id, user_id)
+ * 現在ログイン中のユーザのユーザ識別情報を
+ * 次の形式で取得： array(driver_id, user_id)
  *
  * @return  array
  */
 abstract public function get_user_id();</code></pre>
 
 				<p>
-					The code above show you the <em>get_user_id</em> function that every driver should have.
-					Like in all classes you extend that have abstract functions, these functions must be defined in the extended class.
-					The return type of this function is provided in the comment, in this case <em>array(driver_id, user_id)</em>.
-					In order to get your driver to work alongside other drivers make sure you return the right values or your driver
-					breaks protocol.
+					上記のコードは、すべてのドライバが持たなければならない <em>get_user_id</em> 関数を示しています。
+					抽象関数を持つクラスを継承したすべての拡張クラスと同じく、これらの関数は拡張クラスで定義されなければなりません。
+					抽象関数の返り値の形式はコメント内で与えられています。今回のケースでは <em>array(driver_id, user_id)</em> です。
+					自作ドライバが他のドライバと一緒に機能するように、くれぐれも正しい値を返すようにしてください。そうでなければ、
+					プロトコル違反になります。
 				</p>
 
 				<p>
@@ -111,9 +111,9 @@ abstract public function get_user_id();</code></pre>
 				</p>
 
 				<pre class="php"><code>/**
- * Get the user's ID
+ * ユーザ ID を取得する
  *
- * @return  Array  containing this driver's ID &amp; the user's ID
+ * @return  Array  ドライバ ID とユーザ ID を含む
  */
 public function get_user_id()
 {
@@ -130,7 +130,7 @@ public function get_user_id()
 					Once you have everything in place for the new driver, replace or add it to the auth <a href="intro.html#configuration">config</a>.
 				</p>
 
-				<pre class="php"><code>// Inside config/auth.php array
+				<pre class="php"><code>// config/auth.php の配列の内部
 
 // Add it as a second driver
 'driver' => array('Simpleauth', 'Mydriver'),
@@ -146,6 +146,7 @@ public function get_user_id()
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/packages/auth/drivers.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/packages/auth/drivers.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/packages/auth/drivers.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

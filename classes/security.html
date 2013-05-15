@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Security::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Security - Classes - FuelPHP Documentation</title>
+	<title>Security - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,12 +45,12 @@
 
 		<div id="main">
 
-			<h2>Security Class</h2>
+			<h2>Security クラス</h2>
 
 			<p>The security class allows you to have CSRF protection in your application.</p>
 
 			<section>
-				<h3 id="configuration">Configuration</h3>
+				<h3 id="configuration">設定</h3>
 
 				<p>
 					The security class is configured through the security section of the <kbd>app/config/config.php</kbd> configuration file.
@@ -59,10 +59,10 @@
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>型</th>
+							<th>規定値</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>token_salt</th>
@@ -91,7 +91,7 @@
 						<tr>
 							<th>uri_filter</th>
 							<td>array</td>
-							<td><pre class="php"><code>array('htmlentities')</code></pre></td>
+							<td><pre class="php"><code>array('htmlentities')</code></pre><br> （訳注：バージョン1.5.2では core/config/config.php で <pre class="php"><code>array()</code></pre> がセットされています。<br> app/config/config.php で上記の値をセットされることを推奨します。）</td>
 							<td>
 								Array of callable items (PHP functions, object methods, static class methods) used to filter the URI. By default, it uses PHP's htmlentities internal function.
 							</td>
@@ -107,7 +107,7 @@
 						<tr>
 							<th>output_filter</th>
 							<td>array</td>
-							<td><pre class="php"><code>array('Security::htmlentities')</code></pre></td>
+							<td><pre class="php"><code>array('Security::htmlentities')</code></pre><br> （訳注：バージョン1.5.2では core/config/config.php で <pre class="php"><code>array()</code></pre> がセットされています。<br> app/config/config.php で上記の値をセットされることを推奨します。）</td>
 							<td>
 								Array of callable items (PHP functions, object methods, static class methods) used to filter variables send to a View or Viewmodel.
 								For security reasons, you are <strong>required</strong> to define an output filter.
@@ -116,7 +116,7 @@
 						<tr>
 							<th>htmlentities_flags</th>
 							<td>integer</td>
-							<td><pre class="php"><code>null</code></pre></td>
+							<td><pre class="php"><code>null</code></pre><br> （訳注：バージョン1.5.2では core/config/config.php で <pre class="php"><code>ENT_QUOTES</code></pre> がセットされています。）</td>
 							<td>
 								Flags to be used when encoding HTML entities. Defaults to ENT_QUOTES if nothing is defined.
 							</td>
@@ -124,7 +124,7 @@
 						<tr>
 							<th>htmlentities_double_encode</th>
 							<td>boolean</td>
-							<td><pre class="php"><code>null</code></pre></td>
+							<td><pre class="php"><code>null</code></pre><br> （訳注：バージョン1.5.2では core/config/config.php で <pre class="php"><code>false</code></pre> がセットされています。）</td>
 							<td>
 								Whether of not already encoded entities should be encoded again. Defaults to <strong>false</strong> if nothing is defined.
 							</td>
@@ -140,7 +140,7 @@
 						<tr>
 							<th>whitelisted_classes</th>
 							<td>array</td>
-							<td><pre class="php"><code>array('stdClass', 'Fuel\\Core\\View',<br /> 'Fuel\\Core\\ViewModel', 'Closure')</code></pre></td>
+							<td><pre class="php"><code>array('stdClass', 'Fuel\\Core\\View',<br /> 'Fuel\\Core\\ViewModel', 'Closure')</code></pre><br> （訳注：バージョン1.5.2では core/config/config.php で <pre class="php"><code>array()</code></pre> がセットされています。<br> app/config/config.php で上記の値をセットされることを推奨します。）</td>
 							<td>
 								When auto encoding of view variables is enabled, you can run into issues when passing objects to the view. Classes defined in this
 								array will be exempt from auto encoding.
@@ -176,17 +176,17 @@
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
@@ -197,11 +197,11 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>boolean</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>Security::check_token();</code></pre>
 						</td>
@@ -216,19 +216,19 @@
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$csrf_token = Security::fetch_token();</code></pre>
 						</td>
@@ -243,19 +243,19 @@
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// output the javascript function
 echo Security::js_fetch_token();
@@ -284,19 +284,19 @@ echo Security::js_fetch_token();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>None</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// output the javascript function
 echo Security::js_set_token();
@@ -350,21 +350,21 @@ echo Security::js_set_token();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
+									<td><i>必須</i></td>
 									<td>The value to be cleaned. This can be a string value, or an array of string values.</td>
 								</tr>
 								<tr>
@@ -379,11 +379,11 @@ echo Security::js_set_token();
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>// first strip tags, convert html entities in the remaining data, and finish it off using our special cleaning solution
 $filters = array('strip_tags', 'htmlentities', '\\cleaners\\soap::clean');
@@ -400,32 +400,32 @@ $text = Security::clean($text, $filters);</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
+									<td><i>必須</i></td>
 									<td>The input string.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$text = '&lt;p&gt;Test paragraph.&lt;/p&gt;';
 $text = Security::strip_tags($text);</code></pre>
@@ -441,32 +441,32 @@ $text = Security::strip_tags($text);</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
+									<td><i>必須</i></td>
 									<td>The input string.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$text = '&lt;SCRIPT&gt;alert("XSS attack!")&lt;/SCRIPT&gt;';
 $text = Security::xss_clean($text);</code></pre>
@@ -485,21 +485,21 @@ $text = Security::xss_clean($text);</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
+									<td><i>必須</i></td>
 									<td>The input value.</td>
 								</tr>
 								<tr>
@@ -521,15 +521,15 @@ $text = Security::xss_clean($text);</code></pre>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed</td>
 					</tr>
 					<tr>
-						<th>Throws</th>
+						<th>例外</th>
 						<td><strong>RuntimeException</strong>, in case an object has been passed that can't be cast as string.</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$text = '&lt;p&gt;Test paragraph.&lt;/p&gt;';
 $text = Security::htmlentities($text);</code></pre>
@@ -547,28 +547,28 @@ $text = Security::htmlentities($text);</code></pre>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$string</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>The input value.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string, result from <a href="#method_htmlentities">Security::htmlentities</a></td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$text = '&lt;p&gt;Test paragraph.&lt;/p&gt;';
 $text = e($text);</code></pre>
@@ -583,6 +583,7 @@ $text = e($text);</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/security.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/security.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/security.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

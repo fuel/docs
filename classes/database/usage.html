@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = 'Query_Builder_Select::';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Query Builder Select - Classes - FuelPHP Documentation</title>
+	<title>Query Builder Select - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,83 +45,83 @@
 
 		<div id="main">
 
-			<h2>Database Usage</h2>
+			<h2>Database 使い方</h2>
 			<p>
-				Normal database interactions are to go through the <a href="./db.html">DB class</a>.
-				The following examples will give you a feel for how to go about using databases in Fuel.
+				通常のデータベース命令は、<a href="./db.html">DB クラス</a>を通じて実行することになります。
+				Fuel ではどのようにデータベースを取り扱うかを以下の例で確認してみてください。
 			</p>
-			<p>Database usage is divided into a couple of segments:</p>
+			<p>データベースの使用法は大きく２つに分けられます:</p>
 
 			<ul>
-				<li><a href="#running-queries">Running queries</a></li>
-				<li><a href="#selecting">Selecting</a>,</li>
-				<li><a href="#results">Results</a>,</li>
-				<li><a href="#filtering">Filtering</a> (where, order by, limit, offset),</li>
-				<li><a href="#inserting">Inserting</a>,</li>
-				<li><a href="#updating">Updating</a>,</li>
-				<li><a href="#deleting">Deleting</a> data</li>
-				<li><a href="#joins">Joins</a></li>
-				<li><a href="#escaping">Escaping</a></li>
-				<li><a href="#binding">Query binding</a></li>
-				<li><a href="#caching">Query caching</a></li>
+				<li><a href="#running-queries">クエリの実行</a></li>
+				<li><a href="#selecting">SELECT 文</a></li>
+				<li><a href="#results">結果の取得</a></li>
+				<li><a href="#filtering">抽出条件</a> (WHERE 句、ORDER BY 句、LIMIT 句、OFFSET 句)</li>
+				<li><a href="#inserting">INSERT 文</a></li>
+				<li><a href="#updating">UPDATE 文</a></li>
+				<li><a href="#deleting">DELETE 文</a></li>
+				<li><a href="#joins">表の結合</a></li>
+				<li><a href="#escaping">エスケープ</a></li>
+				<li><a href="#binding">値のバインド</a></li>
+				<li><a href="#caching">クエリキャッシュ</a></li>
 			</ul>
 
 
 			<article>
-				<h3 id="running-queries">Running queries</h3>
-				<p>First we prepare a query using <a href="./db.html#method_query">DB::query</a>.</p>
-				<pre class="php"><code>// returns a new Database_Query
+				<h3 id="running-queries">クエリの実行</h3>
+				<p>始めに、<a href="./db.html#method_query">DB::query</a> を使用してクエリを準備します。</p>
+				<pre class="php"><code>// 返り値: Database_Query オブジェクト
 $query = DB::query('SELECT * FROM `users`');
 </code></pre>
-				<p>Now we can execute that query:</p>
+				<p>これで、クエリを実行できます:</p>
 				<pre class="php"><code>$query = DB::query('SELECT * FROM `users`');
 
-// return a new Database_MySQLi_Result
+// 返り値: Database_MySQLi_Result オブジェクト
 $query->execute();
 
-// Or execute is on a different database group
+// 別のデータベース接続に対して実行したい場合
 $query->execute('another_group');
-// or
+// もしくは
 $query->execute(Database_Connection::instance('another_group'));
 
-// And we can chain then like this:
+// 以下のようにメソッドチェーンが可能です:
 $result = DB::query('SELECT * FROM `users`')->execute();
 </code></pre>
 			</article>
 
 			<article>
-				<h3 id="selecting">Selection data</h3>
+				<h3 id="selecting">SELECT 文</h3>
 				<p>
-					First let's select data using <a href="./db.html#method_query">DB::query</a>.
-					As we are going to fetch a result from this query, we need to let the it know
-					what kind of query we are going to run.
+					まずは <a href="./db.html#method_query">DB::query</a> を使用してデータを取得してみましょう。
+					結果を取得するにあたり、どのようなクエリを
+					実行しようとしているか見ていきましょう。
 				</p>
 				<pre class="php"><code>
 $result = DB::query('SELECT * FROM `users`', DB::SELECT)->execute();
 </code></pre>
 				<p>
-					We can also select data using <a href="./db.html#method_select">DB::select</a>
+					<a href="./db.html#method_select">DB::select</a> を使用してデータを取得することもできます。
 				</p>
-				<pre class="php"><code>// Will execute SELECT `id`, `name` FROM `users`
+				<pre class="php"><code>// 「SELECT `id`, `name` FROM `users`;」 が実行されます
 $result = DB::select('id','name')->from('users')->execute();
 </code></pre>
 				<p>
-					or use <a href="./db.html#method_select_array">DB::select_array</a> which
-					allows you to dynamically build your array of column names.
+					または <a href="./db.html#method_select_array">DB::select_array</a> を使用して、
+					カラム名をキーとした配列データを取得することもできます。
 				</p>
-				<pre class="php"><code>// Will execute SELECT `id`, `name` FROM `users`
+				<pre class="php"><code>// 「SELECT `id`, `name` FROM `users`;」 が実行されます
 $colums = array('id', 'name');
 $result = DB::select_array($columns)->from('users')->execute();
 </code></pre>
 
-				<p>If you want to alias columns, use arrays instead of strings</p>
+				<p>列にエイリアス（別名）を付けたい場合は、代わりの文字列を配列で指定します。</p>
 
-				<pre class="php"><code>// Will execute SELECT `name` as `the_name` FROM `users`;
+				<pre class="php"><code>// 「SELECT `name` as `the_name` FROM `users`;」 が実行されます
 $result = DB::select(array('name','the_name'))->from('users')->execute();
 </code></pre>
 
-				<p>To select distinct values set distinct to <em>true</em>:</p>
-				<pre class="php"><code>// SELECT DISTINCT `name` FROM `users`
+				<p>distinct に <em>true</em> を指定して、重複のないデータを取得します:</p>
+				<pre class="php"><code>// 「SELECT DISTINCT `name` FROM `users`;」 が実行されます
 $users = DB::select('name')->from('users')->distinct(true)->execute();
 
 print_r($users->as_array());
@@ -142,35 +142,35 @@ Array
 */
 </code></pre>
 
-				<h3 id="results">Results</h3>
+				<h3 id="results">結果の取得</h3>
 				<p>
-					Executing a select query will generate a result object containing the requested database records.
-					By default the result is fetched as associative arrays. Here is an example how to influence this
-					behaviour.
+					SELECTクエリの実行は、要求されたデータベースのレコードの値を含む結果オブジェクトを生成します。
+					デフォルトでは、結果は連想配列で取得します。以下に、
+					この振る舞いを変更する例を示します。
 				</p>
-				<pre class="php"><code>// Will fetch the result as an associative array.
+				<pre class="php"><code>// 連想配列として結果が返ります。
 $result = DB::select('id','name')->from('users')->as_assoc()->execute();
 
-// Will fetch the result as an object.
+// オブジェクトとして結果が返ります。
 $result = DB::select('id','name')->from('users')->as_object()->execute();
 
-// Will fetch the result as an Model_Users object.
+// Model_Users オブジェクトとして結果が返ります。
 $result = DB::select()->from('users')->as_object('Model_Users')->execute();
 
-// Will fetch the result as an Model_Users object (a model from the Users module).
+// Model_Users オブジェクトとして結果が返ります。 (Usersモジュールのmodel)
 $result = DB::select()->from('users')->as_object('\\Users\\Model_Users')->execute();
 </code></pre>
 				<p class="note">
-					When you pass a class name to as_object(), make sure you include any namespace if needed. If the class
-					specified does not exist, as_object() will be ignored and an indexed array will be returned.
+				クラス名を as_object() に渡す場合、必要があれば namespace を含めてください。もし指定されたクラスが存在しない場合、
+				as_object() は無視され、インデックス付きの配列が返却されるでしょう。
 				</p>
-				<p>Want to know how many records you have fetched? It's dead simple!</p>
+				<p>何レコードが取得できたか知りたいって？それは超シンプルです！</p>
 				<pre class="php"><code>
 $result = DB::select('*')->from('users')->execute();
-// Just count the results, it returns an int.
+// ただ結果をカウントするだけ。int が返ります。
 $num_rows = count($result);
 </code></pre>
-				<p>To access these results you either loop through the result object directly, or get the result array.</p>
+				<p>取得した結果にアクセスするには、結果オブジェクトを直接ループするか、結果の配列を取得します。</p>
 				<pre class="php"><code>$result = DB::select()->from('users')->execute();
 foreach($result as $item)
 {
@@ -184,7 +184,7 @@ foreach($result_array as $item)
 }
 </code></pre>
 
-				<p>Optionaly we specify the array key and value to be returned from <em>as_array</em></p>
+				<p>オプションとして、<em>as_array</em>から返る配列のキーと値を指定することもできます。 </p>
 				<pre class="php"><code>$result = DB::select()->from('users')->execute();
 $on_key = $result->as_array('id');
 foreach($on_key as $id => $item)
@@ -205,11 +205,11 @@ foreach($key_value as $id => $email)
 
 			<article>
 
-				<h3 id="filtering">Filtering</h3>
-				<h4 id="where_statements">Where statements</h4>
+				<h3 id="filtering">抽出条件</h3>
+				<h4 id="where_statements">WHERE 句</h4>
 				<p>
-					In order to set the conditions on our queries we can set WHERE conditions.
-					These examples also apply to updating and deleting.
+					クエリに条件を追加するために、私たちは、WHERE 句をセットすることができます。
+					これらの例は、UPDATE句とDELETE句にも当てはまります。
 				</p>
 				<pre class="php"><code>// Will execute SELECT * FROM `users` WHERE `id` = 1
 $result = DB::select()->from('users')->where('id', 1)->execute();
@@ -234,7 +234,7 @@ $who = "john%";
 $result = DB::select()->from('users')->where('id', 'like', $who)->execute();
 </code></pre>
 
-				<p id="grouped_where">Grouped where statements are also supported:</p>
+				<p id="grouped_where">グループ化されたWHERE句もサポートされています：</p>
 
 				<pre class="php"><code>// SELECT * FROM `users` WHERE (`name` = 'John' AND `email` = 'john@example.com')
 // OR (`name` = 'mike' OR `name` = 'dirk')
@@ -248,7 +248,7 @@ $result = DB::select()->from('users')->where_open()
 ->or_where_close()->execute();
 </code></pre>
 
-				<p id="where_between_in">The <em>BETWEEN</em> and <em>IN</em> also go through the <em>where</em> method:</p>
+				<p id="where_between_in"><em>BETWEEN</em>句と、<em>IN</em>句も <em>where</em>メソッドで指定できます。</p>
 				<pre class="php"><code>// SELECT * FROM `users` WHERE `id` BETWEEN 1 AND 10
 $users = DB::select()->from('users')->where('id', 'between', array(1, 10))->execute();
 
@@ -256,9 +256,9 @@ $users = DB::select()->from('users')->where('id', 'between', array(1, 10))->exec
 $users = DB::select()->from('users')->where('name', 'in', array('john', 'simon', 'dirk'))->execute();
 </code></pre>
 
-				<h4 id="order_by">Order by statement</h4>
+				<h4 id="order_by">ORDER BY 句</h4>
 
-				<p>For sorting data we use the order_by function.</p>
+				<p>データをソートするためには、order_by メソッドを使用します。</p>
 				<pre class="php"><code>//SELECT * FROM `users` ORDER BY `name` ASC
 DB::select()->from('users')->order_by('name','asc');
 
@@ -270,8 +270,8 @@ DB::select()->from('users')->order_by('name','asc')->order_by('surname', 'desc')
 DB::select()->from('users')->order_by('name');
 </code></pre>
 
-				<h4 id="limit_offset">Limit and offset</h4>
-				<p>For limiting the number of rows fetched we use the limit and offset function. Note that the offset function is only available when selecting data.</p>
+				<h4 id="limit_offset">LIMIT 句、OFFSET 句</h4>
+				<p>取得するレコード数を制限するには、limit メソッド及び、offset メソッドを使用します。 offsetメソッドは、データを取得する際にのみ利用可能なことに注意してください。</p>
 				<pre class="php"><code>// SELECT * FROM `users` LIMIT 1
 DB::select()->from('users')->limit(1);
 
@@ -286,14 +286,14 @@ DB::select('users')->order_by('id','asc')->limit(10);
 
 			<article>
 
-				<h3 id="updating">Updating</h3>
+				<h3 id="updating">UPDATE 文</h3>
 				<p>
-					For updating data we use <a href="./db.html#method_update">DB::update</a>.
-					If successfully executed an update query will return an integer representing
-					the amount of affected rows.
+					データを更新するためには、<a href="./db.html#method_update">DB::update</a>を使用します。
+					もし更新クエリの実行が成功した場合には、更新が影響したレコード数を
+					整数値で返却します。
 				</p>
 
-				<p>To update a single column.</p>
+				<p>１カラムを更新する</p>
 				<pre class="php"><code>// Will execute UPDATE `users` SET `name` = "John Random" WHERE `id` = "2";
 $result = DB::update('users')
 	->value("name", "John Random")
@@ -301,7 +301,7 @@ $result = DB::update('users')
 	->execute();
 </code></pre>
 
-				<p>To update multiple columns.</p>
+				<p>複数カラムを更新する</p>
 				<pre class="php"><code>// Will execute UPDATE `users`
 // SET `group` = "Peter Griffon", `email` = "peter@thehindenpeter.com"
 // WHERE `id` = "16";
@@ -318,11 +318,11 @@ $result = DB::update('users')
 
 			<article>
 
-				<h3 id="inserting">Inserting</h3>
+				<h3 id="inserting">INSERT 文</h3>
 				<p>
-					For inserting data we use <a href="./db.html#method_insert">DB::insert</a>.
-					If successfully executed an insert query will return an array containing a
-					list of insert id and rows created.
+					データをインサートするには、<a href="./db.html#method_insert">DB::insert</a>を使用します。
+					インサート文が成功した場合には、インサートされたIDのリストと、インサートされた
+					レコード数を含む配列が返却されます。
 				</p>
 				<pre class="php"><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`)
 // VALUES ("John Random", "john@example.com", "s0_s3cr3t")
@@ -332,7 +332,7 @@ list($insert_id, $rows_affected) = DB::insert('users')->set(array(
 	'password' => 's0_s3cr3t',
 ))->execute();
 </code></pre>
-				<p>You can also set the columns and values separately</p>
+				<p>カラム名と値を別々にセットすることもできます。</p>
 
 				<pre class="php"><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`)
 // VALUES ("John Random", "john@example.com", "s0_s3cr3t")
@@ -347,11 +347,11 @@ list($insert_id, $rows_affected) = DB::insert('users')->columns(array(
 
 			<article>
 
-				<h3 id="deleting">Deleting</h3>
+				<h3 id="deleting">DELETE 文</h3>
 
 				<p>
-					To delete records, use <a href="./db.html#method_delete">DB::delete</a>.
-					When executed it will return the number of rows affected.
+					レコードを削除するには、<a href="./db.html#method_delete">DB::delete</a>を使用します。
+					実行された場合、削除されたレコード数が返却されます。
 				</p>
 				<pre class="php"><code>// Empty the whole users table
 $result = DB::delete('users')->execute(); // (int) 20
@@ -364,8 +364,8 @@ $result = DB::delete('users')->where('email', 'like', '%@example.com')->execute(
 
 			<article>
 
-				<h3 id="joins">Joins</h3>
-				<p>When selecting data, you can also join other tables into the result.</p>
+				<h3 id="joins">表の結合</h3>
+				<p>データを取得する際、他のテーブルを 結合させることができます。</p>
 
 				<pre class="php"><code>// Will execute SELECT * FROM `users` LEFT JOIN `roles` ON `roles`.`id` = `users`.`role_id`
 $result = DB::select()->from('users')->join('roles','LEFT')->on('roles.id', '=', 'users.role_id');
@@ -378,12 +378,12 @@ $result = DB::select()->from('users')->join('roles','right outer')->on('roles.id
 
 			<article>
 
-				<h3 id="escaping">Escaping</h3>
+				<h3 id="escaping">エスケープ</h3>
 
-				<p>Fields and values in database calls are escaped by default. In some cases you'll want to not escape data. The DB class provides a method to create <em>database expressions</em>, <a href="./db.html#method_expr">DB::expr</a>. If you don't want a value to get escaped, just wrap it in a database expression.</p>
-				<p>Database expressions are especially helpful when dealing with thing like MySQL's native function (like <em>COUNT</em>) and predefined constants (like <em>DEFAULT</em>).</p>
+				<p>データベース操作の際、カラム名と値 は、デフォルトでエスケープされます。いくつかの場面で値をエスケープしたくないと思うでしょう。DBクラスは<em>データベース表現</em>を作成する機能、<a href="./db.html#method_expr">DB::expr</a> を提供します。もし値をエスケープされるのを望まない場合、データベース表現の中でそれを囲んでください。</p>
+				<p>データベース表現は <em>COUNT</em>のようなMySQLのネイティブ関数  や<em>DEFAULT</em> のような定数を扱う際に特に有用です。 </p>
 
-				<pre class="php"><code>// Set a field to its default
+				<pre class="php"><code>// カラムにデフォルト値でセットする
 DB::update('users')->where('id', '=', 1)->set(array(
 	'some_column' => DB::expr('DEFAULT'),
 ))->execute();
@@ -402,102 +402,102 @@ $count = $result_arr['count'];
 
 			<article>
 
-				<h3 id="binding">Query binding</h3>
+				<h3 id="binding">値のバインド</h3>
 
-				<p>The query builder supports query binding, a technique that allows you to assign variables to your
-				hand-written queries in a safe and secure manner.</p>
+				<p>クエリービルダは、安全かつ確実なやり方で手書きのクエリに変数を割り当てる、
+				バインディング機能を提供します。</p>
 
-				<p>Query binding works by placing uniquely identifyable placeholders in your SQL. The query builder will
-				replace these placeholders by their corresponding values when the query is compiled for execution (so not
-				when you bind it!).</p>
+				<p>クエリバインディングは、 SQLの中でユニークなプレースホルダを置くことにより動作します。 クエリビルダは、
+				 (バインドした時ではなく)クエリが実行のためにコンパイルされる際に、
+				 これらのプレースホルダを対応する値で置換します。</p>
 
-				<p>You define placeholder using the FuelPHP standard notation, which is a string, prefixed by a colon
-				(:varname).</p>
+				<p>あなたはFuelPHP標準記法を使用して、プレースホールダーを定義します。それはコロンから始まる文字列です。
+				例 (:varname)</p>
 
-				<pre class="php"><code>$name = 'John'; // set the variable we're going to bind
-$query = "SELECT * FROM users WHERE username = :name"; // our query
+				<pre class="php"><code>$name = 'John'; // 割り当てたい変数をセット
+$query = "SELECT * FROM users WHERE username = :name"; // 実行したいクエリ
 
 // bind the variable and run the query, produces SELECT * FROM users WHERE username = 'John'
 $result = DB::query($query)->bind('name', $name)->execute();</code></pre>
 
-				<p>Variables are bound by reference, so you can define your query and your bindings early in your code
-				and modify the bound variable later.</p>
+				<p>変数は、リファレンスにより割り当てられます。したがって、あなたは最初にクエリと割り当てたい変数を最初に定義し、 
+				後から割り当てた値を変更することができます。</p>
 
-				<pre class="php"><code>// create the query object
+				<pre class="php"><code>// クエリオブジェクトを生成
 $query = DB::query("SELECT * FROM users WHERE username = :name");
 
-$name = 'unknown';                // set the variable with a default value
-$query->bind('name', $name);     // and bind it to the query
+$name = 'unknown';                // デフォルト値で変数をセットし、
+$query->bind('name', $name);     // クエリに割り当てる。
 
-// after some code, change the bound variable
+// いくつかのコードのあとで、割り当てた変数を変更する。
 $name = 'Sally';
 
 // bind the variable and run the query, produces SELECT * FROM users WHERE username = 'Sally'
 $result = $query->execute();</code></pre>
 
-				<p>Because the variable is bound by reference, you can NOT bind a literal. If you
-				do, you'll get a "Cannot pass parameter 2 by reference" exception!</p>
+				<p>変数はリファレンスで割り当てられるので、リテラルでは割り当てられ”ません”  もしそうした場合、
+				 "Cannot pass parameter 2 by reference" という例外が発生します！</p>
 
-				<pre class="php"><code>// this will generate an exception!
+				<pre class="php"><code>// これは例外が発生します。
 $query = DB::query("SELECT * FROM users WHERE username = :name")->bind('name', 'value')->execute();</code></pre>
 
-				<p>You can assign by value using the param() method:</p>
+				<p>下記のように、param() メソッドを使って割り当てることができます：</p>
 
-				<pre class="php"><code>// this will work though
+				<pre class="php"><code>// これなら動くでしょう。
 $query = DB::query("SELECT * FROM users WHERE username = :name")->param('name', 'value')->execute();</code></pre>
 
-				<p>And finally, you can use the parameters() method if you want to mix the two:</p>
+				<p>最後に、あなたが２つを混ぜたい場合、parameters() メソッドを使うことができます：</p>
 
-				<pre class="php"><code>// create the query object
+				<pre class="php"><code>// クエリオブジェクトを生成
 $query = DB::query("SELECT * FROM users WHERE username = :name AND state = :state");
 
-$name = 'John'; // set the variable we're going to bind
+$name = 'John'; // 割り当てたい変数に値をセットする。 
 
-// bind the variable and literal
+// 変数と リテラルを割り当てる
 $query->parameters(array('name' => &amp;$name, 'state' => 'new'));
 
 // and run the query, produces SELECT * FROM users WHERE username = 'John' AND state = 'new'
 $result = $query->execute();</code></pre>
 
-				<p class="note">Some frameworks use question marks as placeholders. This works for them because their
-				binding system is positional, the first question mark gets replaced by the first variable bound, and
-				so on. In FuelPHP, order of binding is not relevant, there is a one-to-one link between the placeholder
-				and the variable bound. It also means you can use the same placeholder multiple times in a single
-				query.</p>
+				<p class="note">いくつかのフレームワークは、クエスチョンマーク（?）をプレースホルダに使用します。 そのバインディングシステムは、
+				最初のクエスチョンマークが最初の値で置換される、といった順番に依存し動作します。
+				しかし、FuelPHPでは、順番によるバインディングは適切ではなく、 プレースホールダーと値には1対1の対応があります。
+				それは同様に、１つのクエリでプレースホルダを複数回使用できることを意味します。
+				</p>
 
 			</article>
 
 			<article>
 
-				<h3 id="caching">Query caching</h3>
+				<h3 id="caching">クエリキャッシュ</h3>
 
-				<p>The query builder also supports caching a query's result to help you bring down your database access.
-					For this goal it uses the Cache class behind the scenes but handles both retrieval and regeneration
-					of the caches.<br />
-					The <code>cached()</code> method takes 3 arguments: the expiration time (cache validity in seconds)
-					a second argument to set a custom key for the query (by default a md5 hash of the SQL), and a boolean
-					that can be used to indicate that you don't want to cache empty results. Using a custom cache key
-					will allow you to manually delete specific queries more easily and group sets of query caches into
-					specific directories.</p>
+				<p>クエリビルダは、クエリ結果のキャッシュもサポートします。これによりデータベースアクセスを減らすことができます。
+					これは、バックエンドでキャッシュクラスを使用し、キャッシュの読み込みと再生成の両方を行います。
+					<br />
+					<code>cached()</code> メソッドは、３つの引数をとります： 第一引数は有効期限 (キャッシュが有効となる秒数)、
+					第二引数は、クエリのカスタムキー (デフォルトでは、SQLのmd5 ハッシュ値)、そして最後は、あなたが空の結果をキャッシュしたくないか
+					を指定する、boolean値です。 カスタムキャッシュキーを使用すると、
+					手動で特定のクエリのキャッシュを削除したり、特定の階層へクエリキャッシュのセットを
+					グループ化したりできるようになります。</p>
 
-				<pre class="php"><code>// Run a query and cache it for 1 hour
-// If you run the exact same query the next time it will return the cached result.
-// This will happens within the 3600 seconds of the cached one, if not it will run
-// and cache another time.
+				<pre class="php"><code>// クエリを実行し、１時間キャッシュします。
+// もしまったく同じクエリが次回実行された場合、キャッシュされた値が返ります。
+// これは、 3600 秒間有効です。もし有効期限後にクエリが実行された場合、
+// 再度クエリが走り、再度 3600秒間キャッシュされるでしょう。
 $query = DB::query("SELECT * FROM users")->cached(3600)->execute();
 
-// You can specify a key to handle the delete of cached results, useful if you
-// know that will be updated and need to delete it before it gets shown.
-// Empty query results will not be cached.
+// キャッシュされた結果を削除するために、キーを指定します。 
+// これは、データが更新され、キャッシュを削除するのが必要だと知っている場合に有用です。
+// 空の結果はキャッシュされません。
 $query = DB::query("SELECT * FROM users")->cached(3600, "foo.bar", false)->execute();
 
-// This delete the previous query from cache
+// これは前回のクエリのキャッシュを削除します。
 Cache::delete("foo.bar");
-// Or delete all caches in the "foo" directory
+// もしくは、 "foo" ディレクトリのキャッシュをすべて削除します。
 Cache::delete_all("foo");
 
-// By default all queries are put in a "db" directory
-// Thus to delete all query caches for which the key wasn't set manully
+// デフォルトでは、すべてのクエリは、 "db" ディレクトリに配置されます。
+// したがって、明示的にキーがセットされていない、すべてのクエリキャッシュを削除するためには、次のように行います。
 Cache::delete_all("db");</code></pre>
 
 			</article>
@@ -507,6 +507,7 @@ Cache::delete_all("db");</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/database/usage.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/database/usage.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/database/usage.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

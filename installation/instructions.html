@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Instruction - Installation - FuelPHP Documentation</title>
+	<title>インストール方法 - インストール - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,19 +44,19 @@
 
 		<div id="main">
 
-			<h5>Choose One: <a href="#command">Command Line Installation</a> | <a href="#manual">Manual Installation</a></h5>
+			<h5>いずれかを選択してください: <a href="#command">コマンドラインからインストール</a> | <a href="#manual">手動でインストール</a></h5>
 			<br />
-			<h3 id="command">Command Line Installation</h3>
-		    <p class="note">This currently only works on *nix systems (Linux, OS X, Unix, etc).</p>
-			<p>Our quick installer is a stripped down interface for the Oil package.  It allows you to create a new project with one command.  You will also no longer need to use 'php' in your oil commands.</p>
+			<h3 id="command">コマンドラインからインストール</h3>
+		    <p class="note">この方法は現在 *nix systems (Linux, OS X, Unix など) でのみ動作します。</p>
+            <p>我々のクイックインストーラは Oil パッケージ用に書き下ろされたインターフェースです。これを使用すると１つのコマンドで新しいプロジェクトを生成することができます。oil コマンドで 'php' を使用する必要もありません。</p>
 
-			<p>To install the quick installer, simply open up a shell and run the following command:</p>
+            <p>クイックインストーラをインストールするためには、シェルを開き次のコマンドを実行するだけです：</p>
 
 			<pre class="cli"><code>$ curl get.fuelphp.com/oil | sh</code></pre>
 
-			<p class="note">This will ask for your password, as it installs the script to /usr/bin.</p>
+			<p class="note">この場合、スクリプトを /usr/bin にインストールするためパスワードを尋ねてくるでしょう。</p>
 
-			<p>Now you can just use 'oil' instead of 'php oil' in your projects.</p>
+			<p>これであなたのプロジェクトでは 'php oil' の代わりに 'oil' だけを使用することができます。</p>
 
 			<p class="note">If you had installed the oil script before version 1.6, you have to re-install it to have it run composer too!</p>
 
@@ -64,28 +64,28 @@
 
 			<pre class="cli"><code>$ oil create &lt;project_name&gt;</code></pre>
 
-			<p>This will create a folder in the directory you are in with the project name you gave.  It will then clone the repository and all submodules into that directory.</p>
+			<p>これで、カレントディレクトリにあなたが指定したプロジェクト名のフォルダが作成されます。そしてリポジトリとすべてのサブモジュールをそのフォルダに複製します。</p>
 
 			<p>
 				Note: This will also run <code class="cli">$ oil refine install</code> which makes the necessary directories writable,
 				and <code class="cli">$ php composer.phar update</code> to pull in the defined composer dependencies.
 			</p>
 
-			<h3 id="manual">Manual Installation Instructions</h3>
+			<h3 id="manual">手動でインストール</h3>
 
-			<p>This will create the default installation of the Fuel framework on your web server.</p>
+			<p>この方法は、あなたのウェブサーバに Fuel フレームワークのデフォルトインストール構成を生成します。</p>
 
 			<ol>
-				<li><a href="download.html">Download the Fuel Framework</a></li>
-				<li>Unzip/Extract the download</li>
-				<li>Move the files to your server
+				<li><a href="download.html">Fuel フレームワークをダウンロードする</a></li>
+				<li>ダウンロードしたファイルを解凍し、展開する</li>
+				<li>ファイルをサーバへ移動する
 					<ul>
-						<li>Note the public directory in the source equals your web server's public document directory i.e.
-						public_html, public, htdocs, etc. Move its contents to there or a subdirectory of the webroot
-						where you want to use Fuel.</li>
-						<li>Placing the fuel directory outside of the public document directory is encouraged for security
-						reasons.</li>
-						<li>Edit the paths in index.php to point to your app, core &amp; packages directories.</li>
+						<li>ソース内の public ディレクトリは Web サーバの公開用ディレクトリ、例えば、
+						public_html, public, htdocs など)になります。
+						その内容をそこへ移動するか 
+						Fuel を使用したい webroot のサブディレクトリへ移動します。</li>
+						<li>fuel ディレクトリを公開ディレクトリの外に置くことをセキュリティの観点から推奨します。</li>
+						<li>index.php 内のパスを編集し、あなたの app, core, packages ディレクトリに合わせます。</li>
 					</ul>
 <pre class="plain"><code>/
   fuel/
@@ -100,7 +100,7 @@
 </code></pre>
 				</li>
 				<li>
-					Set permissions on writable folders manually, or run:
+					手動でフォルダのパーミッションを書き込み可能にセットするか、次のようにします：
 <pre class="cli"><code>$ php oil refine install
 	Made writable: APPPATH/cache
 	Made writable: APPPATH/logs
@@ -128,16 +128,16 @@ php composer.phar update
 
 			<h2 id="configuration">Configuration</h2>
 
-			<p>The main configuration can be found at app/config/config.php. Edit it to your liking.</p>
+			<p>メインの設定は app/config/config.php にあります。好きに編集してください。</p>
 
-			<h2 id="install_inside_root">Install inside the document root</h2>
+			<h2 id="install_inside_root">ドキュメントルート内にインストールする</h2>
 
-			<p>As explained in point 3, for security reasons it is strongly advised NOT to install Fuel inside your webserver's document root.</p>
+			<p>ポイント 3 で説明したように、セキュリティの観点からウェブサーバのドキュメントルート内に Fuel をインストールしないことを強く推奨します。</p>
 			<p>
-				However, there are cases where you would like to do that, for example for a (local) development environment where Apache's dynamic mass virtual hosting module
-				is used to quickly setup new development environments without the need to restart the webserver.
+				しかしながらそうしたい状況もあります。例えば、Apache の大量の動的なバーチャルホストモジュールのある (ローカルの) 開発環境は、
+				Web サーバを再起動せずに新しい開発環境を素早く構築するために使用されます。
 			</p>
-			<p>In that case, you need an additional .htaccess file that you need to place in your document root, which will redirect requests to the site root to your public folder, and also modifies the rewrites to include the public folder:</p>
+			<p>この場合は、.htaccess ファイルが必要で、ドキュメントルートに置く必要があります。さらにそのサイトへのリクエストを公開フォルダにリダイレクトし、公開フォルダをインクルードするために rewrites も変更します：</p>
 <pre class="plain"><code>
 &lt;IfModule mod_rewrite.c>
 	RewriteEngine on
@@ -153,35 +153,35 @@ php composer.phar update
 &lt;/IfModule>
 </code>
 </pre>
-			<h3 id="install_inside_root2">This is too complicated. Anything simpler?</h3>
+			<h3 id="install_inside_root2">もっと簡単な方法</h3>
 
 			<p>
-				There is an alternative that involves removing the public folder from your installation.
-				Just copy the entire zipfile into your webserver's document root, and then do the following:
+				public フォルダを除いてインストールする方法がもう一つあります。
+				zipファイルをそのままwebサーバにコピーし、以下を実行します：
 			</p>
 			<ul>
-				<li>move everything in the /public folder one level up, to the document root</li>
-				<li>delete the now empty public folder</li>
-				<li>open <strong>index.php</strong> in your editor, and remove "/.." from APPPATH, COREPATH and PKGPATH</li>
+				<li>全てのファイルを /public フォルダの一階層上、ドキュメントルートに移動します</li>
+				<li>空になったpublicフォルダを削除します</li>
+				<li><strong>index.php</strong> をエディタで開き、APPPATHとCOREPATH、PKGPATHから "/.." を取ります</li>
 			</ul>
 
-			<h3 id="install_inside_subfolders">Ok. And what about subfolders?</h3>
-			<p>Follow the same procedure as in the previous section. Then execute one more step:</p>
+			<h3 id="install_inside_subfolders">サブフォルダにインストールする場合</h3>
+			<p>上記と同じ手順に加えて、次のステップを実行します：</p>
 			<ul>
-				<li>open the <strong>.htaccess</strong> file in your editor, and change the RewriteRule to read <em>RewriteRule ^(.*)$ /yoursubfolder/index.php/$1</em></li>
+				<li><strong>.htaccess</strong> ファイルをエディタで開き、<em>RewriteRule ^(.*)$ /[サブフォルダのディレクトリ]/index.php/$1</em> の部分を変更します。</li>
 			</ul>
 
-			<h2 id="setting_the_environment">Setting the Environment</h2>
+			<h2 id="setting_the_environment">環境を設定する</h2>
 
 			<p>
-				By default, the environment is set to Development mode. Fuel uses the environment to define which database settings to use, but you can use it for other things.
+				デフォルトでは、環境は開発モードにセットされています。Fuel は環境を使用して、使用するデータベース設定を定義します。しかし、他のことにも利用できます。
 			</p>
 			<p>
-				To set the environment, drop the following line into your .htaccess file.
+				環境を設定するために、.htaccess ファイルに次の行を追加します。
 			</p>
 			<pre class="plain"><code>SetEnv FUEL_ENV production</code></pre>
 			<p>
-				Available options are detailed in the <a href="../classes/fuel.html#class_constants">Class constants</a> of the Fuel Class.
+				有効なオプションは Fuel クラスの <a href="../classes/fuel.html#class_constants">クラス定数</a> 内で定義されています。
 			</p>
 
 		</div>
@@ -189,6 +189,7 @@ php composer.phar update
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/installation/instructions.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/installation/instructions.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/installation/instructions.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

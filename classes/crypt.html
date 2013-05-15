@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Crypt::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Crypt - Classes - FuelPHP Documentation</title>
+	<title>Crypt - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,37 +45,37 @@
 
 		<div id="main">
 
-			<h2>Crypt Class</h2>
+			<h2>Crypt クラス</h2>
 
 			<p>
-				The Crypt class allows encrypt or decrypt a string. The Crypt class is also used internally by for example the Fuel Sessions class.
+				Crypt クラスにより文字列を暗号化や複号が可能になります。例えば、Sessions クラスにおいても Crypt クラスが内部で使用されています。
 			</p>
-			<p>It uses the encryption and hashing methods provided by PHPSecLib, so it's not dependent on external modules being available, such as mcrypt.</p>
+			<p>PHPSecLib により提供される暗号化とハッシング関数が使われているため、mcrypt のような利用可能なモジュールに影響されません。</p>
 
 			<section>
-				<h3 id="configuration">Configuration</h3>
+				<h3 id="configuration">設定</h3>
 
 				<p>
-					The Crypt class is configured through the <kbd>app/config/crypt.php</kbd> configuration file. It will be generated and populated with random values when you first use the Crypt class or if one of the required configuration values is missing.
+					Crypt クラスの設定は <kbd>app/config/crypt.php</kbd> にて行います。これは、Crypt クラスを初めて利用するときか、必要な設定ファイルが無い場合に、乱数とともに生成・追加されます。
 				</p>
 				<p class="note">
-					Note that this will require write access to app/config/crypt.php! If this is not possible, make sure all configuration settings are set!
+					app/config/crypt.php への書き込み権限が必要です！ もし不可能な場合、全ての設定項目が設定されているかどうか確認してください！
 				</p>
 				<p>The following configuration settings can be defined:</p>
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>型</th>
+							<th>規定値</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>crypto_key</th>
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								Random encryption key value used in the encryption routines. Make sure you set this to something unique and random!
+								暗号ルーチンで使われるランダムな暗号キー。ユニークでランダムな値を設定するようにしてください！
 							</td>
 						</tr>
 						<tr>
@@ -83,7 +83,7 @@
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								Random encryption initialisation vector used in the encryption routines. Make sure you set this to something unique and random!
+								暗号ルーチンにおけるランダムな暗号初期ベクター。ユニークでランダムな値を設定するようにしてください！
 							</td>
 						</tr>
 						<tr>
@@ -91,55 +91,55 @@
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								Random value used in the Hash-based Message Authentication Code (HMAC) routines. Make sure you set this to something unique and random!
+								ハッシュに基づくメッセージ認証コード (HMAC) にて使われる乱数。ユニークでランダムな値を設定するようにしてください！
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				<p class="note">
-					If you assign keys manually, note that they are base64_encoded, and the length must be a multiple of 4 to be able to decode it. Make sure the length is correct!
+					もしキーを手入力で指定する場合、キーはbase64エンコードした文字列で、デコードするために長さは4の倍数でなければなりません。必ず正しい長さになるよう指定してください！
 				</p>
 			</section>
 
 			<article>
 				<h4 class="method" id="method_encode">encode($value, $key = false)</h4>
-				<p>The <strong>encode</strong> method encrypts a string value, optionally with a custom encryption key.</p>
+				<p><strong>encode</strong> メソッドは文字列を暗号化します。オプションとして暗号キーが設定できます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
-									<td>String value to encode.</td>
+									<td><i>必須</i></td>
+									<td>エンコードする文字列</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Optional custom key value to be used to encode the value passed. If false, the config value '<strong>crypto_key</strong>' is used.</td>
+									<td>エンコードに使われる任意のキー。false の場合、設定値である '<strong>crypto_key</strong>' が適用されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// encode a variable with a custom key
+							<pre class="php"><code>// カスタムキーにより変数をエンコードする
 $value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 						</td>
 					</tr>
@@ -149,43 +149,43 @@ $value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_decode">decode($value, $key = false)</h4>
-				<p>The <strong>decode</strong> method decrypts a string value, optionally with a custom key.</p>
+				<p><strong>decode</strong> メソッドは文字列を複号します。オプションとして暗号キーが設定できます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
+						<th class="legend">静的</th>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>規定値</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>Required</i></td>
-									<td>String value to decode.</td>
+									<td><i>必須</i></td>
+									<td>デコードされる文字列</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Optional custom key value to be used to decode the value passed. If false, the config value '<strong>crypto_key</strong>' is used.</td>
+									<td>デコードに使われる任意のキー。false の場合、設定値である '<strong>crypto_key</strong>' が適用される。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>mixed - String value with the decoded value, or <kbd>false</kbd> if the value could not be decoded.</td>
+						<th>返り値</th>
+						<td>mixed - デコードされた文字列か、デコードできなかった場合は <kbd>false</kbd> を返します。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// decode a variable with a custom key
+							<pre class="php"><code>// キーにより変数をデコードする
 $value = Crypt::decode($value, 'R@nd0mK~Y');</code></pre>
 						</td>
 					</tr>
@@ -198,6 +198,7 @@ $value = Crypt::decode($value, 'R@nd0mK~Y');</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/crypt.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/crypt.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/crypt.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

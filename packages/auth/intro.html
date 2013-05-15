@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Introduction - Auth Package - FuelPHP Documentation</title>
+	<title>はじめに - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -43,14 +43,14 @@
 		</div>
 
 		<div id="main">
-			<h2>Auth package</h2>
+			<h2>Auth パッケージ</h2>
 
-			<p>The Auth package provides a standardized interface for authentication in Fuel. This allows our users to
-			write their own drivers and easily integrate a new driver to work with old code by keeping the basic methods
-			consistent.</p>
+			<p>Auth パッケージは Fuel における標準化された認証インターフェイスを提供します。
+			これにより、ユーザは自分自身で新しいドライバを書くことができ、
+			基本的なメソッドを保つことで、古いコードに新しいドライバを簡単に統合することもできます。</p>
 
 			<section>
-				<h2 id="intro">Introduction</h2>
+				<h2 id="intro">はじめに</h2>
 
 				<p>Creating an Auth package that will suit everyone or every implementation is impossible. As a framework
 				we don't want to force how you do Auth, but we do want to facilitate you creating your own or using the
@@ -108,38 +108,38 @@
 				</section>
 
 				<section>
-					<h3 id="configuration">Configuration</h3>
+					<h3 id="configuration">設定</h3>
 
-					<p>Auth can be configured in a config/auth.php file and takes the following keys:</p>
+					<p>Auth は config/auth.php ファイルに、下記のキーで設定できます：</p>
 
 					<table class="config">
 						<tbody>
 							<tr class="header">
-								<th>Param</th>
-								<th>Type</th>
-								<th>Default</th>
-								<th>Description</th>
+								<th>パラメータ</th>
+								<th>型</th>
+								<th>規定値</th>
+								<th>説明</th>
 							</tr>
 							<tr>
 								<th>driver</th>
-								<td>string|array</td>
+								<td>文字列 | 配列</td>
 								<td><pre class="php"><code>array('Simpleauth')</code></pre></td>
 								<td>
-									Login drivers to load, the first will also be the default returned by Auth::instance().
+									ロードする Login ドライバ、最初のドライバが Auth::instance() のデフォルト返り値にもなります。
 								</td>
 							</tr>
 							<tr>
 								<th>verify_multiple_logins</th>
-								<td>bool</td>
+								<td>論理型</td>
 								<td><pre class="php"><code>false</code></pre></td>
 								<td>
-									Whether checking for login continues after one driver has validated a login successfully,
-									this makes it possible to login in multiple ways at the same time.
+									ひとつのドライバでログインの成功を確認したあとにも、継続してログインのチェックを行うかどうか。
+									これにより複数の方法でログインすることが可能。
 								</td>
 							</tr>
 							<tr>
 								<th>salt</th>
-								<td>string</td>
+								<td>文字列</td>
 								<td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
 								<td>
 									The salt used for password hashing.
@@ -158,11 +158,11 @@
 					</table>
 
 					<p class="note">
-						Note that 'verify_multiple_logins' is a driver level setting. It has no meaning for
-						login drivers, it does not mean "allow a user to be logged-in multiple times"!
+						'verify_multiple_logins' はドライバレベルの設定であることに注意。 Login ドライバ
+						そのものを意味していないし、「ユーザに多重ログインすることを許可する」ということではありません！
 					</p>
 
-					<p>Your auth config file should look like this:</p>
+					<p>auth.php ファイルはこのようになります：</p>
 
 					<pre class="php"><code>&lt;?php
 
@@ -170,10 +170,10 @@ return array(
 	// The drivers
 	'driver' => array('Simpleauth'),
 
-	// Set to true to allow multiple logins
+	// 複数ログインを有効にする場合、 true
 	'verify_multiple_logins' => true,
 
-	// Use your own salt for security reasons
+	// セキュリティのために、サルトを設定しましょう
 	'salt' => 'Th1s=mY0Wn_$@|+',
 );
 </code></pre>
@@ -187,6 +187,7 @@ return array(
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/packages/auth/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/packages/auth/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/packages/auth/intro.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

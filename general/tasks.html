@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Tasks - General - FuelPHP Documentation</title>
+	<title>Tasks - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -43,15 +43,15 @@
 		</div>
 
 		<div id="main">
-			<h2>Tasks</h2>
+			<h2>タスク</h2>
 
-			<h3 id="what_are_tasks">What is a task?</h3>
+			<h3 id="what_are_tasks">タスクとは</h3>
 
-			<p>Tasks are classes that can be run through the command line or set up as a cron job. They are generally used for background processes, timed tasks and maintenance tasks. Tasks can calls models and other classes just like controllers.</p>
+			<p>タスクは、コマンドラインから実行されるかまたは cron ジョブとしてセットアップされるクラスです。一般的にはバックグラウンドプロセス、定期的に行われるタスク、メンテナンスタスクで使用されます。タスクは、コントローラ同様、モデルや他のクラスを呼び出すことができます。</p>
 
-			<h3 id="creating_tasks">Creating a task</h3>
+			<h3 id="creating_tasks">タスクを作成する</h3>
 
-			<p>In Fuel Controllers are put in the <kbd>fuel/app/tasks</kbd> directory. Below is an example of the task "example": </p>
+			<p>Fuel ではコントローラは <kbd>fuel/app/tasks</kbd> ディレクトリに置かれます。以下は、タスク "example" の例です。</p>
 
 	<pre class="php"><code>namespace Fuel\Tasks;
 
@@ -64,22 +64,22 @@ class Example
 	}
 }</code></pre>
 
-			<p>That will be called via the refine utility within oil:</p>
+			<p>これは、oil の refine ユーティリティで呼び出されます。</p>
 
 			<pre class="cli"><code>$ php oil refine example "Good morning"</code></pre>.
 
-			<p>When just the name of the task is used in the command, the method <kbd>"run()"</kbd> is referenced.</p>
+			<p>コマンドでタスク名だけを用いると、メソッド <kbd>"run()"</kbd> を参照します。</p>
 
-			<h3 id="more_methods">Splitting tasks into more methods</h3>
+			<h3 id="more_methods">タスクをメソッドに分割するSplitting tasks into more methods</h3>
 
-			<p>You can add more methods to your task class to break a group of tasks down into more specific tasks which can be called separately.</p>
+			<p>タスククラスにメソッドを追加して、タスクをより明確ないくつかのタスクに細分化することができます。そうすることでタスクを個別に呼び出しできます。</p>
 
 	<pre class="php"><code>public function current_date()
 {
 	echo date('Y-m-d');
 }</code></pre>
 
-			<p>We can then call this method using:</p>
+			<p>このメソッドは以下で呼び出しできます。</p>
 
 			<pre class="cli"><code>$ php oil refine example:current_date</code></pre>
 
@@ -88,6 +88,7 @@ class Example
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/general/tasks.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/general/tasks.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/general/tasks.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

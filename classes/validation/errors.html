@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 		var class_prefix = "Validation_Error::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Validation Errors - Classes - FuelPHP Documentation</title>
+	<title>Validation Errors - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,183 +45,183 @@
 
 		<div id="main">
 
-			<h2>Validation Class</h2>
+			<h2>Validation クラス</h2>
 
 			<p>
-				The Validation class helps you validate user input, if you want to create a form &amp; its validation at
-				the same time use the <a href="../fieldset.html">Fieldset</a> class instead.
+				Validation クラスは、ユーザ入力をバリデーションする際の手助けをします。
+				フォームの生成とバリデーションを同時にしたい場合は、代わりに <a href="../fieldset.html">Fieldset</a> クラスを使用してください。
 			</p>
 
 			<ul>
-				<li><a href="#errors">Introduction</a></li>
-				<li><a href="#naming_rules">Naming callback/closure rules</a></li>
-				<li><a href="#error_objects">Validation Error objects</a></li>
+				<li><a href="#errors">はじめに</a></li>
+				<li><a href="#naming_rules">コールバック / クロージャーへの名前付けの規則</a></li>
+				<li><a href="#error_objects">Validation Error オブジェクト</a></li>
 			</ul>
 
 			<section>
-				<h3 id="errors">Error messages</h3>
+				<h3 id="errors">エラーメッセージ</h3>
 
-				<p class="note">Errors are returned as Validation_Error objects which you can work with for more flexible
-				output, if you don't need that just cast the Validation_Error object to a string to get the error message.</p>
+				<p class="note">エラーは出力を柔軟に変えられる Validation_Error オブジェクトとして返されます。
+				もし Validation_Error オブジェクトが必要ないのであれば単純に Validation_Error オブジェクトを文字列型にキャストしてエラーメッセージを取得してください。</p>
 
-				<p>Error messages are set using a language file "validation.php" which is loaded automatically.</p>
+				<p>エラーメッセージは言語ファイル "validation.php" を設定することで自動的に読み込まれます。</p>
 
-				<p>There are 2 ways of manipulating the error messages during validation.</p>
+				<p>バリデーションにおいて、エラーメッセージを操作する方法は 2 種類あります。</p>
 
-				<pre class="php"><code>// change the error message for a specific validation object
-$val->set_message('required', 'The field :label is required.');
+				<pre class="php"><code>// バリデーションオブジェクトに対してエラーメッセージを変更する方法
+$val->set_message('required', ':label フィールドは必須です。');
 
-// or change the message for a specific field, no matter the actual error
-echo $val->error('username')->get_message('The field :label must be filled out before auth is attempted.');
-// Outputs "The field Your username must be filled out before auth is attempted." when validation for username
-// failed, or nothing when not yet validated or validation succeeded.</code></pre>
+// 実際にこのフィールドがエラーかどうかに関われず、フィールドを指定してメッセージを変更する (訳注: エラーがない場合は $val->error('username') が false を返すため例外エラーになります)
+echo $val->error('username')->get_message('ユーザー認証には :label フィールドを入力してください');
+// username フィールドのバリデーションが失敗された場合、 "ユーザー認証には username フィールドを入力してください" が出力される
+// それか、バリデーション未実行もしくはバリデーション成功の場合には何も出力しない</code></pre>
 
-				<p>As you may have noticed the error messages accept a couple of variables that are replaced by the
-				field's properties. Below is a list of the available variables:</p>
+				<p>ここで気づいたと思いますが、エラーメッセージにはいくつか変数が用意されており、これらはフィールドのプロパティによって置換されます。
+				使用可能な変数を下記に列挙します</p>
 
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Variable</th>
-							<th>Description</th>
+							<th>変数名</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>:field</th>
-							<td>Will be substituted by the field's name.</td>
+							<td>フィールドの name 設定値に置換される</td>
 						</tr>
 						<tr>
 							<th>:label</th>
-							<td>Will be substituted by the field's label.</td>
+							<td>フィールドの label 設定値に置換される</td>
 						</tr>
 						<tr>
 							<th>:value</th>
-							<td>Will be substituted by the field's value which could not be validated.</td>
+							<td>バリデーションに失敗した value 値に置換される</td>
 						</tr>
 						<tr>
 							<th>:rule</th>
-							<td>Will be substituted by the rule that failed. The included rules will be just their name,
-							others will be the string callback or classname:method (which will also be the key for which
-							you must add a validation rule if you want to).</td>
+							<td>失敗したバリデーションルール(名)に置換される。フレームワークが用意しているルール名はそのままで、
+							それ以外はコールバック関数名、または <クラス名>:<メソッド名> の形式で置換される。
+							(これはつまり、もし必要ならバリデーションルールを自作できるというヒントです)</td>
 						</tr>
 						<tr>
 							<th>:param:1</th>
-							<td>Will be replaced by the first additional parameter's value, :param:2 will be the second,
-							etc.</td>
+							<td>最初の追加パラメータ (後述) に置換される。:param:2 は、その次の追加パラメータ。以降、同様。
+							</td>
 						</tr>
 					</tbody>
 				</table>
 			</section>
 
 			<section>
-				<h3 id="naming_rules">Naming callback/closure rules</h3>
+				<h3 id="naming_rules">コールバック / クロージャーへの名前付け規則</h3>
 
-				<p>Full callback rules or closures can be named as well, by default their names will be:</p>
+				<p>コールバック形式のルールまたはクロージャーは全て、好きなように名前が付けらます。デフォルトでは次のように名前付けされます。</p>
 				<ul>
-					<li><strong>Closure:</strong> "closure"</li>
+					<li><strong>クロージャー:</strong> "closure"</li>
 					<li><strong>array($class, $method):</strong> "$class:$method"</li>
 					<li><strong>array($object, $method):</strong> get_class($object).":$method"</li>
 				</ul>
 
-				<p>If you want to give them custom names instead you can do that like this:</p>
+				<p>もし独自に名前を付けたい場合は下記のようなことが出来ます。</p>
 
-				<pre class="php"><code>// Add a rule which checks if the input is odd
-// It can either use ->set_message('odd', ':label is not odd.') or use a lang key 'validation.odd'
+				<pre class="php"><code>// 入力された値が奇数かどうかをチェックするルールを追加
+// メソッド ->set_message('odd', ':label は奇数ではありません') とペアで使われることでしょう。(または、冒頭のエラーメッセージ用言語ファイルに 'odd' キーを追加しても良いです)
 $field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
 </code></pre>
 			</section>
 
 			<section>
-				<h3 id="error_objects">Validation Error objects</h3>
+				<h3 id="error_objects">Validation Error オブジェクト</h3>
 
-				<p>Validation returns error objects which are actually exceptions thrown during validation. These
-					objects can be cast to string in order to get their actual message or be used as objects to fetch
-					metadata about the error.</p>
+				<p>バリデーションはエラーオブジェクト(実際はバリデーション中に投げられる例外)を返します。
+					それらオブジェクトは実際のメッセージを取得する必要に応じて文字列型にキャストすることもできますし、
+					オブジェクトのままでエラー内容のメタデータを取得するのにも使えます。</p>
 
 				<h4 id="property_field">$field</h4>
 
-				<p>The <code>$error->field</code> contains a reference to the <code>Fieldset_Field</code> object that
-					caused this error.</p>
+				<p><code>$error->field</code> はエラーを起こした <code>Fieldset_Field</code> オブジェクトへの
+					参照</p>
 
 				<h4 id="property_value">$value</h4>
 
-				<p><code>$error->value</code> contains the value that failed to validate.</p>
+				<p><code>$error->value</code> バリデートが失敗した値</p>
 
 				<h4 id="property_rule">$rule</h4>
 
-				<p><code>$error->rule</code> contains the name of the validation rule that failed. For most
-					rules this will be the string that was passed as the validation rule. It can however also be
-					another string <a href="#naming_rules">when specificly named</a>.<br />
-					For callbacks passed like <code>'Class::method'</code>, <code>array('Class', 'method')</code> or
-					<code>array($object, 'method')</code> it will be a simplified form:
-					<code>'Classname:methodname'</code>.</p>
+				<p><code>$error->rule</code> 失敗したバリデーションルールの名前。
+					基本的にバリデーションルールとして渡された文字列になりますが、
+					<a href="#naming_rules">独自に名前付けされた場合</a>には別の文字列になる場合もあります。<br />
+					<code>'Class::method'</code>, <code>array('Class', 'method')</code> または、
+					<code>array($object, 'method')</code> などのコールバックとして渡された場合はシンプルに、
+					<code>'Classname:methodname'</code>という形式になります。</p>
 
 				<h4 id="property_params">$params</h4>
 
-				<p>This will contain any additional parameters passed to the validation rule. For example
-					when using <code>->add_rule('max_length', 25)</code> this will contain <code>array(25)</code>.</p>
+				<p>バリデーションルールに渡された追加パラメータになります。
+					例えば、<code>->add_rule('max_length', 25)</code> をした場合は、<code>array(25)</code> というようになります。</p>
 
 				<article>
 					<h4 class="method" id="method_get_message">get_message($msg = false, $open = '', $close = '')</h4>
 
 					<p>
-						Fetches the error message and allows rewriting it.
+						エラーメッセージを取得します。エラーメッセージは書き換え可能です。
 					</p>
 
 					<table class="method">
 						<tbody>
 							<tr>
-								<th class="legend">Static</th>
+								<th class="legend">静的</th>
 								<td>No</td>
 							</tr>
 							<tr>
-								<th>Parameters</th>
+								<th>パラメータ</th>
 								<td>
 									<table class="parameters">
 										<tr>
-											<th>Param</th>
-											<th>Type</th>
-											<th>Default</th>
-											<th class="description">Description</th>
+											<th>パラメータ</th>
+											<th>型</th>
+											<th>規定値</th>
+											<th class="description">説明</th>
 										</tr>
 										<tr>
 											<th><kbd>$msg</kbd></th>
 											<td><em>false | string</em></td>
 											<td><pre class="php"><code>false</code></pre></td>
-											<td>Will attempt to fetch the message from the Validation instance it belongs
-												to or from config when <code>false</code> was given. Will return a default
-												placeholde message on empty input or when there was no message to be found.<br />
-												Or it will use the given input as the message and replace the variables
-												in it.</td>
+											<td><code>false</code> 指定した場合は、自身が所属するバリデーションインスタンスから、
+												またはコンフィグファイルから、メッセージの取得を試みます。
+												入力が空の場合、またはコンフィグにメッセージが見つからない場合は、デフォルトの代替用メッセージを返します。
+												文字列を指定した場合は、その文字列をメッセージとして使用し、
+												内包する変数を置換して返します。</td>
 										</tr>
 										<tr>
 											<th><kbd>$open</kbd></th>
 											<td><em>string</em></td>
 											<td><pre class="php"><code>''</code></pre></td>
-											<td>Adds HTML before the message.</td>
+											<td>メッセージの前に HTML を追加します。</td>
 										</tr>
 										<tr>
 											<th><kbd>$close</kbd></th>
 											<td><em>string</em></td>
 											<td><pre class="php"><code>''</code></pre></td>
-											<td>Adds HTML after the message.</td>
+											<td>メッセージの後に HTML を追加します。</td>
 										</tr>
 								</table>
 								</td>
 							</tr>
 							<tr>
-								<th>Returns</th>
+								<th>返り値</th>
 								<td>string</td>
 							</tr>
 							<tr>
-								<th>Example</th>
+								<th>例</th>
 								<td>
-									<pre class="php"><code>// Fetch the message inside &lt;p&gt; tags
+									<pre class="php">メッセージを <code>// &lt;p&gt; タグで囲んで取得する
 	$message = $error->get_message(false, '&lt;p&gt;', '&lt;/p&gt;');
 
-	// Will use a standard message: Validation rule :rule failed for :label
+	// 標準設定のメッセージ: "Validation rule :rule failed for :label" を使用する 
 	$message = $error->get_message(null);
 
-	// Overwrite whetever error message might have been given
+	// どんなエラーメッセージが与えられていようと上書き
 	$message = $error->get_message('Validation failed for field :label.');</code></pre>
 								</td>
 							</tr>
@@ -235,6 +235,7 @@ $field->add_rule(array('odd' => function($val) { return (bool) ($val % 2); }));
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/validation/errors.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/validation/errors.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/validation/errors.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

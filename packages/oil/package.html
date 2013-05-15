@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Package - Oil Package - FuelPHP Documentation</title>
+	<title>Package - Oil Package - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,22 +45,22 @@
 		<div id="main">
 
 			<section>
-
-				<h3 id="package">Package</h3>
-
-				<p>
-					Packages can be installed and downloaded manually but with the help of the package command it can work much quicker. It does this
-					by looking for packages within a list of sources defined in <kbd>fuel/core/config/package.php</kbd> and like any other config file can
-					be edited there or copied to the <kbd>fuel/app/config</kbd> folder.
+	
+				<h3 id="package">パッケージ</h3>
+	
+                <p>
+                    パッケージを手動でインストールしダウンロードできますが、package コマンドの助けを借りるとより素早く作業できます。
+                    これは <kbd>fuel/core/config/package.php</kbd> 内で定義されているソースリスト内のパッケージを検索しているからです。
+                    また、他の設定ファイル同様に編集することができますし、<kbd>fuel/app/config</kbd> フォルダにコピーすることもできます。
 				</p>
 
 				<p>
-					Oil is smart, so it will check to see if you have Git installed on your computer before it does anything with the package command.
-					If you do have Git installed Oil will install a package as a Git repository instead of directly downloading the files, meaning
-					updates, new releases and tracking custom changes to packages could not be easier.
+                    Oil は賢いです。そのため、package コマンドで何かする前にあなたのコンピュータに Git がインストールされているかどうかチェックします。
+                    Git がインストールされている場合、Oil は 直接ファイルをダウンロードする代わりに Git リポジトリとしてパッケージをインストールします。
+                    これは更新や新しいリリースやパッケージの独自変更がより簡単になるわけではないことを意味しています。
 				</p>
-
-				<h3 id="install">Install</h3>
+	
+				<h3 id="install">インストール</h3>
 
 				<pre class="cli"><code>$ php oil package install test-package
 Downloading package: git://github.com/philsturgeon/fuel-test-package.git
@@ -73,8 +73,8 @@ Resolving deltas: 100% (3/3), done.
 Cloning into /Users/phil/Sites/fuel/fuel/packages/test-package...</code></pre>
 
 				<p>
-					If Git is not installed, or the --direct flag is provided then a ZIP file of the package will be downloaded and unzipped
-					to <kbd>fuel/packages/packagename</kbd>.
+                    Git がインストールさていない場合、または --direct フラグが指定された場合、
+                    パッケージの ZIP ファイルがダウンロードされ、<kbd>fuel/packages/packagename</kbd> に解凍されます。
 				</p>
 
 				<pre class="cli"><code>$ php oil package install test-package --direct
@@ -88,14 +88,14 @@ Cloning into /Users/phil/Sites/fuel/fuel/packages/test-package...</code></pre>
 	DOCROOT/fuel/packages/test-package/classes/hasone.php
 	DOCROOT/fuel/packages/test-package/classes/model.php</code></pre>
 
-				<h3 id="uninstall">Un-install</h3>
-
+				<h3 id="uninstall">アンインストール</h3>
+	
 				<pre class="cli"><code>$ php oil package uninstall test-package
 Uninstalling package "test-package"</code></pre>
 
-				<p class="note"><strong>Note:</strong> Unlike install there is no difference here if Git is installed, it will delete all the same.</p>
-
-				<h3 id="update">Update</h3>
+                <p class="note"><strong>注意:</strong> インストールとは違い、Git がインストールされている場合は違いはありません。すべて同様に削除されます。</p>
+	
+				<h3 id="update">更新</h3>
 
 				<p>Coming soon...</p>
 
@@ -106,6 +106,7 @@ Uninstalling package "test-package"</code></pre>
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/packages/oil/package.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/packages/oil/package.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/packages/oil/package.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

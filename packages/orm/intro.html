@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Introduction - Orm Package - FuelPHP Documentation</title>
+	<title>はじめに - Orm Package - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,24 +45,24 @@
 		<div id="main">
 			<h2>Orm</h2>
 
-			<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-				Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-				to establish relations between those objects.<br />
-				It follows the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
-				Active Record Pattern</a> closely, but was also influenced by other systems.</p>
+            <p>Ormは <a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E9%96%A2%E4%BF%82%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0" target="_blank">Object Relational Mapper</a> の頭文字です。
+            データベースの行をオブジェクトにマッピングする、これらのオブジェクト間の関係を確立させるという二つの機能があります。
+
+            <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">Active Record パターン</a>をよく踏襲していますが、他のシステムの影響も受けています。
+            </p>
 
 			<section>
-				<h2 id="intro">Introduction</h2>
+				<h2 id="intro">はじめに</h2>
 
-				<p>Unlike many other ActiveRecord implementations, ours is small, fast and dead simple to use. It attempts
-					to make creating, updating and deleting items from your database as easy as possible. It does this by
-					doing all the hard work for you.</p>
+				<p>他の多くのActiveRecordの実装とは異なり、小型で高速、さらに死ぬほど簡単に使えます。
+					それは簡単に、あなたのデータベースを項目を作成したり更新したり削除したりすることができるでしょう。
+					あなたのために、これらがすべてのハードワークを行います。</p>
 			</section>
 
 			<section>
-				<h2 id="install">Installation</h2>
+				<h2 id="install">インストール</h2>
 
-				<p>The Orm package is included in the Fuel download. All you need to do is enable it in your config.</p>
+                <p>Orm パッケージは Fuel の配布物に含まれています。 設定で有効にするだけで利用できます。</p>
 					<pre class="php"><code>'always_load' => array(
 	'packages' => array(
 		'orm',
@@ -71,39 +71,39 @@
 			</section>
 
 			<section>
-				<h2 id="troubleshooting">Troubleshooting</h2>
+				<h2 id="troubleshooting">トラブルシューティング</h2>
 
-				<p>Some common problems and frequent questions.</p>
+				<p>一般的な問題とよくある質問。</p>
 
-				<h3>My relations/foreign keys aren't being saved (1)</h3>
-				<p>This happens most often when you're using the wrong type of relationship. Especially Has-one and
-					Belongs-to tend to get mixed up. Reread the examples in the docs to make sure you're using the
-					correct relation types and check if everything is configured correctly.</p>
+				<h3>リレーション/外部キーが保存されていません。 (1)</h3>
+				<p>リレーションシップの間違った型を使用している場合に、最も頻繁に起こります。 特に Has-one と
+					Belongs-to に混ざってしまいがちです。 ドキュメントの例を再読し、
+					あなたが正しくリレーションタイプを使用していることと、すべてが正しく設定されているかどうかを確認をしてください。.</p>
 
-				<h3>I can't relate objects (2)</h3>
-				<p>Make sure your model is extending <code>Orm\Model</code> and not <code>Model_Crud</code>.</p>
+				<h3>オブジェクトを関連付けることができません (2)</h3>
+				<p>あなたのモデルが <code>Orm\Model</code> を継承し、 <code>Model_Crud</code>を継承していない事を確認してください。</p>
 
-				<h3>I get an exception that my related model in a package/module can't be found</h3>
-				<p>Make sure the package or module is loaded by Fuel, otherwise the Autoloader won't be able to find
-					the class.<br />
-					And when configuring the related model <code>"model_to"</code> make sure you configure the full
-					classname, this includes the namespace <em>even if you're in that namespace</em>. Classnames in
-					strings are always taken from global context, no matter the current namespace context.</p>
+				<h3>package/moduleの私の関連するモデルが見つからないという例外を取得しました</h3>
+				<p>パッケージまたはモジュールがFuelによってロードされていることを確認してください。
+					それ以外のオートローダーは、クラスを見つけることができません。<br />
+					そして、<code>"model_to"</code>と関連するモデルを設定するときは完全なクラス名を設定してください。
+					これは、<em>あなたがその空間にいる場合でも</em>名前空間が含まれています。
+					文字列内のクラス名は、常にグローバルコンテキストから取得されます。現在の名前空間コンテキストは関係ありません。</p>
 
-				<h3>I get an Orm\FrozenObject exception</h3>
-				<p>Objects can't be edited while being saved to the database, that prevents circular saving and resaving
-					already saved objects. This shouldn't happen during normal usage and is most often caused by faulty
-					configuration of relations.<br />
-					Sometimes this can be caused by a bug, especially when you're not using a stable release.</p>
+				<h3>Orm\FrozenObject という例外を受け取りました</h3>
+				<p>オブジェクトは、データベースの保存中に変更することはできません。これは連携によってループする保存や、
+				  すでに保存してあるオブジェクトをもう一度保存することを防ぐためです。
+				  これは通常の使用時に起きるべきではありませんし、たいていは間違ったリレーションの設定によって起きます。<br />
+				  また安定リリースを使っていない場合に、バグにより引き起こされることもあります。</p>
 
-				<h3>I have defined a limit and offset, but the results are not correct</h3>
-				<p>The ORM always makes sure that query results are consistent. If you run a query that contains related
-					models, a subquery will be generated to make sure the entire related resultset is fetched. Even if this
-					means more records then the limit you have set will be fetched. This is because once you start manipulating
-					incomplete resultsets, very bad things might happen to your related models.</p>
-				<p>If you are absolutely sure you are not going to manipulate the results, for example because you need them
-					for pagination only, you can use <kbd>rows_limit()</kbd> and <kbd>rows_offset()</kbd> instead, which will
-					forces them on the entire query.</p>
+				<h3>Limit 及び Offset を定義したが、結果が正しくありません</h3>
+                <p>ORM は常にクエリの結果に一貫性があることを確認します。関連するモデルが含まれているクエリを実行すると、
+                すべての関連する結果がフェッチされたかどうかを確認するためにサブクエリが生成されます。
+                これは、limit で定義した以上のレコードがフェッチされることを意味しています。
+                一旦不完全な結果セットを操作し始めると、関連するモデルにとてもわるい影響が起こるためです。</p>
+                <p>もしあなたがその結果を絶対に操作しないことが確信できる場合(たとえば pagination のみに利用する場合)
+                代わりに <kbd>rows_limit()</kbd> と <kbd>rows_offset()</kbd> を利用する事で
+                クエリに対して limit, offset を強制することができます。</p>
 			</section>
 
 		</div>
@@ -111,6 +111,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.6/develop/packages/orm/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/packages/orm/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/packages/orm/intro.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>
