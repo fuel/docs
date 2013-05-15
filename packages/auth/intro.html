@@ -71,9 +71,35 @@
 				specific: <a href="drivers.html">Writing drivers</a>.</p>
 
 				<section>
-					<h3 id="install">インストール</h3>
+					<h3 id="included">Included drivers</h3>
 
-					<p>Auth パッケージは Fuel のダウンロードに含まれます。設定で有効化してください。</p>
+					<p>The Auth packages comes with two sets of drivers which provide local access, using one or more database tables.</p>
+
+					<h4 id="simpleauth">Simpleauth</h4>
+
+					<p>As the same implies, this is a basic driver set. It uses a database table to store the user information, and
+					a configuration file to store information about groups, roles, and ACLs. It stores user metadata in a serialized
+					array in the user record. It doesn't have a lot of functionality, but for most applications it can do the job.
+					It is documented <a href="simpleauth/intro.html">here</a>.
+					</p>
+
+					<h4 id="ormauth">Ormauth</h4>
+
+					<p>This driver set provides similar functionality as the Simpleauth drivers, but stores all information about
+					users, groups, roles and permissions in the database and uses ORM models to access this information. In addition to
+					this, it doesn't store user metadata in an array, but in a separate table, using ORM's EAV container feature to
+					access it. It's API is almost compatible with Simpleauth, the difference is that methods that return user, group or role
+					data now return ORM objects instead of arrays.
+					It is documented <a href="ormauth/intro.html">here</a>.
+
+					<p class="note">The Auth package contains the required migration files to create the table structures needed for these
+					drivers. It uses the Auth configuration file to determine what to create, so you need to configure that first.</p>
+				</section>
+
+				<section>
+					<h3 id="install">Installation</h3>
+
+					<p>The Auth package is included in the Fuel download. All you need to do is enable it in your config.</p>
 					<pre class="php"><code>'always_load' => array(
 	'packages' => array(
 		'auth',

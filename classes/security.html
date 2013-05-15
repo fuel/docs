@@ -273,7 +273,14 @@ echo Security::js_fetch_token();
 
 			<article>
 				<h4 class="method" id="method_js_set_token">js_set_token()</h4>
-				<p>The <strong>js_set_token</strong> method allows you to produce JavaScript fuel_set_csrf_token() function that will set the current CSRF token field in the form when called. Use this on an onsubmit of a form, to update the hidden token field in the form with the current value of the csrf cookie.</p>
+				<p>
+					The <strong>js_set_token</strong> method allows you to produce JavaScript
+					fuel_set_csrf_token() function that will set the current CSRF token field
+					in the form when called. Use this on an onsubmit of a form, to update the
+					hidden token field in the form with the current value of the csrf cookie.
+					You have to use this when you want to allow multiple windows open, and
+					use a strict rotation and expiry of the CSRF token.
+				</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -300,6 +307,37 @@ echo Security::js_set_token();
 	&lt;!-- do your stuff here --&gt;
 &lt;/form&gt;
 </code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_generate_token">generate_token()</h4>
+				<p>
+					The <strong>generate_token</strong> method allows you to generate a secury token.
+					This method is used to generate CSRF tokens, but can be used anywhere in your application where you need
+					a secure random token.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$token = Security::generate_token();</code></pre>
 						</td>
 					</tr>
 					</tbody>
