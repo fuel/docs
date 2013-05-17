@@ -532,17 +532,17 @@ Upload::register('before', function (&amp;$file) {
 			case "png":
 			case "gif":
 				// store these in the images subdirectory
-				$file['saved_to'] .= 'images/';
+				$file['file'] .= 'images/';
 			break;
 
 			case "css":
 				// store these in the css subdirectory
-				$file['saved_to'] .= 'css/';
+				$file['file'] .= 'css/';
 			break;
 
 			case "js":
 				// store these in the javascript subdirectory
-				$file['saved_to'] .= 'js/';
+				$file['file'] .= 'js/';
 			break;
 
 			default:
@@ -558,18 +558,20 @@ Upload::register('before', function (&amp;$file) {
 				<p>
 					If you want to use a 'validate' callback, be sure to register it before you call Upload::process().
 					If you have used the 'auto_process' configuration setting, Upload::process() will be called as soon as you use the Upload class,
-					which means you will have to call it again after you have defined the callback.
+					which means you can't use this setting if you want to define callbacks at runtime.
 				</p>
 				<p>
-					The callback will receive an entry from the uploaded files array as parameter. The entry is passed by reference, which allows
-					the callback function to modify the entries of the array.<br />
+					The callback will receive a FuelPHP\Upload\File object as parameter. The entry is passed by reference, which allows
+					the callback function to modify the entries of the array. You can access it as an array for backward compatibility
+					reasons, but if migrate your application a version &lt; 1.6 to 1.6+, check the value passed to your callbacks, as
+					not all attributes are named the same as in pre-1.6.<br />
 					If the callback function returns an integer, it is assumed to be an update of the uploaded file's error code.
 					All other return values are ignored.
 				</p>
 
 				<p class="note">
 					<strong>Note:</strong> if you alter the contents of the <strong>$file</strong> array in your callback, you have to make sure that the
-					information is still valid, as the Upload class won't perform its checks again. The only exception to this rule is the '<strong>saved_to</strong>' path,
+					information is still valid, as the Upload class won't perform its checks again. The only exception to this rule is the '<strong>file</strong>' path,
 					which will be checked and created if required after the callback has been executed.
 				</p>
 			</article>
@@ -628,6 +630,7 @@ Upload::process(array(
 					</tr>
 					</tbody>
 				</table>
+				<p class="note">If you intend to use this method, disable <strong>auto_process</strong> in the config, to avoid processing the uploaded files twice!</p>
 			</article>
 
 			<article>
