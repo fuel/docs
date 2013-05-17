@@ -83,15 +83,16 @@
 }</code></pre>
 
 			<p>
-				This controller method "list" is called by the following URL:
+				このコントローラの "list" メソッドは下記の URL から呼び出されます。
 				<pre>http://localhost/test/list.json?foo=bar</pre>
 			</p>
 
 
 			<p class="note">
-				You'll notice that instead of the usual "action_" prefix the Rest Controller uses the HTTP method as a prefix.
-				When no method with the corresponding HTTP method prefix is found it will fall back to the "action_" prefix.
-				All common HTTP methods are supported by the Rest Controller, such as:
+				他のコントローラと同様に、 Rest コントローラにおいても "action_" というプレフィックスのメソッドは、 
+				HTTP メソッドをプレフィックスとしたメソッドの代わりになることに気づくでしょう。
+				HTTP メソッドに当てはまるプレフィクスのメソッドがない場合、"action_" プレフィクスのメソッドが代わりに呼び出されます。
+				Rest コントローラがサポートしている一般的な HTTP メソッドは下記のとおりです。
 			</p>
 
 			<table class="config">
@@ -103,27 +104,30 @@
 					<tr>
 						<th>GET</th>
 						<td>
-							Used to fetch information about an existing resource. This is used by browsers when you
-							enter a URL and hit go, or when you click on a link, so it perfect for fetching information
-							on one of your resources (like user). Forms can also use this method to fetch information submitting a query string (i.e. Search forms).
+							既存のリソースの情報を取得するために使用される。
+							ブラウザで URL を入力して開いたり、リンクをクリックする際に使用され、ユーザなどが情報を取得するのに最適なメソッド。
+							また、フォームでもこのメソッドは使用でき、検索フォームなどで、送信されたクエリ文字列に対する情報を取得する際にも使用される。
 						</td>
 					</tr>
 					<tr>
 						<th>POST</th>
 						<td>
-							Used to create a new resource. It is also used to update a resource because of the lack of HTML support for the PUT method. Most forms use POST method except when their intend is to fetch information submitting a query string.
+							新しいリソースを作成する際に使われる。PUT メソッドが HTML をサポートしていないため、リソースの更新にも使用される。
+							大抵のフォームでは POST メソッドが使用されるが、送信したクエリ文字列に対する情報を取得する場合には使用されない。
 						</td>
 					</tr>
 					<tr>
 						<th>PUT</th>
 						<td>
-							Used to create or update a resource with a known id. Less commonly used as it is not yet supported by HTML (v.5). It is although supported for XMLHttpRequests by most browsers.
+							既知の id に対応するリソースを作成・更新する際に使用される。
+							HTML5 ではサポートされないため、あまり使用されない。ただし、 XMLHttpRequests のために多くのブラウザでサポートされている。
 						</td>
 					</tr>
 					<tr>
 						<th>DELETE</th>
 						<td>
-							Used to delete an existing resource. As for PUT, it is not supported by HTML (v.5) but supported for XMLHttpRequests by most browsers.
+							既存のリソースを削除する際に使用される。
+							PUT メソッドと同様に HTML5 でサポートされなくなったものの、 XMLHttpRequests のために多くのブラウザでサポートされている。
 						</td>
 					</tr>
 				</tbody>
@@ -145,13 +149,12 @@
 			<h3 id="config">Configuration</h3>
 
 			<p>
-				The REST controllers can be globally configured via the <strong>fuel/core/config/rest.php</strong> configuration file. It
-				is already populated with a default configuration. You can override this configuration adding a config file
-				with the same name to your application config directory, and set the values you want to change there. These
-				will overwrite the core config but keep what you didn't overwrite.
+				REST コントローラは fuel/core/config/rest.php でグローバルに設定されており、既にデフォルト値が入力されています。
+				この設定ファイルを上書きするには、あなたのアプリケーションの設定ディレクトリに同名の設定ファイルを追加して、設定したい値に変更してください。
+				これによって、Core の設定が上書きされますが、上書きされなかった設定は元の値が保持されます。
 			</p>
 
-			<p>The following global configuration values can be defined:</p>
+			<p>設定可能な値一覧</p>
 			<table class="config">
 				<tbody>
 					<tr class="header">
@@ -165,8 +168,8 @@
 						<td>string</td>
 						<td><pre class="php"><code>'xml'</code></pre></td>
 						<td>
-							The default format to return the result in. This will only be used when no format is defined in the
-							controller, and all autodetection mechanisms fail.
+							結果を返す際のデフォルトフォーマット。
+							コントローラでフォーマットが指定されなかった場合とフォーマットの自動判定にすべて失敗した場合のみに使用される。
 						</td>
 					</tr>
 					<tr>
@@ -174,7 +177,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>'xml'</code></pre></td>
 						<td>
-							The <a href="#xml_basenode">basenode XML tag</a> to be used when outputting XML structures.
+							XML で出力する際に使われる<a href="#xml_basenode">ベースノードの XML タグ</a>。
 						</td>
 					</tr>
 					<tr>
@@ -182,7 +185,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>'REST API'</code></pre></td>
 						<td>
-							The name for the password protected REST API displayed on login dialogs.
+							パスワード保護された REST API のログインダイアログで表示される名前。
 						</td>
 					</tr>
 					<tr>
@@ -190,9 +193,9 @@
 						<td>string</td>
 						<td><pre class="php"><code>''</code></pre></td>
 						<td>
-							Defines the type of authentication needed. Valid values are 'basic' and 'digest'. You can also define a
-							name of controller method which must be called to check authorization. This method must return a boolean.
-							Leave this empty if no autorization need to be performed.
+							必要とする認証形式の定義。'basic' または 'digest' が正しい値となる。
+							認証をチェックするのに呼び出されなければならないコントローラのメソッドも定義できる。
+							このメソッドは boolean 値を返す。空のままにしておくと認証は要求されない。
 						</td>
 					</tr>
 					<tr>
@@ -200,7 +203,7 @@
 						<td>array</td>
 						<td><pre class="php"><code>array('admin' => '1234')</code></pre></td>
 						<td>
-							An array of key/value pairs, defining valid usernames and passwords for the 'basic' and 'digest' authorization methods.
+							'basic' と 'digest' 認証で使用される、ユーザ名とパスワードの組み合わせを key/value で定義した配列。
 						</td>
 					</tr>
 					<tr>
@@ -208,7 +211,7 @@
 						<td>boolean</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
-							Whether or not the HTTP_ACCEPT header should be parsed on a REST request to determine the format to return.
+							REST リクエストで、返す結果のフォーマットを判定する際に HTTP_ACCEPT ヘッダーをパースするかどうか。
 						</td>
 					</tr>
 				</tbody>
@@ -234,32 +237,32 @@
 				<li>対応フォーマットを含むなら、protected なプロパティである <kbd>$format</kbd> を使用する</li>
 				<li>対応フォーマットであるなら、URL の拡張子を使用する</li>
 				<li>対応フォーマットを含むなら、ルートの中で指定された <kbd>:format</kbd> 変数のフォーマットを使用する</li>
-				<li>use the format defined in the <kbd>HTTP_ACCEPT</kbd> header</li>
-				<li>use the default value defined by the <kbd>$rest_format</kbd> property of your class</li>
-				<li>use the <kbd>default_format</kbd> value defined in the global configuration file</li>
+				<li><kbd>HTTP_ACCEPT</kbd> で定義されたフォーマットを使用する</li>
+				<li>あなたのクラスの <kbd>$rest_format</kbd> プロパティで定義されたデフォルト値を使用する</li>
+				<li>グローバル設定の <kbd>default_format</kbd> でで意義された値を使用する</li>
 			</ul>
 
 			<p>
-				In most cases the <kbd>HTTP_ACCEPT</kbd> is present and contains (at least) <u>text/html</u>, which is a valid
-				result format. This has the implication that the <kbd>$rest_format</kbd>, and any global default defined in the <strong>rest.php</strong>
-				configuration file, will never be used.
+				多くの場合、 <kbd>HTTP_ACCEPT</kbd> が存在し、正しい結果のフォーマットである <u>text/html</u> を（少なくとも）含んでいます。
+				 この値は <kbd>$rest_format</kbd> や <strong>rest.php</strong> で設定されたグローバルなデフォルト定義値でよっては使われません。
 			</p>
 
 			<p>
-				To disable the <kbd>HTTP_ACCEPT</kbd> as a valid format source, set the configuration key <strong>ignore_http_accept</strong>
-				in the <strong>rest.php</strong> to <code>false</code>.
+				<kbd>HTTP_ACCEPT</kbd> がフォーマットの判定に使われないようにするには、
+				<strong>rest.php</strong> で <strong>ignore_http_accept</strong> キーの値を <code>true</code> に設定します。
 			</p>
 
 			<p class="note">
-				Note that it is considered bad practice to hardcode any result format in your REST controller. It should be up to the client
-				to specify in which format the result should be returned. In case of <kbd>HTTP_ACCEPT</kbd>, most ajax solutions like for example
+				結果のフォーマットを REST コントローラ内でハードコードすることはバッドプラクティスであることに注意してください。
+				返される結果のフォーマットはクライアントによって指定されるべきです。
+				In case of <kbd>HTTP_ACCEPT</kbd>, most ajax solutions like for example
 				<code>jQuery.ajax()</code> allow you to set the accept header to <u>application/json</u>.
 			</p>
 
 			<h3 id="xml_basenode">XML Base Node Name</h3>
 
 			<p>
-				When using XML output you can set the XML basenode by setting the <code>$xml_basenode</code> param.
+				XML が出力される場合に、 XML のベースノードは </code>$xml_basenode<code> パラメータで設定されます。
 			</p>
 
 			<pre class="php"><code>class Controller_Test extends Controller_Rest
