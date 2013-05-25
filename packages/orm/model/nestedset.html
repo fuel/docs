@@ -300,226 +300,7 @@ $tim->child($kerry)->save();
 						</p>
 					</article>
 
-					<article>
-						<h4 id="method_delete_tree" class="method">delete_tree($cascade = null, $use_transaction = false)</h4>
-						<p>
-							The <kbd>delete_tree</kbd> works identical to the <a href="#method_delete">delete()</a> method, which the difference that
-							this method DOES delete all children as well.
-						</p>
-						<p class="note">
-							If you use the <strong>delete_tree()</strong> method on a root node, the entire tree will be deleted!
-						</p>
-					</article>
-
-					<article>
-						<h4 id="method_tree_config" class="method">tree_config($name = null)</h4>
-						<p>
-							You use this method to get one or all tree configuration options of the model. It is mainly used internally
-							to construct queries that operate on parts of the tree, or on a specific tree in a multi-tree model.
-						</p>
-						<table class="method">
-							<tbody>
-								<tr>
-									<th class="legend">Static</th>
-									<td>Yes</td>
-								</tr>
-								<tr>
-									<th>Parameters</th>
-									<td>
-										<table class="parameters">
-											<tr>
-												<th>Param</th>
-												<th>Default</th>
-												<th class="description">Description</th>
-											</tr>
-											<tr>
-												<th><kbd>$name</kbd></th>
-												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The name of the configuration property to return.</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<th>Returns</th>
-									<td>A configuration value, an array of values, or null if the requested value does not exist.</td>
-								</tr>
-								<tr>
-									<th>Example</th>
-									<td>
-										<pre class="php"><code>// get the name of the tree-id column
-$tree_id = Model_Tree::tree_config('tree_id');</code></pre>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</article>
-
-					<article>
-						<h4 id="method_get_tree_id" class="method">get_tree_id()</h4>
-						<p>
-							You use this method to get the tree-id in a multi-tree environment. If there is a valid node to operate on, the
-							tree-id of that node is returned. If not, the value set using <strong>set_tree_id()</strong> is returned.
-							If no tree-id has been set, an exception is thrown. This method is mainly used internally to make sure queries
-							run in the context of the current tree in a multi-tree environment.
-						</p>
-						<table class="method">
-							<tbody>
-								<tr>
-									<th class="legend">Static</th>
-									<td>No</td>
-								</tr>
-								<tr>
-									<th>Parameters</th>
-									<td>
-										None.
-									</td>
-								</tr>
-								<tr>
-									<th>Returns</th>
-									<td>mixed, the tree-id of the current tree, or the default tree-id set.</td>
-								</tr>
-								<tr>
-									<th>Example</th>
-									<td>
-										<pre class="php"><code>// get the tree_id (returns 1)
-$current_tree = $bill->get_tree_id();</code></pre>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</article>
-
-					<article>
-						<h4 id="method_set_tree_id" class="method">set_tree_id($tree = null)</h4>
-						<p>
-							You use this method to set the tree-id in a multi-tree environment. You mainly use this when you want to
-							run	a <strong>get()</strong> or <strong>get_one()</strong> but you don't have an existing node to work on.
-						</p>
-						<table class="method">
-							<tbody>
-								<tr>
-									<th class="legend">Static</th>
-									<td>No</td>
-								</tr>
-								<tr>
-									<th>Parameters</th>
-									<td>
-										<table class="parameters">
-											<tr>
-												<th>Param</th>
-												<th>Default</th>
-												<th class="description">Description</th>
-											</tr>
-											<tr>
-												<th><kbd>$tree</kbd></th>
-												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The tree-id of the tree to select. If no value, or null, is passed, the stored tree-id is reset.</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<th>Returns</th>
-									<td>Model_Nestedset, for chaining.</td>
-								</tr>
-								<tr>
-									<th>Example</th>
-									<td>
-										<pre class="php"><code>// get the root of a tree without having a previous node to work with
-$root = Model_Tree::forge()->set_tree_id($mytreeid)->get_one();</code></pre>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</article>
-
-					<article>
-						<h4 id="method_build_query" class="method">build_query()</h4>
-						<p>
-							The <strong>build_query</strong> method returns an ORM query object, like <strong>Model_Nestedset::query()</strong>
-							but with an added <strong>where</strong> clause in case of a multi-tree model, to make sure the query runs in the context of the
-							current tree. It requires a tree-id to be available, so if you call this on a new object, use <strong>set_tree_id</strong> to make
-							sure a valid id is defined.
-						</p>
-						<table class="method">
-							<tbody>
-								<tr>
-									<th class="legend">Static</th>
-									<td>No</td>
-								</tr>
-								<tr>
-									<th>Parameters</th>
-									<td>
-										None.
-									</td>
-								</tr>
-								<tr>
-									<th>Returns</th>
-									<td>an ORM Query object.</td>
-								</tr>
-								<tr>
-									<th>Example</th>
-									<td>
-										<pre class="php"><code>// get all nodes in the current tree with an enabled status set
-$enabled = Model_Tree::forge()
-	->set_tree_id($mytreeid)
-	->build_query()
-	->where('enabled', '=', 1)
-	->get();
-
-// using an existing object, this will use the tree-id of the $bill object
-$enabled = $bill
-	->build_query()
-	->where('enabled', '=', 1)
-	->get();</code></pre>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</article>
-
-					<article>
-						<h4 id="method_get_query" class="method">get_query()</h4>
-						<p>
-							The <strong>get_query</strong> method returns an ORM query object, but unlike <strong>build_query()</strong>
-							this method requires a collection methods to be used. It allows you to use the standard Model methods to
-							constuct a first selection of nodes, and use the returned Query object to fine-tune the query.
-						</p>
-						<table class="method">
-							<tbody>
-								<tr>
-									<th class="legend">Static</th>
-									<td>No</td>
-								</tr>
-								<tr>
-									<th>Parameters</th>
-									<td>
-										None.
-									</td>
-								</tr>
-								<tr>
-									<th>Returns</th>
-									<td>an ORM Query object.</td>
-								</tr>
-								<tr>
-									<th>Example</th>
-									<td>
-										<pre class="php"><code>// get all child nodes of Bill with an enabled status set
-$enabled = $bill
-	->children()
-	->get_query()
-	->where('enabled', '=', 1)
-	->get();
-</code></pre>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</article>
-
                 </section>
-
 
                 <section>
 					<h2 id="collection_methods">Collection methods</h2>
@@ -1735,6 +1516,224 @@ echo $ben->has_next_sibling() ? 'true' : 'false';
 
                 <section>
 					<h2 id="miscellaneous_methods">Miscellaneous methods</h2>
+
+					<article>
+						<h4 id="method_delete_tree" class="method">delete_tree($cascade = null, $use_transaction = false)</h4>
+						<p>
+							The <kbd>delete_tree</kbd> works identical to the <a href="#method_delete">delete()</a> method, which the difference that
+							this method DOES delete all children as well.
+						</p>
+						<p class="note">
+							If you use the <strong>delete_tree()</strong> method on a root node, the entire tree will be deleted!
+						</p>
+					</article>
+
+					<article>
+						<h4 id="method_tree_config" class="method">tree_config($name = null)</h4>
+						<p>
+							You use this method to get one or all tree configuration options of the model. It is mainly used internally
+							to construct queries that operate on parts of the tree, or on a specific tree in a multi-tree model.
+						</p>
+						<table class="method">
+							<tbody>
+								<tr>
+									<th class="legend">Static</th>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th>Parameters</th>
+									<td>
+										<table class="parameters">
+											<tr>
+												<th>Param</th>
+												<th>Default</th>
+												<th class="description">Description</th>
+											</tr>
+											<tr>
+												<th><kbd>$name</kbd></th>
+												<td><pre class="php"><span class="keyword">null</span></pre></td>
+												<td>The name of the configuration property to return.</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<th>Returns</th>
+									<td>A configuration value, an array of values, or null if the requested value does not exist.</td>
+								</tr>
+								<tr>
+									<th>Example</th>
+									<td>
+										<pre class="php"><code>// get the name of the tree-id column
+$tree_id = Model_Tree::tree_config('tree_id');</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</article>
+
+					<article>
+						<h4 id="method_get_tree_id" class="method">get_tree_id()</h4>
+						<p>
+							You use this method to get the tree-id in a multi-tree environment. If there is a valid node to operate on, the
+							tree-id of that node is returned. If not, the value set using <strong>set_tree_id()</strong> is returned.
+							If no tree-id has been set, an exception is thrown. This method is mainly used internally to make sure queries
+							run in the context of the current tree in a multi-tree environment.
+						</p>
+						<table class="method">
+							<tbody>
+								<tr>
+									<th class="legend">Static</th>
+									<td>No</td>
+								</tr>
+								<tr>
+									<th>Parameters</th>
+									<td>
+										None.
+									</td>
+								</tr>
+								<tr>
+									<th>Returns</th>
+									<td>mixed, the tree-id of the current tree, or the default tree-id set.</td>
+								</tr>
+								<tr>
+									<th>Example</th>
+									<td>
+										<pre class="php"><code>// get the tree_id (returns 1)
+$current_tree = $bill->get_tree_id();</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</article>
+
+					<article>
+						<h4 id="method_set_tree_id" class="method">set_tree_id($tree = null)</h4>
+						<p>
+							You use this method to set the tree-id in a multi-tree environment. You mainly use this when you want to
+							run	a <strong>get()</strong> or <strong>get_one()</strong> but you don't have an existing node to work on.
+						</p>
+						<table class="method">
+							<tbody>
+								<tr>
+									<th class="legend">Static</th>
+									<td>No</td>
+								</tr>
+								<tr>
+									<th>Parameters</th>
+									<td>
+										<table class="parameters">
+											<tr>
+												<th>Param</th>
+												<th>Default</th>
+												<th class="description">Description</th>
+											</tr>
+											<tr>
+												<th><kbd>$tree</kbd></th>
+												<td><pre class="php"><span class="keyword">null</span></pre></td>
+												<td>The tree-id of the tree to select. If no value, or null, is passed, the stored tree-id is reset.</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<th>Returns</th>
+									<td>Model_Nestedset, for chaining.</td>
+								</tr>
+								<tr>
+									<th>Example</th>
+									<td>
+										<pre class="php"><code>// get the root of a tree without having a previous node to work with
+$root = Model_Tree::forge()->set_tree_id($mytreeid)->get_one();</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</article>
+
+					<article>
+						<h4 id="method_build_query" class="method">build_query()</h4>
+						<p>
+							The <strong>build_query</strong> method returns an ORM query object, like <strong>Model_Nestedset::query()</strong>
+							but with an added <strong>where</strong> clause in case of a multi-tree model, to make sure the query runs in the context of the
+							current tree. It requires a tree-id to be available, so if you call this on a new object, use <strong>set_tree_id</strong> to make
+							sure a valid id is defined.
+						</p>
+						<table class="method">
+							<tbody>
+								<tr>
+									<th class="legend">Static</th>
+									<td>No</td>
+								</tr>
+								<tr>
+									<th>Parameters</th>
+									<td>
+										None.
+									</td>
+								</tr>
+								<tr>
+									<th>Returns</th>
+									<td>an ORM Query object.</td>
+								</tr>
+								<tr>
+									<th>Example</th>
+									<td>
+										<pre class="php"><code>// get all nodes in the current tree with an enabled status set
+$enabled = Model_Tree::forge()
+	->set_tree_id($mytreeid)
+	->build_query()
+	->where('enabled', '=', 1)
+	->get();
+
+// using an existing object, this will use the tree-id of the $bill object
+$enabled = $bill
+	->build_query()
+	->where('enabled', '=', 1)
+	->get();</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</article>
+
+					<article>
+						<h4 id="method_get_query" class="method">get_query()</h4>
+						<p>
+							The <strong>get_query</strong> method returns an ORM query object, but unlike <strong>build_query()</strong>
+							this method requires a collection methods to be used. It allows you to use the standard Model methods to
+							constuct a first selection of nodes, and use the returned Query object to fine-tune the query.
+						</p>
+						<table class="method">
+							<tbody>
+								<tr>
+									<th class="legend">Static</th>
+									<td>No</td>
+								</tr>
+								<tr>
+									<th>Parameters</th>
+									<td>
+										None.
+									</td>
+								</tr>
+								<tr>
+									<th>Returns</th>
+									<td>an ORM Query object.</td>
+								</tr>
+								<tr>
+									<th>Example</th>
+									<td>
+										<pre class="php"><code>// get all child nodes of Bill with an enabled status set
+$enabled = $bill
+	->children()
+	->get_query()
+	->where('enabled', '=', 1)
+	->get();
+</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</article>
 
 					<article>
 						<h4 id="method_count_children" class="method">count_children()</h4>
