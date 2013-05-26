@@ -56,8 +56,8 @@
 				<h4 class="method" id="method_forge">forge($fieldset = 'default')</h4>
 
 				<p>
-					The <strong>forge</strong> method returns a new Validation instance,
-					and links it with a Fieldset with name $fieldset.
+					<strong>forge</strong> メソッドは、Validation クラスの新しいインスタンスを生成します。
+					また、与えられた Fieldset とリンクされます。
 				</p>
 
 				<table class="method">
@@ -80,7 +80,7 @@
 										<th><kbd>$fieldset</kbd></th>
 										<td><em>string | Fieldset</em></td>
 										<td><pre class="php"><code>'default'</code></pre></td>
-										<td>The name or instance of the Fieldset to link to.</td>
+										<td>リンクする Fieldset の名前もしくはインスタンス</td>
 									</tr>
 							</table>
 							</td>
@@ -96,13 +96,13 @@
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Create a new validation instance
+								<pre class="php"><code>// 新しい Validation インスタンスを生成
 $val = Validation::forge();
 
-// Associate the new Validation instance with a Fieldset, using the fieldset name
+// fieldset 名を使って、新しい Validation インスタンスと Fieldset を関連づける
 $val = Validation::forge('my_fieldset');
 
-// Associate the new Validation instance with a Fieldset, by passing the fieldset instance
+// fieldset インスタンスを渡して、新しい Validation インスタンスと Fieldset を関連づける
 $fieldset = Fieldset::instance('my_fieldset');
 $val = Validation::forge($fieldset);
 </code></pre>
