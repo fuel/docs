@@ -129,24 +129,24 @@ Autoloader::add_classes(array(
 					<li><kbd>Security</kbd></li>
 					<li><kbd>Event</kbd></li>
 					<li><kbd>Event_Instance</kbd></li>
-					<li>And any class you use in your main <kbd>app/config/config.php</kbd></li>
+					<li>そして、あなたが <kbd>app/config/config.php</kbd> で使用している任意のクラス</li>
 				</ul>
 
-				<p>If you have activated the profiler in your configuration, you can not extend these classes from packages too:</p>
+				<p>あなたが設定でプロファイラを有効にしている場合は、packagesからこれらのクラスもまた拡張することはできません:</p>
 
 				<ul>
 					<li><kbd>Cookie</kbd></li>
 					<li><kbd>Session</kbd></li>
-					<li><kbd>Session_Cookie</kbd> (or another session driver class, depending on your session configuration)</li>
+					<li><kbd>Session_Cookie</kbd> (または別のセッションドライバクラス、あなたのセッション設定に依存)</li>
 					<li><kbd>Session_Driver</kbd></li>
 					<li><kbd>Date</kbd></li>
 					<li><kbd>Profiler</kbd></li>
 				</ul>
 
 				<p>
-					You can work around some of these limitations by manually load your package in the <kbd>app/bootstrap.php</kbd> file,
-					by adding <kbd>Package::load('mypackagename');</kbd> just before the <kbd>Fuel::init()</kbd> call. If you do,
-					your package can only not extend:
+					あなたは <kbd>app/bootstrap.php</kbd> ファイルの <kbd>Fuel::init()</kbd> の直前に <kbd>Package::load('mypackagename');</kbd> を
+					追加することにより、あなたのパッケージを手動で読み込むことでこれらの制限の一部を回避することができます。
+					そうした場合も、あなたのパッケージでは拡張できません:
 				</p>
 
 				<ul>
