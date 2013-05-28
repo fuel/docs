@@ -3,6 +3,7 @@
 ## Version 1.6
 
 * Kenji Suzuki <https://github.com/kenjis>
+* Tatsuya Ueda <http://github.com/tatsuyaueda>
 
 ## Version 1.5
 
