@@ -5,6 +5,7 @@
 * Kenji Suzuki <https://github.com/kenjis>
 * Tatsuya Ueda <http://github.com/tatsuyaueda>
 * Hitoshi Asano <https://github.com/orcaaoshi>
+* sharkpp <https://github.com/sharkpp>
 
 ## Version 1.5
 
