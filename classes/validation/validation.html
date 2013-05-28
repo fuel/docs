@@ -237,7 +237,8 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<th>match_pattern</th>
 							<td><kbd>$pattern</kbd></td>
 							<td>
-								Will try to match the value against the given $pattern which must be a full PREG regex.
+								入力値が <kbd>$pattern</kbd> とマッチするかどうか。
+								<kbd>$pattern</kbd> は完全な PREG正規表現 である必要があります。
 								<p class="note"><strong>Note:</strong> you can <strong>NOT</strong> use the pipe symbol (|) in your pattern when you're using short syntax, as that symbol is used to split the rules in the string.</p>
 							</td>
 						</tr>
@@ -245,8 +246,8 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<th>match_field</th>
 							<td><kbd>$field</kbd></td>
 							<td>
-								Will try to match the field to the field with the given fieldname, the matching is done
-								using ===.
+								入力値が <kbd>$fieldname</kbd> フィールドと一致するかどうか。
+								比較には === が使用される。
 								<p class="note"><strong>Important:</strong> you can only match against a field that was added before the field this rule is added to.</p>
 							</td>
 						</tr>
@@ -275,8 +276,9 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<th>valid_date</th>
 							<td><kbd>$format</kbd>, <kbd>$strict</kbd> = true</td>
 							<td>
-								Validates if the given input is a valid date format. If the <kbd>$format</kbd> parameter is given then 
-								validates using specified format. Will check date strict (example, leap year) unless 2nd parameter is given as false.
+								有効な日付形式かどうか。
+								もし、 <kbd>$format</kbd> が指定された場合は、指定されたフォーマットに基づいて比較されます。
+								第2引数が false でない限り、厳密な比較が行われます。(たとえば閏年など)
 							</td>
 						</tr>
 						<tr>
