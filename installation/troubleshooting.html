@@ -58,7 +58,7 @@
 				<li><a href="#orm_list_columns">Orm\Exception [ Error ]: Listing columns not failed</a></li>
 				<li><a href="#assets_error">index.php の場所を変更した後、Asset が動作しない</a></li>
 				<li><a href="#symlinks_error">シンボリックリンクを変更した後、Core、App、Packages が見つからない</a></li>
-				<li><a href="#stack_frame_error">Exception thrown without a stack frame</a></li>
+				<li><a href="#stack_frame_error">例外発生時にスタックフレームに何も入ってこない</a></li>
 			</ul>
 
 			<article>
@@ -90,9 +90,9 @@
 				<h4>解決策</h4>
 
 				<p>
-					PHPのバグらしく、このドキュメント（英語版）執筆時点では修正されていません。
-					殆どの人はPHP5.3.xを利用しており、マルチバイト環境ではこの問題は報告されていません。
-					FuelPHP開発チームにおいては、PHP5.4.xの利用者で同じエラーに遭遇したという例はまだありません。
+					PHP のバグらしく、このドキュメント（英語版）執筆時点では修正されていません。
+					殆どの人は PHP 5.3.x を利用しており、マルチバイト環境ではこの問題は報告されていません。
+					FuelPHP 開発チームにおいては、PHP 5.4.x の利用者で同じエラーに遭遇したという例はまだありません。
 				</p>
 
 				<p>回避策として、 zend-multibyte と mbstring を無効にするか、違うバージョンの PHP を使うことが推奨されています。</p>
@@ -235,7 +235,7 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 				<h4>いつ発生するか...</h4>
 				
-				<p>DOCROOT/index.phpでrealpth()が相対パスを解決するために使われていて、シンボリックリンクを含むパス情報をキャッシュすることが原因です。</p>
+				<p>DOCROOT/index.php で realpath() が相対パスを解決するために使われていて、シンボリックリンクを含むパス情報をキャッシュすることが原因です。</p>
 
 				<h4>解決策</h4>
 
@@ -253,14 +253,14 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 				<h4>いつ発生するか...</h4>
 
-				<p>PHPがすでにティアダウンフェーズ（SSLトラフィックを搬送していない状態）の時にエラーが起こり、エラーハンドラが利用できない状態にあることが原因です。</p>
+				<p>PHP がすでにティアダウンフェーズ（SSL トラフィックを搬送していない状態）の時にエラーが起こり、エラーハンドラが利用できない状態にあることが原因です。</p>
 
 				<h4>解決策</h4>
 
 				<p>
 					発生し得る原因は沢山ありますが、最もわかりやすい例を記しておきます：
 					<ul>
-						<li>webサーバが（デフォルトのAPPPATH、'logs'）ログファイルを格納するフォルダへの正しいアクセス権を持っていない</li>
+						<li>Web サーバがログファイルを格納するフォルダ（デフォルトは APPPATH.'logs'）への正しい書き込み権限を持っていない</li>
 					</ul>
 				</p>
 
