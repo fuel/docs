@@ -998,7 +998,8 @@ Array
 
 			<article>
 				<h4 id="method_get" class="method">get($array, $key, $default = false)</h4>
-				<p>The <strong>get</strong> method returns the element of the given array using dot-notation, or a default if it is not set.</p>
+				<p><strong>get</strong> メソッドは指定された配列の要素を返します。
+				多次元配列には、階層をドット (.) で区切ることでアクセスできます。また、初期値はセットされていません。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1017,17 +1018,17 @@ Array
 								<tr>
 									<th><kbd>$array</kbd></th>
 									<td><em>必須</em></td>
-									<td>The array to access</td>
+									<td>アクセスする配列</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<td><em>必須</em></td>
-									<td>The key requested in $array. If <strong>null</strong> is passed as key, the entire array is returned.</td>
+									<td>$array 配列のキー。もし <strong>null</strong> が渡された場合は全体が配列として返されます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>The value to be returned if the requested key does not exist</td>
+									<td>指定された要素が存在しない場合に返す値を指定します。</td>
 								</tr>
 							</table>
 						</td>
@@ -1066,7 +1067,8 @@ echo Arr::get($person, "location.city", "Unknown City");
 
 			<article>
 				<h4 id="method_set" class="method">set(&amp;$array, $key, $value = null)</h4>
-				<p>The <strong>set</strong> method sets the element of the given array using dot-notation.</p>
+				<p><strong>set</strong> メソッドは指定された配列に要素をセットします。
+				多次元配列には、階層をドット (.) で区切ることでアクセスできます。</p>
 				<p class="note"><strong>WARNING</strong>: The original array is edited by reference</p>
 				<table class="method">
 					<tbody>
@@ -1086,17 +1088,18 @@ echo Arr::get($person, "location.city", "Unknown City");
 								<tr>
 									<th><kbd>$array</kbd></th>
 									<td><em>必須</em></td>
-									<td>The array to access</td>
+									<td>アクセスする配列</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<td><em>必須</em></td>
-									<td>The key requested in $array. If no key is passed, or <strong>null</strong> is passed as key value, the array is unset. If you pass an array of key -> value pairs, all the values in the array will be set.</td>
+									<td>$array 配列のキー。もし、キーが渡されなかった場合や <strong>null</strong> が渡された場合、配列は破棄されます。
+									また、 key -> value のペアが渡された場合はすべての値が配列にセットされます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The value to be set. Ignored if $key is an array.</td>
+									<td>セットする値。 $key が配列の場合は無視されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -1119,13 +1122,13 @@ echo Arr::get($person, "location.city", "Unknown City");
 );
 
 Arr::set($person, "name", "John");
-// $person['name'] is set to "John"
+// $person['name'] には "John" がセットされます。
 
 // This method can also dive into arrays by using a dot to separate between keys
 Arr::set($person, "location.city", "Philadelphia");
-// $person['location']['city'] is set to "Philadelphia"
+// $person['location']['city'] には "Philadelphia" がセットされます。
 
-// or set multiple values in one go
+// また、一度に複数の値をセットすることも出来ます。
 Arr::set($person, array("name" => "John", "location.city" => "Philadelphia"));</code></pre>
 						</td>
 					</tr>
