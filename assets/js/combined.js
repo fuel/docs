@@ -544,7 +544,7 @@ panes.auth = {
 	"Auth パッケージ": {
 		"はじめに":		"packages/auth/intro.html",
 		"Writing drivers":	"packages/auth/drivers.html",
-		"Driver types": {
+		"ドライバタイプ": {
 			"Login":		"packages/auth/types/login.html",
 			"Group":		"packages/auth/types/group.html",
 			"ACL":			"packages/auth/types/acl.html"
