@@ -46,7 +46,7 @@
 		<div id="main">
 			<h2 id="introduction">Query_Builder_Select クラス</h2>
 
-			<p>(extends <a href="qb_where.html">Query_Builder_Where</a>)</p>
+			<p>(<a href="qb_where.html">Query_Builder_Where</a> の拡張)</p>
 
 			<p>
 				Query_Builder_Select クラスは、クエリ構築のための、すべてのSELECT 操作を扱います。
@@ -88,7 +88,7 @@
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('name')->from('users');
 
 // 重複なしを指定します
@@ -137,7 +137,7 @@ $query->distinct();
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('name')->from('users');
 
 // Append other columns to select
@@ -198,7 +198,7 @@ $query->select(
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('name')->from('users');
 
 // 取得したい別のカラムを追加します。
@@ -262,7 +262,7 @@ $query->select_array(array(
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select()->from('users');
 
 // 取得するテーブルを指定
@@ -320,7 +320,7 @@ $query->from(
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select()->from('users');
 
 // Join a table
@@ -390,7 +390,7 @@ $query->join('pictures', 'RIGHT OUTER');
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select()->from('users');
 
 // Join a table
@@ -457,7 +457,7 @@ $query->on('users.id', '=', 'profiles.user_id');
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select()->from('users');
 
 // Join a table
@@ -510,7 +510,7 @@ $query->or_on('users.id', '=', 'profiles.other_id');
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select()->from('articles');
 
 // Group by 'genre'
@@ -576,7 +576,7 @@ $query->group_by('genre', 'category');
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('*')->from('users');
 
 // Set the first HAVING statement
@@ -648,7 +648,7 @@ $query->and_having(function($query){
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('*')->from('users');
 
 // Set the first HAVING statement
@@ -700,7 +700,7 @@ $query->or_having(function($query){
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('*')->from('users');
 
 // Set a HAVING statement
@@ -739,7 +739,7 @@ $query->and_having_open();
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('*')->from('users');
 
 // Set a HAVING statement
@@ -783,7 +783,7 @@ $query->or_having_open();
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('*')->from('users');
 
 // Open a closure
@@ -823,7 +823,7 @@ $query->and_having_close();
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('*')->from('users');
 
 // Set a HAVING statement
@@ -880,7 +880,7 @@ $query->or_having_close();
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('*')->from('users');
 
 // Set the limit
@@ -931,7 +931,7 @@ $query->offset(5);
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('*')->from('users');
 
 // Set the limit and offset
@@ -972,7 +972,7 @@ $sql = $query->compile($connection);
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a select statement
+								<pre class="php"><code>// select 文を準備します
 $query = DB::select('*')->from('users');
 
 // Set some conditions
