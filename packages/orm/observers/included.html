@@ -250,15 +250,13 @@ echo $fieldset;</code></pre>
 				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Typing');
 
-// But adding it just for these specific events is enough
+// 特定のイベントだけのためのオブザーバーを追加します。
 protected static $_observers = array('Orm\\Observer_Typing' => array(
 	'events' => array('before_save', 'after_save', 'after_load')
 ));</code></pre>
 
 				<p>
-					For this observer to work you must have your the <kbd>$_properties</kbd> static variable set in your
-					model, or not set at all using detection with <kbd>DB::list_columns()</kbd> (MySQL only!). When
-					configuring it yourself the following settings are available:
+					このオブザーバーはあなたがそのモデルにセットした <kbd>$_properties</kbd> 静的変数を必要としますが、もしセットされていない場合は <kbd>DB::list_columns()</kbd> (MySQL のみ) による検出を利用します。もし自分で設定を行いたい場合、以下の設定が利用可能です。
 				</p>
 
 				<table class="config">
