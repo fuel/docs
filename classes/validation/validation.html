@@ -156,10 +156,10 @@ $val = Validation::forge('my_validation');
 $val->add_field('username', 'Your username', 'required');
 $val->add_field('password', 'Your password', 'required|min_length[3]|max_length[10]');</code></pre>
 
-				<p>Once all the fields have been added you can run your validation. This will default to $_POST input, but
-				can be extended and overwritten when given an input array.</p>
+				<p>すべてのフィールドを追加したら、バリデーションを実行することが出来ます。
+				デフォルトでは $_POST ですが、入力を与えることで、上書きや拡張することが出来ます。</p>
 
-				<pre class="php"><code>// run validation on just post
+				<pre class="php"><code>// POSTに対してバリデーションを実行
 if ($val->run())
 {
 	// バリデーションに成功した場合の処理
@@ -169,7 +169,7 @@ else
 	// 失敗
 }
 
-// alternative to above, overwriting the username in post, password will still be sought in post
+// 上記の代わりに POST の username を上書きし、 password を POST の中から探す
 if ($val->run(array('username' => 'something')))</code></pre>
 
 				<p>バリデーションが実行されたとき、there are three methods available for information about the input:</p>
