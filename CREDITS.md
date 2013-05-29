@@ -6,6 +6,7 @@
 * Tatsuya Ueda <http://github.com/tatsuyaueda>
 * Hitoshi Asano <https://github.com/orcaaoshi>
 * sharkpp <https://github.com/sharkpp>
+* Fumito Mizuno <https://github.com/ounziw>
 
 ## Version 1.5
 
