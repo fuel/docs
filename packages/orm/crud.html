@@ -370,11 +370,11 @@ Model_Article::find('all', array('rows_offset' =&gt; 10));
 						and the cache handler doesn't know the results were incomplete!
 					</p>
 
-					<h3 id="complex_wheres">Complex where clauses</h3>
+					<h3 id="complex_wheres">複雑な where 句</h3>
 
-					<p>Using chaining you can create more complex where clauses, using and, or and nesting</p>
+					<p>and、or、そしてネストを使ったチェーンにより、さらに複雑な where 句を作ることができます。</p>
 
-					<pre class="php"><code>// complex where clause
+					<pre class="php"><code>// 複雑な where 句
 Model_Article::query()
   -&gt;where('author', '=', 16)
   -&gt;and_where_open()
@@ -385,8 +385,7 @@ Model_Article::query()
 // creates WHERE `author` = 16 AND (`date` &lt; 1348404127 OR `draft` = 1)
 </code></pre>
 					<p class="note">
-						To create a nested OR, use <kbd>or_where_open()</kbd> and <kbd>or_where_close()</kbd>. Allways make sure
-						your open and close methods match!
+						ネストされた OR を作るには or_where_open() と or_where_close() を使ってください。必ず open メソッドと close メソッドが一致するように気をつけてください。
 					</p>
 				</article>
 
