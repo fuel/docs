@@ -149,7 +149,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 					to validate before save. As such, you must try/catch your calls to the <kbd>save</kbd> function of
 					a model.</p>
 
-				<p>より広範な機能例/scaffoldingを以下に示します:</p>
+				<p>より広範な機能例/scaffolding を以下に示します:</p>
 
 				<pre class="php"><code>class Controller_Articles extends Controller
 {
@@ -214,36 +214,36 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 
 }</code></pre>
 
-				<p>これは、<a href="../../../classes/fieldset.html">Fieldset</a>クラスを使用しているので、検証を実行し、
+				<p>これは、<a href="../../../classes/fieldset.html">Fieldset</a> クラスを使用しているので、検証を実行し、
                                     また、モデル用のフォームを作成することができます。次の例では、作成と編集フォームが一般的なビューで定義されています。
                                     しかし、同じように簡単にモデルにそれを定義し、
-                                    <code>Fieldset::instance()</code>を使用することで、
+                                    <code>Fieldset::instance()</code> を使用することで、
                                     viewでそれのインスタンスを取得することができます。</p>
 
-				<pre class="php"><code>// フォームを作成するModel_Articleのインスタンスを使用して、あなたはまた、クラス名を渡すことができます。
+				<pre class="php"><code>// フォームを作成する Model_Article のインスタンスを使用して、あなたはまた、クラス名を渡すことができます。
 $fieldset = Fieldset::forge()->add_model($article);
 
 // モデルのインスタンスからの値を使用してフォームを移入します。
-// trueを渡しても、セーブ失敗した後に再設定するためにPOST/PUTを使用します。
+// trueを渡しても、セーブ失敗した後に再設定するために POST/PUT を使用します。
 $fieldset->populate($article, true);
 
-// フィールドセットは、文字列へのキャスト時にHTMLとしてビルドされます。
+// フィールドセットは、文字列へのキャスト時に HTML としてビルドされます。
 echo $fieldset;</code></pre>
 
 				<h4 id="os_typing">Observer_Typing</h4>
 
 				<p>
-					これは2つのもののためのものです: 入力のための型強制とDBからの出力のための型キャストです。 つまり、
+					これは 2 つのもののためのものです: 入力のための型強制とDBからの出力のための型キャストです。 つまり、
                                         あなたがタイピングオブザーバを保存しているときにすることは予想される型に入力値をキャストしようとすることで、
-                                        それができないは例外をスローします。そして、あなたがDBのデータを取得しているとき、
+                                        それができないは例外をスローします。そして、あなたが DB のデータを取得しているとき、
                                         通常、それはすべての文字列になります（偶数整数および浮動小数点数）が、タイピングオブザーバでそれらはそれらのスカラ型にキャストされます。
 				</p>
 
 				<p>タイピングオブザーバーは上記のほかに、シリアル＆JSONフィールドのサポートを追加します。どちらも
-                                    文字列型のフィールドである必要があります（"テキスト"が望ましい）。  しかし保存用に(<kbd>serialize()</kbd> もしくは <kbd>json_encode()</kbd>を使って)エンコードされたの値を持つことになり、そして
-                                    DBから取得する際には(<kbd>unserialize()</kbd> もしくは <kbd>json_decode()</kbd>を使って)デコードをします。</p>
+                                    文字列型のフィールドである必要があります（"テキスト"が望ましい）。  しかし保存用に (<kbd>serialize()</kbd> もしくは <kbd>json_encode()</kbd> を使って) エンコードされたの値を持つことになり、そして
+                                    DB から取得する際には (<kbd>unserialize()</kbd> もしくは <kbd>json_decode()</kbd> を使って) デコードをします。</p>
 
-				<p class="note">Observer_Typingが検証に代わるものとして意図されていないため、検証としてそれを使用しようと
+				<p class="note">Observer_Typing が検証に代わるものとして意図されていないため、検証としてそれを使用しようと
                                     しないでください。どちらもあなたのサイトの訪問者によって読まれることを意図してこのオブザーバによってスローされた例外はありません。
                                     コードをデバッグするのに役立つことを意図しています。</p>
 
@@ -256,7 +256,9 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 ));</code></pre>
 
 				<p>
-					このオブザーバーはあなたがそのモデルにセットした <kbd>$_properties</kbd> 静的変数を必要としますが、もしセットされていない場合は <kbd>DB::list_columns()</kbd> (MySQL のみ) による検出を利用します。もし自分で設定を行いたい場合、以下の設定が利用可能です。
+					このオブザーバーはあなたがそのモデルにセットした <kbd>$_properties</kbd> 静的変数を必要としますが、
+					もしセットされていない場合は <kbd>DB::list_columns()</kbd> (MySQL のみ) による検出を利用します。
+					もし自分で設定を行いたい場合、以下の設定が利用可能です。
 				</p>
 
 				<table class="config">
@@ -272,7 +274,7 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 								text, tinytext, mediumtext, longtext, enum, set, bool, boolean, serialize, json,
 								time_unix, time_mysql</td>
 							<td>
-                                                                フィールド上で使用されるタイピングオブザーバを持っているために<strong>必要な</strong>SQLデータ型。
+								フィールド上で使用されるタイピングオブザーバを持っているために<strong>必要な</strong>SQLデータ型。
 							</td>
 						</tr>
 						<tr>
@@ -340,7 +342,7 @@ protected static $_observers = array(
 protected static $_observers = array('Orm\\Observer_Slug' => array('before_insert'));</code></pre>
 
 				<p>
-					オブザーバは <a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a> を使用して<kbd>title</kbd> から <kbd>slug</kbd> を作成し、スラグが既に存在する場合は、インデックスを追加します。
+					オブザーバは <a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a> を使用して <kbd>title</kbd> から <kbd>slug</kbd> を作成し、スラグが既に存在する場合は、インデックスを追加します。
 				</p>
 			</article>
 
