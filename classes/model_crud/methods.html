@@ -751,6 +751,71 @@ $user->save();
 			</article>
 
 			<article>
+				<h4 class="method" id="method_count">count($column = null, $distinct = true, $where = array(), $group_by = null)</h4>
+				<p>The <strong>count</strong> method returns a row count.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$column</kbd></th>
+									<th><em>string</em></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The name of the column to count on. If not given the primary key will be used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$distinct</kbd></th>
+									<th><em>boolean</em></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>Whether or not to run a distinct query.</td>
+								</tr>
+								<tr>
+									<th><kbd>$where</kbd></th>
+									<th><em>array</em></th>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td>Array with where clauses to filter the result.</td>
+								</tr>
+								<tr>
+									<th><kbd>$group_by</kbd></th>
+									<th><em>string</em></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Column to group by.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Mixed. Integer with the result of the count query, or false in case the query failed.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// count all records in the table
+$nbr_of_records = Model_User::count();
+
+// filter the result count by only counting admin users
+$nbr_of_records = Model_User::count('id', true, array('group', '=', 100));
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_is_frozen">is_frozen($frozen = null)</h4>
 				<p>The <strong>is_frozen</strong> method checks if the record is frozen or sets whether it is frozen or not.</p>
 				<table class="method">
