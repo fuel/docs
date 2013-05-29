@@ -10,7 +10,7 @@
 		var path = './../../../';
 	</script>
 	<script src="./../../../assets/js/combined.js"></script>
-	<title>Introduction - OrmAuth - Auth Package - FuelPHP Documentation</title>
+	<title>はじめに - OrmAuth - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -43,7 +43,7 @@
 		</div>
 
 		<div id="main">
-			<h2>OrmAuth - Introduction</h2>
+			<h2>OrmAuth - はじめに</h2>
 
 			<p>
 				Ormauth is a set of authentication and authorisation drivers that provide a similar functionality as Simpleauth,
@@ -57,7 +57,7 @@
 				which can be displayed to the user at login time as an additional security measure.
 			</p>
 
-			<h3 id="setup">Auth setup</h3>
+			<h3 id="setup">Auth のセットアップ</h3>
 
 			<p>
 				Configuration starts with telling the Auth package that you are going to use the Ormauth driver.
@@ -66,7 +66,7 @@
 				for the Simpleauth drivers, so you need to change that. You will find an explaination of this config file <a href="../intro.html#/configuration">here</a>.
 			</p>
 			<p>
-				After you have done this, you can choose to autoload the package through the <strong>always_load</strong> section of the app/config/config.php.
+				上記の後に、パッケージをオートロードするかどうかを app/config/config.php の <strong>always_load</strong> セクションで指定します。
 			</p>
 
 			<p class="note">As OrmAuth uses the ORM to access the database, make sure you have added the 'orm' package to the <strong>always_load</strong> section too!</p>
@@ -119,7 +119,7 @@
 			</p>
 
 
-			<h3 id="caching">Caching</h3>
+			<h3 id="caching">キャッシュ</h3>
 
 			<p>
 				To reduce database I/O, the OrmAuth drivers make heavy use of caching, to avoid having to retrieve the entire permission set for the
@@ -157,7 +157,7 @@
 // flush the permissions of a single user (with id 12211)
 \Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.permissions.user_12211');</code></pre>
 
-			<h3 id="configuration">Configuration</h3>
+			<h3 id="configuration">設定</h3>
 
 			<p>
 				The Ormauth authentication system is configured through a configuration file, not suprisingly called
@@ -165,14 +165,14 @@
 				to your app/config folder before making any changes.
 			</p>
 
-				<p>The following configuration values can be defined:</p>
+				<p>下記の設定値が定義されています：</p>
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>型</th>
+							<th>既定値</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>db_connection</th>
@@ -180,8 +180,8 @@
 							<td><pre class="php"><code>null</code></pre>
 							</td>
 							<td>
-								Name of the database connection to use. This should match the definition in your applications db.php configuration file.
-								Set it to <strong>null</strong> to use the default DB instance.
+								利用するデータベース接続の名前。 db.php の config ファイルでの名称と一致させる必要があります。
+								<strong>null</strong> でデフォルトの DB インスタンスを使います。
 							</td>
 						</tr>
 						<tr>
@@ -190,7 +190,7 @@
 							<td><pre class="php"><code>'users'</code></pre>
 							</td>
 							<td>
-								Name of the users table to use.
+								利用するユーザ情報を定義したテーブル名。
 							</td>
 						</tr>
 						<tr>
@@ -199,8 +199,8 @@
 							<td><pre class="php"><code>array('*')</code></pre>
 							</td>
 							<td>
-								List of columns to select from the users table, or '*' to select all columns. You have to at least include
-								'username', 'password', 'email', 'last_login', 'login_hash', 'group' and 'profile_fields'.
+								ユーザ情報のテーブルのうち、 select するカラムのリスト。　'*' で全カラムを select 。少なくとも、
+								'username', 'password', 'email', 'last_login', 'login_hash', 'group', 'profile_fields' を含んでいる必要があります。
 							</td>
 						</tr>
 						<tr>
@@ -264,16 +264,16 @@
 					</tbody>
 				</table>
 
-			<h3 id="database">Database table</h3>
+			<h3 id="database">データベーステーブル</h3>
 
 			<p>
 				OrmAuth relies on a quite a few tables to store all information. The Auth package contains the required migration files to create these tables.<br />
 				Just run <code>oil refine migrate --packages=auth</code> to have the table created for you.
 			</p>
 
-			<h3 id="example">Example</h3>
+			<h3 id="example">例</h3>
 
-			<p>This is a sample login action:</p>
+			<p>これはログイン処理のサンプルです：</p>
 
 			<pre class="php"><code>public function action_login()
 {
@@ -286,7 +286,7 @@
 		// you have used the table definition and configuration as mentioned above.
 		if (Auth::login())
 		{
-			// Credentials ok, go right in.
+			// 認証情報は OK 、ただちに下記へ
 			Response::redirect('success_page');
 		}
 		else
@@ -298,7 +298,7 @@
 		}
 	}
 
-	// Show the login form.
+	// ログインフォームを表示
 	echo View::forge('auth/login',$data);
 }</code></pre>
 

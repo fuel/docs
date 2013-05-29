@@ -554,7 +554,7 @@ panes.auth = {
 			"Usage":		"packages/auth/simpleauth/usage.html"
 		},
 		"Ormauth": {
-			"Introduction":	"packages/auth/ormauth/intro.html",
+			"はじめに":	"packages/auth/ormauth/intro.html",
 			"Usage":		"packages/auth/ormauth/usage.html"
 		}
 	}
