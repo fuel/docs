@@ -543,7 +543,7 @@ panes.oil = {
 panes.auth = {
 	"Auth パッケージ": {
 		"はじめに":		"packages/auth/intro.html",
-		"Writing drivers":	"packages/auth/drivers.html",
+		"ドライバを書く":	"packages/auth/drivers.html",
 		"ドライバタイプ": {
 			"Login":		"packages/auth/types/login.html",
 			"Group":		"packages/auth/types/group.html",

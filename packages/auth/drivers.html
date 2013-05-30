@@ -53,8 +53,8 @@
 				<h2 id="writing_drivers">自作ドライバを書く</h2>
 
 				<p>
-					Writing drivers can be done in two ways. Either by extending the Auth driver classes
-					to create a new driver from scratch or extending a existing driver class and changing them where needed.
+					2 つの方法でドライバを書くことができます。 一つは、新しいドライバを最初から作成するために Auth 
+					ドライバクラスを拡張するか、または既存のドライバクラスを拡張し、必要に応じてそれらを変更します。
 				</p>
 
 				<p>
@@ -107,7 +107,7 @@ abstract public function get_user_id();</code></pre>
 				</p>
 
 				<p>
-					Here is that same function but then the implementation from the Simpleauth driver.
+					ここに同じ関数がありますが、しかし一方で Simpleauth ドライバからの実装です。
 				</p>
 
 				<pre class="php"><code>/**
@@ -127,15 +127,15 @@ public function get_user_id()
 </code></pre>
 
 				<p>
-					Once you have everything in place for the new driver, replace or add it to the auth <a href="intro.html#configuration">config</a>.
+					auth <a href="intro.html#configuration">設定</a>を置き換えるか追加をして新たなドライバのために準備をします。
 				</p>
 
 				<pre class="php"><code>// config/auth.php の配列の内部
 
-// Add it as a second driver
+// 2 つ目のドライバとしてそれを追加
 'driver' => array('Simpleauth', 'Mydriver'),
 
-// or replace the existing driver
+// もしくは、既存のドライバを置き換え
 'driver' => array('Mydriver'),
 </code></pre>
 
