@@ -8,6 +8,7 @@
 * sharkpp <https://github.com/sharkpp>
 * Fumito Mizuno <https://github.com/ounziw>
 * Yuuki Arita <https://github.com/raben>
+* Taichi Inaba <https://github.com/chatii>
 
 ## Version 1.5
 
