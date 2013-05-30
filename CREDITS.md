@@ -7,6 +7,7 @@
 * Hitoshi Asano <https://github.com/orcaaoshi>
 * sharkpp <https://github.com/sharkpp>
 * Fumito Mizuno <https://github.com/ounziw>
+* Yuuki Arita <https://github.com/raben>
 
 ## Version 1.5
 
