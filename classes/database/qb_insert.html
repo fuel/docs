@@ -58,7 +58,7 @@
 
 			<article>
 				<h4 class="method" id="method_table">table($table)</h4>
-				<p><strong>table</strong>メソッドは、インサートするテーブルをセット/変更します。</p>
+				<p><strong>table</strong> メソッドは、インサートするテーブルをセット/変更します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -79,14 +79,14 @@
 										<th><kbd>$table</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the current instance.</td>
+							<td>現在のインスタンス</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -94,7 +94,7 @@
 								<pre class="php"><code>// insert 文を準備します
 $query = DB::insert('users');
 
-// Update the table to insert into
+// 挿入するテーブル名を更新
 $query->table('admins');
 
 // INSERT INTO `admins` ...
@@ -107,7 +107,7 @@ $query->table('admins');
 
 			<article>
 				<h4 class="method" id="method_columns">columns(array $columns)</h4>
-				<p><strong>columns</strong>メソッドは、インサートするカラムをセット/変更します。</p>
+				<p><strong>columns</strong> メソッドは、インサートするカラムをセット/変更します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -128,14 +128,14 @@ $query->table('admins');
 										<th><kbd>$columns</kbd></th>
 										<td><em>array</em></td>
 										<td><em>必須</em></td>
-										<td>an array of column names</td>
+										<td>カラム名の配列</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the current instance.</td>
+							<td>現在のインスタンス</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -143,7 +143,7 @@ $query->table('admins');
 								<pre class="php"><code>// insert 文を準備します
 $query = DB::insert('users');
 
-// Set the columns
+// カラム名をセット
 $query->columns(array(
 	'name',
 	'surname',
@@ -160,7 +160,7 @@ $query->columns(array(
 
 			<article>
 				<h4 class="method" id="method_values">values(array $values)</h4>
-				<p><strong>values</strong>メソッドは、インサートする値を追加します。</p>
+				<p><strong>values</strong> メソッドは、インサートする値を追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -181,14 +181,14 @@ $query->columns(array(
 										<th><kbd>$values</kbd></th>
 										<td><em>array</em></td>
 										<td><em>必須</em></td>
-										<td>list of values</td>
+										<td>値のリスト</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the current instance.</td>
+							<td>現在のインスタンス</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -196,14 +196,14 @@ $query->columns(array(
 								<pre class="php"><code>// insert 文を準備します
 $query = DB::insert('users');
 
-// Set the columns
+// カラム名をセット
 $query->columns(array(
 	'name',
 	'surname',
 	'email',
 ));
 
-// Set the values
+// 値をセット
 
 $query->values(array(
 	'John',
@@ -221,7 +221,7 @@ $query->values(array(
 
 			<article>
 				<h4 class="method" id="method_set">set(array $pairs)</h4>
-				<p><strong>set</strong>メソッドは、インサートするカラムと値を追加します。</p>
+				<p><strong>set</strong> メソッドは、インサートするカラムと値を追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -249,7 +249,7 @@ $query->values(array(
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the current instance.</td>
+							<td>現在のインスタンス</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -257,7 +257,7 @@ $query->values(array(
 								<pre class="php"><code>// insert 文を準備します
 $query = DB::insert('users');
 
-// Set the columns and vales
+// カラム名と値をセット
 $query->set(array(
 	'name' => 'John',
 	'surname' => 'Doe',
@@ -274,7 +274,7 @@ $query->set(array(
 
 			<article>
 				<h4 class="method" id="method_compile">compile(\Database_Connection$db)</h4>
-				<p><strong>compile</strong>メソッドは、インサートを行うSQL クエリを文字列で返却します。</p>
+				<p><strong>compile</strong> メソッドは、インサートを行うSQL クエリを文字列で返却します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -295,14 +295,14 @@ $query->set(array(
 										<th><kbd>$db</kbd></th>
 										<td><em>object</em></td>
 										<td><em>必須</em></td>
-										<td>A database connection</td>
+										<td>データベースコネクション</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the SQL query as a string.</td>
+							<td>SQL クエリの文字列</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -314,10 +314,10 @@ $query = DB::select('*')->from('users');
 $query->limit(10);
 $query->offset(5);
 
-// Get the database connection
+// データベースコネクションを取得
 $connection = Database_Connection::instance();
 
-// Get the sql query
+// SQLクエリを取得
 $sql = $query->compile($connection);
 </code></pre>
 							</td>
@@ -343,7 +343,7 @@ $sql = $query->compile($connection);
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the current instance.</td>
+							<td>現在のインスタンス</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -351,16 +351,16 @@ $sql = $query->compile($connection);
 								<pre class="php"><code>// insert 文を準備します
 $query = DB::insert('users');
 
-// Set some values
+// いくつかの値をセット
 $query->set(array(
 	'name' => 'John',
 	'surname' => 'Doe',
 ));
 
-// Reset it
+// リセット
 $query->reset();
 
-// Set the new values
+// 新しい値をセット
 $query->table('admins')->set(array(
 	'name' => 'Mark',
 	'surname' => 'Handriks'
