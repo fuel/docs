@@ -48,13 +48,13 @@
 			<h2>Migrate クラス</h2>
 
 			<p>
-				The migrate class allows you to run, walk through and revert <a href="../general/migrations.html">Migrations</a> from your controllers.
-				Migrations are supported in the application, in modules and in packages.
+				Migrate クラスを使用すると、コントローラから<a href="../general/migrations.html">マイグレーション</a>の検証を行ったり、戻したりすることができます。
+				マイグレーションはアプリケーションのモジュールとパッケージでサポートされます。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_current">current($name = 'default', $type = 'app')</h4>
-				<p>Migrates to the current schema set in the migration config.</p>
+				<p>マイグレーションの設定で設定されている現在のスキーマにマイグレーションします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -73,12 +73,12 @@
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><pre class="php"><code>'default'</code></pre></td>
-									<td>Name of the package or module. In case of app, 'default' is used.</td>
+									<td>パッケージまたはモジュールの名前。マイグレーションタイプが app の場合には 'default' が使用されます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$type</kbd></th>
 									<td><pre class="php"><code>'app'</code></pre></td>
-									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
+									<td>マイグレーションのタイプ。 'app', 'module', 'package' のいずれかの値が設定可能です。</td>
 								</tr>
 							</table>
 						</td>
@@ -90,7 +90,7 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// run the migrations of the application, up to the current schema.
+							<pre class="php"><code>// アプリケーションを現在のスキーマまでマイグレーションする
 Migrate::current('default', 'app');
 </code></pre>
 						</td>
@@ -101,7 +101,7 @@ Migrate::current('default', 'app');
 
 			<article>
 				<h4 class="method" id="method_latest">latest($name = 'default', $type = 'app')</h4>
-				<p>Migrates to the latest schema set in the migration config.</p>
+				<p>マイグレーションの設定で設定されている最新のスキーマにマイグレーションします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -120,12 +120,12 @@ Migrate::current('default', 'app');
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><pre class="php"><code>'default'</code></pre></td>
-									<td>Name of the package or module. In case of app, 'default' is used.</td>
+									<td>パッケージまたはモジュールの名前。マイグレーションタイプが app の場合には 'default' が使用されます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$type</kbd></th>
 									<td><pre class="php"><code>'app'</code></pre></td>
-									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
+									<td>マイグレーションのタイプ。 'app', 'module', 'package' のいずれかの値が設定可能です。</td>
 								</tr>
 							</table>
 						</td>
@@ -137,7 +137,7 @@ Migrate::current('default', 'app');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// run the migrations of the 'mypackage' package, up to the latest schema.
+							<pre class="php"><code>// パッケージ 'mypackage' を最新のスキーマまでマイグレーションする
 Migrate::latest('mypackage', 'package');
 </code></pre>
 						</td>
@@ -148,7 +148,7 @@ Migrate::latest('mypackage', 'package');
 
 			<article>
 				<h4 class="method" id="method_version">version($version, $name = 'default', $type = 'app')</h4>
-				<p>The <strong>version</strong> method will move the migrations up or down to set the schema at a specific migration version.</p>
+				<p><strong>version</strong> メソッドは特定のマイグレーションバージョンのスキーマにマイグレーションします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -167,29 +167,29 @@ Migrate::latest('mypackage', 'package');
 								<tr>
 									<th><kbd>$version</kbd></th>
 									<td><i>必須</i></td>
-									<td>The version you are migrating to. If you specify <strong>null</strong>, it will migrate to the latest version.</td>
+									<td>マイグレーションしたいバージョン。 <strong>null</strong> を指定した場合には最新のバージョンにマイグレーションします。</td>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><pre class="php"><code>'default'</code></pre></td>
-									<td>Name of the package or module. In case of app, 'default' is used.</td>
+									<td>パッケージまたはモジュールの名前。マイグレーションタイプが app の場合には 'default' が使用されます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$type</kbd></th>
 									<td><pre class="php"><code>'app'</code></pre></td>
-									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
+									<td>マイグレーションのタイプ。 'app', 'module', 'package' のいずれかの値が設定可能です。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed - The number of the version migrated to, or <strong>false</strong> in case the requested version was the current version.</td>
+						<td>mixed - マイグレーションしたバージョン番号、またはリクエストしたバージョンがなかった場合には現在のバージョン。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// migrate the module 'mymodule' to version 10
+							<pre class="php"><code>// モジュール 'mymodule' をバージョン 10 にマイグレーションする
 Migrate::version(10, 'mymodule', 'module');
 </code></pre>
 						</td>
