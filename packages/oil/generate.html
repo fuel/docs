@@ -166,15 +166,15 @@ class Create_posts
 	}
 }</code></pre>
 
-				<p>If you do not wish to generate a migration, simply supply the <code>--no-migration</code>:</p>
+				<p>もしマイグレーションの生成を望まないのなら、単に <code>--no-migration</code> を追加します:</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --no-migration
 	Created model: APPPATH/classes/model/post.php</code></pre>
 
-				<p>By default, the class name is generated singular (it represents one post), but the corresponding table is generated
-				in plural (in contains multiple posts). You can make the table use the same name as the model by using <code>--singular</code>.</p>
+				<p>デフォルトでは、生成されるクラス名は単数形です (一つの投稿を表す)。ですが、対応するテーブルは複数形で生成されます (複数の投稿が含まれる)。
+				<code>--singular</code> を使うことで、生成するテーブル名をモデル名と同じにすることができます。</p>
 
-				<h4>Generating Model using Model_Crud</h4>
+				<h4>Model_Crud を使うモデルの生成</h4>
 
 				<p>FuelPHP v1.1 はリレーショナルデータのオーバヘッドなしで ORM を使うのと同じような機能を提供するシンプルな Model_Crud ベースのモデルを追加しました。<code>--crud</code> を追加することで、そのようなモデルを生成できます。</p>
 
@@ -307,15 +307,15 @@ class Create_posts
 	}
 }</code></pre>
 
-				<h4 id="model_soft">Generating Model using Model_Soft</h4>
+				<h4 id="model_soft">Model_Soft を使うモデルの生成</h4>
 
 				<p>
-					FuelPHP v1.5 added a Model_Soft based ORM model. Add <code>--soft-delete</code> to use Model_Soft.
+					FuelPHP v1.5 は ORM モデルをベースにした Model_Soft を追加しました。Model_Soft を使用するには、 <code>--soft-delete</code> を追加します。
 				</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --soft-delete</code></pre>
 
-				<p>Which will give you:</p>
+				<p>このようなコードになります:</p>
 
 				<pre class="php"><code>&lt;?php
 
@@ -375,7 +375,7 @@ class Create_posts
 }</code></pre>
 
 				<p>
-					If you wish changing deleted_at field name. Use the <code>--deleted-at</code> option to set your own field name.
+					もし deleted_at のフィールド名を変更したい場合、 <code>--deleted-at</code> オプションに変更したい名前を設定します。
 				</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --soft-delete --deleted-at=mydeleted</code></pre>
