@@ -118,9 +118,9 @@ $val = Validation::forge($fieldset);
 				<h4 class="method" id="method_instance">instance($name = null)</h4>
 
 				<p>
-					The <strong>instance</strong> method returns the Validation instance
-					related with the Fieldset instance with the identifier $name,
-					or the default Fieldset (is created if necessary).
+					<strong>instance</strong> メソッドは、$name 識別子が付与された Fieldset インスタンス、
+					もしくはデフォルトの Fieldset (必要とされている場合)、
+					このどちらかと関連付けられた Validation インスタンスを返します。
 				</p>
 
 				<table class="method">
@@ -143,7 +143,7 @@ $val = Validation::forge($fieldset);
 										<th><kbd>$name</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the Fieldset whose Validation instance you want to return.</td>
+										<td>返してほしい Validation インスタンスに属する Fieldset の名前</td>
 									</tr>
 							</table>
 							</td>
@@ -151,17 +151,17 @@ $val = Validation::forge($fieldset);
 						<tr>
 							<th>返り値</th>
 							<td>
-								Validation object<br />
-								or <strong>false</strong> if the specified Fieldset instance doesn't exist
+								Validation オブジェクト<br />
+								または指定した Fieldset インスタンスが存在しなかった場合 <strong>false</strong>
 							</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get the Validation instance of the default Fieldset
+								<pre class="php"><code>// デフォルト Fieldset の Validation インスタンスを取得
 $val = Validation::instance();
 
-// Get the Validation instance of a particular Fieldset
+// 特定の Fieldset の Validation インスタンスを取得
 $val = Validation::instance('my_fieldset');
 </code></pre>
 							</td>
@@ -173,7 +173,7 @@ $val = Validation::instance('my_fieldset');
 			<article>
 				<h4 class="method" id="method_active">active()</h4>
 				<p>
-					The <strong>active</strong> method returns the currently active validation instance.
+					<strong>active</strong> メソッドは現在アクティブな Validation インスタンスを返します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -189,12 +189,12 @@ $val = Validation::instance('my_fieldset');
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Validation - currently active validation instance</td>
+							<td>Validation - 現在アクティブな Validation インスタンス</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get the currently active validation instance
+								<pre class="php"><code>// 現在アクティブな Validation インスタンスを取得
 $val = Validation::active();
 </code></pre>
 							</td>
@@ -206,7 +206,7 @@ $val = Validation::active();
 			<article>
 				<h4 class="method" id="method_active_field">active_field()</h4>
 				<p>
-					The <strong>active_field</strong> method returns the field currently being validated.
+					<strong>active_field</strong> メソッドは 現在バリデーションされているフィールドを返します。
 				</p>
 
 				<table class="method">
@@ -223,12 +223,12 @@ $val = Validation::active();
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Fieldset_Field - the field currently being validated</td>
+							<td>Fieldset_Field - 現在バリデーションされているフィールド</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get the field currently being validated
+								<pre class="php"><code>// 現在バリデーションされているフィールドを取得
 $field = Validation::active_field();
 </code></pre>
 							</td>
@@ -240,7 +240,7 @@ $field = Validation::active_field();
 			<article>
 				<h4 class="method" id="method_fieldset">fieldset()</h4>
 				<p>
-					The <strong>fieldset</strong> method returns the related Fieldset.
+					<strong>fieldset</strong> メソッドは関連づけられた Fieldset を返します。
 				</p>
 
 				<table class="method">
@@ -257,12 +257,12 @@ $field = Validation::active_field();
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Fieldset - the related Fieldset</td>
+							<td>Fieldset - 関連づけられた Fieldset</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get the related Fieldset
+								<pre class="php"><code>// 関連づけられた Fieldset を取得する
 $val = Validation::forge('my_fieldset');
 $fieldset = $val->fieldset();
 </code></pre>
