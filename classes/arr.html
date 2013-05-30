@@ -1067,7 +1067,7 @@ echo Arr::get($person, "location.city", "Unknown City");
 			<article>
 				<h4 id="method_set" class="method">set(&amp;$array, $key, $value = null)</h4>
 				<p><strong>set</strong> メソッドは指定された配列に要素をセットします。多次元配列には、階層をドット (.) で区切ることでアクセスできます。</p>
-				<p class="note"><strong>WARNING</strong>: The original array is edited by reference</p>
+				<p class="note"><strong>警告</strong>: 元の配列は参照によって編集されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1210,8 +1210,8 @@ $names = \Arr::pluck($collection, 'name', 'id');
 
 			<article>
 				<h4 id="method_delete" class="method">delete(&amp;$array, $key)</h4>
-				<p>The <strong>delete</strong> method the element of the given array using dot-notation.<br />
-				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
+				<p><strong>delete</strong> メソッドは指定された配列の要素を削除します。多次元配列には、階層をドット (.) で区切ることでアクセスできます。<br />
+				<u>警告</u>: 元の配列は参照によって編集され、結果のみが返されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1230,19 +1230,19 @@ $names = \Arr::pluck($collection, 'name', 'id');
 								<tr>
 									<th><kbd>$array</kbd></th>
 									<td><em>必須</em></td>
-									<td>The array to access</td>
+									<td>アクセスする配列</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<td><em>必須</em></td>
-									<td>The key requested in $array. If no key is passed, or <strong>null</strong> is passed as key value, the array is unset.</td>
+									<td>$array 配列のキー。もし、キーが渡されなかった場合や null が渡された場合、配列は破棄されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed, <strong>true</strong> if the key was deleted, <strong>false</strong> if the key didn't exist. If you pass an array of keys, the return value will be an array with the result of all requested deletes.</td>
+						<td>mixed, <strong>true</strong> の場合、そのキーは削除されました。 <strong>false</strong> の場合、そのキーは存在しませんでした。もし、あなたがキーの配列を渡した場合、戻り値は要求された全ての削除結果を持つ配列になります。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -1258,15 +1258,15 @@ $names = \Arr::pluck($collection, 'name', 'id');
 );
 
 $result = Arr::delete($person, "name");
-// deleted $person['name'] from the array, returns true
+// $person['name'] は配列から削除され、 true が返されます。
 
-// This method can also dive into arrays by using a dot to separate between keys
+// このメソッドは、キーの間に ドット (.) を入れることで、より深い配列に潜ることができます。
 $result = Arr::delete($person, "location.city");
-// deleted $person['location']['city'] from the array, returns true
+// $person['location']['city'] は配列から削除され、 true が返されます。
 
-// or delete multiple values in one go
+// また、一度に複数の値を削除する事もできます。
 $result = Arr::delete($person, array("name", "location.doesnotexist"));
-// deleted $person['name'], returns array('name' => true, 'location.doesnotexist' => false)</code></pre>
+// $person['name'] は削除され、 array('name' => true, 'location.doesnotexist' => false) が返されます。</code></pre>
 						</td>
 					</tr>
 					</tbody>
