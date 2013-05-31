@@ -54,16 +54,16 @@
 				</p>
 
 				<ul>
-					<li><a href="#controllers">Controllers</a></li>
-					<li><a href="#models">Models</a></li>
-					<li><a href="#viewmodels">Viewmodels</a></li>
-					<li><a href="#migrations">Migrations</a></li>
-					<li><a href="#scaffolding">Scaffolding</a></li>
-					<li><a href="#tasks">Tasks</a></li>
-					<li><a href="#configs">Configs</a></li>
+					<li><a href="#controllers">コントローラ</a></li>
+					<li><a href="#models">モデル</a></li>
+					<li><a href="#viewmodels">ビューモデル</a></li>
+					<li><a href="#migrations">マイグレーション</a></li>
+					<li><a href="#scaffolding">スキャフォールド</a></li>
+					<li><a href="#tasks">タスク</a></li>
+					<li><a href="#configs">設定</a></li>
 				</ul>
 
-				<h3 id="controllers">Controllers</h3>
+				<h3 id="controllers">コントローラ</h3>
 
 				<p>
 					事前に定義したアクションやビューを持つ <a href="../../general/controllers/base.html">Controller</a> のスケルトンを生成するために、
@@ -103,7 +103,7 @@
 
 /* End of file posts.php */</code></pre>
 
-				<h3 id="models">Models</h3>
+				<h3 id="models">モデル</h3>
 
 				<p>
 					フィールドをリストすることでシンプルな <a href="../../general/controllers/base.html">Model</a> を生成し、
@@ -380,15 +380,15 @@ class Create_posts
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --soft-delete --deleted-at=mydeleted</code></pre>
 
-				<h3 id="viewmodels">Viewmodels</h3>
+				<h3 id="viewmodels">ビューモデル</h3>
 
 				<p>
-					Optionally you have have oil to generate a Viewmodel class to accompany the view.
+					任意でビューを伴うビューモデルクラスを oil で生成することができます。
 				</p>
 
 				<pre class="cli"><code>$ php oil g controller posts action1 action2 action3 --with-viewmodel</code></pre>
 
-				<h3 id="running_migrations">Running Migrations</h3>
+				<h3 id="running_migrations">マイグレーションの実行</h3>
 
 				<p>
 					次のコマンドは有用なマイグレーションタスクを実行する refine コマンドの使い方を示しています。
@@ -411,9 +411,9 @@ $ php oil refine migrate:down
 $ php oil refine migrate:up
 	Migrated to version: 5.</code></pre>
 
-				<p class="note">The following field types are supported: <strong>string[n]</strong>, <strong>varchar[n]</strong>, <strong>int[n]</strong>, <strong>enum[value1, value2]</strong>, <strong>decimal[n, n]</strong>, <strong>float[n, n]</strong>, <strong>text</strong>, <strong>blob</strong>, <strong>datetime</strong>, <strong>date</strong>, <strong>timestamp</strong> and <strong>time</strong>.</p>
+				<p class="note">次のフィールドの型をサポートしています: <strong>string[n]</strong>, <strong>varchar[n]</strong>, <strong>int[n]</strong>, <strong>enum[value1, value2]</strong>, <strong>decimal[n, n]</strong>, <strong>float[n, n]</strong>, <strong>text</strong>, <strong>blob</strong>, <strong>datetime</strong>, <strong>date</strong>, <strong>timestamp</strong>, <strong>time</strong></p>
 
-				<h3 id="migrations">Generating Migrations</h3>
+				<h3 id="migrations">マイグレーションの生成</h3>
 
 				<p>
 					モデルを生成せずにマイグレーションを生成可能です。テーブルをリネームするために使用されるか、他の環境に簡単にデプロイするためにテーブルにフィールドを追加するために使用されます。
@@ -614,7 +614,7 @@ class Newtask
 }
 /* End of file tasks/newtask.php */</code></pre>
 
-				<h3 id="configs">Configs</h3>
+				<h3 id="configs">設定</h3>
 
 				<p>
 					<a href="../../classes/config.html">Config</a> を生成するために次のコマンドを使用します:
