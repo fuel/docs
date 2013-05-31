@@ -246,14 +246,31 @@
 
 // Example Radio
 $ops = array('male', 'female');
-$form->add('gender', '', array('options' => $ops, 'type' => 'radio', 'value' => 'true'));
+$form->add(
+	'gender', '',
+	array('options' => $ops, 'type' => 'radio', 'value' => 'true')
+);
 
 // Example Checkbox
 $ops = array('male', 'female');
-$form->add('gender', '', array('options' => $ops, 'type' => 'checkbox', 'value' => 'true'));
+$form->add(
+	'gender', '',
+	array('options' => $ops, 'type' => 'checkbox', 'value' => 'true')
+);
 
-// Example of an Email input
-$form->add('email', 'E-mail', array('type' => 'email', 'class' => 'pretty_input'),  array(array('required'), array('valid_email')));</code></pre>
+// Example of an Email input, with validation rules
+$form->add(
+	'email', 'E-mail',
+	array('type' => 'email', 'class' => 'pretty_input'),
+	array('required', 'valid_email')
+);
+
+// Example of an text input, with array notation for the validation rules
+$form->add(
+	'name', 'Full name',
+	array('type' => 'name', 'class' => 'pretty_input'),
+	array(array('required'), array('valid_string', array('alpha-numeric', 'dots', 'spaces')))
+);</code></pre>
 						</td>
 					</tr>
 					</tbody>
