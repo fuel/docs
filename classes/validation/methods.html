@@ -275,7 +275,7 @@ $fieldset = $val->fieldset();
 			<article>
 				<h4 class="method" id="method_add_field">add_field($name, $label, $rules)</h4>
 				<p>
-					The <strong>add_field</strong> method is a simpler alias for add() method which allows specifying the field name, label and rules in a single step.
+					<strong>add_field</strong> メソッドは add() メソッドのよりシンプルなエイリアスです。フィールドの名前、ラベル、ルールをワンステップで指定できます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -297,22 +297,22 @@ $fieldset = $val->fieldset();
 										<th><kbd>$name</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>None</code></pre></td>
-										<td>The field name to assign the validation rule to.</td>
+										<td>バリデーションのルールを割り当てるフィールドの名前</td>
 									</tr>
 									<tr>
 										<th><kbd>$label</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>None</code></pre></td>
-										<td>Label of the field.</td>
+										<td>フィールドのラベル</td>
 									</tr>
 									<tr>
 										<th><kbd>$rules</kbd></th>
 										<td><em>mixed</em></td>
 										<td><pre class="php"><code>None</code></pre></td>
 										<td>
-											The set of validation rules with (optional) rule parameters grouped in square brackets,
-											and separated with commas. It can be passed as a string where the rules are separated
-											with a vertical bar or pipe symbol (|), or as a array of rules.
+											角括弧でくくられたカンマ区切りのルールパラメータが付いた
+											 (オプション) 、バリデーションルールのセット。
+											縦棒かパイプ記号 (|) で区切られた文字列として渡してもよいし、配列として渡してもよい。
 										</td>
 									</tr>
 								</table>
@@ -325,12 +325,12 @@ $fieldset = $val->fieldset();
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Set rules on different types of fields
+								<pre class="php"><code>// 異なるタイプのフィールドに対するルールの設定
 $val->add_field('username', 'Username', 'required|trim|valid_string[alpha,lowercase,numeric]');
 $val->add_field('email', 'Email', 'required|trim|valid_email');
 $val->add_field('age', 'Age', 'valid_string[numeric]');
 
-// as an array
+// 配列としてルールを渡す
 $val->add_field('username', 'Username', array('required', 'trim', 'valid_string[alpha,lowercase,numeric]'));</code></pre>
 							</td>
 						</tr>
@@ -341,7 +341,7 @@ $val->add_field('username', 'Username', array('required', 'trim', 'valid_string[
 			<article>
 				<h4 class="method" id="method_set_message">set_message($rule, $message)</h4>
 				<p>
-					The <strong>set_message</strong> method overwrites the language file messages for this validation instance. It's also useful when no message is assigned to the rule you're using.
+					<strong>set_message</strong> メソッドは、このバリデーションインスタンスに設定された language ファイルのメッセージ文を上書きします。使いたいルールにメッセージ文が設定されていない場合にも便利です。
 				</p>
 				<table class="method">
 					<tbody>
@@ -363,13 +363,13 @@ $val->add_field('username', 'Username', array('required', 'trim', 'valid_string[
 										<th><kbd>$rule</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>None</code></pre></td>
-										<td>Name of the rule to assign this message to.</td>
+										<td>このメッセージを割り当てたいルールの名前</td>
 									</tr>
 									<tr>
 										<th><kbd>$message</kbd></th>
 										<td><em>string | null</em></td>
 										<td><pre class="php"><code>None</code></pre></td>
-										<td>The message to display for this rule, if a string is passed, or null to revert to the language file.</td>
+										<td>文字列を渡せばこのルールへのメッセージ文となる。null を渡すと language ファイルのメッセージ文に戻る</td>
 									</tr>
 								</table>
 							</td>
@@ -381,11 +381,11 @@ $val->add_field('username', 'Username', array('required', 'trim', 'valid_string[
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Overwrite the required rule message
+								<pre class="php"><code>// required ルールのメッセージを上書き
 $val->set_message('required', 'You have to fill in your :label so you can proceed');
-// .. when done, set back the default message
+// .. 用が済んだら、デフォルトのメッセージ文に戻す
 $val->set_message('required', null);
-// A message for a custom rule you created
+// 作ったカスタムルールに対するメッセージ文
 $val->set_message('custom_rule', 'The :label you entered is previously registered. Please choose another one');
 </code></pre>
 							</td>
