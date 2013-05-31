@@ -239,22 +239,22 @@ class Create_posts
 }
 </code></pre>
 
-				<h4 id="timestamp_fields">Changing the Timestamp and Timestamp Fields</h4>
+				<h4 id="timestamp_fields">タイムスタンプとタイムスタンプフィールドの変更</h4>
 
 				<p>
-					When you're using the timestamp fields in either ORM models or CRUD models (\Model_Crud) you can
-					chose your own field names. Use the <code>--created-at</code> and <code>--updated-at</code>
-					options to set your own field names.
+					ORM モデルか CRUD モデル (\Model_Crud) のいずれかでタイムスタンプフィールドを使っている場合、独自のフィールド名を選ぶことができます。
+					<code>--created-at</code> と <code>--updated-at</code> オプションを使って
+					独自のフィールド名を設定します。
 				</p>
 
 				<p>
-					By default, when you enable timestamps, the timestamps are stored in unixtime, as an integer. If you
-					prefer the MySQL DATETIME format, you can use the <code>--mysql-timestamp</code> option.
+					デフォルトでは、タイムスタンプは有効になっており、 UNIX 時間を integer 型で格納します。
+					もし、 MySQL の DATETIME 型がお好みであれば、<code>--mysql-timestamp</code> オプションを使うことができます。
 				</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --mysql-timestamp --created-at=my_created</code></pre>
 
-				<p>Which will give you:</p>
+				<p>このようなコードになります:</p>
 
 				<pre class="php"><code>&lt;?php
 
@@ -561,16 +561,16 @@ Migrated to latest version: 3.
 
 }</code></pre>
 
-				<h3 id="tasks">Tasks</h3>
+				<h3 id="tasks">タスク</h3>
 
 				<p>
-					You can also have oil generate the skeleton of a new task.
+					さらに、 oil で新しいタスクの雛形を生成できます。
 				</p>
 
 				<pre class="cli"><code>$ php oil g task newtask cmd1 cmd2</code></pre>
 
 				<p>
-					Which will generate
+					次のように生成されます
 				</p>
 
 				<pre class="php"><code>&lt;?php
