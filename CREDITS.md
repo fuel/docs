@@ -9,6 +9,7 @@
 * Fumito Mizuno <https://github.com/ounziw>
 * Yuuki Arita <https://github.com/raben>
 * Taichi Inaba <https://github.com/chatii>
+* Soichiro Miki <https://github.com/miki-soichiro>
 
 ## Version 1.5
 
