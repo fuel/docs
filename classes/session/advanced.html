@@ -318,6 +318,9 @@ function getCookie(c_name)
 // Note: when generating this code, don't hardcode the cookie name, but
 // instead get the cookie name from the session configuration file.
 
+// Note:: check the "sessions without cookies" section below if you
+// don't have a cookie available to pass the session id back
+
 // ( parameters are related to Uploadify Version 3.2 )
 
 $(function()
@@ -387,6 +390,32 @@ $(function()
 				And it case of a session id mismatch which could not be recovered using the previous id, no updated cookie will be sent back to the browser.
 				The result is that you lose the session data of that request, but you don't lose the session itself.
 			</p>
+
+			<h3 id="no-cookies">Sessions without cookies</h3>
+
+			<p>
+				After a change to the session data, the Session class will always generate a session cookie, and send it to the client in the HTTP
+				response header. However, there are situations where is it undesireable, of even impossible, to use cookies. For example simply
+				because the client does not support them.
+			</p>
+			<p>
+				In these cases, there are alternative ways to pass a Session ID back to the application on a request from the client:
+			</p>
+
+			<ul>
+				<li>via a <strong>GET</strong> variable. The name of the variable in the URL must be equal to the name of the cookie defined in the configuration.</li>
+				<li>via a <strong>POST</strong> variable. You can define the form field name (post_cookie_name) that contains the session-id in the configuration.</li>
+				<li>via the <strong>HTTP header</strong>. When constructing the HTTP request client side, you can add a "Session-Id" HTTP header with the session id.</li>
+			</ul>
+
+			<p>
+				You can use <code>Session::key()</code> to retrieve the current session id, so you can pass it to the client in the response, instead
+				of using a cookie. If you have configured encryption in your session configuration, you need to encrypt the id:
+			</p>
+
+			<pre class="php"><code>// fetch the session ID and encrypt it
+$session_id = \Crypt::encode(\Session::key());
+</code></pre>
 
 		</div>
 
