@@ -144,9 +144,9 @@ $this->param('id');</code></pre>
     'blog/(:any)' => array(array('GET', new Route('blog/show/$1'))),
 );</code></pre>
 
-			<p>You can also specify if this route is supported for only http, or only https, by passing <kbd>false</kbd> or <kbd>true</kbd> as third parameter:</p>
+			<p>3 つめパラメータに <kbd>false</kbd> あるいは <kbd>true</kbd> を渡すことで、ルートが HTTP のみをサポートするのか、あるいは HTTPS のみをサポートするのかを指定することもできます。</p>
 
-	        <pre class="php"><code>// route only valid if this is an https request
+	        <pre class="php"><code>// HTTPS のリクエストであった場合のみルートが有効になります
 return array(
     'blog/(:any)' => array(array('GET', new Route('blog/show/$1'), true)),
 );</code></pre>
@@ -174,22 +174,22 @@ return array(
 echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 
 			<p class="note">
-				Note that this currently only works for routes that are defined in <kbd>app/config/routes.php</kbd>, not for module routes.
+				今のところ、 <kbd>app/config.routes.php</kbd> に定義されているルートのみで動作することに注意しましょう。モジュールのルートでは動作しません。
 			</p>
 
 			<h3 id="inline_routes">Inline routes</h3>
 
 			<p>
-				A route does not have to resolve to a controller method. FuelPHP also supports inline routes, which are defined as a Closure
-				that replaces the controller method. Like controller methods, inline routes MUST return a Response object, either by forging
-				one manually, or as the result of executing a forged Request.
+				ルートはコントローラのメソッドに解決される必要はありません。 FuelPHP はコントローラメソッドを置き換える Closure として定義される
+				インラインルートもサポートします。コントローラのメソッドと同様にインラインルートは Response オブジェクト を返さなければなりません。
+				この Response オブジェクトは 自分で forge するか、 forge された Request を実行した結果として返します。
 			</p>
 
-			<p>Example route:</p>
+			<p>ルートの例:</p>
 
 			<pre class="php"><code>return array(
     'secret/mystuff' => function () {
-		// this route only works in development
+		// このルートは development 環境でのみ動作します
 		if (\Fuel::$env == \Fuel::DEVELOPMENT)
 		{
 			return \Request::forge('secret/mystuff/keepout', false)->execute();
