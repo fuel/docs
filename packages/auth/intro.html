@@ -77,23 +77,23 @@
 
 					<h4 id="simpleauth">Simpleauth</h4>
 
-					<p>As the same implies, this is a basic driver set. It uses a database table to store the user information, and
-					a configuration file to store information about groups, roles, and ACLs. It stores user metadata in a serialized
-					array in the user record. It doesn't have a lot of functionality, but for most applications it can do the job.
-					It is documented <a href="simpleauth/intro.html">here</a>.
+					<p>名前の通り、これは基本的なドライバセットです。ユーザーの情報を収納するのにデータベーステーブルを使い、
+					グループ、ロール、 ACL に関しては設定ファイルに収納します。ユーザレコード内のシリアライズされた配列にユーザメタデータは
+					格納されます。それは多くの機能を持っていませんが、ほとんどのアプリケーションでは仕事をすることができます。
+					Simpleauth については<a href="simpleauth/intro.html">ここ</a>に記載されています。
 					</p>
 
 					<h4 id="ormauth">Ormauth</h4>
 
-					<p>This driver set provides similar functionality as the Simpleauth drivers, but stores all information about
-					users, groups, roles and permissions in the database and uses ORM models to access this information. In addition to
-					this, it doesn't store user metadata in an array, but in a separate table, using ORM's EAV container feature to
-					access it. It's API is almost compatible with Simpleauth, the difference is that methods that return user, group or role
-					data now return ORM objects instead of arrays.
-					It is documented <a href="ormauth/intro.html">here</a>.
+					<p>このドライバセットは Simpleauth ドライバと同様の機能を提供しますが、ユーザー、グループ、ロール、
+					および権限に関するすべての情報をデータベースに収納し、この情報にアクセスするためにORMモデルを使用しています。
+					加えて、配列にユーザーメタデータは収納しないですが、別のテーブルで ORM の EAV コンテナ機能を使いアクセスします。
+					API は Simpleauth とほとんど互換性がありますが、ユーザー、グループ、もしくはロールデータを返す関数は
+					ORM オブジェクトインスタンスの配列を返すように違いがあります。
+					Ormauth については<a href="ormauth/intro.html">ここ</a>に記載されています。
 
-					<p class="note">The Auth package contains the required migration files to create the table structures needed for these
-					drivers. It uses the Auth configuration file to determine what to create, so you need to configure that first.</p>
+					<p class="note">Auth パッケージは、これらのドライバに必要なテーブル構造を作成するためのマイグレーションファイルが
+					含まれています。それは作成すべきかを Auth 設定ファイルによって決めているので、最初に設定をする必要があります。</p>
 				</section>
 
 				<section>
@@ -150,8 +150,8 @@
 								<td>integer</td>
 								<td><pre class="php"><code>10000</code></pre></td>
 								<td>
-									The number of iterations(number of "encryptions" made to the password) made in the password hashing process(Auth uses PBKDF2).
-									More iterations means safer passwords but using more time. Too many iterations may crash your server!
+									パスワードのハッシュ化処理で行われた繰り返し回数 (パスワード作成時の"暗号化"の回数) (Auth は PBKDF2を使用)。
+									より多く繰り返す方がパスワードは安全になりますが、より多く時間がかかります。あまりに多く繰り返すとサーバーがクラッシュすることがあります！
 								</td>
 							</tr>
 						</tbody>
@@ -167,7 +167,7 @@
 					<pre class="php"><code>&lt;?php
 
 return array(
-	// The drivers
+	// ドライバ
 	'driver' => array('Simpleauth'),
 
 	// 複数ログインを有効にする場合、 true
