@@ -90,9 +90,9 @@ $new->save();</code></pre>
 				<article id="read">
 					<h2>読み取り</h2>
 
-					<p>Or actually <kbd>find()</kbd>. The find method can be used in 3 ways: find a specific id (primary
-						key), find first/last or all entries with conditions, or use method chaining to fetch. All possible
-						selection methods (where, or_where, order_by, etc) can be found at the bottom of the page.</p>
+					<p>実際には <kbd>find()</kbd> です。 find メソッドは 3 つのやり方で使われます : 特定の id （主キー）を見つける、条件を指定して
+						最初 / 最後あるいはすべてのエントリーを見つける、メソッドチェーンを使ってフェッチする。 SELECT 文の使用可能な
+						メソッド（where, or_where, order_by など）はページの一番下に書いてあります。</p>
 
 					<h3 id="find_by_id">IDから検索する</h3>
 
@@ -142,10 +142,10 @@ $entry = Model_Article::find('all', array(
 					<h3 id="find_chaining">メソッドチェーンを使用して見つける</h3>
 
 					<p class="note">
-						When you use the <kbd>find()</kbd> method without properties, it will be considered to be an
-						error situation. Currently it will return an Orm\Query object which you can use, and possibly
-						reuse to find entries. This behaviour might change in the future, so using this is <strong>discouraged</strong>,
-						use the <kbd>query()</kbd> method instead.</p>
+						<kbd>find()</kbd> メソッドをプロパティなしで使うのはエラー状態とみなされます。現在では、それをした場合
+						Orm/Query オブジェクトが返ってそれを使うことができるし、再利用してエントリを見つけることもできます。
+						このような振る舞いは将来変更されるかもしれません、従ってこれを使うことは <strong>推奨されていません</strong>。
+						かわりに <kbd>query()</kbd> メソッドを使ってください。</p>
 
 					<pre class="php"><code>$query = Model_Article::query()->where('category_id', 1)->order_by('date', 'desc');
 
@@ -167,21 +167,21 @@ $all_articles = $query->limit(15)->get();</code></pre>
 					<p>All these methods are equally valid, the four other methods of find actually use the Query object as
 						well but don't return it.</p>
 
-					<h3 id="partial_selects">Partial column selects</h3>
-					<p>By default all ORM find methods will select all table columns. You can use the <kbd>select</kbd> array
-						entry or the <kbd>select()</kbd> method to alter this behavior.
+					<h3 id="partial_selects">カラムを指定して部分的に取得</h3>
+					<p>デフォルトではすべての ORM の find メソッドはテーブルのすべてのカラムを取得します。 <kbd>select</kbd> 配列
+						エントリを使うかか、 <kbd>select()</kbd> メソッドを使うことでこの挙動を変更することができます。
 					</p>
 
-					<pre class="php"><code>// using the array method. select only the 'name' and 'date' columns
+					<pre class="php"><code>// 配列を使う方法。 'name' と 'date' のカラムのみを取得します
 $entry = Model_Article::find('last', array('select' =&gt; array('name', 'date')));
 
-// same, but then using the chaining method
+// 上記と同じですがメソッドチェーンを使っています
 $entry = Model_Article::query()->select('name', 'date')->get();
 
-// using the array method. select all columns except the 'date' column
+// 配列を使う方法。'date' カラム以外のすべてのカラムを選択します
 $entry = Model_Article::find('all', array('select' =&gt; array(array('date' =&gt; false))));
 
-// same, but then using the chaining method
+// 上記と同じですがメソッドチェーンを使っています
 $entry = Model_Article::query()->select(array('date' =&gt; false))->get();
 </code></pre>
 				</article>
