@@ -1858,6 +1858,74 @@ $result = Model_Tree::forge()->depth();
 							</tbody>
 						</table>
 					</article>
+
+					<article>
+						<h4 id="method_dump_tree" class="method">dump_tree($as_object = false, $children = 'children')</h4>
+						<p>
+							The <strong>dump_tree</strong> method returns the entire tree, using the current object as root node
+							into a multi-dimensional array.
+						</p>
+						<table class="method">
+							<tbody>
+								<tr>
+									<th class="legend">Static</th>
+									<td>No</td>
+								</tr>
+								<tr>
+									<th>Parameters</th>
+									<td>
+										<table class="parameters">
+											<tr>
+												<th>Param</th>
+												<th>Default</th>
+												<th class="description">Description</th>
+											</tr>
+											<tr>
+												<th><kbd>$as_object</kbd></th>
+												<td><pre class="php"><span class="keyword">false</span></pre></td>
+												<td>If true, it will return a hierarchical tree of objects instead of a multi-dimensional array.</td>
+											</tr>
+											<tr>
+												<th><kbd>$children</kbd></th>
+												<td><pre class="php">'children'</pre></td>
+												<td>data for child nodes will be added to a property or array key with this name.</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<th>Returns</th>
+									<td>Mixed, multi-dimensional array, or the current object, with added children.</td>
+								</tr>
+								<tr>
+									<th>Example</th>
+									<td>
+										<pre class="php"><code>// returns a multi-dimensional array. $tree['children'] will contain the children of Bill
+$tree = $bill->dump_tree();
+
+// returns the 'bill' object with a property 'children' containing the children of Bill
+$tree = $bill->dump_tree(true);
+
+// using $tree, this returns array($angela, $ben)
+$children = $tree->children;
+
+// and this returns array($henry, $nicola), the children of $angela
+$grandchildren = reset($children)->children;
+
+// ORM objects are always used by reference!
+$bill->dump_tree(true);
+
+// so this works fine too...
+$children = $bill->children;
+</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="note">
+							As with all ORM array's, the table's primary key is used as array index. Note that because the ORM uses objects by
+							reference from a single cache, if you choose to use 'as_object', children will be added to existing objects too.</p>
+					</article>
                 </section>
 			</div>
 		<footer>
