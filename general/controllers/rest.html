@@ -155,10 +155,10 @@
 			<table class="config">
 				<tbody>
 					<tr class="header">
-						<th>Param</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th>Description</th>
+						<th>パラメータ</th>
+						<th>型</th>
+						<th>デフォルト</th>
+						<th>説明</th>
 					</tr>
 					<tr>
 						<th>default_format</th>
@@ -214,7 +214,7 @@
 				</tbody>
 			</table>
 
-			<h3 id="formats">Supported Formats</h3>
+			<h3 id="formats">サポートされるフォーマット</h3>
 
 			<ul>
 				<li><strong>xml</strong> – ほとんどのプログラミング言語は XML を読めます</li>
@@ -241,7 +241,8 @@
 
 			<p>
 				多くの場合、 <kbd>HTTP_ACCEPT</kbd> が存在し、正しい結果のフォーマットである <u>text/html</u> を（少なくとも）含んでいます。
-				 この値は <kbd>$rest_format</kbd> や <strong>rest.php</strong> で設定されたグローバルなデフォルト定義値でよっては使われません。
+				 このことは <kbd>$rest_format</kbd> や <strong>rest.php</strong> 設定ファイルで定義されたグローバルなデフォルトが
+				使われないことを意味しています。
 			</p>
 
 			<p>
@@ -251,23 +252,22 @@
 
 			<p class="note">
 				結果のフォーマットを REST コントローラ内でハードコードすることはバッドプラクティスであることに注意してください。
-				返される結果のフォーマットはクライアントによって指定されるべきです。
-				In case of <kbd>HTTP_ACCEPT</kbd>, most ajax solutions like for example
-				<code>jQuery.ajax()</code> allow you to set the accept header to <u>application/json</u>.
+				返される結果のフォーマットはクライアントによって指定されるべきです。<kbd>HTTP_ACCEPT</kbd> に備えて、 例えば、<code>jQuery.ajax()</code> のような、
+				ほとんどの Ajax の手法は、<u>application/json</u> ヘッダを設定することを許可します。
 			</p>
 
 			<h3 id="xml_basenode">XML Base Node Name</h3>
 
 			<p>
-				XML が出力される場合に、 XML のベースノードは </code>$xml_basenode<code> パラメータで設定されます。
+				XML が出力される場合に、 XML のベースノードは <code>$xml_basenode</code> パラメータで設定されます。
 			</p>
 
 			<pre class="php"><code>class Controller_Test extends Controller_Rest
 {
-	// Set it for the whole controller
+	// コントローラ全体に設定する
 	protected $xml_basenode = 'my_basenode';
 
-	// Or inside your controller function
+	// または、コントローラのメソッド内で
 	public function get_items()
 	{
 		$this->xml_basenode = 'other_basenode';
@@ -282,7 +282,7 @@
 	}
 }</code></pre>
 
-			<h3 id="special_methods">Special controller methods</h3>
+			<h3 id="special_methods">特別なコントローラのメソッド</h3>
 
 			<article>
 				<h4 id="response">response($data = array(), $http_code = 200)</h4>
