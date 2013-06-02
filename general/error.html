@@ -53,18 +53,18 @@
 				HTTP エラーステータスを返すことで (ブラウザやそれに類する) マシンに対して、
 				今何が起きているのかを知らせる方法でもあります。
 			</p>
-			
+
 			<h3 id="code_errors">コード エラー</h3>
 
 			<p>
-				FuelPHPの内部的なエラー処理は、例外（Exception）に基づいています。あなたはコード中で例外をキャッチすることにより、
+				FuelPHP の内部的なエラー処理は、例外（Exception）に基づいています。あなたはコード中で例外をキャッチすることにより、
 				アプリケーションに適切に例外を処理させることができ、ユーザーは継続的にアプリケーションを使い続けることができます。
 			</p>
 			<p>
-				FuelPHPは、（例外でなない）PHPエラーに遭遇した場合、デフォルトのPHPの振る舞いを変更します。
+				FuelPHPは、（例外でなない）PHPエラーに遭遇した場合、デフォルトの PHP の振る舞いを変更します。
 				FuelPHPは、致命的でないPHPエラーに遭遇した場合、処理を継続せず、 <strong>これらのすべてのエラーに対し、PhpErrorException
 				をスローします。</strong> これはあなたに、以前は無視していたような、E_NOTICE といったエラーを解決するように強要するでしょう。 
-				これは同時に、例えば非プログラマが作成したVIEWファイル中の構文エラーのような、PHPのエラーを捕らえることを可能にします。
+				これは同時に、例えば非プログラマが作成したビューファイル中の構文エラーのような、PHP のエラーを捕らえることを可能にします。
 			</p>
 			<p>
 				あなたのアプリケーションの config/config.php ファイルにある、<a href="./configuration.html#config">errors.continue_on</a> というキーに
@@ -77,7 +77,7 @@
 			 	見つけることが非常に困難となります。
 			 </p>
 
-			<h3 id="application_errors">アプリケーション ロジック エラー</h3>
+			<h3 id="application_errors">アプリケーションロジックエラー</h3>
 
 			<h4 id="config">404 エラー</h4>
 
@@ -135,7 +135,7 @@ catch (HttpNotFoundException $e)
 				以下、そのメソッドを一瞥することにしましょう:
 			</p>
 
-			<pre class="php"><code>// Inside Controller_Welcome
+			<pre class="php"><code>// Controller_Welcome の中
 
 /**
  * The 404 action for the application.
@@ -148,7 +148,7 @@ public function action_404()
 	$messages = array('Aw, crap!', 'Bloody Hell!', 'Uh Oh!', 'Nope, not here.', 'Huh?');
 	$data['title'] = $messages[array_rand($messages)];
 
-	// Set a HTTP 404 output header
+	// HTTP 404 出力ヘッダを設定する
 	return Response::forge(View::forge('welcome/404', $data), 404);
 }</code></pre>
 
@@ -171,7 +171,7 @@ public function action_404()
 				以下、そのようなことを可能とする例を示します:
 			</p>
 
-			<pre class="php"><code>// Inside your 404 controller
+			<pre class="php"><code>// あなたの 404 コントローラの中
 
 public function action_my404()
 {
