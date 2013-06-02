@@ -103,22 +103,22 @@
 								<tr>
 									<th><kbd>$instance</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Cookiename (as defined in config/session.php) that identifies the required session instance.</td>
+									<td>セッションインスタンスを識別するためのクッキーネーム (config/session.php で定義したもの) 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed - session object, or <kbd>false</kbd> in case the requested instance does not exist.</td>
+						<td>mixed - セッションオブジェクト、または要求されたインスタンスが存在しない場合<kbd>false</kbd>。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the default session instance (identified by the 'driver' configuration setting).
+							<pre class="php"><code>// デフォルトのセッションインスタンスを取得 ('driver'configで設定したもの).
 $session = Session::instance();
 
-// get a specific session instance
+// 明示的にセッションインスタンスを取得
 $session = Session::instance('myappcookie');
 </code></pre>
 						</td>
@@ -150,15 +150,15 @@ $session = Session::instance('myappcookie');
 									<th><kbd>$variable</kbd></th>
 									<td><em>string|array</em></td>
 									<td><em>必須</em></td>
-									<td>Name of the session variable to set or associative array of values.</td>
+									<td>セットするセッション変数名または連想配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><em>mixed</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>
-										The session variables value.<br />
-										This can be any data type, but pay attention when storing objects in the session, as session data is serialized, and there are restrictions to serializing an object.
+										セッション変数。<br />
+										任意のデータ型を指定可能ですが、オブジェクトを格納する際はセッションデータがシリアライズされるため、その制約を受けることに注意してください。
 									</td>
 								</tr>
 							</table>
@@ -171,13 +171,13 @@ $session = Session::instance('myappcookie');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// store the userid in the session
+							<pre class="php"><code>// useridをセッションに格納
 Session::set('userid', $userid);
 
-// you can also store more complex values
+// より複雑な値を格納することも出来ます
 Session::set('array', array('varA', 'varB', 'varC' => array('val1', 'val2'));
 
-// you can also use an array to set multiple values at the same time
+// 配列を使って複数の値を同時に格納することも出来ます
 Session::set(array(
 	'userid' => $userid,
 	'has_cookies' => function()
@@ -186,7 +186,7 @@ Session::set(array(
 	}
 ));
 
-// You can also chain on calls to set values
+// 呼び出しをチェインさせて値をセットすることも出来ます
 Session::set('userid', $userid)->set('foo', 'bar');
 </code></pre>
 						</td>
@@ -216,37 +216,37 @@ Session::set('userid', $userid)->set('foo', 'bar');
 								<tr>
 									<th><kbd>$variable</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Name of the session variable to get. If not specified, all session variables are returned.</td>
+									<td>取得するセッション変数名。指定されなかった場合、すべてのセッション変数が返されます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Default value to return in case the requested variable does not exist. If no default is given, the method will return <kbd>null</kbd>.</td>
+									<td>要求された変数が存在しなかった場合のデフォルト値。 デフォルト値が指定されなかった場合<kbd>null</kbd>が返されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed - Dependent on the type of the stored <var>$variable</var>. The method returns <kbd>null</kbd> if the requested variable does not exist.</td>
+						<td>mixed - 格納された <var>$variable</var>の型によります。 このメソッドは要求された変数が存在しない場合 <kbd>null</kbd> を返します。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the stored userid from the session
+							<pre class="php"><code>// セッションから userid を取得します
 $userid = Session::get('userid');
 if ( $userid === false )
 {
 	echo "no user is logged in";
 }
 
-// you can retrieve the entire array stored
+// 配列をまるごと取得出来ます
 $arr = Session::get('array');
 
-// or get a specific key from the array
+// または指定したキーで配列の値を取得出来ます
 $arr = Session::get('array.varC');
 
-// get all session variables
+// すべてのセッション変数を取得します
 $vars = Session::get();</code></pre>
 						</td>
 					</tr>
@@ -275,7 +275,7 @@ $vars = Session::get();</code></pre>
 								<tr>
 									<th><kbd>$variable</kbd></th>
 									<td><em>必須</em></td>
-									<td>Name of the session variable to delete.</td>
+									<td>削除するセッション変数名。</td>
 								</tr>
 							</table>
 						</td>
@@ -287,10 +287,10 @@ $vars = Session::get();</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// delete the stored userid from the session
+							<pre class="php"><code>// セッションから userid を削除します
 Session::delete('userid');
 
-// you can also delete a specific key from the array
+// 指定したキーで配列の値を削除することも出来ます
 Session::delete('array.varC');
 </code></pre>
 						</td>
