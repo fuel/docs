@@ -191,8 +191,9 @@
 						<td><pre class="php"><code>''</code></pre></td>
 						<td>
 							Defines the type of authentication needed. Valid values are 'basic' and 'digest'. You can also define a
-							name of controller method which must be called to check authorization. This method must return a boolean.
-							Leave this empty if no autorization need to be performed.
+							name of controller method which must be called to check authorization. This method may return a boolean
+							(true will allow the request, false will return a default 401 response is returned), or a Response object.
+							<br />Leave this empty if no autorization need to be performed.
 						</td>
 					</tr>
 					<tr>
