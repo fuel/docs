@@ -79,19 +79,19 @@
 				for this reason, the login base driver also defines the methods <kbd>member()</kbd> and <kbd>has_access()</kbd>,
 				which provide static access to these methods in the group and ACL driver.</p>
 
-				<p>Using the static interface, you can do</p>
+				<p>静的インターフェースで使用するには</p>
 
-								<pre class="php"><code>// returns 'simpleauth'
+								<pre class="php"><code>// 'simpleauth' を返す
 $id = Auth::get_id();
 </code></pre>
 
-				<p>instead of</p>
+				<p>代わりに</p>
 
-								<pre class="php"><code>// returns 'simpleauth'
+								<pre class="php"><code>// 'simpleauth' を返す
 $id = Auth::instance()->get_id();
 </code></pre>
-				<p class="note">This only works if "verify_multiple_logins" is set to <kbd>false</kbd> in the Auth config, as you can
-				not map a static interface to multiple active login drivers!</p>
+				<p class="note">複数のアクティブなログインドライバに静的インタフェースを割り当てることができないように、
+				Auth 設定の "verify_multiple_logins" が <kbd>false</kbd> に設定されている場合にのみ使用可能です！</p>
 
 				<h3 id="generic_methods">汎用メソッド</h3>
 
@@ -109,7 +109,7 @@ $id = Auth::instance()->get_id();
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -140,7 +140,7 @@ $id = Auth::instance('simpleauth')->get_id();
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -187,7 +187,7 @@ Auth::instance()->set_config('key', 'value');
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -234,7 +234,7 @@ $key = Auth::instance()->get_config('key', false);
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -274,7 +274,7 @@ if (Auth::instance()->guest_login())
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -324,7 +324,7 @@ $user = Auth::get_user_array();
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -372,7 +372,7 @@ $password = Auth::instance()->hash_password($password);
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -396,7 +396,7 @@ $password = Auth::instance()->hash_password($password);
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -420,7 +420,7 @@ $password = Auth::instance()->hash_password($password);
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -434,7 +434,7 @@ $password = Auth::instance()->hash_password($password);
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it must setup the guest before returning <strong>false</strong>.</p>
+					<p class="note">ゲストユーザをサポートする場合は、 <strong>false</strong> を返す前にゲストを設定する必要があります。</p>
 				</article>
 
 				<article>
@@ -444,7 +444,7 @@ $password = Auth::instance()->hash_password($password);
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -458,7 +458,7 @@ $password = Auth::instance()->hash_password($password);
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it must setup the guest as current user after a succesful logout.</p>
+					<p class="note">ゲストユーザをサポートする場合は、 ログアウトの成功後にゲストを現在のユーザーとして設定する必要があります。</p>
 				</article>
 
 				<article>
@@ -468,7 +468,7 @@ $password = Auth::instance()->hash_password($password);
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -482,7 +482,7 @@ $password = Auth::instance()->hash_password($password);
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it must return the array with the (dummy) user_id of your guest, and not <strong>false</strong>!</p>
+					<p class="note">ゲストユーザをサポートする場合は、 <strong>false</strong> ではなくゲストユーザーの user_id (ダミー) を配列とともに返してください！</p>
 				</article>
 
 				<article>
@@ -492,7 +492,7 @@ $password = Auth::instance()->hash_password($password);
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -506,7 +506,7 @@ $password = Auth::instance()->hash_password($password);
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it must return the array your guest user groups, and not <strong>false</strong>!</p>
+					<p class="note">ゲストユーザをサポートする場合は、 <strong>false</strong> ではなくゲストユーザーのグループの配列を返してください！</p>
 				</article>
 
 				<article>
@@ -516,7 +516,7 @@ $password = Auth::instance()->hash_password($password);
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -540,7 +540,7 @@ $password = Auth::instance()->hash_password($password);
 						<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -554,7 +554,7 @@ $password = Auth::instance()->hash_password($password);
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If your driver has guest user support, it must return the guests display name, and not <strong>false</strong>!</p>
+					<p class="note">ゲストユーザをサポートする場合は、 <strong>false</strong> ではなくゲストの表示名を返してください！</p>
 				</article>
 
 			</section>
