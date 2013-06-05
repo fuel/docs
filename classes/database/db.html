@@ -53,7 +53,7 @@
 				<h4 class="method" id="method_query">query($sql, $type = null)</h4>
 				<p>
 					The <strong>query</strong> method returns a new Database_Query_Builder object. The exact
-					object depends on the type passed. If no type was passed, it will default to DB::SELECT, and it will return a
+					object depends on the type passed. If no type was passed, Fuel chooses DB::SELECT if the SQL query begins with 'SELECT', and it will return a
 					<a href="qb_select.html">Database_Query_Builder_Select</a> object.
 				</p>
 				<table class="method">
@@ -99,9 +99,9 @@ $query = DB::query('SELECT * FROM `users`');
 					</tbody>
 				</table>
 				<p class="note">
-					Note that it is important to pass the correct type when not using a SELECT type query. The database driver
-					will treat them differently. For example, running an INSERT and not specifying the type will not return
-					the insert_id and affected rows. If you have a query that must return a resultset, but is not a SELECT, use
+					Note that it is important to pass the correct type. The database driver
+					will treat them differently.
+					If you have a query that must return a resultset, but is not a SELECT, use
 					DB::SELECT to make sure the result is returned correctly.
 				</p>
 			</article>
