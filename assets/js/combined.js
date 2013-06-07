@@ -371,6 +371,7 @@ var pane_names = {
 panes.main = {
 	"Basic": {
 		"Home":			"index.html",
+		"Table of Contents": "toc.html",
 		"Requirements":	"requirements.html",
 		"License":		"license.html",
 		"Contribute":	"contribute.html",
