@@ -186,6 +186,26 @@
 							</td>
 						</tr>
 						<tr>
+							<th>http_header_name</th>
+							<td>string</td>
+							<td><pre class="php"><code>'Session-Id'</code></pre></td>
+							<td>
+								For situations where no cookies are sent to the server, you can also use client side code to set a custom HTTP header
+								to pass the session cookie to the server.
+								<br />Note that this variable will only be checked when no session cookie can be found.
+							</td>
+						</tr>
+						<tr>
+							<th>enable_cookie</th>
+							<td>boolean</td>
+							<td><pre class="php"><code>true</code></pre></td>
+							<td>
+								When set to false, no session cookie will be created and added to the response send back to the client. This means
+								you have to use other means (GET, POST or HTTP-HEADER) to pass the session-id back from the client to the server
+								on the next request.
+							</td>
+						</tr>
+						<tr>
 							<th>cookie</th>
 							<td>array</td>
 							<td>
@@ -257,6 +277,17 @@
 					This section contains the driver specific parameters, and you can use it to override
 					global parameters for that specific storage driver.
 				</p>
+
+				<p>
+					The Session class checks the following locations for a session id, in this order. It doesn't validate at this point, the
+					first value found is used, and if that turns out not to be valid, a new session is created:
+				</p>
+				<ul>
+					<li>Posted data, it will check <code class="php">Input::post</code> for the variable defined in "post_cookie_name".</li>
+					<li>Cookies, it will check for a valid cookie with the name defined in "cookie_name".</li>
+					<li>Get data, it will check <code class="php">Input::get</code> for the variable with the name defined in "cookie_name".</li>
+					<li>http headers, it will check for the header with the name defined in "http_header_name".</li>
+				</ul>
 
 				<p class="note">
 					The session class configuration is independent from the cookie class configuration.
