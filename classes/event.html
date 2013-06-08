@@ -47,13 +47,13 @@
 
 			<h2>Event クラス</h2>
 
-			<p>The event class allows you to interact with the Fuel Core without having to alter any core files.</p>
+			<p>イベントクラスを使うことで Fuel のコアの処理に、コアのファイルを変更することなく介入することができます。</p>
 
-			<h3 id="system_events">System defined events</h3>
+			<h3 id="system_events">システムに定義されたイベント</h3>
 
 			<p>
-				The FuelPHP defines several events on the <kbd>fuelphp</kbd> instance, which you can use to hook into the
-				core without having to extend it. These events are:
+				FuelPHP は <kbd>fuelphp</kbd> インスタンス上にいくつかイベントを定義します。これにより、コアを拡張することなく、
+				内部の処理へフックきます。それらイベントは次の通り:
 			</p>
 
 			<table class="config">
@@ -65,49 +65,49 @@
 					<tr>
 						<th>app_created</th>
 						<td>
-							This event will be triggered after the FuelPHP framework has been initialised.
+							このイベントは FuelPHP フレームワークが初期化された後にトリガーされます。
 						</td>
 					</tr>
 					<tr>
 						<th>request_created</th>
 						<td>
-							This event will be triggered after a new <kbd>Request</kbd> object has been forged.
+							このイベントは新しい <kbd>Request</kbd> オブジェクトが作られた後にトリガーされます。
 						</td>
 					</tr>
 					<tr>
 						<th>request_started</th>
 						<td>
-							This event will be triggered when execution of a <kbd>Request</kbd> is requested.
+							このイベントは <kbd>Request</kbd> の実行がリクエストされる際にトリガーされます。
 						</td>
 					</tr>
 					<tr>
 						<th>controller_started</th>
 						<td>
-							This event will be triggered before the controllers <kbd>before()</kbd> method is called.
+							このイベントはコントローラーの <kbd>before()</kbd> メソッドが呼び出される前にトリガーされます。
 						</td>
 					</tr>
 					<tr>
 						<th>controller_finished</th>
 						<td>
-							This event will be triggered after the controllers <kbd>after()</kbd> method has been called and the response received.
+							このイベントはコントローラーの <kbd>after()</kbd> メソッドが呼び出され、レスポンスを受け取った後にトリガーされます。
 						</td>
 					</tr>
 					<tr>
 						<th>response_created</th>
 						<td>
-							This event will be triggered after a new <kbd>Response</kbd> object has been forged.
+							このイベントは新しい <kbd>Response</kbd> オブジェクトが作られた後にトリガーされます。
 						</td>
 					</tr>
 					<tr>
 						<th>request_finished</th>
 						<td>
-							This event will be triggered when execution of a <kbd>Request</kbd> is complete and a response is received.
+							このイベントは新しい <kbd>Response</kbd> の実行が完了し、レスポンスを受け取った際にトリガーされます。
 						</td>
 					</tr>
 					<tr>
 						<th>shutdown</th>
 						<td>
-							This event will be triggered after the main request has been processed and the output has been send out.
+							このイベントはメインのリクエストが処理され、出力内容が送信され切った後にトリガーされます。
 						</td>
 					</tr>
 					<tr>
@@ -116,42 +116,42 @@
 					<tr>
 						<th>例</th>
 						<td>
-							In <strong>app/config/event.php</strong>
+							<strong>app/config/event.php</strong> の中で
 							<pre class="php"><code>&lt;?php
 
 return array(
 	'fuelphp' => array(
 		'app_created' => function()
 		{
-			// After FuelPHP initialised
+			// FuelPHP 初期化された後の処理
 		},
 		'request_created' => function()
 		{
-			// After Request forged
+			// Request が作られた後の処理
 		},
 		'request_started' => function()
 		{
-			// Request is requested
+			// Request がリクエストされる際の処理
 		},
 		'controller_started' => function()
 		{
-			// Before controllers before() method called
+			// コントローラーの before() メソッドが呼び出される前の処理
 		},
 		'controller_finished' => function()
 		{
-			// After controllers after() method called
+			// コントローラーの after() メソッドが呼び出された後の処理
 		},
 		'response_created' => function()
 		{
-			// After Response forged
+			// Response が作られた後の処理
 		},
 		'request_finished' => function()
 		{
-			// Request is complete and Response received
+			// Request が完了し、レスポンスを受け取った後の処理
 		},
 		'shutdown' => function()
 		{
-			// Output has been send out
+			// 出力内容が送信され切った後の処理
 		},
 	),
 );
@@ -161,11 +161,11 @@ return array(
 				</tbody>
 			</table>
 
-			<h3 id="class_methods">Class methods</h3>
+			<h3 id="class_methods">クラスメソッド</h3>
 
 			<article>
 				<h4 class="method" id="method_register">register($event, $callback)</h4>
-				<p>The <strong>register</strong> method allows files to register an object that will be run when the <kbd>trigger</kbd> method is called.</p>
+				<p><strong>register</strong> メソッドにより <kbd>trigger</kbd>メソッドが呼び出された際に実行されるオブジェクトを、ファイルに登録させることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -184,12 +184,12 @@ return array(
 								<tr>
 									<th><kbd>$event</kbd></th>
 									<td><i>必須</i></td>
-									<td>The event you are registering your code to.</td>
+									<td>あなたが自身のコードに登録しているイベント</td>
 								</tr>
 								<tr>
 									<th><kbd>$callback</kbd></th>
 									<td><i>必須</i></td>
-									<td>The callback method. </td>
+									<td>コールバックメソッド</td>
 								</tr>
 							</table>
 						</td>
@@ -210,7 +210,7 @@ return array(
 
 			<article>
 				<h4 class="method" id="method_unregister">unregister($event, $callback = null)</h4>
-				<p>The <strong>unregister</strong> method allows files to unregister an object that would be run when the <kbd>trigger</kbd> method is called.</p>
+				<p>The <strong>unregister</strong> メソッドにより <kbd>trigger</kbd> メソッドが呼び出された際に実行されるオブジェクトを、ファイルに登録解除させることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -229,12 +229,12 @@ return array(
 								<tr>
 									<th><kbd>$event</kbd></th>
 									<td><i>必須</i></td>
-									<td>The event you are registering your code to.</td>
+									<td>あなたが自身のコードに登録しているイベント</td>
 								</tr>
 								<tr>
 									<th><kbd>$callback</kbd></th>
 									<td><i>optional</i></td>
-									<td>The callback method. If none provided all callbacks will be removed.</td>
+									<td>コールバックメソッド。 指定が無い場合は全てのコールバックが削除されます</td>
 								</tr>
 							</table>
 						</td>
@@ -246,34 +246,34 @@ return array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Define two even calbacks
+							<pre class="php"><code>// 2 つのイベント用コールバックを定義
 $callback_one = function()
 {
-	echo 'callback one';
-}
+	echo 'コールバック 1';
+};
 
 $callback_two = function()
 {
-	echo 'callback two';
-}
+	echo 'コールバック 2';
+};
 
-// Register the events to "my_event"
+// "my_event" という名前でイベントを登録
 Event::register('my_event', $callback_one);
 Event::register('my_event', $callback_two);
 
-// Unregister callback one
+// callback_one を登録解除
 Event::unregister('my_event', $callback_one);
 
-// Trigger the event
+// イベントをトリガー
 Event::trigger('my_event');
-// This will only echo "callback two"
+// "callback two" のみが出力されるはず。
 
-// Unregister all callbacks from "my_event";
+// "my_event" から全てのコールバックを登録解除
 Event::unregister('my_event');
 
-// Trigger the event
+// イベントをトリガー
 Event::trigger('my_event');
-// Will output nothing.</code></pre>
+// 何も出力されないはず。</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -282,7 +282,7 @@ Event::trigger('my_event');
 
 			<article>
 				<h4 class="method" id="method_trigger">trigger($event, $data = '', $return_type = 'string', $reversed = false)</h4>
-				<p>The <strong>trigger</strong> method is used to trigger or activate callbacks that are associated through the register method.</p>
+				<p><strong>trigger</strong> メソッドはトリガーのため、または、register メソッドを通じて関連付けられたコールバックを有効化するために使われます</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -301,29 +301,29 @@ Event::trigger('my_event');
 								<tr>
 									<th><kbd>$event</kbd></th>
 									<td><i>必須</i></td>
-									<td>The event you are triggering.</td>
+									<td>あなたがトリガーするイベント</td>
 								</tr>
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>Any data you want to send to the method registered.</td>
+									<td>トリガーされたメソッドに送りたいあらゆるデータ</td>
 								</tr>
 								<tr>
 									<th><kbd>$return_type</kbd></th>
 									<td><pre class="php"><code>'string'</code></pre></td>
-									<td>What type of return data you expect. (string, array, json, none, serialized) - <strong>Default is string</strong></td>
+									<td>戻り値として期待しているデータの種類 (string, array, json, none, serialized) - <strong>デフォルトは文字列</strong></td>
 								</tr>
 								<tr>
 									<th><kbd>$reversed</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Set to true to fire the events in reversed order, LIFO instead or FIFO.</td>
+									<td>true にセットするとイベントを逆順で発火させます (FIFO ではなく LIFO になる) 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed - Dependent on the <var>$return_type</var>.</td>
+						<td>mixed - <var>$return_type</var> の値に依存する。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -337,7 +337,7 @@ Event::trigger('my_event');
 
 			<article>
 				<h4 class="method" id="method_has_events">has_events($event)</h4>
-				<p>The <strong>has_events</strong> method is available so you can check if a particular registered event has triggers.</p>
+				<p><strong>has_events</strong> メソッドを使い、特定の登録済みイベントがトリガーを持っているかチェックできます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -356,7 +356,7 @@ Event::trigger('my_event');
 								<tr>
 									<th><kbd>$event</kbd></th>
 									<td><i>必須</i></td>
-									<td>The event you are checking.</td>
+									<td>あなたがチェックしているイベント</td>
 								</tr>
 							</table>
 						</td>
@@ -377,7 +377,7 @@ Event::trigger('my_event');
 
 			<article>
 				<h4 class="method" id="method_forge">forge(array $events = array())</h4>
-				<p>The <strong>forge</strong> returns a new event object.</p>
+				<p><strong>forge</strong> は新しいイベントオブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -396,7 +396,7 @@ Event::trigger('my_event');
 								<tr>
 									<th><kbd>$events</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>The event you are checking.</td>
+									<td>あなたがチェックしているイベント</td>
 								</tr>
 							</table>
 						</td>
@@ -408,29 +408,29 @@ Event::trigger('my_event');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Create a new event object
+							<pre class="php"><code>// 新しいイベントオブジェクトを作成
 $events = Event::forge();
 
-// Create a new event object
-// with events
+// イベントと一緒に
+// 新しいイベントオブジェクトを作成
 $events = Event::forge(array(
 	'update' => function(){
-		// do something on update
+		// 更新処理の際に何かする
 	},
 	'register' => function(){
-		// do something on register
+		// 登録処理の際に何かする
 	},
 ));
 
 /**
- * !! All other Event method apply to the instance
+ * !! その他すべての Event メソッドは、インスタンスにも適用される
  */
 $events->register('my_event', function(){
-	echo 'this is awesome';
+	echo 'これはすごい';
 });
 
 $events->trigger('my_event');
-// will output "this is awesome"
+// "これはすごい" が出力される
 </code></pre>
 						</td>
 					</tr>
@@ -440,7 +440,7 @@ $events->trigger('my_event');
 
 			<article>
 				<h4 class="method" id="method_instance">instance($name = 'fuelphp', array $events = array())</h4>
-				<p>The <strong>instance</strong> returns a new event object singleton.</p>
+				<p><strong>instance</strong> は新しいイベントのシングルトンオブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -459,12 +459,12 @@ $events->trigger('my_event');
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><pre class="php"><code>'fuelphp'</code></pre></td>
-									<td>The instance name.</td>
+									<td>インスタンスの名前</td>
 								</tr>
 								<tr>
 									<th><kbd>$events</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>The event you are checking.</td>
+									<td>あなたがチェックしているイベント</td>
 								</tr>
 							</table>
 						</td>
@@ -476,21 +476,21 @@ $events->trigger('my_event');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Create a new event instance
+							<pre class="php"><code>// 新しいイベントインスタンスを生成
 $events = Event::instance('my_instance');
 
 $same = Event::instance('my_instance');
 
 $events->register('my_event', function(){
-	'awesome!';
+	'すごい!';
 });
 
 $same->register('my_event', function(){
-	echo 'this is ';
+	echo 'これは ';
 });
 
 Event::instance('my_instance')->trigger('my_event');
-// will output "this is awesome!"</code></pre>
+// "これは すごい!" が出力されるはず</code></pre>
 						</td>
 					</tr>
 					</tbody>
