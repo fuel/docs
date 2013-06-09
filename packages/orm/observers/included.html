@@ -104,11 +104,11 @@ protected static $_observers = array(
 
 				<h4 id="os_updated">Observer_UpdatedAt</h4>
 
-				<p>This observer acts only upon <kbd>before_save</kbd> and expects your model to have a
+				<p>This observer acts only upon <kbd>before_save</kbd> or <kbd>before_update</kbd> and expects your model to have a
 					<kbd>updated_at</kbd> property which will be set to the Unix timestamp when saving (also during the
 					first time).</p>
 
-				<pre class="php"><code>// Just add the Observer
+				<pre class="php"><code>// Don't use this, it will make it run twice!
 protected static $_observers = array('Orm\\Observer_UpdatedAt');
 
 // Adding it with config:
@@ -122,6 +122,11 @@ protected static $_observers = array(
 		'property' => 'updated',
 	),
 );</code></pre>
+				<p>
+					When you use <kbd>before_save</kbd>, the updatedAt column will be updated on both an insert and an update.
+					When you use <kbd>before_update</kbd>, the updatedAt column will be updated only on updates.
+				</p>
+
 
 				<h4 id="os_validation">Observer_Validation</h4>
 

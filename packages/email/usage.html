@@ -165,6 +165,23 @@ $email->string_attach($contents, $filename);
 
 			<pre class="php"><code>$email->priority(\Email::P_HIGH);</code></pre>
 
+			<h3 id="pipelining">Pipelining</h3>
+
+			<p>
+				Pipelining is a mechanism with which you can send out multiple emails at once.
+			</p>
+
+			<pre class="php"><code>$email->pipelining($true);</code></pre>
+
+			<p>
+				Once enabled, you can use the same <code>$email</code> object to construct and send multiple emails, re-using the same connection to the mailserver.
+				You should consult with your mail server hosting company to see if this is allowed, and what the maximum amount of emails is that you
+				can send out in a single pipeline. Most hosters limit this to a specific amount, after which the server disconnects.
+			</p>
+			<p>
+				Currently, only the SMTP driver supports pipelining.
+			</p>
+
 		</div>
 
 		<footer>

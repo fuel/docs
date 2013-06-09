@@ -138,6 +138,19 @@
 							</td>
 						</tr>
 						<tr>
+							<th>remember_me</th>
+							<td>array</td>
+							<td><pre class="php"><code>array(
+	'enabled' => false,
+	'cookie_name' => 'rmcookie',
+	'expiration' => 86400*31
+)</code></pre>
+							</td>
+							<td>
+								Configuration for the Simpleauth 'remember_me' functionality
+							</td>
+						</tr>
+						<tr>
 							<th>multiple_logins</th>
 							<td>boolean</td>
 							<td><pre class="php"><code>false</code></pre>
@@ -153,7 +166,7 @@
 							<td><pre class="php"><code>array()</code></pre>
 							</td>
 							<td>
-								Defined groups, to be used by the SimpleAuth groups driver. See <a href="./groups.html">here</a> for an
+								Defined groups, to be used by the SimpleAuth groups driver. See the default configuration file for an
 								description of the groups array structure.
 							</td>
 						</tr>
@@ -163,7 +176,7 @@
 							<td><pre class="php"><code>array()</code></pre>
 							</td>
 							<td>
-								Defined roles, to be used by the SimpleAuth acl driver. See <a href="./acl.html">here</a> for an
+								Defined roles, to be used by the SimpleAuth acl driver. See the default configuration file for an
 								description of the roles array structure.
 							</td>
 						</tr>
@@ -198,6 +211,11 @@
 						</tr>
 					</tbody>
 				</table>
+
+			<p class="note">
+				If you want to use the 'remember-me' functionality, make sure you have a valid <a href="../../../classes/crypt.html">Crypt</a> configuration, as it
+				uses an encrypted cookie to store the user information to be remembered.
+			</p>
 
 			<h3 id="database">Database table</h3>
 

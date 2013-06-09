@@ -223,6 +223,19 @@
 							</td>
 						</tr>
 						<tr>
+							<th>remember_me</th>
+							<td>array</td>
+							<td><pre class="php"><code>array(
+	'enabled' => false,
+	'cookie_name' => 'rmcookie',
+	'expiration' => 86400*31
+)</code></pre>
+							</td>
+							<td>
+								Configuration for the Ormauth 'remember_me' functionality
+							</td>
+						</tr>
+						<tr>
 							<th>multiple_logins</th>
 							<td>boolean</td>
 							<td><pre class="php"><code>false</code></pre>
@@ -264,11 +277,16 @@
 					</tbody>
 				</table>
 
+			<p class="note">
+				If you want to use the 'remember-me' functionality, make sure you have a valid <a href="../../../classes/crypt.html">Crypt</a> configuration, as it
+				uses an encrypted cookie to store the user information to be remembered.
+			</p>
+
 			<h3 id="database">Database table</h3>
 
 			<p>
 				OrmAuth relies on a quite a few tables to store all information. The Auth package contains the required migration files to create these tables.<br />
-				Just run <code>oil refine migrate --packages=auth</code> to have the table created for you.
+				Just run <code>oil refine migrate --packages=auth</code> to have these tables created for you.
 			</p>
 
 			<h3 id="example">Example</h3>

@@ -1471,7 +1471,7 @@ Array
 									<th><kbd>$is_assoc</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
 									<td>Whether the array is assoc</td>
-								</tr>								
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -1539,7 +1539,7 @@ Array
 									<th><kbd>$is_assoc</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
 									<td>Whether the array is assoc</td>
-								</tr>								
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -2179,6 +2179,300 @@ $total_score = Arr::sum($collection, 'scores.math'); // 30
 					</tr>
 					</tbody>
 				</table>
+			</article>
+
+			<article>
+				<h4 id="method_previous_by_key" class="method">previous_by_key($array, $key, $get_value = false, $strict = false)</h4>
+				<p>The <strong>previous_by_key</strong> method allows you to fetch the key or the value of the previous element of an array,
+				 given an existing key value.
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to use</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td>The current key value to use as lookup reference</td>
+								</tr>
+								<tr>
+									<th><kbd>$get_value</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>If false, return the previous array key, if true, return its value</td>
+								</tr>
+								<tr>
+									<th><kbd>$strict</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Do a strict comparison on key values</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed, the returned value, null if there is no previous array element, or false if the current key does not exist.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// array to lookup in
+$arr = array(2 => 'A', 4 => '2', 6 => 'C');
+
+// returns false, there is no key 1 in the array
+$result = Arr::previous_by_key($arr, 1);
+
+// returns null, there is no previous key
+$result = Arr::previous_by_key($arr, 2);
+
+// returns false, there is no key '2' in the array
+$result = Arr::previous_by_key($arr, '2', false, true);
+
+// returns 2, it's the key in the array before key 4
+$result = Arr::previous_by_key($arr, 4);
+
+// returns 'A', it's the value the previous key in the array points to
+$result = Arr::previous_by_key($arr, 4, true);
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_next_by_key" class="method">next_by_key($array, $key, $get_value = false, $strict = false)</h4>
+				<p>The <strong>next_by_key</strong> method allows you to fetch the key or the value of the next element of an array,
+				 given an existing key value.
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to use</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td>The current key value to use as lookup reference</td>
+								</tr>
+								<tr>
+									<th><kbd>$get_value</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>If false, return the next array key, if true, return its value</td>
+								</tr>
+								<tr>
+									<th><kbd>$strict</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Do a strict comparison on key values</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed, the returned value, null if there is no next array element, or false if the current key does not exist.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// array to lookup in
+$arr = array(2 => 'A', 4 => '2', 6 => 'C');
+
+// returns false, there is no key 1 in the array
+$result = Arr::next_by_key($arr, 1);
+
+// returns null, there is no next key
+$result = Arr::next_by_key($arr, 6);
+
+// returns false, there is no key '2' in the array
+$result = Arr::next_by_key($arr, '2', false, true);
+
+// returns 6, it's the key in the array after key 4
+$result = Arr::next_by_key($arr, 4);
+
+// returns 'C', it's the value the next key in the array points to
+$result = Arr::next_by_key($arr, 4, true);
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_previous_by_value" class="method">previous_by_value($array, $value, $get_value = true, $strict = false)</h4>
+				<p>The <strong>previous_by_value</strong> method allows you to fetch the key or the value of the previous element of an array,
+				 given an existing element value.
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to use</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>required</em></td>
+									<td>The current element value to use as lookup reference</td>
+								</tr>
+								<tr>
+									<th><kbd>$get_value</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>If false, return the previous array key, if true, return its value</td>
+								</tr>
+								<tr>
+									<th><kbd>$strict</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Do a strict comparison on element values</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed, the returned value, null if there is no previous array element, or false if the current value could not be found.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// array to lookup in
+$arr = array(2 => 'A', 4 => '2', 6 => 'C');
+
+// returns false, there is no value 'Z' in the array
+$result = Arr::previous_by_value($arr, 'Z');
+
+// returns null, there is no previous value
+$result = Arr::previous_by_value($arr, 'A');
+
+// returns false, there is no value 2 in the array, only '2'
+$result = Arr::previous_by_value($arr, 2, false, true);
+
+// returns 'A', it's the value the previous key in the array points to
+$result = Arr::previous_by_value($arr, '2');
+
+// returns 2, it's the key of the previous array element
+$result = Arr::previous_by_value($arr, '2', false);
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_next_by_value" class="method">next_by_value($array, $value, $get_value = true, $strict = false)</h4>
+				<p>The <strong>next_by_value</strong> method allows you to fetch the key or the value of the next element of an array,
+				 given an existing element value.
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to use</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>required</em></td>
+									<td>The current element value to use as lookup reference</td>
+								</tr>
+								<tr>
+									<th><kbd>$get_value</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>If false, return the next array key, if true, return its value</td>
+								</tr>
+								<tr>
+									<th><kbd>$strict</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Do a strict comparison on element values</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed, the returned value, null if there is no next array element, or false if the current value could not be found.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// array to lookup in
+$arr = array(2 => 'A', 4 => '2', 6 => 'C');
+
+// returns false, there is no value 'Z' in the array
+$result = Arr::next_by_value($arr, 'Z');
+
+// returns null, there is no next value
+$result = Arr::next_by_value($arr, 'C');
+
+// returns false, there is no value 2 in the array, only '2'
+$result = Arr::next_by_value($arr, 2, false, true);
+
+// returns 'C', it's the value the next key in the array points to
+$result = Arr::next_by_value($arr, '2');
+
+// returns 6, it's the key of the next array element
+$result = Arr::next_by_value($arr, '2', false);
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">Note that the 'by_key' and 'by_value' methods use the return values <strong>null</strong> and <strong>false</strong> to signal error
+				conditions. Therefore the array passed may not contain keys or values that are <strong>null</strong> or <strong>false</strong>.</p>
 			</article>
 
 			<h3 id="procedural_helpers">Procedural helpers</h3>

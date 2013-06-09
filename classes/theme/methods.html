@@ -719,6 +719,107 @@ $theme->set_partial('sidebar', 'partials/menu');
 			</article>
 
 			<article>
+				<h4 class="method" id="method_partial_count">partial_count($section)</h4>
+				<p>
+					The <strong>partial_count</strong> method returns a count of the number of partials defined for the given section.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$section</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of page template section you want to check for defined partials.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Integer</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// Get the number of partials assigned to the sidebar
+$partials = $theme->partial_count('sidebar');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_has_partials">has_partials($section)</h4>
+				<p>
+					The <strong>has_partials</strong> method allows you to check if a template section has any partials defined.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$section</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of page template section you want to check for defined partials.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+// Check if we have sidebar partials defined
+if ( ! $theme->has_partials('sidebar'))
+{
+	// some code here to hide the sidebar...
+}
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_get_chrome">get_chrome($section)</h4>
 				<p>
 					The <strong>get_chrome</strong> method allow you to get the view instance of a previously set partial chrome.

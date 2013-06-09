@@ -862,6 +862,61 @@ echo Input::extension(); // 'html'
 					</tbody>
 				</table>
 			</article>
+			<article>
+				<h4 class="method" id="method_headers">headers($index = null, $default = null)</h4>
+				<p>The <strong>headers</strong> method returns a specific or all HTTP headers of the current request.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$index</kbd></th>
+									<td><i>optional</i></td>
+									<td>The name of the HTTP header.</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><i>optional</i></td>
+									<td>What value should be returned if the header entry is not found?</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre><code class="php">// check if there was a content length specified
+if ($headers = \Input::headers() and array_key_exists('Content-Length', $headers))
+{
+	echo 'The content length set on this request is', $headers['Content-Length'];
+}
+
+// or fetch it directly
+if ($header = \Input::headers('Content-Length', false))
+{
+	echo 'The content length set on this request is', $header;
+}
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 		</div>
 
 		<footer>
