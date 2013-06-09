@@ -885,17 +885,17 @@ $path = $nicola->path();
 					</p>
 
 					<article>
-						<h4 id="method_save_child" class="method">child(Model_Nestedset $to = null)</h4>
+						<h4 id="method_save_child" class="method">child($to = null)</h4>
 						<p>
 							The <strong>child</strong> method is an alias for the <a href="#method_save_last_child">last_child</a> method.
 						</p>
 					</article>
 
 					<article>
-						<h4 id="method_save_first_child" class="method">first_child(Model_Nestedset $to = null)</h4>
+						<h4 id="method_save_first_child" class="method">first_child($to = null)</h4>
 						<p>
 							The <strong>first_child</strong> method tells the model you want to save the object you call this method on
-							as the first child of the node object passed.
+							as the first child of the (primary key of the) node object passed.
 						</p>
 						<table class="method">
 							<tbody>
@@ -915,7 +915,7 @@ $path = $nicola->path();
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node which has to become the parent of the object on which this method is called.</td>
+												<td>The node object or the primary key of the node which has to become the parent of the object on which this method is called.</td>
 											</tr>
 										</table>
 									</td>
@@ -940,10 +940,10 @@ $kerry->first_child($bill)->save();
 					</article>
 
 					<article>
-						<h4 id="method_save_last_child" class="method">last_child(Model_Nestedset $to = null)</h4>
+						<h4 id="method_save_last_child" class="method">last_child($to = null)</h4>
 						<p>
 							The <strong>last_child</strong> method tells the model you want to save the object you call this method on
-							as the last child of the node object passed.
+							as the last child of the (primary key of the) node object passed.
 						</p>
 						<table class="method">
 							<tbody>
@@ -963,7 +963,7 @@ $kerry->first_child($bill)->save();
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node which has to become the parent of the object on which this method is called.</td>
+												<td>The node object or the primary key of the node which has to become the parent of the object on which this method is called.</td>
 											</tr>
 										</table>
 									</td>
@@ -993,17 +993,17 @@ $kerry->last_child($bill)->save();
 					</p>
 
 					<article>
-						<h4 id="method_save_sibling" class="method">sibling()</h4>
+						<h4 id="method_save_sibling" class="method">sibling($to = null)</h4>
 						<p>
 							The <strong>sibling</strong> method is an alias for the <a href="#method_save_next_sibling">next_sibling</a> method.
 						</p>
 					</article>
 
 					<article>
-						<h4 id="method_save_previous_sibling" class="method">previous_sibling(Model_Nestedset $to = null)</h4>
+						<h4 id="method_save_previous_sibling" class="method">previous_sibling($to = null)</h4>
 						<p>
 							The <strong>previous_sibling</strong> method tells the model you want to save the object you call this method on
-							as the previous sibling of the node object passed (just before the passed object, on the same level in the tree).
+							as the previous sibling of the (primary key of the) node object passed (just before the passed object, on the same level in the tree).
 						</p>
 						<table class="method">
 							<tbody>
@@ -1023,7 +1023,7 @@ $kerry->last_child($bill)->save();
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node which has to become the next sibling of the object on which this method is called.</td>
+												<td>The node object or the primary key of the node which has to become the next sibling of the object on which this method is called.</td>
 											</tr>
 										</table>
 									</td>
@@ -1048,10 +1048,10 @@ $james->previous_sibling($tim)->save();
 					</article>
 
 					<article>
-						<h4 id="method_save_next_sibling" class="method">next_sibling(Model_Nestedset $to = null)</h4>
+						<h4 id="method_save_next_sibling" class="method">next_sibling($to = null)</h4>
 						<p>
 							The <strong>next_sibling</strong> method tells the model you want to save the object you call this method on
-							as the next sibling of the node object passed (just after the passed object, on the same level in the tree).
+							as the next sibling of the (primary key of the) node object passed (just after the passed object, on the same level in the tree).
 						</p>
 						<table class="method">
 							<tbody>
@@ -1071,7 +1071,7 @@ $james->previous_sibling($tim)->save();
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node which has to become the previous sibling of the object on which this method is called.</td>
+												<td>The node object or the primary key of the node which has to become the previous sibling of the object on which this method is called.</td>
 											</tr>
 										</table>
 									</td>
