@@ -218,8 +218,8 @@
 							<td><pre class="php"><code>true</code></pre>
 							</td>
 							<td>
-								If true a dummy 'guest' user will be created if no one is logged in. This allows you to use the group and
-								acl drivers even when no one is logged in.
+								true の場合には誰もログインしていない場合にダミーの 'guest' ユーザーが作成されます。
+								誰もログインしていない場合でさえグループと ACL のドライバを使用することが可能となります。
 							</td>
 						</tr>
 						<tr>
@@ -267,8 +267,8 @@
 			<h3 id="database">データベーステーブル</h3>
 
 			<p>
-				OrmAuth relies on a quite a few tables to store all information. The Auth package contains the required migration files to create these tables.<br />
-				Just run <code>oil refine migrate --packages=auth</code> to have the table created for you.
+				OrmAuth はすべての情報を格納するためにかなりの数のテーブルに依存しています。 Auth パッケージにはこれらのテーブルを作成するために必要なマイグレーションファイルが含まれています。<br />
+				<code>oil refine migrate --packages=auth</code> を実行すればあなたのために作成されたテーブルを持つことができます。
 			</p>
 
 			<h3 id="example">例</h3>
@@ -279,11 +279,11 @@
 {
 	$data = array();
 
-	// If so, you pressed the submit button. Let's go over the steps.
+	// もし、あなたが送信ボタンを押下したならば、ステップを超えてへ行こう。
 	if (Input::post())
 	{
-		// Check the credentials. This assumes that you have the previous table created and
-		// you have used the table definition and configuration as mentioned above.
+		// 資格を確認。これは前述のテーブルが作成され、
+		// 上記のようにテーブルの定義および設定を使用していることが前提となります。
 		if (Auth::login())
 		{
 			// 認証情報は OK 、ただちに下記へ
@@ -291,8 +291,8 @@
 		}
 		else
 		{
-			// Oops, no soup for you. Try to login again. Set some values to
-			// repopulate the username field and give some error text back to the view.
+			// おっと！あなたにはあげれません。 再度ログインしてみてください。 username フィールドを再設定し、
+			// ビューに戻っていくつかのエラーテキストを与えるためにいくつかの値を設定します。
 			$data['username']    = Input::post('username');
 			$data['login_error'] = 'Wrong username/password combo. Try again';
 		}
