@@ -1156,7 +1156,7 @@ if (Auth::has_access('blog.comments[read,create,update,delete]'))
 
 				<article>
 					<h4 id="method_guest_login" class="method">guest_login()</h4>
-					<p>The <strong>guest_login</strong> allows you to check if guest access is enabled.</p>
+					<p>The <strong>guest_login</strong> method allows you to check if guest access is enabled.</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -1182,6 +1182,102 @@ if ( ! Auth::check() and ! Auth::guest_login())
 	Response::redirect('/login');
 }
 </code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_remember_me" class="method">remember_me($user_id = null)</h4>
+					<p>The <strong>remember_me</strong> method allows you to set a remember_me cookie. If $user_id is not given, the current logged-in user is used.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$user_id</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>The id of the user to be remembered</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>
+								boolean. returns <strong>true</strong> if the remember me cookie was correctly set, or <strong>false</strong>
+								if there was no user_id present, or the remember_me functionality was disabled in the configuration.
+							</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// process the login form POST, and set the remember-me cookie if needed
+if (\Input::method() == 'POST')
+{
+	// check the credentials.
+	if (\Auth::instance()->login(\Input::param('username'), \Input::param('password')))
+	{
+		// does the user want to be remembered?
+		if (\Input::param('rememberme', false))
+		{
+			// create the remember-me cookie
+			\Auth::remember_me();
+		}
+		else
+		{
+			// delete the remember-me cookie if present
+			\Auth::dont_remember_me();
+		}
+
+		// logged in, go the homepage
+		\Response::redirect('/');
+	}
+	else
+	{
+		// login failed, show an error message
+		$data['username']    = \Input::param('username');
+		$data['login_error'] = \Lang::get('login.failure');
+	}
+}
+</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_dont_remember_me" class="method">dont_remember_me()</h4>
+					<p>The <strong>dont_remember_me</strong> method destroys the remember_me cookie, if present.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								See <a href="#method_remember_me">remember_me()</a> for an example
 							</td>
 						</tr>
 						</tbody>

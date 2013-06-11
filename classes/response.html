@@ -177,6 +177,62 @@ Response::redirect('site/about');</code></pre>
 			</article>
 
 			<article>
+				<h4 class="method" id="method_redirect_back">redirect_back($url = '', $method = 'location', $redirect_code = 302)</h4>
+				<p>The <strong>redirect_back</strong> method allows you to redirect back to the page you came from, and offers different methods
+				of redirecting to a new URL. If the previous page is not part of your application (i.e. the user came from another website), or
+				no URL is given, it will redirect to the application homepage.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$url</kbd></th>
+									<td><pre class="php"><code>''</code></pre></td>
+									<td>URL to redirect to.</td>
+								</tr>
+								<tr>
+									<th><kbd>$method</kbd></th>
+									<td><pre class="php"><code>'location'</code></pre></td>
+									<td>Redirection method to use. Supported are 'location' and 'refresh'.</td>
+								</tr>
+								<tr>
+									<th><kbd>$redirect_code</kbd></th>
+									<td><pre class="php"><code>302</code></pre></td>
+									<td>HTTP status code to send back as part of the redirect.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>This method terminates the current script, it does not return.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// redirect back. If there is no 'back', go to the dashboard page
+Response::redirect_back('/dashboard', 'refresh');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					This method supports wildcard replacement in the URL. See <a href="uri.html#method_segment_replace">Uri::segment_replace()</a> for more information.
+				</p>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_set_status">set_status($status = 200)</h4>
 				<p><strong>set_status</strong> メソッドは、ResponseオブジェクトのHTTP ステータスコードを更新します。</p>
 				<table class="method">

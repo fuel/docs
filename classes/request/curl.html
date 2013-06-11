@@ -83,7 +83,7 @@ $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 								<tr>
 									<th><kbd>$method</kbd></th>
 									<td><i>required</i></td>
-									<td>The HTTP method (GET, POST, PUT, DELETE) to use for this request.</td>
+									<td>The HTTP method (GET, HEAD, POST, PUT, DELETE) to use for this request.</td>
 								</tr>
 							</table>
 						</td>
@@ -337,7 +337,7 @@ $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 $curl->add_param(array('userid' => 12, 'data' => $payload));
 
 // or add a single one
-$curl->add_param('data' => $payload);
+$curl->add_param('data', $payload);
 </code></pre>
 						</td>
 					</tr>

@@ -165,8 +165,9 @@ class Example extends Controller
 			<h4 id="returning_results">結果を返す</h4>
 
 			<p>
-				コントローラアクションは Response オブジェクトを返さなければ<strong>なりません</strong>。オプションで、特別な HTTP ヘッダや、
-				カスタムの HTTP ステータスコードを指定できます ("200 OK" 以外のコード)。
+				Ideally, a controller action must return a Response object. Optionally you can specify special HTTP headers,
+				or a custom HTTP status code (a code other than "200 OK"). If you don't return a response object, the default
+				<kbd>after()</kbd> method will wrap the return value of the action in a Response object for you.
 			</p>
 
 			<p>
@@ -209,9 +210,13 @@ class Example extends Controller
 			<article>
 				<h4 id="after">after($response)</h4>
 				<p>
-					このメソッドは、URL からメソッドが正常に呼ばれた <strong>後で</strong> 実行され、
-					メソッドが存在しない場合は実行されません。<a href="#response"><var>$response</var></a> パラメータが必要です。
-					after() メソッドは Response オブジェクトを返さねば <strong>なりません</strong>。
+					This method will be executed <strong>after</strong> the method from the URL was called successfully,
+					this will not be called if the method turns out not to exist. <a href="#response"><var>$response</var></a> parameter is required.
+					The after() method <strong>MUST</strong> return a Response object.
+				</p>
+				<p class="note">
+					If the <kbd>after()</kbd> method has to construct a Response object, it can use the <kbd>response_status</kbd> property of
+					the controller to set the HTTP status of the response. By default, this property contains "200" (OK).
 				</p>
 			</article>
 
@@ -297,7 +302,7 @@ class Example extends Controller
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.6/develop/general/controllers/base.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/general/controllers/base.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/general/controllers/base.html">GitHubで修正</a> ]
+[ <a href="https://github.com/fuel/docs/commits/1.7/develop/general/controllers/base.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.7/develop_japanese/general/controllers/base.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.7/develop_japanese/general/controllers/base.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

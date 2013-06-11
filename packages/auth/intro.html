@@ -70,92 +70,103 @@
 				汎用インタフェースの一部であるかとドライバの仕様を理解するために次のセクションを
 				読んで下さい: <a href="drivers.html">ドライバを書く</a>.</p>
 
-				<section>
-					<h3 id="included">含まれているドライバ</h3>
+				<h3 id="included">含まれているドライバ</h3>
 
-					<p>Auth パッケージはローカルアクセスを提供する２つのドライバが含まれ、１つ以上のデータベースのテーブルを使用しています。</p>
+				<p>The Auth packages comes with two sets of drivers which provide local access, using one or more database tables.</p>
 
-					<h4 id="simpleauth">Simpleauth</h4>
+				<h4 id="simpleauth">Simpleauth</h4>
 
-					<p>名前の通り、これは基本的なドライバセットです。ユーザーの情報を収納するのにデータベーステーブルを使い、
-					グループ、ロール、 ACL に関しては設定ファイルに収納します。ユーザレコード内のシリアライズされた配列にユーザメタデータは
-					格納されます。それは多くの機能を持っていませんが、ほとんどのアプリケーションでは仕事をすることができます。
-					Simpleauth については<a href="simpleauth/intro.html">ここ</a>に記載されています。
-					</p>
+				<p>As the same implies, this is a basic driver set. It uses a database table to store the user information, and
+				a configuration file to store information about groups, roles, and ACLs. It stores user metadata in a serialized
+				array in the user record. It doesn't have a lot of functionality, but for most applications it can do the job.
+				It is documented <a href="simpleauth/intro.html">here</a>.
+				</p>
 
-					<h4 id="ormauth">Ormauth</h4>
+				<h4 id="ormauth">Ormauth</h4>
 
-					<p>このドライバセットは Simpleauth ドライバと同様の機能を提供しますが、ユーザー、グループ、ロール、
-					および権限に関するすべての情報をデータベースに収納し、この情報にアクセスするためにORMモデルを使用しています。
-					加えて、配列にユーザーメタデータは収納しないですが、別のテーブルで ORM の EAV コンテナ機能を使いアクセスします。
-					API は Simpleauth とほとんど互換性がありますが、ユーザー、グループ、もしくはロールデータを返す関数は
-					ORM オブジェクトインスタンスの配列を返すように違いがあります。
-					Ormauth については<a href="ormauth/intro.html">ここ</a>に記載されています。
+				<p>This driver set provides similar functionality as the Simpleauth drivers, but stores all information about
+				users, groups, roles and permissions in the database and uses ORM models to access this information. In addition to
+				this, it doesn't store user metadata in an array, but in a separate table, using ORM's EAV container feature to
+				access it. It's API is almost compatible with Simpleauth, the difference is that methods that return user, group or role
+				data now return ORM objects instead of arrays.
+				It is documented <a href="ormauth/intro.html">here</a>
+				</p>
 
-					<p class="note">Auth パッケージは、これらのドライバに必要なテーブル構造を作成するためのマイグレーションファイルが含まれています。
-					それは作成すべきかを Auth 設定ファイルによって決めているので、最初に設定をする必要があります。</p>
-				</section>
+				<p class="note">The Auth package contains the required migration files to create the table structures needed for these
+				drivers. It uses the Auth configuration file to determine what to create, so you need to configure that first.</p>
 
-				<section>
-					<h3 id="install">インストール</h3>
+				<h3 id="supporting">Supporting classes</h3>
 
-					<p>Auth パッケージは Fuel の配布物に含まれています。 設定で有効にするだけで利用できます。</p>
-					<pre class="php"><code>'always_load' => array(
+				<p>Besides full driver sets, the Auth package also contains supporting classes, classes that provide additional functionality
+				to one or all of the drivers.</p>
+
+				<h4 id="opauth">Opauth</h4>
+
+				<p>Opauth is a multi-provider authentication framework for PHP, and is installed as a composer package. It provides generic
+				authentication using the OAuth or OpenID protocols, and has a substantial list of ready-made strategies for authentication
+				against popular OAuth platforms like Facebook, Twitter, Github, etc.</p>
+
+				<p>The Opauth driver included in the Auth package will interface between Opauth and (currently) either Simpleauth or Ormauth,
+				so that you can link OAuth accounts to local accounts, use local ACL's for OAuth accounts, etc.
+				It is documented <a href="opauth/intro.html">here</a>.
+				</p>
+
+				<h3 id="install">Installation</h3>
+
+				<p>The Auth package is included in the Fuel download. All you need to do is enable it in your config.</p>
+				<pre class="php"><code>'always_load' => array(
 	'packages' => array(
 		'auth',
-	),
-),</code></pre>
-				</section>
+	), </code></pre>
 
-				<section>
 					<h3 id="configuration">設定</h3>
 
 					<p>Auth は config/auth.php ファイルに、下記のキーで設定できます：</p>
 
-					<table class="config">
-						<tbody>
-							<tr class="header">
-								<th>パラメータ</th>
-								<th>型</th>
-								<th>デフォルト</th>
-								<th>説明</th>
-							</tr>
-							<tr>
-								<th>driver</th>
-								<td>文字列 | 配列</td>
-								<td><pre class="php"><code>array('Simpleauth')</code></pre></td>
-								<td>
-									ロードする Login ドライバ、最初のドライバが Auth::instance() のデフォルト返り値にもなります。
-								</td>
-							</tr>
-							<tr>
-								<th>verify_multiple_logins</th>
-								<td>論理型</td>
-								<td><pre class="php"><code>false</code></pre></td>
-								<td>
-									ひとつのドライバでログインの成功を確認したあとにも、継続してログインのチェックを行うかどうか。
-									これにより複数の方法でログインすることが可能。
-								</td>
-							</tr>
-							<tr>
-								<th>salt</th>
-								<td>文字列</td>
-								<td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
-								<td>
-									パスワードのハッシュ化のためにソルトは使用されます。
-								</td>
-							</tr>
-							<tr>
-								<th>iterations</th>
-								<td>integer</td>
-								<td><pre class="php"><code>10000</code></pre></td>
-								<td>
-									パスワードのハッシュ化処理で行われた繰り返し回数 (パスワード作成時の"暗号化"の回数) (Auth は PBKDF2を使用)。
-									より多く繰り返す方がパスワードは安全になりますが、より多く時間がかかります。あまりに多く繰り返すとサーバーがクラッシュすることがあります！
-								</td>
-							</tr>
-						</tbody>
-					</table>
+                <table class="config">
+                    <tbody>
+                    <tr class="header">
+                        <th>パラメータ</th>
+                        <th>型</th>
+                        <th>デフォルト</th>
+                        <th>説明</th>
+                    </tr>
+                    <tr>
+                        <th>driver</th>
+                        <td>文字列 | 配列</td>
+                        <td><pre class="php"><code>array('Simpleauth')</code></pre></td>
+                        <td>
+                            ロードする Login ドライバ、最初のドライバが Auth::instance() のデフォルト返り値にもなります。
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>verify_multiple_logins</th>
+                        <td>論理型</td>
+                        <td><pre class="php"><code>false</code></pre></td>
+                        <td>
+                            ひとつのドライバでログインの成功を確認したあとにも、継続してログインのチェックを行うかどうか。
+                            これにより複数の方法でログインすることが可能。
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>salt</th>
+                        <td>文字列</td>
+                        <td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
+                        <td>
+                            パスワードのハッシュ化のためにソルトは使用されます。
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>iterations</th>
+                        <td>integer</td>
+                        <td><pre class="php"><code>10000</code></pre></td>
+                        <td>
+                            パスワードのハッシュ化処理で行われた繰り返し回数 (パスワード作成時の"暗号化"の回数) (Auth は PBKDF2を使用)。
+                            より多く繰り返す方がパスワードは安全になりますが、より多く時間がかかります。あまりに多く繰り返すとサーバーがクラッシュすることがあります！
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 
 					<p class="note">
 						'verify_multiple_logins' はドライバレベルの設定であることに注意。 Login ドライバ
@@ -164,7 +175,7 @@
 
 					<p>auth.php ファイルはこのようになります：</p>
 
-					<pre class="php"><code>&lt;?php
+				<pre class="php"><code>&lt;?php
 
 return array(
 	// ドライバ
@@ -178,8 +189,6 @@ return array(
 );
 </code></pre>
 
-				</section>
-
 			</section>
 
 		</div>
@@ -187,7 +196,7 @@ return array(
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.6/develop/packages/auth/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/packages/auth/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/packages/auth/intro.html">GitHubで修正</a> ]
+[ <a href="https://github.com/fuel/docs/commits/1.7/develop/packages/auth/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.7/develop_japanese/packages/auth/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.7/develop_japanese/packages/auth/intro.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

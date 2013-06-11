@@ -99,10 +99,10 @@ $query = DB::query('SELECT * FROM `users`');
 					</tbody>
 				</table>
 				<p class="note">
-					SELECT タイプを使わないクエリの場合は正しいタイプを渡すことが重要です。データベースドライバは
-					タイプを異なる形で扱います。例えば、タイプを指定せずに INSERT 文を実行すると insert_id と
-					affected rows は返りません。もし SELECT 文ではないが結果セットを返さなければならないクエリが
-					あるときは、タイプに DB::SELECT を指定して結果が正しく返されていることを確認して下さい。
+					Note that it is important to pass the correct type. The database driver
+					will treat them differently.
+					If you have a query that must return a resultset, but is not a SELECT, use
+					DB::SELECT to make sure the result is returned correctly.
 				</p>
 			</article>
 
@@ -1259,7 +1259,7 @@ catch (Exception $e)
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.6/develop/classes/database/db.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/classes/database/db.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/classes/database/db.html">GitHubで修正</a> ]
+[ <a href="https://github.com/fuel/docs/commits/1.7/develop/classes/database/db.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.7/develop_japanese/classes/database/db.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.7/develop_japanese/classes/database/db.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

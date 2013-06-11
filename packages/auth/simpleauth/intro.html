@@ -138,6 +138,19 @@
 							</td>
 						</tr>
 						<tr>
+							<th>remember_me</th>
+							<td>array</td>
+							<td><pre class="php"><code>array(
+	'enabled' => false,
+	'cookie_name' => 'rmcookie',
+	'expiration' => 86400*31
+)</code></pre>
+							</td>
+							<td>
+								Configuration for the Simpleauth 'remember_me' functionality
+							</td>
+						</tr>
+						<tr>
 							<th>multiple_logins</th>
 							<td>boolean</td>
 							<td><pre class="php"><code>false</code></pre>
@@ -153,8 +166,8 @@
 							<td><pre class="php"><code>array()</code></pre>
 							</td>
 							<td>
-								SimpleAuth Group ドライバで利用する定義済みの Group 。詳細な Group 配列については、
-								<a href="./groups.html">こちら</a>を参照。
+								Defined groups, to be used by the SimpleAuth groups driver. See the default configuration file for an
+								description of the groups array structure.
 							</td>
 						</tr>
 						<tr>
@@ -163,8 +176,8 @@
 							<td><pre class="php"><code>array()</code></pre>
 							</td>
 							<td>
-								SimpleAuth ACL ドライバで利用する定義済みの ACL 。詳細な ACL 配列については、
-								<a href="./acl.html">こちら</a>を参照。
+								Defined roles, to be used by the SimpleAuth acl driver. See the default configuration file for an
+								description of the roles array structure.
 							</td>
 						</tr>
 						<tr>
@@ -198,6 +211,11 @@
 						</tr>
 					</tbody>
 				</table>
+
+			<p class="note">
+				If you want to use the 'remember-me' functionality, make sure you have a valid <a href="../../../classes/crypt.html">Crypt</a> configuration, as it
+				uses an encrypted cookie to store the user information to be remembered.
+			</p>
 
 			<h3 id="database">データベーステーブル</h3>
 
@@ -242,7 +260,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.6/develop/packages/auth/simpleauth/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/packages/auth/simpleauth/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/packages/auth/simpleauth/intro.html">GitHubで修正</a> ]
+[ <a href="https://github.com/fuel/docs/commits/1.7/develop/packages/auth/simpleauth/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.7/develop_japanese/packages/auth/simpleauth/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.7/develop_japanese/packages/auth/simpleauth/intro.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

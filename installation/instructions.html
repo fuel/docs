@@ -58,22 +58,33 @@
 
 			<p>これであなたのプロジェクトでは 'php oil' の代わりに 'oil' だけを使用することができます。</p>
 
-			<p class="note">もし、バージョン 1.6 より前の oil スクリプトをインストール済みの場合は、composer も実行するために再インストールが必要です!</p>
+			<p class="note">If you had installed the oil script before version 1.6, you have to re-install it to have it run composer too!</p>
 
-			<p>新しいプロジェクトを作成するには次のコマンドを実行するだけです:</p>
+			<p>To create a new project simply run:</p>
 
 			<pre class="cli"><code>$ oil create &lt;project_name&gt;</code></pre>
 
 			<p>これで、カレントディレクトリにあなたが指定したプロジェクト名のフォルダが作成されます。そしてリポジトリとすべてのサブモジュールをそのフォルダに複製します。</p>
 
 			<p>
-				Note: このコマンドは <code class="cli">$ oil refine install</code> も実行し、必要なディレクトリを書き込み可能にし、
-				そして <code class="cli">$ php composer.phar update</code> を実行し定義済みの composer の依存ライブラリをプルします。
+				Note: This will also run <code class="cli">$ oil refine install</code> which makes the necessary directories writable,
+				and <code class="cli">$ php composer.phar update</code> to pull in the defined composer dependencies.
 			</p>
 
 			<h3 id="manual">手動でインストール</h3>
 
 			<p>この方法は、あなたのウェブサーバに Fuel フレームワークのデフォルトインストール構成を生成します。</p>
+
+			<h4 id="from_github">Clone from github</h4>
+
+<pre class="cli"><code>$ cd /where/ever/your/webserver/root/is
+$ git clone --recursive git://github.com/fuel/fuel.git
+</code></pre>
+
+			<p>This will create a folder called <strong>fuel</strong> in your webserver root, containing the entire FuelPHP installation,
+			including all core packages.</p>
+
+			<h4 id="from_zip">Download the zip file</h4>
 
 			<ol>
 				<li><a href="download.html">Fuel フレームワークをダウンロードする</a></li>
@@ -99,8 +110,10 @@
   oil
 </code></pre>
 				</li>
-				<li>
-					手動でフォルダのパーミッションを書き込み可能にセットするか、次のようにします：
+			</ol>
+
+			<p>After installation, make sure the permissions are correct on folders that the framework needs access too. There is an oil task
+			available to set the default folders writable:</p>
 <pre class="cli"><code>$ php oil refine install
 	Made writable: APPPATH/cache
 	Made writable: APPPATH/logs
@@ -108,8 +121,6 @@
 	Made writable: APPPATH/config
 </code>
 </pre>
-				</li>
-			</ol>
 
 			<h2 id="composer">Composer</h2>
 
@@ -189,7 +200,7 @@ php composer.phar update
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.6/develop/installation/instructions.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/installation/instructions.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/installation/instructions.html">GitHubで修正</a> ]
+[ <a href="https://github.com/fuel/docs/commits/1.7/develop/installation/instructions.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.7/develop_japanese/installation/instructions.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.7/develop_japanese/installation/instructions.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

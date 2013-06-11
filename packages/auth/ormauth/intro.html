@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -165,14 +165,14 @@
 				to your app/config folder before making any changes.
 			</p>
 
-				<p>下記の設定値が定義されています：</p>
+				<p>The following configuration values can be defined:</p>
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>パラメータ</th>
-							<th>型</th>
-							<th>デフォルト</th>
-							<th>説明</th>
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
 						</tr>
 						<tr>
 							<th>db_connection</th>
@@ -223,6 +223,19 @@
 							</td>
 						</tr>
 						<tr>
+							<th>remember_me</th>
+							<td>array</td>
+							<td><pre class="php"><code>array(
+	'enabled' => false,
+	'cookie_name' => 'rmcookie',
+	'expiration' => 86400*31
+)</code></pre>
+							</td>
+							<td>
+								Configuration for the Ormauth 'remember_me' functionality
+							</td>
+						</tr>
+						<tr>
 							<th>multiple_logins</th>
 							<td>boolean</td>
 							<td><pre class="php"><code>false</code></pre>
@@ -263,6 +276,11 @@
 						</tr>
 					</tbody>
 				</table>
+
+			<p class="note">
+				If you want to use the 'remember-me' functionality, make sure you have a valid <a href="../../../classes/crypt.html">Crypt</a> configuration, as it
+				uses an encrypted cookie to store the user information to be remembered.
+			</p>
 
 			<h3 id="database">データベーステーブル</h3>
 
@@ -307,7 +325,7 @@
 		<footer>
 			<p>
 				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.6/develop/packages/auth/ormauth/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.6/develop_japanese/packages/auth/ormauth/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.6/develop_japanese/packages/auth/ormauth/intro.html">GitHubで修正</a> ]
+[ <a href="https://github.com/fuel/docs/commits/1.7/develop/packages/auth/ormauth/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.7/develop_japanese/packages/auth/ormauth/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.7/develop_japanese/packages/auth/ormauth/intro.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>
