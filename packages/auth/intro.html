@@ -117,63 +117,64 @@
 				<pre class="php"><code>'always_load' => array(
 	'packages' => array(
 		'auth',
-	), </code></pre>
+	),
+),</code></pre>
 
-					<h3 id="configuration">設定</h3>
+				<h3 id="configuration">設定</h3>
 
-					<p>Auth は config/auth.php ファイルに、下記のキーで設定できます：</p>
+				<p>Auth は config/auth.php ファイルに、下記のキーで設定できます：</p>
 
-                <table class="config">
-                    <tbody>
-                    <tr class="header">
-                        <th>パラメータ</th>
-                        <th>型</th>
-                        <th>デフォルト</th>
-                        <th>説明</th>
-                    </tr>
-                    <tr>
-                        <th>driver</th>
-                        <td>文字列 | 配列</td>
-                        <td><pre class="php"><code>array('Simpleauth')</code></pre></td>
-                        <td>
-                            ロードする Login ドライバ、最初のドライバが Auth::instance() のデフォルト返り値にもなります。
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>verify_multiple_logins</th>
-                        <td>論理型</td>
-                        <td><pre class="php"><code>false</code></pre></td>
-                        <td>
-                            ひとつのドライバでログインの成功を確認したあとにも、継続してログインのチェックを行うかどうか。
-                            これにより複数の方法でログインすることが可能。
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>salt</th>
-                        <td>文字列</td>
-                        <td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
-                        <td>
-                            パスワードのハッシュ化のためにソルトは使用されます。
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>iterations</th>
-                        <td>integer</td>
-                        <td><pre class="php"><code>10000</code></pre></td>
-                        <td>
-                            パスワードのハッシュ化処理で行われた繰り返し回数 (パスワード作成時の"暗号化"の回数) (Auth は PBKDF2を使用)。
-                            より多く繰り返す方がパスワードは安全になりますが、より多く時間がかかります。あまりに多く繰り返すとサーバーがクラッシュすることがあります！
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th>パラメータ</th>
+							<th>型</th>
+							<th>デフォルト</th>
+							<th>説明</th>
+						</tr>
+						<tr>
+							<th>driver</th>
+							<td>文字列 | 配列</td>
+							<td><pre class="php"><code>array('Simpleauth')</code></pre></td>
+							<td>
+								ロードする Login ドライバ、最初のドライバが Auth::instance() のデフォルト返り値にもなります。
+							</td>
+						</tr>
+						<tr>
+							<th>verify_multiple_logins</th>
+							<td>論理型</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								ひとつのドライバでログインの成功を確認したあとにも、継続してログインのチェックを行うかどうか。
+								これにより複数の方法でログインすることが可能。
+							</td>
+						</tr>
+						<tr>
+							<th>salt</th>
+							<td>文字列</td>
+							<td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
+							<td>
+								パスワードのハッシュ化のためにソルトは使用されます。
+							</td>
+						</tr>
+						<tr>
+							<th>iterations</th>
+							<td>integer</td>
+							<td><pre class="php"><code>10000</code></pre></td>
+							<td>
+								パスワードのハッシュ化処理で行われた繰り返し回数 (パスワード作成時の"暗号化"の回数) (Auth は PBKDF2を使用)。
+								より多く繰り返す方がパスワードは安全になりますが、より多く時間がかかります。あまりに多く繰り返すとサーバーがクラッシュすることがあります！
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
-					<p class="note">
-						'verify_multiple_logins' はドライバレベルの設定であることに注意。 Login ドライバ
-						そのものを意味していないし、「ユーザに多重ログインすることを許可する」ということではありません！
-					</p>
+				<p class="note">
+					'verify_multiple_logins' はドライバレベルの設定であることに注意。 Login ドライバ
+					そのものを意味していないし、「ユーザに多重ログインすることを許可する」ということではありません！
+				</p>
 
-					<p>auth.php ファイルはこのようになります：</p>
+				<p>auth.php ファイルはこのようになります：</p>
 
 				<pre class="php"><code>&lt;?php
 
