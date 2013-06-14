@@ -142,9 +142,8 @@ $entry = Model_Article::find('all', array(
 					<h3 id="find_chaining">Find using method chaining</h3>
 
 					<p class="note">
-						When you use the <kbd>find()</kbd> method without properties, it will be considered to be an
-						error situation. Currently it will return an Orm\Query object which you can use, and possibly
-						reuse to find entries. This behaviour might change in the future, so using this is <strong>discouraged</strong>,
+						You can not call the <kbd>find()</kbd> method without properties, or call it with <kbd>null</kbd> or a variable
+						that contains <kbd>null</kbd> as argument. If you do, <kbd>null</kbd> is returned. If you want to chain methods,
 						use the <kbd>query()</kbd> method instead.</p>
 
 					<pre class="php"><code>$query = Model_Article::query()->where('category_id', 1)->order_by('date', 'desc');
