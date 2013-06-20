@@ -49,6 +49,24 @@
 
 			<p>The Finder class allows for searching through a search path for a given file, as well as loading a given file.</p>
 
+			<h3 id="searchorder">Search order</h3>
+
+			<p>The finder uses the following search logic to locale files:</p>
+			<ul>
+				<li>If there are any flash paths defined, these will be searched first, in order of definition</li>
+				<li>If the current request context is a module, the module will be searched next</li>
+				<li>If there are any more request paths defined, these will be the next in line, in order of definition</li>
+				<li>Next, the APPPATH is searched</li>
+				<li>All loaded packages will be searched</li>
+				<li>And finally, the COREPATH will be searched</li>
+			</ul>
+
+			<p>
+				If you have enabled <kbd>'caching'</kbd> in your app/config.php, and you have defined a valid cache path, the finder will
+				cache all files found, so it doesn't have to crawl the disk the next time a file is looked for. You can also specify the
+				cache lifetime in your config file.
+			</p>
+
 			<article>
 				<h4 class="method" id="method_forge">forge($paths = array())</h4>
 				<p>The <strong>forge</strong> method returns a new finder object.</p>
