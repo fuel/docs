@@ -6,7 +6,7 @@
 
 翻訳は、[FuelPHP Documentation 日本語版執筆基準](https://github.com/NEKOGET/FuelPHP_docs_jp/wiki/FuelPHP-Documentation-%E6%97%A5%E6%9C%AC%E8%AA%9E%E7%89%88%E5%9F%B7%E7%AD%86%E5%9F%BA%E6%BA%96) に準拠するようにお願いします。
 
-現在、以下のブランチがありますが、1.6 の翻訳を進めています。
+現在、以下のブランチがありますが、1.7 の翻訳を進めています。
 - 1.7/develop_japanese ブランチ (本家 1.7/develop ブランチに対応)
 - 1.6/develop_japanese ブランチ (本家 1.6/develop ブランチに対応)
 - 1.5/develop_japanese ブランチ (本家 1.5/develop ブランチに対応)
@@ -15,6 +15,7 @@
 
 翻訳状況は、以下の Google Docs で管理されています。
 
+- [1.7 翻訳状況](https://docs.google.com/spreadsheet/ccc?key=0ArwGmfmveOhNdE9fU1BlNTNpNVVnaWJEaUVPbzgwQ0E#gid=5)
 - [1.6 翻訳状況](https://docs.google.com/spreadsheet/ccc?key=0ArwGmfmveOhNdE9fU1BlNTNpNVVnaWJEaUVPbzgwQ0E#gid=3)
 - [1.5 翻訳状況](https://docs.google.com/spreadsheet/ccc?key=0ArwGmfmveOhNdE9fU1BlNTNpNVVnaWJEaUVPbzgwQ0E#gid=2)
 - [1.3 翻訳状況](https://docs.google.com/spreadsheet/ccc?key=0Aj_-DesHiguSdG1BTTNYTEdfR2IyU3NNdlFSZFJMYmc#gid=0)
