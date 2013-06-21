@@ -192,6 +192,9 @@
 	// and new users are not allowed to select the group they're in (duh!)
 	$form->disable('group_id');
 
+	// since it's not on the form, make sure validation doesn't trip on its absence
+	$form->field('group_id')->delete_rule('required')->delete_rule('is_numeric');
+
 	// fetch the oauth provider from the session (if present)
 	$provider = \Session::get('auth-strategy.authentication.provider', false);
 
@@ -205,8 +208,13 @@
 		$login = \Fieldset::forge('loginform');
 		$login->form()->add_csrf();
 		$login->add_model('Model\\Auth_User');
+
 		// we only need username and password
 		$login->disable('group_id')->disable('email');
+
+		// since they're not on the form, make sure validation doesn't trip on their absence
+		$login->field('group_id')->delete_rule('required')->delete_rule('is_numeric');
+		$login->field('email')->delete_rule('required')->delete_rule('valid_email');
 	}
 
 	// was the registration form posted?

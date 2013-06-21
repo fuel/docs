@@ -177,6 +177,9 @@
 	// and new users are not allowed to select the group they're in (duh!)
 	$form->disable('group_id');
 
+	// since it's not on the form, make sure validation doesn't trip on its absence
+	$form->field('group_id')->delete_rule('required')->delete_rule('is_numeric');
+
 	// was the registration form posted?
 	if (\Input::method() == 'POST')
 	{
