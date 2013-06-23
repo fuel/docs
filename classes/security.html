@@ -47,15 +47,15 @@
 
 			<h2>Security クラス</h2>
 
-			<p>The security class allows you to have CSRF protection in your application.</p>
+			<p>Security クラスは、あなたのアプリケーションを CSRF から守ります。</p>
 
 			<section>
 				<h3 id="configuration">設定</h3>
 
 				<p>
-					The security class is configured through the security section of the <kbd>app/config/config.php</kbd> configuration file.
+					Security クラスは、<kbd>app/config/config.php</kbd> 設定ファイルのセキュリティセクションで設定できます。
 				</p>
-				<p>The following security configuration settings can be defined:</p>
+				<p>以下のセキュリティ設定が定義可能です。</p>
 				<table class="config">
 					<tbody>
 						<tr class="header">
@@ -69,7 +69,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'put your salt value here...'</code></pre></td>
 							<td>
-								Salt used to generate secure tokens. Make sure this contains something random to make sure your tokens are not predictable.
+								安全なトークンを生成するためにソルトを使用します。この文字列はランダムにし、容易に推測されないようにしてください。
 							</td>
 						</tr>
 						<tr>
@@ -77,7 +77,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'fuel_csrf_token'</code></pre></td>
 							<td>
-								Name used for the CSRF token cookie, and the name of the form field containing the token.
+								CSRF トークンクッキーの名前。トークンを含むフィールド名としても使用。
 							</td>
 						</tr>
 						<tr>
@@ -85,7 +85,7 @@
 							<td>integer</td>
 							<td><pre class="php"><code>0</code></pre></td>
 							<td>
-								Expiration time for the CRSF token cookie. Default, the cookie expires at end of browser session.
+								CRSF トークンクッキーの有効期限。デフォルトでは、ブラウザセッション終了時まで有効。
 							</td>
 						</tr>
 						<tr>
@@ -93,7 +93,7 @@
 							<td>array</td>
 							<td><pre class="php"><code>array('htmlentities')</code></pre></td>
 							<td>
-								Array of callable items (PHP functions, object methods, static class methods) used to filter the URI. By default, it uses PHP's htmlentities internal function.
+								URI をフィルターするのに使用する呼び出し可能なアイテム(PHP 関数、オブジェクトメソッド、静的クラスメソッド)の配列。デフォルトでは、PHP のビルトイン関数 htmlentities を使用。
 							</td>
 						</tr>
 						<tr>
@@ -101,7 +101,7 @@
 							<td>array</td>
 							<td><pre class="php"><code>array()</code></pre></td>
 							<td>
-								Array of callable items (PHP functions, object methods, static class methods) used to filter $_GET, $_POST and $_COOKIE. By default, no input filters are defined.
+								$_GET、$_POST、$_COOKIE をフィルターするのに呼び出し可能なアイテム(PHP 関数、オブジェクトメソッド、静的クラスメソッド)の配列。デフォルトでは、未定義。
 							</td>
 						</tr>
 						<tr>
@@ -109,8 +109,8 @@
 							<td>array</td>
 							<td><pre class="php"><code>array('Security::htmlentities')</code></pre></td>
 							<td>
-								Array of callable items (PHP functions, object methods, static class methods) used to filter variables send to a View or Viewmodel.
-								For security reasons, you are <strong>required</strong> to define an output filter.
+								View または Viewmodel に送信する変数をフィルターするのに呼び出し可能なアイテム(PHP 関数、オブジェクトメソッド、静的クラスメソッド)の配列。
+								セキュリティ上、出力フィルタ(output filter)は<strong>必ず</strong>定義する必要がある。
 							</td>
 						</tr>
 						<tr>
@@ -118,7 +118,7 @@
 							<td>integer</td>
 							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								Flags to be used when encoding HTML entities. Defaults to ENT_QUOTES if nothing is defined.
+								HTML エンティティをエンコーディングするときに使用するフラッグ。デフォルトは ENT_QUOTES
 							</td>
 						</tr>
 						<tr>
@@ -126,7 +126,7 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								Whether of not already encoded entities should be encoded again. Defaults to <strong>false</strong> if nothing is defined.
+								エンコードされたものを再エンコードするかどうか。デフォルトは <strong>false</strong>
 							</td>
 						</tr>
 						<tr>
@@ -134,7 +134,7 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								When true, all variables passed on to view objects are automatically encoded.
+								true にすると、ビューに渡すオブジェクトはすべて自動的にエンコードされる。
 							</td>
 						</tr>
 						<tr>
@@ -142,8 +142,8 @@
 							<td>array</td>
 							<td><pre class="php"><code>array('stdClass', 'Fuel\\Core\\View',<br /> 'Fuel\\Core\\ViewModel', 'Closure')</code></pre></td>
 							<td>
-								When auto encoding of view variables is enabled, you can run into issues when passing objects to the view. Classes defined in this
-								array will be exempt from auto encoding.
+								ビューに渡す変数の自動エンコーディングが有効なとき、オブジェクトを渡すときに問題が生じることがある。
+								この配列で定義したクラスは自動エンコードされない。
 							</td>
 						</tr>
 						<tr>
@@ -151,7 +151,7 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								When true, load and check the CSRF token using check_token() automatically. A SecurityException will be thrown if the check fails.
+								true にすると、check_token() を使用して CSRF トークンを自動的にチェックする。チェックに失敗すると SecurityException 例外が投げられる。
 							</td>
 						</tr>
 						<tr>
@@ -159,20 +159,20 @@
 							<td>array</td>
 							<td><pre class="php"><code>array('post', 'put', 'delete')</code></pre></td>
 							<td>
-								When csrf_autoload is true, the CSRF token will be validated for all http methods in this array.
+								csrf_autoload を true にすると、この配列にある http メソッドすべてで CSRF トークンが検証される。
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<p class="note">Note that if you enable "csrf_autoload", <strong>ALL</strong> your HTTP requests of the specified type <strong>MUST</strong> contain a CSRF token, or the validation will fail and a SecurityException will be thrown.</p>
-				<p class="note">If you want to deal with CSRF validation failures when autoload is enabled, you can catch the SecurityException in your index.php.</p>
+				<p class="note">"csrf_autoload" を有効にすると、指定したタイプの HTTP リクエスト<strong>すべて</strong>で CSRF トークンを含める<strong>必要があります</strong>。さもないと、検証に失敗し、SecurityException 例外が投げられます。</p>
+				<p class="note">オートロードが有効な場合で CSRF 検証失敗を自前で処理したい場合は、index.php で SecurityException 例外をキャッチすることができます。</p>
 			</section>
 
 			<article>
 				<h4 class="method" id="method_check_token">check_token($value = null)</h4>
-				<p>The <strong>check_token</strong> method allows you to check the CSRF token.<br />
-				Check token also ensures a token is present and will reset the token for the next session when it receives
-				a value to check (no matter the result of the check).</p>
+				<p><strong>check_token</strong> メソッドは、CSRF トークンをチェックします。<br />
+				check_token はトークンが存在することを保証します。また、チェックする値を受け取ったとき、(チェックの結果に関わらず)
+				トークンを再生成します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -191,7 +191,7 @@
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>CSRF token to be checked, checks value from POST or JSON input when not given.</td>
+									<td>チェックする CSRF トークン、未指定の場合は POST または JSON からの値をチェックする</td>
 								</tr>
 							</table>
 						</td>
@@ -212,7 +212,7 @@
 
 			<article>
 				<h4 class="method" id="method_fetch_token">fetch_token()</h4>
-				<p>The <strong>fetch_token</strong> method allows you to fetch the CSRF token from the cookie.</p>
+				<p><strong>fetch_token</strong> メソッドはクッキーから CSRF トークンを取得します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -239,7 +239,7 @@
 
 			<article>
 				<h4 class="method" id="method_js_fetch_token">js_fetch_token()</h4>
-				<p>The <strong>js_fetch_token</strong> method allows you to produce JavaScript fuel_csrf_token() function that will return the current CSRF token when called. Use to fill right field on form submit for AJAX operations.</p>
+				<p><strong>js_fetch_token</strong> メソッドは、現在の CSRF トークンを返す JavaScript fuel_csrf_token() 関数を作成します。AJAX 操作のためにフォーム送信時に適切なフィールドに挿入します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
