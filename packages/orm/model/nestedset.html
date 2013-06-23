@@ -830,7 +830,7 @@ $sibling = $nicola->next_silbing()->get_one();
 					</article>
 
 					<article>
-						<h4 id="method_get_path" class="method">path()</h4>
+						<h4 id="method_get_path" class="method">path($addroot = true)</h4>
 						<p>
 							The <strong>path</strong> method returns the path to the current node as a string, using the column identified
 							by the "title_field" in the models tree configuration.
@@ -844,7 +844,18 @@ $sibling = $nicola->next_silbing()->get_one();
 								<tr>
 									<th>Parameters</th>
 									<td>
-										None.
+										<table class="parameters">
+											<tr>
+												<th>Param</th>
+												<th>Default</th>
+												<th class="description">Description</th>
+											</tr>
+											<tr>
+												<th><kbd>$addpath</kbd></th>
+												<td><pre class="php"><span class="keyword">true</span></pre></td>
+												<td>If false, the root node will be excluded from the result.</td>
+											</tr>
+										</table>
 									</td>
 								</tr>
 								<tr>
@@ -858,11 +869,14 @@ $sibling = $nicola->next_silbing()->get_one();
 								<tr>
 									<th>Example</th>
 									<td>
-										<pre class="php"><code>// get the path to Tim, returns "Bill/Ben/Kerry/Tim"
+										<pre class="php"><code>// get the path to Tim, returns "Bill/Ben/Kerry/Tim/"
 $path = $tim->path();
 
-// get the path to Nicola, returns "Bill/Angela/Nicola"
+// get the path to Nicola, returns "Bill/Angela/Nicola/"
 $path = $nicola->path();
+
+// get the path to Kerry, and exclude the boss. returns "Ben/Kerry/"
+$path = $kerry->path(false);
 </code></pre>
 									</td>
 								</tr>
