@@ -158,6 +158,18 @@ ViewModel::forge('index', 'other_method');</code></pre>
 				a <code>__toString()</code> magic method that will render and return the parsed contents.<br />
 				The name of the expected view is available in the <code>$this->_view</code> property.</p>
 
+				<h4 id="alternative_view">Using a different view file, or an existing View object</h4>
+
+				<p>You can also tell the ViewModel instance to use a different view, and not use the automatic mechanism
+				for determining the view to load, by using the forth parameter of the forge() method:</p>
+
+				<pre class="php"><code>// use the 'other/index' view instead of the 'index' view
+ViewModel::forge('index', 'other_method', null, 'other/index');
+
+// you can also pass a View object directly
+$view = View::forge('other/index');
+ViewModel::forge('index', 'other_method', null, $view);</code></pre>
+
 				<h4 id="access_to_view">Accessing the view</h4>
 				<p>You can use the <code>get_view()</code> method to get access to the View object from outside the Viewmodel.</p>
 
@@ -165,7 +177,7 @@ ViewModel::forge('index', 'other_method');</code></pre>
 
 				<p>If you want to use these, you have to use the full classname with the <code>forge()</code>, including the namespace.
 				In these cases, the default naming will often not work as expected so setting the <code>$_view</code>
-				property is encouraged.</p>
+				property, or passing a custom view name, is encouraged.</p>
 			</article>
 
 		</div>
