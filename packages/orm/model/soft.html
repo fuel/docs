@@ -84,6 +84,13 @@ $employee->delete(); //The employee has now been soft deleted.</code></pre>
                 </section>
 
                 <section>
+                    <h2 id="delete">Permanently Deleting</h2>
+                    <p>To delete a record permanently, call the <kbd>purge()</kbd> function on the object after selecting. This deletes the record permanently from the database.</p>
+                    <pre id="php"><code>$employee = Model_Employee::find(1);
+$employee->purge(); //The employee has now been deleted.</code></pre>
+                </section>
+
+                <section>
                     <h2 id="find">Find</h2>
                     <p>Soft deleted entries are not listed with <kbd>find()</kbd> requests, they are excluded from the returned results because they have, as far as <kbd>Model_Soft</kbd> is concerned, been deleted. It is possible to query deleted entries by using <kbd>find_deleted()</kbd> or <kbd>deleted()</kbd>. These both work the same as <kbd>find()</kbd> and expect the same parameters.</p>
                 </section>
