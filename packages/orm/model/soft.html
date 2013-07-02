@@ -84,6 +84,13 @@ $employee->delete(); // この従業員はまさに論理削除されました</
                 </section>
 
                 <section>
+                    <h2 id="delete">Permanently Deleting</h2>
+                    <p>To delete a record permanently, call the <kbd>purge()</kbd> function on the object after selecting. This deletes the record permanently from the database.</p>
+                    <pre id="php"><code>$employee = Model_Employee::find(1);
+$employee->purge(); //The employee has now been deleted.</code></pre>
+                </section>
+
+                <section>
                     <h2 id="find">検索</h2>
                     <p>論理削除されたエントリは <kbd>find()</kbd> によってリストされることはありません。それらは <kbd>Model_Soft</kbd> の中においては削除されていることになっているので、結果からも取り除かれます。削除されたエントリを見つけることは、 <kbd>find_deleted()</kbd> や <kbd>deleted()</kbd> を用いることで可能です。これらは <kdb>find()</kbd> メソッドと同じパラメータで期待したように動作します。</p>
                 </section>

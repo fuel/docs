@@ -158,6 +158,18 @@ ViewModel::forge('index', 'other_method');</code></pre>
 				<code>__toString()</code> マジックメソッドを持たなくてはなりません。
 				ビューの名前は <code>$this->_view</code> プロパティから取得できます。</p>
 
+				<h4 id="alternative_view">Using a different view file, or an existing View object</h4>
+
+				<p>You can also tell the ViewModel instance to use a different view, and not use the automatic mechanism
+				for determining the view to load, by using the forth parameter of the forge() method:</p>
+
+				<pre class="php"><code>// use the 'other/index' view instead of the 'index' view
+ViewModel::forge('index', 'other_method', null, 'other/index');
+
+// you can also pass a View object directly
+$view = View::forge('other/index');
+ViewModel::forge('index', 'other_method', null, $view);</code></pre>
+
 				<h4 id="access_to_view">Accessing the view</h4>
 				<p>You can use the <code>get_view()</code> method to get access to the View object from outside the Viewmodel.</p>
 
@@ -165,7 +177,7 @@ ViewModel::forge('index', 'other_method');</code></pre>
 
 				<p>これらを使用する場合、名前空間を含む、完全なクラス名で <code>forge()</code> を使う必要があります。
 				その場合、デフォルトの命名規則はしばしば期待したように動作しませんので、
-				<code>$_view</code> プロパティをセットすることが推奨されます。</p>
+				<code>$_view</code> プロパティまたはまたはカスタムビュー名を渡す事が推奨されます。</p>
 			</article>
 
 		</div>
