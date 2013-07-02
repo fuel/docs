@@ -50,9 +50,9 @@
 			<section>
 				<h2 id="intro">はじめに</h2>
 
-				<p>The Parser package changes nothing about the way you work with Views, but it will allow you to
-					use any template parser you want instead of PHP. The package comes with many drivers for parsers like
-					Mustache, Markdown, Twig and Smarty.</p>
+				<p>パーサパッケージは View の作りかたをまったく変更することなく、あなたが PHP の代替にしたい
+					と思うどんなテンプレートパーサでも使えるようにします。 パッケージには Mustache, Markdown, Twig 
+					そして Smarty のようなパーサのドライバーがいくつも付属しています。</p>
 
 				<p>どのパーサを使用するかは、ビューファイルのファイル拡張子で選択します。
 					標準のビューの拡張子は <kbd>.php</kbd> で、PHP を使用してテンプレートをパースします。<kbd>.php</kbd> 拡張子が省略されることもあります。
@@ -63,8 +63,8 @@
 				<section>
 					<h3 id="install">インストール</h3>
 
-					<p>The Parser package is included in the Fuel download. To use it you must first enable it by adding
-						it to your config:</p>
+					<p>パーサパッケージは Fuel のダウンロードに含まれています。これを使用するには 、まず config に下記を
+					追加して利用可能にしなければなりません。</p>
 					<pre class="php"><code>'always_load' => array(
 	'packages' => array(
 		'parser',
@@ -110,11 +110,11 @@
 						これは必須条件(requiremen)ではなく規約(convention)ですので、サードパーティ製ドライバによって
 						異なることがあります。</p>
 
-					<pre class="php"><code>// Clear the cache for a specific Smarty template
+					<pre class="php"><code>// 特定の Smarty テンプレートのキャッシュをクリアする。
 $view = View::forge('example.smarty');
 $view->parser()->clearCache('example.smarty');
 
-// Example static usage
+// 静的な使い方の例
 View_Smarty::parser()->clearCache('example.smarty');</code></pre>
 				</section>
 
