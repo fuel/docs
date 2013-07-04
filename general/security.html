@@ -125,7 +125,7 @@
 &lt;input type="hidden" name="&lt;?php echo \Config::get('security.csrf_token_key');?&gt;" value="&lt;?php echo \Security::fetch_token();?&gt;" /&gt;
 
 // using the Form class
-echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token());
+echo \Form::csrf();
 
 // using a form instance, will also add a validation rule to forms fieldset
 $form = \Form::forge();
