@@ -169,7 +169,9 @@ $ php composer.phar update
 				using the URL http://example.org/deep/sub/folder.
 			</p>
 
-			<p>By placing this .htaccess in the 'deep' folder, you can reduce that to http://example.org, and still have access to other files and folders:</p>
+			<p>
+				By placing this .htaccess into one of the higher folders, you can have the browser redirect to your FuelPHP application if no match was found on
+				file or	directory name:</p>
 <pre class="plain"><code>&lt;IfModule mod_rewrite.c>
 	RewriteEngine on
 
@@ -178,11 +180,12 @@ $ php composer.phar update
 	RewriteCond %{REQUEST_FILENAME} !-d [OR]
 	RewriteCond $1 ^$
 
-	RewriteRule ^(.*)$ deep/sub/folder/$1 [QSA,L]
+	RewriteRule ^(.*)$ /deep/sub/folder [R=301,L]
 &lt;/IfModule>
 </code>
 </pre>
-			<p>Similarly, if you want this in the "deep/sub" folder, you can use:</p>
+			<p>Note that this does a redirect, it therefore does not hide the subfolders in the path from the user. If you want that, use this instead:</p>
+
 <pre class="plain"><code>&lt;IfModule mod_rewrite.c>
 	RewriteEngine on
 
@@ -191,10 +194,12 @@ $ php composer.phar update
 	RewriteCond %{REQUEST_FILENAME} !-d [OR]
 	RewriteCond $1 ^$
 
-	RewriteRule ^(.*)$ folder/$1 [QSA,L]
+	RewriteRule ^(.*)$ /deep/sub/folder [QSA,L]
 &lt;/IfModule>
 </code>
 </pre>
+			<p>Obviously, if you place it in the "sub" folder, you can hide "sub/folder" from the URL, but not "deep"...</p>
+
 			<h2 id="setting_the_environment">Setting the Environment</h2>
 
 			<p>
