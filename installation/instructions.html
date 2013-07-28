@@ -143,44 +143,62 @@ php composer.phar update
 
 			<h2 id="install_inside_root">ドキュメントルート内にインストールする</h2>
 
-			<p>ポイント 3 で説明したように、セキュリティの観点からウェブサーバのドキュメントルート内に Fuel をインストールしないことを強く推奨します。</p>
+			<p>ポイント 3 で説明したように、セキュリティの観点からウェブサーバのドキュメントルート内に Fuel をインストール<strong>しない</strong>ことを強く推奨します。</p>
 			<p>
 				しかしながらそうしたい状況もあります。例えば、Apache の大量の動的なバーチャルホストモジュールのある (ローカルの) 開発環境は、
 				Web サーバを再起動せずに新しい開発環境を素早く構築するために使用されます。
 			</p>
-			<p>この場合は、.htaccess ファイルが必要で、ドキュメントルートに置く必要があります。さらにそのサイトへのリクエストを公開フォルダにリダイレクトし、公開フォルダをインクルードするために rewrites も変更します：</p>
-<pre class="plain"><code>
-&lt;IfModule mod_rewrite.c>
+			<p>
+				If you need this, install FuelPHP in the folder you have designated to be the installation root. After you have done that, go into the public folder,
+				move everything in the public folder one level up, and remove the public folder. The only purpose of that folder is to provide an anchor point for
+				your webservers DocumentRoot. You don't need that anymore, since you have installed FuelPHP in the folder that is the DocumentRoot.
+			</p>
+			<p>After the move, change the location of the application in your index.php to:</p>
+			<pre class="php"><code>define('APPPATH', realpath(__DIR__.'/fuel/app/').DIRECTORY_SEPARATOR);</code></pre>
+
+			<h3 id="install_inside_root2">What about several folders deep?</h3>
+
+			<p>That doesn't make a difference, the procedure remains exactly the same.</p>
+
+			<p>
+				In this case however, accessing your application might be a bit more complicated due to the folder structure involved. But you can't just put
+				a simple .htaccess in, you probably still want to access other stuff installed in that same folder structure.
+			</p>
+			<p>
+				Assuming you have installed FuelPHP in the folder "/deep/sub/folder" of your DocumentRoot, you would normally have to access your FuelPHP application
+				using the URL http://example.org/deep/sub/folder.
+			</p>
+
+			<p>
+				By placing this .htaccess into one of the higher folders, you can have the browser redirect to your FuelPHP application if no match was found on
+				file or	directory name:</p>
+<pre class="plain"><code>&lt;IfModule mod_rewrite.c>
 	RewriteEngine on
 
-	RewriteBase /public
-
-	RewriteRule ^(/)?$ index.php/$1 [L]
-
+	# Send request to the subfolder, if its not a real file, folder or it's a root request
 	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-d [OR]
+	RewriteCond $1 ^$
 
-	RewriteRule ^(.*)$ index.php/$1 [L]
+	RewriteRule ^(.*)$ /deep/sub/folder [R=301,L]
 &lt;/IfModule>
 </code>
 </pre>
-			<h3 id="install_inside_root2">もっと簡単な方法</h3>
+			<p>Note that this does a redirect, it therefore does not hide the subfolders in the path from the user. If you want that, use this instead:</p>
 
-			<p>
-				public フォルダを除いてインストールする方法がもう一つあります。
-				zipファイルをそのままwebサーバにコピーし、以下を実行します：
-			</p>
-			<ul>
-				<li>全てのファイルを /public フォルダの一階層上、ドキュメントルートに移動します</li>
-				<li>空になったpublicフォルダを削除します</li>
-				<li><strong>index.php</strong> をエディタで開き、APPPATHとCOREPATH、PKGPATHから "/.." を取ります</li>
-			</ul>
+<pre class="plain"><code>&lt;IfModule mod_rewrite.c>
+	RewriteEngine on
 
-			<h3 id="install_inside_subfolders">サブフォルダにインストールする場合</h3>
-			<p>上記と同じ手順に加えて、次のステップを実行します：</p>
-			<ul>
-				<li><strong>.htaccess</strong> ファイルをエディタで開き、<em>RewriteRule ^(.*)$ /[サブフォルダのディレクトリ]/index.php/$1</em> の部分を変更します。</li>
-			</ul>
+	# Send request to the subfolder, if its not a real file, folder or it's a root request
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d [OR]
+	RewriteCond $1 ^$
+
+	RewriteRule ^(.*)$ /deep/sub/folder [QSA,L]
+&lt;/IfModule>
+</code>
+</pre>
+			<p>Obviously, if you place it in the "sub" folder, you can hide "sub/folder" from the URL, but not "deep"...</p>
 
 			<h2 id="setting_the_environment">環境を設定する</h2>
 

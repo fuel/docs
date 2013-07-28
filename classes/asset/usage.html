@@ -168,7 +168,7 @@ Asset::add_path('resources/templates/dark/')
 									<tr>
 										<th><kbd>$stylesheets</kbd></th>
 										<td><i>必須</i></td>
-										<td>An array/string of stylesheet filename(s) to be added to the group or be returned as tags.</td>
+										<td>An array/string of stylesheet filename(s) to be added to the group or be returned as tags, or a string containing inline CSS.</td>
 									</tr>
 									<tr>
 										<th><kbd>$attr</kbd></th>
@@ -183,7 +183,7 @@ Asset::add_path('resources/templates/dark/')
 									<tr>
 										<th><kbd>$raw</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If set to true the result css tags will include the file contents directly instead of via a link tag.</td>
+										<td>If set to true, the result css tags will include the string or file contents directly in the HTML, instead of via a link tag.</td>
 									</tr>
 								</table>
 							</td>
@@ -211,7 +211,20 @@ echo Asset::css('inline.css');
  * #header {height: 50px}
  * &lt;/style&gt;
  */
-echo Asset::css('inline.css', array(), null, true);</code></pre>
+echo Asset::css('inline.css', array(), null, true);
+
+/* returns
+ * &lt;style&gt;
+ * .bold_class { font-weight: bold }
+ * #header {height: 50px}
+ * &lt;/style&gt;
+ */
+Asset::css(".bold_class { font-weight: bold }\n#header {height: 50px}", array(), 'inline', true);
+echo Asset::render('inline');
+
+/* this will do the same */
+echo Asset::css(".bold_class { font-weight: bold }\n#header {height: 50px}", array(), null, true);
+</code></pre>
 							</td>
 						</tr>
 						</tbody>
@@ -350,7 +363,7 @@ Asset::img(array('bob.jpg', 'joe.jpg', 'sally.jpg'), array('class' => 'thumbnail
 									<tr>
 										<th><kbd>$scripts</kbd></th>
 										<td><i>必須</i></td>
-										<td>An array/string of stylesheet filename(s) to be added to the group or be returned as tags.</td>
+										<td>An array/string of stylesheet filename(s) to be added to the group or be returned as tags, or a string containing inline javascript.</td>
 									</tr>
 									<tr>
 										<th><kbd>$attr</kbd></th>
@@ -365,7 +378,7 @@ Asset::img(array('bob.jpg', 'joe.jpg', 'sally.jpg'), array('class' => 'thumbnail
 									<tr>
 										<th><kbd>$raw</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If set to true the result js tags will include the file contents directly instead of via a script src tag.</td>
+										<td>If set to true, the result javascript tags will include the string or file contents directly in the HTML, instead of via a script tag.</td>
 									</tr>
 								</table>
 							</td>
@@ -393,7 +406,20 @@ echo Asset::js('menu_init.js', array(), null, true);
  * if auto_render in the config is set to true.
  * if not, the asset will be added to the default group for later rendering
  */
-echo Asset::js('jquery.js');</code></pre>
+echo Asset::js('jquery.js');
+
+/* returns
+ * &lt;script type="text/javascript"&gt;
+ * var menu = getElementById('menu');
+ * menu.initialize_menu();
+ * &lt;/script&gt;
+ */
+Asset::js("var menu = getElementById('menu');\nmenu.initialize_menu();", array(), 'inline', true);
+echo Asset::render('inline');
+
+/* this will do the same */
+echo Asset::js("var menu = getElementById('menu');\nmenu.initialize_menu();", array(), null, true);
+</code></pre>
 							</td>
 						</tr>
 						</tbody>

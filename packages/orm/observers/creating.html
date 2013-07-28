@@ -67,7 +67,7 @@
 				<pre class="php"><code>class Observer_Something extends Orm\Observer
 {
 
-	public function after_insert(Model $model)
+	public function after_insert(Orm\Model $model)
 	{
 		\Log::info('Succesfully created new object of class '.get_class($model));
 	}
@@ -89,7 +89,7 @@
 
 	// それはorm_notifyメソッドの前または後に、多くのメソッドとプロパティを持つことができます。
 
-	public static function orm_notify(Model $model, $event)
+	public static function orm_notify(Orm\Model $model, $event)
 	{
 		\Log::info('I was notified of the event '.$event.' on a Model of class '.get_class($model));
 	}
