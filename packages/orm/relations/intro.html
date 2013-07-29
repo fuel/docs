@@ -268,8 +268,8 @@ $post = Model_Post::query()
         'articles' => array(
             'join_type' => 'inner',
             'where' => array(
-                array('publish_date', '>', time()),
-                array('published', '=', 1),
+                array('publish_date', '>', DB::expr(time())),
+                array('published', '=', DB::expr(1)),
             ),
             'order_by' => array('id' => 'desc'),
         ),
@@ -288,8 +288,8 @@ $post = Model_Post::query()
         'articles' => array(
             'join_type' => 'left outer',
             'join_on' => array(
-                array('publish_date', '>', time()),
-                array('published', '=', 1),
+                array('publish_date', '>', DB::expr(time())),
+                array('published', '=', DB::expr(1)),
             ),
             'order_by' => array('id' => 'desc'),
         ),
@@ -297,6 +297,8 @@ $post = Model_Post::query()
 ));
 				</code></pre>
 				<p>This will make the selection criteria part of the ON clause, instead of the WHERE clause.</p>
+
+				<p class='note'>Note that if you want to pass a literal value to a join, you will have to encapsulate it in a DB::expr() to avoid it being escaped as a column name.</p>
 			</article>
 
 			<article id="relation_types">

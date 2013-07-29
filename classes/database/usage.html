@@ -372,6 +372,9 @@ $result = DB::select()->from('users')->join('roles','LEFT')->on('roles.id', '=',
 
 // Will execute SELECT * FROM `users` RIGHT OUTER JOIN `roles` ON `roles`.`id` = `users`.`role_id`
 $result = DB::select()->from('users')->join('roles','right outer')->on('roles.id', '=', 'users.role_id');
+
+// join on a literal value 1 instead of a column name
+$result = DB::select()->from('users')->join('roles','right outer')->on('roles.id', '=', DB::expr('1'));
 </code></pre>
 
 			</article>
