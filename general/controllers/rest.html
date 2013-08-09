@@ -117,7 +117,7 @@
 					<tr>
 						<th>PUT</th>
 						<td>
-							Used to create or update a resource with a known id. Less commonly used as it is not yet supported by HTML (v.5). It is although supported for XMLHttpRequests by most browsers.
+							Used to create or update a resource with a known id. You are expected to pass all properties. Missing ones should be set to NULL. Less commonly used as it is not yet supported by HTML (v.5). It is although supported for XMLHttpRequests by most browsers.
 						</td>
 					</tr>
 					<tr>
@@ -126,8 +126,15 @@
 							Used to delete an existing resource. As for PUT, it is not supported by HTML (v.5) but supported for XMLHttpRequests by most browsers.
 						</td>
 					</tr>
+					<tr>
+						<th>PATCH</th>
+						<td>
+							Used to update a resource with a known id. You only pass properties you want to update. Less commonly used as it is not yet supported by HTML (v.5). It is although supported for XMLHttpRequests by most browsers.
+						</td>
+					</tr>
 				</tbody>
 			</table>
+			<p class="note">This is not a restrictive list, the FuelPHP framework accepts any HTTP method accepted by your webserver.</p>
 
 			<h3 id="output">Output</h3>
 
