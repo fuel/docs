@@ -117,7 +117,7 @@
 					<tr>
 						<th>PUT</th>
 						<td>
-							既知の id に対応するリソースを作成・更新する際に使用される。HTML5 ではサポートされないため、あまり使用されない。ただし、 XMLHttpRequests のために多くのブラウザでサポートされている。
+							既知の id に対応するリソースを作成・更新する際に使用される。 You are expected to pass all properties. Missing ones should be set to NULL. Less commonly used as it is not yet supported by HTML (v.5). It is although supported for XMLHttpRequests by most browsers.
 						</td>
 					</tr>
 					<tr>
@@ -126,8 +126,15 @@
 							既存のリソースを削除する際に使用される。PUT メソッドと同様に HTML5 でサポートされなくなったものの、 XMLHttpRequests のために多くのブラウザでサポートされている。
 						</td>
 					</tr>
+					<tr>
+						<th>PATCH</th>
+						<td>
+							Used to update a resource with a known id. You only pass properties you want to update. Less commonly used as it is not yet supported by HTML (v.5). It is although supported for XMLHttpRequests by most browsers.
+						</td>
+					</tr>
 				</tbody>
 			</table>
+			<p class="note">This is not a restrictive list, the FuelPHP framework accepts any HTTP method accepted by your webserver.</p>
 
 			<h3 id="output">出力</h3>
 

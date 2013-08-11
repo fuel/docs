@@ -311,6 +311,52 @@ $value = \Input::xml('key', 'backup-value');</code></pre>
 			</article>
 
 			<article>
+				<h4 class="method" id="method_patch">patch($index = null, $default = null)</h4>
+				<p>The <strong>patch</strong> method allows you to read parameters from php://input stream when called via PATCH.
+				Call without params to fetch the full array.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$index</kbd></th>
+									<td><i>optional</i></td>
+									<td>The key in the php://input stream.</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><i>optional</i></td>
+									<td>What value should be returned if the array item is not found?</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre><code class="php">Input::patch('foo', 'bar');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_get">get($index = null, $default = null)</h4>
 				<p><strong>get</strong> メソッドは、$_GET 変数を読み込みます。引数なしで呼び出すと、配列をすべて取得します。</p>
 				<table class="method">
