@@ -51,7 +51,7 @@
 
 			<article>
 				<h4 class="method" id="method_uri">uri()</h4>
-				<p>The <strong>uri</strong> method detects the current URI to build the correct string.</p>
+				<p><strong>uri</strong> メソッドは正しい文字列で構築された現在の URI を検出します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -69,7 +69,7 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// 例 URL: http://localhost/controller/method
+							<pre class="php"><code>// Example URL: http://localhost/controller/method
 echo Input::uri(); // 返り値: /controller/method</code></pre>
 						</td>
 					</tr>
@@ -87,37 +87,37 @@ echo Input::uri(); // 返り値: /controller/method</code></pre>
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>引数</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>optional</i></td>
-									<td>The key in the json request body. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
+									<td><i>任意</i></td>
+									<td>json リクエストボディの中のキー。多次元配列には、階層をドット (.) で区切ることでアクセスできます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>What value should be returned if the array item is not found?</td>
+									<td>指定された $index が取得できなかったときに返す値</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>array - Format::from_json result array</td>
+						<td>array - Format::from_json 結果の配列</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
 							<pre class="php"><code>$value = \Input::json('key');
 
-// 値が与えられていない場合はデフォルト値をセットする:
+// 値が存在しない場合はデフォルト値がセットされる:
 $value = \Input::json('key', 'backup-value');</code></pre>
 						</td>
 					</tr>
@@ -135,37 +135,37 @@ $value = \Input::json('key', 'backup-value');</code></pre>
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>引数</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>optional</i></td>
-									<td>The key in the XML request body. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
+									<td><i>任意</i></td>
+									<td>XML リクエストボディの中のキー。多次元配列には、階層をドット (.) で区切ることでアクセスできます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>What value should be returned if the array item is not found?</td>
+									<td>指定された $index が取得できなかったときに返す値</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>array - Format::from_json result array</td>
+						<td>array - Format::from_xml 結果の配列</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
 							<pre class="php"><code>$value = \Input::xml('key');
 
-// 値が与えられていない場合はデフォルト値をセットする:
+// 値が存在しない場合はデフォルト値がセットされる:
 $value = \Input::xml('key', 'backup-value');</code></pre>
 						</td>
 					</tr>
@@ -194,7 +194,7 @@ $value = \Input::xml('key', 'backup-value');</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>$_COOKIE 配列のキー。多次元配列には、階層をドット (.) で区切ることでアクセスできます。</td>
 								</tr>
 								<tr>
@@ -239,12 +239,12 @@ $value = \Input::xml('key', 'backup-value');</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>php://input ストリームのキー</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>配列の要素が見つからない場合に返す値</td>
 								</tr>
 							</table>
@@ -285,12 +285,12 @@ $value = \Input::xml('key', 'backup-value');</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>php://input ストリームのキー</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>配列の要素が見つからない場合に返す値</td>
 								</tr>
 							</table>
@@ -312,42 +312,42 @@ $value = \Input::xml('key', 'backup-value');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_patch">patch($index = null, $default = null)</h4>
-				<p>The <strong>patch</strong> method allows you to read parameters from php://input stream when called via PATCH.
-				Call without params to fetch the full array.</p>
+				<p><strong>patch</strong> メソッドは、[訳注: HTTP の] PATCH メソッドで呼び出されたときに、php://input ストリームからパラメータを読み込みます。
+				引数なしで呼び出すと、配列をすべて取得します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>引数</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>optional</i></td>
-									<td>The key in the php://input stream.</td>
+									<td><i>任意</i></td>
+									<td>php://input ストリームのキー</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
-									<td><i>optional</i></td>
-									<td>What value should be returned if the array item is not found?</td>
+									<td><i>任意</i></td>
+									<td>配列の要素が見つからない場合に返す値</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre><code class="php">Input::patch('foo', 'bar');</code></pre>
 						</td>
@@ -376,12 +376,12 @@ $value = \Input::xml('key', 'backup-value');</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>optional</i></td>
-									<td>The key in the $_GET array. Multi-dimensional arrays can be accessed by separating the levels by a dot (.)</td>
+									<td><i>任意</i></td>
+									<td>$_GET 配列のキー。多次元配列には、階層をドット (.) で区切ることでアクセスできます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>配列の要素が見つからない場合に返す値</td>
 								</tr>
 							</table>
@@ -425,12 +425,12 @@ Input::get('somevar.foo.bar');</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>$_POST 配列のキー。多次元配列には、階層をドット (.) で区切ることでアクセスできます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>配列の要素が見つからない場合に返す値</td>
 								</tr>
 							</table>
@@ -483,7 +483,7 @@ Input::post('somevar.foo.bar');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_method">method($default = 'GET')</h4>
-				<p><strong>method</strong> メソッドは、コントローラの呼び出しに使用された HTTP メソッドを返します。If the header X-HTTP-Method-Override has been sent, the specified method will be returned instead.</p>
+				<p><strong>method</strong> メソッドは、コントローラの呼び出しに使用された HTTP メソッドを返します。もしヘッダー X-HTTP-Method-Override が送られていた場合、代わりに指定された方法で返されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -502,7 +502,7 @@ Input::post('somevar.foo.bar');</code></pre>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>'GET'</code></pre></td>
-									<td>Default HTTP method.</td>
+									<td>デフォルトの HTTP メソッド。</td>
 								</tr>
 							</table>
 						</td>
@@ -665,12 +665,12 @@ fe80::/10      // link local unicast (rfc4291)
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>$_SERVER 配列のキー</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>配列の要素が見つからない場合に返す値</td>
 								</tr>
 							</table>
@@ -709,7 +709,7 @@ fe80::/10      // link local unicast (rfc4291)
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>配列の要素が見つからない場合に返す値</td>
 								</tr>
 							</table>
@@ -748,7 +748,7 @@ fe80::/10      // link local unicast (rfc4291)
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>配列の要素が見つからない場合に返す値</td>
 								</tr>
 							</table>
@@ -809,12 +809,12 @@ fe80::/10      // link local unicast (rfc4291)
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>$_FILE 配列のキー</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>配列の要素が見つからない場合に返す値</td>
 								</tr>
 							</table>
@@ -853,12 +853,12 @@ fe80::/10      // link local unicast (rfc4291)
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>$_GET, $_POST, $_PUT または $_DELETE 配列のキー</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
-									<td><i>オプション</i></td>
+									<td><i>任意</i></td>
 									<td>配列の要素が見つからない場合に返す値</td>
 								</tr>
 							</table>
@@ -879,23 +879,23 @@ fe80::/10      // link local unicast (rfc4291)
 			</article>
 			<article>
 				<h4 class="method" id="method_extension">extension()</h4>
-				<p>The <strong>extension</strong> method returns the current URI extension.</p>
+				<p><strong>extension</strong> メソッドは、現在の URI の拡張子を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
-						<td>None</td>
+						<th>パラメータ</th>
+						<td>なし</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string|null</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre><code class="php">// Example URL: http://localhost/test/
 echo Input::extension(); // NULL
@@ -910,52 +910,52 @@ echo Input::extension(); // 'html'
 			</article>
 			<article>
 				<h4 class="method" id="method_headers">headers($index = null, $default = null)</h4>
-				<p>The <strong>headers</strong> method returns a specific or all HTTP headers of the current request.</p>
+				<p><strong>headers</strong> メソッドは、現在のリクエストにおける特定または全ての HTTP ヘッダーを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>引数</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$index</kbd></th>
-									<td><i>optional</i></td>
-									<td>The name of the HTTP header.</td>
+									<td><i>任意</i></td>
+									<td>HTTP ヘッダーの名前。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
-									<td><i>optional</i></td>
-									<td>What value should be returned if the header entry is not found?</td>
+									<td><i>任意</i></td>
+									<td>指定された $index が取得できなかったときに返す値</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre><code class="php">// check if there was a content length specified
+							<pre><code class="php">// content length が取得できるかどうかを確認する
 if ($headers = \Input::headers() and array_key_exists('Content-Length', $headers))
 {
-	echo 'The content length set on this request is', $headers['Content-Length'];
+	echo 'このリクエストでセットされている content length は ', $headers['Content-Length'];
 }
 
-// or fetch it directly
+// もしくは直接取得する
 if ($header = \Input::headers('Content-Length', false))
 {
-	echo 'The content length set on this request is', $header;
+	echo 'このリクエストでセットされている content length は ', $header;
 }
 </code></pre>
 						</td>
