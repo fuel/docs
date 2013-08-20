@@ -48,15 +48,15 @@
 			<h2>Form クラス</h2>
 
 			<p>
-				Formクラスは、個々のフォームパーツを作ることと、バリデーションチェック付きのフォーム全体を作ることができます。
-				後者を作る場合は、<a href="fieldset.html">Fieldset</a>クラスと、組み合わせて使います。
+				Form クラスは、個々のフォームパーツを作ることと、バリデーションチェック付きのフォーム全体を作ることができます。
+				後者を作る場合は、 <a href="fieldset.html">Fieldset</a> クラスと、組み合わせて使います。
 			</p>
 
 			<h3 id="creatin_elements">フォームパーツを作る</h3>
 
 			<article>
 				<h4 class="method" id="method_open">open($attributes = array(), $hidden = array())</h4>
-				<p>フォームの開きタグ（&lt;form&gt;）を返します</p>
+				<p>フォームの開きタグ (&lt;form&gt;) を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -75,14 +75,14 @@
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>action属性（フォームの送信先）を文字列または、
+									<td>action 属性 (フォームの送信先) を文字列または、
 										配列で指定します。
 										空の場合は、自身のページが送信先に指定されます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$hidden</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>非表示フィールド（&lt;input type="hidden"...）を指定します。
+									<td>非表示フィールド (&lt;input type="hidden"...) を指定します。
 										連想配列でキーと値を指定します。</td>
 								</tr>
 							</table>
@@ -108,7 +108,7 @@ echo Form::open(array('action' => 'http://google.com/', 'method' => 'get'));</co
 
 			<article>
 				<h4 class="method" id="method_close">close()</h4>
-				<p>フォームの閉じタグ（&lt;/form&gt;）を返します</p>
+				<p>フォームの閉じタグ (&lt;/form&gt;) を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -137,8 +137,8 @@ echo Form::close();</code></pre>
 			<article>
 				<h4 class="method" id="method_input">input($field, $value = null, $attributes = array())</h4>
 				<p>
-					入力要素を返します。最初のパラメータに配列を指定することで、name属性、value属性や
-					その他、HTML属性を指定することができます。
+					入力要素を返します。最初のパラメータに配列を指定することで、 name 属性、 value 属性や
+					その他、 HTML 属性を指定することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -158,17 +158,17 @@ echo Form::close();</code></pre>
 								<tr>
 									<th><kbd>$field</kbd></th>
 									<td><i>必須</i></td>
-									<td>フィールド名（name属性）や、その他の属性を指定します</td>
+									<td>フィールド名 (name 属性) や、その他の属性を指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>1つめのパラメータが配列ではない場合、ここで値（value属性）を指定します</td>
+									<td>1つめのパラメータが配列ではない場合、ここで値 (value 属性) を指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>HTMLの属性を配列で指定します</td>
+									<td>HTML の属性を指定します。</td>
 								</tr>
 							</table>
 						</td>
@@ -191,7 +191,7 @@ echo Form::close();</code></pre>
 			<article>
 				<h4 class="method" id="method_button">button($field, $value = null, $attributes = array())</h4>
 				<p>
-					ボタン要素を作ります。パラメータにはフィールド名、値、HTML属性を指定する方法と、
+					ボタン要素を返します。パラメータにはフィールド名、値、 HTML 属性を指定する方法と、
 					配列でまとめて指定する方法があります。
 				</p>
 				<table class="method">
@@ -212,17 +212,17 @@ echo Form::close();</code></pre>
 								<tr>
 									<th><kbd>$field</kbd></th>
 									<td><i>必須</i></td>
-									<td>フィールド名を文字列で指定するか、配列で属性などをまとめて指定します</td>
+									<td>フィールド名を文字列で指定するか、配列で属性などをまとめて指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>1つめのパラメータが配列でない場合、「値」を指定します</td>
+									<td>1つめのパラメータが配列でない場合、「値」を指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>HTML属性を指定します</td>
+									<td>HTML 属性を指定します。</td>
 								</tr>
 							</table>
 						</td>
@@ -244,23 +244,23 @@ echo Form::close();</code></pre>
 			<article>
 				<h4 class="method" id="method_hidden">hidden($field, $value = null, $attributes = array())</h4>
 
-				<p>このメソッドは、<kbd>Form::input()</kbd> メソッドのエイリアスです。<kbd>type</kbd> 属性を自動的に
-				<kbd>'hidden'</kbd>に設定します</p>
+				<p>このメソッドは、 <kbd>Form::input()</kbd> メソッドの別名です。 <kbd>type</kbd> 属性を自動的に
+				<kbd>'hidden'</kbd> に設定します。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_password">password($field, $value = null, $attributes = array())</h4>
 
-				<p>このメソッドは、<kbd>Form::input()</kbd> メソッドのエイリアスです。<kbd>type</kbd> 属性を自動的に
-				<kbd>'password'</kbd>に設定します</p>
+				<p>このメソッドは、 <kbd>Form::input()</kbd> メソッドの別名です。 <kbd>type</kbd> 属性を自動的に
+				<kbd>'password'</kbd> に設定します。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_radio">radio($field, $value = null, $checked = null, $attributes = array())</h4>
 
-				<p>このメソッドは、<kbd>Form::input()</kbd> メソッドのエイリアスです。 <kbd>type</kbd> 属性を自動的に
-				<kbd>'radio'</kbd> に設定します<br />
-				<em>下位バージョンとの互換性のため、<kbd>radio($field, $value = null, array $attributes = array())</kbd> という書き方も可能です</em></p>
+				<p>このメソッドは、 <kbd>Form::input()</kbd> メソッドの別名です。 <kbd>type</kbd> 属性を自動的に
+				<kbd>'radio'</kbd> に設定します。<br />
+				<em>下位バージョンとの互換性のため、 <kbd>radio($field, $value = null, array $attributes = array())</kbd> という書き方も可能です。</em></p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -279,23 +279,23 @@ echo Form::close();</code></pre>
 								<tr>
 									<th><kbd>$field</kbd></th>
 									<td><i>必須</i></td>
-									<td>フィールド名を文字列で指定するか、配列で属性などをまとめて指定します</td>
+									<td>フィールド名を文字列で指定するか、配列で属性などをまとめて指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>1つめのパラメータが配列でない場合、「値」を指定します</td>
+									<td>1つめのパラメータが配列でない場合、「値」を指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$checked</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>1つめのパラメータが配列でない場合、
-										チェックの状態を、ブール値または $value と一致する値で設定します</td>
+										チェックの状態を、ブール値または $value と一致する値で設定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>HTML属性を配列で指定します</td>
+									<td>HTML 属性を指定します。</td>
 								</tr>
 							</table>
 						</td>
@@ -321,9 +321,9 @@ echo Form::radio('gender', 'Female');</code></pre>
 			<article>
 				<h4 class="method" id="method_checkbox">checkbox($field, $value = null, $checked = null, $attributes = array())</h4>
 
-				<p>This is an alias for <kbd>Form::input()</kbd> that automatically sets the <kbd>type</kbd> attribute to
-				<kbd>'checkbox'</kbd>.<br />
-				<em>For backwards compatibility this method also accepts: <kbd>checkbox($field, $value = null, array $attributes = array())</kbd></em></p>
+				<p>このメソッドは、 <kbd>Form::input()</kbd> メソッドの別名です。 <kbd>type</kbd> 属性を自動的に
+				<kbd>'checkbox'</kbd> に設定します。<br />
+				<em>下位バージョンとの互換性のため、<kbd>checkbox($field, $value = null, array $attributes = array())</kbd> という書き方も可能です。</em></p>
 <table class="method">
 					<tbody>
 					<tr>
@@ -342,23 +342,23 @@ echo Form::radio('gender', 'Female');</code></pre>
 								<tr>
 									<th><kbd>$field</kbd></th>
 									<td><i>必須</i></td>
-									<td>Either a string for the fieldname or an array of tag attributes.</td>
+									<td>フィールド名を文字列で指定するか、配列で属性などをまとめて指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Field value, will be ignored when the first param is an array.</td>
+									<td>1つめのパラメータが配列でない場合、「値」を指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$checked</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Whether checked (if bool) or matches $value (if string), will be ignored when
-										the first param is an array.</td>
+									<td>1つめのパラメータが配列でない場合、
+										チェックの状態を、ブール値または $value と一致する値で設定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>These will be used as html tag properties.</td>
+									<td>HTML 属性を指定します。</td>
 								</tr>
 							</table>
 						</td>
@@ -383,28 +383,28 @@ echo Form::checkbox('gender', 'Female');</code></pre>
 			<article>
 				<h4 class="method" id="method_file">file($field, $attributes = array())</h4>
 
-				<p>This is an alias for <kbd>Form::input()</kbd> that automatically sets the <kbd>type</kbd> attribute to
-				<kbd>'file'</kbd>.</p>
+				<p>このメソッドは、 <kbd>Form::input()</kbd> メソッドの別名です。 <kbd>type</kbd> 属性を自動的に
+				<kbd>'file'</kbd> に設定します。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_reset">reset($field, $value = null, $attributes = array())</h4>
 
-				<p>This is an alias for <kbd>Form::input()</kbd> that automatically sets the <kbd>type</kbd> attribute to
-				<kbd>'reset'</kbd>.</p>
+				<p>このメソッドは、 <kbd>Form::input()</kbd> メソッドの別名です。 <kbd>type</kbd> 属性を自動的に
+				<kbd>'reset'</kbd> に設定します。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_submit">submit($field, $value = null, $attributes = array())</h4>
 
-				<p>This is an alias for <kbd>Form::input()</kbd> that automatically sets the <kbd>type</kbd> attribute to
-				<kbd>'submit'</kbd>.</p>
+				<p>このメソッドは、 <kbd>Form::input()</kbd> メソッドの別名です。 <kbd>type</kbd> 属性を自動的に
+				<kbd>'submit'</kbd> に設定します。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_textarea">textarea($field, $value = null, $attributes = array())</h4>
-				<p>Creates an html textarea element. It can be set using the fieldname, its value and tag attributes or all
-					in one attribute for the first argument.</p>
+				<p>テキストエリア要素を返します。パラメータにはフィールド名、値、HTML 属性を指定する方法と、
+					配列でまとめて指定する方法があります。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -423,17 +423,17 @@ echo Form::checkbox('gender', 'Female');</code></pre>
 								<tr>
 									<th><kbd>$field</kbd></th>
 									<td><i>必須</i></td>
-									<td>Either a string for the fieldname or an array of tag attributes.</td>
+									<td>フィールド名を文字列で指定するか、配列で属性などをまとめて指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Field value, will be ignored when the first param is an array.</td>
+									<td>1つめのパラメータが配列でない場合、「値」を指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>These will be used as html tag properties.</td>
+									<td>HTML 属性を指定します。</td>
 								</tr>
 							</table>
 						</td>
@@ -455,8 +455,8 @@ echo Form::checkbox('gender', 'Female');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_select">select($field, $values = null, $options = array(), $attributes = array())</h4>
-				<p>Creates an html select element. It can be set using the fieldname, its selected value(s), its options
-					and tag attributes or all in one attribute for the first argument.</p>
+				<p>セレクトメニュー要素を返します。パラメータにはフィールド名、選択状態の値、option タグによる項目、HTML 属性を指定する方法と、
+					配列でまとめて指定する方法があります。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -475,24 +475,24 @@ echo Form::checkbox('gender', 'Female');</code></pre>
 								<tr>
 									<th><kbd>$field</kbd></th>
 									<td><i>必須</i></td>
-									<td>Either a string for the fieldname or an array of tag attributes.</td>
+									<td>フィールド名を文字列で指定するか、配列で属性などをまとめて指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$values</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Selected value or array of values for multiselect, will be ignored when the first
-										param is an array.</td>
+									<td>1つめのパラメータが配列でない場合、
+										選択状態の「値」か複数選択に対応した値の「配列」で指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$options</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Associative array of value=>label pairs, may also contain option groups as
-										opt_name=>array() where the array contains its set of value=>label pairs.</td>
+									<td>配列に value=>label ペアを含んでいる場合には、
+										value=>label ペアの連想配列はさらに opt_name=>array() として項目のグループ (optgroup タグ) を含んでいるかもしれません。</td>
 								</tr>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>These will be used as html tag properties.</td>
+									<td>HTML 属性を指定します。</td>
 								</tr>
 							</table>
 						</td>
@@ -521,8 +521,8 @@ echo Form::checkbox('gender', 'Female');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_label">label($label, $id = null, $attributes = array())</h4>
-				<p>Creates an html label element. It can be set using label, the id it's for and tag attributes or all
-					in one attribute for the first argument.</p>
+				<p>ラベル要素を返します。パラメータにはラベル、ラベルを for 属性で関連付ける id 属性、HTML 属性を指定する方法と、
+					配列でまとめて指定する方法があります。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -541,17 +541,17 @@ echo Form::checkbox('gender', 'Female');</code></pre>
 								<tr>
 									<th><kbd>$label</kbd></th>
 									<td><i>必須</i></td>
-									<td>Either a string for the label or an array of tag attributes.</td>
+									<td>フィールド名を文字列で指定するか、配列で属性などをまとめて指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$id</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The field's id this label belongs to.</td>
+									<td>このラベルと関連付けをするフィールドの id 属性。</td>
 								</tr>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>These will be used as html tag properties.</td>
+									<td>HTML 属性を指定します。</td>
 								</tr>
 							</table>
 						</td>
@@ -573,7 +573,7 @@ echo Form::checkbox('gender', 'Female');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_fieldset_open">fieldset_open($attributes = array(), $legend = null)</h4>
-				<p>Create a fieldset open tag.</p>
+				<p>フィールドセットの開きタグ (&lt;fieldset&gt;) を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -592,13 +592,13 @@ echo Form::checkbox('gender', 'Female');</code></pre>
 								<tr>
 									<th><kbd>$attributes</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>An array of settings; may use the key of 'legend' to set the fieldset's legend attribute.
-									The attribute's values will be used as html tag properties.</td>
+									<td>設定の配列。フィールドセットの中で legend タグを指定するために、 'legend' をキーとして使用してもよい。
+									属性値には HTML 属性を指定します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$legend</kbd></th>
 									<td><pre class="php"><code>string</code></pre></td>
-									<td>String to be used for the legend fieldset option</td>
+									<td>フィールドセットのオプションとして legend タグを指定します。</td>
 								</tr>
 							</table>
 						</td>
@@ -610,16 +610,16 @@ echo Form::checkbox('gender', 'Female');</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns &lt;fieldset &gt;
+							<pre class="php"><code>// &lt;fieldset &gt; を返す
 echo Form::fieldset_open();
 
-// returns &lt;fieldset class="example-class" id="example-id"&gt;
+// &lt;fieldset class="example-class" id="example-id"&gt; を返す
 echo Form::fieldset_open(array('class' => 'example-class', 'id' => 'example-id'));
 
-// returns &lt;fieldset class="example-class" id="example-id"&gt;&lt;legend&gt;Custom Legend&lt;/legend&gt;
+// &lt;fieldset class="example-class" id="example-id"&gt;&lt;legend&gt;Custom Legend&lt;/legend&gt; を返す
 echo Form::fieldset_open(array('class' => 'example-class', 'id' => 'example-id'), 'Custom Legend');
 
-// returns &lt;fieldset class="example-class" id="example-id"&gt;&lt;legend&gt;Custom Legend&lt;/legend&gt;
+// &lt;fieldset class="example-class" id="example-id"&gt;&lt;legend&gt;Custom Legend&lt;/legend&gt; を返す
 echo Form::fieldset_open(array('class' => 'example-class', 'id' => 'example-id', 'legend' => 'Custom Legend'));</code></pre>
 						</td>
 					</tr>
@@ -629,7 +629,7 @@ echo Form::fieldset_open(array('class' => 'example-class', 'id' => 'example-id',
 
 			<article>
 				<h4 class="method" id="method_fieldset_close">fieldset_close()</h4>
-				<p>Create a fieldset close tag.</p>
+				<p>フィールドセットの閉じタグ (&lt;/fieldset&gt;) を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -647,7 +647,7 @@ echo Form::fieldset_open(array('class' => 'example-class', 'id' => 'example-id',
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns &lt;/fieldset&gt;
+							<pre class="php"><code>// &lt;/fieldset&gt; を返す
 echo Form::fieldset_close();</code></pre>
 						</td>
 					</tr>
@@ -656,9 +656,9 @@ echo Form::fieldset_close();</code></pre>
 			</article>
 
 
-			<h3 id="create_forms_oop">Create forms in an OOP way using fieldsets</h3>
+			<h3 id="create_forms_oop">フィールドセットを使ってオブジェクト指向風にフォームを作成する</h3>
 
-			<p>See <a href="fieldset.html">Fieldset</a></p>
+			<p><a href="fieldset.html">Fieldset</a> のページを参照してください</p>
 
 		</div>
 
