@@ -1371,9 +1371,74 @@ Array
 			</article>
 
 			<article>
+				<h4 id="method_insert_assoc" class="method">insert_assoc(array &amp;$original, array $values, $pos)</h4>
+				<p>The <strong>insert_assoc</strong> method inserts elements into an associative array, at the specified position.<br />
+				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$original</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to use</td>
+								</tr>
+								<tr>
+									<th><kbd>$values</kbd></th>
+									<td><em>required</em></td>
+									<td>Array with value(s) to insert</td>
+								</tr>
+								<tr>
+									<th><kbd>$pos</kbd></th>
+									<td><em>required</em></td>
+									<td>
+										The location in the original array where the new values should be inserted.
+										If a negative value is given, the position is counted from the back of the array.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean, true on success, false if $pos is out of bounds.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$character = array("name" =&gt; "Jack", "surname" =&gt; "Reacher");
+
+Arr::insert_assoc($people, array("initial" =&gt; "P.");
+print_r($people);
+
+// Result:
+Array
+(
+	[name] =&gt; Jack
+	[initial] =&gt; P.
+	[surname] =&gt; Reacher
+)
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 id="method_insert_before_key" class="method">insert_before_key(Array &amp;$original, $value, $key)</h4>
-				<p>The <strong>insert_before_key</strong> method adds an element to an array before the key specified <br />
-				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
+				<p>The <strong>insert_before_key</strong> method adds an element to an array before the key specified.<br />
+				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned.</p>
 				<table class="method">
 					<tbody>
 					<tr>
