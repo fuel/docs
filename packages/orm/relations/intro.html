@@ -174,7 +174,10 @@ $post = Model_Post::query()->related('comments')->get();
 // first get a "post", 1 query without join
 $post = Model_Post::find('first');
 // now request the comments (not yet loaded), which will do another query without join automatically
-$comments = $post->comments;</code></pre>
+$comments = $post->comments;
+
+// alternatively, you can use get(), which allows additional conditions:
+$comments = $post->get('comments', array('where' => array(array('field', '=', $value))));</code></pre>
 
 				<h3 id="usage_rel_conditions">Usage with where/order_by conditions</h3>
 
