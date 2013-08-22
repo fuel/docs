@@ -46,52 +46,52 @@
 		<div id="main">
 
 			<h2>Format クラス</h2>
-			<p>Format クラスは、XML、JSON、CSV等の様々なフォーマット間の変換ができます。</p>
+			<p>Format クラスは、XML、JSON、CSV 等の様々なフォーマット間の変換ができます。</p>
 
 			<article>
-				<h3 id="configuration">Configuration</h3>
+				<h3 id="configuration">設定</h3>
 
-				<p>The Format class is configured through the <kbd>fuel/core/config/format.php</kbd> configuration file. It is already populated with a default configuration group. You can override this configuration by copying this config file to your application config directory, and modify that file as needed.</p>
-				<p>The following configuration settings can be defined:</p>
+				<p>Format クラスは、 <kbd>fuel/core/config/format.php</kbd> にある設定ファイルで設定をします。デフォルトで設定がされています。設定を変更するには、設定ファイルをアプリケーションの設定ディレクトリにコピーし、そのファイルを変更してください。</p>
+				<p>次の設定を定義することができます。</p>
 
 				<h4>CSV</h4>
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメーター</th>
+							<th>タイプ</th>
+							<th>デフォルト</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>delimiter</th>
 							<td>string</td>
 							<td><pre class="php"><code>','</code></pre></td>
-							<td>The field delimiter</td>
+							<td>デリミタ</td>
 						</tr>
 						<tr>
 							<th>enclosure</th>
 							<td>string</td>
 							<td><pre class="php"><code>'"'</code></pre></td>
-							<td>The enclosure character</td>
+							<td>囲み文字</td>
 						</tr>
 						<tr>
 							<th>newline</th>
 							<td>string</td>
 							<td><pre class="php"><code>'\n'</code></pre></td>
-							<td>The newline character used by to_csv() method</td>
+							<td>to_csv() メソッドで利用される改行文字</td>
 						</tr>
 						<tr>
 							<th>regex_newline</th>
 							<td>string</td>
 							<td><pre class="php"><code>'\n'</code></pre></td>
-							<td>The newline character used by regex to convert input data</td>
+							<td>入力データを変換するために正規表現で使用される改行文字</td>
 						</tr>
 						<tr>
 							<th>escape</th>
 							<td>string</td>
 							<td><pre class="php"><code>'\\'</code></pre></td>
-							<td>The escape character</td>
+							<td>エスケープ文字</td>
 						</tr>
 					</tbody>
 				</table>
@@ -100,16 +100,16 @@
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメーター</th>
+							<th>タイプ</th>
+							<th>デフォルト</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>basenode</th>
 							<td>string</td>
 							<td><pre class="php"><code>'xml'</code></pre></td>
-							<td>XML basenode name</td>
+							<td>XML ベースノードの名前</td>
 						</tr>
 					</tbody>
 				</table>
@@ -117,7 +117,7 @@
 
 			<article>
 				<h4 class="method" id="method_forge">forge($data = null, $from_type = null)</h4>
-				<p>The <strong>forge</strong> method returns a new format object.</p>
+				<p><strong>forge</strong> メソッドは、新しい format オブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -136,12 +136,12 @@
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Data to be converted.</td>
+									<td>変換されるデータ。</td>
 								</tr>
 								<tr>
 									<th><kbd>$from_type</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Format of the data provided.</td>
+									<td>元データのフォーマット。</td>
 								</tr>
 							</table>
 						</td>
@@ -156,7 +156,7 @@
 							<pre class="php"><code>$array = array('foo' => 'bar');
 print_r(Format::forge($array));
 
-// Returns
+// 実行結果
 Fuel\Core\Format Object
 (
 	[_data:protected] => Array
@@ -173,12 +173,12 @@ Fuel\Core\Format Object
 
 			<article>
 				<h4 class="method" id="method_to_array">to_array($data = null)</h4>
-				<p>The <strong>to_array</strong> method returns the given data as an array. Do not call this directly, use the <strong>forge</strong> method as described in the example.</p>
+				<p><strong>to_array</strong> メソッドは、与えられたデータを配列として返します。直接呼び出すのではなく、例にもあるように <strong>forge</strong> メソッドを利用します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -192,7 +192,7 @@ Fuel\Core\Format Object
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Data to be converted.</td>
+									<td>変換されるデータ。</td>
 								</tr>
 							</table>
 						</td>
@@ -207,7 +207,7 @@ Fuel\Core\Format Object
 							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
 print_r(Format::forge($json_string, 'json')->to_array());
 
-// Returns
+// 実行結果
 Array
 (
 	[foo] => bar
@@ -222,12 +222,12 @@ Array
 
 			<article>
 				<h4 class="method" id="method_to_xml">to_xml($data = null, $structure = null, $basenode = 'xml')</h4>
-				<p>The <strong>to_xml</strong> method returns the given data as an XML string. Do not call this directly, use the <strong>forge</strong> method as described in the example.</p>
+				<p><strong>to_xml</strong> メソッドは、与えられたデータを XML 文字列として返します。直接呼び出すのではなく、例にもあるように <strong>forge</strong> メソッドを利用します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -241,17 +241,17 @@ Array
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Data to be converted.</td>
+									<td>変換されるデータ。</td>
 								</tr>
 								<tr>
 									<th><kbd>$structure</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Object of class SimpleXMLElement.</td>
+									<td>クラス SimpleXMLElement のオブジェクト。</td>
 								</tr>
 								<tr>
 									<th><kbd>$basenode</kbd></th>
 									<td>"xml"</td>
-									<td>Basenode of XML markup.</td>
+									<td>XML のベースノード。</td>
 								</tr>
 							</table>
 						</td>
@@ -266,7 +266,7 @@ Array
 							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
 print_r(Format::forge($array)->to_xml());
 
-// Returns
+// 実行結果
 // &lt;?xml version="1.0" encoding="utf-8"?&gt;
 // &lt;xml&gt;
 // 	&lt;foo&gt;bar&lt;/foo&gt;
@@ -281,12 +281,12 @@ print_r(Format::forge($array)->to_xml());
 
 			<article>
 				<h4 class="method" id="method_to_csv">to_csv($data = null, $separator = ',')</h4>
-				<p>The <strong>to_csv</strong> method returns the given data as a CSV string. Do not call this directly, use the <strong>forge</strong> method as described in the example.</p>
+				<p><strong>to_csv</strong> メソッドは、与えられたデータを CSV 文字列として返します。直接呼び出すのではなく、例にもあるように <strong>forge</strong> メソッドを利用します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -300,12 +300,12 @@ print_r(Format::forge($array)->to_xml());
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Data to be converted.</td>
+									<td>変換されるデータ。</td>
 								</tr>
 								<tr>
 									<th><kbd>$separator</kbd></th>
 									<td><pre class="php"><code>','</code></pre></td>
-									<td>CSV field separator. Defaults to a comma.</td>
+									<td>CSV のフィールド区切り文字。デフォルトではコンマ。</td>
 								</tr>
 							</table>
 						</td>
@@ -320,7 +320,7 @@ print_r(Format::forge($array)->to_xml());
 							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
 print_r(Format::forge($json_string, 'json')->to_csv());
 
-// Returns
+// 実行結果
 // foo,baz
 // "bar","qux"</code>
 							</pre>
@@ -331,12 +331,12 @@ print_r(Format::forge($json_string, 'json')->to_csv());
 			</article>
 			<article>
 				<h4 class="method" id="method_to_json">to_json()</h4>
-				<p>The <strong>to_json</strong> method returns the given data as a JSON string. Do not call this directly, use the <strong>forge</strong> method as described in the example.</p>
+				<p><strong>to_json</strong> メソッドは、与えられたデータを JSON 文字列として返します。直接呼び出すのではなく、例にもあるように <strong>forge</strong> メソッドを利用します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
@@ -348,7 +348,7 @@ print_r(Format::forge($json_string, 'json')->to_csv());
 							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
 print_r(Format::forge($array)->to_json());
 
-// Returns
+// 実行結果
 // {"foo":"bar","baz":"qux"}</code>
 							</pre>
 						</td>
@@ -359,12 +359,12 @@ print_r(Format::forge($array)->to_json());
 
 			<article>
 				<h4 class="method" id="method_to_serialized">to_serialized()</h4>
-				<p>The <strong>to_serialized</strong> method returns the given data as a serialized string. Do not call this directly, use the <strong>forge</strong> method as described in the example.</p>
+				<p><strong>to_serialized</strong> メソッドは、与えられたデータをシリアル化された文字列として返します。直接呼び出すのではなく、例にもあるように <strong>forge</strong> メソッドを利用します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
@@ -376,7 +376,7 @@ print_r(Format::forge($array)->to_json());
 							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
 print_r(Format::forge($array)->to_serialized());
 
-// Returns
+// 実行結果
 // a:2:{s:3:"foo";s:3:"bar";s:3:"baz";s:3:"qux";}</code>
 							</pre>
 						</td>
@@ -387,12 +387,12 @@ print_r(Format::forge($array)->to_serialized());
 
 			<article>
 				<h4 class="method" id="method_to_php">to_php()</h4>
-				<p>The <strong>to_php</strong> method returns the given data as a PHP representation of the data in a string. You could pass this into eval() or use it for other crazy things.</p>
+				<p><strong>to_php</strong> メソッドは、与えられたデータを 文字列表現された PHP コードとして返します。この PHP コードを eval() 関数で評価することや、他にも思いもつかないようなことに利用することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
@@ -404,7 +404,7 @@ print_r(Format::forge($array)->to_serialized());
 							<pre class="php"><code>$array = array(1, 2, array('a', 'b', 'c'));
 print_r(Format::forge($array)->to_php());
 
-// Returns
+// 実行結果
 Array
 (
 	0 => 1,
