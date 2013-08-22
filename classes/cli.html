@@ -47,11 +47,11 @@
 
 			<h2>Cli クラス</h2>
 
-			<p>Interact with the command line by accepting input options, parameters and output text.</p>
+			<p>コマンドライン上で入力オプション、パラメーター、出力テキストの操作ができます。</p>
 
 			<article>
 				<h4 class="method" id="method_beep">beep($num = 1)</h4>
-				<p>The <strong>beep</strong> method fires a system beep on the computer running the command.</p>
+				<p><strong>beep</strong> メソッドは、コマンドを実行しているコンピュータでビープ音を鳴らします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -70,7 +70,7 @@
 								<tr>
 									<th><kbd>$num</kbd></th>
 									<td><em>1</em></td>
-									<td>Number of beeps.</td>
+									<td>ビープ音の回数。</td>
 								</tr>
 							</table>
 						</td>
@@ -92,7 +92,7 @@
 
 			<article>
 				<h4 class="method" id="method_color">color($text, $foreground, $background = null)</h4>
-				<p>The <strong>color</strong> method changes the color of a piece of text.</p>
+				<p><strong>color</strong> メソッドは、指定したテキストの色を変更します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -111,17 +111,17 @@
 								<tr>
 									<th><kbd>$text</kbd></th>
 									<td><i>必須</i></td>
-									<td>String to be colored.</td>
+									<td>色を変更する文字列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$foreground</kbd></th>
 									<td><i>必須</i></td>
-									<td>Foreground color of the string.</td>
+									<td>文字列の文字色。</td>
 								</tr>
 								<tr>
 									<th><kbd>$background</kbd></th>
 									<td><i>null</i></td>
-									<td>Background color of the string.</td>
+									<td>文字列の背景色。</td>
 								</tr>
 							</table>
 						</td>
@@ -153,7 +153,7 @@ Cli::write($message);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_error">error($text)</h4>
-				<p>The <strong>error</strong> method will write a line of text to the command line as an error (similar to <strong>write</strong> but uses STDERR instead of STDOUT.</p>
+				<p><strong>error</strong> メソッドは、コマンドラインにエラーとしてテキストを出力します (<strong>write</strong> メソッドと似ていますが、STDOUT ではなく STDERR を利用します) 。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -171,8 +171,8 @@ Cli::write($message);</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$text</kbd></th>
-									<td><i>empty string</i></td>
-									<td>Text to output to STDERR for the output.</td>
+									<td><i>空の文字列</i></td>
+									<td>STDERR に出力するテキスト。</td>
 								</tr>
 							</table>
 						</td>
@@ -194,7 +194,7 @@ Cli::write($message);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_prompt">prompt($question = null, $options = array())</h4>
-				<p>The <strong>read</strong> method prompts the user for input.</p>
+				<p><strong>prompt</strong> メソッドは、ユーザの入力を受け付けるプロンプトを表示します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -213,12 +213,12 @@ Cli::write($message);</code></pre>
 								<tr>
 									<th><kbd>$question</kbd></th>
 									<td><i>null</i></td>
-									<td>Ask the user a question and wait for input.</td>
+									<td>ユーザに質問する文章を表示し、入力を待ちます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$options</kbd></th>
 									<td><i>array()</i></td>
-									<td>An array of options for the user to select from.</td>
+									<td>ユーザの選択肢となる項目の配列。</td>
 								</tr>
 							</table>
 						</td>
@@ -230,16 +230,16 @@ Cli::write($message);</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Waits for any key press
+							<pre class="php"><code>// 何かキーを押してください
 Cli::prompt();
 
-// Takes any input
+// どんな入力も受け付けます
 $color = Cli::prompt('What is your favorite color?');
 
-// Takes any input, but offers default
+// どんな入力も受け付けますが、デフォルト値があります
 $color = Cli::prompt('What is your favorite color?', 'white');
 
-// Will only accept the options in the array
+// 配列内にある項目のみ受け付けます
 $ready = Cli::prompt('Are you ready?', array('y','n'));</code></pre>
 						</td>
 					</tr>
@@ -250,7 +250,7 @@ $ready = Cli::prompt('Are you ready?', array('y','n'));</code></pre>
 
 			<article>
 				<h4 class="method" id="method_option">option($name, null)</h4>
-				<p>The <strong>option</strong> accepts an option from the initial command.</p>
+				<p><strong>option</strong> は、コマンドラインから与えられたオプションを取得します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -268,13 +268,13 @@ $ready = Cli::prompt('Are you ready?', array('y','n'));</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><em>Required</em></td>
-									<td>Name of the option.</td>
+									<td><em>必須</em></td>
+									<td>オプションの名前。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><em>null</em></td>
-									<td>A default value in case the option is not provided.</td>
+									<td>オプションが与えられなかった場合のデフォルト値です。</td>
 								</tr>
 							</table>
 						</td>
@@ -296,7 +296,7 @@ $ready = Cli::prompt('Are you ready?', array('y','n'));</code></pre>
 
 			<article>
 				<h4 class="method" id="method_wait">wait($seconds = 0, $countdown = false)</h4>
-				<p>The <strong>wait</strong> method will make the cli output wait for a given number of seconds and optionally show a countdown.</p>
+				<p><strong>wait</strong> メソッドは、指定された秒数だけ待機します。オプションでカウントダウン表示をすることもできます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -315,12 +315,12 @@ $ready = Cli::prompt('Are you ready?', array('y','n'));</code></pre>
 								<tr>
 									<th><kbd>$seconds</kbd></th>
 									<td><i>0</i></td>
-									<td>Number of seconds to wait.</td>
+									<td>待機する秒数。</td>
 								</tr>
 								<tr>
 									<th><kbd>$countdown</kbd></th>
 									<td><i>false</i></td>
-									<td>Show the countdown in the output.</td>
+									<td>カウントダウン表示を出力する。</td>
 								</tr>
 							</table>
 						</td>
@@ -343,7 +343,7 @@ Cli::wait(5, true);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_write">write($text = '', $foreground = null, $background = null)</h4>
-				<p>The <strong>write</strong> method will write a line of text to the command line.</p>
+				<p><strong>write</strong> メソッドは、コマンドラインにテキストを出力します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -361,18 +361,18 @@ Cli::wait(5, true);</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$text</kbd></th>
-									<td><i>empty string</i></td>
-									<td>Text to output to the command line.</td>
+									<td><i>空の文字列</i></td>
+									<td>コマンドラインに出力するテキスト。</td>
 								</tr>
 								<tr>
 									<th><kbd>$foreground</kbd></th>
 									<td><i>null</i></td>
-									<td>Foreground color of the string.</td>
+									<td>文字列の文字色。</td>
 								</tr>
 								<tr>
 									<th><kbd>$background</kbd></th>
 									<td><i>null</i></td>
-									<td>Background color of the string.</td>
+									<td>文字列の背景色。</td>
 								</tr>
 							</table>
 						</td>
