@@ -48,23 +48,23 @@
 			<h2>Image クラス</h2>
 
 			<p>
-				The Image class is used to easily add common manipulations to an image such as resizing, cropping, and so on.
+				Image クラスは、簡単にリサイズ、トリミングのような画像に共通の操作を加えるために使用されます。
 			</p>
 
-			<h3 id="limitations">Limitations</h3>
+			<h3 id="limitations">制限事項</h3>
 
 			<p>
-				The Image class has a few limitations that should be made aware of. First off, the GD library handles transparency quite badly.
-				Due to this, <strong>Image::rotate()</strong> can not use transparent background. The rounding image in <strong>imagemagick</strong>
-				is also flawed as images with transparent corners will get opaque circles in the corners.
+				Image クラスはいくつかの知っておかなければならない制限があります。まず、 GD ライブラリの透過設定はかなりよくありません。
+				このため、<strong>Image::rotate()</strong> は、透過度をもった背景を扱うことができません。
+				<strong>imagemagick</strong> にも丸い画像の透過している隅が不透過になるという不具合があります。
 			</p>
 			<p>
-				Using multiple transformations in GD can result in abnormal results.
+				GD で複数の変換を使用すると、異常な結果になることがあります。
 			</p>
 
 			<h3 id="configuration">設定</h3>
 
-			<p>The Image class accepts the following configuration options. Copy the file from <strong>fuel/core/config/image.php</strong> to <strong>fuel/app/config/image.php</strong></p>
+			<p>Image クラスは、次の設定オプションを受け付けます。<strong>fuel/core/config/image.php</strong> から <strong>fuel/app/config/image.php</strong> へファイルをコピーしてください。</p>
 			<table class="config">
 				<tbody>
 					<tr class="header">
@@ -79,7 +79,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>'gd'</code></pre></td>
 						<td>
-							Can be any name of a valid library, currently only <strong>'gd'</strong>, <strong>'imagemagick'</strong> and <strong>'imagick'</strong>
+							有効なライブラリの名前。現在は <strong>'gd'</strong> 、<strong>'imagemagick'</strong> そして <strong>'imagick'</strong> が利用できます。
 						</td>
 					</tr>
 					<tr>
@@ -87,7 +87,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>null</code></pre></td>
 						<td>
-							Background in hex for (Ex: #ff0, #4f32de). Set to <strong>null</strong> for a transparent background.
+							背景色を 16 進数で指定する (例: #ff0, #4f32de) 。背景を透過させたい場合は、<strong>null</strong> に設定します。
 						</td>
 					</tr>
 					<tr>
@@ -95,7 +95,7 @@
 						<td>integer</td>
 						<td><pre class="php"><code>75</code></pre></td>
 						<td>
-							The transparency of any watermarks applied to the image. Ranges from <strong>0-100</strong>.
+							画像に適用されたウォーターマークの透過度。<strong>0-100</strong> の範囲で設定します。
 						</td>
 					</tr>
 					<tr>
@@ -103,7 +103,7 @@
 						<td>integer</td>
 						<td><pre class="php"><code>100</code></pre></td>
 						<td>
-							Used for the quality in jpeg images and pngs.
+							jpeg 画像と png 画像の品質。
 						</td>
 					</tr>
 					<tr>
@@ -111,7 +111,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>null</code></pre></td>
 						<td>
-							Defines an override default image type if no extension is given. If set to <strong>null</strong>, it inherits the original extension instead.
+							拡張子が指定されない場合に、優先する画像形式を定義します。<strong>null</strong> が設定されている場合は、元ファイルの拡張子を代わりに継承します。
 						</td>
 					</tr>
 					<tr>
@@ -119,7 +119,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>'/usr/bin/'</code></pre></td>
 						<td>
-							Where the imagemagick executables are stored. Must add leading slash.
+							imagemagick の実行ファイルが置かれている場所。先頭にスラッシュを付加する必要があります。
 						</td>
 					</tr>
 					<tr>
@@ -127,7 +127,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>'/tmp/'</code></pre></td>
 						<td>
-							Temporary directory to store image files that are being edited.
+							編集中の画像ファイルを格納する一時的なディレクトリ。
 						</td>
 					</tr>
 					<tr>
@@ -135,7 +135,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>'fuel_image'</code></pre></td>
 						<td>
-							The string to append to the temp images, as to avoid conflicts.
+							競合を避けるために一時的な画像ファイルに付加する文字列。
 						</td>
 					</tr>
 					<tr>
@@ -143,44 +143,44 @@
 						<td>boolean</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
-							Turns on debug mode, which skips setting header and outputs debug information on an image.
+							ヘッダ設定をスキップし、画像のデバッグ情報を出力するデバッグモードを有効にする。
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<h3 id="presets">Presets</h3>
+			<h3 id="presets">プリセット</h3>
 
 			<p>
-				Presets are a feature in the Image class that allow defining of a set of tasks in the config, and call that preset. An example is:
+				プリセットは、設定の中でタスクのセットを定義することができる Image クラスの機能で、そのプリセットを呼び出すことができます。 例は以下の通り。
 			</p>
 			<p>
-				In <strong>app/config/image.php</strong>
+				<strong>app/config/image.php</strong> では、
 			</p>
 			<pre class="php"><code>/**
- * These presets allow you to call controlled manipulations.
+ * これらのプリセットは、コントローラの操作で呼び出すことができます。
  */
 'presets' => array(
 	'mypreset' => array(
-		'bgcolor' => '#f00', // Set the background color red
-		'filetype' => 'jpg', // Output as jpeg.
+		'bgcolor' => '#f00', // 背景色を赤にする
+		'filetype' => 'jpg', // jpeg として出力する。
 		'quality' => 75,
 		'actions' => array(
 			array('crop_resize', 200, 200),
-			array('watermark', '$1'), // Note the $1 is a variable.
+			array('watermark', '$1'), // 注意 $1 は変数です。
 			array('output', 'png')
 		)
 	)
 )</code></pre>
 		<p>
-			In your controller:
+			コントローラでは、
 		</p>
-		<pre class="php"><code>// 'watermark.gif' here replaces the $1 in array('watermark', '$1')
+		<pre class="php"><code>// ここの 'watermark.gif' が array('watermark', '$1') の中の $1 として置き換わる
 Image::load('filename.gif')->preset('mypreset', 'watermark.gif');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($config = array())</h4>
-				<p>The <strong>forge</strong> method creates a new Image_Driver instance.</p>
+				<p><strong>forge</strong> メソッドは、新しい Image_Driver インスタンスを作成します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -200,7 +200,7 @@ Image::load('filename.gif')->preset('mypreset', 'watermark.gif');</code></pre>
 								<tr>
 									<th><kbd>$config</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>An array of configuration options for the Image_Driver instance</td>
+									<td>Image_Driver 用の設定オプションの配列</td>
 								</tr>
 							</table>
 						</td>
@@ -214,7 +214,7 @@ Image::load('filename.gif')->preset('mypreset', 'watermark.gif');</code></pre>
 						<td>
 							<pre class="php"><code>$image = Image::forge();
 
-// Or with optional config
+// または、オプション設定と一緒に
 $image = Image::forge(array(
 	'quality' => 80
 ));
@@ -231,7 +231,7 @@ $image
 
 			<article>
 				<h4 class="method" id="method_config">config($index, $value = null)</h4>
-				<p>Changes the value of a configuration option.</p>
+				<p>設定オプションの値を変更します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -251,13 +251,13 @@ $image
 								<tr>
 									<th><kbd>$index</kbd></th>
 									<td><i>必須</i></td>
-									<td>The index to be set, or an array of configuration options.</td>
+									<td>設定するインデックスまたは設定オプションの配列。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The value to be set if $index is not an array.</td>
+									<td>$index が配列でない場合、設定する値。</td>
 								</tr>
 							</table>
 						</td>
@@ -269,7 +269,7 @@ $image
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Resize an image, and change the background.
+							<pre class="php"><code>// 画像をリサイズし、背景色を変更する。
 Image::load('filename.gif')
 	->config('bgcolor', '#f00')
 	->resize(100, 100, true, true);</code></pre>
@@ -281,7 +281,7 @@ Image::load('filename.gif')
 
 			<article>
 				<h4 class="method" id="method_load">load($filename, $return_data = false, $force_extension = false)</h4>
-				<p>The <strong>load</strong> method attempts to load an image for editing.</p>
+				<p><strong>load</strong> メソッドは、編集する画像の読み込みを行います。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -301,19 +301,19 @@ Image::load('filename.gif')
 								<tr>
 									<th><kbd>$filename</kbd></th>
 									<td><i>必須</i></td>
-									<td>The path to the image file to be loaded.</td>
+									<td>読み込みたい画像ファイルのパス。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$return_data</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Determines whether to return image data, and only works with GD.</td>
+									<td>画像データを返すかどうか。GD でのみ動作します。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$force_extension</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Whether or not to force the image extension (to $force_extension), and only works with GD.</td>
+									<td>画像の拡張子を ($force_extension として) 強制するかどうか。GD でのみ動作します。</td>
 								</tr>
 							</table>
 						</td>
@@ -325,10 +325,10 @@ Image::load('filename.gif')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Load image
+							<pre class="php"><code>// 画像を読み込む
 Image::load('filename.gif');
 
-// Upload an image and pass it directly into the Image::load method.
+// 画像をアップロードし、Image::load メソッドへ直接渡す
 Upload::process(array(
 	'path' => DOCROOT.DS.'files'
 ));
@@ -337,8 +337,8 @@ if (Upload::is_valid())
 {
 	$data = Upload::get_files(0);
 
-	// Using the file upload data, we can force the image's extension
-	// via $force_extension
+	// アップロードデータのファイルを使い、
+	// $force_extension として画像の拡張子を強制することができる。
 	Image::load($data['file'], false, $data['extension'])
 		->crop_resize(200, 200)
 		->save('image');    
@@ -351,7 +351,7 @@ if (Upload::is_valid())
 
 			<article>
 				<h4 class="method" id="method_crop">crop($x1, $y1, $x2, $y2)</h4>
-				<p>Crops the image using coordinates or percentages.</p>
+				<p>座標またはパーセントで指定して画像をトリミングします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -371,25 +371,25 @@ if (Upload::is_valid())
 								<tr>
 									<th><kbd>$x1</kbd></th>
 									<td><i>必須</i></td>
-									<td>The position of the first coord on the x-axis.</td>
+									<td>x 軸上の 第 1 座標の位置。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$y1</kbd></th>
 									<td><i>必須</i></td>
-									<td>The position of the first coord on the y-axis.</td>
+									<td>y 軸上の 第 1 座標の位置。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$x2</kbd></th>
 									<td><i>必須</i></td>
-									<td>The position of the second coord on the x-axis.</td>
+									<td>x 軸上の 第 2 座標の位置。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$y2</kbd></th>
 									<td><i>必須</i></td>
-									<td>The position of the second coord on the y-axis.</td>
+									<td>y 軸上の 第 2 座標の位置。</td>
 								</tr>
 							</table>
 						</td>
@@ -401,17 +401,17 @@ if (Upload::is_valid())
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// For the purpose of this example, the image width and height are 200x200
+							<pre class="php"><code>// この例のために、画像の幅と高さは 200x200 とします
 
-// Crops the image from (20, 20) to (180, 180)
+// 画像を (20, 20) から (180, 180) までトリミングする。
 Image::load('filename.gif')
 	->crop(20, 20, 180, 180);
 
-// Crops the image from (40, 40) to (160, 160) using negatives.
+// 負の値を使って、画像を (40, 40) から (160, 160) までトリミングする。
 Image::load('filename.gif')
 	->crop(40, 40, -40, -40);
 
-// Crops the image from (30, 30) to (170, 170) using a mix of percentages and negatives.
+// パーセントと負の値を使って、画像を (30, 30) から (170, 170) までトリミングする。
 Image::load('filename.gif')
 	->crop('15%', '15%', '-15%', '-15%');</code></pre>
 						</td>
@@ -422,7 +422,7 @@ Image::load('filename.gif')
 
 			<article>
 				<h4 class="method" id="method_resize">resize($width, $height = null, $keepar = true, $pad = false)</h4>
-				<p>Resizes the image. If the width or height is null, it will resize retaining the original aspect ratio.</p>
+				<p>画像をリサイズします。幅か高さが null の場合、元のアスペクト比を維持してリサイズします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -442,25 +442,25 @@ Image::load('filename.gif')
 								<tr>
 									<th><kbd>$width</kbd></th>
 									<td><i>必須</i></td>
-									<td>The new width of the image.</td>
+									<td>新しい画像の幅。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$height</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The new height of the image</td>
+									<td>新しい画像の高さ。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$keepar</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>If set to true, will keep the Aspect Ratio of the image identical to the original.</td>
+									<td>true に設定された場合、元のアスペクト比と同じように保つ。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$pad</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>If set to true and $keepar is true, it will pad the image with the configured bgcolor.</td>
+									<td>true に設定し $keepar も true の場合、設定された背景色で画像を詰める。</td>
 								</tr>
 							</table>
 						</td>
@@ -472,19 +472,19 @@ Image::load('filename.gif')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Resize using absolutes
+							<pre class="php"><code>// 絶対値を使ってリサイズ
 Image::load('filename.gif')
 	->resize(100, 100);
 
-// Resize using percentages
+// パーセントを使ってリサイズ
 Image::load('filename.gif')
 	->resize('50%', '50%');
 
-// Stretch the image to fit
+// 画像を合わせるように引き延ばす
 Image::load('filename.gif')
 	->resize(100, 100, false);
 
-// Pad image as to keep input size and AR.
+// 入力されたサイズとアスペクト比を保つように、画像を詰める。
 Image::load('filename.gif')
 	->resize(100, 200, true, true);</code></pre>
 						</td>
@@ -495,7 +495,7 @@ Image::load('filename.gif')
 
 			<article>
 				<h4 class="method" id="method_crop_resize">crop_resize($width, $height = null)</h4>
-				<p>Resizes the image and crops it to fit the given width and height.</p>
+				<p>画像を指定した幅と高さに合うようにリサイズとトリミングをします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -515,13 +515,13 @@ Image::load('filename.gif')
 								<tr>
 									<th><kbd>$width</kbd></th>
 									<td><i>必須</i></td>
-									<td>The new width of the image.</td>
+									<td>新しい画像の幅。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$height</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The new height of the image</td>
+									<td>新しい画像の高さ。</td>
 								</tr>
 							</table>
 						</td>
@@ -533,7 +533,7 @@ Image::load('filename.gif')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Example usage, crop a 300x200 image to 200x200 would remove 50px on the top and bottom
+							<pre class="php"><code>// 例えば、300x200 の画像を 200x200 にトリミングするということは、上下 50px を削除するということになります
 Image::load('filename.gif')
 	->crop_resize(200, 200);</code></pre>
 						</td>
@@ -544,7 +544,7 @@ Image::load('filename.gif')
 
 			<article>
 				<h4 class="method" id="method_rotate">rotate($degrees)</h4>
-				<p>Rotates the image clockwise.</p>
+				<p>画像を時計回りに回転します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -564,7 +564,7 @@ Image::load('filename.gif')
 								<tr>
 									<th><kbd>$degrees</kbd></th>
 									<td><i>必須</i></td>
-									<td>The degrees to rotate the image by. Accepts positive and negatives.</td>
+									<td>画像を回転する角度。数値は正負とも受け入れます。</td>
 								</tr>
 							</table>
 						</td>
@@ -576,15 +576,15 @@ Image::load('filename.gif')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Rotates by 90 degrees clockwise
+							<pre class="php"><code>// 時計回りに 90 度回転
 Image::load('filename.gif')
 	->rotate(90);
 
-// Rotates by 90 degrees counter clockwise
+// 反時計回りに 90 度回転
 Image::load('filename.gif')
 	->rotate(-90);
 
-// Accepts numbers outside of the (-359, 359) range.
+// (-359, 359) の範囲外の数値でも受け入れます。
 Image::load('filename')
 	->rotate(450);</code></pre>
 						</td>
@@ -595,7 +595,7 @@ Image::load('filename')
 			
 						<article>
 				<h4 class="method" id="method_flip">flip($direction)</h4>
-				<p>Flip the image vertically and / or horizontally.</p>
+				<p>画像を垂直方法と水平方向の両方、またはいずれか一方に反転します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -603,39 +603,39 @@ Image::load('filename')
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 
 								<tr>
 									<th><kbd>$direction</kbd></th>
-									<td><i>Required</i></td>
-									<td>the flip direction. Accepts "horizontal", "vertical" or "both"</td>
+									<td><i>必須</i></td>
+									<td>反転する方向。"horizontal"、"vertical" または "both" を受け入れます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Image_Driver</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>//Flip vertical
+							<pre class="php"><code>// 垂直方向に反転
 Image::load('filename.gif')
 	->flip('vertical');
 
-// Flip horizontal
+// 水平方向に反転
 Image::load('filename.gif')
 	->flip('horizontal');
 
-// Flip horizontal and vertical.
+// 垂直方向と水平方向に反転
 Image::load('filename')
 	->flip('both');</code></pre>
 						</td>
@@ -646,7 +646,7 @@ Image::load('filename')
 
 			<article>
 				<h4 class="method" id="method_watermark">watermark($filename, $position, $padding = 5)</h4>
-				<p>Adds a watermark to the image.</p>
+				<p>画像にウォーターマークを加える。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -666,19 +666,19 @@ Image::load('filename')
 								<tr>
 									<th><kbd>$filename</kbd></th>
 									<td><i>必須</i></td>
-									<td>The location of the image file to use as a watermark.</td>
+									<td>ウォーターマークとして使用する画像の場所。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$position</kbd></th>
 									<td><i>必須</i></td>
-									<td>The position of the watermark, accepts "(top|center|middle|bottom) (left|center|middle|bottom)".</td>
+									<td>ウォーターマークの位置、"(top|center|middle|bottom) (left|center|middle|bottom)" として指定ができます。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$padding</kbd></th>
 									<td><pre class="php"><code>5</code></pre></td>
-									<td>The amount of padding from the edge, in pixels.</td>
+									<td>端からのパディングをピクセルで指定します。</td>
 								</tr>
 							</table>
 						</td>
@@ -690,18 +690,18 @@ Image::load('filename')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Watermarks the image in the top left corner with padding of 15 pixels
+							<pre class="php"><code>// 画像の左上の角に 15 ピクセルのパディングでウォーターマークを加える
 Image::load('filename.gif')
 	->watermark('watermark.ext', "top left", 15);
 
-// Watermarks the image in the bottom right corner
+// 画像の右下の角にウォーターマークを加える
 Image::load('filename.gif')
 	->watermark('watermark.ext', "bottom right");
 
-// Watermarks the image in the center
+// 画像の中央にウォーターマークを加える
 Image::load('filename.gif')
 	->watermark('watermark.ext', "center middle");
-// "center middle" is identical to "center center", "middle middle", or "middle center"</code></pre>
+// "center middle" は、 "center center"、 "middle middle" または "middle center" と同じです。</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -710,7 +710,7 @@ Image::load('filename.gif')
 
 			<article>
 				<h4 class="method" id="method_border">border($size, $color = null)</h4>
-				<p>Adds a border to the image..</p>
+				<p>画像に枠を加えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -730,13 +730,13 @@ Image::load('filename.gif')
 								<tr>
 									<th><kbd>$size</kbd></th>
 									<td><i>必須</i></td>
-									<td>The size of the border in pixels.</td>
+									<td>枠のサイズをピクセルで指定します。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$color</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The color of the border, defaults to the background color.</td>
+									<td>枠の色、デフォルトは背景色。</td>
 								</tr>
 							</table>
 						</td>
@@ -748,11 +748,11 @@ Image::load('filename.gif')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Make a 10px black border
+							<pre class="php"><code>// 10px の黒い枠を作る
 Image::load('filename.gif')
 	->border(10, '#000000');
 
-// Make a 15px red, green, and blue border.
+// 15px の赤色、緑色、青色の枠を作る。
 Image::load('filename.gif')
 	->border(5, '#FF0000')
 	->border(5, '#00FF00')
@@ -765,7 +765,7 @@ Image::load('filename.gif')
 
 			<article>
 				<h4 class="method" id="method_mask">mask($maskimage)</h4>
-				<p>Applies a mask to the image by blending the alpha channel of the mask with those of the loaded image.</p>
+				<p>読み込んだ画像のアルファチャンネルをブレンドしたマスクを画像に適用します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -785,7 +785,7 @@ Image::load('filename.gif')
 								<tr>
 									<th><kbd>$maskimage</kbd></th>
 									<td><i>必須</i></td>
-									<td>The location of the image to mask with.</td>
+									<td>マスクする画像の場所。</td>
 								</tr>
 							</table>
 						</td>
@@ -797,7 +797,7 @@ Image::load('filename.gif')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Masks the image with mask.ext
+							<pre class="php"><code>// mask.ext を使って画像をマスクする
 Image::load('filename.gif')
 	->mask('mask.ext');</code></pre>
 						</td>
@@ -808,7 +808,7 @@ Image::load('filename.gif')
 
 			<article>
 				<h4 class="method" id="method_rounded">rounded($radius, $sides = null, $antialias = null)</h4>
-				<p>Applies rounded corners to the image.</p>
+				<p>画像に角丸を適用する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -828,19 +828,19 @@ Image::load('filename.gif')
 								<tr>
 									<th><kbd>$radius</kbd></th>
 									<td><i>必須</i></td>
-									<td>The location of the image to mask with.</td>
+									<td>画像に適用する角丸の半径。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$sides</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Accepts any combination of "tl tr bl br" seperated by spaces, or null for all sides</td>
+									<td>"tl tr bl br" の中で任意の組み合わせ (スペースで区切る) 、または null で全ての角に適用する。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$antialias</kbd></th>
 									<td><pre class="php"><code>1</code></pre></td>
-									<td>The distance away from the actual circle to anti-alias. 0 disables anti-aliasing.</td>
+									<td>実際の (角丸の) 円からアンチエイリアスを適用する距離。0 は、アンチエイリアス処理を行わない。</td>
 								</tr>
 							</table>
 						</td>
@@ -852,15 +852,15 @@ Image::load('filename.gif')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Rounds the image 10px on all sides
+							<pre class="php"><code>// 画像の全ての角に 10px の角丸を行う
 Image::load('filename.gif')
 	->rounded(10);
 
-// Rounds the image 10px on the top
+// 画像の上側に 10px の角丸を行う
 Image::load('filename.gif')
 	->rounded(10, "tl tr");
 
-// Rounds the image 10px on all sides with no antialiasing
+// 画像の全ての角にアンチエイリアス処理なしで 10px の角丸を行う
 Image::load('filename.gif')
 	->rounded(10, null, 0);</code></pre>
 						</td>
@@ -871,7 +871,7 @@ Image::load('filename.gif')
 
 			<article>
 				<h4 class="method" id="method_sizes">sizes($filename = null)</h4>
-				<p>Returns sizes for the currently loaded image, or the image given in the $filename.</p>
+				<p>現在読み込んでいるまたは $filename で指定された画像のサイズを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -890,7 +890,7 @@ Image::load('filename.gif')
 								<tr>
 									<th><kbd>$filename</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The location of the file to get sizes for..</td>
+									<td>サイズを取得したい画像の場所。</td>
 								</tr>
 							</table>
 						</td>
@@ -902,10 +902,10 @@ Image::load('filename.gif')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get sizes for a referenced image
+							<pre class="php"><code>// 参考画像のサイズを取得
 $sizes = Image::sizes('filename.gif');
 
-// Returns
+// 返り値
 Object
 (
     [width] => 500
@@ -919,7 +919,7 @@ Object
 
 			<article>
 				<h4 class="method" id="method_grayscale">grayscale()</h4>
-				<p>Turns the image into a grayscale version.</p>
+				<p>画像をグレースケールに変更します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -937,7 +937,7 @@ Object
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Grayscale image
+							<pre class="php"><code>// グレースケールの画像
 Image::load('filename.gif')
 	->grayscale();</code></pre>
 						</td>
@@ -948,7 +948,7 @@ Image::load('filename.gif')
 
 			<article>
 				<h4 class="method" id="method_save">save($filename = null, $permissions = null)</h4>
-				<p>Saves the image, and optionally attempts to set permissions.</p>
+				<p>画像を保存します。オプションとしてパーミッションを設定することもできます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -968,13 +968,13 @@ Image::load('filename.gif')
 								<tr>
 									<th><kbd>$filename</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The location where to save the image. If filename is null, loaded image filename will be used. If no extension is added, one will be appended based on the loaded file's extension.</td>
+									<td>画像を保存する場所。もし、ファイル名が null の場合、読み込まれている画像のファイル名が使われます。もし、拡張子が追加されていない場合、読み込まれている画像の拡張子を基に追加されます。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$permissions</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Accepts a unix-style permissions (Ex: 755), or null to not set permissions</td>
+									<td>unix 形式のパーミッション (例: 755) で指定します。null の場合は、パーミッションが設定されません。</td>
 								</tr>
 							</table>
 						</td>
@@ -986,15 +986,15 @@ Image::load('filename.gif')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Saves to filename2.ext
+							<pre class="php"><code>// filename2.ext に保存する
 Image::load('filename.gif')
 	->save('filename2');
 
-// Saves to filename2.png
+// filename2.png に保存する
 Image::load('filename.gif')
 	->save('filename2.png');
 
-// Saves to filename2.ext while attempting to apply permissions
+// パーミッションを設定しながら、filename2.ext に保存する
 Image::load('filename.gif')
 	->save('filename2', 755);</code></pre>
 						</td>
@@ -1005,7 +1005,7 @@ Image::load('filename.gif')
 
 			<article>
 				<h4 class="method" id="method_save_pa">save_pa($prepend, $append = null, $extension = null, $permissions = null)</h4>
-				<p>Saves the image to the same location with a prepended and/or appended filename, and optionally attempts to set permissions.</p>
+				<p>ファイル名の先頭と末尾、またはいずれかに文字を追加して同じ場所に保存します。オプションとしてパーミッションを設定することもできます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1025,25 +1025,25 @@ Image::load('filename.gif')
 								<tr>
 									<th><kbd>$append</kbd></th>
 									<td><i>必須</i></td>
-									<td>The string to add to the beginning of the filename.</td>
+									<td>ファイル名の先頭に加える文字列。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$prepend</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The string to add to the end of the filename, and before the extension.</td>
+									<td>ファイル名の末尾 (拡張子の前) に加える文字列。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$extension</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Can set the new images extension, defaults to the loaded images extension if null.</td>
+									<td>新しい画像の拡張子を設定できます。null の場合は、読み込まれた画像の拡張子が設定されます。</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$permissions</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Accepts a unix-style permissions (Ex: 755), or null to not set permissions</td>
+									<td>unix 形式のパーミッション (例: 755) で指定します。null の場合は、パーミッションが設定されません。</td>
 								</tr>
 							</table>
 						</td>
@@ -1055,7 +1055,7 @@ Image::load('filename.gif')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Saves to prepend_filename_append.gif
+							<pre class="php"><code>// prepend_filename_append.gif として保存する
 Image::load('filename.gif')
 	->save_pa('prepend_', '_append');
 							</code></pre>
@@ -1067,7 +1067,7 @@ Image::load('filename.gif')
 
 			<article>
 				<h4 class="method" id="method_output">output($filetype)</h4>
-				<p>Outputs the image directly and sets headers.</p>
+				<p>画像をヘッダを設定して直接出力する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1087,7 +1087,7 @@ Image::load('filename.gif')
 								<tr>
 									<th><kbd>$filetype</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The filetype to output the image as (Ex: png, gif, jpeg, ect). Defaults to the loaded file's extension.</td>
+									<td>出力する画像のファイル形式 (例: png, gif, jpeg など) 。デフォルトは、読み込んでいるファイルの拡張子。</td>
 								</tr>
 							</table>
 						</td>
@@ -1099,11 +1099,11 @@ Image::load('filename.gif')
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Output as gif
+							<pre class="php"><code>// gif として出力
 Image::load('filename.gif')
 	->output();
 
-// Output as jpeg
+// jpeg として出力
 Image::load('filename.gif')
 	->output('jpeg');
 							</code></pre>
