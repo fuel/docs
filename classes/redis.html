@@ -8,10 +8,10 @@
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
-		var class_prefix = "Redis::";
+		var class_prefix = "Redis_Db::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Redis - Classes - FuelPHP Documentation</title>
+	<title>Redis_Db - Classes - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
@@ -45,9 +45,9 @@
 
 		<div id="main">
 
-			<h2>Redis Class</h2>
+			<h2>Redis_Db Class</h2>
 
-			<p>The Redis class allows you to interact with a <a href="http://redis.io/">Redis</a> key-value store.</p>
+			<p>The Redis_Db class allows you to interact with a <a href="http://redis.io/">Redis</a> key-value store.</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($name = 'default', $config = array())</h4>
@@ -88,7 +88,7 @@
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// create the Redis 'mystore' instance
-$redis = Redis::forge('mystore');</code></pre>
+$redis = Redis_Db::forge('mystore');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -129,7 +129,7 @@ $redis = Redis::forge('mystore');</code></pre>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>// retrieve the Redis 'mystore' instance
-$redis = Redis::instance('mystore');</code></pre>
+$redis = Redis_Db::instance('mystore');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -141,7 +141,7 @@ $redis = Redis::instance('mystore');</code></pre>
 				<p>Once you have created a redis object using the instance() method, every valid redis command (see the <a href="http://redis.io/commands">Redis Documentation</a>) as a method of that object.</p>
 				<p>Some examples:</p>
 				<pre class="php"><code>// create the Redis 'mystore' instance
-$redis = Redis::forge('mystore');
+$redis = Redis_Db::forge('mystore');
 
 // create some test data
 $redis->rpush('particles', 'proton');
@@ -169,7 +169,7 @@ echo "&lt;/ul>";
 				<p>You can add multiple Redis commands into a command pipeline, and execute them all at once.</p>
 				<p>An example:</p>
 				<pre class="php"><code>// create the Redis 'mystore' instance
-$redis = Redis::forge('mystore');
+$redis = Redis_Db::forge('mystore');
 
 // pipeline some redis commands, then execute them
 $result = $redis->pipeline()
