@@ -224,16 +224,28 @@ echo Router::get('hello');
 <br />
 <p>
 	You can also do this if your route contains a named parameters, a regex, or a combination of both.
-	Since regexes can't be identified by name, a numeric index is used for each regex in the route,
-	processed in the order in which they are defined:
 </p>
 							<pre class="php"><code>// if your route is defined like this:
 return array(
-	'hello/(:name)/(:segment)/(\d{2})' => array('welcome/user', 'name' => 'user'),
+    'thread/(?P&lt;thread_id&gt;\d+?)/post' => array('post', 'name' => 'post'),
 );
 
-// this call will return 'http://your_base_url/welcome/user/john/article/16'
-echo Router::get('user', array('name' => 'john', 'article', '16'));
+// these will return 'thread/1/post':
+echo Router::get('post', array('thread_id' => 1));
+echo Router::get('post', array('$1' => 1));
+echo Router::get('post', array(1));
+
+// if your route is defined like this:
+return array(
+    'country/(?P&lt;country&gt;\d+?)/state/(?P&lt;state&gt;\d+?)/location' => array('location', 'name' => 'location'),
+);
+
+// these will return 'country/japan/state/tokyo/location':
+echo Router::get('location', array('country' => 'japan', 'state' => 'tokyo'));
+echo Router::get('location', array('$1' => 'japan', '$2' => 'tokyo'));
+echo Router::get('location', array('japan', 'tokyo'));
+echo Router::get('location', array('country' => 'japan', 'tokyo'));
+echo Router::get('location', array('$1' => 'japan', 'tokyo'));
 </code></pre>
 <br />
 <p class="note">
