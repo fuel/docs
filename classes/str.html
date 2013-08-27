@@ -123,12 +123,12 @@ Str::increment($string, 3); // returns filename_3
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><em>alnum</em></td>
-										<td>The type of string to generate. Your choices are alnum, numeric, nozero, alpha, distinct, hexdec, unique, and sha1.</td>
+										<td>The type of string to generate. Your choices are alnum, numeric, nozero, alpha, distinct, hexdec, unique, sha1 and uuid.</td>
 									</tr>
 									<tr>
 										<th><kbd>$length</kbd></th>
 										<td><pre class="php"><code>16</code></pre></td>
-										<td>The number of characters you would like the final string to be (unique and sha1 ignore this parameter).</td>
+										<td>The number of characters you would like the final string to be (unique, sha1 and uuid ignore this parameter).</td>
 									</tr>
 								</table>
 							</td>
@@ -170,7 +170,11 @@ Str::random('unique');
 
 // sha1 (40 character string based on sha1)
 Str::random('sha1');
-// Returns: af5c5a8cc3be9a3180205c1ed2975015cd6cf1e7</code></pre>
+// Returns: af5c5a8cc3be9a3180205c1ed2975015cd6cf1e7
+
+// uuid (version 4 - random)
+Str::random('uuid');
+// Returns: f47ac10b-58cc-4372-a567-0e02b2c3d479</code></pre>
 							</td>
 						</tr>
 					</tbody>
