@@ -430,6 +430,49 @@ echo Uri::string(); // returns controller/method</code></pre>
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_build_query_string">build_query_string($values ...)</h4>
+				<p>
+					The <strong>build_query_string</strong> method allows you to generate a query string from one or more passed assoc array or string values.
+					You can pass in Input::get() to construct an updated query string from the existing one.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$values</kbd></th>
+									<td><i>Required</i></td>
+									<td>One or more associative array's or string values</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// returns "varA=varA&amp;varB&amp;varC=varC"
+echo Uri::build_query_string(array('varA' => 'varA'), 'varB', array('varC' => 'varC'));</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 		</div>
 
 		<footer>
