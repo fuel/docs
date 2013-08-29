@@ -47,24 +47,24 @@
 
 			<h2 id="num_class">Num クラス</h2>
 
-			<p>The Num class provides additional formatting methods for working with numeric values</p>
+			<p>Num クラスは、数値を扱うために付加的なフォーマットを行うメソッドを提供します</p>
 
 			<h3 id="config">設定</h3>
 
 			<p>
-				The Num class provides different methods to format certain types of numbers.
-				Formats are strings where zero's represent the numeric parts of the returned value.
+				Num クラスは、数値を特定のフォーマットへ変換する様々なメソッドを提供します。
+				フォーマットは文字列で表します (ゼロは返り値の数値の部分となります) 。
 			</p>
 
 			<p class="note">
-				<strong>Note:</strong> when changing the num config, copy the file to app/config/num.php and change
-				the settings there to allow easy upgrading without loosing your custom settings.
+				<strong>注意:</strong> num コンフィグを変更する場合、app/config/num.php をコピーして設定を変更します。
+				そうすれば、あなたのカスタム設定を失うことなく簡単にアップグレードができるようになります。
 			</p>
 
 			<table class="config">
 				<tbody>
 					<tr class="header">
-						<th>Key</th>
+						<th>キー</th>
 						<th>型</th>
 						<th>デフォルト</th>
 						<th>説明</th>
@@ -74,7 +74,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>'(000) 000-0000'</code></pre></td>
 						<td>
-							The default phone number formatting.
+							電話番号のフォーマット。
 						</td>
 					</tr>
 					<tr>
@@ -86,7 +86,7 @@
 	11 => '0 (000) 000-0000',
 ),</code></pre></td>
 						<td>
-							Phone number formatting based on the length of the phonenumber. array(length => formatting)
+							電話番号の長さに基づいた電話番号の書式。array(長さ => フォーマット)
 						</td>
 					</tr>
 					<tr>
@@ -94,7 +94,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>'00-00'</code></pre></td>
 						<td>
-							Default formatting for credit card expiration date.
+							クレジットカードの有効期限のフォーマット。
 						</td>
 					</tr>
 					<tr>
@@ -102,7 +102,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>'00-00'</code></pre></td>
 						<td>
-							Default formatting for credit card number masking.
+							クレジットカードの番号を覆い隠すためのフォーマット。
 						</td>
 					</tr>
 				</tbody>
@@ -111,9 +111,9 @@
 			<article>
 				<h4 class="method" id="method_bytes">bytes($size = 0)</h4>
 				<p>
-					The <strong>bytes</strong> method converts a (file size) number to a byte value. File sizes are
-					defined in the format: SB, where S is the size (1, 8.5, 300, etc.) and B is the byte unit
-					(K, MiB, GB, etc.). All valid byte units are defined in <em>core/lang/en/byte_units.php</em>
+					<strong>bytes</strong> メソッドは、(ファイルサイズの) 数値をバイト値へ変換します。
+					ファイルサイズは、 'S' 大きさ (1, 8.5, 300 など) と 'B' バイト単位 (K, MiB, GB など) をあわせて 'SB' というフォーマットで定義します。
+					全ての有効なバイト単位は、 <em>core/lang/en/byte_units.php</em> で定義されています。
 				</p>
 				<table class="method">
 					<tbody>
@@ -135,7 +135,7 @@
 										<th><kbd>$size</kbd></th>
 										<th><em>string|int|float</em></th>
 										<td><pre class="php"><code>0</code></pre></td>
-										<td>The string to convert.</td>
+										<td>変換する文字列。</td>
 									</tr>
 								</table>
 							</td>
@@ -160,7 +160,7 @@ echo Num::bytes('2.5GB'); // 2684354560</code></pre>
 			<article>
 				<h4 class="method" id="method_format_bytes">format_bytes($bytes = 0, $decimals = 0)</h4>
 				<p>
-					The <strong>format_bytes</strong> method converts a number of bytes to a human readable format.
+					<strong>format_bytes</strong> メソッドは、バイト数を人間が読めるフォーマットへ変換します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -182,13 +182,13 @@ echo Num::bytes('2.5GB'); // 2684354560</code></pre>
 										<th><kbd>$bytes</kbd></th>
 										<th><em>int</em></th>
 										<td><pre class="php"><code>0</code></pre></td>
-										<td>The number to format.</td>
+										<td>フォーマットする数値。</td>
 									</tr>
 									<tr>
 										<th><kbd>$decimals</kbd></th>
 										<th><em>int</em></th>
 										<td><pre class="php"><code>0</code></pre></td>
-										<td>The number of decimals to round up to.</td>
+										<td>切り上げする小数点以下の桁数。</td>
 									</tr>
 								</table>
 							</td>
@@ -214,7 +214,7 @@ echo Num::format_bytes('badbytes');   // false
 			<article>
 				<h4 class="method" id="method_quantity">quantity($num, $decimals = 0)</h4>
 				<p>
-					The <strong>quantity</strong> method converts a number to a human readable format.
+					<strong>quantity</strong> メソッドは、数値を人間が読めるフォーマットへ変換します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -236,13 +236,13 @@ echo Num::format_bytes('badbytes');   // false
 										<th><kbd>$num</kbd></th>
 										<th><em>int</em></th>
 										<td><em>必須</em></td>
-										<td>The number to format.</td>
+										<td>フォーマットする数値。</td>
 									</tr>
 									<tr>
 										<th><kbd>$decimals</kbd></th>
 										<th><em>int</em></th>
 										<td><pre class="php"><code>0</code></pre></td>
-										<td>The number of decimals to round up to.</td>
+										<td>切り上げする小数点以下の桁数。</td>
 									</tr>
 								</table>
 							</td>
@@ -268,7 +268,7 @@ echo Num::quantity('badnumber'); // false
 			<article>
 				<h4 class="method" id="method_format">format($string = '', $format = '')</h4>
 				<p>
-					The <strong>format</strong> method converts a number to a given format.
+					<strong>format</strong> メソッドは、数値を与えられたフォーマットへ変換します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -290,13 +290,13 @@ echo Num::quantity('badnumber'); // false
 										<th><kbd>$string</kbd></th>
 										<th><em>string</em></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>The number to format.</td>
+										<td>フォーマットする数値。</td>
 									</tr>
 									<tr>
 										<th><kbd>$format</kbd></th>
 										<th><em>string</em></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>The format.</td>
+										<td>フォーマット。</td>
 									</tr>
 								</table>
 							</td>
@@ -322,7 +322,7 @@ echo Num::format('1', '000.000.000');             // 1..
 			<article>
 				<h4 class="method" id="method_mask_string">mask_string($string = '', $format = '', $ignore = ' ')</h4>
 				<p>
-					The <strong>mask_string</strong> method converts a number to a given format.
+					<strong>mask_string</strong> メソッドは、数値を与えられたフォーマットへ変換します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -344,19 +344,19 @@ echo Num::format('1', '000.000.000');             // 1..
 										<th><kbd>$string</kbd></th>
 										<th><em>string</em></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>The number to format.</td>
+										<td>フォーマットする数値。</td>
 									</tr>
 									<tr>
 										<th><kbd>$format</kbd></th>
 										<th><em>string</em></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>The format.</td>
+										<td>フォーマット。</td>
 									</tr>
 									<tr>
 										<th><kbd>$ignore</kbd></th>
 										<th><em>string</em></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>Characters to ignore.</td>
+										<td>無視する文字。</td>
 									</tr>
 								</table>
 							</td>
@@ -386,7 +386,7 @@ echo Num::mask_string('1234567812345678', '**** - **** - **** - 0000', ' -');
 			<article>
 				<h4 class="method" id="method_format_phone">format_phone($string = '', $format = null)</h4>
 				<p>
-					The <strong>format_phone</strong> method converts a number to a phone number format.
+					<strong>format_phone</strong> メソッドは、数値を電話番号のフォーマットへ変換します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -408,13 +408,13 @@ echo Num::mask_string('1234567812345678', '**** - **** - **** - 0000', ' -');
 										<th><kbd>$string</kbd></th>
 										<th><em>string</em></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>The number to format.</td>
+										<td>フォーマットする数値。</td>
 									</tr>
 									<tr>
 										<th><kbd>$format</kbd></th>
 										<th><em>string</em></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The format. When <em>null</em> it defaults to the <strong>format_phone</strong> config setting.</td>
+										<td>フォーマット。<em>null</em> の場合、<strong>format_phone</strong> コンフィグの設定がデフォルトになります。</td>
 									</tr>
 								</table>
 							</td>
@@ -441,12 +441,12 @@ echo Num::format_phone('0612345678', '(00) 000 000 00');
 			<article>
 				<h4 class="method" id="method_smart_format_phone">smart_format_phone($string)</h4>
 				<p>
-					The <strong>smart_format_phone</strong> method converts a number
-					to a phone number format based on the length of the number.
+					<strong>smart_format_phone</strong> メソッドは、
+					文字数に基いて数値を電話番号のフォーマットへ変換します。
 				</p>
 				<p class="note">
-					<strong>Note:</strong> the numbers are formatted based on length,
-					these are defined in the <a href="#config">num config</a>.
+					<strong>注意:</strong> 数値は長さに基いてフォーマットされます。
+					それらは、<a href="#config">num の設定</a> の中で定義されています。
 				</p>
 				<table class="method">
 					<tbody>
@@ -468,7 +468,7 @@ echo Num::format_phone('0612345678', '(00) 000 000 00');
 										<th><kbd>$string</kbd></th>
 										<th><em>string</em></th>
 										<td><em>必須</em></td>
-										<td>The number to format.</td>
+										<td>フォーマットする数値。</td>
 									</tr>
 								</table>
 							</td>
@@ -495,10 +495,10 @@ echo Num::smart_format_phone('01234567890');
 			<article>
 				<h4 class="method" id="method_format_exp">format_exp($string, $format = null)</h4>
 				<p>
-					The <strong>format_exp</strong> method converts a number to a credit card expiration string.
+					<strong>format_exp</strong> メソッドは、数値をクレジットカードの有効期限の文字列へ変換します。
 				</p>
 				<p class="note">
-					<strong>Note:</strong> this method expects 4 digits to be supplied.
+					<strong>注意:</strong> このメソッドは、4 桁の数字が入力されることが期待されています。
 				</p>
 				<table class="method">
 					<tbody>
@@ -520,13 +520,13 @@ echo Num::smart_format_phone('01234567890');
 										<th><kbd>$string</kbd></th>
 										<th><em>string</em></th>
 										<td><em>必須</em></td>
-										<td>The number to format.</td>
+										<td>フォーマットする数値。</td>
 									</tr>
 									<tr>
 										<th><kbd>$format</kbd></th>
 										<th><em>string</em></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The format. When <em>null</em> it defaults to the <strong>exp</strong> config setting.</td>
+										<td>フォーマット。<em>null</em> の場合、<strong>exp</strong> コンフィグの設定がデフォルトになります。</td>
 									</tr>
 								</table>
 							</td>
@@ -553,7 +553,7 @@ echo Num::format_exp('1234', '00/00');
 			<article>
 				<h4 class="method" id="method_mask_credit_card">mask_credit_card($string, $format = null)</h4>
 				<p>
-					The <strong>mask_credit_card</strong> method masks a credit card number.
+					<strong>mask_credit_card</strong> メソッドは、クレジットカードの番号を覆い隠します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -575,13 +575,13 @@ echo Num::format_exp('1234', '00/00');
 										<th><kbd>$string</kbd></th>
 										<th><em>string</em></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>The number to format.</td>
+										<td>フォーマットする数値。</td>
 									</tr>
 									<tr>
 										<th><kbd>$format</kbd></th>
 										<th><em>string</em></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The format. When <em>null</em> it defaults to the <strong>credit_card</strong> config setting.</td>
+										<td>フォーマット。<em>null</em> の場合、<strong>credit_card</strong> コンフィグの設定がデフォルトになります。</td>
 									</tr>
 								</table>
 							</td>
