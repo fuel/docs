@@ -1039,12 +1039,6 @@ $email->attach(DOCROOT.'assets/img/mail/header.png', true, 'cid:headerimage');
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>By default the mimetype is looked up in the core/config/mimes array, use this to overwrite it.</td>
 								</tr>
-								<tr>
-									<th><kbd>$name</kbd></th>
-									<td><em>string</em></td>
-									<td><pre class="php"><code>null</code></pre></td>
-									<td>Custom file name.</td>
-								</tr>
 							</table>
 						</td>
 					</tr>
@@ -1111,12 +1105,25 @@ $email->clear_attachments();
 					<tr>
 						<th>Parameters</th>
 						<td>
-							<em>None</em>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$validate</kbd></th>
+									<td><em>bool</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Whether to validate the addresses, falls back to config setting.</td>
+								</tr>
+							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>$this</td>
+						<td>boolean</td>
 					</tr>
 					<tr>
 						<th>Example</th>
