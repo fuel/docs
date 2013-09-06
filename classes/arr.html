@@ -2006,6 +2006,90 @@ Array
 				</table>
 			</article>
 			<article>
+				<h4 id="method_merge_assoc" class="method">merge_assoc($array)</h4>
+				<p>The <strong>merge_assoc</strong> method merges 2 or more arrays recursively, differs in 2 important ways from array_merge_recursive(): <br />
+				- When there's 2 different values and not both arrays, the latter value overwrites the earlier
+	 			  instead of merging both into an array<br />
+	 			- Numeric keys aren't changed</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>array</em></td>
+									<td><em>required</em></td>
+									<td>Multiple variables all of which must be arrays</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td><kbd>InvalidArgumentException</kbd> when one of the passed arguments is no array.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$arr1 = array(
+	'one' => 1,
+	2 => 2,
+	3 => 3,
+	4 => array(
+		56
+	),
+	5=> 87
+);
+
+$arr2 = array(
+	1 => 27,
+	2 => 90,
+	4 => array(
+		'give_me' => 'bandwidth'
+	),
+	6 => '90',
+	7 => 'php',
+);
+
+print_r( Arr::merge_assoc($arr1, $arr2) );
+// Result:
+Array
+(
+	[one] => 1
+	[2] => 90
+	[3] => 3
+	[4] => Array (
+		[0] => 56
+		[give_me] => bandwidth
+	)
+	[5] => 87
+	[1] => 27
+	[6] => 90
+	[7] => php
+)
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+			<article>
 				<h4 id="method_search" class="method">search($array, $value, $default = null, $recursive = true, $delimiter = '.')</h4>
 				<p>The <strong>search</strong> method searches the array for a given value and returns the corresponding key or default value.<br />
 				- If $recursive is set to true, then the <strong>search</strong> method will return a delimiter-notated key using $delimiter.</p>
