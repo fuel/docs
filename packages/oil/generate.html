@@ -561,6 +561,24 @@ Migrated to latest version: 3.
 
 }</code></pre>
 
+				<p>
+					You can swap scaffold with admin and generate a controller which extends Controller_Admin instead of Controller_Template.
+					On the first use of this command an admin skeleton will be generated, to expand this skeleton use the skip force argument.
+
+					To generate in subdirectories name the prefix the model's name accordingly.
+				</p>
+
+				<pre class="cli"><code>$ php oil g admin project_entry title:string abstract:text full_text:text project_id:int is_draft:int order:int -s
+	Creating migration: APPPATH/migrations/012_create_project_entries.php
+	Creating model: APPPATH/classes/model/project/entry.php
+	Creating controller: APPPATH/classes/controller/admin/project/entry.php
+	Creating view: APPPATH/views/admin/project/entry/index.php
+	Creating view: APPPATH/views/admin/project/entry/view.php
+	Creating view: APPPATH/views/admin/project/entry/create.php
+	Creating view: APPPATH/views/admin/project/entry/edit.php
+	Creating view: APPPATH/views/admin/project/entry/_form.php
+</code></pre>
+
 				<h3 id="tasks">Tasks</h3>
 
 				<p>
