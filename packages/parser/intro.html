@@ -70,12 +70,24 @@
 		'parser',
 	),
 ),</code></pre>
+					<p>
+						While many drivers are included, most of the libraries are not. Only Mustache and Markdown are
+						included in the <kbd>vendor</kbd> directory of the package and work out of the box.
+					</p>
+					<p>
+						Mustache, Twig, MtHaml and Smarty should be installed via Composer. Simply add the libraries
+						to your project's <kbd>composer.json</kbd> then run "<kbd>php composer.phar install</kbd>":
+					</p>
 
-					<p>While many drivers are included, most of the libraries are not. Only Mustache and Markdown are
-						included in the <kbd>vendor</kbd> directory of the package and work out of the box. Other parsers
-						you must download from their own website. If you want them to work without changing config they
-						are expected in <kbd>app/vendor/{Lib_name}</kbd> (where the first character of <kbd>Lib_name</kbd>
-						is capitalized.</p>
+					<pre class="javascript"><code>{
+    "require": {
+        "mustache/mustache" : "*",
+        "smarty/smarty" : "*",
+        "twig/twig" : "*",
+        "mthaml/mthaml": "*"
+    }
+}
+</code></pre>
 				</section>
 
 				<section>
