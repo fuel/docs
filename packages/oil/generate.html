@@ -62,6 +62,7 @@
 					<li><a href="#admin">Admin scaffolding</a></li>
 					<li><a href="#tasks">Tasks</a></li>
 					<li><a href="#configs">Configs</a></li>
+					<li><a href="#packages">Packages</a></li>
 				</ul>
 
 				<h3 id="controllers">Controllers</h3>
@@ -687,6 +688,50 @@ class Newtask
 );
 
 /* End of file form.php */</code></pre>
+
+				<h3 id="packages">Packages</h3>
+
+				<p>
+					To generate a <a href="../../general/packages.html">Package</a>, use the following command:
+				</p>
+
+				<pre class="cli"><code>$ php oil g package sample
+	Creating file: PKGPATH/sample/classes/sample.php
+	Creating file: PKGPATH/sample/config/sample.php
+	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
+
+				<p class="note">The path where the package is generated is PKGPATH by default, but this value can be changed to any path defined in the <code>package_paths</code> config by passing the <code>--path=package_path</code> or <code>-p=package_path</code> option to the command.</p>
+
+				<h3>Generate Driver-based Package</h3>
+
+				<p>If you wish to generate a driver-based package, simply supply the <code>--drivers</code> or <code>-d</code> option:</p>
+
+				<pre class="cli"><code>$ php oil g package sample -d
+	Creating file: PKGPATH/sample/classes/sample.php
+	Creating file: PKGPATH/sample/classes/sample/driver.php
+	Creating file: PKGPATH/sample/config/sample.php
+	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
+
+				<p>You can also generate your own drivers. Simply pass the driver names separated by commas to the <code>--drivers</code> or <code>-d</code> option:</p>
+
+				<pre class="cli"><code>$ php oil g package sample -d=driver1,driver2
+	Creating file: PKGPATH/sample/classes/sample.php
+	Creating file: PKGPATH/sample/classes/sample/driver.php
+	Creating file: PKGPATH/sample/classes/sample/driver1.php
+	Creating file: PKGPATH/sample/classes/sample/driver2.php
+	Creating file: PKGPATH/sample/config/sample.php
+	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
+
+				<h3>Generate Package with VCS files</h3>
+
+				<p>If you wish to generate composer.json and README.md files for your package, simply supply the <code>--vcs</code> or <code>-v</code> option:</p>
+
+				<pre class="cli"><code>$ php oil g package sample -v
+	Creating file: PKGPATH/sample/composer.json
+	Creating file: PKGPATH/sample/README.md
+	Creating file: PKGPATH/sample/classes/sample.php
+	Creating file: PKGPATH/sample/config/sample.php
+	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
 
 			</section>
 
