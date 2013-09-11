@@ -47,33 +47,33 @@
 
 			<h2>Cache クラス</h2>
 
-			<p>The cache class allows you to cache the result of a resource heavy operation.</p>
+			<p>Cache クラスを使用すると、リソースの重い操作の結果をキャッシュすることができます。</p>
 
 			<section>
 				<h3 id="usage">使用方法</h3>
 
-				<p>Using caches can be done in 2 ways: through static usage of the Cache class and through cache objects
-				returned by the Cache::forge(). This section covers static usage which will always work with the same
-				driver as specified in the <a href="config.html">configuration</a>.</p>
+				<p>キャッシュを使用するには、 2 つの方法 (Cache クラスの静的な使い方を利用する、または Cache::forge() によって返された cache オブジェクトを利用する) で行うことができます。
+					このセクションでは、<a href="config.html">設定</a> の中で指定した、
+					同じドライバで常に動作する静的な使い方をカバーしています。</p>
 
-				<p>Using cache objects and Cache::forge() is explained in the <a href="advanced.html">advanced</a>
-				section.</p>
+				<p>cache オブジェクトと Cache::forge() の使い方は、
+					<a href="advanced.html">advanced</a> セクションの中で説明されています。</p>
 
-				<h3 id="gc">Garbage Collection</h3>
+				<h3 id="gc">ガベージコレクション</h3>
 
 				<p>
-					There is currently <strong>NO</strong> garbage collection mechanism build into the Cache drivers. Storage backends that
-					have built-in support for data expiration, such as APC, Memcached or Redis, will use that feature, and
-					will auto expire stale cache entries.
+					キャッシュドライバに組み込まれているガベージコレクション機構は、今のところ <strong>ありません</strong> 。
+					APC 、Memcached や Redis のような有効期限が内部でサポートされているストレージバックエンドは、
+					その機能を使用し、古いキャッシュエントリが自動で期限切れになります。
 				</p>
 				<p class="note">
-					This means that if you use files to store your cached entries, you will have to write a cron job that will
-					periodically delete all old files based on their last modified timestamp!
+					これは、キャッシュしたエントリを保存するためにファイル (キャッシュドライバ) を使用する場合は、
+					最終更新日時に基いて定期的に全ての古いファイルを削除する cron ジョブを書く必要があるということです！
 				</p>
 
 				<article>
 					<h4 class="method" id="method_set">set($identifier, $contents = null, $expiration = false, $dependencies = array())</h4>
-					<p>Writes a cache.</p>
+					<p>キャッシュを書き込みます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -92,24 +92,24 @@
 									<tr>
 										<th><kbd>$identifier</kbd></th>
 										<td><i>string</i></td>
-										<td>Name of the cache</td>
+										<td>キャッシュの名前</td>
 									</tr>
 									<tr>
 										<th><kbd>$contents</kbd></th>
 										<td><i>mixed</i></td>
-										<td>Contents to be cached</td>
+										<td>キャッシュされる内容</td>
 									</tr>
 									<tr>
 										<th><kbd>$expiration</kbd></th>
 										<td><i>int</i></td>
-										<td>Amount of seconds until the cache expires. null will make it never expire, false
-										makes it use the default expiration set in config.</td>
+										<td>キャッシュの有効期限が切れるまでの秒数。
+											null のときは無期限となり、false のときは設定でセットされているデフォルトの有効期限が使われます。</td>
 									</tr>
 									<tr>
 										<th><kbd>$dependencies</kbd></th>
 										<td><i>array</i></td>
-										<td>Array of identifiers this cache depends on, this cache expires if one of those
-										is newer or doesn't exist anymore.</td>
+										<td>このキャッシュが依存する識別子の配列。
+											これらの 1 つでも新しいまたは存在しないとき、このキャッシュは有効期限切れになります。</td>
 									</tr>
 								</table>
 							</td>
@@ -121,7 +121,7 @@
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Cache 'String to be cached' for 3 hours with identifier "test"
+								<pre class="php"><code>// 識別子を "test" として 'String to be cached' を 3 時間の有効期限でキャッシュする
 Cache::set('test', 'String to be cached.', 3600 * 3);</code></pre>
 							</td>
 						</tr>
@@ -131,7 +131,7 @@ Cache::set('test', 'String to be cached.', 3600 * 3);</code></pre>
 
 				<article>
 					<h4 class="method" id="method_get">get($identifier, $use_expiration = true)</h4>
-					<p>Retrieves a cache.</p>
+					<p>キャッシュを取得します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -150,28 +150,28 @@ Cache::set('test', 'String to be cached.', 3600 * 3);</code></pre>
 									<tr>
 										<th><kbd>$identifier</kbd></th>
 										<td><i>string</i></td>
-										<td>Name of the cache</td>
+										<td>キャッシュの名前</td>
 									</tr>
 									<tr>
 										<th><kbd>$use_expiration</kbd></th>
 										<td><i>true</i></td>
-										<td>Disable cache expiration for this fetching by setting this to false</td>
+										<td>これを false にセットすることによって、取得するキャッシュの有効期限を無効にします</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed - cache contents</td>
+							<td>mixed - キャッシュの内容</td>
 						</tr>
 						<tr>
 							<th>例外</th>
-							<td>CacheNotFoundException when Cache doesn't exist or CacheExpiredException when it has expired</td>
+							<td>キャッシュが存在しないときは CacheNotFoundException 、または有効期限が切れているときは CacheExpiredException</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// try to retrieve the cache and save to $content var
+								<pre class="php"><code>// キャッシュの取得を試し、変数 $content に保存する
 try
 {
 	$content = Cache::get('test');
@@ -179,9 +179,9 @@ try
 catch (\CacheNotFoundException $e)
 {
 	/*
-		Catching the CacheNotFoundException exception will catch
-		both CacheNotFoundException and CacheExpiredException.
-		Use this when catching the exception.
+		例外 CacheNotFoundException をキャッチすると、
+		CacheNotFoundException と CacheExpiredException の両方をキャッチします。
+		例外をキャッチするときにはこれを使います。
 	*/
 }
 </code></pre>
@@ -193,7 +193,7 @@ catch (\CacheNotFoundException $e)
 
 				<article>
 					<h4 class="method" id="method_delete">delete($identifier)</h4>
-					<p>Deletes a cache.</p>
+					<p>キャッシュを削除する。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -212,7 +212,7 @@ catch (\CacheNotFoundException $e)
 									<tr>
 										<th><kbd>$identifier</kbd></th>
 										<td><i>string</i></td>
-										<td>Name of the cache</td>
+										<td>キャッシュの名前</td>
 									</tr>
 								</table>
 							</td>
@@ -233,7 +233,7 @@ catch (\CacheNotFoundException $e)
 
 				<article>
 					<h4 class="method" id="method_delete_all">delete_all($section = null, $driver = null)</h4>
-					<p>Flushes the whole cache for a specific storage driver or just a subsection of it.</p>
+					<p>指定したドライバのキャッシュ全体、またはそのサブセクションを消去します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -252,12 +252,12 @@ catch (\CacheNotFoundException $e)
 									<tr>
 										<th><kbd>$section</kbd></th>
 										<td><i>string</i></td>
-										<td>Name of a section or directory of the cache, null to delete everything</td>
+										<td>セクションまたはキャッシュのディレクトリ。null のときは全てを削除します</td>
 									</tr>
 									<tr>
 										<th><kbd>$driver</kbd></th>
 										<td><i>string</i></td>
-										<td>Name of the driver to use, null to use the default driver.</td>
+										<td>使うドライバの名前。null のときはデフォルトのドライバを使用します。</td>
 									</tr>
 								</table>
 							</td>
@@ -269,10 +269,10 @@ catch (\CacheNotFoundException $e)
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Delete the whole cache for the default driver
+								<pre class="php"><code>// デフォルトのドライバの全てのキャッシュを削除
 Cache::delete_all();
 
-// Delete the subdirectory "test" of file
+// ファイル (キャッシュドライバ) のサブディレクトリ "test" を削除
 Cache::delete_all('test', 'file');</code></pre>
 							</td>
 						</tr>
@@ -282,7 +282,7 @@ Cache::delete_all('test', 'file');</code></pre>
 
 				<article>
 					<h4 class="method" id="method_call">call($identifier, $callback, $args = array(), $expiration = null, $dependencies = array())</h4>
-					<p>Cache the result of any callable function or method.</p>
+					<p>任意のコール可能な関数またはメソッドの結果をキャッシュする。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -301,29 +301,29 @@ Cache::delete_all('test', 'file');</code></pre>
 									<tr>
 										<th><kbd>$identifier</kbd></th>
 										<td><i>string</i></td>
-										<td>Name of the cache</td>
+										<td>キャッシュの名前</td>
 									</tr>
 									<tr>
 										<th><kbd>$callback</kbd></th>
 										<td><i>mixed</i></td>
-										<td>Any valid PHP callback</td>
+										<td>任意の有効な PHP コールバック</td>
 									</tr>
 									<tr>
 										<th><kbd>$args</kbd></th>
 										<td><i>array</i></td>
-										<td>Any arguments for the callback</td>
+										<td>コールバックの引数</td>
 									</tr>
 									<tr>
 										<th><kbd>$expiration</kbd></th>
 										<td><i>int</i></td>
-										<td>Amount of seconds until the cache expires. null will make it never expire, false
-										makes it use the default expiration set in config.</td>
+										<td>キャッシュの有効期限が切れるまでの秒数。
+											null のときは無期限となり、false のときは設定でセットされているデフォルトの有効期限が使われます。</td>
 									</tr>
 									<tr>
 										<th><kbd>$dependencies</kbd></th>
 										<td><i>array</i></td>
-										<td>Array of identifiers this cache depends on, this cache expires if one of those
-										is newer or doesn't exist anymore.</td>
+										<td>このキャッシュが依存する識別子の配列。
+											これらの 1 つでも新しいまたは存在しないとき、このキャッシュは有効期限切れになります。</td>
 									</tr>
 								</table>
 							</td>
@@ -335,7 +335,7 @@ Cache::delete_all('test', 'file');</code></pre>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Cache the result of a model find
+								<pre class="php"><code>// モデル find の結果をキャッシュする
 Cache::call('article_something', array('Model_Article', 'find'), array("all", array( 'where' => array('something' => $something) ));
 </code></pre>
 							</td>
