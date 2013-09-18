@@ -174,7 +174,10 @@ $post = Model_Post::query()->related('comments')->get();
 // 最初の "post"は、結合せずに1クエリを取得します。
 $post = Model_Post::find('first');
 // 自動的にjoinすることなく、別のクエリを実行される、コメントを（まだロードされていない）を要求します。
-$comments = $post->comments;</code></pre>
+$comments = $post->comments;
+
+// alternatively, you can use get(), which allows additional conditions:
+$comments = $post->get('comments', array('where' => array(array('field', '=', $value))));</code></pre>
 
 				<h3 id="usage_rel_conditions">使い方  where/order_by 条件</h3>
 

@@ -1371,9 +1371,74 @@ Array
 			</article>
 
 			<article>
+				<h4 id="method_insert_assoc" class="method">insert_assoc(array &amp;$original, array $values, $pos)</h4>
+				<p>The <strong>insert_assoc</strong> method inserts elements into an associative array, at the specified position.<br />
+				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$original</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to use</td>
+								</tr>
+								<tr>
+									<th><kbd>$values</kbd></th>
+									<td><em>required</em></td>
+									<td>Array with value(s) to insert</td>
+								</tr>
+								<tr>
+									<th><kbd>$pos</kbd></th>
+									<td><em>required</em></td>
+									<td>
+										The location in the original array where the new values should be inserted.
+										If a negative value is given, the position is counted from the back of the array.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean, true on success, false if $pos is out of bounds.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$character = array("name" =&gt; "Jack", "surname" =&gt; "Reacher");
+
+Arr::insert_assoc($people, array("initial" =&gt; "P.");
+print_r($people);
+
+// Result:
+Array
+(
+	[name] =&gt; Jack
+	[initial] =&gt; P.
+	[surname] =&gt; Reacher
+)
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 id="method_insert_before_key" class="method">insert_before_key(Array &amp;$original, $value, $key)</h4>
-				<p><strong>insert_before_key</strong> メソッドは与えられたキーの手前に要素を１つ追加します。<br />
-				<u>警告</u>: 元の配列は参照渡しされるので直接書き換えられます。成功かどうかを表すブール値のみが返ります。</p>
+				<p>The <strong>insert_before_key</strong> メソッドは与えられたキーの手前に要素を１つ追加します。<br />
+				<u>WARNING</u>: 元の配列は参照渡しされるので直接書き換えられます。成功かどうかを表すブール値のみが返ります。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1703,7 +1768,11 @@ array(
 								<tr>
 									<th><kbd>$ornire_case</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
+<<<<<<< HEAD
 									<td>大文字/小文字を区別するかどうか。</td>
+=======
+									<td>Whether to sort case insensitive.</td>
+>>>>>>> 6a2b1d88d2f93780888954a75b63994f64bc7bda
 								</tr>
 							</table>
 						</td>
@@ -1796,7 +1865,7 @@ Array
 
 			<article>
 				<h4 id="method_in_array_recursive" class="method">in_array_recursive($needle, $haystack, $strict = false)</h4>
-				<p><strong>in_array_recursive</strong> メソッドは値が配列に含まれているかどうか再帰的にチェックします。</p>
+				<p>The <strong>in_array_recursive</strong> メソッドは値が配列に含まれているかどうか再帰的にチェックします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1933,6 +2002,90 @@ Array
 				)
 	[7] => 90
 	[8] => php
+)
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+			<article>
+				<h4 id="method_merge_assoc" class="method">merge_assoc($array)</h4>
+				<p>The <strong>merge_assoc</strong> method merges 2 or more arrays recursively, differs in 2 important ways from array_merge_recursive(): <br />
+				- When there's 2 different values and not both arrays, the latter value overwrites the earlier
+	 			  instead of merging both into an array<br />
+	 			- Numeric keys aren't changed</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>array</em></td>
+									<td><em>required</em></td>
+									<td>Multiple variables all of which must be arrays</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td><kbd>InvalidArgumentException</kbd> when one of the passed arguments is no array.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$arr1 = array(
+	'one' => 1,
+	2 => 2,
+	3 => 3,
+	4 => array(
+		56
+	),
+	5=> 87
+);
+
+$arr2 = array(
+	1 => 27,
+	2 => 90,
+	4 => array(
+		'give_me' => 'bandwidth'
+	),
+	6 => '90',
+	7 => 'php',
+);
+
+print_r( Arr::merge_assoc($arr1, $arr2) );
+// Result:
+Array
+(
+	[one] => 1
+	[2] => 90
+	[3] => 3
+	[4] => Array (
+		[0] => 56
+		[give_me] => bandwidth
+	)
+	[5] => 87
+	[1] => 27
+	[6] => 90
+	[7] => php
 )
 </code></pre>
 						</td>
@@ -2174,6 +2327,75 @@ $total_age = Arr::sum($collection, 'age'); // 83
 
 // 配列中の 'scores.math' の合計値を計算する
 $total_score = Arr::sum($collection, 'scores.math'); // 30
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_reindex" class="method">reindex($array)</h4>
+				<p>The <strong>reindex</strong> method recusively re-indexes the numeric keys of an array. It will not alter string keys.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>array</em></td>
+									<td><em>required</em></td>
+									<td>the array to re-index</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$array = array(
+	2 => 2,
+	'three' => 3,
+	5 => array(
+		2 => 2,
+		'three' => 3,
+		5 => 5
+	),
+	7 => 7
+);
+
+// reindex the array
+print_r( Arr::reindex($array) );
+// Result:
+Array
+(
+    [0] => 2
+    [three] => 3
+    [1] => Array
+        (
+            [0] => 2
+            [three] => 3
+            [1] => 5
+        )
+
+    [2] => 7
+)
 </code></pre>
 						</td>
 					</tr>

@@ -125,7 +125,7 @@
 &lt;input type="hidden" name="&lt;?php echo \Config::get('security.csrf_token_key');?&gt;" value="&lt;?php echo \Security::fetch_token();?&gt;" /&gt;
 
 // Form クラスを使って
-echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_token());
+echo \Form::csrf();
 
 // form インスタンスを使い、フォームのフィールドセットに検証ルールを追加して
 $form = \Form::forge();

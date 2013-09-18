@@ -499,7 +499,7 @@ panes.core = {
 		"Package":		"classes/package.html",
 		"Pagination":	"classes/pagination.html",
 		"Profiler":		"classes/profiler.html",
-		"Redis":		"classes/redis.html",
+		"Redis_Db":		"classes/redis.html",
 		"Request": {
 			"URI requests":		"classes/request/request.html",
 			"Curl":		"classes/request/curl.html",

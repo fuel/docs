@@ -175,7 +175,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 				$view->set('errors', $e->getMessage(), false);
 			}
 		}
-		return new Response($view);
+		return Response::forge($view);
 	}
 
 	public function action_edit($id = false)
@@ -200,7 +200,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 				$view->set('errors', $e->getMessage(), false);
 			}
 		}
-		return new Response($view);
+		return Response::forge($view);
 	}
 
 	public function action_delete($id = null)
@@ -216,6 +216,46 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 		Response::redirect('articles');
 	}
 
+}</code></pre>
+				<p>
+					By default, the HTML representation is passed as message to the ValidationFailed exception object, ready for
+					display in your view. There are however cases where you would like to have access to the individual error
+					messages, for example because you're in a RESTful API call, and you want to return the messages as JSON:</p>
+
+				<pre class="php"><code>class Controller_Articles extends Controller_Rest
+{
+	public function action_create()
+	{
+		$view = View::forge('articles/create');
+		if (Input::param() != array())
+		{
+			try
+			{
+				$article = Model_Article::forge();
+				$article->name = Input::param('name');
+				$article->url = Input::param('url');
+				$article->save();
+				Response::redirect('articles');
+			}
+			catch (Orm\ValidationFailed $e)
+			{
+				$errors = array();
+				foreach ($e->get_fieldset()->validation()->error() as $error)
+				{
+					$errors = array(
+						'field' => $error->field,					// the field that caused the error
+						'value' => $error->value,					// the value that is in error
+						'message' => trim($error->get_message(false, '\t', '\t')),	// the error message
+						'rule' => $error->rule,						// the rule that failed
+						'params' => $error->params,					// any parameters passed to the rule
+					);
+				}
+				return $errors;
+			}
+		}
+
+		return Response::forge($view);
+	}
 }</code></pre>
 
 				<p>これは、<a href="../../../classes/fieldset.html">Fieldset</a> クラスを使用しているので、検証を実行し、

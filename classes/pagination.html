@@ -65,14 +65,18 @@
 // 'mypagination' という名前の pagination インスタンスを作る
 $pagination = Pagination::forge('mypagination', $config);
 
-$data['example_data'] = DB::select('id', 'value')->from('pagination')
-												->limit($pagination->per_page)
-												->offset($pagination->offset)
-												->execute()
-												->as_array();
+$data['example_data'] = DB::select('id', 'value')
+							->from('pagination')
+							->limit($pagination->per_page)
+							->offset($pagination->offset)
+							->execute()
+							->as_array();
 
-$data['pagination'] = $pagination->render();
-$this->render('welcome/index', $data);</code></pre>
+// we pass the object, it will be rendered when echo'd in the view
+$data['pagination'] = $pagination;
+
+// return the view
+return \View::forge('welcome/index', $data);</code></pre>
 			</section>
 
 			<section>
@@ -506,11 +510,19 @@ echo Pagination::instance('mypagination')->render();</code></pre>
 						</tr>
 						</tbody>
 					</table>
+
+					<p class="note">
+						The pagination object contains an __toString() method, that will cause the render() method to be called
+						when you echo the object, or cast it to string.
+					</p>
 				</article>
 
 				<article>
-					<h4 class="method" id="method_first">first($marker = '&amp;laquo;&amp;laquo;')</h4>
-					<p><strong>first</strong> メソッドは、ページネーションで "最初のページ" のリンクを表示するマークアップを生成します。</p>
+					<h4 class="method" id="method_first">first($marker = null)</h4>
+					<p>
+						The <strong>first</strong> method generates the markup to display a "First page" link for pagination.
+						If no string is given to be used as marker, the "first-marker" value from the template will be used.
+					</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -528,8 +540,8 @@ echo Pagination::instance('mypagination')->render();</code></pre>
 									</tr>
 									<tr>
 										<th><kbd>$marker</kbd></th>
-										<td><pre class="php"><code>'&amp;laquo;&amp;laquo;'</code></pre></td>
-										<td>リンクの中に表示されるテキスト。</td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>The text to be displayed in the link. Defaults to the 'first-marker' template value.</td>
 									</tr>
 								</table>
 							</td>
@@ -548,14 +560,17 @@ echo Pagination::instance('mypagination')->first();</code></pre>
 						</tbody>
 					</table>
 					<p class="note">
-						"最初のページ" のリンクは、最初のページが存在し、(このページが) 最初のページではない場合のみ表示されます。
-						'最初' の非アクティブなリンクは提供されません。
+						The "First page" link will only be shown if there is a first page, and you're not already on it.
+						Note that by default there is no inactive link defined for 'first'.
 					</p>
 				</article>
 
 				<article>
-					<h4 class="method" id="method_previous">previous($marker = '&amp;laquo;')</h4>
-					<p><strong>previous</strong> メソッドは、ページネーションで "前のページ" のリンクを表示するマークアップを生成します。</p>
+					<h4 class="method" id="method_previous">previous($marker = null)</h4>
+					<p>
+						The <strong>previous</strong> method generates the markup to display a "Previous" link for pagination.
+						If no string is given to be used as marker, the "previous-marker" value from the template will be used.
+					</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -573,8 +588,8 @@ echo Pagination::instance('mypagination')->first();</code></pre>
 									</tr>
 									<tr>
 										<th><kbd>$marker</kbd></th>
-										<td><pre class="php"><code>'&amp;laquo;'</code></pre></td>
-										<td>リンクの中に表示されるテキスト。</td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>The text to be displayed in the link. Defaults to the 'previous-marker' template value.</td>
 									</tr>
 								</table>
 							</td>
@@ -595,8 +610,11 @@ echo Pagination::instance('mypagination')->previous();</code></pre>
 				</article>
 
 				<article>
-					<h4 class="method" id="method_next">next($marker = '&amp;raquo;')</h4>
-					<p><strong>next</strong> メソッドは、ページネーションで "次のページ" のリンクを表示するマークアップを生成します。</p>
+					<h4 class="method" id="method_next">next($marker = null)</h4>
+					<p>
+						The <strong>next</strong> method generates the markup to display a "Next" link for pagination.
+						If no string is given to be used as marker, the "next-marker" value from the template will be used.
+					</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -614,8 +632,8 @@ echo Pagination::instance('mypagination')->previous();</code></pre>
 									</tr>
 									<tr>
 										<th><kbd>$marker</kbd></th>
-										<td><pre class="php"><code>'&amp;raquo;'</code></pre></td>
-										<td>リンクの中に表示されるテキスト。</td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>リンクの中に表示されるテキスト。 Defaults to the 'next-marker' template value.</td>
 									</tr>
 								</table>
 							</td>
@@ -636,8 +654,11 @@ echo Pagination::instance('mypagination')->next();</code></pre>
 				</article>
 
 				<article>
-					<h4 class="method" id="method_last">last($marker = '&amp;raquo;&amp;raquo;')</h4>
-					<p><strong>last</strong> メソッドは、ページネーションで "最後のページ" のリンクを表示するマークアップを生成します。</p>
+					<h4 class="method" id="method_last">last($marker = null)</h4>
+					<p>
+						The <strong>last</strong> method generates the markup to display a "Last page" link for pagination.
+						If no string is given to be used as marker, the "last-marker" value from the template will be used.
+					</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -655,8 +676,8 @@ echo Pagination::instance('mypagination')->next();</code></pre>
 									</tr>
 									<tr>
 										<th><kbd>$marker</kbd></th>
-										<td><pre class="php"><code>'&amp;raquo;&amp;raquo;'</code></pre></td>
-										<td>リンクの中に表示されるテキスト。</td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>リンクの中に表示されるテキスト。Defaults to the 'last-marker' template value.</td>
 									</tr>
 								</table>
 							</td>
@@ -675,8 +696,8 @@ echo Pagination::instance('mypagination')->last();</code></pre>
 						</tbody>
 					</table>
 					<p class="note">
-						"最後のページ" のリンクは、最後のページが存在し、(このページが) 最後のページではない場合のみ表示されます。
-						'最後' の非アクティブなリンクは提供されません。
+						The "Last page" link will only be shown if there are any pages, and you're not already on the last one.
+						Note that by default there is no inactive link defined for 'last'.
 					</p>
 				</article>
 
@@ -831,7 +852,7 @@ Model_Article::find()
 	->get();
 
 // 新しい使用法:
-Model_Article::find()
+Model_Article::query()
 	->order_by('date', 'ASC')
 	->rows_offset(\Pagination::get('offset'))
 	->rows_limit(\Pagination::get('per_page'))

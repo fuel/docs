@@ -8,10 +8,10 @@
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
-		var class_prefix = "Redis::";
+		var class_prefix = "Redis_Db::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Redis - クラス - FuelPHP ドキュメント</title>
+	<title>Redis_Db - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -45,9 +45,9 @@
 
 		<div id="main">
 
-			<h2>Redis クラス</h2>
+			<h2>Redis_Db クラス</h2>
 
-			<p>Redis クラスは key-value ストアである <a href="http://redis.io/">Redis</a> とデータをやり取りすることができます。</p>
+			<p>Redis_Db クラスは key-value ストアである<a href="http://redis.io/">Redis</a> とデータをやり取りすることができます。</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($name = 'default', $config = array())</h4>
@@ -88,7 +88,7 @@
 						<th>例</th>
 						<td>
 							<pre class="php"><code>// 'mystore' という名前の redis インスタンスを生成
-$redis = Redis::forge('mystore');</code></pre>
+$redis = Redis_Db::forge('mystore');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -129,7 +129,7 @@ $redis = Redis::forge('mystore');</code></pre>
 						<th>例</th>
 						<td>
 							<pre class="php"><code>// 'mystore' という名前の redis インスタンスを取り出す
-$redis = Redis::instance('mystore');</code></pre>
+$redis = Redis_Db::instance('mystore');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -138,10 +138,10 @@ $redis = Redis::instance('mystore');</code></pre>
 
 			<article>
 				<h4 id="redis_commands">Redis のコマンド</h4>
-				<p>一度 redis オブジェクトを生成したらあとは instance() メソッドを使います。様々な redis コマンド (<a href="http://redis.io/commands">Redis ドキュメント</a>を参照のこと) はオブジェクトのメソッドのように使うことができます。</p>
+				<p>一度 redis オブジェクトを生成したらあとは instance() メソッドを使います。 様々な redis コマンド (<a href="http://redis.io/commands">Redis ドキュメント</a>を参照のこと) はオブジェクトのメソッドのように使うことができます。</p>
 				<p>いくつかの例:</p>
-				<pre class="php"><code>// 'mystore' という名前の redis インスタンスを生成
-$redis = Redis::forge('mystore');
+				<pre class="php"><code>// create the Redis 'mystore' instance
+$redis = Redis_Db::forge('mystore');
 
 // テストデータを作成
 $redis->rpush('particles', 'proton');
@@ -169,7 +169,7 @@ echo "&lt;/ul>";
 				<p>いくつかの Redis コマンドをつなげることができ、それは1度だけ実行されます。</p>
 				<p>例:</p>
 				<pre class="php"><code>// 'mystore' という名前の redis インスタンスを生成
-$redis = Redis::forge('mystore');
+$redis = Redis_Db::forge('mystore');
 
 // いくつかの redis コマンドをパイプして実行
 $result = $redis->pipeline()

@@ -860,7 +860,7 @@ $sibling = $nicola->next_silbing()->get_one();
 								</tr>
 								<tr>
 									<th>Returns</th>
-									<td>string, the path to the node</td>
+									<td>Model_Nestedset, for chaining.</td>
 								</tr>
 								<tr>
 									<th>Throws</th>
@@ -869,14 +869,14 @@ $sibling = $nicola->next_silbing()->get_one();
 								<tr>
 									<th>Example</th>
 									<td>
-										<pre class="php"><code>// get the path to Tim, returns "Bill/Ben/Kerry/Tim/"
-$path = $tim->path();
+										<pre class="php"><code>// get the path to Tim, returns "Bill/Ben/Kerry/Tim"
+$path = $tim->path()->get();
 
-// get the path to Nicola, returns "Bill/Angela/Nicola/"
-$path = $nicola->path();
+// get the path to Nicola, returns "Bill/Angela/Nicola"
+$path = $nicola->path()->get();
 
-// get the path to Kerry, and exclude the boss. returns "Ben/Kerry/"
-$path = $kerry->path(false);
+// get the path to Kerry, and exclude the boss. returns "Ben/Kerry"
+$path = $kerry->path(false)->get();
 </code></pre>
 									</td>
 								</tr>

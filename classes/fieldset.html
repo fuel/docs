@@ -717,7 +717,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 			<article>
 				<h4 class="method" id="method_repopulate">repopulate()</h4>
 				<p>Set all field values to the input send by a form submission (uses the form <kbd>method</kbd> attribute
-					to decide wether to check POST or GET).</p>
+					to decide whether to check POST or GET).</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1185,11 +1185,11 @@ $form = Fieldset::forge('article')->add_model($article);
  * add the tabular form to it to create the one-to-many table.
  *
  * the data is provided by the relation 'comments' of the $article object, which
- * are objects of the class 'Model_Comments'.
+ * are objects of the class 'Model_Comment'.
  *
  * you can disable the fieldset tag to avoid embedded fieldsets in your form
  */
-$form->add(\Fieldset::forge('tabular')->set_tabular_form('Model_Comments', 'comments', $article)->set_fieldset_tag(false));
+$form->add(\Fieldset::forge('tabular')->set_tabular_form('Model_Comment', 'comments', $article)->set_fieldset_tag(false));
 				</code></pre>
 
 				<p class="note">This only works for related models that <strong>DO NOT</strong> have a compound key!</p>
@@ -1239,7 +1239,7 @@ if (\Input::post())
 			else
 			{
 				// create a new related record
-				$article->comments[] = Model_Comments::forge(array('article_id' => $article->id, 'fieldA' => $data['fieldA'], 'fieldB' => $data['fieldB']));
+				$article->comments[] = Model_Comment::forge(array('article_id' => $article->id, 'fieldA' => $data['fieldA'], 'fieldB' => $data['fieldB']));
 			}
 		}
 

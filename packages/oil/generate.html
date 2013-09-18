@@ -57,10 +57,12 @@
 					<li><a href="#controllers">コントローラ</a></li>
 					<li><a href="#models">モデル</a></li>
 					<li><a href="#viewmodels">ビューモデル</a></li>
-					<li><a href="#migrations">マイグレーション</a></li>
+					<li><a href="#migrations">マイグレーションs</a></li>
 					<li><a href="#scaffolding">スキャフォールド</a></li>
+					<li><a href="#admin">Admin scaffolding</a></li>
 					<li><a href="#tasks">タスク</a></li>
 					<li><a href="#configs">設定</a></li>
+					<li><a href="#packages">Packages</a></li>
 				</ul>
 
 				<h3 id="controllers">コントローラ</h3>
@@ -561,6 +563,27 @@ Migrated to latest version: 3.
 
 }</code></pre>
 
+
+				<h3 id="admin">Admin scaffolding</h3>
+
+				<p>
+					You can swap scaffold with admin and generate a controller which extends Controller_Admin instead of Controller_Template.
+					On the first use of this command an admin skeleton will be generated, to expand this skeleton use the skip force argument.
+
+					To generate in subdirectories name the prefix the model's name accordingly.
+				</p>
+
+				<pre class="cli"><code>$ php oil g admin project_entry title:string abstract:text full_text:text project_id:int is_draft:int order:int -s
+	Creating migration: APPPATH/migrations/012_create_project_entries.php
+	Creating model: APPPATH/classes/model/project/entry.php
+	Creating controller: APPPATH/classes/controller/admin/project/entry.php
+	Creating view: APPPATH/views/admin/project/entry/index.php
+	Creating view: APPPATH/views/admin/project/entry/view.php
+	Creating view: APPPATH/views/admin/project/entry/create.php
+	Creating view: APPPATH/views/admin/project/entry/edit.php
+	Creating view: APPPATH/views/admin/project/entry/_form.php
+</code></pre>
+
 				<h3 id="tasks">タスク</h3>
 
 				<p>
@@ -666,6 +689,50 @@ class Newtask
 );
 
 /* End of file form.php */</code></pre>
+
+				<h3 id="packages">Packages</h3>
+
+				<p>
+					To generate a <a href="../../general/packages.html">Package</a>, use the following command:
+				</p>
+
+				<pre class="cli"><code>$ php oil g package sample
+	Creating file: PKGPATH/sample/classes/sample.php
+	Creating file: PKGPATH/sample/config/sample.php
+	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
+
+				<p class="note">The path where the package is generated is PKGPATH by default, but this value can be changed to any path defined in the <code>package_paths</code> config by passing the <code>--path=package_path</code> or <code>-p=package_path</code> option to the command.</p>
+
+				<h3>Generate Driver-based Package</h3>
+
+				<p>If you wish to generate a driver-based package, simply supply the <code>--drivers</code> or <code>-d</code> option:</p>
+
+				<pre class="cli"><code>$ php oil g package sample -d
+	Creating file: PKGPATH/sample/classes/sample.php
+	Creating file: PKGPATH/sample/classes/sample/driver.php
+	Creating file: PKGPATH/sample/config/sample.php
+	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
+
+				<p>You can also generate your own drivers. Simply pass the driver names separated by commas to the <code>--drivers</code> or <code>-d</code> option:</p>
+
+				<pre class="cli"><code>$ php oil g package sample -d=driver1,driver2
+	Creating file: PKGPATH/sample/classes/sample.php
+	Creating file: PKGPATH/sample/classes/sample/driver.php
+	Creating file: PKGPATH/sample/classes/sample/driver1.php
+	Creating file: PKGPATH/sample/classes/sample/driver2.php
+	Creating file: PKGPATH/sample/config/sample.php
+	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
+
+				<h3>Generate Package with VCS files</h3>
+
+				<p>If you wish to generate composer.json and README.md files for your package, simply supply the <code>--vcs</code> or <code>-v</code> option:</p>
+
+				<pre class="cli"><code>$ php oil g package sample -v
+	Creating file: PKGPATH/sample/composer.json
+	Creating file: PKGPATH/sample/README.md
+	Creating file: PKGPATH/sample/classes/sample.php
+	Creating file: PKGPATH/sample/config/sample.php
+	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
 
 			</section>
 
