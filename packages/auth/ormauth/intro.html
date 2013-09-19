@@ -74,7 +74,8 @@
 			<h3 id="acl">ACL's</h3>
 
 			<p>
-				OrmAuth has a much more fine-grained ACL system then SimpleAuth. It has the following structure:
+				OrmAuth has a much more fine-grained ACL system then SimpleAuth. It uses standard ORM relations to construct the permission set
+				for any given user, and has the following features:
 			</p>
 
 			<ul>
@@ -89,20 +90,78 @@
 			</ul>
 
 			<p>
-				All the permissions are aggregated per user. A role can have special permission flags, that may alter the
+				All the permissions are aggregated per user. A role can have special permission filters, that may alter the
 				assigned aggregated permissions. These are:
 			</p>
 
 			<ul>
-				<li>"All access". Users with this role have all access. This is typically used for a 'super-admin' role. It overrules all permissions set.</li>
-				<li>"No access". Users with this role have no access. This is typically used for a 'banned' role. It overrules all permissions set.</li>
-				<li>"Revoke permissions". Permissions set on this role will be removed from the aggregated permissions set.</li>
+				<li>"All access", stored as "A". Users with this role have all access. This is typically used for a 'super-admin' role. It overrules all permissions set.</li>
+				<li>"No access", stored as "D". Users with this role have no access. This is typically used for a 'banned' role. It overrules all permissions set.</li>
+				<li>"Revoke permissions", stored as "R". Permissions set on this role will be removed from the aggregated permissions set.</li>
 			</ul>
 
 			<p class="note">
 				Note that "revoked" permissions are checked before all others. This allows you to create permission constructs like "all access
 				for this super-admin, except to the top-secret area of the application"...
 			</p>
+
+			<p>Assigning a permission is using standard ORM relations, and is very straitforward:</p>
+<pre class="php"><code>// get the Role identified by $role_id
+$role = \Model\Auth_Role::find($role_id);
+
+// get the Permission identified by $perm_id
+$perm = \Model\Auth_Permission::find($perm_id);
+
+// relate the two
+$role->permissions = $perm;
+
+// and save the relation
+$role->save();</code></pre>
+
+			<h4 id="actions">Actions</h4>
+
+			<p>
+				As mentioned above, you can add additional granularity by adding a list of actions to a permission (a combination of area and permission).
+			</p>
+
+			<p>
+				Actions are stored as an indexed array of strings in the permission record, serialized and unserialized automatically by the ORM.
+				You can define as many actions as you want, and chose any strings you like. If needed this allows you to set a permission on each
+				and every action on a form, more fine-grained then you would probably ever need!
+			</p>
+
+			<p>
+				The action list defined on a permission specify which possible actions can be assigned when assigning the permission to either a
+				user, a group, or a role. The assigned actions are stored as an array of keys, that defines which of the actions were assigned.
+			</p>
+
+<pre class="php"><code>// if these are the possible actions:
+array('add', 'view', 'edit', 'delete')
+
+// then you should store this when assigning 'view' and 'edit':
+array(1, 2)
+</code></pre>
+
+			<p>
+				To store this, ORM Models have been provided to directly access the relationship or though table that connects either the user, the
+				role or the group to the permission.
+			</p>
+
+<pre class="php"><code>// get the Role identified by $role_id
+$role = \Model\Auth_Role::find($role_id);
+
+// get the Permission identified by $perm_id
+$perm = \Model\Auth_Permission::find($perm_id);
+
+// relate the two, adding a subselection of actions
+$role->rolepermission[] = \Model\Auth_Rolepermission::forge(array(
+	'role_id' => $role->id,
+	'perms_id' => $perm->id,
+	'actions' => array(1,2),
+));
+
+// and save the relation
+$role->save();</code></pre>
 
 			<p>
 				When checking for access, you specify the required access as either <code>area.permission</code> (when you want to check for
@@ -112,11 +171,6 @@
 				This will allow you to construct checks like <code>blog.comments[read,create,write,write-own,delete,delete-own]</code>.
 			</p>
 
-			<p>
-				Actions are stored as an indexed array of strings, serialized and unserialized automatically by the ORM. You can define
-				as many actions as you want, and chose any strings you like. If needed this allows you to set a permission on each and every
-				action on a form, more fine-grained then you would probably ever need!
-			</p>
 
 
 			<h3 id="caching">Caching</h3>
