@@ -997,6 +997,113 @@ Array
 			</article>
 
 			<article>
+				<h4 id="method_subset" class="method">subset($array, $keys, $default = null)</h4>
+				<p>Similar to <a href="#method_filter_keys"><strong>filter_keys</strong></a>, the <strong>subset</strong> method uses the values in <kbd>$keys</kbd> to access this array and return the associated values. The difference is that <strong>subset</strong> returns all requested keys, providing <kbd>$default</kbd> for any missing keys.</p>
+				<p>This method uses <a href="#method_get"><strong>get</strong></a> and <a href="#method_set"><strong>set</strong></a> internally, so <kbd>$keys</kbd> may contain dotted notation.</p>
+
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to filter.</td>
+								</tr>
+								<tr>
+									<th><kbd>$keys</kbd></th>
+									<td><em>required</em></td>
+									<td>Array of keys to filter the above array with.</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Keys not found in <kbd>$array</kbd> are given this value instead.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$arr = array(
+	"user" => array(
+		"name" => "John",
+		"surname" => "Lastname",
+	),
+	"project" => array(
+		"name" => "Fuel",
+		"type" => "Framework",
+	),
+);
+
+print_r(Arr::subset($arr, array('project.name', 'user.name')));
+
+// Result:
+Array
+(
+ 	[project] => Array
+         (
+			 [name] => Fuel
+		 )
+	[user] => Array
+         (
+			 [name] => John
+		 )
+)
+
+print_r(Arr::subset($arr, array('project.name', 'project.manager')));
+
+// Result:
+Array
+(
+ 	[project] => Array
+         (
+			 [name] => Fuel
+			 [manager] =>
+		 )
+)
+
+print_r(Arr::subset($arr, array('project.name', 'project.manager', 'user', 'not_provided'), 'Not Provided'));
+
+// Result:
+Array
+(
+ 	[project] => Array
+         (
+			 [name] => Fuel
+			 [manager] => Not Provided
+		 )
+ 	[user] => Array
+         (
+			 [name] => John
+			 [surname] => Lastname
+		 )
+	[not_provided] => Not Provided
+)
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 id="method_get" class="method">get($array, $key, $default = false)</h4>
 				<p>The <strong>get</strong> method returns the element of the given array using dot-notation, or a default if it is not set.</p>
 				<table class="method">
