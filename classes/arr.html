@@ -1042,37 +1042,59 @@ Array
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$arr = array(
-	"user_name" => "John",
-	"user_surname" => "Lastname",
-	"project_name" => "Fuel",
-	"project_type" => "Framework",
+	"user" => array(
+		"name" => "John",
+		"surname" => "Lastname",
+	),
+	"project" => array(
+		"name" => "Fuel",
+		"type" => "Framework",
+	),
 );
 
-print_r(Arr::subset($arr, array('project_name', 'user_name')));
+print_r(Arr::subset($arr, array('project.name', 'user.name')));
 
 // Result:
 Array
 (
-	[project_name] => Fuel
-	[user_name] => John
+ 	[project] => Array
+         (
+			 [name] => Fuel
+		 )
+	[user] => Array
+         (
+			 [name] => John
+		 )
 )
 
-print_r(Arr::subset($arr, array('project_name', 'project_manager')));
+print_r(Arr::subset($arr, array('project.name', 'project.manager')));
 
 // Result:
 Array
 (
-	[project_name] => Fuel
-	[project_manager] =>
+ 	[project] => Array
+         (
+			 [name] => Fuel
+			 [manager] =>
+		 )
 )
 
-print_r(Arr::subset($arr, array('project_name', 'project_manager'), 'Not Provided'));
+print_r(Arr::subset($arr, array('project.name', 'project.manager', 'user', 'not_provided'), 'Not Provided'));
 
 // Result:
 Array
 (
-	[project_name] => Fuel
-	[project_manager] => Not Provided
+ 	[project] => Array
+         (
+			 [name] => Fuel
+			 [manager] => Not Provided
+		 )
+ 	[user] => Array
+         (
+			 [name] => John
+			 [surname] => Lastname
+		 )
+	[not_provided] => Not Provided
 )
 </code></pre>
 						</td>
