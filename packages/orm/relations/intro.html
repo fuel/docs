@@ -219,9 +219,9 @@ $post = Model_Post::query()->related('articles')
 
 				<p>それは（あなたがあまりにも多くの結合が必要なクエリーを作成注意したいかもしれませんが）
 					無制限の深さに関係の関係を取得することも可能です。これらのすべて、または一部は、以下に例示されている場所と
-					order_byを条件と組み合わせることができます。</p>
+					order_by を条件と組み合わせることができます。</p>
 
-				<p class="note">あなたは、その関係の前に"parent"の関係をロードする必要がありリレーションの関係を取得したい場合、
+				<p class="note">あなたは、その関係の前に "parent" の関係をロードする必要がありリレーションの関係を取得したい場合、
 					order は、ここで問題となることに注意してください。それ以外の場合、例外が投げられます。</p>
 
 				<pre class="php"><code>//照会配列を使用
@@ -264,7 +264,7 @@ $post = Model_Post::query()
 			<article id="join_types">
 				<h2>結合の種類</h2>
 
-				<p>デフォルトでは、ORMは'left' joinを使用してリレーションを結合します。異なるリレーションを指定するには、'join_type'条件を使用します:</p>
+				<p>デフォルトでは、ORM は 'left' join を使用してリレーションを結合します。異なるリレーションを指定するには、'join_type' 条件を使用します:</p>
 
 				<pre class="php"><code>$post = Model_Post::find('first', array(
     'related' => array(
@@ -281,9 +281,9 @@ $post = Model_Post::query()
 				</code></pre>
 
 				<p>
-					where句はjoin前に実行されるため、 where句が含まれている場合はouter joinにはならず、 
-					where句の条件は結合前フィルターのように動作します。
-					joinの条件を定義するためには以下のようにします:
+					where 句は join 前に実行されるため、 where 句が含まれている場合は OUTER JOIN にはならず、 
+					where 句の条件は結合前フィルターのように動作します。
+					JOIN の条件を定義するためには以下のようにします:
 				</p>
 
 				<pre class="php"><code>$post = Model_Post::find('all', array(
@@ -299,14 +299,15 @@ $post = Model_Post::query()
     ),
 ));
 				</code></pre>
-				<p>where句の条件の代わりに、on句の条件として追加します。</p>
+				<p>これは、WHERE 句の条件の代わりに、ON 句の検索条件として追加します。</p>
+
 				<p class='note'>Note that if you want to pass a literal value to a join, you will have to encapsulate it in a DB::expr() to avoid it being escaped as a column name.</p>
 			</article>
 
 			<article id="relation_types">
 				<h2>リレーションタイプ</h2>
 
-				<p>ORMはネイティブに次の関係のタイプをサポートしています。</p>
+				<p>ORM はネイティブに次の関係のタイプをサポートしています。</p>
 
 				<ul>
 					<li><a href="belongs_to.html">Belongs To</a><br />
