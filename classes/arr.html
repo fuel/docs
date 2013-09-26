@@ -704,7 +704,7 @@ Array
                             <table class="parameters">
                                 <tr>
                                     <th>パラメータ</th>
-                                    <th>規定値</th>
+                                    <th>デフォルト</th>
                                     <th class="description">説明</th>
                                 </tr>
                                 <tr>
@@ -779,7 +779,7 @@ Array
                             <table class="parameters">
                                 <tr>
                                     <th>パラメータ</th>
-                                    <th>規定値</th>
+                                    <th>デフォルト</th>
                                     <th class="description">説明</th>
                                 </tr>
                                 <tr>
@@ -914,7 +914,7 @@ Array
 							<table class="parameters">
 								<tr>
 									<th>パラメータ</th>
-									<th>規定値</th>
+									<th>デフォルト</th>
 									<th class="description">説明</th>
 								</tr>
 								<tr>
@@ -1479,56 +1479,56 @@ Array
 
 			<article>
 				<h4 id="method_insert_assoc" class="method">insert_assoc(array &amp;$original, array $values, $pos)</h4>
-				<p>The <strong>insert_assoc</strong> method inserts elements into an associative array, at the specified position.<br />
-				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned.</p>
+				<p><strong>insert_assoc</strong> メソッドは連想配列の特定の場所に要素を追加します。<br />
+				<u>警告</u>: 元の配列は参照渡しされるので直接書き換えられます。成功したかどうかを表すブール値のみが返ります。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
+									<th>パラメータ</th>
 									<th>Default</th>
-									<th class="description">Description</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$original</kbd></th>
-									<td><em>required</em></td>
-									<td>The array to use</td>
+									<td><em>必須</em></td>
+									<td>変更する連想配列</td>
 								</tr>
 								<tr>
 									<th><kbd>$values</kbd></th>
-									<td><em>required</em></td>
-									<td>Array with value(s) to insert</td>
+									<td><em>必須</em></td>
+									<td>挿入する連想配列</td>
 								</tr>
 								<tr>
 									<th><kbd>$pos</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>
-										The location in the original array where the new values should be inserted.
-										If a negative value is given, the position is counted from the back of the array.</td>
+									  配列を新たに挿入する位置。
+									  負の値の場合は配列の最後尾より数えた場所に挿入されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>boolean, true on success, false if $pos is out of bounds.</td>
+						<th>返り値</th>
+						<td>boolean。成功の場合は true、$pos が無効な位置の場合は false</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>$character = array("name" =&gt; "Jack", "surname" =&gt; "Reacher");
+							<pre class="php"><code>$people = array("name" =&gt; "Jack", "surname" =&gt; "Reacher");
 
-Arr::insert_assoc($people, array("initial" =&gt; "P.");
+Arr::insert_assoc($people, array("initial" =&gt; "P.", 1);
 print_r($people);
 
-// Result:
+// 結果:
 Array
 (
 	[name] =&gt; Jack
@@ -2044,7 +2044,7 @@ echo Arr::in_array_recursive(87, $arr, true);
 								<tr>
 									<th>パラメータ</th>
 									<th>型</th>
-									<th>規定値</th>
+									<th>デフォルト</th>
 									<th class="description">説明</th>
 								</tr>
 								<tr>
@@ -2113,46 +2113,46 @@ Array
 				</table>
 			</article>
 			<article>
-				<h4 id="method_merge_assoc" class="method">merge_assoc($array)</h4>
-				<p>The <strong>merge_assoc</strong> method merges 2 or more arrays recursively, differs in 2 important ways from array_merge_recursive(): <br />
-				- When there's 2 different values and not both arrays, the latter value overwrites the earlier
-	 			  instead of merging both into an array<br />
-	 			- Numeric keys aren't changed</p>
+				<h4 id="method_merge_assoc" class="method">merge_assoc($array, ...)</h4>
+				<p><strong>merge_assoc</strong> メソッドは2個以上の配列を再帰的にマージします。ただし array_merge_recursive() とは2つの重要な点が異なります。<br/>
+				- それぞれの配列に同じキーで異なる値が含まれていた場合は、
+				  新たな配列を作ってマージすることはせずに、単純に後者が前者を上書きします。<br />
+				- 数字のキーは変更されません</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>型</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
 									<td><em>array</em></td>
-									<td><em>required</em></td>
-									<td>Multiple variables all of which must be arrays</td>
+									<td><em>必須</em></td>
+									<td>複数の値はすべて配列でなければなりません</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Throws</th>
-						<td><kbd>InvalidArgumentException</kbd> when one of the passed arguments is no array.</td>
+						<th>例外</th>
+						<td><kbd>InvalidArgumentException</kbd> 引数のどれかが配列ではない。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$arr1 = array(
 	'one' => 1,
@@ -2175,7 +2175,7 @@ $arr2 = array(
 );
 
 print_r( Arr::merge_assoc($arr1, $arr2) );
-// Result:
+// 実行結果:
 Array
 (
 	[one] => 1
@@ -2212,7 +2212,7 @@ Array
 							<table class="parameters">
 								<tr>
 									<th>パラメータ</th>
-									<th>型e</th>
+									<th>型</th>
 									<th>デフォルト</th>
 									<th class="description">説明</th>
 								</tr>
