@@ -85,11 +85,12 @@
 		'persistent'     => false,
 		'compress'       => false,
 	),
-	'identifier'   => '`',
+	'identifier'     => '`',
 	'table_prefix'   => '',
 	'charset'        => 'utf8',
 	'enable_cache'   => true,
 	'profiling'      => false,
+	'readonly'       => false,
 ),
 
 // a PDO driver configuration, using PostgreSQL
@@ -102,12 +103,26 @@
 		'persistent'     => false,
 		'compress'       => false,
 	),
-	'identifier'   => '"',
+	'identifier'     => '"',
 	'table_prefix'   => '',
 	'charset'        => 'utf8',
 	'enable_cache'   => true,
 	'profiling'      => false,
-),</code></pre>
+	'readonly'       => array('slave1', 'slave2', 'slave3'),
+),
+
+'slave1' => array(
+	// configuration of the first production readonly slave db
+),
+
+'slave2' => array(
+	// configuration of the second production readonly slave db
+),
+
+'slave3' => array(
+	// configuration of the third production readonly slave db
+),
+</code></pre>
 				<h3 id="config_settings">All Config Settings</h3>
 				<table class="method">
 					<tbody>
@@ -175,6 +190,11 @@
 							<th><kbd>profiling</kbd></th>
 							<td>boolean</td>
 							<td>Whether to add the connections queries to the profiler.</td>
+						</tr>
+						<tr>
+							<th><kbd>readonly</kbd></th>
+							<td>array|false</td>
+							<td>If you have a database in a master/slave setup, you can use this to define an array of slave connections, which will be used at random for read operations.</td>
 						</tr>
 					</tbody>
 				</table>
