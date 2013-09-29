@@ -72,48 +72,48 @@
 
 				<h3 id="included">含まれているドライバ</h3>
 
-				<p>The Auth packages comes with two sets of drivers which provide local access, using one or more database tables.</p>
+				<p>Auth パッケージはローカルアクセスを提供する２つのドライバが含まれ、１つ以上のデータベースのテーブルを使用しています。</p>
 
 				<h4 id="simpleauth">Simpleauth</h4>
 
-				<p>As the same implies, this is a basic driver set. It uses a database table to store the user information, and
-				a configuration file to store information about groups, roles, and ACLs. It stores user metadata in a serialized
-				array in the user record. It doesn't have a lot of functionality, but for most applications it can do the job.
-				It is documented <a href="simpleauth/intro.html">here</a>.
+				<p>名前の通り、これは基本的なドライバセットです。ユーザーの情報を収納するのにデータベーステーブルを使い、
+				グループ、ロール、 ACL に関しては設定ファイルに収納します。ユーザレコード内のシリアライズされた配列にユーザメタデータは
+				格納されます。それは多くの機能を持っていませんが、ほとんどのアプリケーションでは仕事をすることができます。
+				Simpleauth については<a href="simpleauth/intro.html">ここ</a>に記載されています。
 				</p>
 
 				<h4 id="ormauth">Ormauth</h4>
 
-				<p>This driver set provides similar functionality as the Simpleauth drivers, but stores all information about
-				users, groups, roles and permissions in the database and uses ORM models to access this information. In addition to
-				this, it doesn't store user metadata in an array, but in a separate table, using ORM's EAV container feature to
-				access it. It's API is almost compatible with Simpleauth, the difference is that methods that return user, group or role
-				data now return ORM objects instead of arrays.
-				It is documented <a href="ormauth/intro.html">here</a>
+				<p>このドライバセットは Simpleauth ドライバと同様の機能を提供しますが、ユーザー、グループ、ロール、
+				および権限に関するすべての情報をデータベースに収納し、この情報にアクセスするためにORMモデルを使用しています。
+				加えて、配列にユーザーメタデータは収納しないですが、別のテーブルで ORM の EAV コンテナ機能を使いアクセスします。
+				API は Simpleauth とほとんど互換性がありますが、ユーザー、グループ、もしくはロールデータを返す関数は
+				ORM オブジェクトインスタンスの配列を返すように違いがあります。
+				Ormauth については<a href="ormauth/intro.html">ここ</a>に記載されています。
 				</p>
 
-				<p class="note">The Auth package contains the required migration files to create the table structures needed for these
-				drivers. It uses the Auth configuration file to determine what to create, so you need to configure that first.</p>
+				<p class="note">Auth パッケージは、これらのドライバに必要なテーブル構造を作成するためのマイグレーションファイルが含まれています。
+				それは作成すべきかを Auth 設定ファイルによって決めているので、最初に設定をする必要があります。</p>
 
-				<h3 id="supporting">Supporting classes</h3>
+				<h3 id="supporting">サポートクラス</h3>
 
-				<p>Besides full driver sets, the Auth package also contains supporting classes, classes that provide additional functionality
-				to one or all of the drivers.</p>
+				<p>完全なドライバセットに加え、Auth パッケージには、ドライバのいずれかまたはすべてに追加機能を提供するクラス、
+				サポートクラスが含まれています。</p>
 
 				<h4 id="opauth">Opauth</h4>
 
-				<p>Opauth is a multi-provider authentication framework for PHP, and is installed as a composer package. It provides generic
-				authentication using the OAuth or OpenID protocols, and has a substantial list of ready-made strategies for authentication
-				against popular OAuth platforms like Facebook, Twitter, Github, etc.</p>
+				<p>Opauth は、PHP 用のマルチプロバイダ認証フレームワークで、composer パッケージとしてインストールされます。
+				これは、OAuth または OpenID プロトコルを使用して汎用的な認証を提供し、Facebook や Twitter 、 GitHub などのような人気のある
+				OAuth プラットフォームに対する認証のための出来合いの Strategy の十分なリストを持っています。</p>
 
-				<p>The Opauth driver included in the Auth package will interface between Opauth and (currently) either Simpleauth or Ormauth,
-				so that you can link OAuth accounts to local accounts, use local ACL's for OAuth accounts, etc.
-				It is documented <a href="opauth/intro.html">here</a>.
+				<p>Opauth ドライバは Auth パッケージに含まれており、 Opauth と (現在のところ) Simpleauth または Ormauth いずれかとの間のインタフェースになります。
+				OAuth アカウントをローカルの ACL に使用するなど、ローカルアカウントに OAuth のアカウントをリンクできます。
+				Opauth については<a href="opauth/intro.html">ここ</a>に記載されています。
 				</p>
 
-				<h3 id="install">Installation</h3>
+				<h3 id="install">インストール</h3>
 
-				<p>The Auth package is included in the Fuel download. All you need to do is enable it in your config.</p>
+				<p>Auth パッケージは Fuel の配布物に含まれています。 設定で有効にするだけで利用できます。</p>
 				<pre class="php"><code>'always_load' => array(
 	'packages' => array(
 		'auth',

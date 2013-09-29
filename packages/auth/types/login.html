@@ -62,12 +62,12 @@
 				<h3 id="driver_config">ドライバの設定</h3>
 
 				<p>
-					A group driver can load additional drivers that it depends on. Generally, these are Group drivers. But your implementation
-					could introduce and use custom driver types as well. To do so, add this structure to your driver class:
+					Group ドライバは必要に応じて追加のドライバをロードできます。一般的には、 Group ドライバがこれにあたります。
+					しかし、実装次第では、カスタムタイプのドライバを導入して利用することも可能です。そのためには、ドライバクラスに次の構造を追加してください：
 				</p>
 
-								<pre class="php"><code>// autoload the Simplegroup group driver when loading this login driver
-// this also defines the additional user record fields this driver has a getter for
+								<pre class="php"><code>// この Login ドライバが読み込まれたとき Simplegroup Group ドライバはオートロードされる
+// このドライバが持つ追加のユーザレコードフィールドの getter を定義
 	protected $config = array(
 		'drivers' => array('group' => array('Simplegroup')),
 		'additional_fields' => array('profile_fields'),
@@ -75,9 +75,9 @@
 </code></pre>
 				<h3 id="static">静的インターフェイス</h3>
 
-				<p>For ease of use, the Auth package provides a static interface on the public methods of the Login driver.
-				for this reason, the login base driver also defines the methods <kbd>member()</kbd> and <kbd>has_access()</kbd>,
-				which provide static access to these methods in the group and ACL driver.</p>
+				<p>使いやすいように、Auth パッケージは Login ドライバのパブリックメソッドの静的インタフェースを提供します。
+				従って、Login 基底ドライバは、Group および ACL ドライバでこれらのメソッドへの静的アクセスを提供するメソッド
+				<kbd>member()</kbd> と <kbd>has_access()</kbd> を定義します。</p>
 
 				<p>静的インターフェースで使用するには</p>
 
