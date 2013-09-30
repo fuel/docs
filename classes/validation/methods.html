@@ -554,6 +554,68 @@ $val->get_message('required', null);
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_error">error($field = null, $default = false)</h4>
+				<p>
+					The <strong>error</strong> method returns specific error or all errors that occur during validation.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$field</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>The fieldname of the Validation_Error instance you want to return. If you don't specify the fieldname, then returns all error objects.</td>
+									</tr>
+									<tr>
+										<th><kbd>$default</kbd></th>
+										<td><em>mixed</em></td>
+										<td><pre class="php"><code>false</code></pre></td>
+										<td>If an error of the specified field does not exist, returns this value.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Validation_Error instance<br>
+or <strong>array</strong> if you don't specify the fieldname</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$val = Validation::forge('article');
+$val->add_field('title', 'Title', 'required');
+
+if ( ! $val->run(array()))
+{
+	foreach ($val->error() as $field => $error)
+	{
+		echo $error->get_message();
+		// The field Title is required and must contain a value.
+	}
+}
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<p>More coming soon...</p>
 		</div>
 
