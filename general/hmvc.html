@@ -89,11 +89,11 @@ class Controller_Widget extends Controller
 	{
 		if( ! Request::is_hmvc())
 		{
-			// this is the main request
+			// これがメインのリクエスト
 		}
 		else
 		{
-			// this is a HMVC request
+			// これが HMVC リクエスト
 		}
 	}
 
@@ -103,8 +103,8 @@ class Controller_Widget extends Controller
 
 			<p>
 				HMVC リクエストの中で 404 が発生した場合、 <kbd>HttpNotFoundException</kbd> が投げられます。もし、キャッチされない場合、
-				the load of the frameworks default 404 page. However, you can prevent this and handle the 404
-				yourself:
+				フレームワークのデフォルトの 404 ページのロードをもたらします。しかしながら、そうしないようにその 404 を自分で扱うこともできます
+				:
 			</p>
 
 			<pre class="php"><code>try
@@ -113,7 +113,7 @@ class Controller_Widget extends Controller
 }
 catch (HttpNotFoundException $e)
 {
-	// deal with it
+	// 404 を処理する
 }
 </code></pre>
 
@@ -121,7 +121,7 @@ catch (HttpNotFoundException $e)
 
 			<p>あなたが他のリクエストにアクセスしたい場合は、次の 2 つの方法があります:
 				<kbd>$request->parent()</kbd> と <kbd>$request->children()</kbd> です。parent は現在のリクエストが作成されたリクエストです
-				(メインリクエストでは <kbd>null</kbd> になります)。children は、現在のリクエストの中で作成された
+				(メインのリクエストでは <kbd>null</kbd> になります)。children は、現在のリクエストの中で作成された
 				すべてのリクエストです。</p>
 
 		</div>
