@@ -210,6 +210,12 @@ $ php composer.phar update</code></pre>
 				</tbody>
 			</table>
 
+			<p>
+				Pay attention to the differences in OpAuth Auth drivers when it comes to callbacks. For example, Facebook doesn't require you
+				to define a callback (redirect) URL, Twitter requires one in the form <strong>http://example.com/&lt;controller&gt;/callback/</strong>,
+				and Google one like this: <strong>http://example.com/&lt;controller&gt;/&lt;method&gt;/google/oauth2callback</strong> (where "method"
+				is the name of the method in your controller that instantiates the Auth_Opauth driver.
+			</p>
 
 			<p class="note">Pay very close attention to the value of <strong>default_group</strong>. For Ormauth, group id's are
 			not fixed as they are autoincrement in your database table. You don't want to define the wrong one, and ending up
