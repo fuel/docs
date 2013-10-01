@@ -47,21 +47,21 @@
 
 			<h2>Asset クラス</h2>
 
-			<p>asset クラスは、assets (js, css, img) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
+			<p>asset クラスは、アセット (js, css, img) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
 
 			<section>
 				<h3 id="usage">使用方法</h3>
 
 				<p>
-					asset は 2 通りの方法で使用できます。Asset クラスの静的な使用と、
+					アセットは 2 通りの方法で使用できます。Asset クラスの静的な使用と、
 					Asset::forge() or Asset::instance() が返す asset オブジェクトです。このセクションでは、静的な使用を紹介します。
 					<a href="config.html">configuration</a> で指定した設定を使用したデフォルトインスタンスで必ず動作します。
 				</p>
 
 				<p class="note">
-					<strong>Note:</strong> the css, js and img methods will return the current instance when adding to a group.
-					This will happen when you supply a group or <em>auto_render</em> is <em>false</em> and no group (or
-					<em>null</em>) is supplied in the call.
+					<strong>注意:</strong> css, js, img メソッドは、グループに追加する時には現在のインスタンスを返します。
+					これは呼び出し時に、引数にグループを指定、<em>auto_render</em> が <em>false</em>、
+					グループを指定しない(または <em>null</em> ) のいずれかの場合に起こります。
 				</p>
 
 				<p>
@@ -71,8 +71,8 @@
 				<article>
 					<h4 id="method_add_path" class="method">add_path($path, $type = null)</h4>
 					<p>
-						The <strong>add_path</strong> method adds the given path to the front of the global assets search path array.
-						If a $type is specified, it will add the path to the front of the search folder array for the given type.
+						<strong>add_path</strong> メソッドは、グローバルアセット検索パス配列の最上位にパスを追加します。
+						$type が指定されていたら、パスを追加するのはそのタイプの検索パス配列の最上位になります。
 					</p>
 					<table class="method">
 						<tbody>
@@ -92,15 +92,15 @@
 									<tr>
 										<th><kbd>$path</kbd></th>
 										<td><i>必須</i></td>
-										<td>The path to add to the front of the assets path array (RELATIVE to the asset url and WITH trailing slash).</td>
+										<td>アセットパス検索配列に追加されるパス (asset URLからの相対パスで、末尾の / は必要)。</td>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-											If adding a folder, the type to add it to. The asset class has the types 'img', 'css' and 'js' predefined.
-											If you pass an undefined type, a new paths structure will be created for this type.
-											To add the same path to multiple types, pass them as an array of types.
+										  フォルダを追加する場合は、追加先のタイプを渡します。Asset クラスはプリセットのタイプとして 'img', 'css', 'js' を持っています。
+										  もしプリセットされていないタイプが渡された場合、そのタイプ用に検索パス配列が新たに作成されます。
+										  同じパスを複数のタイプに追加したい場合は、それらのタイプを一つの配列にして渡します。
 										</td>
 									</tr>
 								</table>
@@ -108,21 +108,21 @@
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>current instance</td>
+							<td>現在のインスタンスを返します</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
 								<pre class="php"><code>/*
- * These paths would need to have subfolders as defined in the config
- * file, depending on the type of content you were trying to use.
+ * これらのパスは、使用しようとしているコンテンツの種類に応じて、
+ * 設定ファイルで定義された名前のサブフォルダを持っている必要があります。
  */
 Asset::add_path('resources/template_1/');
 Asset::add_path('resources/template_2/');
 
 /*
- * Add a global path for all asset types, then add individual paths
- * for images and css files.
+ * 全ての asset タイプに対してグローバルなパスを追加します。
+ * 次に img, css の各タイプに個々のパスを追加します。
  */
 Asset::add_path('assets/global/', array('css', 'js', 'img'));
 Asset::add_path('assets/icons/', 'img');
@@ -130,12 +130,12 @@ Asset::add_path('assets/images/', 'img');
 Asset::add_path('assets/css/', 'css');
 
 /*
- * Create a new asset type
+ * 新しくアセットタイプを作成します
  */
 Asset::add_path('assets/docs/', 'pdf');
 
 /*
- * You can chain the calls as well.
+ * メソッドチェーン呼び出しもできます
  */
 Asset::add_path('resources/templates/dark/')
 	->add_path('resources/templates/light')
@@ -149,7 +149,7 @@ Asset::add_path('resources/templates/dark/')
 
 				<article>
 					<h4 id="method_css" class="method">css($stylesheets = array(), $attr = array(), $group = NULL, $raw = false)</h4>
-					<p>The <strong>css</strong> method adds css to a named group, the default group, or returns the css tag.</p>
+					<p><strong>css</strong> メソッドは、css を名前付きグループに追加する、デフォルトグループに追加する、css タグを返すのいずれかを行います。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -168,44 +168,44 @@ Asset::add_path('resources/templates/dark/')
 									<tr>
 										<th><kbd>$stylesheets</kbd></th>
 										<td><i>必須</i></td>
-										<td>An array/string of stylesheet filename(s) to be added to the group or be returned as tags, or a string containing inline CSS.</td>
+										<td>スタイルシートファイル名の配列/文字列。これはグループに追加されるか、タグまたはインライン CSS の文字列として返されます。</td>
 									</tr>
 									<tr>
 										<th><kbd>$attr</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>An array of attributes to be applied to the css file(s).</td>
+										<td>css ファイルに適用される属性の配列</td>
 									</tr>
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A group name to categorize the css. If left null the method will return the css tag.</td>
+										<td>css をカテゴリ化するグループ名。null が指定されたら css タグを返します。</td>
 									</tr>
 									<tr>
 										<th><kbd>$raw</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If set to true, the result css tags will include the string or file contents directly in the HTML, instead of via a link tag.</td>
+										<td>true が指定された場合、結果の css タグは href 属性でファイルを指定する代わりに、css ファイルの中身を直接 HTML に展開したものになります。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Rendered asset string or current instance when adding to group.</td>
+							<td>生成されたアセット文字列。グループが指定された場合は現在のインスタンス。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// adds file to group and returns '' if group is not null
+								<pre class="php"><code>// グループが null でない場合は、ファイルをグループに追加して '' を返す
 Asset::css(array('header.css', 'footer.css'), array(), 'layout', false);
 
-/* returns
+/* 返り値：
  * &lt;link href="../assets/css/inline.css" rel="stylesheet" /&gt;
- * if auto_render in the config is set to true.
- * if not, the asset will be added to the default group for later rendering
+ * 設定ファイルの auto_render が true の場合。
+ * それ以外は、アセットは後でレンダリングするためにデフォルトグループに追加されます。
  */
 echo Asset::css('inline.css');
 
-/* returns
+/* 返り値：
  * &lt;style&gt;
  * .bold_class { font-weight: bold }
  * #header {height: 50px}
@@ -213,7 +213,7 @@ echo Asset::css('inline.css');
  */
 echo Asset::css('inline.css', array(), null, true);
 
-/* returns
+/* 返り値：
  * &lt;style&gt;
  * .bold_class { font-weight: bold }
  * #header {height: 50px}
@@ -222,7 +222,7 @@ echo Asset::css('inline.css', array(), null, true);
 Asset::css(".bold_class { font-weight: bold }\n#header {height: 50px}", array(), 'inline', true);
 echo Asset::render('inline');
 
-/* this will do the same */
+/* 上記と同じ動作 */
 echo Asset::css(".bold_class { font-weight: bold }\n#header {height: 50px}", array(), null, true);
 </code></pre>
 							</td>
@@ -233,7 +233,7 @@ echo Asset::css(".bold_class { font-weight: bold }\n#header {height: 50px}", arr
 
 				<article>
 					<h4 id="method_find_file" class="method">find_file($file, $type, $folder = '')</h4>
-					<p>The <strong>find_file</strong> locates a file of a given type in all defined asset search folders for that type.</p>
+					<p><strong>find_file</strong> メソッドは、指定されたタイプの全ての検索フォルダから目的のファイルの場所を返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -252,32 +252,32 @@ echo Asset::css(".bold_class { font-weight: bold }\n#header {height: 50px}", arr
 									<tr>
 										<th><kbd>$file</kbd></th>
 										<td><i>必須</i></td>
-										<td>The name of the file you are searching for.</td>
+										<td>探そうとしているファイル名</td>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><i>必須</i></td>
-										<td>The type of asset being searched (css, js, img).</td>
+										<td>探すアセットのタイプ (css, js, img)</td>
 									</tr>
 									<tr>
 										<th><kbd>$folder</kbd></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>The name of the sub-folder to append to each search folder.</td>
+										<td>それぞれの検索フォルダに追加されるサブフォルダの名前</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Either the path to the file or false if not found</td>
+							<td>そのファイルのパス、見つからなかった場合は false</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// find a css file
+								<pre class="php"><code>// css ファイルを探す
 $path = Asset::find_file('layout.css', 'css');
 
-// find an icon image (assuming icons are in an img sub-folder called 'icons')
+// icon 画像を探す (アイコンは icons というサブフォルダにある)
 $path = Asset::find_file('icon.png', 'img','icons/');</code></pre>
 							</td>
 						</tr>
@@ -287,7 +287,7 @@ $path = Asset::find_file('icon.png', 'img','icons/');</code></pre>
 
 				<article>
 					<h4 id="method_img" class="method">img($images = array(), $attr = array(), $group = NULL)</h4>
-					<p>The <strong>img</strong> method either adds the image to a named group, the default group, or returns the image tag.</p>
+					<p><strong>img</strong> メソッドは、画像を名前付きグループに追加する、デフォルトグループに追加する、img タグを返すのいずれかを行います。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -306,32 +306,32 @@ $path = Asset::find_file('icon.png', 'img','icons/');</code></pre>
 									<tr>
 										<th><kbd>$images</kbd></th>
 										<td><i>必須</i></td>
-										<td>An array/string of image filename(s) to be applied to the group or returned as tags.</td>
+										<td>画像ファイル名の配列/文字列。これはグループに追加されるか、タグとして返されます。</td>
 									</tr>
 									<tr>
 										<th><kbd>$attr</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>An array of attributes to apply to the image tag(s).</td>
+										<td>img タグに適用される属性の配列</td>
 									</tr>
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The group to apply the images to.</td>
+										<td>画像に適用されるグループ名</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Rendered asset string or current instance when adding to group.</td>
+							<td>生成されたアセット文字列。グループが指定された場合は現在のインスタンス。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>/* returns
+								<pre class="php"><code>/* 返り値:
  * &lt;img src="../assets/img/logo.png" id="logo"&gt;
- * if auto_render in the config is set to true.
- * if not, the asset will be added to the default group for later rendering
+ * 設定ファイルの auto_render が true の場合。
+ * それ以外は、アセットは後でレンダリングするためにデフォルトグループに追加されます。
  */
 echo Asset::img('logo.png', array('id' => 'logo'));
 
@@ -344,7 +344,7 @@ Asset::img(array('bob.jpg', 'joe.jpg', 'sally.jpg'), array('class' => 'thumbnail
 
 				<article>
 					<h4 id="method_js" class="method">js($scripts = array(), $attr = array(), $group = NULL, $raw = false)</h4>
-					<p>The <strong>js</strong> method either adds the javascript to a named group, the default group, or returns the script tag.</p>
+					<p><strong>js</strong> メソッドは、javascript ファイルを名前付きグループに追加する、デフォルトグループに追加する、script タグを返すのいずれかを行います。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -363,37 +363,37 @@ Asset::img(array('bob.jpg', 'joe.jpg', 'sally.jpg'), array('class' => 'thumbnail
 									<tr>
 										<th><kbd>$scripts</kbd></th>
 										<td><i>必須</i></td>
-										<td>An array/string of stylesheet filename(s) to be added to the group or be returned as tags, or a string containing inline javascript.</td>
+										<td>javascript ファイル名の配列/文字列。これはグループに追加されるか、タグまたはインラインの javascript 文字列として返されます。</td>
 									</tr>
 									<tr>
 										<th><kbd>$attr</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>An array of attributes to be applied to the js file(s).</td>
+										<td>javascript ファイルに適用されれる属性の配列</td>
 									</tr>
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A group name to categorize the js. If left null the method will return the js tag.</td>
+										<td>javascript ファイルをカテゴリ化するグループ名。null が指定されたら script タグを返します。</td>
 									</tr>
 									<tr>
 										<th><kbd>$raw</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If set to true, the result javascript tags will include the string or file contents directly in the HTML, instead of via a script tag.</td>
+										<td>true が指定された場合、結果の script タグは src 属性でファイルを指定する代わりに、javascript ファイルの中身を直接 HTML に展開したものになります。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Rendered asset string or current instance when adding to group.</td>
+							<td>生成されたアセット文字列。グループが指定された場合は現在のインスタンス。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// returns '' if $raw is set to false
+								<pre class="php"><code>// $raw が false の場合は '' が返る
 Asset::js(array('jquery.js', 'jqueryui.js'), array(), 'jquery', false);
 
-/* returns
+/* 返り値:
  * &lt;script type="text/javascript"&gt;
  * var menu = getElementById('menu');
  * menu.initialize_menu();
@@ -401,14 +401,14 @@ Asset::js(array('jquery.js', 'jqueryui.js'), array(), 'jquery', false);
  */
 echo Asset::js('menu_init.js', array(), null, true);
 
-/* returns
+/* 返り値:
  * &lt;script type="text/javascript" src="../assets/js/jquery.js"&gt;&lt;/script&gt;
- * if auto_render in the config is set to true.
- * if not, the asset will be added to the default group for later rendering
+ * 設定ファイルの auto_render が true の場合。
+ * それ以外は、アセットは後でレンダリングするためにデフォルトグループに追加されます。									
  */
 echo Asset::js('jquery.js');
 
-/* returns
+/* 返り値:
  * &lt;script type="text/javascript"&gt;
  * var menu = getElementById('menu');
  * menu.initialize_menu();
@@ -417,7 +417,7 @@ echo Asset::js('jquery.js');
 Asset::js("var menu = getElementById('menu');\nmenu.initialize_menu();", array(), 'inline', true);
 echo Asset::render('inline');
 
-/* this will do the same */
+/* 上記と同様 */
 echo Asset::js("var menu = getElementById('menu');\nmenu.initialize_menu();", array(), null, true);
 </code></pre>
 							</td>
@@ -447,29 +447,29 @@ echo Asset::js("var menu = getElementById('menu');\nmenu.initialize_menu();", ar
 									<tr>
 										<th><kbd>$file</kbd></th>
 										<td><i>必須</i></td>
-										<td>Name of the asset to look for.</td>
+										<td>取得したいアセット名</td>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><i>必須</i></td>
-										<td>Type of asset to search for. 'img', 'css', and 'js' are supported types.</td>
+										<td>検索するアセットタイプ。'img', 'css', and 'js' がサポートされています。</td>
 									</tr>
 									<tr>
 										<th><kbd>$folder</kbd></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>Optionally you can specify sub-folders if the asset is in a sub-folder of one of the defined asset search paths.</td>
+										<td>オプションとして、アセット検索パスに追加するサブフォルダー名を渡すことができます。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Fully qualified asset URL (depending on the base_url defined) or false if not found.</td>
+							<td>完全な形のアセット URL (base_url が定義されているかどうかに依存します)。見つからなかった場合は false。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// returns something like 'http://example.org/assets/js/jquery.js'
+								<pre class="php"><code>// 'http://example.org/assets/js/jquery.js' のような形式の何かを返します。
 echo Asset::get_file('jquery.js', 'js');</code></pre>
 							</td>
 						</tr>
@@ -480,8 +480,8 @@ echo Asset::get_file('jquery.js', 'js');</code></pre>
 				<article>
 					<h4 id="method_remove_path" class="method">remove_path($path, $type = null)</h4>
 					<p>
-						The <strong>remove_path</strong> method removes the given path from the global assets search path array.
-						If a $type is specified, it will remove the path from the search folder array for the given type.
+						<strong>remove_path</strong> メソッドは、渡されたパスをグローバルアセット検索パス配列から削除します。
+						$type が指定されていたら、そのタイプの検索パスより削除が行われます。
 					</p>
 					<table class="method">
 						<tbody>
@@ -501,14 +501,14 @@ echo Asset::get_file('jquery.js', 'js');</code></pre>
 									<tr>
 										<th><kbd>$path</kbd></th>
 										<td><i>必須</i></td>
-										<td>The path to from the assets path array.</td>
+										<td>アセットパス配列から削除するパス</td>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-											If adding a folder, the type to add it to. Currently, 'img', 'css' and 'js' are suppored.
-											To add the same path to multiple types, pass them as an array of types.
+										  削除されるアセットタイプ。現在のところ 'img', 'css' and 'js' がサポートされています。
+										  複数の検索パス配列から削除したい場合は、それらを一つの配列にして渡します。
 										</td>
 									</tr>
 								</table>
@@ -516,19 +516,19 @@ echo Asset::get_file('jquery.js', 'js');</code></pre>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>The current instance</td>
+							<td>現在のインスタンス</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
 								<pre class="php"><code>/*
- * Remove global search paths
+ * グローバル検索パスから削除します
  */
 Asset::remove_path('resources/template_1/');
 Asset::remove_path('resources/template_2/');
 
 /*
- * Remove individual paths for different asset types
+ * それぞれのアセットタイプからそれぞれパスを削除します
  */
 Asset::remove_path('assets/global/', array('css', 'js', 'img'));
 Asset::remove_path('assets/icons/', 'img');
@@ -536,7 +536,7 @@ Asset::remove_path('assets/images/', 'img');
 Asset::remove_path('assets/css/', 'css');
 
 /*
- * Or chain the calls.
+ * メソッドチェーン呼び出しもできます
  */
 Asset::remove_path('resources/templates/dark/')
 	->remove_path('resources/templates/light')
@@ -551,8 +551,8 @@ Asset::remove_path('resources/templates/dark/')
 				<article>
 					<h4 id="method_render" class="method">render($group = null, $raw = false)</h4>
 					<p>
-						The <strong>render</strong> renders the group of assets and returns the tags.
-						If no group is specified, the default group will be rendered.
+						<strong>render</strong> メソッドは、アセットグループを処理してタグを返します。
+						グループが指定されなかった場合は、デフォルトグループが処理されます。
 					</p>
 					<table class="method">
 						<tbody>
@@ -572,12 +572,12 @@ Asset::remove_path('resources/templates/dark/')
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the group to render or null for the default group.</td>
+										<td>処理するグループ名。null の場合はデフォルトグループ。</td>
 									</tr>
 									<tr>
 										<th><kbd>$raw</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If true this method will include the contents of css/js files for embedding.</td>
+										<td>true の場合は css/js ファイルの中身が組み込まれた形でタグが生成されます。</td>
 									</tr>
 								</table>
 							</td>
@@ -589,13 +589,13 @@ Asset::remove_path('resources/templates/dark/')
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>/* returns
+								<pre class="php"><code>/* 返り値:
  * &lt;link href="../assets/css/header.css" rel="stylesheet" /&gt;
  * &lt;link href="../assets/css/footer.css" rel="stylesheet" /&gt;
  */
 echo Asset::render('layout');
 
-// renders the default group
+// デフォルトグループが処理されます
 echo Asset::render();</code></pre>
 							</td>
 						</tr>
