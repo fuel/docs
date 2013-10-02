@@ -47,16 +47,16 @@
 
 			<h2>Uri クラス</h2>
 
-			<p>Uri クラスは URI を対話的に扱うのを可能にします。</p>
+			<p>Uri クラスは URI を対話的に扱うことができます。</p>
 
 			<article>
 				<h4 class="method" id="method_base">base($include_index = true)</h4>
 				<p>
-					<strong>base</strong> メソッドはベース URL を返します。なお、 $include_index を <em>false</em> にセットした場合は、インデックスファイル index_file 名を除去して、
-					その URL を返します。
+					<strong>base</strong> メソッドはベース URL を返します。
+					なお、 $include_index を <em>false</em> にセットした場合は、 index_file (インデックスファイル名) を除いた URL を返します。
 				</p>
 				<p class="note">
-					次の点に留意してください。: もし app/config/config.php で index_file がセットされていない場合は <strong>$include_index</strong> 変数は無視されます。
+					注意してください : もし app/config/config.php で index_file がセットされていない場合は <strong>$include_index</strong> 変数は無視されます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -65,12 +65,12 @@
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
 									<th>パラメータ</th>
-									<th>初期値</th>
+									<th>デフォルト</th>
 									<th class="description">説明</th>
 								</tr>
 								<tr>
@@ -83,7 +83,7 @@
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>文字列, オプションとしてインデックスファイル名が付加されることがあるベースurlを返します。</td>
+						<td>文字列、オプションとしてインデックスファイル名が付加されることがあるベース url を返します。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -101,7 +101,7 @@ echo Uri::base(false);
 
 			<article>
 				<h4 class="method" id="method_create">create($uri = null, $variables = array(), $get_variables = array(), $secure = null)</h4>
-				<p><strong>create</strong> メソッドは、 URI を加えた URL を生成することが出来ます。その URL にはベース URL を含みます。</p>
+				<p><strong>create</strong> メソッドは、与えられた URI を加えた URL を生成することが出来ます。その URL にはベース URL を含みます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -109,12 +109,12 @@ echo Uri::base(false);
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
 									<th>パラメータ</th>
-									<th>初期値</th>
+									<th>デフォルト</th>
 									<th class="description">説明</th>
 								</tr>
 								<tr>
@@ -125,18 +125,18 @@ echo Uri::base(false);
 								<tr>
 									<th><kbd>$variables</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>URL のための各種変数</td>
+									<td>URL のための各種変数。</td>
 								</tr>
 								<tr>
 									<th><kbd>$get_variables</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>URL に付加されるクエリー文字列。その値とキーは $variables 配列から得られた変数を
+									<td>URL に付加されるクエリ文字列。その値とキーは $variables 配列から得られた変数を
 										利用することが出来ます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$secure</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>生成される URL は、本項が false の場合は http, true の場合は https となります。</td>
+									<td>生成される URL は、本項が false の場合は http 、 true の場合は https となります。</td>
 								</tr>
 							</table>
 						</td>
@@ -149,16 +149,16 @@ echo Uri::base(false);
 						<th>例</th>
 						<td>
 							<pre class="php"><code>echo Uri::create('controller/method');
-// http://localhost/controller/method が返ります。
+// http://localhost/controller/method が返ります
 
 echo Uri::create('controller/:some', array('some' => 'thing', 'and' => 'more'), array('what' => ':and'));
-// http://localhost/controller/thing?what=more が返ります。
+// http://localhost/controller/thing?what=more が返ります
 
 echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' => 'more'), array('what' => ':and'));
-// http://www.example.org/thing?what=more が返ります。
+// http://www.example.org/thing?what=more が返ります
 
 echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' => 'more'), array('what' => ':and'), true);
-// https://www.example.org/thing?what=more が返ります。</code></pre>
+// https://www.example.org/thing?what=more が返ります</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -175,7 +175,7 @@ echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' 
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
+						<th>パラメータ</th>
 						<td>無し</td>
 					</tr>
 					<tr>
@@ -185,8 +185,8 @@ echo Uri::create('http://www.example.org/:some', array('some' => 'thing', 'and' 
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// URL例: http://localhost/module/controller/method
-echo Uri::current(); // http://localhost/module/controller/method が返ります。</code></pre>
+							<pre class="php"><code>// URL 例 : http://localhost/module/controller/method
+echo Uri::current(); // http://localhost/module/controller/method が返ります</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -203,7 +203,7 @@ echo Uri::current(); // http://localhost/module/controller/method が返りま�
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
+						<th>パラメータ</th>
 						<td>無し</td>
 					</tr>
 					<tr>
@@ -213,8 +213,8 @@ echo Uri::current(); // http://localhost/module/controller/method が返りま�
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// URLの例: http://localhost/controller/method
-echo Uri::main(); // returns http://localhost/controller/method</code></pre>
+							<pre class="php"><code>// URL 例 : http://localhost/controller/method
+echo Uri::main(); // http://localhost/controller/method が返ります</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -231,23 +231,23 @@ echo Uri::main(); // returns http://localhost/controller/method</code></pre>
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
 									<th>パラメータ</th>
-									<th>初期値</th>
+									<th>デフォルト</th>
 									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$segment</kbd></th>
 									<td><i>必須</i></td>
-									<td>セグメント番号</td>
+									<td>セグメント番号。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>デフォルト?(The default?)</td>
+									<td>デフォルト？ (The default?)</td>
 								</tr>
 							</table>
 						</td>
@@ -259,8 +259,8 @@ echo Uri::main(); // returns http://localhost/controller/method</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// URLの例: http://localhost/controller/method/param1/param2
-echo Uri::segment(3); // param1 が返ります。</code></pre>
+							<pre class="php"><code>// URL 例 : http://localhost/controller/method/param1/param2
+echo Uri::segment(3); // param1 が返ります</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -277,7 +277,7 @@ echo Uri::segment(3); // param1 が返ります。</code></pre>
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
+						<th>パラメータ</th>
 						<td>無し</td>
 					</tr>
 					<tr>
@@ -287,8 +287,8 @@ echo Uri::segment(3); // param1 が返ります。</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// URL例: http://localhost/controller/method
-echo Uri::segments(); // array(0 => 'controller', 1 => 'method')が返ります。</code></pre>
+							<pre class="php"><code>// URL 例 : http://localhost/controller/method
+echo Uri::segments(); // array(0 => 'controller', 1 => 'method') が返ります</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -297,7 +297,7 @@ echo Uri::segments(); // array(0 => 'controller', 1 => 'method')が返ります�
 
 			<article>
 				<h4 class="method" id="method_segment_replace">segment_replace($url)</h4>
-				<p>The <strong>segment_replace</strong> method allows you to replace wildcards in a given url by the current URI segment in that position.</p>
+				<p><strong>segment_replace</strong> メソッドは、与えられた url の中にあるワイルドカードを、その場所にある現在の URI セグメントと取り替えることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -305,39 +305,39 @@ echo Uri::segments(); // array(0 => 'controller', 1 => 'method')が返ります�
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$url</kbd></th>
-									<td><i>Required</i></td>
-									<td>The url containing wildcards. A wildcard is defined by a * character.</td>
+									<td><i>必須</i></td>
+									<td>ワイルドカードを含んだ URL 。ワイルドカード文字は * (アスタリスク) で表されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>string</td>
+						<th>返り値</th>
+						<td>文字列</td>
 					</tr>
 					<tr>
-						<th>Throws</th>
-						<td>OutOfBoundsException, if a wildcard is at a segment location for which no value exists.</td>
+						<th>例外</th>
+						<td>OutOfBoundsException 。もし、ワイルドカードが置かれた場所にあるセグメントの値が存在しなかった場合。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Example: Current URL = http://localhost/one/two, with segments 'one' and 'two'
+							<pre class="php"><code>// 例 : 現在の URL = http://localhost/one/two 、'one' と 'two' のセグメントを持っている
 
-// returns http://localhost/one/two/three
+// http://localhost/one/two/three を返す
 echo Uri::segment_replace('http://localhost/*/*/three');
 
-// throws an exception, as there is no third segment available
+// 3 番目のセグメントが存在しなかったとして、例外を投げる
 echo Uri::segment_replace('http://localhost/this/that/*/other');</code></pre>
 						</td>
 					</tr>
@@ -355,25 +355,25 @@ echo Uri::segment_replace('http://localhost/this/that/*/other');</code></pre>
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$start</kbd></th>
 									<td><pre class="php"><code>1</code></pre></td>
-									<td>The segment number to start with. This allows you to strip leading segments.</td>
+									<td>始まりのセグメント番号。これによって、主要なセグメントだけを取り出すことができます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>array</td>
+						<th>返り値</th>
+						<td>配列</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -381,7 +381,7 @@ echo Uri::segment_replace('http://localhost/this/that/*/other');</code></pre>
 							<pre class="php"><code>// Uri が /welcome/index/page/4 の場合
 $arr = Uri::to_assoc();
 /*
-結果:
+結果 :
 array(
     'welcome' => 'index',
     'page'    => 4,
@@ -391,7 +391,7 @@ array(
 // Uri が /welcome の場合
 $arr = Uri::to_assoc();
 /*
-Result:
+結果 :
 array(
     'welcome' => null,
 );
@@ -412,7 +412,7 @@ array(
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
+						<th>パラメータ</th>
 						<td>無し</td>
 					</tr>
 					<tr>
@@ -422,8 +422,8 @@ array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// URL例: http://localhost/controller/method
-echo Uri::string(); // controller/method が返ります。</code></pre>
+							<pre class="php"><code>// URL 例 : http://localhost/controller/method
+echo Uri::string(); // controller/method が返ります</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -433,41 +433,41 @@ echo Uri::string(); // controller/method が返ります。</code></pre>
 			<article>
 				<h4 class="method" id="method_build_query_string">build_query_string($values ...)</h4>
 				<p>
-					The <strong>build_query_string</strong> method allows you to generate a query string from one or more passed assoc array or string values.
-					You can pass in Input::get() to construct an updated query string from the existing one. If you pass a string, it will be assumed to be a
-					switch, and will be converted to "string=1".
+					<strong>build_query_string</strong> メソッドは、1　つ以上の連想配列か文字列値を渡してクエリ文字列を生成します。
+					既存のものから最新のクエリ文字列を組み立てるために Input::get() の中で渡すことができます。
+					文字列を渡す場合、スイッチとみなされて "string=1" に変換されます。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$values</kbd></th>
-									<td><i>Required</i></td>
-									<td>One or more associative array's or string values</td>
+									<td><i>必須</i></td>
+									<td>1 つ以上の連想配列または文字列値</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>string</td>
+						<th>返り値</th>
+						<td>文字列</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns "varA=varA&amp;varB=1&amp;varC=varC"
+							<pre class="php"><code>// "varA=varA&amp;varB=1&amp;varC=varC" が返ります
 echo Uri::build_query_string(array('varA' => 'varA'), 'varB', array('varC' => 'varC'));</code></pre>
 						</td>
 					</tr>
