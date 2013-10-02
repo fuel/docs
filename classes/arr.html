@@ -998,48 +998,48 @@ Array
 
 			<article>
 				<h4 id="method_subset" class="method">subset($array, $keys, $default = null)</h4>
-				<p>Similar to <a href="#method_filter_keys"><strong>filter_keys</strong></a>, the <strong>subset</strong> method uses the values in <kbd>$keys</kbd> to access this array and return the associated values. The difference is that <strong>subset</strong> returns all requested keys, providing <kbd>$default</kbd> for any missing keys.</p>
-				<p>This method uses <a href="#method_get"><strong>get</strong></a> and <a href="#method_set"><strong>set</strong></a> internally, so <kbd>$keys</kbd> may contain dotted notation.</p>
+				<p><strong>subset</strong> メソッドは、<a href="#method_filter_keys"><strong>filter_keys</strong></a> と同様に <kbd>$keys</kbd> で渡された値を用いて配列にアクセスし、その結果得られた連想配列を返します。異なる点は <strong>subset</strong> が、渡されたキーがもし見つからなかった場合 <kbd>$default</kbd> 値を使って全ての要求されたキーが埋められることです。</p>
+				<p>このメソッドは内部的に <a href="#method_get"><strong>get</strong></a> と <a href="#method_set"><strong>set</strong></a> を使います。 <kbd>$keys</kbd> はドット区切り表記を用いることができます。</p>
 
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
-									<td>The array to filter.</td>
+									<td><em>必須</em></td>
+									<td>フィルターする配列</td>
 								</tr>
 								<tr>
 									<th><kbd>$keys</kbd></th>
-									<td><em>required</em></td>
-									<td>Array of keys to filter the above array with.</td>
+									<td><em>必須</em></td>
+									<td>配列をフィルターするためのキーを持つ配列</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Keys not found in <kbd>$array</kbd> are given this value instead.</td>
+									<td>キーが <kbd>$array</kbd> 中に見つからなかった場合に代わりに用いる値</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$arr = array(
 	"user" => array(
@@ -1054,7 +1054,7 @@ Array
 
 print_r(Arr::subset($arr, array('project.name', 'user.name')));
 
-// Result:
+// 返り値:
 Array
 (
  	[project] => Array
@@ -1069,7 +1069,7 @@ Array
 
 print_r(Arr::subset($arr, array('project.name', 'project.manager')));
 
-// Result:
+// 返り値:
 Array
 (
  	[project] => Array
@@ -1081,7 +1081,7 @@ Array
 
 print_r(Arr::subset($arr, array('project.name', 'project.manager', 'user', 'not_provided'), 'Not Provided'));
 
-// Result:
+// 返り値:
 Array
 (
  	[project] => Array
