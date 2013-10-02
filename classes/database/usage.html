@@ -174,13 +174,13 @@ $num_rows = count($result);
 				<pre class="php"><code>$result = DB::select()->from('users')->execute();
 foreach($result as $item)
 {
-	// do something with $item
+	// $item に関する処理
 }
 
 $result_array = $result->as_array();
 foreach($result_array as $item)
 {
-	// do something with $item
+	// $item に関する処理
 }
 </code></pre>
 
@@ -189,15 +189,15 @@ foreach($result_array as $item)
 $on_key = $result->as_array('id');
 foreach($on_key as $id => $item)
 {
-	// $id will contain the records id
-	// do something with $item or its $id
+	// $id にはレコード ID が入る
+	// $item またはその $id に関する処理
 }
 
 $key_value = $result->as_array('id', 'email');
 foreach($key_value as $id => $email)
 {
-	// now $email will be the email field.
-	// so you can do something with $id or $email
+	// ここで $email には電子メールのフィールドが入るので
+	// $id や $email に関する処理ができる
 }
 </code></pre>
 
@@ -211,25 +211,25 @@ foreach($key_value as $id => $email)
 					クエリに条件を追加するために、私たちは、WHERE 句をセットすることができます。
 					これらの例は、UPDATE句とDELETE句にも当てはまります。
 				</p>
-				<pre class="php"><code>// Will execute SELECT * FROM `users` WHERE `id` = 1
+				<pre class="php"><code>// SELECT * FROM `users` WHERE `id` = 1 を実行
 $result = DB::select()->from('users')->where('id', 1)->execute();
 </code></pre>
 
-				<p>To influence the operator supply it like so:</p>
-				<pre class="php"><code>// Will execute SELECT * FROM `users` WHERE `id` = 1
+				<p>演算子を使うには、以下のようにします:</p>
+				<pre class="php"><code>// SELECT * FROM `users` WHERE `id` = 1 を実行
 $result = DB::select()->from('users')->where('id', '=', 1)->execute();
 
-// Will execute SELECT * FROM `users` WHERE `id` IN (1, 2, 3)
+// SELECT * FROM `users` WHERE `id` IN (1, 2, 3) を実行
 $id_array = array(1,2,3);
 $result = DB::select()->from('users')->where('id', 'in', $id_array)->execute();
 
-// Will execute SELECT * FROM `users` WHERE `id` BETWEEN 1 AND 2
+// SELECT * FROM `users` WHERE `id` BETWEEN 1 AND 2 を実行
 $result = DB::select()->from('users')->where('id', 'between', array(1, 2))->execute();
 
-// Will execute SELECT * FROM `users` WHERE `id` != 1
+// SELECT * FROM `users` WHERE `id` != 1 を実行
 $result = DB::select()->from('users')->where('id', '!=', 1)->execute();
 
-// Will execute SELECT * FROM `users` WHERE `name` LIKE "john%"
+// SELECT * FROM `users` WHERE `name` LIKE "john%" を実行
 $who = "john%";
 $result = DB::select()->from('users')->where('id', 'like', $who)->execute();
 </code></pre>
@@ -265,7 +265,7 @@ DB::select()->from('users')->order_by('name','asc');
 // SELECT * FROM `users` ORDER BY `name` ASC, `surname` DESC
 DB::select()->from('users')->order_by('name','asc')->order_by('surname', 'desc');
 
-// You can ommit the direction by leaving the second parameter out.
+// 2 番目の引数を省略すれば、order by の昇順降順を省くことができます。
 // SELECT * FROM `users` ORDER BY `name`
 DB::select()->from('users')->order_by('name');
 </code></pre>
@@ -293,8 +293,8 @@ DB::select('users')->order_by('id','asc')->limit(10);
 					整数値で返却します。
 				</p>
 
-				<p>１カラムを更新する</p>
-				<pre class="php"><code>// Will execute UPDATE `users` SET `name` = "John Random" WHERE `id` = "2";
+				<p>1 カラムを更新する</p>
+				<pre class="php"><code>// UPDATE `users` SET `name` = "John Random" WHERE `id` = "2"; を実行
 $result = DB::update('users')
 	->value("name", "John Random")
 	->where('id', '=', '2')
@@ -302,9 +302,9 @@ $result = DB::update('users')
 </code></pre>
 
 				<p>複数カラムを更新する</p>
-				<pre class="php"><code>// Will execute UPDATE `users`
+				<pre class="php"><code>// UPDATE `users`
 // SET `group` = "Peter Griffon", `email` = "peter@thehindenpeter.com"
-// WHERE `id` = "16";
+// WHERE `id` = "16"; を実行
 $result = DB::update('users')
 	->set(array(
 		'name'  => "Peter Griffon",
@@ -321,11 +321,11 @@ $result = DB::update('users')
 				<h3 id="inserting">INSERT 文</h3>
 				<p>
 					データをインサートするには、<a href="./db.html#method_insert">DB::insert</a>を使用します。
-					インサート文が成功した場合には、インサートされたIDのリストと、インサートされた
+					INSERT 文が成功した場合には、インサートされたIDのリストと、インサートされた
 					レコード数を含む配列が返却されます。
 				</p>
-				<pre class="php"><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`)
-// VALUES ("John Random", "john@example.com", "s0_s3cr3t")
+				<pre class="php"><code>// INSERT INTO `users`(`name`,`email`,`password`)
+// VALUES ("John Random", "john@example.com", "s0_s3cr3t") を実行
 list($insert_id, $rows_affected) = DB::insert('users')->set(array(
 	'name' => 'John Random',
 	'email' => 'john@example.com',
@@ -334,8 +334,8 @@ list($insert_id, $rows_affected) = DB::insert('users')->set(array(
 </code></pre>
 				<p>カラム名と値を別々にセットすることもできます。</p>
 
-				<pre class="php"><code>// Will execute INSERT INTO `users`(`name`,`email`,`password`)
-// VALUES ("John Random", "john@example.com", "s0_s3cr3t")
+				<pre class="php"><code>// INSERT INTO `users`(`name`,`email`,`password`)
+// VALUES ("John Random", "john@example.com", "s0_s3cr3t") を実行
 list($insert_id, $rows_affected) = DB::insert('users')->columns(array(
 	'name', 'email', 'password'
 ))->values(array(
@@ -353,10 +353,10 @@ list($insert_id, $rows_affected) = DB::insert('users')->columns(array(
 					レコードを削除するには、<a href="./db.html#method_delete">DB::delete</a>を使用します。
 					実行された場合、削除されたレコード数が返却されます。
 				</p>
-				<pre class="php"><code>// Empty the whole users table
+				<pre class="php"><code>// users テーブルを空にする
 $result = DB::delete('users')->execute(); // (int) 20
 
-// Executes DELETE FROM `users` WHERE `email` LIKE "%@example.com"
+// DELETE FROM `users` WHERE `email` LIKE "%@example.com" を実行
 $result = DB::delete('users')->where('email', 'like', '%@example.com')->execute(); // (int) 7
 </code></pre>
 
@@ -367,13 +367,13 @@ $result = DB::delete('users')->where('email', 'like', '%@example.com')->execute(
 				<h3 id="joins">表の結合</h3>
 				<p>データを取得する際、他のテーブルを 結合させることができます。</p>
 
-				<pre class="php"><code>// Will execute SELECT * FROM `users` LEFT JOIN `roles` ON `roles`.`id` = `users`.`role_id`
+				<pre class="php"><code>// SELECT * FROM `users` LEFT JOIN `roles` ON `roles`.`id` = `users`.`role_id` を実行
 $result = DB::select()->from('users')->join('roles','LEFT')->on('roles.id', '=', 'users.role_id');
 
-// Will execute SELECT * FROM `users` RIGHT OUTER JOIN `roles` ON `roles`.`id` = `users`.`role_id`
+// SELECT * FROM `users` RIGHT OUTER JOIN `roles` ON `roles`.`id` = `users`.`role_id` を実行
 $result = DB::select()->from('users')->join('roles','right outer')->on('roles.id', '=', 'users.role_id');
 
-// join on a literal value 1 instead of a column name
+// カラム名の代わりにリテラル値 1 を結合
 $result = DB::select()->from('users')->join('roles','right outer')->on('roles.id', '=', DB::expr('1'));
 </code></pre>
 
@@ -394,10 +394,10 @@ DB::update('users')->where('id', '=', 1)->set(array(
 // SELECT COUNT(*) FROM `users`
 $result = DB::select(DB::expr('COUNT(*) as count'))->from('users')->execute();
 
-// Get the current/first result
+// 現在(先頭)の結果セットを取得
 $result_arr = $result->current();
 
-// Get the number of rows
+// 行数を取得
 $count = $result_arr['count'];
 </code></pre>
 
@@ -420,7 +420,7 @@ $count = $result_arr['count'];
 				<pre class="php"><code>$name = 'John'; // 割り当てたい変数をセット
 $query = "SELECT * FROM users WHERE username = :name"; // 実行したいクエリ
 
-// bind the variable and run the query, produces SELECT * FROM users WHERE username = 'John'
+// 変数をバインドしてクエリを実行する。SELECT * FROM users WHERE username = 'John' が生成される
 $result = DB::query($query)->bind('name', $name)->execute();</code></pre>
 
 				<p>変数は、リファレンスにより割り当てられます。したがって、あなたは最初にクエリと割り当てたい変数を最初に定義し、 
@@ -435,7 +435,7 @@ $query->bind('name', $name);     // クエリに割り当てる。
 // いくつかのコードのあとで、割り当てた変数を変更する。
 $name = 'Sally';
 
-// bind the variable and run the query, produces SELECT * FROM users WHERE username = 'Sally'
+// 変数をバインドしてクエリを実行する。SELECT * FROM users WHERE username = 'Sally' が生成される
 $result = $query->execute();</code></pre>
 
 				<p>変数はリファレンスで割り当てられるので、リテラルでは割り当てられ”ません”  もしそうした場合、
@@ -449,7 +449,7 @@ $query = DB::query("SELECT * FROM users WHERE username = :name")->bind('name', '
 				<pre class="php"><code>// これなら動くでしょう。
 $query = DB::query("SELECT * FROM users WHERE username = :name")->param('name', 'value')->execute();</code></pre>
 
-				<p>最後に、あなたが２つを混ぜたい場合、parameters() メソッドを使うことができます：</p>
+				<p>最後に、あなたが 2 つを混ぜたい場合、parameters() メソッドを使うことができます：</p>
 
 				<pre class="php"><code>// クエリオブジェクトを生成
 $query = DB::query("SELECT * FROM users WHERE username = :name AND state = :state");
@@ -459,13 +459,13 @@ $name = 'John'; // 割り当てたい変数に値をセットする。
 // 変数と リテラルを割り当てる
 $query->parameters(array('name' => &amp;$name, 'state' => 'new'));
 
-// and run the query, produces SELECT * FROM users WHERE username = 'John' AND state = 'new'
+// クエリを実行。SELECT * FROM users WHERE username = 'John' AND state = 'new' が生成される
 $result = $query->execute();</code></pre>
 
-				<p class="note">いくつかのフレームワークは、クエスチョンマーク（?）をプレースホルダに使用します。 そのバインディングシステムは、
+				<p class="note">いくつかのフレームワークは、クエスチョンマーク（?）をプレースホルダに使用します。そのバインディングシステムは、
 				最初のクエスチョンマークが最初の値で置換される、といった順番に依存し動作します。
-				しかし、FuelPHPでは、順番によるバインディングは適切ではなく、 プレースホールダーと値には1対1の対応があります。
-				それは同様に、１つのクエリでプレースホルダを複数回使用できることを意味します。
+				しかし、FuelPHPでは、順番によるバインディングは適切ではなく、プレースホールダーと値には1対1の対応があります。
+				それは同様に、1 つのクエリでプレースホルダを複数回使用できることを意味します。
 				</p>
 
 			</article>
