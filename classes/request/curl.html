@@ -45,14 +45,13 @@
 
 		<div id="main">
 
-			<h2>Request_Curl Class</h2>
+			<h2>Request_Curl クラス</h2>
 
 			<p>
-				The Request_Curl class is mainly intended to process REST requests through PHP's cURL extension, but can be used to fetch
-				any content through an HTTP request.
+				Request_Curl クラスは主にPHPのcURL拡張モジュールを介してREST要求を処理することを意図していますが、HTTP要求を介して任意のコンテンツを取得するために使用することができます。
 			</p>
 
-			<h3>Creating an instance</h3>
+			<h3>インスタンス生成</h3>
 
 			<p>
 				You can forge an instance of this class through the Request class:
@@ -109,7 +108,7 @@ $curl->set_method('post');
 
 			<article>
 				<h4 class="method" id="method_get_method">get_method()</h4>
-				<p>The <strong>get_method</strong> method allows you to get the current HTTP request method set.</p>
+				<p><strong>get_method</strong> メソッドを使用すると、現在のHTTPリクエストメソッドのセットを取得することができます</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -123,7 +122,7 @@ $curl->set_method('post');
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed, defined HTTP method in uppercase, or <strong>null</strong> if none set.</td>
 					</tr>
 					<tr>
@@ -146,7 +145,7 @@ $method = $curl->get_method();
 
 			<article>
 				<h4 class="method" id="method_set_params">set_params($params)</h4>
-				<p>The <strong>set_params</strong> method allows you to set parameters to pass on the HTTP request.</p>
+				<p>The <strong>set_params</strong> メソッドを使用すると、HTTPリクエストで渡すパラメータを設定することができます</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -188,14 +187,13 @@ $curl->set_params(array('userid' => 12, 'data' => $payload));
 					</tbody>
 				</table>
 				<p class="note">
-					The way these parameters are used depends on the request generated. For GET requests, these will be converted
-					to a query string. For POST requests, they will become the POST body.
+					これらのパラメータが使用されている方法は、生成されたリクエストに応じて異なります。GETリクエストの場合、クエリ文字列に変換され、POSTリクエストの場合、bodyになります
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_set_option">set_option($option, $value)</h4>
-				<p>The <strong>set_option</strong> method allows you to define a CURL option to be passed to the request.</p>
+				<p>The <strong>set_option</strong> メソッドを使用すると、リクエストに渡されるCURLオプションを定義することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -225,7 +223,7 @@ $curl->set_params(array('userid' => 12, 'data' => $payload));
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Request_Curl, for chaining</td>
 					</tr>
 					<tr>
@@ -245,7 +243,7 @@ $curl->set_option(CURLOPT_USERPWD, $username . ':' . $password);
 
 			<article>
 				<h4 class="method" id="method_set_options">set_options(array $options)</h4>
-				<p>The <strong>set_options</strong> method allows you to define multiple CURL options to be passed to the request.</p>
+				<p>The <strong>set_options</strong> メソッドを使用すると、リクエストに渡される複数CURLオプションを定義することができます</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -294,7 +292,7 @@ $curl->set_options(array(
 
 			<article>
 				<h4 class="method" id="method_add_param">add_param($param, $value = null)</h4>
-				<p>The <strong>add_param</strong> method allows you to add one or more parameters to the ones already defined.</p>
+				<p>The <strong>add_param</strong> メソッドを使用すると、すでに定義されたものに1つ以上のパラメータを追加することができます</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -347,7 +345,7 @@ $curl->add_param('data', $payload);
 
 			<article>
 				<h4 class="method" id="method_set_header">set_header($header, $content = null)</h4>
-				<p>The <strong>set_header</strong> method allows you to set a HTTP request header as part of the request.</p>
+				<p>The <strong>set_header</strong> メソッドを使用すると、リクエストの一部としてHTTPリクエストヘッダを設定することができます</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -398,7 +396,7 @@ $curl->set_header('auth-token', 'WV4YaeV8QeWVVVOE');
 
 			<article>
 				<h4 class="method" id="method_get_headers">get_headers()</h4>
-				<p>The <strong>get_headers</strong> method allows you to retrieve all currently defined HTTP request headers.</p>
+				<p>The <strong>get_headers</strong> メソッドを使用すると、現在定義されているすべてのHTTPリクエストヘッダを取得することができます</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -435,7 +433,7 @@ $headers = $curl->get_headers();
 
 			<article>
 				<h4 class="method" id="method_set_mime_type">set_mime_type($mime)</h4>
-				<p>The <strong>set_mime_type</strong> method allows you to define the HTTP ACCEPT header.</p>
+				<p>The <strong>set_mime_type</strong> メソッドを使用すると、HTTPヘッダをACCEPT定義することができます</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -493,7 +491,7 @@ $curl->set_mime_type('json');
 
 			<article>
 				<h4 class="method" id="method_set_auto_format">set_auto_format($auto_format)</h4>
-				<p>The <strong>set_auto_format</strong> method allows you to switch auto formatting on or off.</p>
+				<p>The <strong>set_auto_format</strong> メソッドを使用すると、オンまたはオフ、オートフォーマットを切り替えることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -538,7 +536,7 @@ $curl->set_auto_format(true);
 
 			<article>
 				<h4 class="method" id="method_execute">execute(array $additional_params = array())</h4>
-				<p>The <strong>execute</strong> method executes the defined cURL request.</p>
+				<p>The <strong>execute</strong> メソッドを使用すると、定義されたcURLの要求を実行します</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -583,7 +581,7 @@ $result = $curl->execute();
 
 			<article>
 				<h4 class="method" id="method_set_response">set_response($body, $status, $mime = null, $headers = array())</h4>
-				<p>The <strong>set_response</strong> method sets the response received from the request.</p>
+				<p>The <strong>set_response</strong> メソッドを使用すると、要求から受信した応答を設定します</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -681,7 +679,7 @@ $result = $curl->response();
 
 			<article>
 				<h4 class="method" id="method_response_info">response_info($key = null, $default = null)</h4>
-				<p>The <strong>response_info</strong> method allows you to retrieve a cURL response value, or all response values.</p>
+				<p>The <strong>response_info</strong> メソッドを使用すると、cURLの応答値、またはすべての応答値を取得することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -734,7 +732,7 @@ $size = $curl->response_info(CURLINFO_SIZE_DOWNLOAD, false);
 
 			<article>
 				<h4 class="method" id="method_http_login">http_login($username = '', $password = '', $type = 'any')</h4>
-				<p>The <strong>http_login</strong> method allows you to use basic authentication when executing the request.</p>
+				<p>The <strong>http_login</strong> メソッドを使用すると、リクエストを実行する際に基本認証を使用することができます。</p>
 					<table class="method">
 					<tbody>
 					<tr>
