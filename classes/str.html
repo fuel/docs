@@ -70,12 +70,12 @@
 									<tr>
 										<th><kbd>$string</kbd></th>
 										<td><em>必須</em></td>
-										<td>対象の文字列</td>
+										<td>対象の文字列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$first</kbd></th>
 										<td><pre class="php"><code>1</code></pre></td>
-										<td>加算を開始する最初の番号</td>
+										<td>加算を開始する最初の番号。</td>
 									</tr>
 								</table>
 							</td>
@@ -123,12 +123,12 @@ Str::increment($string, 3); // 返り値: filename_3
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><em>alnum</em></td>
-										<td>生成する文字列の文字種。 Your choices are alnum, numeric, nozero, alpha, distinct, hexdec, unique, sha1 and uuid.</td>
+										<td>生成する文字列の文字種。alnum 、numeric 、nozero 、 alpha 、 distinct 、 hexdec 、 unique 、sha1 と uuid から選択します。</td>
 									</tr>
 									<tr>
 										<th><kbd>$length</kbd></th>
 										<td><pre class="php"><code>16</code></pre></td>
-										<td>The number of characters you would like the final string to be (unique, sha1 and uuid ignore this parameter).</td>
+										<td>生成したい文字列の文字数 (unique 、sha1 と uuid はこのパラメータを無視します) 。</td>
 									</tr>
 								</table>
 							</td>
@@ -142,39 +142,39 @@ Str::increment($string, 3); // 返り値: filename_3
 							<td>
 								<pre class="php"><code>// alnum (アルファベット大文字、小文字、数字)
 Str::random('alnum', 16);
-// Returns: SvZi9Dh3lq7zQYim
+// 返り値: SvZi9Dh3lq7zQYim
 
 // numeric (数字のみ)
 Str::random('numeric', 16);
-// Returns: 1045343964672481
+// 返り値: 1045343964672481
 
 // nozero (0 を除いた数字)
 Str::random('nozero', 16);
-// Returns: 3244623373994515
+// 返り値: 3244623373994515
 
 // alpha (アルファベット大文字と小文字)
 Str::random('alpha', 16);
-// Returns: LuVAXbmxQbbWoYqz
+// 返り値: LuVAXbmxQbbWoYqz
 
 // distinct (読み間違えづらいアルファベット大文字と数字)
 Str::random('distinct', 16);
-// Returns: R79MPKMH4KTRN35J
+// 返り値: R79MPKMH4KTRN35J
 
 // hexdec (16進数の文字列: a-f, 0-9)
 Str::random('hexdec', 16);
-// Returns: 09c34e42f36547f8
+// 返り値: 09c34e42f36547f8
 
-// unique (md5 を基にした32文字の文字列)
+// unique (md5 を基にした 32 文字の文字列)
 Str::random('unique');
-// Returns: ed4bb844a35b7a4edb7eed0d3795d328
+// 返り値: ed4bb844a35b7a4edb7eed0d3795d328
 
-// sha1 (sha1 を基にした40文字の文字列)
+// sha1 (sha1 を基にした 40 文字の文字列)
 Str::random('sha1');
-// Returns: af5c5a8cc3be9a3180205c1ed2975015cd6cf1e7
+// 返り値: af5c5a8cc3be9a3180205c1ed2975015cd6cf1e7
 
-// uuid (version 4 - random)
+// uuid (バージョン 4 - 擬似乱数)
 Str::random('uuid');
-// Returns: f47ac10b-58cc-4372-a567-0e02b2c3d479</code></pre>
+// 返り値: f47ac10b-58cc-4372-a567-0e02b2c3d479</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -202,17 +202,17 @@ Str::random('uuid');
 									<tr>
 										<th><kbd>$string</kbd></th>
 										<td><em>必須</em></td>
-										<td>切り詰める文字列</td>
+										<td>切り詰める文字列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$limit</kbd></th>
 										<td><em>必須</em></td>
-										<td>文字列の最大長 (文字列の長さがこの値を超えると切り詰める)</td>
+										<td>文字列の最大長 (文字列の長さがこの値を超えると切り詰める) 。</td>
 									</tr>
 									<tr>
 										<th><kbd>$continuation</kbd></th>
 										<td><pre class="php"><code>'...'</code></pre></td>
-										<td>切り詰めた文字列の末尾に付加する文字列</td>
+										<td>切り詰めた文字列の末尾に付加する文字列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$is_html</kbd></th>
@@ -243,9 +243,9 @@ Str::truncate($string, 15, '...Read More'); // 返り値: Lorem ipsum dol...Read
 
 			<article>
 				<h4 class="method" id="method_alternator">alternator(*$args)</h4>
-				<p>Returns a closure that will alternate the values you've passed to this method as arguments, unless you
-					call the closure with <kbd>false</kbd> as argument - in which case it will just return the value
-					without moving to the next and return the same value on the next call.</p>
+				<p>このメソッドに引数として与えた値を順番に出力するクロージャを返す。
+					引数に <kbd>false</kbd> を渡してクロージャを呼ぶときに限って、
+					次に移動しないで値を返し、次回の呼び出しには同じ値を返す。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -264,7 +264,7 @@ Str::truncate($string, 15, '...Read More'); // 返り値: Lorem ipsum dol...Read
 									<tr>
 										<th><kbd>*$args</kbd></th>
 										<td><em>必須</em></td>
-										<td>As many arguments as you need to alternate</td>
+										<td>順番に出力するのと同数の引数。</td>
 									</tr>
 								</table>
 							</td>
@@ -277,13 +277,13 @@ Str::truncate($string, 15, '...Read More'); // 返り値: Lorem ipsum dol...Read
 							<th>例</th>
 							<td>
 								<pre class="php"><code>$alt = Str::alternator('one', 'two', 'three', 'four');
-echo $alt(); // outputs 'one'
-echo $alt(); // outputs 'two'
-echo $alt(false); // outputs 'three', but doens't move to the next as you can see in the next call
-echo $alt(); // outputs 'three'
-echo $alt(); // outputs 'four'
-echo $alt(); // outputs 'one'
-// etc...</code></pre>
+echo $alt(); // 'one' を出力
+echo $alt(); // 'two' を出力
+echo $alt(false); // 'three' を出力、次回の呼び出しを見るとわかるように次には移動しません
+echo $alt(); // 'three' を出力
+echo $alt(); // 'four' を出力
+echo $alt(); // 'one' を出力
+// ～など</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -313,13 +313,13 @@ echo $alt(); // outputs 'one'
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>入力文字列</td>
+										<td>入力文字列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$encoding</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>文字エンコーディング</td>
+										<td>文字エンコーディング。</td>
 									</tr>
 								</table>
 							</td>
@@ -340,7 +340,7 @@ echo $alt(); // outputs 'one'
 
 			<article>
 				<h4 class="method" id="method_lower">lower($str, $encoding = null)</h4>
-				<p><strong>lower</strong> メソッドは、すべてのアルファベットを小文字に変換します。特定の文字のエンコーディングについては、PHP の strtoupper() と同等です。</p>
+				<p><strong>lower</strong> メソッドは、すべてのアルファベットを小文字に変換します。特定の文字のエンコーディングについては、PHP の strtolower() と同等です。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -361,13 +361,13 @@ echo $alt(); // outputs 'one'
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>入力文字列</td>
+										<td>入力文字列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$encoding</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>文字エンコーディング</td>
+										<td>文字エンコーディング。</td>
 									</tr>
 								</table>
 							</td>
@@ -409,13 +409,13 @@ echo $alt(); // outputs 'one'
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>入力文字列</td>
+										<td>入力文字列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$array</kbd></th>
 										<td><em>array</em></td>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>str_replace に渡すパラメータ</td>
+										<td>str_replace に渡すパラメータ。</td>
 									</tr>
 								</table>
 							</td>
@@ -457,7 +457,7 @@ echo $alt(); // outputs 'one'
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>入力文字列</td>
+										<td>入力文字列。</td>
 									</tr>
 								</table>
 							</td>
@@ -499,7 +499,7 @@ echo $alt(); // outputs 'one'
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>入力文字列</td>
+										<td>入力文字列。</td>
 									</tr>
 								</table>
 							</td>
@@ -542,7 +542,7 @@ echo $alt(); // outputs 'one'
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>入力文字列</td>
+										<td>入力文字列。</td>
 									</tr>
 								</table>
 							</td>
@@ -572,33 +572,33 @@ echo $alt(); // outputs 'one'
 							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$string</kbd></th>
 										<td><em>string</em></td>
-										<td><em>Required</em></td>
-										<td>The input string.</td>
+										<td><em>必須</em></td>
+										<td>入力文字列。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>bool</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>Str::is_xml('&lt;?xml version="1.0" encoding="utf-8"?>&lt;xml>&lt;foo>bar&lt;/foo>&lt;/xml>');
-// returns true</code></pre>
+// 返り値: true</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -626,17 +626,17 @@ echo $alt(); // outputs 'one'
 									<tr>
 										<th><kbd>$str</kbd></th>
 										<td><em>必須</em></td>
-										<td>チェック対象の文字列</td>
+										<td>チェック対象の文字列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$start</kbd></th>
 										<td><em>必須</em></td>
-										<td>この文字列で始まっているか</td>
+										<td>この文字列で始まっているか。</td>
 									</tr>
 									<tr>
 										<th><kbd>$ignore_case</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>大文字小文字を無視するかどうか</td>
+										<td>大文字小文字を無視するかどうか。</td>
 									</tr>
 								</table>
 							</td>
@@ -662,7 +662,7 @@ Str::starts_with($string, 'lorem', true); // 返り値: true
 
 			<article>
 				<h4 class="method" id="method_ends_with">ends_with($str, $end, $ignore_case = false)</h4>
-				<p>The <strong>ends_with</strong> method checks whether or not a string has a precific ending.</p>
+				<p><strong>ends_with</strong> メソッドは、文字列が指定した文字列で終わっているかチェックします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -681,17 +681,17 @@ Str::starts_with($string, 'lorem', true); // 返り値: true
 									<tr>
 										<th><kbd>$str</kbd></th>
 										<td><em>必須</em></td>
-										<td>チェック対象の文字列</td>
+										<td>チェック対象の文字列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$end</kbd></th>
 										<td><em>必須</em></td>
-										<td>この文字列で終わっているか</td>
+										<td>この文字列で終わっているか。</td>
 									</tr>
 									<tr>
 										<th><kbd>$ignore_case</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>大文字小文字を無視するかどうか</td>
+										<td>大文字小文字を無視するかどうか。</td>
 									</tr>
 								</table>
 							</td>
@@ -736,22 +736,22 @@ Str::ends_with($string, 'Amet', true); // 返り値: true
 									<tr>
 										<th><kbd>$str</kbd></th>
 										<td><em>必須</em></td>
-										<td>入力文字列</td>
+										<td>入力文字列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$start</kbd></th>
 										<td><em>必須</em></td>
-										<td>開始位置 (詳細は <a href="http://php.net/substr" target="_blank">php.net</a> を参照してください)</td>
+										<td>開始位置 (詳細は <a href="http://php.net/substr" target="_blank">php.net</a> を参照してください) 。</td>
 									</tr>
 									<tr>
 										<th><kbd>$length</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>文字数の最大値 (詳細は <a href="http://php.net/substr" target="_blank">php.net</a> を参照してください)</td>
+										<td>文字数の最大値 (詳細は <a href="http://php.net/substr" target="_blank">php.net</a> を参照してください) 。</td>
 									</tr>
 									<tr>
 										<th><kbd>$encoding</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>文字エンコーディング</td>
+										<td>文字エンコーディング。</td>
 									</tr>
 								</table>
 							</td>
