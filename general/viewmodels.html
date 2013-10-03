@@ -141,7 +141,7 @@ $echo_upper('this string'); // 出力: "THIS STRING"</code></pre>
 				そうするためには、第 2 パラメータにメソッド名を指定した
 				<code>ViewModel::forge()</code> メソッドを追加します:</p>
 				
-				<pre class="php"><code>// will call other_method() upon the ViewModel from the above example
+				<pre class="php"><code>// 上記の例からビューモデル上の other_method() メソッドを呼ぶ
 ViewModel::forge('index', 'other_method');</code></pre>
 
 				<h4 id="before_after">before と after メソッド</h4>
@@ -158,22 +158,22 @@ ViewModel::forge('index', 'other_method');</code></pre>
 				<code>__toString()</code> マジックメソッドを持たなくてはなりません。
 				ビューの名前は <code>$this->_view</code> プロパティから取得できます。</p>
 
-				<h4 id="alternative_view">Using a different view file, or an existing View object</h4>
+				<h4 id="alternative_view">別のビューファイル、つまり既存のビューオブジェクトを使う</h4>
 
-				<p>You can also tell the ViewModel instance to use a different view, and not use the automatic mechanism
-				for determining the view to load, by using the forth parameter of the forge() method:</p>
+				<p>forge() メソッドの第 4 引数を指定すると、ビューモデルのインスタンスに対して別のビューを使い、
+					どのビューを読み込むかを決定する自動機構を使わないように指示することもできます:</p>
 
-				<pre class="php"><code>// use the 'other/index' view instead of the 'index' view
+				<pre class="php"><code>// 'index' ビューの代わりに 'other/index' ビューを使う
 ViewModel::forge('index', 'other_method', null, 'other/index');
 
-// you can also pass a View object directly
+// ビューオブジェクトを直接渡すこともできる
 $view = View::forge('other/index');
 ViewModel::forge('index', 'other_method', null, $view);</code></pre>
 
-				<h4 id="access_to_view">Accessing the view</h4>
-				<p>You can use the <code>get_view()</code> method to get access to the View object from outside the Viewmodel.</p>
+				<h4 id="access_to_view">ビューへのアクセス</h4>
+				<p>ビューモデルの外部からビューオブジェクトにアクセスするには、 <code>get_view()</code> メソッドを使用することができます。</p>
 
-				<h4>Using ViewModels from other namespaces or not View_ prefixed</h4>
+				<h4>ほかの名前空間から、または View_ 接頭辞のつかないビューモデルを使う</h4>
 
 				<p>これらを使用する場合、名前空間を含む、完全なクラス名で <code>forge()</code> を使う必要があります。
 				その場合、デフォルトの命名規則はしばしば期待したように動作しませんので、
