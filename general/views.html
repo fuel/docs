@@ -87,12 +87,12 @@
 {
 	public function action_index()
 	{
-		$data = array(); //stores variables going to views
+		$data = array(); // ビューに渡す変数を格納
 
 		$data['username'] = 'Joe14';
 		$data['title'] = 'Home';
 
-		//assign the view to browser output
+		// ブラウザに出力するビューを割り当てる
 		return View::forge('home/index', $data);
 	}
 }</code></pre>
@@ -103,18 +103,18 @@
 {
 	public function action_index()
 	{
-		//create the view
+		// ビューを作成
 		$view = View::forge('home/index');
 
-		//assign variables for the view
+		// ビューに渡す変数を割り当てる
 		$view->username = 'Joe14';
 		$view->title = 'Home';
 
-		//another way to assign variables for the view
+		// ビューに渡す変数を割り当てる別の方法
 		$view->set('username', 'Joe14');
 		$view->set('title', 'Home');
 
-		//assign the view to browser output
+		// ブラウザに出力するビューを割り当てる
 		return $view;
 	}
 }</code></pre>
@@ -260,7 +260,7 @@
 	}
 }</code></pre>
 
-			<h3 id="method_two">Method 3 (using example views above, no global data, lazy rendering):</h3>
+			<h3 id="method_two">方法 3 (上記の例と遅延レンダリングを使用、グローバルデータなし):</h3>
 
 			<pre class="php"><code>class Controller_Home extends Controller
 {
