@@ -104,13 +104,13 @@
 							<th><kbd>quote_label</kbd></th>
 							<td>boolean</td>
 							<td><pre class="php"><code>false</code></pre></td>
-							<td>If true, and the label of the validated field contains spaces, the label will be enclosed in double quotes for enhanced readability.</td>
+							<td>true にした場合で、バリデーションされたフィールドが半角空白を含む場合、可読性向上のためダブルクォートで括ります。</td>
 						</tr>
 						<tr>
 							<th><kbd>global_input_fallback</kbd></th>
 							<td>boolean</td>
 							<td><pre class="php"><code>true</code></pre></td>
-							<td>If true, and value is not found in input array, the value will fall back to Input::param.</td>
+							<td>true にした場合で、入力された配列に値が見つからなかった場合、値は Input::param になります。</td>
 						</tr>
 					</tbody>
 				</table>
@@ -143,13 +143,13 @@ $val->add('password', 'Your password')->add_rule('required')
     ->add_rule('min_length', 3)
     ->add_rule('max_length', 10);</code></pre>
 
-				<p>add_rule() メソッドの第1引数には、本機能で提供するルールに加え、任意の PHP のネイティブ関数やコールバック関数、無名関数を指定することもできます。
-				The method will get the value to
-				be validated as its first argument and any further arguments can be given to the add_rule() method.</p>
+				<p>add_rule() メソッドの第1パラメータには、本機能で提供するルールに加え、任意の PHP のネイティブ関数やコールバック関数、無名関数を指定することもできます。
+				コールバック関数は、バリデーションされる値を第一パラメータに取ります。
+				また add_rule() メソッドにパラメータを渡すと、第二パラメータ以降に取ることもできます。</p>
 
-				<p>We also provide a shorter syntax which is very limited in comparison. It will not accept array-callbacks,
-				closures or parameters other than strings. You can also not use the pipe symbol in your pattern when you use
-				the 'match_pattern' rule, as that is used to separate the defined rules.</p>
+				<p>短縮構文を提供しています。記述が非常に短くなります。
+				配列コールバック、クロージャ、パラメータ(文字列を除く)は受け付けません。match_pattern ルールを使用するとき、パイプ記号は使用できません。
+				パイプ記号をルールの区切りに使用するからです。</p>
 
 				<pre class="php"><code>// 上記の例と同じ動作をします
 $val = Validation::forge('my_validation');
@@ -172,7 +172,7 @@ else
 // 上記の代わりに POST の username を上書きし、 password を POST の中から探す
 if ($val->run(array('username' => 'something')))</code></pre>
 
-				<p>バリデーションが実行されたとき、there are three methods available for information about the input:</p>
+				<p>バリデーションが実行されたとき、入力についての情報を知るメソッドが 3 つあります。</p>
 
 				<pre class="php"><code>// バリデートに成功したフィールドと値の組を配列で取得する
 $vars = $val->validated();
@@ -184,10 +184,10 @@ $input = $val->input();
 // これらのメソッドでは、一つのフィールドにおいて値だけを取得することもできます
 $var = $val->validated('username');</code></pre>
 
-				<p>Validation can also run partially, in that case even required fields are ignored when they're not in
-				POST or the input given to run(). One does this by setting the 2nd parameter of run to true.</p>
+				<p>バリデーションは部分的に実行することができます。必須フィールドでさえ、POST やrun() の入力に含まれていないときに無視することができます。
+				run の第二パラメータを true にしてください。</p>
 
-				<pre class="php"><code>// this will only validate the password when username isn't present in post
+				<pre class="php"><code>// username が POST に無い場合に、password のみをバリデートする。
 $val->run(array('password' => 'whatever'), true);</code></pre>
 			</article>
 
@@ -198,7 +198,7 @@ $val->run(array('password' => 'whatever'), true);</code></pre>
 				入力必須にするためには、"required" ルールを使う必要があります。</p>
 
 				<p>これらのすべてのルールは、次のように使えます:</p>
-				<pre class="php"><code>// example normal usage with rule without and one with params
+				<pre class="php"><code>// パラメータ無しの例と、パラメータ 1 つの例
 $val->add('email', 'Email address')->add_rule('match_value', 'me@mydomain.com', true)->add_rule('valid_email');
 $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_email');</code></pre>
 
@@ -230,7 +230,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td><kbd>$compare</kbd>, <kbd>$strict</kbd> = false</td>
 							<td>
 								入力値が <kbd>$compare</kbd> と一致するかどうか。
-								比較には == が使用され、第2引数が true の場合は === が使用される。
+								比較には == が使用され、第2パラメータが true の場合は === が使用される。
 							</td>
 						</tr>
 						<tr>
@@ -238,7 +238,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td><kbd>$pattern</kbd></td>
 							<td>
 								入力値が <kbd>$pattern</kbd> とマッチするかどうか。<kbd>$pattern</kbd> は完全な PREG 正規表現 である必要があります。
-								<p class="note"><strong>Note:</strong> you can <strong>NOT</strong> use the pipe symbol (|) in your pattern when you're using short syntax, as that symbol is used to split the rules in the string.</p>
+								<p class="note"><strong>注意:</strong> 短縮構文では、パイプ記号 | は使用できません。この記号はルールの区切りに使用します。</p>
 							</td>
 						</tr>
 						<tr>
@@ -247,7 +247,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td>
 								入力値が <kbd>$fieldname</kbd> フィールドと一致するかどうか。
 								比較には === が使用される。
-								<p class="note"><strong>Important:</strong> you can only match against a field that was added before the field this rule is added to.</p>
+								<p class="note"><strong>重要:</strong> このルールを追加するフィールドよりも前に追加されたフィールドのみ一致対象とすることができます。</p>
 							</td>
 						</tr>
 						<tr>
@@ -276,7 +276,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td><kbd>$format</kbd>, <kbd>$strict</kbd> = true</td>
 							<td>
 								有効な日付形式かどうか。もし、 <kbd>$format</kbd> が指定された場合は、指定されたフォーマットに基づいて比較されます。
-								第2引数が false でない限り、厳密な比較が行われます。(たとえば閏年など)
+								第2パラメータが false でない限り、厳密な比較が行われます。(たとえば閏年など)
 							</td>
 						</tr>
 						<tr>
@@ -330,7 +330,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td>
 								数値が <kbd>$min_val</kbd> から <kbd>$max_val</kbd> の範囲内かどうか。
 								入力値が数値で無い場合については、 <kbd>numeric_min</kbd> ルールを参照してください。
-								<p class="note"><strong>Important:</strong> specified numbers are included in the range.</p>
+								<p class="note"><strong>重要:</strong> 端の数値は含む。</p>
 							</td>
 						</tr>
 						<tr>
@@ -398,19 +398,19 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 						</tr>
 						<tr>
 							<th>singlequotes</th>
-							<td>Allow single quotes.</td>
+							<td>シングルクォート</td>
 						</tr>
 						<tr>
 							<th>doublequotes</th>
-							<td>Allow double quotes.</td>
+							<td>ダブルクォート</td>
 						</tr>
 						<tr>
 							<th>quotes</th>
-							<td>Allow single and double quotes.</td>
+							<td>シングルクォートとダブルクォート</td>
 						</tr>
 						<tr>
 							<th>utf8</th>
-							<td>Adds UTF8 modifier to regex.</td>
+							<td>UTF8 修飾子 (正規表現)</td>
 						</tr>
 					</tbody>
 				</table>
