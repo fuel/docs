@@ -49,7 +49,7 @@
 
 			<p>Config クラスは、Fuel の設定オプションの殆どすべてを処理することが出来ます。config ファイルの読み込み、値の取得、設定を行う場合、本クラスが常用されます。</p>
 
-			<h3 id="config_groups">Config File Types</h3>
+			<h3 id="config_groups">Config ファイルの種類</h3>
 
 			設定を保存するのに、異なるファイルレイアウトを使用できます。レイアウトの種類は、ファイル拡張子で決められます。
 			<ul>
@@ -58,17 +58,17 @@
 					<pre class="php"><code> return array('key' => 'value');</code></pre>
 				</li>
 				<li>
-					INI. レイアウトについては、<a href="http://en.wikipedia.org/wiki/INI_file">このページ(wiki英語版ページ)</a>をごらんください。
+					INI. レイアウトについては、<a href="http://en.wikipedia.org/wiki/INI_file">このページ (wiki英語版ページ)</a> をごらんください。
 					<pre class="ini"><code> [group]
 key=value</code></pre>
 				</li>
 				<li>
-					YAML. レイアウトについては、<a href="http://ja.wikipedia.org/wiki/YAML">このページ(wiki日本語版ページ)</a>をごらんください。
+					YAML. レイアウトについては、<a href="http://ja.wikipedia.org/wiki/YAML">このページ (wiki日本語版ページ)</a> をごらんください。
 					<pre class="yaml"><code> group:
    key: value</code></pre>
 				</li>
 				<li>
-					JSON. レイアウトについては、<a href="http://ja.wikipedia.org/wiki/JSON">このページ(wiki日本語版ページ)</a>をごらんください。
+					JSON. レイアウトについては、<a href="http://ja.wikipedia.org/wiki/JSON">このページ (wiki日本語版ページ)</a> をごらんください。
 					<pre class="javascript"><code> {
 "group" :
     {
@@ -110,7 +110,7 @@ key=value</code></pre>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>（オプション）<kbd>$item</kbd> が見つからない時は、$default が返ります。</td>
+									<td>(オプション) <kbd>$item</kbd> が見つからない時は、$default が返ります。</td>
 								</tr>
 							</table>
 						</td>
@@ -265,8 +265,8 @@ Config::delete('blog.items_to_display');</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$file</kbd></th>
-									<td><i>required</i></td>
-									<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed). You can prefix this with a module name to force loading a config file from a loaded module.</td>
+									<td><i>必須</i></td>
+									<td>設定ファイルのパスは、config ディレクトリに対する相対パスです。ファイル拡張子を含まないでください (拡張子として ".php" であることが決め打ちされています) 。読み込まれたモジュールの設定ファイルを強制的に読み込むために、モジュール名の接頭辞を付けることが出来ます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$group</kbd></th>
@@ -293,7 +293,7 @@ Config::delete('blog.items_to_display');</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// This merges the "custom" config file in with the root config.
+							<pre class="php"><code>// ルートの設定と "custom" 設定ファイル がマージされる。
 Config::load('custom');
 
 // "custom" 設定ファイルをグループ名 "custom" で読み込む。
@@ -331,7 +331,7 @@ Config::load('foo::custom', 'bar');</code></pre>
 								<tr>
 									<th><kbd>$file</kbd></th>
 									<td><i>必須</i></td>
-									<td>設定ファイルのパスは config ディレクトリに対する相対パスです。ファイル拡張子を含まないでください (拡張子として ".php" であることが決め打ちされています)。パッケージやモジュールの設定ファイルを読み込むために、名前空間のプレフィックスを付けることが出来ます。</td>
+									<td>設定ファイルのパスは config ディレクトリに対する相対パスです。ファイル拡張子を含まないでください (拡張子として ".php" であることが決め打ちされています)。読み込まれたパッケージやモジュールの設定ファイルを読み込むために、名前空間の接頭辞を付けることが出来ます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$config</kbd></th>
