@@ -50,7 +50,7 @@
 			<p>
 				Crypt クラスにより文字列を暗号化や複号が可能になります。例えば、Sessions クラスにおいても Crypt クラスが内部で使用されています。
 			</p>
-			<p>PHPSecLib により提供される暗号化とハッシング関数が使われているため、mcrypt のような利用可能なモジュールに影響されません。</p>
+			<p>PHPSecLib により提供される暗号化とハッシング関数が使われているため、mcrypt のような外部モジュールに依存していません。</p>
 
 			<section>
 				<h3 id="configuration">設定</h3>
@@ -83,7 +83,7 @@
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								暗号ルーチンにおけるランダムな暗号初期ベクター。ユニークでランダムな値を設定するようにしてください！
+								暗号ルーチンにおけるランダムな暗号の初期化ベクトル。ユニークでランダムな値を設定するようにしてください！
 							</td>
 						</tr>
 						<tr>
@@ -97,7 +97,7 @@
 					</tbody>
 				</table>
 				<p class="note">
-					もしキーを手入力で指定する場合、キーはbase64エンコードした文字列で、デコードするために長さは4の倍数でなければなりません。必ず正しい長さになるよう指定してください！
+					もしキーを手入力で指定する場合、キーは base64 エンコードした文字列で、デコードするために長さは 4 の倍数でなければなりません。必ず正しい長さになるよう指定してください！
 				</p>
 			</section>
 
@@ -108,7 +108,7 @@
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -122,7 +122,7 @@
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><i>必須</i></td>
-									<td>エンコードする文字列</td>
+									<td>エンコードする文字列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
@@ -154,7 +154,7 @@ $value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -168,7 +168,7 @@ $value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><i>必須</i></td>
-									<td>デコードされる文字列</td>
+									<td>デコードされる文字列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
@@ -185,7 +185,7 @@ $value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// キーにより変数をデコードする
+							<pre class="php"><code>// カスタムキーにより変数をデコードする
 $value = Crypt::decode($value, 'R@nd0mK~Y');</code></pre>
 						</td>
 					</tr>
