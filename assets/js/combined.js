@@ -563,7 +563,7 @@ panes.auth = {
 			"Usage":		"packages/auth/ormauth/usage.html"
 		},
 		"Opauth": {
-			"Introduction":	"packages/auth/opauth/intro.html",
+			"はじめに":	"packages/auth/opauth/intro.html",
 			"Usage":		"packages/auth/opauth/usage.html"
 		},
 		"Examples": {
