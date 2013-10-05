@@ -70,23 +70,23 @@
 			</p>
 
 			<ul>
-				<li>Every user is a member of one, and exactly one, group</li>すべてのユーザは、いずれかのメンバーであり、正確に 1 つのグループ
+				<li>すべてのユーザーはいずれかのメンバーであり厳密に一つでありグループである</li>
 				<li>すべてのグループはグループに割り当てられた 0 個以上のロールを持っている</li>
-				<li>すべてのロールはそれに割り当てられた 0 個以上の権限を持つことができます</li>
+				<li>すべてのロールはそれに割り当てられた 0 個以上の権限を持つことができる</li>
 			</ul>
 
 			<p>
-				When checking for access, you specify the required access as either <code>role.right</code> (when you want to check for
-				a single right, or <code>role.[right,right]</code> when you want to check for multiple rights at once. This is an AND check,
-				so when you specify multiple rights, the user must have ALL of them assigned to be granted access.
+				アクセスを検査する場合、単一の権利の検査したい場合は <code>role.right</code> か、それとも、
+				一度に複数の権利を検査したい場合は <code>role.[right,right]</code> に必要なアクセス権を指定します。
+				これは AND 検査なので、複数の権限を指定した場合、ユーザーはそれらのすべてのアクセスを許可するために割り当てられている必要があります。
 			</p>
 
 			<h3 id="configuration">設定</h3>
 
 			<p>
-				The Simpleauth authentication system is configured through a configuration file, not suprisingly called
-				'simpleauth.php'. A default file is provided in the Auth package. You should copy this file
-				to your app/config folder before making any changes.
+				Simpleauth 認証システムは、設定ファイルを使用して構成されており、予想通り 'simpleauth.php' を呼び出している。
+				デフォルトファイルは Auth パッケージで与えられている。
+				任意の変更を加える前には、app/config フォルダにこのファイルをコピーする必要があります。
 			</p>
 
 				<p>下記の設定値が定義されています：</p>
@@ -147,7 +147,7 @@
 )</code></pre>
 							</td>
 							<td>
-								Configuration for the Simpleauth 'remember_me' functionality
+								Simpleauth の 'remember_me' 機能のための設定
 							</td>
 						</tr>
 						<tr>
@@ -156,8 +156,8 @@
 							<td><pre class="php"><code>false</code></pre>
 							</td>
 							<td>
-								If true multiple concurrent logins of the same user are allowed. If false, when a user logs in, any previous login will be
-								cancelled. Note that enabling this will disable some login session hijacking measures!
+								true の場合、同一ユーザの複数の同時ログインが許可されています。 false の場合、ユーザーがログインしたときに以前のログインが取り消されます。
+								これを有効にすると、いくつかのログインセッションハイジャック対策が無効になることに注意してください！
 							</td>
 						</tr>
 						<tr>
@@ -166,8 +166,8 @@
 							<td><pre class="php"><code>array()</code></pre>
 							</td>
 							<td>
-								Defined groups, to be used by the SimpleAuth groups driver. See the default configuration file for an
-								description of the groups array structure.
+								SimpleAuth Group ドライバが使用するグループ定義。
+								グループ配列構造の説明については、デフォルト設定のファイルを参照してください。
 							</td>
 						</tr>
 						<tr>
@@ -176,8 +176,8 @@
 							<td><pre class="php"><code>array()</code></pre>
 							</td>
 							<td>
-								Defined roles, to be used by the SimpleAuth acl driver. See the default configuration file for an
-								description of the roles array structure.
+								SimpleAuth ACL ドライバが使用するロール定義。
+								ロール配列構造の説明については、デフォルト設定のファイルを参照してください。
 							</td>
 						</tr>
 						<tr>
@@ -213,8 +213,8 @@
 				</table>
 
 			<p class="note">
-				If you want to use the 'remember-me' functionality, make sure you have a valid <a href="../../../classes/crypt.html">Crypt</a> configuration, as it
-				uses an encrypted cookie to store the user information to be remembered.
+				'remember-me' 機能を使用したい場合は、記憶されるユーザ情報を格納するために暗号化されたクッキーを使用するため、有効な
+				<a href="../../../classes/crypt.html">Crypt</a> 設定を持っていることを確認してください。
 			</p>
 
 			<h3 id="database">データベーステーブル</h3>
