@@ -427,19 +427,19 @@ panes.main = {
 panes.core = {
 	"Classes": {
 		"Agent": {
-			"Configuration":	"classes/agent/config.html",
-			"Usage":			"classes/agent/usage.html",
+			"設定":	"classes/agent/config.html",
+			"使用法":			"classes/agent/usage.html",
 		},
 		"Arr":			"classes/arr.html",
 		"Asset": {
-			"Configuration":	"classes/asset/config.html",
-			"Usage":			"classes/asset/usage.html",
+			"設定":	"classes/asset/config.html",
+			"使用法":			"classes/asset/usage.html",
 			"Advanced":			"classes/asset/advanced.html"
 		},
 		"Autoloader":	"classes/autoloader.html",
 		"Cache": {
-			"Configuration":	"classes/cache/config.html",
-			"Usage":			"classes/cache/usage.html",
+			"設定":	"classes/cache/config.html",
+			"使用法":			"classes/cache/usage.html",
 			"Advanced":			"classes/cache/advanced.html"
 		},
 		"Cli":			"classes/cli.html",
@@ -448,7 +448,7 @@ panes.core = {
 		"Crypt":		"classes/crypt.html",
 		"Database": {
 			"はじめに":   	  "classes/database/introduction.html",
-			"Usage":          	  "classes/database/usage.html",
+			"使用法":          	  "classes/database/usage.html",
 			"DB class":       	  "classes/database/db.html",
 			"DBUtil class":   	  "classes/database/dbutil.html",
 			"Query Building":	{
@@ -468,7 +468,7 @@ panes.core = {
 		"Fieldset":		"classes/fieldset.html",
 		"File": {
 			"はじめに":	"classes/file/intro.html",
-			"Usage":		"classes/file/usage.html",
+			"使用法":		"classes/file/usage.html",
 			"Advanced":		"classes/file/advanced.html",
 			"Handlers":		"classes/file/handlers.html",
 		},
@@ -488,7 +488,7 @@ panes.core = {
 		"Model_Crud": {
 			"はじめに": "classes/model_crud/introduction.html",
 			"Methods": "classes/model_crud/methods.html"
-			//"Usage": "classes/model_crud/usage.html",
+			//"使用法": "classes/model_crud/usage.html",
 		},
 		"Module":		"classes/module.html",
 		"Mongo_Db": {
@@ -509,8 +509,8 @@ panes.core = {
 		"Router":		"classes/router.html",
 		"Security":		"classes/security.html",
 		"Session": {
-			"Configuration":	"classes/session/config.html",
-			"Usage":			"classes/session/usage.html",
+			"設定":	"classes/session/config.html",
+			"使用法":			"classes/session/usage.html",
 			"Advanced":			"classes/session/advanced.html"
 		},
 		"Str": 			"classes/str.html",
@@ -521,8 +521,8 @@ panes.core = {
 		},
 		// "Unzip":		"todo.html", // dont do this, needs to be cleaned up. forget it exists.
 		"Upload": {
-			"Configuration":	"classes/upload/config.html",
-			"Usage":			"classes/upload/usage.html"
+			"設定":	"classes/upload/config.html",
+			"使用法":			"classes/upload/usage.html"
 		},
 		"Uri":			"classes/uri.html",
 		"Validation": {
@@ -556,15 +556,15 @@ panes.auth = {
 		},
 		"Simpleauth": {
 			"はじめに":	"packages/auth/simpleauth/intro.html",
-			"Usage":		"packages/auth/simpleauth/usage.html"
+			"使用法":		"packages/auth/simpleauth/usage.html"
 		},
 		"Ormauth": {
 			"はじめに":	"packages/auth/ormauth/intro.html",
-			"Usage":		"packages/auth/ormauth/usage.html"
+			"使用法":		"packages/auth/ormauth/usage.html"
 		},
 		"Opauth": {
 			"はじめに":	"packages/auth/opauth/intro.html",
-			"Usage":		"packages/auth/opauth/usage.html"
+			"使用法":		"packages/auth/opauth/usage.html"
 		},
 		"Examples": {
 			"Auth controller": "packages/auth/examples/auth.html",
@@ -577,7 +577,7 @@ panes.auth = {
 panes.email = {
 	"Email パッケージ": {
 		"はじめに":		"packages/email/introduction.html",
-		"Usage":			"packages/email/usage.html",
+		"使用法":			"packages/email/usage.html",
 		"Methods":			"packages/email/methods.html",
 		"Troubleshooting":	"packages/email/troubleshooting.html"
 	}
