@@ -45,27 +45,27 @@
 
 		<div id="main">
 
-			<h2>Fuelクラス</h2>
+			<h2>Fuel クラス</h2>
 
 			<p>
-				Fuelクラスには、Fuelフレームワークのコアメソッドが含まれています。
-				本ドキュメントでは、アプリケーションで利用可能な同クラスのpublicメソッドを纏めています。
+				Fuel クラスには、Fuel フレームワークのコアメソッドが含まれています。
+				本ドキュメントでは、アプリケーションで利用可能な同クラスの public メソッドを纏めています。
 				ここに記していないメソッドはクラス内部でのみ利用されるものなので、利用してはいけません。</p>
 
 			<h3 id="class_constants">クラス定数</h3>
 
-			<p style="margin-bottom:10px;">環境定数。config.phpにおいてアプリケーションの動作環境を定めるために用いられます。</p>
+			<p style="margin-bottom:10px;">環境定数。config.php においてアプリケーションの動作環境を定めるために用いられます。</p>
 			<table class="config">
 				<tbody>
 					<tr class="header">
 						<th>名前</th>
-						<th>タイプ</th>
+						<th>型</th>
 						<th>値</th>
 						<th>説明</th>
 					</tr>
 					<tr>
 						<th>TEST</th>
-						<td>文字列型</td>
+						<td>string</td>
 						<td><pre class="php"><code>'test'</code></pre></td>
 						<td>
 							テスト環境を同定します。
@@ -73,7 +73,7 @@
 					</tr>
 					<tr>
 						<th>DEVELOPMENT</th>
-						<td>文字列型</td>
+						<td>string</td>
 						<td><pre class="php"><code>'development'</code></pre></td>
 						<td>
 							開発環境を同定します。
@@ -89,7 +89,7 @@
 					</tr>
 					<tr>
 						<th>PRODUCTION</th>
-						<td>文字列型</td>
+						<td>string</td>
 						<td><pre class="php"><code>'production'</code></pre></td>
 						<td>
 							製品環境を同定します。
@@ -98,18 +98,18 @@
 				</tbody>
 			</table>
 
-			<p id="log_constants" style="margin-bottom:10px;">ロギング定数。<a href="log.html">Log</a>クラスで用いられます。また<a href="log.html#function_logger">logger():</a>関数で用いられます。</p>
+			<p id="log_constants" style="margin-bottom:10px;">ロギング定数。<a href="log.html">Log</a> クラスで用いられます。また <a href="log.html#function_logger">logger()</a> 関数で用いられます。</p>
 			<table class="config">
 				<tbody>
 					<tr class="header">
 						<th>名前</th>
-						<th>タイプ</th>
+						<th>型</th>
 						<th>値</th>
 						<th>説明</th>
 					</tr>
 					<tr>
 						<th>L_NONE</th>
-						<td>整数型</td>
+						<td>integer</td>
 						<td><pre class="php"><code>0</code></pre></td>
 						<td>
 							ロギングレベル 0:ログをとりません。
@@ -117,7 +117,7 @@
 					</tr>
 					<tr>
 						<th>L_ERROR</th>
-						<td>整数型</td>
+						<td>integer</td>
 						<td><pre class="php"><code>1</code></pre></td>
 						<td>
 							エラーメッセージのログをとります。
@@ -125,7 +125,7 @@
 					</tr>
 					<tr>
 						<th>L_WARNING</th>
-						<td>整数型</td>
+						<td>integer</td>
 						<td><pre class="php"><code>2</code></pre></td>
 						<td>
 							警告メッセージのログをとります。
@@ -133,7 +133,7 @@
 					</tr>
 					<tr>
 						<th>L_DEBUG</th>
-						<td>整数型</td>
+						<td>integer</td>
 						<td><pre class="php"><code>3</code></pre></td>
 						<td>
 							デバッグメッセージのログをとります。
@@ -141,7 +141,7 @@
 					</tr>
 					<tr>
 						<th>L_INFO</th>
-						<td>整数型</td>
+						<td>integer</td>
 						<td><pre class="php"><code>4</code></pre></td>
 						<td>
 							情報メッセージのログをとります。
@@ -149,7 +149,7 @@
 					</tr>
 					<tr>
 						<th>L_ALL</th>
-						<td>整数型</td>
+						<td>integer</td>
 						<td><pre class="php"><code>5</code></pre></td>
 						<td>
 							全てのレベルのログをとります。
@@ -163,16 +163,16 @@
 				<tbody>
 					<tr class="header">
 						<th>名前</th>
-						<th>タイプ</th>
+						<th>型</th>
 						<th>値</th>
 						<th>説明</th>
 					</tr>
 					<tr>
 						<th>VERSION</th>
-						<td>文字列型</td>
+						<td>string</td>
 						<td><pre class="php"><code>'<script type="text/javascript">document.write(DocVersion);</script>'</code></pre></td>
 						<td>
-							インストールされているFuelのバージョンです。
+							インストールされている Fuel のバージョンです。
 						</td>
 					</tr>
 				</tbody>
@@ -185,15 +185,15 @@
 				<tbody>
 					<tr class="header">
 						<th>名前</th>
-						<th>静的プロパティ</th>
-						<th>タイプ</th>
+						<th>静的</th>
+						<th>型</th>
 						<th>値</th>
 						<th>説明</th>
 					</tr>
 					<tr>
 						<th>$initialized</th>
 						<td>はい</td>
-						<td>論理型</td>
+						<td>boolean</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
 							フレームワークが初期化されているか。
@@ -202,7 +202,7 @@
 					<tr>
 						<th>$env</th>
 						<td>はい</td>
-						<td>文字列型</td>
+						<td>string</td>
 						<td><pre class="php"><code>Fuel::DEVELOPMENT</code></pre></td>
 						<td>
 							フレームワークを実行する環境定数。上記の環境定数のいずれかでなければいけません。
@@ -211,7 +211,7 @@
 					<tr>
 						<th>$profiling</th>
 						<td>はい</td>
-						<td>論理型</td>
+						<td>boolean</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
 							true の場合、プロファイラーを有効にします。
@@ -220,7 +220,7 @@
 					<tr>
 						<th>$locale</th>
 						<td>はい</td>
-						<td>文字列型</td>
+						<td>string</td>
 						<td><pre class="php"><code>'en_US'</code></pre></td>
 						<td>
 							現在のロケールを定義します。
@@ -229,7 +229,7 @@
 					<tr>
 						<th>$timezone</th>
 						<td>はい</td>
-						<td>文字列型</td>
+						<td>string</td>
 						<td><pre class="php"><code>'UTC'</code></pre></td>
 						<td>
 							現在のタイムゾーンを定義します。
@@ -238,7 +238,7 @@
 					<tr>
 						<th>$encoding</th>
 						<td>はい</td>
-						<td>文字列型</td>
+						<td>string</td>
 						<td><pre class="php"><code>'UTF-8'</code></pre></td>
 						<td>
 							現在の文字エンコードを定義します。
@@ -247,7 +247,7 @@
 					<tr>
 						<th>$is_cli</th>
 						<td>はい</td>
-						<td>論理型</td>
+						<td>boolean</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
 							true の場合、フレームワークは CLI モードで実行されます。
@@ -256,7 +256,7 @@
 					<tr>
 						<th>$is_test</th>
 						<td>はい</td>
-						<td>論理型</td>
+						<td>boolean</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
 							true の場合、フレームワークは Unit Test モードで実行されます。
@@ -271,7 +271,7 @@
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">静的メソッド</th>
+						<th class="legend">静的</th>
 						<td>はい</td>
 					</tr>
 					<tr>
@@ -279,9 +279,9 @@
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>パラメータ名</th>
-									<th>初期値</th>
-									<th class="description">解説</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$file</kbd></th>
@@ -308,7 +308,7 @@ if (Fuel::load('myfile.php'))
 					</tr>
 					</tbody>
 				</table>
-				<p class="note"> 次の点に留意してください。もしインクルードされるファイルに <strong>return</strong> 宣言が含まれていない (NOT) 場合、ロードが成功すれば load() は <strong>1</strong> を返し、失敗すれば <strong>0</strong> を返します!</p>
+				<p class="note"> 次の点に注意してください。もしインクルードされるファイルに <strong>return</strong> 宣言が含まれていない (NOT) 場合、ロードが成功すれば load() は <strong>1</strong> を返し、失敗すれば <strong>0</strong> を返します!</p>
 			</article>
 			
 		</div>
