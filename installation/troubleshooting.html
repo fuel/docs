@@ -51,6 +51,7 @@
 			<p>When your problem is not listed below or is listed but no proper solution is provided, please report this at the issue tracker ( http://dev.fuelphp.com ).</p>
 
 			<ul>
+				<li><a href="#500_error_with_clean_install">500 Error with clean install</a></li>
 				<li><a href="#syntax_error_clean_install">Syntax errors with clean installation</a></li>
 				<li><a href="#404_install">Got it working, but the index page is a 404.</a></li>
 				<li><a href="#oil_db_error">Oil cannot connect to DB but application can</a></li>
@@ -60,7 +61,22 @@
 				<li><a href="#symlinks_error">Core, App or Packages can not be found after I changed a symlink</a></li>
 				<li><a href="#stack_frame_error">Exception thrown without a stack frame</a></li>
 			</ul>
+			<article>
 
+				<h3 id="500_error_with_clean_install">500 Error with clean installation</h3>
+
+				<h4>Happens When...</h4>
+
+				<p>When your HTTP server has insufficient permissions to follow symbolic links around the filesystem.</p>
+
+				<h4>Solution</h4>
+
+				<p>Check the <i>.htaccess</i> file and modify the following line</p>
+				<pre class="php"><code>Option +FollowSymLinks</code></pre>
+				<p>so that it reads:</p>
+				<pre class="php"><code>Option +SymLinksIfOwnerMatch</code></pre>
+
+			</article>
 			<article>
 
 				<h3 id="syntax_error_clean_install">Syntax errors with clean installation</h3>
@@ -105,7 +121,7 @@
 
 				<h4>Happens When...</h4>
 
-				<p>On some php installations it's needed to add a question-mark in the .htaccess after <em>index.php</em></p>
+				<p>On some php installations it's necessary to add a question-mark in the .htaccess file after <em>index.php</em></p>
 
 				<h4>Solution</h4>
 
@@ -195,11 +211,11 @@ $ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /var/mysql/mysql.sock</code
 
 				<h4>Happens When...</h4>
 
-				<p>Working with ORM models when not connection via mysql.</p>
+				<p>Working with ORM models when not connecting via mysql.</p>
 
 				<h4>Solution</h4>
 
-				<p>Make sure the db config values are correct and test you database connection.</p>
+				<p>Make sure the db config values are correct and test your database connection.</p>
 
 				<p>Update the model to contain the properties.</p>
 
