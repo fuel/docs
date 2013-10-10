@@ -867,7 +867,7 @@ $profile = Auth::get_profile_fields();
 
 				<article>
 					<h4 id="method_member" class="method">member($group, $user = null)</h4>
-					<p>The <strong>member</strong> method allows you to check if a user is member of a given group.</p>
+					<p><strong>member</strong> メソッドは、ユーザーがそのグループのメンバーかどうかをチェックします。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -886,19 +886,19 @@ $profile = Auth::get_profile_fields();
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td>required</td>
-										<td>The id of the group you want to check for membership</td>
+										<td>チェックしたいグループの id</td>
 									</tr>
 									<tr>
 										<th><kbd>$user</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A specific user, identified by the result of get_user_id(), or <strong>null</strong> for the currently logged-in user.</td>
+										<td>チェックしたいユーザー。 get_user_id() で返されるユーザー id か、<strong>null</strong> の場合は現在ログインしているユーザー。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. <strong>true</strong> if the user is member of the group, or <strong>false</strong> if not.</td>
+							<td>ユーザーがそのグループのメンバーならば <strong>true</strong> を、そうでなければ <strong>false</strong> を返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -917,7 +917,7 @@ if (Auth::member(100))
 
 				<article>
 					<h4 id="method_groups" class="method">groups($driver = null)</h4>
-					<p>The <strong>groups</strong> method allows you to fetch all defined groups, or all defined groups in a specific driver.</p>
+					<p><strong>groups</strong> メソッドを使用すると、定義されているすべてのグループ、または特定のドライバで定義されているすべてのグループを取得することができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -936,38 +936,38 @@ if (Auth::member(100))
 									<tr>
 										<th><kbd>$driver</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the group driver you want to get groups of</td>
+										<td>グループを取得したいグループドライバの名前</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>array. If the group driver does not exist or no groups are defined, an empty array is returned.</td>
+							<td>配列。グループドライバが存在しないか、全くグループが定義されていない場合、空の配列が返されます。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get all defined groups (for all loaded group drivers)
+								<pre class="php"><code>// 定義済みのすべてのグループを取得（すべてのロードされたグループドライバ用）
 $groups = Auth::groups();
 
-// Get all the groups from the default group driver
+// デフォルトのグループドライバからすべてのグループを取得
 $groups = Auth::group()->groups();
 
-// Get all the groups from a specific driver
+// 指定のドライバからすべてのグループを取得
 $groups = Auth::group('Simplegroup')->groups();
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">You need to call this method on the Auth group drivers instance if you want groups defined by a specific driver.</p>
-					<p class="note">If you use multiple drivers, this method only works reliably if the group id's are unique over <strong>all</strong> drivers!</p>
+					<p class="note">特定のドライバで定義されたグループの場合は、 Auth グループドライバインスタンスに対してこのメソッドを呼び出す必要があります。</p>
+					<p class="note">複数のドライバを使用する場合、このメソッドはグループ id が<strong>すべての</strong>ドライバにおいて一意の場合にのみ確実に動作します！</p>
 				</article>
 
 				<article>
 					<h4 id="method_roles" class="method">roles($driver = null)</h4>
-					<p>The <strong>roles</strong> method allows you to fetch all defined roles, or all defined roles in a specific driver.</p>
+					<p><strong>roles</strong> メソッドを使用すると、定義されているすべてのロール、または特定のドライバで定義されているすべてのロールを取得することができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -986,33 +986,33 @@ $groups = Auth::group('Simplegroup')->groups();
 									<tr>
 										<th><kbd>$driver</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the group driver you want to get roles of</td>
+										<td>ロールを取得したい ACL ドライバの名前（訳注：'the group driver' になっているが、'the acl driver' の間違いと思われる）</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>array. If the acl driver does not exist or no roles are defined, an empty array is returned.</td>
+							<td>配列。ACL ドライバが存在しないか、全くロールが定義されていない場合、空の配列が返されます。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get all defined roles (for all loaded acl drivers)
+								<pre class="php"><code>// 定義済みのすべてのロールを取得（すべてのロードされた ACL ドライバ用）
 $roles = Auth::roles();
 
-// Get all the roles from the default acl driver
+// デフォルトの ACL ドライバからすべてのロールを取得
 $roles = Auth::acl()->roles();
 
-// Get all the roles from a specific driver
+// 指定のドライバからすべてのロールを取得
 $roles = Auth::acl('Simpleacl')->roles();
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">You need to call this method on the Auth acl drivers instance if you want groups defined by a specific driver.</p>
-					<p class="note">If you use multiple drivers, this method only works reliably if the role id's are unique over <strong>all</strong> drivers!</p>
+					<p class="note">特定のドライバで定義されたロールの場合は、 Auth ACL ドライバインスタンスに対してこのメソッドを呼び出す必要があります。</p>
+					<p class="note">複数のドライバを使用する場合、このメソッドはロール id が<strong>すべての</strong>ドライバにおいて一意の場合にのみ確実に動作します！</p>
 				</article>
 
 				<article>
@@ -1148,7 +1148,7 @@ if (Auth::acl('simpleacl')->has_access('blog.[read,write,delete]'))
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// redirect to login if we we require a user and no guest access is enabled
+								<pre class="php"><code>// ログインしておらずゲストユーザーも有効になっていない場合、 login にリダイレクト
 if ( ! Auth::check() and ! Auth::guest_login())
 {
 	Response::redirect('/login');
