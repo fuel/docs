@@ -1,5 +1,9 @@
 # FuelPHP Documentation 日本語翻訳
 
+## Version 1.7
+
+* sharkpp <https://github.com/sharkpp>
+
 ## Version 1.6
 
 * Kenji Suzuki <https://github.com/kenjis>
