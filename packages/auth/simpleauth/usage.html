@@ -53,7 +53,7 @@
 			<p>
 				Simpleauth <kbd>Login</kbd> ドライバは、ローカルのデータベーステーブルに保存するユーザアカウントの、
 				生成・更新・削除・検証のロジックを提供します。ユーザアカウントの情報を得たり、パスワードの作成やリセット、
-				ログインやログアウト（ユーザセッションの作成）を扱うためのものです。
+				ログインやログアウト (ユーザセッションの作成) を扱うためのものです。
 			</p>
 
 			<p>
@@ -161,7 +161,7 @@ if ($user = Auth::validate_user($name, $pass))
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>論理型。ログインに成功すれば <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
+							<td>boolean。ログインに成功すれば <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -209,7 +209,7 @@ if (Auth::login($name, $pass))
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>論理型。ログインに成功すれば <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
+							<td>boolean。ログインに成功すれば <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -243,7 +243,7 @@ if (Auth::force_login(12121))
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>論理型。ログアウトが成功し場合、 <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
+							<td>boolean。ログアウトが成功し場合、 <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -374,7 +374,7 @@ Auth::create_user(
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>論理型。カラムが更新されれば <strong>true</strong> を、どのカラムも変更がなければ <strong>false</strong> を返す。</td>
+							<td>boolean。カラムが更新されれば <strong>true</strong> を、どのカラムも変更がなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -443,12 +443,12 @@ Auth::update_user(
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>論理型。パスワードが変更されれば <strong>true</strong> を、 $old_password が正しくなければ <strong>false</strong> を返す。</td>
+							<td>boolean。パスワードが変更されれば <strong>true</strong> を、 $old_password が正しくなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// 現在のユーザのパスワードを変更（訳注：'reset the password' になっているが、'change' の間違いと思われる）
+								<pre class="php"><code>// 現在のユーザのパスワードを変更 (訳注：'reset the password' になっているが、'change' の間違いと思われる)
 Auth::change_password('thisismynewpassword','thisismysecretpassword');
 </code></pre>
 							</td>
@@ -495,7 +495,7 @@ Auth::change_password('thisismynewpassword','thisismysecretpassword');
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>文字列、生成されたランダムなパスワード。</td>
+							<td>string、生成されたランダムなパスワード。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -543,7 +543,7 @@ $new_password = Auth::reset_password('thisusername');
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>論理型。ユーザアカウントが削除されれば <strong>true</strong> を、削除に失敗した場合(ユーザが存在しなかった場合)は <strong>false</strong> を返す。</td>
+							<td>boolean。ユーザアカウントが削除されれば <strong>true</strong> を、削除に失敗した場合(ユーザが存在しなかった場合)は <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -574,7 +574,7 @@ Auth::delete_user('thisusername');
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>文字列、生成されたログインハッシュ。</td>
+							<td>string、生成されたログインハッシュ。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -624,7 +624,7 @@ Auth::create_login_hash();
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed.</td>
+							<td>mixed。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -867,7 +867,7 @@ $profile = Auth::get_profile_fields();
 
 				<article>
 					<h4 id="method_member" class="method">member($group, $user = null)</h4>
-					<p>The <strong>member</strong> method allows you to check if a user is member of a given group.</p>
+					<p><strong>member</strong> メソッドは、ユーザーがそのグループのメンバーかどうかをチェックします。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -886,24 +886,24 @@ $profile = Auth::get_profile_fields();
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td>required</td>
-										<td>The id of the group you want to check for membership</td>
+										<td>チェックしたいグループの id</td>
 									</tr>
 									<tr>
 										<th><kbd>$user</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A specific user, identified by the result of get_user_id(), or <strong>null</strong> for the currently logged-in user.</td>
+										<td>チェックしたいユーザー。 get_user_id() で返されるユーザー id か、<strong>null</strong> の場合は現在ログインしているユーザー。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. <strong>true</strong> if the user is member of the group, or <strong>false</strong> if not.</td>
+							<td>boolean。ユーザーがそのグループのメンバーならば <strong>true</strong> を、そうでなければ <strong>false</strong> を返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// 現在のユーザーが管理者であるかどうかを検証
+								<pre class="php"><code>// 現在のユーザーが管理者であるかどうかを検査
 if (Auth::member(100))
 {
 	// 管理者グループに属している！
@@ -917,7 +917,7 @@ if (Auth::member(100))
 
 				<article>
 					<h4 id="method_groups" class="method">groups($driver = null)</h4>
-					<p>The <strong>groups</strong> method allows you to fetch all defined groups, or all defined groups in a specific driver.</p>
+					<p><strong>groups</strong> メソッドを使用すると、定義されているすべてのグループ、または特定のドライバで定義されているすべてのグループを取得することができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -936,38 +936,38 @@ if (Auth::member(100))
 									<tr>
 										<th><kbd>$driver</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the group driver you want to get groups of</td>
+										<td>グループを取得したいグループドライバの名前</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>array. If the group driver does not exist or no groups are defined, an empty array is returned.</td>
+							<td>array。グループドライバが存在しないか、全くグループが定義されていない場合、空の配列が返されます。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get all defined groups (for all loaded group drivers)
+								<pre class="php"><code>// 定義済みのすべてのグループを取得 (すべてのロードされたグループドライバ用)
 $groups = Auth::groups();
 
-// Get all the groups from the default group driver
+// デフォルトのグループドライバからすべてのグループを取得
 $groups = Auth::group()->groups();
 
-// Get all the groups from a specific driver
+// 指定のドライバからすべてのグループを取得
 $groups = Auth::group('Simplegroup')->groups();
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">You need to call this method on the Auth group drivers instance if you want groups defined by a specific driver.</p>
-					<p class="note">If you use multiple drivers, this method only works reliably if the group id's are unique over <strong>all</strong> drivers!</p>
+					<p class="note">特定のドライバで定義されたグループの場合は、 Auth グループドライバインスタンスに対してこのメソッドを呼び出す必要があります。</p>
+					<p class="note">複数のドライバを使用する場合、このメソッドはグループ id が<strong>すべての</strong>ドライバにおいて一意の場合にのみ確実に動作します！</p>
 				</article>
 
 				<article>
 					<h4 id="method_roles" class="method">roles($driver = null)</h4>
-					<p>The <strong>roles</strong> method allows you to fetch all defined roles, or all defined roles in a specific driver.</p>
+					<p><strong>roles</strong> メソッドを使用すると、定義されているすべてのロール、または特定のドライバで定義されているすべてのロールを取得することができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -986,39 +986,39 @@ $groups = Auth::group('Simplegroup')->groups();
 									<tr>
 										<th><kbd>$driver</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the group driver you want to get roles of</td>
+										<td>ロールを取得したい ACL ドライバの名前 (訳注：'the group driver' になっているが、'the acl driver' の間違いと思われる)</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>array. If the acl driver does not exist or no roles are defined, an empty array is returned.</td>
+							<td>array。ACL ドライバが存在しないか、全くロールが定義されていない場合、空の配列が返されます。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get all defined roles (for all loaded acl drivers)
+								<pre class="php"><code>// 定義済みのすべてのロールを取得 (すべてのロードされた ACL ドライバ用)
 $roles = Auth::roles();
 
-// Get all the roles from the default acl driver
+// デフォルトの ACL ドライバからすべてのロールを取得
 $roles = Auth::acl()->roles();
 
-// Get all the roles from a specific driver
+// 指定のドライバからすべてのロールを取得
 $roles = Auth::acl('Simpleacl')->roles();
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">You need to call this method on the Auth acl drivers instance if you want groups defined by a specific driver.</p>
-					<p class="note">If you use multiple drivers, this method only works reliably if the role id's are unique over <strong>all</strong> drivers!</p>
+					<p class="note">特定のドライバで定義されたロールの場合は、 Auth ACL ドライバインスタンスに対してこのメソッドを呼び出す必要があります。</p>
+					<p class="note">複数のドライバを使用する場合、このメソッドはロール id が<strong>すべての</strong>ドライバにおいて一意の場合にのみ確実に動作します！</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_name" class="method">get_name($group = null)</h4>
-					<p>The <strong>get_name</strong> method allows you to fetch the name of a specific group. If no group is given, it will return the name
-					of the group of the current logged-in user.</p>
+					<p><strong>get_name</strong> メソッドを使用すると、特定のグループの名前を取得することができます。
+					グループが指定されていない場合は、現在ログインしているユーザのグループ名を返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -1037,34 +1037,34 @@ $roles = Auth::acl('Simpleacl')->roles();
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The id of the group you want to get the name of</td>
+										<td>名前を取得したいグループの id</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. The name of the group, or <kbd>null</kbd> if a group with the given id does not exist.</td>
+							<td>グループの名前、もしくは、与えられた id を持つグループが存在しない場合は <kbd>null</kbd> 。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get all the name for the group of the current logged-in user
+								<pre class="php"><code>// 現在ログインしているユーザーのグループのすべての名前を取得
 $name = Auth::group()->get_name();
 
-// Get the name of a specific group from a specific driver
-$name = Auth::group('Simplegroup')->get_name(100);	// returns 'Administrators'
+// 特定のドライバから特定のグループの名前を取得
+$name = Auth::group('Simplegroup')->get_name(100);	// 'Administrators' が返る
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If you use multiple drivers, this method only works reliably if the group id's are unique over <strong>all</strong> drivers!</p>
+					<p class="note">複数のドライバを使用する場合、このメソッドはグループ id が<strong>すべての</strong>ドライバにおいて一意の場合にのみ確実に動作します！</p>
 				</article>
 
 				<article>
 					<h4 id="method_has_access" class="method">has_access($condition)</h4>
-					<p>The <strong>has_access</strong> method allows you to check if the current logged-in user has access to a specific location with specific rights.</p>
+					<p><strong>has_access</strong> メソッドは現在ログインしているユーザーが特定の権限を持つ特定の場所へのアクセス権を持っているかどうかを検査することができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -1083,41 +1083,41 @@ $name = Auth::group('Simplegroup')->get_name(100);	// returns 'Administrators'
 									<tr>
 										<th><kbd>$condition</kbd></th>
 										<td>required</td>
-										<td>The access condition you want to check</td>
+										<td>検査したいアクセス条件</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. <strong>true</strong> if the user has access, or <strong>false</strong> if not.</td>
+							<td>boolean。アクセス権を持っていれば <strong>true</strong> 、そうでなければ <strong>false</strong> 。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// check if the user has access to read blog posts
+								<pre class="php"><code>// ユーザーがブログ記事を読むためのアクセス権を持っているかどうかを検査
 if (Auth::has_access('blog.read'))
 {
-	// yes, the user has access
+	// はい、ユーザーはアクセス権を持っています
 }
 
-// if you have multiple login instances, use the instance to call this method.
-// you can also check for multiple rights in one go
+// 複数のログインインスタンスがある場合、メソッドを呼び出すためにはインスタンスを使用します。
+// また、一度に複数の権利を検査することもできます。
 if (Auth::instance('simpleauth')->has_access('blog.[read,write,delete]'))
 {
-	// yes, the user has access and may read, write and delete
+	// はい、ユーザーはアクセス権を持っており、読み取りも書き込みも削除も可能です
 }
 
-// you can also specify the rights to check as an array
+// また、配列として検査する権限を指定することもできます。
 if (Auth::has_access(array('blog' => array('read'), 'comments' => array('read')))
 {
-	// yes, the user has access to read blogs and comments
+	// はい、ユーザーはブログとコメントの読み取りのアクセス権を持っています
 }
 
-// if you have multiple login instances, you can also pick a specific ACL driver
+// 複数のログインインスタンスがある場合、特定の ACL ドライバーを選ぶことができます
 if (Auth::acl('simpleacl')->has_access('blog.[read,write,delete]'))
 {
-	// yes, the user has access and may read, write and delete
+	// はい、ユーザーはアクセス権を持っており、読み取りも書き込みも削除も可能です
 }
 </code></pre>
 							</td>
@@ -1143,12 +1143,12 @@ if (Auth::acl('simpleacl')->has_access('blog.[read,write,delete]'))
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>論理型。ゲストログインがサポートされていれば <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
+							<td>boolean。ゲストログインがサポートされていれば <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// redirect to login if we we require a user and no guest access is enabled
+								<pre class="php"><code>// ログインしておらずゲストユーザーも有効になっていない場合、 login にリダイレクト
 if ( ! Auth::check() and ! Auth::guest_login())
 {
 	Response::redirect('/login');
@@ -1162,64 +1162,64 @@ if ( ! Auth::check() and ! Auth::guest_login())
 
 				<article>
 					<h4 id="method_remember_me" class="method">remember_me($user_id = null)</h4>
-					<p>The <strong>remember_me</strong> method allows you to set a remember_me cookie. If $user_id is not given, the current logged-in user is used.</p>
+					<p><strong>remember_me</strong> メソッドは、 remember_me クッキーを設定することができます。 $user_id が指定されていない場合は、現在ログインしているユーザーが使用されます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>デフォルト</th>
+										<th class="description">パラメータ</th>
 									</tr>
 									<tr>
 										<th><kbd>$user_id</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The id of the user to be remembered</td>
+										<td>記憶するユーザーの id</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>
-								boolean. returns <strong>true</strong> if the remember me cookie was correctly set, or <strong>false</strong>
-								if there was no user_id present, or the remember_me functionality was disabled in the configuration.
+								boolean。正しく remember me クッキーが設定されていれば <strong>true</strong> を、 user_id が存在しないか
+								remember_me 機能が設定で無効になっている場合 <strong>false</strong> が返されます。
 							</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// process the login form POST, and set the remember-me cookie if needed
+								<pre class="php"><code>// ログインフォームの POST を処理し、必要に応じて remember-me クッキーを設定
 if (\Input::method() == 'POST')
 {
-	// check the credentials.
+	// 資格情報を検査
 	if (\Auth::instance()->login(\Input::param('username'), \Input::param('password')))
 	{
-		// does the user want to be remembered?
+		// ユーザーは覚えてほしい？
 		if (\Input::param('rememberme', false))
 		{
-			// create the remember-me cookie
+			// remember-me クッキーを作成
 			\Auth::remember_me();
 		}
 		else
 		{
-			// delete the remember-me cookie if present
+			// 存在する場合、 remember-me クッキーを削除
 			\Auth::dont_remember_me();
 		}
 
-		// logged in, go the homepage
+		// ログインしホームページに移動
 		\Response::redirect('/');
 	}
 	else
 	{
-		// login failed, show an error message
+		// ログイン失敗、エラーメッセージを表示
 		$data['username']    = \Input::param('username');
 		$data['login_error'] = \Lang::get('login.failure');
 	}
@@ -1233,23 +1233,23 @@ if (\Input::method() == 'POST')
 
 				<article>
 					<h4 id="method_dont_remember_me" class="method">dont_remember_me()</h4>
-					<p>The <strong>dont_remember_me</strong> method destroys the remember_me cookie, if present.</p>
+					<p><strong>dont_remember_me</strong> メソッドは remember_me クッキーが存在する場合にそれを破棄します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								None
 							</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								See <a href="#method_remember_me">remember_me()</a> for an example
+								例は <a href="#method_remember_me">remember_me()</a> を参照してください
 							</td>
 						</tr>
 						</tbody>
