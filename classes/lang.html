@@ -47,47 +47,47 @@
 
 			<h2>Lang クラス</h2>
 
-			<p>The Lang class allows you to set language variables using language files in your application.</p>
+			<p>Lang クラスは、アプリケーション内の言語ファイルを使用して言語の変数をセットすることができます。</p>
 
 			<p>
-				The default language, which is <code>en</code>, is set in <kbd>app/config/config.php</kbd>.
-				Use the <a href="./config.html#method_set">Config set method</a> to change the value.
+				デフォルトの言語は、<kbd>app/config/config.php</kbd> の中で <code>en</code> と設定されています。
+				値を変更するには、<a href="./config.html#method_set">Config の set メソッド</a> を使用してください。
 			</p>
 			<pre class="php"><code>Config::set('language', 'cy');</code></pre>
 			<p>
-				You can also define a fallback language in your configuration, which is either a language code, or an array of
-				language codes. The fallback is used whenever you load a language file, and the file does not exist for the
-				specified language.
+				フォールバック言語を設定の中で言語コードや言語コードの配列として定義することもできます。
+				言語ファイルを読み込むときに指定した言語ファイルが存在しなければ、
+				フォールバック言語が使用されます。
 			</p>
 
-			<h3 id="multi_lang">Multi-language support</h3>
+			<h3 id="multi_lang">多言語サポート</h3>
 
 			<p>
-				The Lang class supports multiple languages, which can be used concurrently. By default the currently set language
-				is used to load files and retrieve language strings, but you can switch this dynamically using the method described
-				above, or by specifying the required language code in one of the Lang class method calls.
+				Lang クラスは同時に使うことができる多数の言語をサポートしています。
+				デフォルトでは、ファイルの読み込みと言語文字列の取得は現在設定されている言語で行われます。
+				しかし、上記のメソッドを使うか、または必要な言語コードを Lang クラスのメソッドで呼び出すことによって動的に切り替えることができます。
 			</p>
 
-			<h3 id="lang_groups">Lang File Types</h3>
+			<h3 id="lang_groups">言語ファイルの種類</h3>
 
-			You can use different file layouts to store your language files. The layout type is determined by the file extension:
+			言語ファイルを保存するのに、さまざまなファイルレイアウトを使用できます。レイアウトの種類は、ファイルの拡張子で決められます。
 			<ul>
 				<li>
-					PHP. The default type. A PHP file should return an array structure.
+					PHP 。デフォルト。PHP ファイルは配列構造を返す。
 					<pre class="php"><code> return array('key' => 'value');</code></pre>
 				</li>
 				<li>
-					INI. See <a href="http://en.wikipedia.org/wiki/INI_file">this page</a> for a definition of the ini-file layout.
+					INI 。ini ファイルのレイアウトについては、<a href="http://ja.wikipedia.org/wiki/INI%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB">このページ</a> をごらんください。
 					<pre class="ini"><code> [group]
 key=value</code></pre>
 				</li>
 				<li>
-					YAML. See <a href="http://en.wikipedia.org/wiki/YAML">this page</a> for a definition of the yaml-file layout.
+					YAML 。yaml ファイルのレイアウトについては、<a href="http://ja.wikipedia.org/wiki/YAML">このページ</a> をごらんください。
 					<pre class="yaml"><code> group:
    key: value</code></pre>
 				</li>
 				<li>
-					JSON. See <a href="http://en.wikipedia.org/wiki/JSON">this page</a> for a definition of the json-file layout.
+					JSON 。json ファイルのレイアウトについては、<a href="http://ja.wikipedia.org/wiki/JSON">このページ</a> をごらんください。
 					<pre class="javascript"><code> {
 "group" :
     {
@@ -97,11 +97,11 @@ key=value</code></pre>
 				</li>
 			</ul>
 
-			<p>If you don't specify a file type, Lang::load() will default to the 'php' type.</p>
+			<p>ファイルの種類を指定しない場合、Lang::load() はデフォルトの 'php' になります。</p>
 
 			<article>
 				<h4 class="method" id="method_load">load($file, $group = null, $language = null, $overwrite = false, $reload = false)</h4>
-				<p>The <strong>load</strong> method allows you to load a language file.</p>
+				<p><strong>load</strong> メソッドは、言語ファイルを読み込むことができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -120,27 +120,27 @@ key=value</code></pre>
 								<tr>
 									<th><kbd>$file</kbd></th>
 									<td><i>必須</i></td>
-									<td>The path of the desired file. You can prefix this with a namespace to load a config file from a loaded package or module.</td>
+									<td>求めるファイルへのパス。読み込まれたパッケージやモジュールから読み込むために、名前空間のプレフィックスを付けることができます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$group</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Sets a language group to be used.</td>
+									<td>使用する言語グループをセットします。</td>
 								</tr>
 								<tr>
 									<th><kbd>$language</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Sets a specific language to load.</td>
+									<td>読み込みたい指定の言語をセットします。</td>
 								</tr>
 								<tr>
 									<th><kbd>$overwrite</kbd></th>
 									<td><kbd>false</kbd></td>
-									<td>(Optional) If set to <kbd>true</kbd> the loaded language items will be merged with the items already loaded in a non-recursive manner, with will overwrite array values in a multidimensional array, rather then merging them.</td>
+									<td>(オプション) <kbd>true</kbd> にセットしたならば、読み込んだ言語アイテムは既にある読み込まれたアイテムと非再帰的な方法でマージされます。多次元配列である場合は、マージするのではなく配列の値が上書きされます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$reload</kbd></th>
 									<td><kbd>false</kbd></td>
-									<td>(Optional) If set to <kbd>true</kbd> a reload of the requested language file is forced, erasing cached language items related to the lang file to be loaded.</td>
+									<td>(オプション) <kbd>true</kbd> にセットしたならば、要求された言語ファイルは再読み込みが強制され、読み込まれている言語ファイルに関連した言語アイテムのキャッシュが削除されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -152,28 +152,28 @@ key=value</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Example of a language file:
+							<pre class="php"><code>// 言語ファイルの例:
 return array(
 	'hello' => 'Hello :name',
 	'something'=> 'something :name!',
-	'test'=> array('hello' => 'Hello', 'something' => 'Plop') // Group
+	'test'=> array('hello' => 'Hello', 'something' => 'Plop') // グループ
 );
 
-// Loads example.php.
-// Note: If no language is set in the config, it will fallback to English.
+// example.php を読み込む。
+// 注意: 設定に言語がセットされていないならば、英語が代わりに使われます。
 Lang::load('example');
 
-// Will load the given file into the 'test' group.
+// 'test' グループの中の指定したファイルが読み込まれます。
 Lang::load('example', 'test');
 
-// Outputs Plop
+// プロパティの出力
 $this->output = Lang::get('test.test.something');
 
-// Will load the example language file from the module 'foo' into the 'bar' group.
+// 'bar' グループの中の 'foo' モジュールから example 言語ファイルが読み込まれます。
 Lang::load('foo::example', 'bar');
 
-// Will load the example language file in italian.
-// If that doesn't exist, it will load the configured language
+// イタリア語の言語ファイル example が読み込まれます。
+// 存在しなかったならば、設定されている言語が読み込まれます
 Lang::load('foo::example', 'bar', 'it');</code></pre>
 						</td>
 					</tr>
@@ -183,7 +183,7 @@ Lang::load('foo::example', 'bar', 'it');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_get">get($line, $params = array(), $default = null, $language = null)</h4>
-				<p>The <strong>get</strong> method allows you to get a specific line from the language file.</p>
+				<p><strong>get</strong> メソッドは、言語ファイルから指定した行を取得します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -202,39 +202,39 @@ Lang::load('foo::example', 'bar', 'it');</code></pre>
 								<tr>
 									<th><kbd>$line</kbd></th>
 									<td><i>必須</i></td>
-									<td>The desired line's identifier.</td>
+									<td>求める行の識別子。</td>
 								</tr>
 								<tr>
 									<th><kbd>$parameters</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Sets an array of parameter that might be passed to the line.</td>
+									<td>行へ渡されるパラメータの配列をセットします。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Value to return if $line could not be found.</td>
+									<td>$line が見つからなければ返す値。</td>
 								</tr>
 								<tr>
 									<th><kbd>$language</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Language code for which this line should be retrieved. If not given the current active language will be used.</td>
+									<td>この行で取得したい言語コード。与えられないならば、現在アクティブな言語が使用されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed. String if found, or false if not found</td>
+						<td>mixed 。見つかれば String 、見つからなければ false</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-              <pre class="php"><code>// Given this lang file
+							<pre class="php"><code>// この言語ファイルを与える
 return array('hello' => 'Hello :name');
-// Outputs Hello world
+// Hello world を出力
 $this->output = Lang::get('hello', array('name' => 'world'));
 
-// Outputs Plop
+// プロパティの出力
 $this->output = Lang::get('test.something');
 </code></pre>
 						</td>
@@ -245,7 +245,7 @@ $this->output = Lang::get('test.something');
 
 			<article>
 				<h4 class="method" id="method_set">set($line, $value, $group = null, $language = null)</h4>
-				<p>The <strong>set</strong> method allows you to set a specific line to the language file.</p>
+				<p><strong>set</strong> メソッドは、指定した行を言語ファイルにセットすることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -264,22 +264,22 @@ $this->output = Lang::get('test.something');
 								<tr>
 									<th><kbd>$line</kbd></th>
 									<td><i>必須</i></td>
-									<td>The desired line's identifier.</td>
+									<td>求める行の識別子。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Sets the value of the line.</td>
+									<td>行の値をセットする。</td>
 								</tr>
 								<tr>
 									<th><kbd>$group</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Sets a language group to be used.</td>
+									<td>使用する言語グループをセットする。</td>
 								</tr>
 								<tr>
 									<th><kbd>$language</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Language code for which this line should be set. If not given the current active language will be used.</td>
+									<td>この行でセットしたい言語コード。与えられないならば、現在アクティブな言語が使用されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -291,13 +291,13 @@ $this->output = Lang::get('test.something');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Returns true
+							<pre class="php"><code>// true を返す
 Lang::set('hello', 'Ahoy!');
 
-// Using groups
+// グループを使って
 Lang:set('hello', 'Ahoy!', 'test');
 
-// Will also work as above
+// 上と同じ様な動作
 Lang::load('test', 'test');
 Lang::set('hello', 'Ahoy!');</code></pre>
 						</td>
@@ -309,8 +309,8 @@ Lang::set('hello', 'Ahoy!');</code></pre>
 			<article>
 				<h4 class="method" id="method_save">save($file, $lang, $language = null)</h4>
 				<p>
-					The <strong>save</strong> method saves a language file into the system.  It searches through the language directories for the requested file
-					in the requested language.  If no existing file is found, the language file is created in the APPPATH lang directory.</p>
+					<strong>save</strong> メソッドは、システムの中に言語ファイルを保存します。要求されたファイルの言語ディレクトリを検索します。
+					もしファイルが見つからないならば、APPPATH の lang ディレクトリに言語ファイルを作成します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -329,38 +329,38 @@ Lang::set('hello', 'Ahoy!');</code></pre>
 								<tr>
 									<th><kbd>$file</kbd></th>
 									<td><i>必須</i></td>
-									<td>The path to the config file, relative to the config directory.  Do not include the file extension (".php" is assumed). You can prefix this with a namespace to load a config file from a loaded package or module.</td>
+									<td>設定ファイルのパスは、config ディレクトリに対する相対パスです。ファイル拡張子を含まないでください (拡張子として ".php" であることが決め打ちされています) 。読み込まれたパッケージやモジュールの設定ファイルを読み込むために、名前空間のプレフィックスを付けることが出来ます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$lang</kbd></th>
 									<td><i>必須</i></td>
-									<td>If this is a string, it specifies a group name to save. If it is an array, it is assumed to contain the language strings to be saved.</td>
+									<td>文字列ならばグループ名を指定して保存します。配列ならば、言語文字列が含まれているとして保存します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$language</kbd></th>
 									<td><code>null</code></td>
-									<td>The language code to save the file too. If not given, it will be saved to whatever the current set language code is.</td>
+									<td>ファイルに保存される言語コード。指定されないならば、現在セットされている言語コードで保存されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><kbd>true</kbd> if the language file was saved, <kbd>false</kbd> if an error occurred</td>
+						<td>言語ファイルが保存されたら <kbd>true</kbd> 、エラーが発生したら <kbd>false</kbd></td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// This loads the "custom" language file in a group named "foo".
+							<pre class="php"><code>// これは、"foo" という名前のグループにある言語ファイル "custom" を読み込む。
 Lang::load('custom', 'foo');
 
-// update some language item
+// 言語のアイテムを更新する
 Lang::set('foo.key', $value);
 
-// save the updated language group 'foo' (note: it will save everything in that group!)
+// 更新された言語グループ 'foo' を保存 (注意: グループの中の全てのものが保存されます！)
 Lang::save('custom', 'foo');
 
-// save the updated language group 'bar' to the language file 'custom' in the module 'foo'
+// 更新された言語グループ 'foo' を モジュール 'foo' の中の 言語ファイル 'custom' に保存
 Lang::save('foo::custom', 'bar');</code></pre>
 						</td>
 					</tr>
@@ -370,7 +370,7 @@ Lang::save('foo::custom', 'bar');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_delete">delete($item, $group = null, $language = null)</h4>
-				<p>The <strong>delete</strong> method allows you to delete a specific line from the <em>loaded</em> language file.</p>
+				<p><strong>delete</strong> メソッドは、<em>読み込まれた</em> 言語ファイルから指定された行を削除します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -378,40 +378,40 @@ Lang::save('foo::custom', 'bar');</code></pre>
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$item</kbd></th>
-									<td><i>required</i></td>
-									<td>The desired line's identifier.</td>
+									<td><i>必須</i></td>
+									<td>求める行の識別子。</td>
 								</tr>
 								<tr>
 									<th><kbd>$group</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Sets a language group to be used.</td>
+									<td>使いたい言語グループをセットします。</td>
 								</tr>
 								<tr>
 									<th><kbd>$language</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Language code for which this line should be deleted. If not given the current active language will be used.</td>
+									<td>削除する行の言語コード。与えられないならば、現在アクティブな言語が使用されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// delete the 'hello' language key
+							<pre class="php"><code>// 言語キー 'hello' を削除
 Lang::delete('hello');
 </code></pre>
 						</td>
@@ -419,31 +419,31 @@ Lang::delete('hello');
 					</tbody>
 				</table>
 				<p class="note">
-					Note that this deletes the language item stored in the language class, it does <em>NOT</em> delete it from the language file on disk!
+					language クラスに格納された言語アイテムを削除するのであって、ディスクにある言語ファイルから削除<em>しない</em>ことに注意してください。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_lang">get_lang()</h4>
-				<p>The <strong>get_lang</strong> method allows you to retrieve currently active language. Typically it will be same as <a href="../classes/config.html#method_get">Config::get('language')</a>.</p>
+				<p><strong>get_lang</strong> メソッドは、現在アクティブな言語を取得します。一般的に、<a href="../classes/config.html#method_get">Config::get('language')</a> と同じ結果になります。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
-						<td><i>None</i></td>
+						<th>パラメータ</th>
+						<td><i>なし</i></td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td><kbd>String</kbd> with currently active language.</td>
+						<th>返り値</th>
+						<td><kbd>String</kbd> 現在アクティブな言語。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// will return currently active language, most likely 'en'
+							<pre class="php"><code>// 現在アクティブな言語を返す。大抵は 'en' になるだろう
 Lang::get_lang();
 </code></pre>
 						</td>
@@ -452,11 +452,11 @@ Lang::get_lang();
 				</table>
 			</article>
 
-			<h3 id="procedural_helpers">Procedural helpers</h3>
+			<h3 id="procedural_helpers">手続き型ヘルパー</h3>
 
 			<article>
 				<h4 id="function___">__($string, $params = array())</h4>
-				<p>The <strong>__</strong> function is an alias for <a href="#method_get">Lang::get</a>.</p>
+				<p>The <strong>__</strong> 関数は、<a href="#method_get">Lang::get</a> の別名です。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -471,27 +471,27 @@ Lang::get_lang();
 								<tr>
 									<th><kbd>$string</kbd></th>
 									<td><i>必須</i></td>
-									<td>The desired line's identifier.</td>
+									<td>求める行の識別子。</td>
 								</tr>
 								<tr>
 									<th><kbd>$parameters</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Sets an array of parameter that might be passed to the line.</td>
+									<td>行に渡されるパラメータの配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>string, result from <a href="#method_get">Lang::get</a></td>
+						<td>string 。<a href="#method_get">Lang::get</a> からの結果</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Outputs Hello world
+							<pre class="php"><code>// Hello world を出力
 $this->output = __('hello', array('name' => 'world');
 
-// Outputs Plop
+// プロパティを出力
 $this->output = __('test.something');</code></pre>
 						</td>
 					</tr>
