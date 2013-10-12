@@ -47,29 +47,29 @@
 
 			<h2>Asset クラス</h2>
 
-			<p>The asset class is a set of methods to help with the collection, grouping and displaying of assets (js, css, img).</p>
+			<p>asset クラスは、アセット (js、css、img) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
 
 			<section>
-				<h3>Advanced usage</h3>
+				<h3>より進んだ使い方</h3>
 
 				<p>
-					The Asset class supports the use of multiple instances. This might prove useful if you are using themes, where
-					every theme has its own set of assets, or you are developing a modular application where each module provides
-					its own set of assets.
+				  Asset クラスは複数インスタンスでの利用をサポートしています。
+				  あなたが独自のアセット群を持つテーマを使っている場合や、
+				  モジュール型のアプリケーションを開発していて、そのモジュールがそれぞれアセットを持っているような場合に、これは役に立つかもしれません。
 				</p>
 				<p>
-					In these cases, it would not be handy to have only a single instance and use search paths, since the chances of
-					a duplicate asset name are quite high, causing your application to load the wrong asset.
+				  このようなケースでは、ただ一つのインスタンスが検索パスを持つことにより、
+				  同じ名前を持つアセットをアプリケーションが間違って読み込むことになる危険性が高くなるのは、ちょっと利口とはいえません。
 				</p>
 				<p>
-					You can use the same methods on an asset instance as you would when you the static methods. For the method
-					definition see the <a href="./usage.html">class usage</a> page.
+				  静的なメソッドと同じメソッド名を、Asset のインスタンスに対しても使用することができます。
+				  それぞれのメソッドの定義については<a href="./usage.html">使用法</a>ページを見て下さい。
 				</p>
 
 				<article>
 					<h4 class="method" id="method_forge">forge($config = array())</h4>
 					<p>
-						The <strong>forge</strong> method allows you to manually instantiate an asset instance.
+					  <strong>forge</strong> メソッドは、Asset クラスのインスタンスを手動で生成します。
 					</p>
 					<table class="method">
 						<tbody>
@@ -90,18 +90,18 @@
 										<th><kbd>$name</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-											Name of the instance requested. If it doesn't exist, it will be forged. If no name is
-											given, the default instance is returned.
+										  インスタンスの名前。もしその名前のインスタンスが存在しなければ、新たにフォージ(生成)されます。
+										  名前が渡されなかったときは、デフォルトインスタンスが返されます。
 										</td>
 									</tr>
 									<tr>
 										<th><kbd>$config</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
 										<td>
-											You can pass a custom configuration when forging a new asset instance. The configuration array
-											has the same structure as the asset configuration file. The custom config will be merged with
-											a default configuration as documented <a href="./config.html">here</a> and with the
-											configuration in your asset config file, so you only have to pass values you want changed.
+										  新しく Asset インスタンスを生成する際に、カスタム設定を渡すことができます。
+										  設定を意味する配列は、asset 設定ファイルと同様の構造を持っています。
+										  渡された設定内容は、<a href="./config.html">ここ</a>で解説されているデフォルトの設定と asset 設定ファイルにマージされますので、
+										  変更したい設定値だけを渡せばよいです。
 										</td>
 									</tr>
 								</table>
@@ -109,15 +109,15 @@
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>object - The instantiated asset object.</td>
+							<td>object - 生成された asset オブジェクト。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// instantiate a asset object with a custom search path
+								<pre class="php"><code>// 独自の検索パスを使って asset オブジェクトを生成します
 $asset = Asset::forge('custom', array('paths' => 'custom/assets/');
 
-// define some css files
+// css ファイルをいくつか定義します
 $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code></pre>
 							</td>
 						</tr>
@@ -128,8 +128,7 @@ $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code>
 				<article>
 					<h4 class="method" id="method_instance">instance($name = null)</h4>
 					<p>
-						The <strong>instance</strong> method allows you load a named instance of the asset class. If this instance does not
-						exist, it will be forged using the configuration array passed.
+					  <strong>instance</strong> メソッドは、名前のついた asset クラスのインスタンスを返します。
 					</p>
 					<table class="method">
 						<tbody>
@@ -150,8 +149,8 @@ $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code>
 										<th><kbd>$name</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-											Name of the instance requested. If it doesn't exist, false is returned. If no name is
-											given, the default instance is returned.
+										  インスタンスの名前を渡します。もしその名前のインスタンスがなかった場合はfalseが返されます。
+										  名前が指定されなかったときはデフォルトのインスタンスが返されます
 										</td>
 									</tr>
 								</table>
@@ -159,15 +158,16 @@ $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed - The named asset instance or false if the instance does not exist.</td>
+							<td>mixed - その名前の asset インスタンス。存在しなければ false が返ります。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// instantiate a named asset object with a custom search path
+								<pre class="php"><code>// 独自の検索パスを使った名前がついた asset インスタンスを生成します
+instantiate a named asset object with a custom search path
 Asset::forge('custom', array('paths' => 'custom/assets/'));
 
-// define some css files using the defined instance
+// その asset インスタンスを用いて css ファイルをいくつか定義します
 Asset::instance('custom')->css(array('header.css', 'footer.css'), array(), 'layout', false);</code></pre>
 							</td>
 						</tr>
@@ -176,8 +176,8 @@ Asset::instance('custom')->css(array('header.css', 'footer.css'), array(), 'layo
 				</article>
 
 				<p class="note">
-					 The static methods of the Asset class will also use the default instance. Remember this if you
-					 alter the configuration (for example search paths) of the default instance!
+				  Asset クラスの静的メソッドは、デフォルトインスタンスを使用します。
+				  デフォルトインスタンスに対して、例えば検索パスの変更などを行った場合はこのことを忘れないで下さい!
 				</p>
 
 			</section>
