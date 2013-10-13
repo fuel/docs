@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -223,10 +223,10 @@ $role->save();</code></pre>
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>型</th>
+							<th>デフォルト</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>db_connection</th>
@@ -286,7 +286,7 @@ $role->save();</code></pre>
 )</code></pre>
 							</td>
 							<td>
-								Configuration for the Ormauth 'remember_me' functionality
+								Ormauth の 'remember_me' 機能のための設定
 							</td>
 						</tr>
 						<tr>
@@ -295,8 +295,8 @@ $role->save();</code></pre>
 							<td><pre class="php"><code>false</code></pre>
 							</td>
 							<td>
-								If true multiple concurrent logins of the same user are allowed. If false, when a user logs in, any previous login will be
-								cancelled. Note that enabling this will disable some login session hijacking measures!
+								true の場合、同一ユーザの複数の同時ログインが許可されています。 false の場合、ユーザーがログインしたときに以前のログインが取り消されます。
+								これを有効にすると、いくつかのログインセッションハイジャック対策が無効になることに注意してください！
 							</td>
 						</tr>
 						<tr>
@@ -305,9 +305,9 @@ $role->save();</code></pre>
 							<td><pre class="php"><code>'put_some_salt_in_here'</code></pre>
 							</td>
 							<td>
-								To make the passwords used by the OrmAuth drivers extra secure, a salt value is used when hashing
-								the passwords to store them into the database. Make sure you change this default to a very random string!
-								To hash passwords, OrmAuth uses <a href="http://en.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a>, a very secure hashing mechanism.
+								OrmAuth で利用されるパスワードをよりセキュアにするために、パスワードのハッシュ値をデータベースに保存する際に、サルトが使われています。
+								デフォルトのものから、ランダムな文字列に変更することを忘れないように！
+								パスワードのハッシュ化にあたり、 OrmAuth は非常にセキュアな機構である <a href="http://en.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a>　を利用しています。
 							</td>
 						</tr>
 						<tr>
@@ -316,7 +316,7 @@ $role->save();</code></pre>
 							<td><pre class="php"><code>'username'</code></pre>
 							</td>
 							<td>
-								Name of the input field on the login form that contains the username.
+								ログインフォームのユーザ名を入力するフィールド名。
 							</td>
 						</tr>
 						<tr>
@@ -325,15 +325,15 @@ $role->save();</code></pre>
 							<td><pre class="php"><code>'password'</code></pre>
 							</td>
 							<td>
-								Name of the input field on the login form that contains the password.
+								ログインフォームのパスワードを入力するフィールド名。
 							</td>
 						</tr>
 					</tbody>
 				</table>
 
 			<p class="note">
-				If you want to use the 'remember-me' functionality, make sure you have a valid <a href="../../../classes/crypt.html">Crypt</a> configuration, as it
-				uses an encrypted cookie to store the user information to be remembered.
+				'remember-me' 機能を使用したい場合は、記憶されるユーザ情報を格納するために暗号化されたクッキーを使用するため、有効な
+				<a href="../../../classes/crypt.html">Crypt</a> 設定を持っていることを確認してください。
 			</p>
 
 			<h3 id="database">データベーステーブル</h3>
