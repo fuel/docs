@@ -296,8 +296,8 @@ echo Uri::segments(); // array(0 => 'controller', 1 => 'method') が返ります
 			</article>
 
 			<article>
-				<h4 class="method" id="method_segment_replace">segment_replace($url)</h4>
-				<p><strong>segment_replace</strong> メソッドは、与えられた url の中にあるワイルドカードを、その場所にある現在の URI セグメントと取り替えることができます。</p>
+				<h4 class="method" id="method_segment_replace">segment_replace($url, $secure = null)</h4>
+				<p>The <strong>segment_replace</strong> method allows you to replace wildcards in a given url by the current URI segment in that position.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -317,6 +317,11 @@ echo Uri::segments(); // array(0 => 'controller', 1 => 'method') が返ります
 									<th><kbd>$url</kbd></th>
 									<td><i>必須</i></td>
 									<td>ワイルドカードを含んだ URL 。ワイルドカード文字は * (アスタリスク) で表されます。</td>
+								</tr>
+								<tr>
+									<th><kbd>$secure</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>If false, the url returned will use HTTP, if true, it will use HTTPS.</td>
 								</tr>
 							</table>
 						</td>
@@ -338,7 +343,77 @@ echo Uri::segments(); // array(0 => 'controller', 1 => 'method') が返ります
 echo Uri::segment_replace('http://localhost/*/*/three');
 
 // 3 番目のセグメントが存在しなかったとして、例外を投げる
-echo Uri::segment_replace('http://localhost/this/that/*/other');</code></pre>
+echo Uri::segment_replace('http://localhost/this/that/*/other');
+
+// returns https://localhost/one/two/three
+echo Uri::segment_replace('http://localhost/*/*/three', true);</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_update_query_string">update_query_string($vars = array(), $uri = null, $secure = null)</h4>
+				<p>
+					The <strong>update_query_string</strong> method allows you to update the query string in the current or passed URI.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$vars</kbd></th>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td>An assoc array of query variables, or a string containing the variable name.</td>
+								</tr>
+								<tr>
+									<th><kbd>$uri</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>
+										The url to use. If not given, the current url will be used. If $vars is a string, this will contain
+										the variables value (which implies you can't pass a custom uri in that case!).
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$secure</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>If false, the url returned will use HTTP, if true, it will use HTTPS.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Example: Current URL = http://localhost/test?one=1&amp;two=2
+
+// returns http://localhost/test?one=1&amp;two=2&amp;three=3
+echo Uri::update_query_string(array('three' => 3));
+
+// returns http://localhost/test?one=1&amp;two=3
+echo Uri::update_query_string(array('two' => 3));
+
+// returns http://localhost/controller?four=4
+echo Uri::update_query_string(array('four' => 4), 'http://localhost/controller');
+
+// returns https://localhost/test?one=1&amp;two=2&amp;three=3
+echo Uri::update_query_string('three', 3, true);</code></pre>
 						</td>
 					</tr>
 					</tbody>

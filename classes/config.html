@@ -76,6 +76,17 @@ key=value</code></pre>
 	}
 }</code></pre>
 				</li>
+				<li>
+					DB. Use the following table structure:
+					<pre class="php"><code>  CREATE TABLE IF NOT EXISTS `config` (
+  `identifier` char(100) NOT NULL,
+  `config` longtext NOT NULL,
+  `hash` char(13) NOT NULL,
+  PRIMARY KEY (`identifier`)
+)</code></pre>
+					By default it will use the table name 'config'. You can override this by defining your table name in
+					<code>app/config/config.php</code>, using the <strong>config.table_name</strong> key.
+				</li>
 			</ul>
 
 			<p>ファイルの種類を指定しなかった場合は、Config::load() はデフォルトの 'php' を使用します。</p>

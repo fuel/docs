@@ -95,6 +95,18 @@ key=value</code></pre>
 	}
 }</code></pre>
 				</li>
+				<li>
+					DB. Use the following table structure:
+					<pre class="php"><code>  CREATE TABLE IF NOT EXISTS `lang` (
+  `identifier` char(100) NOT NULL,
+  `language` char(10) NOT NULL,
+  `lang` longtext NOT NULL,
+  `hash` char(13) NOT NULL,
+  PRIMARY KEY (`identifier`, `language`)
+)</code></pre>
+					By default it will use the table name 'lang'. You can override this by defining your table name in
+					<code>app/config/config.php</code>, using the <strong>lang.table_name</strong> key.
+				</li>
 			</ul>
 
 			<p>ファイルの種類を指定しない場合、Lang::load() はデフォルトの 'php' になります。</p>
