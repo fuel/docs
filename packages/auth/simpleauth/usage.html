@@ -180,6 +180,40 @@ if (Auth::login($name, $pass))
 				</article>
 
 				<article>
+					<h4 id="method_check" class="method">check()</h4>
+					<p>The <strong>check</strong> method checks if a logged-in user is present.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean. returns <strong>true</strong> if the is a logged-in user, <strong>false</strong> otherwise.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// login if we're not logged-in
+if ( ! Auth::check())
+{
+	Response::redirect('/login');
+}
+</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
 					<h4 id="method_force_login" class="method">force_login($user_id = '')</h4>
 					<p>
 						<strong>force_login</strong> メソッドは強制的なログインリクエストを扱います。ユーザ id
