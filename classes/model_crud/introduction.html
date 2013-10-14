@@ -50,39 +50,39 @@
 			<h3 id="introduction">はじめに</h3>
 
 			<p>
-				A lot of database operations come to basic CRUD (Create Retrieve Update Delete) operations.
-				The Model_Crud class supplies there functionalities in a standardized way. The class helps you with:
+				データベース操作のほとんどは基本的な CRUD (Create Retrieve Update Delete) 操作に落ち着くことになる。
+				Model_Crud クラスは標準的な方法でその機能を提供します。このクラスは以下をサポートします:
 			</p>
 
 			<ul>
-				<li>Creating database entries</li>
-				<li>Retrieving database entries</li>
-				<li>Updating database entries</li>
-				<li>Deleting database entries</li>
-				<li>Entree input validation</li>
+				<li>データベースエンティティの作成</li>
+				<li>データベースエンティティの取得</li>
+				<li>データベースエンティティの更新</li>
+				<li>データベースエンティティの削除</li>
+				<li>入力値バリデーション</li>
 			</ul>
 
-			<h3 id="first_model">Your first model</h3>
+			<h3 id="first_model">最初のモデル</h3>
 
 			<p>
-				To use the Model_Crud class, create a class that extends \Model_Crud. Example:
+				Model_Crud クラスを利用するために、\Model_Crud を継承したクラスを作ります。例:
 			</p>
 
 			<pre class="php"><code>&lt;?php
 
 class Model_Users extends \Model_Crud
 {
-	// Set the table to use
+	// 利用したいテーブル名をセット
 	protected static $_table_name = 'users';
 }
 </code></pre>
 
-			<p>Now you have a basic model to work with.</p>
+			<p>これで動作する基本的なモデルになりました。</p>
 
 			<h3 id="configuration">設定</h3>
 
 			<p>
-				Configuring a model is done by setting a few parameters:
+				モデルの設定はいくつかのパラメータによって行われます:
 			</p>
 
 			<table class="config">
@@ -99,7 +99,7 @@ class Model_Users extends \Model_Crud
 						<td>string</td>
 						<td><em>必須</em></td>
 						<td>
-							The table to use.
+							利用するテーブル
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_table_name = 'table';</code></pre>
@@ -110,7 +110,7 @@ class Model_Users extends \Model_Crud
 						<td>string</td>
 						<td><pre class="php"><code>'id'</code></pre></td>
 						<td>
-							The table's id field.
+							テーブルの id フィールド名
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_primary_key = 'custom_id';</code></pre>
@@ -121,7 +121,7 @@ class Model_Users extends \Model_Crud
 						<td>array</td>
 						<td><em>none</em></td>
 						<td>
-							Input validation rules
+							入力値のバリデーションルール
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_rules = array(
@@ -135,7 +135,7 @@ class Model_Users extends \Model_Crud
 						<td>array</td>
 						<td><em>none</em></td>
 						<td>
-							The validation labels.
+							バリデーションのラベル
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_labels = array(
@@ -149,7 +149,7 @@ class Model_Users extends \Model_Crud
 						<td>array</td>
 						<td><em>none</em></td>
 						<td>
-							Columns to use when updating/saving.
+							更新/保存に使うカラム名
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_properties = array(
@@ -166,7 +166,7 @@ class Model_Users extends \Model_Crud
 						<td>array</td>
 						<td><em>none</em></td>
 						<td>
-							Array of columns which can be set with:<br />__construct,<br />::forge<br />->set()
+							以下でセットすることを許可するカラムの配列:<br />__construct、<br />::forge<br />->set()
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_mass_whitelist = array(
@@ -181,7 +181,7 @@ class Model_Users extends \Model_Crud
 						<td>array</td>
 						<td><em>none</em></td>
 						<td>
-							Array of columns which could not be set with: __construct, ::forge and ->set() method.
+							以下でセットすることを許可しないカラムの配列: __construct、 ::forge と ->set()
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_mass_blacklist = array(
@@ -193,9 +193,9 @@ class Model_Users extends \Model_Crud
 					<tr>
 						<td colspan="5">
 							<p class="note">
-								$_mass_whitelist is like a allows for extra security when mass-assigning
-								propperties. Do note that this only works with <strong>__construct</strong>,
-								<strong>::forge</strong> and <strong>->set</strong>.
+								$_mass_whitelist はプロパティの一斉割り当てをするときに許可する追加のセキュリティ機構です。
+								<strong>__construct</strong>、 <strong>::forge</strong> と <strong>->set</strong> を
+								使った時にだけ動作することに注意してください。
 							</p>
 						</td>
 					</tr>
@@ -204,7 +204,7 @@ class Model_Users extends \Model_Crud
 						<td>string</td>
 						<td><em>none</em></td>
 						<td>
-							The database connection to use, or the connection used for reads in a master/slave setup. If not configured, the DB config default will be used.
+							データベースコネクションを使う、またはマスター/スレーブの読み込みに使うコネクション。設定しない場合は、DB設定がデフォルトで使用されます。
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_connection = null;</code></pre>
@@ -215,7 +215,7 @@ class Model_Users extends \Model_Crud
 						<td>string</td>
 						<td><em>none</em></td>
 						<td>
-							The database connection to use for writes in a master/slave setup.
+							マスター/スレーブへの書き込みで使用するデータベースコネクション。
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_write_connection = 'master';</code></pre>
@@ -226,7 +226,7 @@ class Model_Users extends \Model_Crud
 						<td>array</td>
 						<td><em>none</em></td>
 						<td>
-							An array of default values
+							デフォルト値の配列
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_defaults = array(
@@ -240,8 +240,8 @@ class Model_Users extends \Model_Crud
 						<td>string</td>
 						<td><em>none</em></td>
 						<td>
-							Field name for a 'created at' field. Set <strong>$_mysql_timestamp</strong>
-							to true to use a MySQL timestamp instead of a UNIX timestamp
+							'created_at' のフィールド名。<strong>$_mysql_timestamp</strong> に true をセットすると
+							UNIX タイムスタンプの代わりに、MySQL のタイムスタンプを使用します。
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_created_at = 'created_at';</code></pre>
@@ -252,8 +252,8 @@ class Model_Users extends \Model_Crud
 						<td>string</td>
 						<td><em>none</em></td>
 						<td>
-							Field name for a 'updated at' field. Set <strong>$_mysql_timestamp</strong>
-							to true to use a MySQL timestamp instead of a UNIX timestamp
+							'updated_at' のフィールド名。<strong>$_mysql_timestamp</strong> に true をセットすると
+							UNIX タイムスタンプの代わりに、MySQL のタイムスタンプを使用します。
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_updated_at = 'modified_at';</code></pre>
@@ -264,8 +264,8 @@ class Model_Users extends \Model_Crud
 						<td>boolean</td>
 						<td><em>none</em></td>
 						<td>
-							Set to true to use a MySQL timestamp instead of a UNIX timestamp for
-							<strong>$_created_at</strong> and <strong>$_updated_at</strong> fields.
+							true にセットすると UNIX タイムスタンプの代わりに MySQL のタイムスタンプが
+							<strong>$_created_at</strong> と <strong>$_updated_at</strong> のフィールドに入ります。
 						</td>
 						<td>
 							<pre class="php"><code>protected static $_mysql_timestamp = true;</code></pre>
