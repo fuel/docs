@@ -47,8 +47,8 @@
 			<h2 id="usage">OrmAuth の使用方法</h2>
 
 			<p>
-				As said in the <a href="../intro.html">introduction</a> of the Auth package, an authentication system comes with
-				three different drivers, each dealing with a part of the system:
+				Auth パッケージの <a href="../intro.html">はじめに</a> で述べたとおり、認証システムは 3 つのドライバで成り立っており、
+				それぞれがシステムの一部として機能します：
 			</p>
 			<p>
 				The Ormauth <kbd>login</kbd> driver provides the logic for creating, updating, deleting and validating user accounts
@@ -76,7 +76,7 @@
 
 				<article>
 					<h4 id="method_validate_user" class="method">validate_user($username_or_email = '', $password = '')</h4>
-					<p>The <strong>validate_user</strong> method validates user credentials. This method supports both email address and username as valid credential.</p>
+					<p><strong>validate_user</strong> メソッドはユーザーの資格情報を検証します。このメソッドでは、有効な資格情報としてメールアドレスとユーザー名の両方をサポートしています。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -95,12 +95,12 @@
 									<tr>
 										<th><kbd>$username_or_email</kbd></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>Either the users username or email address</td>
+										<td>ユーザーのユーザー名またはメールアドレスのいずれか</td>
 									</tr>
 									<tr>
 										<th><kbd>$password</kbd></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>The users password</td>
+										<td>ユーザのパスワード</td>
 									</tr>
 								</table>
 							</td>
@@ -112,10 +112,10 @@
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// validate the a username and password
+								<pre class="php"><code>// ユーザ名とパスワードを検証
 if ($user = Auth::validate_user($name, $pass))
 {
-	// the combination of $name and $pass validated, print the users screen name
+	// $name と $pass との組み合わせが検証されたならユーザーの表示名を印字
 	echo $user->username;
 }
 </code></pre>
@@ -123,7 +123,7 @@ if ($user = Auth::validate_user($name, $pass))
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">This method only validates if a given combination of username and password is correct. It does NOT log the user in!</p>
+					<p class="note">このメソッドはユーザ名とパスワードの指定された組合せが正しければ検証のみを行います。ユーザーはログインされません！</p>
 				</article>
 
 				<article>
@@ -149,41 +149,41 @@ if ($user = Auth::validate_user($name, $pass))
 									<tr>
 										<th><kbd>$username_or_email</kbd></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>Either the users username or email address</td>
+										<td>ユーザーのユーザー名またはメールアドレスのいずれか</td>
 									</tr>
 									<tr>
 										<th><kbd>$password</kbd></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>The users password</td>
+										<td>ユーザのパスワード</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. returns <strong>true</strong> if the login was succesful, <strong>false</strong> otherwise.</td>
+							<td>boolean。ログインに成功すれば <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// perform a login
+								<pre class="php"><code>// ログインを実行
 if (Auth::login($name, $pass))
 {
-	// the user is succesfully logged in
+	// ユーザーは正常にログインされている
 }
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">After a succesful login, the 'username' and the current 'login_hash' will be available as a session variable.</p>
+					<p class="note">ログイン成功後、 'username' と現在の 'login_hash' が、セッション変数として利用できます。</p>
 				</article>
 
 				<article>
 					<h4 id="method_force_login" class="method">force_login($user_id = '')</h4>
 					<p>
-						The <strong>force_login</strong> method performs a forced login request. You can use this for an automated login, when you know
-						the users id, but you don't know the password. This can be used for example to implement a "remember me" feature.</p>
+						<strong>force_login</strong> メソッドは強制的なログインリクエストを扱います。ユーザ id
+						が手元にありパスワードがわかっていないときに自動ログインさせるために利用できます。これは、例えば「ログイン状態を保持する」機能を実装するために利用できます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -209,15 +209,15 @@ if (Auth::login($name, $pass))
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. returns <strong>true</strong> if the login was succesful, <strong>false</strong> otherwise.</td>
+							<td>boolean。ログインに成功すれば <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// perform a forced login for user 12121
+								<pre class="php"><code>// ユーザー 12121 の強制ログインを実行
 if (Auth::force_login(12121))
 {
-	// the user is succesfully logged in. Any previously logged-in user will be logged out!
+	// ユーザーは正常にログインされている。以前にログインしていたユーザーはログアウトされます！
 }
 
 // perform a forced login for user object 12121
@@ -234,7 +234,7 @@ if (Auth::force_login($user))
 
 				<article>
 					<h4 id="method_logout" class="method">logout()</h4>
-					<p>The <strong>logout</strong> method logs out the current logged-in user.</p>
+					<p><strong>logout</strong> メソッドは現在ログイン中のユーザをログアウトさせます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -244,30 +244,30 @@ if (Auth::force_login($user))
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. returns <strong>true</strong> if the logout was succesful, <strong>false</strong> otherwise.</td>
+							<td>boolean。ログアウトが成功し場合、 <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// perform a logout
+								<pre class="php"><code>// ログアウトを実行
 Auth::logout();
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If you have enabled guest user support, the guest user will be setup after a succesful logout.</p>
+					<p class="note">ゲストユーザをサポートする場合は、ログアウト成功後に現在のユーザとしてゲストをセットアップします。</p>
 				</article>
 
 				<article>
 					<h4 id="method_create_user" class="method">create_user($username, $password, $email, $group = 1, Array $profile_fields = array())</h4>
 					<p>
-						The <strong>create_user</strong> allows method you to create a new user record in the users table.
+						<strong>create_user</strong> メソッドは、ユーザ情報テーブルに新しいユーザレコードを作成します。
 					</p>
 					<table class="method">
 						<tbody>
@@ -287,22 +287,22 @@ Auth::logout();
 									<tr>
 										<th><kbd>$username</kbd></th>
 										<td>required</td>
-										<td>The name of the user you want to create</td>
+										<td>作成したいユーザー名</td>
 									</tr>
 									<tr>
 										<th><kbd>$password</kbd></th>
 										<td>required</td>
-										<td>The password you want to assign to the user</td>
+										<td>ユーザーに割り当てるパスワード</td>
 									</tr>
 									<tr>
 										<th><kbd>$email</kbd></th>
 										<td>required</td>
-										<td>The email address of the user you want to create</td>
+										<td>作成するユーザの電子メールアドレス</td>
 									</tr>
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td>1</td>
-										<td>The group you want to assign this user to. By default, the user is assigned to group 1.</td>
+										<td>このユーザに割り当てる任意の追加プロフィールフィールドもしくはユーザメタデータ</td>
 									</tr>
 									<tr>
 										<th><kbd>$profile_fields</kbd></th>
@@ -318,12 +318,12 @@ Auth::logout();
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. returns the id of the user record created, or <strong>false</strong> if the creation failed.</td>
+							<td>mixed 。作成されたユーザレコードの id を返す。作成に失敗した場合は <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// create a new user
+								<pre class="php"><code>// 新しいユーザーを作成
 Auth::create_user(
 	'anewuser',
 	'thisismysecretpassword',
@@ -345,8 +345,8 @@ Auth::create_user(
 				<article>
 					<h4 id="method_update_user" class="method">update_user($values, $username = null)</h4>
 					<p>
-						The <strong>update_user</strong> method allows you to update values in the user record,
-						either for a named user, or for the current logged-in user.
+						<strong>update_user</strong> メソッドを使用すると、指名されたユーザー、もしくは、
+						現在ログインしているユーザー、どちらかのユーザレコードを更新することができます。
 					</p>
 					<table class="method">
 						<tbody>
@@ -366,12 +366,12 @@ Auth::create_user(
 									<tr>
 										<th><kbd>$values</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>Associative array with column name / value pairs for the columns or profile fields you want to update.</td>
+										<td>カラム名と値がペアになった連想配列、もしくは更新したいプロフィールフィールド</td>
 									</tr>
 									<tr>
 										<th><kbd>$username</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the user you want to update</td>
+										<td>更新したいユーザのユーザ名</td>
 									</tr>
 								</table>
 							</td>
@@ -382,18 +382,18 @@ Auth::create_user(
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. returns <strong>true</strong> if columns were updated, or <strong>false</strong> if no columns were affected.</td>
+							<td>boolean。カラムが更新されれば <strong>true</strong> を、どのカラムも変更がなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// update the data for the current user
+								<pre class="php"><code>// 現在のユーザーのデータを更新
 Auth::update_user(
 	array(
-		'email'        => 'anewemail@example.org',  // set a new email address
-		'password'     => 'thisismynewpassword',    // set a new password
-		'old_password' => 'thisismysecretpassword', // to do so, give the current one!
-		'phone'        => '+1 (555) 123-1212',	    // and add the phone number to the metadata
+		'email'        => 'anewemail@example.org',  // 新しいメールアドレスを設定する
+		'password'     => 'thisismynewpassword',    // 新しいパスワードを設定
+		'old_password' => 'thisismysecretpassword', // その為には現在のパスワードを与える！
+		'phone'        => '+1 (555) 123-1212',	    // それから、メタデータに電話番号を追加
 	)
 );
 </code></pre>
@@ -402,15 +402,15 @@ Auth::update_user(
 						</tbody>
 					</table>
 					<p class="note">
-						This method is primary provided to allow the user to do profile updates. And as a security measure, it will <strong>not</strong> allow you
-						to change the username, and if you want to change the password, you <strong>have</strong> to pass the current password in $values as "old_password".
+						このメソッドは主にユーザがプロファイルの更新を行うことができるように設けられています。そして、セキュリティ対策として、
+						ユーザー名を変更することは<strong>できず</strong>、また、パスワードを変更する場合は、現在のパスワードを $values に "old_password" として渡す<strong>必要が</strong>あります。
 					</p>
 				</article>
 
 				<article>
 					<h4 id="method_change_password" class="method">change_password($old_password, $new_password, $username = null)</h4>
 					<p>
-						The <strong>change_password</strong> method allows you to change a users password.
+						<strong>change_password</strong> は、ユーザパスワードの変更ができます。
 					</p>
 					<table class="method">
 						<tbody>
@@ -430,17 +430,17 @@ Auth::update_user(
 									<tr>
 										<th><kbd>$old_password</kbd></th>
 										<td>required</td>
-										<td>The users current password</td>
+										<td>ユーザの現在のパスワード</td>
 									</tr>
 									<tr>
 										<th><kbd>$new_password</kbd></th>
 										<td>required</td>
-										<td>The users new password</td>
+										<td>ユーザの新しいパスワード</td>
 									</tr>
 									<tr>
 										<th><kbd>$username</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the user of whom you want to change the password</td>
+										<td>パスワードを変更したいユーザのユーザ名</td>
 									</tr>
 								</table>
 							</td>
@@ -451,12 +451,12 @@ Auth::update_user(
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. returns <strong>true</strong> if the password was changed, or <strong>false</strong> if the old password was incorrect.</td>
+							<td>boolean。パスワードが変更されれば <strong>true</strong> を、 $old_password が正しくなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// reset the password for the current user
+								<pre class="php"><code>// 現在のユーザのパスワードを変更 (訳注：'reset the password' になっているが、'change' の間違いと思われる)
 Auth::change_password('thisismynewpassword','thisismysecretpassword');
 </code></pre>
 							</td>
@@ -464,15 +464,15 @@ Auth::change_password('thisismynewpassword','thisismysecretpassword');
 						</tbody>
 					</table>
 					<p class="note">
-						This method is provided to allow the user to change his password. And as a security measure, you <strong>have</strong> to
-						pass the current password in "old_password".
+						このメソッドはユーザーがパスワードを変更できるようにするために設けられています。
+						また、セキュリティ対策として、現在のパスワードを "old_password" に渡す<strong>必要が</strong>あります。
 					</p>
 				</article>
 
 				<article>
 					<h4 id="method_reset_password" class="method">reset_password($username)</h4>
 					<p>
-						The <strong>reset_password</strong> method allows you to assign a new random password to a user.
+						<strong>reset_password</strong> メソッドは、ユーザに新しいランダムなパスワードを割り当てます。
 					</p>
 					<table class="method">
 						<tbody>
@@ -492,7 +492,7 @@ Auth::change_password('thisismynewpassword','thisismysecretpassword');
 									<tr>
 										<th><kbd>$username</kbd></th>
 										<td>required</td>
-										<td>The name of the user for whom you want to reset the password</td>
+										<td>パスワードをリセットしたいユーザのユーザ名</td>
 									</tr>
 								</table>
 							</td>
@@ -503,12 +503,12 @@ Auth::change_password('thisismynewpassword','thisismysecretpassword');
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>string, the generated random password.</td>
+							<td>string、生成されたランダムなパスワード。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// reset the password for the current user
+								<pre class="php"><code>// 現在のユーザーのパスワードをリセット
 $new_password = Auth::reset_password('thisusername');
 </code></pre>
 							</td>
@@ -520,7 +520,7 @@ $new_password = Auth::reset_password('thisusername');
 				<article>
 					<h4 id="method_delete_user" class="method">delete_user($username)</h4>
 					<p>
-						The <strong>delete_user</strong> method allows you to delete a user account.
+						<strong>delete_user</strong> メソッドは、ユーザアカウントを削除します。
 					</p>
 					<table class="method">
 						<tbody>
@@ -540,7 +540,7 @@ $new_password = Auth::reset_password('thisusername');
 									<tr>
 										<th><kbd>$username</kbd></th>
 										<td>required</td>
-										<td>The name of the user account you want to delete</td>
+										<td>削除したいユーザのユーザ名</td>
 									</tr>
 								</table>
 							</td>
@@ -551,12 +551,12 @@ $new_password = Auth::reset_password('thisusername');
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. returns <strong>true</strong> if the user account was deleted, or <strong>false</strong> if it failed (because the username did not exist).</td>
+							<td>boolean。ユーザアカウントが削除されれば <strong>true</strong> を、削除に失敗した場合(ユーザが存在しなかった場合)は <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// delete the user
+								<pre class="php"><code>// ユーザーを削除
 Auth::delete_user('thisusername');
 </code></pre>
 							</td>
@@ -568,7 +568,7 @@ Auth::delete_user('thisusername');
 
 				<article>
 					<h4 id="method_create_login_hash" class="method">create_login_hash()</h4>
-					<p>The <strong>create_login_hash</strong> method generates a new login hash for the currently logged-in user.</p>
+					<p><strong>create_login_hash</strong> メソッドは、現在ログイン中のユーザのログインハッシュを生成します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -578,31 +578,31 @@ Auth::delete_user('thisusername');
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>string, the generated login hash.</td>
+							<td>string、生成されたログインハッシュ。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// generate a new random hash
+								<pre class="php"><code>// ランダムなハッシュを新たに生成
 Auth::create_login_hash();
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">This method is normally used when a user logs in, but you can use this as an extra security measure by rotating
-					the hash regularly for logged-in users.</p>
-					<p class="note">Note that login hash protection is <kbd>not</kbd> used when multiple logins is enabled!</p>
+					<p class="note">このメソッドは、ユーザーがログインしたとき標準的に使用されますが、ユーザーのログイン中、
+					定期的にハッシュを回転させることにより追加のセキュリティ対策としてこのメソッドを使用することができます。</p>
+					<p class="note">同一ユーザの複数の同時ログインが有効になっている場合、ログインハッシュ保護が使用<kbd>されない</kbd>ことに注意！</p>
 				</article>
 
 				<article>
 					<h4 id="method_get" class="method">get($field, $default = null)</h4>
-					<p>The <strong>get</strong> method is a generic getter for user properties, either from the user record, or from the metadata.</p>
+					<p><strong>get</strong> メソッドは、ユーザレコードからかメタデータからのユーザプロパティの一般的な getter です。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -621,24 +621,24 @@ Auth::create_login_hash();
 									<tr>
 										<th><kbd>$field</kbd></th>
 										<td>required</td>
-										<td>The name of the property you want the value of</td>
+										<td>値が欲しいプロパティの名前</td>
 									</tr>
 									<tr>
 										<th><kbd>$default</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The value to return is the property is not set</td>
+										<td>プロパティが設定されていない場合に返される値</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed.</td>
+							<td>mixed。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// get the user creation date
+								<pre class="php"><code>// ユーザの作成日を取得
 $created_at = Auth::get('created_at');
 </code></pre>
 							</td>
@@ -649,9 +649,9 @@ $created_at = Auth::get('created_at');
 
 				<article>
 					<h4 id="method_get_user_id" class="method">get_user_id()</h4>
-					<p>The <strong>get_user_id</strong> method returns an array structure containing the drivers id value, and the id of
-					the currently logged-in user. It uses this structure because you can have multiple login drivers active, each can have
-					a different id for the currently logged-in user.</p>
+					<p><strong>get_user_id</strong> メソッドは、ドライバの id 、現在ログイン中のユーザの id の配列を返します。
+					アクティブな複数のログインドライバを持つことができるので、この構造を使用して、
+					それぞれが現在ログインしているユーザごとに異なる id を持つことができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -661,20 +661,20 @@ $created_at = Auth::get('created_at');
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. returns a numeric array in the form <strong>array([0]=>driver_id, [1]=>user_id)</strong> if a user is logged in, or <strong>false</strong> otherwise.</td>
+							<td>mixed 。ユーザがログイン中なら、 <strong>array([0]=>driver_id, [1]=>user_id)</strong> 形式の数値配列を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// get all login id information
+								<pre class="php"><code>// すべてのログインID情報を取得
 $id_info = Auth::get_user_id();
 
-// print driver and id info
+// ドライバおよび id 情報を印字
 if ($id_info)
 {
 	foreach ($id_info as $info)
@@ -687,22 +687,22 @@ else
 	echo 'Nobody is logged in!';
 }
 
-// if you only use one driver, you can also do
+// 唯一つのドライバを使用する場合、次のようにできます。
 list($driver, $userid) = Auth::get_user_id();
 
-// or this if you only need the userid
+// または、ユーザー id のみ必要な場合
 list(, $userid) = Auth::get_user_id();
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If guest user support is enabled, you will never get <strong>false</strong> returned, because the method will return the user id of the guest user.</p>
+					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのユーザ id が返るので <strong>false</strong> は返ることはありません。</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_groups" class="method">get_groups()</h4>
-					<p>The <strong>get_groups</strong> method returns the user groups assigned to the currently logged-in user.</p>
+					<p><strong>get_groups</strong> メソッドは、ログイン中のユーザが所属するグループを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -712,19 +712,19 @@ list(, $userid) = Auth::get_user_id();
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. returns an array in the form <strong>array(array(driver, group_id))</strong> if a user is logged in, or <strong>false</strong> otherwise.</td>
+							<td>mixed 。ユーザがログイン中なら、 <strong>array(array(driver, group_id))</strong> 形式の配列を、そうでなければ <strong>false</strong> を返します。</td>
 						</tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// get all group id information
+								<pre class="php"><code>// すべてのグループID情報を取得
 $id_info = Auth::get_groups();
 
-// print driver and id info
+// ドライバおよび id 情報を印字
 if ($id_info)
 {
 	foreach ($id_info as $info)
@@ -737,19 +737,19 @@ else
 	echo 'Nobody is logged in!';
 }
 
-// if you only use one driver, you can also do
+// 唯一つのドライバを使用する場合、次のようにできます。
 list($driver, $groupid) = Auth::get_groups();
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If guest user support is enabled, you will never get <strong>false</strong> returned, because the method will return the group information of the guest user.</p>
+					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのグループ情報が返るので <strong>false</strong> は返ることはありません。</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_email" class="method">get_email()</h4>
-					<p>The <strong>get_email</strong> method returns the email address assigned to the currently logged-in user.</p>
+					<p><strong>get_email</strong> メソッドは、現在ログイン中のユーザに対応するメールアドレスを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -759,39 +759,39 @@ list($driver, $groupid) = Auth::get_groups();
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. returns an email address if a user is logged in, or <strong>false</strong> if there is no user logged-in.</td>
+							<td>mixed 。ユーザがログイン中ならメールアドレスを、ログイン中のユーザがいない場合は <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// get the current users email address
+								<pre class="php"><code>// 現在のユーザの電子メールアドレスを取得
 $email = Auth::get_email();
 
-// note that there is a difference between false and empty:
+// false と empty の間に差があることに注意:
 if ($email === false)
 {
-	// nobody logged in
+	// 誰もログインしていない
 }
 if (empty($email))
 {
-	// a user is logged in, but doesn't have an email address
+	// ユーザーがログインしているが電子メールアドレスを持っていない
 }
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If guest user support is enabled, you will never get <strong>false</strong> returned, because the method will return the email address of the guest user.</p>
+					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのメールアドレスが返るので <strong>false</strong> は返ることはありません。</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_screen_name" class="method">get_screen_name()</h4>
-					<p>The <strong>get_screen_name</strong> method returns the screen- or display name of the currently logged-in user.</p>
+					<p><strong>get_screen_name</strong> メソッドは、現在ログイン中のユーザの表示名を返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -801,35 +801,35 @@ if (empty($email))
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. returns a string containing the name, or <strong>false</strong> if there is no user logged-in.</td>
+							<td>mixed 。表示名の文字列を返す。ログイン中のユーザがいなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// get the current users screen name
+								<pre class="php"><code>// 現在のユーザーの表示名を取得
 $name = Auth::get_screen_name();
 
-// name is required, so if not present it means nobody is logged in
+// 名前は必須、存在しないならば誰もログインしていないことを意味する
 if (empty($name))
 {
-	// nobody logged in
+	// 誰もログインしていない
 }
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If guest user support is enabled, you will never get <strong>false</strong> returned, because the method will return the user name of the guest user.</p>
+					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのユーザー名が返るので <strong>false</strong> は返ることはありません。</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_profile_fields" class="method">get_profile_fields($field = null, $default = null)</h4>
-					<p>The <strong>get_profile_fields</strong> method returns one or all stored profile fields for the logged-in user.</p>
+					<p><strong>get_profile_fields</strong> メソッドは、現在ログイン中のユーザの 1 つもしくは全てのプロフィールフィールドのを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -848,12 +848,12 @@ if (empty($name))
 									<tr>
 										<th><kbd>$field</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the profile field you want to get.</td>
+										<td>取得したいプロフィールフィールド名</td>
 									</tr>
 									<tr>
 										<th><kbd>$default</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The value you want returned if the requested profile field does not exist.</td>
+										<td>取得したいプロフィールフィールドが存在しなかったときのデフォルト返り値</td>
 									</tr>
 								</table>
 							</td>
@@ -865,7 +865,7 @@ if (empty($name))
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// get all profile fields defined
+								<pre class="php"><code>// すべてのプロフィールフィールドが定義される
 $profile = Auth::get_profile_fields();
 
 // get a specific profile fields defined
@@ -882,7 +882,7 @@ $fullname = Auth::get_profile_fields('username', 'Unknown username');
 
 				<article>
 					<h4 id="method_member" class="method">member($group, $user = null)</h4>
-					<p>The <strong>member</strong> method allows you to check if a user is member of a given group.</p>
+					<p><strong>member</strong> メソッドは、ユーザーがそのグループのメンバーかどうかをチェックします。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -906,22 +906,22 @@ $fullname = Auth::get_profile_fields('username', 'Unknown username');
 									<tr>
 										<th><kbd>$user</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A specific user, identified by the result of get_user_id(), or <strong>null</strong> for the currently logged-in user.</td>
+										<td>チェックしたいユーザー。 get_user_id() で返されるユーザー id か、<strong>null</strong> の場合は現在ログインしているユーザー。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. <strong>true</strong> if the user is member of the group, or <strong>false</strong> if not.</td>
+							<td>boolean。ユーザーがそのグループのメンバーならば <strong>true</strong> を、そうでなければ <strong>false</strong> を返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Check if the current user is an administrator
+								<pre class="php"><code>// 現在のユーザーが管理者であるかどうかを検査
 if (Auth::member(100))
 {
-	// we are in the administrator group!
+	// 管理者グループに属している！
 }
 
 // Check if the current user is an administrator
@@ -939,7 +939,7 @@ if (Auth::member($group))
 
 				<article>
 					<h4 id="method_groups" class="method">groups($driver = null)</h4>
-					<p>The <strong>groups</strong> method allows you to fetch all defined groups, or all defined groups in a specific driver.</p>
+					<p><strong>groups</strong> メソッドを使用すると、定義されているすべてのグループ、または特定のドライバで定義されているすべてのグループを取得することができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -958,7 +958,7 @@ if (Auth::member($group))
 									<tr>
 										<th><kbd>$driver</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the group driver you want to get groups of</td>
+										<td>グループを取得したいグループドライバの名前</td>
 									</tr>
 								</table>
 							</td>
@@ -970,26 +970,26 @@ if (Auth::member($group))
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get all defined groups (for all loaded group drivers)
+								<pre class="php"><code>// 定義済みのすべてのグループを取得 (すべてのロードされたグループドライバ用)
 $groups = Auth::groups();
 
-// Get all the groups from the default group driver
+// デフォルトのグループドライバからすべてのグループを取得
 $groups = Auth::group()->groups();
 
-// Get all the groups from a specific driver
+// 指定のドライバからすべてのグループを取得
 $groups = Auth::group('Ormgroup')->groups();
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">You need to call this method on the Auth group drivers instance if you want groups defined by a specific driver.</p>
-					<p class="note">If you use multiple drivers, this method only works reliably if the group id's are unique over <strong>all</strong> drivers!</p>
+					<p class="note">特定のドライバで定義されたグループの場合は、 Auth グループドライバインスタンスに対してこのメソッドを呼び出す必要があります。</p>
+					<p class="note">複数のドライバを使用する場合、このメソッドはグループ id が<strong>すべての</strong>ドライバにおいて一意の場合にのみ確実に動作します！</p>
 				</article>
 
 				<article>
 					<h4 id="method_roles" class="method">roles($driver = null)</h4>
-					<p>The <strong>roles</strong> method allows you to fetch all defined roles, or all defined roles in a specific driver.</p>
+					<p><strong>roles</strong> メソッドを使用すると、定義されているすべてのロール、または特定のドライバで定義されているすべてのロールを取得することができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -1008,7 +1008,7 @@ $groups = Auth::group('Ormgroup')->groups();
 									<tr>
 										<th><kbd>$driver</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the group driver you want to get roles of</td>
+										<td>ロールを取得したい ACL ドライバの名前 (訳注：'the group driver' になっているが、'the acl driver' の間違いと思われる)</td>
 									</tr>
 								</table>
 							</td>
@@ -1020,27 +1020,27 @@ $groups = Auth::group('Ormgroup')->groups();
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get all defined roles (for all loaded acl drivers)
+								<pre class="php"><code>// 定義済みのすべてのロールを取得 (すべてのロードされた ACL ドライバ用)
 $roles = Auth::roles();
 
-// Get all the roles from the default acl driver
+// デフォルトの ACL ドライバからすべてのロールを取得
 $roles = Auth::acl()->roles();
 
-// Get all the roles from a specific driver
+// 指定のドライバからすべてのロールを取得
 $roles = Auth::acl('Ormacl')->roles();
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">You need to call this method on the Auth acl drivers instance if you want groups defined by a specific driver.</p>
-					<p class="note">If you use multiple drivers, this method only works reliably if the role id's are unique over <strong>all</strong> drivers!</p>
+					<p class="note">特定のドライバで定義されたロールの場合は、 Auth ACL ドライバインスタンスに対してこのメソッドを呼び出す必要があります。</p>
+					<p class="note">複数のドライバを使用する場合、このメソッドはロール id が<strong>すべての</strong>ドライバにおいて一意の場合にのみ確実に動作します！</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_name" class="method">get_name($group = null)</h4>
-					<p>The <strong>get_name</strong> method allows you to fetch the name of a specific group. If no group is given, it will return the name
-					of the group of the current logged-in user.</p>
+					<p><strong>get_name</strong> メソッドを使用すると、特定のグループの名前を取得することができます。
+					グループが指定されていない場合は、現在ログインしているユーザのグループ名を返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -1059,34 +1059,34 @@ $roles = Auth::acl('Ormacl')->roles();
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The id of the group you want to get the name of</td>
+										<td>名前を取得したいグループの id</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. The name of the group, or <kbd>null</kbd> if a group with the given id does not exist.</td>
+							<td>グループの名前、もしくは、与えられた id を持つグループが存在しない場合は <kbd>null</kbd> 。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// Get all the name for the group of the current logged-in user
+								<pre class="php"><code>// 現在ログインしているユーザーのグループのすべての名前を取得
 $name = Auth::group()->get_name();
 
-// Get the name of a specific group from a specific driver
-$name = Auth::group('Ormgroup')->get_name(100);	// returns 'Administrators'
+// 特定のドライバから特定のグループの名前を取得
+$name = Auth::group('Ormgroup')->get_name(100);	// 'Administrators' が返る
 </code></pre>
 							</td>
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">If you use multiple drivers, this method only works reliably if the group id's are unique over <strong>all</strong> drivers!</p>
+					<p class="note">複数のドライバを使用する場合、このメソッドはグループ id が<strong>すべての</strong>ドライバにおいて一意の場合にのみ確実に動作します！</p>
 				</article>
 
 				<article>
 					<h4 id="method_has_access" class="method">has_access($condition)</h4>
-					<p>The <strong>has_access</strong> method allows you to check if the current logged-in user has access to a specific location with specific rights.</p>
+					<p><strong>has_access</strong> メソッドは現在ログインしているユーザーが特定の権限を持つ特定の場所へのアクセス権を持っているかどうかを検査することができます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -1105,14 +1105,14 @@ $name = Auth::group('Ormgroup')->get_name(100);	// returns 'Administrators'
 									<tr>
 										<th><kbd>$condition</kbd></th>
 										<td>required</td>
-										<td>The access condition you want to check</td>
+										<td>検査したいアクセス条件</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. <strong>true</strong> if the user has access, or <strong>false</strong> if not.</td>
+							<td>boolean。アクセス権を持っていれば <strong>true</strong> 、そうでなければ <strong>false</strong> 。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -1120,7 +1120,7 @@ $name = Auth::group('Ormgroup')->get_name(100);	// returns 'Administrators'
 								<pre class="php"><code>// check if the user has access to read blog posts
 if (Auth::has_access('blog.comments'))
 {
-	// yes, the user has access
+	// はい、ユーザーはアクセス権を持っています
 }
 
 // if you have multiple login instances, use the instance to call this method.
@@ -1166,17 +1166,17 @@ if (Auth::has_access('blog.comments[read,create,update,delete]'))
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. returns <strong>true</strong> if the guest support is enabled, or <strong>false</strong> if not.</td>
+							<td>boolean。ゲストログインがサポートされていれば <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// redirect to login if we we require a user and no guest access is enabled
+								<pre class="php"><code>// ログインしておらずゲストユーザーも有効になっていない場合、 login にリダイレクト
 if ( ! Auth::check() and ! Auth::guest_login())
 {
 	Response::redirect('/login');
@@ -1190,64 +1190,64 @@ if ( ! Auth::check() and ! Auth::guest_login())
 
 				<article>
 					<h4 id="method_remember_me" class="method">remember_me($user_id = null)</h4>
-					<p>The <strong>remember_me</strong> method allows you to set a remember_me cookie. If $user_id is not given, the current logged-in user is used.</p>
+					<p><strong>remember_me</strong> メソッドは、 remember_me クッキーを設定することができます。 $user_id が指定されていない場合は、現在ログインしているユーザーが使用されます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>デフォルト</th>
+										<th class="description">パラメータ</th>
 									</tr>
 									<tr>
 										<th><kbd>$user_id</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The id of the user to be remembered</td>
+										<td>記憶するユーザーの id</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>
-								boolean. returns <strong>true</strong> if the remember me cookie was correctly set, or <strong>false</strong>
-								if there was no user_id present, or the remember_me functionality was disabled in the configuration.
+								boolean。正しく remember me クッキーが設定されていれば <strong>true</strong> を、 user_id が存在しないか
+								remember_me 機能が設定で無効になっている場合 <strong>false</strong> が返されます。
 							</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// process the login form POST, and set the remember-me cookie if needed
+								<pre class="php"><code>// ログインフォームの POST を処理し、必要に応じて remember-me クッキーを設定
 if (\Input::method() == 'POST')
 {
-	// check the credentials.
+	// 資格情報を検査
 	if (\Auth::instance()->login(\Input::param('username'), \Input::param('password')))
 	{
-		// does the user want to be remembered?
+		// ユーザーは覚えてほしい？
 		if (\Input::param('rememberme', false))
 		{
-			// create the remember-me cookie
+			// remember-me クッキーを作成
 			\Auth::remember_me();
 		}
 		else
 		{
-			// delete the remember-me cookie if present
+			// 存在する場合、 remember-me クッキーを削除
 			\Auth::dont_remember_me();
 		}
 
-		// logged in, go the homepage
+		// ログインしホームページに移動
 		\Response::redirect('/');
 	}
 	else
 	{
-		// login failed, show an error message
+		// ログイン失敗、エラーメッセージを表示
 		$data['username']    = \Input::param('username');
 		$data['login_error'] = \Lang::get('login.failure');
 	}
@@ -1261,23 +1261,23 @@ if (\Input::method() == 'POST')
 
 				<article>
 					<h4 id="method_dont_remember_me" class="method">dont_remember_me()</h4>
-					<p>The <strong>dont_remember_me</strong> method destroys the remember_me cookie, if present.</p>
+					<p><strong>dont_remember_me</strong> メソッドは remember_me クッキーが存在する場合にそれを破棄します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								See <a href="#method_remember_me">remember_me()</a> for an example
+								例は <a href="#method_remember_me">remember_me()</a> を参照してください
 							</td>
 						</tr>
 						</tbody>
