@@ -123,7 +123,7 @@ $this->param('id');</code></pre>
 
 			<p class="note">
 				名前付きパラメータは正規表現で、後方参照として数えられることに注意しましょう。
-				例えば ':name/(\d{2})' において、二桁の数字への後方参照は $2 であって、$1 ではありません。</p>
+				例えば ':name/(\d{2})' において、2 桁の数字への後方参照は $2 であって、$1 ではありません。</p>
 
 
 			<h3 id="http_verb">HTTP の動詞によるルーティング</h3>
@@ -134,7 +134,7 @@ $this->param('id');</code></pre>
 			<p>例:</p>
 
 			<pre class="php"><code>return array(
-    // GET /blog が /blog/allに、POST /blog が /blog/create に経路付けられる
+    // GET /blog が /blog/all に、POST /blog が /blog/create に経路付けられる
     'blog' => array(array('GET', new Route('blog/all')), array('POST', new Route('blog/create'))),
 );</code></pre>
 
@@ -152,7 +152,7 @@ return array(
 );</code></pre>
 
 
-			<h3 id="named_routes">Named routes and reverse routing</h3>
+			<h3 id="named_routes">名前付きルートとリバースルーティング</h3>
 
 			<p>リバースルーティングというのは、次のような考え方を指します。たとえば管理エリアを作ろうとし、そのルートをセットアップします。
 			ビューにおいて、管理エリアで例えば 'admin/start/overview' という HTML アンカーを使いたいとしましょう。
@@ -174,10 +174,10 @@ return array(
 echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 
 			<p class="note">
-				今のところ、 <kbd>app/config.routes.php</kbd> に定義されているルートのみで動作することに注意しましょう。モジュールのルートでは動作しません。
+				今のところ、 <kbd>app/config/routes.php</kbd> に定義されているルートのみで動作することに注意しましょう。モジュールのルートでは動作しません。
 			</p>
 
-			<h3 id="inline_routes">Inline routes</h3>
+			<h3 id="inline_routes">インラインルート</h3>
 
 			<p>
 				ルートはコントローラのメソッドに解決される必要はありません。 FuelPHP はコントローラメソッドを置き換える Closure として定義される
@@ -200,9 +200,9 @@ echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 		}
 };</code></pre>
 
-			<h3 id="module_routing">Modules &amp; Routing</h3>
+			<h3 id="module_routing">モジュールとルーティング</h3>
 
-			<p><a href="modules.html#module_routing">how modules handle routing をお読みください</a>。</p>
+			<p><a href="modules.html#module_routing">モジュールがどのようにルーティングを扱うか</a> をお読みください。</p>
 
 		</div>
 
