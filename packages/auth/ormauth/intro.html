@@ -46,58 +46,58 @@
 			<h2>OrmAuth - はじめに</h2>
 
 			<p>
-				Ormauth is a set of authentication and authorisation drivers that provide a similar functionality as Simpleauth,
-				but stores it's data in the database instead of in a configuration file. The data is accessed through ORM models.
+				Ormauth は、 Simpleauth と同様の機能を提供し、しかし、データを設定ファイルの代わりにデータベースへ保存する認証と承認のドライバのセットです。
+				データへは ORM モデルを介してアクセスされます。
 			</p>
 			<p>
-				Besides this, it also comes with additional functionality. Unlike Simpleauth, Ormauth supports roles assigned directly
-				to users, and permissions assigned to both users and groups, allowing for a much more fine-grained permission system.
-				It stores the user's metadata not in a serialized array, but in a separate metadata table, using the ORM's EAV functionality,
-				allowing you to access metadata like any other property of the user. It also keeps track of the previous login time,
-				which can be displayed to the user at login time as an additional security measure.
+				このほかに、それはまた追加機能が付属しています。 Simpleauth とは異なり、Ormauth はユーザーに直接割り当てられたロールと、
+				ユーザーおよびグループの両方に割り当てられたパーミッションをサポートした、遥かにきめ細かなパーミッションシステムが可能になっています。
+				ユーザーのメタデータはシリアライズされた配列では保存されませんが、独立したメタデータテーブル内に ORM の EAV 機能を使用し保存され、
+				ユーザーの他のプロパティと同様にメタデータにアクセスできるようになります。
+				また、さらなるセキュリティ対策として、前回のログイン時間を記録しログイン時にユーザに表示することがでます。
 			</p>
 
 			<h3 id="setup">Auth のセットアップ</h3>
 
 			<p>
-				Configuration starts with telling the Auth package that you are going to use the Ormauth driver.
-				This is done through the auth.php configuration file. A default file is provided in the Auth package.
-				You should copy this file to your app/config folder before making any changes. The default file is configured
+				設定は、Ormauth ドライバを使用しようとしていることを Auth パッケージを伝えることから始まります。
+				これは auth.php 設定ファイルを介して行われます。 Auth パッケージにはデフォルトのファイルが提供されています。
+				任意の変更を加える前に、このファイルを app/config フォルダにコピーする必要があります。The default file is configured
 				for the Simpleauth drivers, so you need to change that. You will find an explaination of this config file <a href="../intro.html#/configuration">here</a>.
 			</p>
 			<p>
 				上記の後に、パッケージをオートロードするかどうかを app/config/config.php の <strong>always_load</strong> セクションで指定します。
 			</p>
 
-			<p class="note">As OrmAuth uses the ORM to access the database, make sure you have added the 'orm' package to the <strong>always_load</strong> section too!</p>
+			<p class="note">OrmAuth がデータベースへアクセスするために ORM を使用していることから <strong>always_load</strong> セクションに 'orm' パッケージを追加したことも確認してください！</p>
 
 			<h3 id="acl">ACL's</h3>
 
 			<p>
-				OrmAuth has a much more fine-grained ACL system then SimpleAuth. It uses standard ORM relations to construct the permission set
-				for any given user, and has the following features:
+				OrmAuth は SimpleAuth より遥かにきめ細かいACLシステムを持っています。
+				任意のユーザーのアクセスパーミッションセットを構築するために標準的な ORM の関係を使用しており、以下の特徴があります：
 			</p>
 
 			<ul>
-				<li>Every user is a member of one, and exactly one, group</li>
-				<li>Every user has zero or more roles assigned to it</li>
-				<li>Every group has zero or more roles assigned to it</li>
-				<li>Every user can have zero or more permissions assigned to it</li>
-				<li>Every group can have zero or more permissions assigned to it</li>
-				<li>Every role can have zero or more permissions assigned to it</li>
-				<li>Every permission belongs to a permission area</li>
-				<li>Every permission can have zero or more associated actions</li>
+				<li>すべてのユーザーはいずれかのメンバーであり厳密に一つでありグループである</li>
+				<li>すべてのユーザーは 0 個以上のロールを割り当てられ持っている</li>
+				<li>すべてのグループは 0 個以上のロールを割り当てられ持っている</li>
+				<li>すべてのユーザーは 0 個以上のパーミッションを割り当て持つことができる</li>
+				<li>すべてのグループは 0 個以上のパーミッションを割り当て持つことができる</li>
+				<li>すべてのロールは 0 個以上のパーミッションを割り当て持つことができる</li>
+				<li>すべてのパーミッションはパーミッション領域に属している</li>
+				<li>すべてのパーミッションは 0 個以上の関連するアクションを持つことができる</li>
 			</ul>
 
 			<p>
-				All the permissions are aggregated per user. A role can have special permission filters, that may alter the
-				assigned aggregated permissions. These are:
+				すべてのパーミッションは、ユーザーごとに集約されます。ロールは割り当てられた集約パーミッションを変更することができる特別な
+				パーミッションフィルタを持つことができます。これらは：
 			</p>
 
 			<ul>
-				<li>"All access", stored as "A". Users with this role have all access. This is typically used for a 'super-admin' role. It overrules all permissions set.</li>
-				<li>"No access", stored as "D". Users with this role have no access. This is typically used for a 'banned' role. It overrules all permissions set.</li>
-				<li>"Revoke permissions", stored as "R". Permissions set on this role will be removed from the aggregated permissions set.</li>
+				<li>"すべてのアクセス" は "A" として格納されている。このロールを持つユーザーはすべてのアクセス権を持っている。一般的には 'super-admin' のロールで使用される。すべてのアクセスパーミッションセットを却下する。</li>
+				<li>"アクセス不可" は "D" として格納されている。このロールを持つユーザーはアクセスできません。一般的には 'banned' のロールで使用される。これは、すべてのアクセス許可セットを却下。</li>
+				<li>"パーミッション取り消し" は "R" として格納されている。パーミッションをロールに指定すると、集約されたパーミッションセットから削除される。</li>
 			</ul>
 
 			<p class="note">
@@ -106,22 +106,22 @@
 			</p>
 
 			<p>Assigning a permission is using standard ORM relations, and is very straitforward:</p>
-<pre class="php"><code>// get the Role identified by $role_id
+<pre class="php"><code>// $role_id で識別されるロールを取得
 $role = \Model\Auth_Role::find($role_id);
 
-// get the Permission identified by $perm_id
+// $perm_id で識別されるパーミッションを取得
 $perm = \Model\Auth_Permission::find($perm_id);
 
-// relate the two
+// 2 つを関連付け
 $role->permissions = $perm;
 
-// and save the relation
+// そして、関連付けを保存
 $role->save();</code></pre>
 
-			<h4 id="actions">Actions</h4>
+			<h4 id="actions">アクション</h4>
 
 			<p>
-				As mentioned above, you can add additional granularity by adding a list of actions to a permission (a combination of area and permission).
+				前述のように、パーミッションにアクションのリストを追加することによってさらなる粒度を追加することができます (領域とパーミッションの組み合わせ) 。
 			</p>
 
 			<p>
@@ -135,10 +135,10 @@ $role->save();</code></pre>
 				user, a group, or a role. The assigned actions are stored as an array of keys, that defines which of the actions were assigned.
 			</p>
 
-<pre class="php"><code>// if these are the possible actions:
+<pre class="php"><code>// 実行可能なアクションである場合：
 array('add', 'view', 'edit', 'delete')
 
-// then you should store this when assigning 'view' and 'edit':
+// 次に 'view' と 'edit' に割り当てる時に、これを保存する必要があります
 array(1, 2)
 </code></pre>
 
@@ -147,20 +147,20 @@ array(1, 2)
 				role or the group to the permission.
 			</p>
 
-<pre class="php"><code>// get the Role identified by $role_id
+<pre class="php"><code>// $role_id で識別されるロールを取得
 $role = \Model\Auth_Role::find($role_id);
 
-// get the Permission identified by $perm_id
+// $perm_id で識別されるパーミッションを取得
 $perm = \Model\Auth_Permission::find($perm_id);
 
-// relate the two, adding a subselection of actions
+// アクションのサブセレクションを追加し 2 つを関連付け
 $role->rolepermission[] = \Model\Auth_Rolepermission::forge(array(
 	'role_id' => $role->id,
 	'perms_id' => $perm->id,
 	'actions' => array(1,2),
 ));
 
-// and save the relation
+// そして、関連付けを保存
 $role->save();</code></pre>
 
 			<p>
@@ -176,30 +176,30 @@ $role->save();</code></pre>
 			<h3 id="caching">キャッシュ</h3>
 
 			<p>
-				To reduce database I/O, the OrmAuth drivers make heavy use of caching, to avoid having to retrieve the entire permission set for the
-				logged-in user on every page request. Make sure your cache configuration is setup before you start using OrmAuth.
+				データベース I/O を軽減するために、 OrmAuth ドライバはすべてのページ要求でログインしているユーザのための完全なパーミッションセットを取得することを避けキャッシングを多用します。
+				OrmAuth の使用を開始する前に、キャッシュ設定がセットアップされていることを確認してください。
 			</p>
 
 			<p>
-				All cache entries are created with the prefix defined in the OrmAuth configuration file. They are created without expiration timestamp,
-				so when you design your admin backend, make sure do delete the required cache entries after an update, so the cache can be refreshed.
+				すべてのキャッシュエントリは OrmAuth 設定ファイルに定義されたプレフィックスを使用して作成されています。
+				これらは有効期限のタイムスタンプは指定せず作成されていますが、あなたの設計した管理バックエンドで、必ず必要となるキャッシュエントリを更新後に削除するので、キャッシュをリフレッシュすることができます。
 			</p>
 
 			<p>
-				The following cache keys are used by OrmAuth:
+				次のキャッシュキーが OrmAuth で使用されます：
 			</p>
 			<ul>
-				<li><strong>&lt;prefix&gt;.groups</strong> - complete list of all defined groups</li>
-				<li><strong>&lt;prefix&gt;.roles</strong> - complete list of all defined roles</li>
-				<li><strong>&lt;prefix&gt;.permissions.user_&lt;id&gt;</strong> - effective permissions for user &lt;id&gt;</li>
+				<li><strong>&lt;prefix&gt;.groups</strong> - すべての定義されたグループの完全なリスト</li>
+				<li><strong>&lt;prefix&gt;.roles</strong> - すべての定義されたロールの完全なリスト</li>
+				<li><strong>&lt;prefix&gt;.permissions.user_&lt;id&gt;</strong> - ユーザー &lt;id&gt; の有効なパーミッション</li>
 			</ul>
 
 			<p>
-				After an update to the permissions system, make sure to flush the cached permissions, and, if you have changed either role or group
-				definitions, flush them too.
+				パーミッションシステムの更新後にはキャッシュされたパーミッションをフラッシュするようにし、
+				そして、ロールまたはグループ定義のいずれかを変更した場合にも、同じくフラッシュします。
 			</p>
 
-<pre class="php"><code>// flush all the cached permissions
+<pre class="php"><code>// キャッシュされているすべてのパーミッションをフラッシュ
 \Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.permissions');
 
 // キャッシュされたすべてのグループをフラッシュ
@@ -208,14 +208,14 @@ $role->save();</code></pre>
 // キャッシュされたすべてのロールをフラッシュ
 \Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.roles');
 
-// flush the permissions of a single user (with id 12211)
+// ユーザーごとのパーミッションをフラッシュする (id 12211 とともに)
 \Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.permissions.user_12211');</code></pre>
 
 			<h3 id="configuration">設定</h3>
 
 			<p>
 				Ormauth 認証システムは、設定ファイルを使用して構成されており、予想通り 'ormauth.php' を呼び出している。
-				デフォルトファイルは Auth パッケージで与えられている。
+				Auth パッケージにはデフォルトのファイルが提供されています。
 				任意の変更を加える前には、app/config フォルダにこのファイルをコピーする必要があります。
 			</p>
 
@@ -263,7 +263,7 @@ $role->save();</code></pre>
 							<td><pre class="php"><code>'auth'</code></pre>
 							</td>
 							<td>
-								Prefix used for cache keys when caching ORM data.
+								ORM データをキャッシュする時に使用するキャッシュキーのためのプリフィックス。
 							</td>
 						</tr>
 						<tr>
