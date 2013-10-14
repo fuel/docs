@@ -74,13 +74,13 @@ $response = new Response($body, 404, $headers);</code></pre>
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$body</kbd></th>
@@ -101,17 +101,17 @@ $response = new Response($body, 404, $headers);</code></pre>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Response object</td>
+						<th>返り値</th>
+						<td>Response オブジェクト</td>
 					</tr>
 					<tr>
-						<th>Triggers</th>
-						<td>Event 'response_created' after object instantiation</td>
+						<th>トリガー</th>
+						<td>オブジェクトのインスタンス化後の 'response_created' イベント</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// create a response object, use a View as body, and a 404 NOT FOUND status code
+							<pre class="php"><code>// response オブジェクトを作成する。View を body として使い、ステータスコードは 404 Not Found とする
 return Response::forge(View::forge('errors/404page'), 404);</code></pre>
 						</td>
 					</tr>
@@ -129,13 +129,13 @@ return Response::forge(View::forge('errors/404page'), 404);</code></pre>
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$url</kbd></th>
@@ -156,81 +156,81 @@ return Response::forge(View::forge('errors/404page'), 404);</code></pre>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>このメソッドは、現在のスクリプトを終了し、値を返却しません。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// use a URL
+							<pre class="php"><code>// URL を使う
 Response::redirect('http://example.com/home', 'refresh');
 
-// or use a relative URI
+// 相対 URI を使うこともできる
 Response::redirect('site/about');</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 				<p class="note">
-					このメソッドは、URLのワイルドカードによる置換をサポートします。 See <a href="uri.html#method_segment_replace">Uri::segment_replace()</a>
-					for more information. You can disable this by setting <code>response.redirect_with_wildcards</code> to <code>false</code> in your applications config.php.
+					このメソッドは、URLのワイルドカードによる置換をサポートします。<a href="uri.html#method_segment_replace">Uri::segment_replace()</a> をご覧ください。
+					アプリケーションの config.php で <code>response.redirect_with_wildcards</code> を <code>false</code> に設定すると、この機能を無効にできます。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_redirect_back">redirect_back($url = '', $method = 'location', $redirect_code = 302)</h4>
-				<p>The <strong>redirect_back</strong> method allows you to redirect back to the page you came from, and offers different methods
-				of redirecting to a new URL. If the previous page is not part of your application (i.e. the user came from another website), or
-				no URL is given, it will redirect to the application homepage.</p>
+				<p><strong>redirect_back</strong> メソッドを使うと、現在のページに来る前のページにリダイレクトしたり、新しい URL にリダイレクトさせることができます。
+					前のページが自身のアプリケーションの一部ではない(つまり、ユーザーが別の Web サイトから来た)場合や URL が明示されない場合は、
+					アプリケーションのホームページにリダイレクトします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$url</kbd></th>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>URL to redirect to.</td>
+									<td>リダイレクト先の URL</td>
 								</tr>
 								<tr>
 									<th><kbd>$method</kbd></th>
 									<td><pre class="php"><code>'location'</code></pre></td>
-									<td>Redirection method to use. Supported are 'location' and 'refresh'.</td>
+									<td>使用するリダイレクションメソッド。'location' と 'refresh' がサポートされています。</td>
 								</tr>
 								<tr>
 									<th><kbd>$redirect_code</kbd></th>
 									<td><pre class="php"><code>302</code></pre></td>
-									<td>HTTP status code to send back as part of the redirect.</td>
+									<td>リダイレクトの一部として返される HTTP ステータスコード</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>This method terminates the current script, it does not return.</td>
+						<th>返り値</th>
+						<td>このメソッドは、現在のスクリプトを終了し、値を返却しません。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// redirect back. If there is no 'back', go to the dashboard page
+							<pre class="php"><code>// 前のページにリダイレクトする。「前のページ」がなければ、dashboard ページに移動する
 Response::redirect_back('/dashboard', 'refresh');</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 				<p class="note">
-					This method supports wildcard replacement in the URL. See <a href="uri.html#method_segment_replace">Uri::segment_replace()</a>
-					for more information. You can disable this by setting <code>response.redirect_with_wildcards</code> to <code>false</code> in your applications config.php.
+					このメソッドは、URLのワイルドカードによる置換をサポートします。<a href="uri.html#method_segment_replace">Uri::segment_replace()</a> をご覧ください。
+					アプリケーションの config.php で <code>response.redirect_with_wildcards</code> を <code>false</code> に設定すると、この機能を無効にできます。
 				</p>
 			</article>
 
@@ -244,13 +244,13 @@ Response::redirect_back('/dashboard', 'refresh');</code></pre>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$status</kbd></th>
@@ -261,15 +261,15 @@ Response::redirect_back('/dashboard', 'refresh');</code></pre>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Current object, for chaining</td>
+						<th>返り値</th>
+						<td>現在のオブジェクトを、メソッドチェーン用に返します。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$response = new Response();
 
-// This will be a NOT FOUND response
+// NOT FOUND response が返る
 $response->set_status(404);</code></pre>
 						</td>
 					</tr>
@@ -356,36 +356,36 @@ return $response;</code></pre>
 						<td>No</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><i>optional</i></td>
+									<td><i>任意</i></td>
 									<td>取得したいヘッダの名称。指定しない場合にはすべてのヘッダが返却されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Mixed. １つのヘッダを指定した場合には文字列、すべてのヘッダが返却される場合には配列。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$response = new Response();
 $response->set_header('Pragma', 'no-cache');
 
-// returns 'no-cache'
+// 'no-cache' を返す
 $header = $response->get_header('Pragma');
 
-// returns array('Pragma' => 'no-cache')
+// array('Pragma' => 'no-cache') を返す
 $header = $response->get_header();</code></pre>
 						</td>
 					</tr>
@@ -400,36 +400,36 @@ $header = $response->get_header();</code></pre>
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>optional</i></td>
+									<td><i>任意</i></td>
 									<td>セットするレスポンス本文。もし本文を与えなかった場合、現在のレスポンス本文が返ります。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Mixed. 現在のレスポンス本文、もしくは、現在のレスポンスオブジェクト。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$response = new Response();
 $response->body('This is the response body');
 
-// returns 'This is the response body'
+// 'This is the response body' を返す
 $body = $response->body();</code></pre>
 						</td>
 					</tr>
@@ -485,20 +485,20 @@ $body = $response->body();</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$send_headers</kbd></th>
-									<td><i>optional</i></td>
+									<td><i>任意</i></td>
 									<td>もしtrueがセットされた場合、レスポンス本文を出力する前に、HTTP ヘッダを送信します。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>void</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// echo whatever the response body is
+							<pre class="php"><code>// response 本文が何であっても echo する
 $response->send();</code></pre>
 						</td>
 					</tr>
