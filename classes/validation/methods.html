@@ -89,11 +89,11 @@
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Validation object</td>
+							<td>Validation オブジェクト</td>
 						</tr>
 						<tr>
 							<th>例外</th>
-							<td>\DomainException, when the Fieldset name or instance already has a related Validation instance.</td>
+							<td>\DomainException Fieldset の名前もしくはインスタンスが、既にバリデーションインスタンスに関連づけられているとき。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -534,7 +534,7 @@ $val->get_message('required', null);
 			<article>
 				<h4 class="method" id="method_callables">callables()</h4>
 				<p>
-					The <strong>callables</strong> method fetches the objects for which you don't need to add a full callback but just the method name
+					<strong>callables</strong> メソッドは、完全なコールバックを必要としないがメソッド名を必要とするオブジェクトを取得します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -557,7 +557,7 @@ $val->get_message('required', null);
 			<article>
 				<h4 class="method" id="method_error">error($field = null, $default = false)</h4>
 				<p>
-					The <strong>error</strong> method returns specific error or all errors that occur during validation.
+					<strong>error</strong> メソッドはバリデーション中に発生する特定のエラーまたは全てのエラーを返します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -579,21 +579,21 @@ $val->get_message('required', null);
 										<th><kbd>$field</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The fieldname of the Validation_Error instance you want to return. If you don't specify the fieldname, then returns all error objects.</td>
+										<td>返したい Validation_Error インスタンスのフィールド名。フィールド名を指定しない場合、全てのエラーオブジェクトを返す。</td>
 									</tr>
 									<tr>
 										<th><kbd>$default</kbd></th>
 										<td><em>mixed</em></td>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If an error of the specified field does not exist, returns this value.</td>
+										<td>指定したフィールドがエラー無しの場合、この値を返す。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>Validation_Error instance<br>
-or <strong>array</strong> if you don't specify the fieldname</td>
+							<td>Validation_Error インスタンス<br>
+またはフィールド名を指定しない場合は <strong>array</strong> </td>
 						</tr>
 						<tr>
 							<th>Example</th>
@@ -619,7 +619,7 @@ if ( ! $val->run(array()))
 			<article>
 				<h4 class="method" id="method_error_message">error_message($field = null, $default = false)</h4>
 				<p>
-					The <strong>error_message</strong> method returns specific error message or all error messages that occur during validation.
+					<strong>error_message</strong> メソッドはバリデーション中に発生する特定のエラーメッセージまたは全てのエラーメッセージを返します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -641,13 +641,13 @@ if ( ! $val->run(array()))
 										<th><kbd>$field</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The fieldname of the error message you want to return. If you don't specify the fieldname, then returns all error messages.</td>
+										<td>返したいエラーメッセージのフィールド名。フィールド名を指定しない場合、全てのエラーメッセージを返す。</td>
 									</tr>
 									<tr>
 										<th><kbd>$default</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If an error of the specified field does not exist, returns this value.</td>
+										<td>指定したフィールドが存在しない場合、この値を返す。</td>
 									</tr>
 								</table>
 							</td>
@@ -655,7 +655,7 @@ if ( ! $val->run(array()))
 						<tr>
 							<th>Returns</th>
 							<td>string<br>
-or <strong>array</strong> if you don't specify the fieldname</td>
+またはフィールド名を指定しない場合 <strong>array</strong> </td>
 						</tr>
 						<tr>
 							<th>Example</th>
