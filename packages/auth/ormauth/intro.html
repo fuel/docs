@@ -105,7 +105,7 @@
 				for this super-admin, except to the top-secret area of the application"...
 			</p>
 
-			<p>Assigning a permission is using standard ORM relations, and is very straitforward:</p>
+			<p>パーミッションの割り当ては非常に簡単で標準的な ORM を使用しています：</p>
 <pre class="php"><code>// $role_id で識別されるロールを取得
 $role = \Model\Auth_Role::find($role_id);
 
@@ -125,14 +125,14 @@ $role->save();</code></pre>
 			</p>
 
 			<p>
-				Actions are stored as an indexed array of strings in the permission record, serialized and unserialized automatically by the ORM.
-				You can define as many actions as you want, and chose any strings you like. If needed this allows you to set a permission on each
+				アクションは、パーミッションレコードに添字付き文字列型配列として格納され、 ORM によりシリアライズとアンシリアライズが自動的に行われます。
+				好きな文字列を選択し、あなたが望むように多くのアクションとして定義することができます。 If needed this allows you to set a permission on each
 				and every action on a form, more fine-grained then you would probably ever need!
 			</p>
 
 			<p>
-				The action list defined on a permission specify which possible actions can be assigned when assigning the permission to either a
-				user, a group, or a role. The assigned actions are stored as an array of keys, that defines which of the actions were assigned.
+				ユーザー、グループ、もしくはロールのどれかに対する権限を割り当てるときに、どの実行可能なアクションがパーミッションに指定することが可能か
+				をアクションリストで定義します。割り当てられたアクションは、キーを持つ配列として格納されており、それがどのアクションが割り当てられているかを定義しています。
 			</p>
 
 <pre class="php"><code>// 実行可能なアクションである場合：
