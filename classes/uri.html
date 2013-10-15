@@ -297,7 +297,7 @@ echo Uri::segments(); // array(0 => 'controller', 1 => 'method') が返ります
 
 			<article>
 				<h4 class="method" id="method_segment_replace">segment_replace($url, $secure = null)</h4>
-				<p>The <strong>segment_replace</strong> method allows you to replace wildcards in a given url by the current URI segment in that position.</p>
+				<p><strong>segment_replace</strong> メソッドは、与えられた url の中にあるワイルドカードを、その場所にある現在の URI セグメントに取り替えることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -321,7 +321,7 @@ echo Uri::segments(); // array(0 => 'controller', 1 => 'method') が返ります
 								<tr>
 									<th><kbd>$secure</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>If false, the url returned will use HTTP, if true, it will use HTTPS.</td>
+									<td>返される URL は、本項が false の場合は HTTP 、 true の場合は HTTPS となります。</td>
 								</tr>
 							</table>
 						</td>
@@ -356,63 +356,63 @@ echo Uri::segment_replace('http://localhost/*/*/three', true);</code></pre>
 			<article>
 				<h4 class="method" id="method_update_query_string">update_query_string($vars = array(), $uri = null, $secure = null)</h4>
 				<p>
-					The <strong>update_query_string</strong> method allows you to update the query string in the current or passed URI.
+					<strong>update_query_string</strong> メソッドは、現在の URI または渡された URI のクエリ文字列を更新します。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$vars</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>An assoc array of query variables, or a string containing the variable name.</td>
+									<td>クエリ変数の連想配列、または変数名を含んだ文字列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$uri</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>
-										The url to use. If not given, the current url will be used. If $vars is a string, this will contain
-										the variables value (which implies you can't pass a custom uri in that case!).
+										使用する url 。与えられなければ、現在の url が使われます。$vars が文字列ならば、
+										これは変数の値を含みます（このケースでは、カスタム uri を渡すことができないということです！）。
 									</td>
 								</tr>
 								<tr>
 									<th><kbd>$secure</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>If false, the url returned will use HTTP, if true, it will use HTTPS.</td>
+									<td>返される URL は、本項が false の場合は HTTP 、 true の場合は HTTPS となります。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Example: Current URL = http://localhost/test?one=1&amp;two=2
+							<pre class="php"><code>// 例 : 現在の URL = http://localhost/test?one=1&amp;two=2
 
-// returns http://localhost/test?one=1&amp;two=2&amp;three=3
+// http://localhost/test?one=1&amp;two=2&amp;three=3 を返す
 echo Uri::update_query_string(array('three' => 3));
 
-// returns http://localhost/test?one=1&amp;two=3
+// http://localhost/test?one=1&amp;two=3 を返す
 echo Uri::update_query_string(array('two' => 3));
 
-// returns http://localhost/controller?four=4
+// http://localhost/controller?four=4 を返す
 echo Uri::update_query_string(array('four' => 4), 'http://localhost/controller');
 
-// returns https://localhost/test?one=1&amp;two=2&amp;three=3
+// https://localhost/test?one=1&amp;two=2&amp;three=3 を返す
 echo Uri::update_query_string('three', 3, true);</code></pre>
 						</td>
 					</tr>

@@ -49,26 +49,26 @@
 
 			<p>Config クラスは、Fuel の設定オプションの殆どすべてを処理することが出来ます。config ファイルの読み込み、値の取得、設定を行う場合、本クラスが常用されます。</p>
 
-			<h3 id="config_groups">Config ファイルの種類</h3>
+			<h3 id="config_groups">設定ファイルの種類</h3>
 
-			設定を保存するのに、異なるファイルレイアウトを使用できます。レイアウトの種類は、ファイル拡張子で決められます。
+			設定を保存するのに、さまざまなファイルレイアウトを使用できます。レイアウトの種類は、ファイル拡張子で決められます。
 			<ul>
 				<li>
-					PHP. デフォルトのレイアウト。PHP 配列を返す。
+					PHP 。デフォルト。PHP ファイルは配列構造を返します。
 					<pre class="php"><code> return array('key' => 'value');</code></pre>
 				</li>
 				<li>
-					INI. レイアウトについては、<a href="http://en.wikipedia.org/wiki/INI_file">このページ (wiki英語版ページ)</a> をごらんください。
+					INI 。ini ファイルのレイアウトについては、<a href="http://ja.wikipedia.org/wiki/INI%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB">このページ</a> をごらんください。
 					<pre class="ini"><code> [group]
 key=value</code></pre>
 				</li>
 				<li>
-					YAML. レイアウトについては、<a href="http://ja.wikipedia.org/wiki/YAML">このページ (wiki日本語版ページ)</a> をごらんください。
+					YAML 。yaml ファイルのレイアウトについては、<a href="http://ja.wikipedia.org/wiki/YAML">このページ</a> をごらんください。
 					<pre class="yaml"><code> group:
    key: value</code></pre>
 				</li>
 				<li>
-					JSON. レイアウトについては、<a href="http://ja.wikipedia.org/wiki/JSON">このページ (wiki日本語版ページ)</a> をごらんください。
+					JSON 。json ファイルのレイアウトについては、<a href="http://ja.wikipedia.org/wiki/JSON">このページ</a> をごらんください。
 					<pre class="javascript"><code> {
 "group" :
     {
@@ -77,15 +77,15 @@ key=value</code></pre>
 }</code></pre>
 				</li>
 				<li>
-					DB. Use the following table structure:
+					DB 。次のようなテーブル構造を用います。
 					<pre class="php"><code>  CREATE TABLE IF NOT EXISTS `config` (
   `identifier` char(100) NOT NULL,
   `config` longtext NOT NULL,
   `hash` char(13) NOT NULL,
   PRIMARY KEY (`identifier`)
 )</code></pre>
-					By default it will use the table name 'config'. You can override this by defining your table name in
-					<code>app/config/config.php</code>, using the <strong>config.table_name</strong> key.
+					デフォルトでは、'config' というテーブル名を使用します。
+					<code>app/config/config.php</code> の中にあるキー <strong>config.table_name</strong> に使いたいテーブル名を定義することで変更ができます。
 				</li>
 			</ul>
 

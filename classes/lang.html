@@ -73,7 +73,7 @@
 			言語ファイルを保存するのに、さまざまなファイルレイアウトを使用できます。レイアウトの種類は、ファイルの拡張子で決められます。
 			<ul>
 				<li>
-					PHP 。デフォルト。PHP ファイルは配列構造を返す。
+					PHP 。デフォルト。PHP ファイルは配列構造を返します。
 					<pre class="php"><code> return array('key' => 'value');</code></pre>
 				</li>
 				<li>
@@ -96,7 +96,7 @@ key=value</code></pre>
 }</code></pre>
 				</li>
 				<li>
-					DB. Use the following table structure:
+					DB 。次のようなテーブル構造を用います。
 					<pre class="php"><code>  CREATE TABLE IF NOT EXISTS `lang` (
   `identifier` char(100) NOT NULL,
   `language` char(10) NOT NULL,
@@ -104,12 +104,12 @@ key=value</code></pre>
   `hash` char(13) NOT NULL,
   PRIMARY KEY (`identifier`, `language`)
 )</code></pre>
-					By default it will use the table name 'lang'. You can override this by defining your table name in
-					<code>app/config/config.php</code>, using the <strong>lang.table_name</strong> key.
+					デフォルトでは、'lang' というテーブル名を使用します。
+					<code>app/config/config.php</code> の中にあるキー <strong>lang.table_name</strong> に使いたいテーブル名を定義することで変更ができます。
 				</li>
 			</ul>
 
-			<p>ファイルの種類を指定しない場合、Lang::load() はデフォルトの 'php' になります。</p>
+			<p>ファイルの種類を指定しない場合、Lang::load() はデフォルトの 'php' を使用します。</p>
 
 			<article>
 				<h4 class="method" id="method_load">load($file, $group = null, $language = null, $overwrite = false, $reload = false)</h4>
