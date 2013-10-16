@@ -4,6 +4,7 @@
 
 * sharkpp <https://github.com/sharkpp>
 * Fumito Mizuno <https://github.com/ounziw>
+* Kenji Suzuki <https://github.com/kenjis>
 
 ## Version 1.6
 
