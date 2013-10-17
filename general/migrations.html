@@ -50,15 +50,15 @@
 
 			<p>データベーステーブル migration が、どのマイグレーションが実行されているかを記録しますので、アプリケーションファイルを更新し、どのマイグレーションが実行されるかを解決するために  <kbd>Migrate::current()</kbd> を呼び出すだけで済みます。現在のバージョンは、core/config/migration.php の中にありますので、他の設定ファイルと同様に app/config にコピーして変更します。</p>
 
-			<h3><a class="internal_link" href="#/config">Configuration</a></h3>
+			<h3><a class="internal_link" href="#/config">設定</a></h3>
 
 			<table class="config">
 				<tbody>
 					<tr class="header">
-						<th>Key</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th>Description</th>
+						<th>キー</th>
+						<th>型</th>
+						<th>デフォルト</th>
+						<th>説明</th>
 					</tr>
 					<tr>
 						<th>folder</th>
@@ -69,7 +69,7 @@
 							</pre>
 						</td>
 						<td>
-							The folder in which migration files will be found.
+							マイグレーションファイルが置かれるフォルダ。
 						</td>
 					</tr>
 					<tr>
@@ -81,7 +81,7 @@
 							</pre>
 						</td>
 						<td>
-							Configuration name of a database connection to use to write migrations.
+							マイグレーションを書き込むためのデータベース接続の設定名。
 						</td>
 					</tr>
 					<tr>
@@ -93,7 +93,7 @@
 							</pre>
 						</td>
 						<td>
-							The database table used to store migration data.
+							マイグレーションデータを格納するためのデータベーステーブル名。
 						</td>
 					</tr>
 				</tbody>
@@ -101,10 +101,10 @@
 
 			<p class="note">
 				<strong>Note: </strong>
-				After migrations have been run, the configuration file will be rewritten with version information included. These version numbers are used internally and should not be changed.
+				マイグレーションが実行された後、設定ファイルはバージョン情報が上書きされます。それらのバージョン番号は内部的に使われるため変更してはいけません。
 			</p>
 
-			<h3>Creating a Migration</h3>
+			<h3>マイグレーションの作成</h3>
 
 			<p>app/migrations フォルダにファイルを作成します。プレフィックスは 001 から始まる増加する数字です。数字はスキップせずに、また同じ数字を使わないようにする必要があります。最初のファイルは、<kbd>app/migrations/001_example.php</kbd> のようになります。</p>
 			<pre class="php"><code>namespace Fuel\Migrations;
@@ -127,7 +127,7 @@ class Example
     }
 }</code></pre>
 
-			<h3 id="run_a_mirgation">マイグレーションの実行</h3>
+			<h3 id="run_a_migration">マイグレーションの実行</h3>
 
 			<p>マイグレーションは、2 つの方法で実行できます:</p>
 
@@ -145,9 +145,9 @@ $ php oil refine migrate:down
 $ php oil refine migrate --version=10</code></pre>
 
 			<p>
-				Migrations are supported for modules and packages too. You can specify on the oil commandline if you want to
-				migrate all, or only specific modules and/or packages. If you do, you can use '--default' to indicate you want
-				to include app migrations.
+				マイグレーションはモジュールとパッケージもサポートします。oil コマンドで、すべてをマイグレートしたり、特定のモジュールやパッケージのみを指定することができます。
+				モジュールやパッケージを指定した場合に、アプリケーションのマイグレーションも含めたい場合は、
+				'--default' を指定します。
 			</p>
 
 			<pre class="cli"><code>$ php oil refine migrate -all
@@ -163,7 +163,7 @@ $ php oil refine migrate --version=10</code></pre>
 				config number so the current command will not be relevant in many situations.
 			</p>
 
-			<h3 id="skip_migrations">Skipping migrations</h3>
+			<h3 id="skip_migrations">マイグレーションのスキップ</h3>
 
 			<p>
 				You can abort the migration process by having your <kbd>up()</kbd> or <kbd>down()</kbd> method return
