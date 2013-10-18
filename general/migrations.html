@@ -158,21 +158,21 @@ $ php oil refine migrate --version=10</code></pre>
 
 			<p class="note">
 				<strong>Note: </strong>
-				The migrate:current task is to match your schema to the version listed in <kbd>fuel/[app|core]/config/migrate.php</kbd> as if you have just got
-				a copy of the application, the very latest migration not be the one considered stable. Using oil for migrations will modify this migration
-				config number so the current command will not be relevant in many situations.
+				migrate:current タスクは、あたかも最新のマイグレーションが安定しているとは言えないアプリケーションのコピーをたった今受け取ったかのように、
+				<kbd>fuel/[app|core]/config/migrate.php</kbd> に記載されているバージョンにあなたのスキーマをマッチさせます。
+				マイグレーションのために oil を使うと、このマイグレーションの設定番号を修正しますので、多くの状況で current コマンドは必要ありません。
 			</p>
 
 			<h3 id="skip_migrations">マイグレーションのスキップ</h3>
 
 			<p>
-				You can abort the migration process by having your <kbd>up()</kbd> or <kbd>down()</kbd> method return
-				<kbd>false</kbd>. This can be useful if your migration has external dependencies, for example the existence of a table created in a different
-				migration.
+				<kbd>up()</kbd> or <kbd>down()</kbd> メソッドで <kbd>false</kbd> を返すことで、マイグレーションプロセスを中断することができます。
+				これは、マイグレーションが外部に依存している、例えば、別のマイグレーションによって作成されたテーブルがある場合などに
+				便利です。
 			</p>
 			<p class="note">
-				This will only abort the migration stack currently being processed, either the application migrations, or the migrations in a single module or package.
-				All migrations in other stacks will be processed as normal.
+				これは、現在処理されているマイグレーションスタック、アプリケーションマイグレーションまたは 1つのモジュールやパッケージのマイグレーションのみを中断します。
+				他のスタックのマイグレーションはすべて通常どおり処理されます。
 			</p>
 		</div>
 
