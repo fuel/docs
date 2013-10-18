@@ -92,20 +92,20 @@
 				ブートストラップを使い、パッケージの名前空間を追加します (ご希望の場合、グローバルに)。そして、よりよいパフォーマンスのためにクラスを追加します。
 			</p>
 
-			<pre class="php"><code>// Add namespace, necessary if you want the autoloader to be able to find classes
+			<pre class="php"><code>// 名前空間を追加する。オートローダがクラスを見つけられるようにするために必要
 Autoloader::add_namespace('Mypackage', __DIR__.'/classes/');
 
-// Add as core namespace
+// コア名前空間として追加する
 Autoloader::add_core_namespace('Mypackage');
 
-// Add as core namespace (classes are aliased to global, thus useable without namespace prefix)
-// Set the second argument to <kbd>true</kbd> to prefix and be able to overwrite core classes
+// コア名前空間 (クラスはグローバルにエイリアスが作成され、名前空間のプレフィックスなしで利用できる) として追加する
+// 第2引数を <kbd>true</kbd> にセットすると、コアクラスを上書きできる
 Autoloader::add_core_namespace('Mypackage', true);
 
-// And add the classes, this is useful for:
-// - optimization: no path searching is necessary
-// - it's required to be able to use as a core namespace
-// - if you want to break the autoloader's path search rules
+// そしてクラスを追加する、これは以下に役立つ:
+// - 最適化: パス検索が不要に
+// - コア名前空間として使用できるようにする必要がある場合
+// - オートローダのパス検索ルールに反する場合
 Autoloader::add_classes(array(
 	'Mypackage\\Classname' => __DIR__.'/classes/classname.php',
 	'Mypackage\\Anotherclass' => __DIR__.'/classes/anotherclass.php',
