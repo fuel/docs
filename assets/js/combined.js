@@ -434,13 +434,13 @@ panes.core = {
 		"Asset": {
 			"設定":	"classes/asset/config.html",
 			"使用法":			"classes/asset/usage.html",
-			"Advanced":			"classes/asset/advanced.html"
+			"高度な使用法":			"classes/asset/advanced.html"
 		},
 		"Autoloader":	"classes/autoloader.html",
 		"Cache": {
 			"設定":	"classes/cache/config.html",
 			"使用法":			"classes/cache/usage.html",
-			"Advanced":			"classes/cache/advanced.html"
+			"高度な使用法":			"classes/cache/advanced.html"
 		},
 		"Cli":			"classes/cli.html",
 		"Config":		"classes/config.html",
@@ -449,15 +449,15 @@ panes.core = {
 		"Database": {
 			"はじめに":   	  "classes/database/introduction.html",
 			"使用法":          	  "classes/database/usage.html",
-			"DB class":       	  "classes/database/db.html",
-			"DBUtil class":   	  "classes/database/dbutil.html",
-			"Query Building":	{
+			"DB クラス":       	  "classes/database/db.html",
+			"DBUtil クラス":   	  "classes/database/dbutil.html",
+			"Query のビルド":	{
 				"はじめに":			"classes/database/qb.html",
-				"Insert builder":	"classes/database/qb_insert.html",
-				"Select builder":	"classes/database/qb_select.html",
-				"Update builder":	"classes/database/qb_update.html",
-				"Delete builder":	"classes/database/qb_delete.html",
-				"Where builder":	"classes/database/qb_where.html"
+				"Insert ビルダー":	"classes/database/qb_insert.html",
+				"Select ビルダー":	"classes/database/qb_select.html",
+				"Update ビルダー":	"classes/database/qb_update.html",
+				"Delete ビルダー":	"classes/database/qb_delete.html",
+				"Where ビルダー":	"classes/database/qb_where.html"
 			}
 		},
 		"Date":			"classes/date.html",
@@ -469,7 +469,7 @@ panes.core = {
 		"File": {
 			"はじめに":	"classes/file/intro.html",
 			"使用法":		"classes/file/usage.html",
-			"Advanced":		"classes/file/advanced.html",
+			"高度な使用法":		"classes/file/advanced.html",
 			"Handlers":		"classes/file/handlers.html",
 		},
 		"Finder":		"classes/finder.html",
@@ -487,13 +487,13 @@ panes.core = {
 		"Migrate":		"classes/migrate.html",
 		"Model_Crud": {
 			"はじめに": "classes/model_crud/introduction.html",
-			"Methods": "classes/model_crud/methods.html"
+			"メソッド": "classes/model_crud/methods.html"
 			//"使用法": "classes/model_crud/usage.html",
 		},
 		"Module":		"classes/module.html",
 		"Mongo_Db": {
 			"はじめに":	"classes/mongo/introduction.html",
-			"Methods":		"classes/mongo/methods.html"
+			"メソッド":		"classes/mongo/methods.html"
 		},
 		"Num":			"classes/num.html",
 		"Package":		"classes/package.html",
@@ -501,7 +501,7 @@ panes.core = {
 		"Profiler":		"classes/profiler.html",
 		"Redis_Db":		"classes/redis.html",
 		"Request": {
-			"URI requests":		"classes/request/request.html",
+			"URI リクエスト":		"classes/request/request.html",
 			"Curl":		"classes/request/curl.html",
 			"Soap":		"classes/request/soap.html"
 		},
@@ -511,13 +511,13 @@ panes.core = {
 		"Session": {
 			"設定":	"classes/session/config.html",
 			"使用法":			"classes/session/usage.html",
-			"Advanced":			"classes/session/advanced.html"
+			"高度な使用法":			"classes/session/advanced.html"
 		},
 		"Str": 			"classes/str.html",
 		"Theme": {
 			"はじめに":	"classes/theme/introduction.html",
-			"Methods":	"classes/theme/methods.html",
-			"Advanced":	"classes/theme/advanced.html"
+			"メソッド":	"classes/theme/methods.html",
+			"高度な使用法":	"classes/theme/advanced.html"
 		},
 		// "Unzip":		"todo.html", // dont do this, needs to be cleaned up. forget it exists.
 		"Upload": {
@@ -527,8 +527,8 @@ panes.core = {
 		"Uri":			"classes/uri.html",
 		"Validation": {
 			"はじめに": "classes/validation/validation.html",
-			"Methods": "classes/validation/methods.html",
-			"Errors": "classes/validation/errors.html"
+			"メソッド": "classes/validation/methods.html",
+			"エラー": "classes/validation/errors.html"
 		},
 		"View":			"classes/view.html"
 	}
@@ -549,7 +549,7 @@ panes.auth = {
 	"Auth パッケージ": {
 		"はじめに":		"packages/auth/intro.html",
 		"ドライバを書く":	"packages/auth/drivers.html",
-		"ドライバタイプ": {
+		"ドライバの種類": {
 			"Login":		"packages/auth/types/login.html",
 			"Group":		"packages/auth/types/group.html",
 			"ACL":			"packages/auth/types/acl.html"
@@ -566,9 +566,9 @@ panes.auth = {
 			"はじめに":	"packages/auth/opauth/intro.html",
 			"使用法":		"packages/auth/opauth/usage.html"
 		},
-		"Examples": {
-			"Auth controller": "packages/auth/examples/auth.html",
-			"Opauth controller": "packages/auth/examples/opauth.html"
+		"例": {
+			"Auth コントローラ": "packages/auth/examples/auth.html",
+			"Opauth コントローラ": "packages/auth/examples/opauth.html"
 		}
 	}
 };
@@ -578,33 +578,33 @@ panes.email = {
 	"Email パッケージ": {
 		"はじめに":		"packages/email/introduction.html",
 		"使用法":			"packages/email/usage.html",
-		"Methods":			"packages/email/methods.html",
-		"Troubleshooting":	"packages/email/troubleshooting.html"
+		"メソッド":			"packages/email/methods.html",
+		"トラブルシューティング":	"packages/email/troubleshooting.html"
 	}
 };
 
 panes.orm = {
 	"Orm パッケージ": {
 		"はじめに":		"packages/orm/intro.html",
-		"Creating Models":	"packages/orm/creating_models.html",
+		"モデルの作成":	"packages/orm/creating_models.html",
 		"CRUD":				"packages/orm/crud.html",
-		"Relating Models": {
+		"モデルの関係": {
 			"はじめに":	"packages/orm/relations/intro.html",
 			"Belongs To":	"packages/orm/relations/belongs_to.html",
 			"Has One":		"packages/orm/relations/has_one.html",
 			"Has Many":		"packages/orm/relations/has_many.html",
 			"Many to Many":	"packages/orm/relations/many_many.html"
 		},
-		"Models": {
+		"モデル": {
 			"Soft Delete":        "packages/orm/model/soft.html",
 			"Temporal/Revisions": "packages/orm/model/temporal.html",
 			"NestedSets":         "packages/orm/model/nestedset.html"
 		},
-		"EAV containers":		"packages/orm/eav.html",
+		"EAV コンテナ":		"packages/orm/eav.html",
 		"Observers": {
 			"はじめに":			"packages/orm/observers/intro.html",
-			"Included observers":	"packages/orm/observers/included.html",
-			"Writing your own":		"packages/orm/observers/creating.html"
+			"含まれるオブザーバ":	"packages/orm/observers/included.html",
+			"独自のオブザーバを書く":		"packages/orm/observers/creating.html"
 		}
 	}
 };
