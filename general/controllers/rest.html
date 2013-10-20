@@ -111,13 +111,13 @@
 					<tr>
 						<th>POST</th>
 						<td>
-							新しいリソースを作成する際に使われる。PUT メソッドが HTML をサポートしていないため、リソースの更新にも使用される。大抵のフォームでは POST メソッドが使用されるが、送信したクエリ文字列に対する情報を取得する場合には使用されない。
+							新しいリソースを作成する際に使われる。HTML が PUT メソッドをサポートしていないため、リソースの更新にも使用される。大抵のフォームでは POST メソッドが使用されるが、送信したクエリ文字列に対する情報を取得する場合には使用されない。
 						</td>
 					</tr>
 					<tr>
 						<th>PUT</th>
 						<td>
-							既知の id に対応するリソースを作成・更新する際に使用される。 You are expected to pass all properties. Missing ones should be set to NULL. Less commonly used as it is not yet supported by HTML (v.5). It is although supported for XMLHttpRequests by most browsers.
+							既知の id に対応するリソースを作成・更新する際に使用される。すべてのプロパティを渡すことが期待される。存在しないものは NULL にセットされるべきである。HTML (v.5) でまだサポートされていないため、ほとんど使われていない。しかし、ほとんどのブラウザの XMLHttpRequests ではサポートされている。
 						</td>
 					</tr>
 					<tr>
@@ -129,12 +129,12 @@
 					<tr>
 						<th>PATCH</th>
 						<td>
-							Used to update a resource with a known id. You only pass properties you want to update. Less commonly used as it is not yet supported by HTML (v.5). It is although supported for XMLHttpRequests by most browsers.
+							既知の id のリソースの更新のために使用される。更新したいプロパティのみを渡す。HTML (v.5) でまだサポートされていないため、ほとんど使われていない。しかし、ほとんどのブラウザの XMLHttpRequests ではサポートされている。
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<p class="note">This is not a restrictive list, the FuelPHP framework accepts any HTTP method accepted by your webserver.</p>
+			<p class="note">これは制約に関するリストではありません。FuelPHP フレームワークは、Web サーバが受け付けるどんな HTTP メソッドも受け付けます。</p>
 
 			<h3 id="output">出力</h3>
 
@@ -149,7 +149,7 @@
 				<em>fuel/core/config/rest.php</em> に設定されているフォーマットで出力されます。
 			</p>
 
-			<h3 id="config">Configuration</h3>
+			<h3 id="config">設定</h3>
 
 			<p>
 				REST コントローラは fuel/core/config/rest.php でグローバルに設定されており、既にデフォルト値が入力されています。
@@ -197,9 +197,9 @@
 						<td>string</td>
 						<td><pre class="php"><code>''</code></pre></td>
 						<td>
-							Defines the type of authentication needed. Valid values are 'basic' and 'digest'. You can also define a
-							name of controller method which must be called to check authorization. This method may return a boolean
-							(true will allow the request, false will return a default 401 response is returned), or a Response object.
+							必要な認証のタイプを定義。有効な値は 'basic' と 'digest'。
+							認証をチェックするためのコントローラのメソッド名も定義できます。このメソッドは論理値 (true の場合、リクエストを許可、false の場合、デフォルトの 401 レスポンスを返します)、
+							または、Response オブジェクトを返します。
 							<br />Leave this empty if no autorization need to be performed.
 						</td>
 					</tr>
