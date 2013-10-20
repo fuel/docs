@@ -371,7 +371,7 @@ var pane_names = {
 panes.main = {
     "基本": {
         "ホーム":			"index.html",
-        "Table of Contents": "toc.html",
+        "目次": "toc.html",
         "要件":	"requirements.html",
         "ライセンス":		"license.html",
         "貢献":	"contribute.html",
@@ -398,7 +398,7 @@ panes.main = {
 		"ビュー":			"general/views.html",
 		"ビューモデル":		"general/viewmodels.html",
 		"コントローラ": {
-			"Base" :		"general/controllers/base.html",
+			"ベース" :		"general/controllers/base.html",
 			"Template":		"general/controllers/template.html",
 			"Rest":			"general/controllers/rest.html",
 			"Hybrid":		"general/controllers/hybrid.html"
@@ -470,7 +470,7 @@ panes.core = {
 			"はじめに":	"classes/file/intro.html",
 			"使用法":		"classes/file/usage.html",
 			"高度な使用法":		"classes/file/advanced.html",
-			"Handlers":		"classes/file/handlers.html",
+			"ハンドラ":		"classes/file/handlers.html",
 		},
 		"Finder":		"classes/finder.html",
 		"Form":			"classes/form.html",
@@ -601,7 +601,7 @@ panes.orm = {
 			"NestedSets":         "packages/orm/model/nestedset.html"
 		},
 		"EAV コンテナ":		"packages/orm/eav.html",
-		"Observers": {
+		"オブザーバ": {
 			"はじめに":			"packages/orm/observers/intro.html",
 			"含まれるオブザーバ":	"packages/orm/observers/included.html",
 			"独自のオブザーバを書く":		"packages/orm/observers/creating.html"
