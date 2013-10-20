@@ -81,10 +81,10 @@
 				このメソッドは他のクラスからも使用できますが、ルーティングできません。
 			</p>
 
-			<h3 id="http_method_prefixed_actions">HTTPメソッド名をアクション名の前につける</h3>
+			<h3 id="http_method_prefixed_actions">HTTP メソッド名をアクション名の前につける</h3>
 
 			<p>
-			  HTTPメソッド名をアクション名の前につけることもできます。以下の例を見て下さい:
+				HTTP メソッド名をアクション名の前につけることもできます。以下の例を見て下さい:
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
@@ -142,8 +142,8 @@ class Example extends \Controller
 }</code></pre>
 
 			<p class="note">
-				Note that now that your controller lives in a namespace, you have to prefix "Controller" with a backslash, since it needs to be
-				loaded from the global namespace.
+				あなたのコントローラは名前空間内にいるため、グローバル名前空間からロードするために、"Controller" の前にバックスラッシュを付ける必要があることに
+				注意してください。
 			</p>
 
 
@@ -213,13 +213,13 @@ class Example extends \Controller
 			<article>
 				<h4 id="after">after($response)</h4>
 				<p>
-					This method will be executed <strong>after</strong> the method from the URL was called successfully,
-					this will not be called if the method turns out not to exist. <a href="#response"><var>$response</var></a> parameter is required.
-					The after() method <strong>MUST</strong> return a Response object.
+					このメソッドは、URL からのメソッドのコールが成功した <strong>後</strong> に実行されます。
+					メソッドが存在しなかった場合はコールされません。<a href="#response"><var>$response</var></a> パラメータは必須です。
+					after() メソッドは Response オブジェクトを返さなくては <strong>なりません</strong>。
 				</p>
 				<p class="note">
-					If the <kbd>after()</kbd> method has to construct a Response object, it can use the <kbd>response_status</kbd> property of
-					the controller to set the HTTP status of the response. By default, this property contains "200" (OK).
+					もし、<kbd>after()</kbd> メソッドが Response オブジェクトを生成しなければならない場合、コントローラの <kbd>response_status</kbd> プロパティを使い
+					レスポンスの HTTP ステータスをセットできます。デフォルトでは、このプロパティは "200" (OK) になっています。
 				</p>
 			</article>
 
