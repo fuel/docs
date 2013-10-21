@@ -58,33 +58,33 @@
 
 			<p>これであなたのプロジェクトでは 'php oil' の代わりに 'oil' だけを使用することができます。</p>
 
-			<p class="note">If you had installed the oil script before version 1.6, you have to re-install it to have it run composer too!</p>
+			<p class="note">バージョン 1.6 以前の oil スクリプトをインストール済みの場合は、composer を実行させるために再度、インストールし直す必要があります!</p>
 
-			<p>To create a new project simply run:</p>
+			<p>新しいプロジェクトを作成するには単に以下を実行します:</p>
 
 			<pre class="cli"><code>$ oil create &lt;project_name&gt;</code></pre>
 
 			<p>これで、カレントディレクトリにあなたが指定したプロジェクト名のフォルダが作成されます。そしてリポジトリとすべてのサブモジュールをそのフォルダに複製します。</p>
 
 			<p>
-				Note: This will also run <code class="cli">$ oil refine install</code> which makes the necessary directories writable,
-				and <code class="cli">$ php composer.phar update</code> to pull in the defined composer dependencies.
+				Note: これは、必要なディレクトリを書き込み可能にするための <code class="cli">$ oil refine install</code> も実行します。
+				そして、Composer により定義された依存ライブラリを取得する <code class="cli">$ php composer.phar update</code> も実行します。
 			</p>
 
 			<h3 id="manual">手動でインストール</h3>
 
-			<p>この方法は、あなたのウェブサーバに Fuel フレームワークのデフォルトインストール構成を生成します。</p>
+			<p>この方法は、あなたの Web サーバに Fuel フレームワークのデフォルトインストール構成を生成します。</p>
 
-			<h4 id="from_github">Clone from github</h4>
+			<h4 id="from_github">GiHub からクローンする</h4>
 
 <pre class="cli"><code>$ cd /where/ever/your/webserver/root/is
 $ git clone --recursive git://github.com/fuel/fuel.git
 </code></pre>
 
-			<p>This will create a folder called <strong>fuel</strong> in your webserver root, containing the entire FuelPHP installation,
-			including all core packages.</p>
+			<p>これは、あなたの Web サーバのルートに、FuelPHP のすべての Core パッケージを含む
+			<strong>fuel</strong> フォルダを作成します。</p>
 
-			<h4 id="from_zip">Download the zip file</h4>
+			<h4 id="from_zip">Zip ファイルをダウンロードする</h4>
 
 			<ol>
 				<li><a href="download.html">Fuel フレームワークをダウンロードする</a></li>
@@ -112,8 +112,8 @@ $ git clone --recursive git://github.com/fuel/fuel.git
 				</li>
 			</ol>
 
-			<p>After installation, make sure the permissions are correct on folders that the framework needs access to. There is an oil task
-			available to set the default folders writable:</p>
+			<p>インストールの後は、フレームワークがアクセスする必要のあるフォルダのパーミッションが正しいことを確認してください。デフォルトのフォルダを書き込み可能にする
+			oil タスクが用意されています:</p>
 <pre class="cli"><code>$ php oil refine install
 	Made writable: APPPATH/cache
 	Made writable: APPPATH/logs
@@ -137,31 +137,31 @@ php composer.phar update
 </pre>
 			<p class="note">重要なフレームワークのコンポーネントが composer 経由でロードされるため、このステップを実行しないと、FuelPHP は起動しません！</p>
 
-			<h2 id="configuration">Configuration</h2>
+			<h2 id="configuration">設定</h2>
 
 			<p>メインの設定は app/config/config.php にあります。好きに編集してください。</p>
 
 			<h2 id="install_inside_root">ドキュメントルート内にインストールする</h2>
 
-			<p>ポイント 3 で説明したように、セキュリティの観点からウェブサーバのドキュメントルート内に Fuel をインストール<strong>しない</strong>ことを強く推奨します。</p>
+			<p>ポイント 3 で説明したように、セキュリティの観点から Web サーバのドキュメントルート内に Fuel をインストール <strong>しない</strong> ことを強く推奨します。</p>
 			<p>
-				しかしながらそうしたい状況もあります。例えば、Apache の大量の動的なバーチャルホストモジュールのある (ローカルの) 開発環境は、
+				しかしながらそうしたいケースもあります。例えば、Apache の大量の動的なバーチャルホストモジュールのある (ローカルの) 開発環境は、
 				Web サーバを再起動せずに新しい開発環境を素早く構築するために使用されます。
 			</p>
 			<p>
-				If you need this, install FuelPHP in the folder you have designated to be the installation root. After you have done that, go into the public folder,
-				move everything in the public folder one level up, and remove the public folder. The only purpose of that folder is to provide an anchor point for
-				your webservers DocumentRoot. You don't need that anymore, since you have installed FuelPHP in the folder that is the DocumentRoot.
+				これが必要な場合、ルートと決めたフォルダに FuelPHP をインストールします。その後、publc フォルダに移動し、
+				すべてのファイルを 1つ上の階層に移動し、public フォルダを削除します。public フォルダの唯一の目的は、Web サーバのドキュメントルートのためのアンカーポイントを提供することです。
+				FuelPHP をドキュメントルートフォルダにインストールしたら、もはや必要ありません。
 			</p>
-			<p>After the move, change the location of the application in your index.php to:</p>
+			<p>これらの移動の後に、index.php の中のアプリケーションの位置を変更します:</p>
 			<pre class="php"><code>define('APPPATH', realpath(__DIR__.'/fuel/app/').DIRECTORY_SEPARATOR);</code></pre>
 
-			<h3 id="install_inside_root2">What about several folders deep?</h3>
+			<h3 id="install_inside_root2">いくつかのフォルダをより深くするのはどうでしょう？</h3>
 
-			<p>That doesn't make a difference, the procedure remains exactly the same.</p>
+			<p>違いはありません。手順はまったく同じです。</p>
 
 			<p>
-				In this case however, accessing your application might be a bit more complicated due to the folder structure involved. But you can't just put
+				しかしながら、この場合は、アプリケーションへのアクセスは、フォルダ構成のため、少々複雑にあるかもしれません。But you can't just put
 				a simple .htaccess in, you probably still want to access other stuff installed in that same folder structure.
 			</p>
 			<p>
