@@ -62,8 +62,8 @@
 			<p>
 				設定は、Ormauth ドライバを使用しようとしていることを Auth パッケージを伝えることから始まります。
 				これは auth.php 設定ファイルを介して行われます。 Auth パッケージにはデフォルトのファイルが提供されています。
-				任意の変更を加える前に、このファイルを app/config フォルダにコピーする必要があります。The default file is configured
-				for the Simpleauth drivers, so you need to change that. You will find an explaination of this config file <a href="../intro.html#/configuration">here</a>.
+				任意の変更を加える前に、このファイルを app/config フォルダにコピーする必要があります。デフォルトのファイルは Simpleauth
+				ドライバー用に構成されているので、それを変更する必要があります。この設定ファイルについての説明を<a href="../intro.html#/configuration">ここ</a>で見るけることができます。
 			</p>
 			<p>
 				上記の後に、パッケージをオートロードするかどうかを app/config/config.php の <strong>always_load</strong> セクションで指定します。
@@ -95,14 +95,14 @@
 			</p>
 
 			<ul>
-				<li>"すべてのアクセス" は "A" として格納されている。このロールを持つユーザーはすべてのアクセス権を持っている。一般的には 'super-admin' のロールで使用される。すべてのアクセスパーミッションセットを却下する。</li>
-				<li>"アクセス不可" は "D" として格納されている。このロールを持つユーザーはアクセスできません。一般的には 'banned' のロールで使用される。これは、すべてのアクセス許可セットを却下。</li>
-				<li>"パーミッション取り消し" は "R" として格納されている。パーミッションをロールに指定すると、集約されたパーミッションセットから削除される。</li>
+				<li>"All access(すべてアクセス可)" は "A" として格納されている。このロールを持つユーザーはすべてのアクセス権を持っている。一般的には 'super-admin' のロールで使用される。すべてのアクセスパーミッションセットを却下する。</li>
+				<li>"No access(アクセス不可)" は "D" として格納されている。このロールを持つユーザーはアクセスできません。一般的には 'banned' のロールで使用される。これは、すべてのアクセス許可セットを却下。</li>
+				<li>"Revoke permissions(パーミッション取り消し)" は "R" として格納されている。パーミッションをロールに指定すると、集約されたパーミッションセットから削除される。</li>
 			</ul>
 
 			<p class="note">
-				Note that "revoked" permissions are checked before all others. This allows you to create permission constructs like "all access
-				for this super-admin, except to the top-secret area of the application"...
+				"revoked(取り消し)" パーミッションは他のすべてのパーミッションの前に検査されることに注意してください。これは「アプリケーションの極秘エリアを除き、
+				super-admin はすべてアクセス可」のようなパーミッション構造を作成することができます。
 			</p>
 
 			<p>パーミッションの割り当ては非常に簡単で標準的な ORM を使用しています：</p>
@@ -126,8 +126,8 @@ $role->save();</code></pre>
 
 			<p>
 				アクションは、パーミッションレコードに添字付き文字列型配列として格納され、 ORM によりシリアライズとアンシリアライズが自動的に行われます。
-				好きな文字列を選択し、あなたが望むように多くのアクションとして定義することができます。 If needed this allows you to set a permission on each
-				and every action on a form, more fine-grained then you would probably ever need!
+				好きな文字列を選択し、あなたが望むように多くのアクションとして定義することができます。
+				必要であればフォーム上で一人ひとりのアクションに対するパーミッションを設定することができます。よりきめ細かく制御しようとすればこれも必要となるでしょう。
 			</p>
 
 			<p>
@@ -164,11 +164,11 @@ $role->rolepermission[] = \Model\Auth_Rolepermission::forge(array(
 $role->save();</code></pre>
 
 			<p>
-				When checking for access, you specify the required access as either <code>area.permission</code> (when you want to check for
-				a single right, <code>area.[permission,permission,...]</code> when you want to check for multiple permissions at once, or if you
-				want to check for associated actions, you can use <code>area.permission[action,action,...]</code>. This is an AND check,
-				so when you specify multiple rights, the user must have ALL of them assigned to be granted access.
-				This will allow you to construct checks like <code>blog.comments[read,create,write,write-own,delete,delete-own]</code>.
+				アクセスを検査するときは次のいずれかで必要なアクセス権を指定します。一つの権利を検査したい場合は <code>area.permission</code> 、
+				一度に複数のパーミッションを検査したい場合は <code>area.[permission,permission,...]</code> 、
+				もし、関連するアクションを検査したい場合は、 <code>area.permission[action,action,...]</code> を使用することができます。
+				これは AND チェックなので、複数の権限を指定した場合には、すべてにおいてアクセス許可が割り当てられている必要があります。
+				これは <code>blog.comments[read,create,write,write-own,delete,delete-own]</code> ように構築しチェックすることができます。
 			</p>
 
 

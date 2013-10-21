@@ -51,25 +51,25 @@
 				それぞれがシステムの一部として機能します：
 			</p>
 			<p>
-				The Ormauth <kbd>login</kbd> driver provides the logic for creating, updating, deleting and validating user accounts
-				stored in a local database table, for getting information about those accounts, for generating or resetting
-				passwords, and for login and logout operations (creating a user session).
+				Ormauth <kbd>Login</kbd> ドライバは、ローカルのデータベーステーブルに保存するユーザアカウントの、
+				生成・更新・削除・検証のロジックを提供します。ユーザアカウントの情報を得たり、パスワードの作成やリセット、
+				ログインやログアウト (ユーザセッションの作成) を扱うためのものです。
 			</p>
 
 			<p>
-				The Ormauth <kbd>group</kbd> driver stores it's group definitions in the database, and accesses it through ORM. It provides the logic
-				for checking if a user is a member of a group, and for retrieving group information, or the roles defined to to a group.
+				Ormauth <kbd>グループ</kbd>  ドライバは、グループ定義情報を ORM を通じてデータベースにアクセスし保持しています。
+				これは、ユーザーがグループのメンバーであるかどうかやグループそのものの情報、またグループに定義されているロールを取得するためのロジックを提供します。
 			</p>
 
 			<p>
-				The Ormauth <kbd>acl</kbd> driver is role driven, and stores it's acl definitions in the database, and accesses it through ORM.
-				It provides the logic for checking if a user has access to a named ACL.
+				Ormauth <kbd>ACL</kbd>  ドライバはロール(役割)駆動型であり、ACL 定義情報を ORM を通じてデータベースにアクセスし保持しています。
+				これは、あるユーザがその名前のロールにアクセス可能かどうかというロジックを提供します。
 			</p>
 
 			<h3 id="classmethods">静的 vs 動的</h3>
 
 			<p>はじめに、で説明したように、Auth パッケージを使用すると、単一のドライバセットを提供し、利用可能な方法のほとんどに静的なインタフェースを提供します。
-			これらのメソッドは、"Static: Yes" として以下に定義されます。静的としてマークされてものを含むすべてのメソッドは Auth インスタンスオブジェクトもしくは
+			これらのメソッドは、"静的: はい" として以下に定義されます。静的としてマークされてものを含むすべてのメソッドは Auth インスタンスオブジェクトもしくは
 			Auth ドライバインスタンスオブジェクト上のチェーンを介してアクセス可能です。</p>
 
 			<h3 id="classmethods">クラスメソッド</h3>
@@ -107,7 +107,7 @@
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed. <strong>false</strong> if the user didn't pass validation, or an instance of <strong>\Model\Auth_User</strong> with the users information if the credentials were valid.</td>
+							<td>mixed 。認証に失敗すれば <strong>false</strong> を、成功した場合は \Model\Auth_User のインスタンスでユーザ情報を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -128,9 +128,9 @@ if ($user = Auth::validate_user($name, $pass))
 
 				<article>
 					<h4 id="method_login" class="method">login($username_or_email = '', $password = '')</h4>
-					<p>The <strong>login</strong> method performs a login request. If a parameter is not given, it will attempt to
-					retrieve it from posted data, used the form fieldnames configured in the ormauth.php configuration file.
-					Internally it calls the validate_user() method to validate the request before attempting a login.</p>
+					<p><strong>login</strong> メソッドはログインリクエストを扱います。
+					パラメータが指定されていない場合は、 ormauth.php 設定ファイルに設定されたフォームのフィールド名を使用しポストされたデータから取得します。
+					ログインする前に内部で validate_user() を呼び出し、リクエストを検証します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -181,27 +181,27 @@ if (Auth::login($name, $pass))
 
 				<article>
 					<h4 id="method_check" class="method">check()</h4>
-					<p>The <strong>check</strong> method checks if a logged-in user is present.</p>
+					<p>ログインしているユーザーがいるかどうかを <strong>check</strong> メソッドは検査します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
+							<th class="legend">静的</th>
+							<td>はい</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>boolean. returns <strong>true</strong> if the is a logged-in user, <strong>false</strong> otherwise.</td>
+							<th>返り値</th>
+							<td>boolean。ユーザーがログインしていれば <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// login if we're not logged-in
+								<pre class="php"><code>// ログインしていないのであればログインを
 if ( ! Auth::check())
 {
 	Response::redirect('/login');
@@ -236,7 +236,7 @@ if ( ! Auth::check())
 									<tr>
 										<th><kbd>$user_id</kbd></th>
 										<td>required</td>
-										<td>The id of the user you want to login, or a valid instance of \Model\Auth_User</td>
+										<td>ログインさせたいユーザの id もしくは、有効な \Model\Auth_User のインスタンス</td>
 									</tr>
 								</table>
 							</td>
@@ -254,11 +254,11 @@ if (Auth::force_login(12121))
 	// ユーザーは正常にログインされている。以前にログインしていたユーザーはログアウトされます！
 }
 
-// perform a forced login for user object 12121
+// ユーザー 12121 のオブジェクトで強制ログインを実行
 $user = \Model\Auth_User::find(12121);
 if (Auth::force_login($user))
 {
-	// the user is succesfully logged in. Any previously logged-in user will be logged out!
+	// ユーザーは正常にログインされている。以前にログインしていたユーザーはログアウトされます！
 }</code></pre>
 							</td>
 						</tr>
@@ -268,7 +268,7 @@ if (Auth::force_login($user))
 
 				<article>
 					<h4 id="method_logout" class="method">logout()</h4>
-					<p><strong>logout</strong> メソッドは現在ログイン中のユーザをログアウトさせます。</p>
+					<p><strong>logout</strong> メソッドは現在ログインしているユーザをログアウトさせます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -336,12 +336,12 @@ Auth::logout();
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td>1</td>
-										<td>このユーザに割り当てる任意の追加プロフィールフィールドもしくはユーザメタデータ</td>
+										<td>このユーザーを割り当てるグループ。デフォルトではユーザーはグループ 1 に割り当てられます。</td>
 									</tr>
 									<tr>
 										<th><kbd>$profile_fields</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>Any additional user metadata you want to assign to this user</td>
+										<td>このユーザに割り当てる任意の追加プロフィールフィールドもしくはユーザメタデータ</td>
 									</tr>
 								</table>
 							</td>
@@ -372,8 +372,8 @@ Auth::create_user(
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">The $profile_fields parameter is defined for API compatibility with Simpleauth. The field in the user
-					table is not used, any metadata passed is stored in the metadata table.</p>
+					<p class="note">$profile_fields パラメータは Simpleauth との API 互換性のために定義されています。
+					渡された任意のメタデータは、メタデータテーブルに格納されており、ユーザテーブル内のフィールドは使用されていません。</p>
 				</article>
 
 				<article>
@@ -597,12 +597,12 @@ Auth::delete_user('thisusername');
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">This will delete all metadata too, using ORM's cascade_delete feature.</p>
+					<p class="note">ORM の cascade_delete 機能を使用し、すべてのメタデータも削除できます。</p>
 				</article>
 
 				<article>
 					<h4 id="method_create_login_hash" class="method">create_login_hash()</h4>
-					<p><strong>create_login_hash</strong> メソッドは、現在ログイン中のユーザのログインハッシュを生成します。</p>
+					<p><strong>create_login_hash</strong> メソッドは、現在ログインしているユーザのログインハッシュを生成します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -683,7 +683,7 @@ $created_at = Auth::get('created_at');
 
 				<article>
 					<h4 id="method_get_user_id" class="method">get_user_id()</h4>
-					<p><strong>get_user_id</strong> メソッドは、ドライバの id 、現在ログイン中のユーザの id の配列を返します。
+					<p><strong>get_user_id</strong> メソッドは、ドライバの id 、現在ログインしているユーザの id の配列を返します。
 					アクティブな複数のログインドライバを持つことができるので、この構造を使用して、
 					それぞれが現在ログインしているユーザごとに異なる id を持つことができます。</p>
 					<table class="method">
@@ -721,7 +721,7 @@ else
 	echo 'Nobody is logged in!';
 }
 
-// 唯一つのドライバを使用する場合、次のようにできます。
+// ドライバを一つのみ使用する場合、次のようにできます。
 list($driver, $userid) = Auth::get_user_id();
 
 // または、ユーザー id のみ必要な場合
@@ -736,7 +736,7 @@ list(, $userid) = Auth::get_user_id();
 
 				<article>
 					<h4 id="method_get_groups" class="method">get_groups()</h4>
-					<p><strong>get_groups</strong> メソッドは、ログイン中のユーザが所属するグループを返します。</p>
+					<p><strong>get_groups</strong> メソッドは、ログインしているユーザが所属するグループを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -771,7 +771,7 @@ else
 	echo 'Nobody is logged in!';
 }
 
-// 唯一つのドライバを使用する場合、次のようにできます。
+// ドライバを一つのみ使用する場合、次のようにできます。
 list($driver, $groupid) = Auth::get_groups();
 </code></pre>
 							</td>
@@ -783,7 +783,7 @@ list($driver, $groupid) = Auth::get_groups();
 
 				<article>
 					<h4 id="method_get_email" class="method">get_email()</h4>
-					<p><strong>get_email</strong> メソッドは、現在ログイン中のユーザに対応するメールアドレスを返します。</p>
+					<p><strong>get_email</strong> メソッドは、現在ログインしているユーザに対応するメールアドレスを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -825,7 +825,7 @@ if (empty($email))
 
 				<article>
 					<h4 id="method_get_screen_name" class="method">get_screen_name()</h4>
-					<p><strong>get_screen_name</strong> メソッドは、現在ログイン中のユーザの表示名を返します。</p>
+					<p><strong>get_screen_name</strong> メソッドは、現在ログインしているユーザの表示名を返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -863,7 +863,7 @@ if (empty($name))
 
 				<article>
 					<h4 id="method_get_profile_fields" class="method">get_profile_fields($field = null, $default = null)</h4>
-					<p><strong>get_profile_fields</strong> メソッドは、現在ログイン中のユーザの 1 つもしくは全てのプロフィールフィールドのを返します。</p>
+					<p><strong>get_profile_fields</strong> メソッドは、現在ログインしているユーザの 1 つもしくは全てのプロフィールフィールドのを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -935,7 +935,7 @@ $fullname = Auth::get_profile_fields('username', 'Unknown username');
 									<tr>
 										<th><kbd>$group</kbd></th>
 										<td>required</td>
-										<td>The id of the group you want to check for membership, or a valid \Model\Auth_Group instance.</td>
+										<td>チェックしたいグループの id もしくは、有効な \Model\Auth_Group のインスタンス</td>
 									</tr>
 									<tr>
 										<th><kbd>$user</kbd></th>
@@ -958,11 +958,11 @@ if (Auth::member(100))
 	// 管理者グループに属している！
 }
 
-// Check if the current user is an administrator
+// 現在のユーザーが管理者であるかどうかを検査
 $group = \Model\Auth_Group::find(100);
 if (Auth::member($group))
 {
-	// we are in the administrator group!
+	// 管理者グループに属している！
 }
 </code></pre>
 							</td>
@@ -999,7 +999,7 @@ if (Auth::member($group))
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>array of \Model\Auth_Group objects. If the group driver does not exist or no groups are defined, an empty array is returned.</td>
+							<td>\Model\Auth_Group オブジェクトの配列。グループドライバが存在しないか、全くグループが定義されていない場合、空の配列が返されます。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -1049,7 +1049,7 @@ $groups = Auth::group('Ormgroup')->groups();
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>array or \Model\Auth_Roles objects. If the acl driver does not exist or no roles are defined, an empty array is returned.</td>
+							<td>\Model\Auth_Roles オブジェクトの配列。ACL ドライバが存在しないか、全くロールが定義されていない場合、空の配列が返されます。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -1151,35 +1151,35 @@ $name = Auth::group('Ormgroup')->get_name(100);	// 'Administrators' が返る
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// check if the user has access to read blog posts
+								<pre class="php"><code>// ユーザーがブログ記事を読むためのアクセス権を持っているかどうかを検査
 if (Auth::has_access('blog.comments'))
 {
 	// はい、ユーザーはアクセス権を持っています
 }
 
-// if you have multiple login instances, use the instance to call this method.
-// you can also check for multiple permissions in one go
+// 複数のログインインスタンスがある場合、このメソッドを呼び出すためにはインスタンスを使用します。
+// また、一度に複数のパーミッションを検査することもできます。
 if (Auth::instance('Ormauth')->has_access('blog.[posts,comments]'))
 {
-	// yes, the user has access to both blog posts and blog comments
+	// はい、ユーザーはブログの投稿とコメント両方のアクセス権を持っています
 }
 
-// you can also specify the permissions to check as an array
+// また、配列として検査するパーミッションを指定することもできます
 if (Auth::has_access(array('blog' => array('post'), 'comments' => array('post')))
 {
-	// yes, the user has access to read both blogs and comments posts
+	// はい、ユーザーはブログの投稿とコメント両方の読み取りアクセス権を持っています
 }
 
-// if you have multiple login instances, you can also pick a specific ACL driver
+// 複数のログインインスタンスがある場合、特定の ACL ドライバーを選ぶことができます
 if (Auth::acl('Ormacl')->has_access('blog.[posts,comments]'))
 {
-	// yes, the user has access to both blog posts and blog comments
+	// はい、ユーザーはブログの投稿とコメント両方のアクセス権を持っています
 }
 
-// you can get more fine-grained permissions by using permission actions.
+// パーミッションアクションを使用することで、よりきめ細かいあなたは、を取得することができます。
 if (Auth::has_access('blog.comments[read,create,update,delete]'))
 {
-	// yes, the user has all access to blog comments
+	// はい、ユーザーはブログのコメントへのすべてのアクセス権を持っています
 }
 </code></pre>
 							</td>
@@ -1190,7 +1190,7 @@ if (Auth::has_access('blog.comments[read,create,update,delete]'))
 
 				<article>
 					<h4 id="method_guest_login" class="method">guest_login()</h4>
-					<p>The <strong>guest_login</strong> method allows you to check if guest access is enabled.</p>
+					<p><strong>guest_login</strong> メソッドは、ゲストログインが可能か確認します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
