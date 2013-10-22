@@ -47,14 +47,14 @@
 
 			<h2>Router クラス</h2>
 
-			<p><kbd>Router</kbd> クラスは、渡されたリクエストと、定義されたルートに従い、どのコントローラがロードされるべきかを決定します。 </p>
+			<p><kbd>Router</kbd> クラスは、渡されたリクエストと定義されたルートに従い、どのコントローラが読み込まれるかを決定します。 </p>
 
 			<article>
 				<h4 class="method" id="method_process">process(\Request $request, $route = true)</h4>
 				<p>
-					<strong>process</strong> メソッドは、リクエストオブジェクトを受け取り、リクエストに含まれるURIから、マッチするルートを見つけようとするでしょう。
-					もし、どのルートにもマッチしなかった場合、router は、URIの情報、 controller/method もしくは、
-					module/controller/method といったURIスキーマから 新しい ルートを作成するでしょう。決定されたルートが有効かどうかはチェックされません。
+					<strong>process</strong> メソッドは、request オブジェクトを受け取り、リクエストに含まれる URI から、マッチするルートを見つけようとします。
+					もし、どのルートにもマッチしなかった場合、router は、URI の中の情報に基づいた新しいルート、および controller/method や module/controller/method といった URI スキーマを作成します。
+					決められたルートが有効かどうかはチェックされません。
 				</p>
 				<table class="method">
 					<tbody>
@@ -74,14 +74,14 @@
 								<tr>
 									<th><kbd>$request</kbd></th>
 									<td><i>必須</i></td>
-									<td>A valid Request object.</td>
+									<td>有効な Request オブジェクト。</td>
 								</tr>
 								<tr>
 									<th><kbd>$route</kbd></th>
 									<td><code>true</code></td>
 									<td>
-										If 'true', the loaded routes will be used to find a match. If 'false', the loaded routes will be ignored and a new
-										route will be constructed. This is used for HMVC calls to controllers that are not routeable from the URL.
+										もし 'true' の場合、読み込まれたルートはマッチを見つけるために使われます。もし 'false' の場合、読み込まれたルートは無視され新しいルートが構築されます。
+										これは、URL からルーティングできていないコントローラへの HMVC 呼び出しに使われます。
 									</td>
 								</tr>
 							</table>
@@ -89,13 +89,13 @@
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><i>Route object, or null if no valid route object could be constructed</i></td>
+						<td><i>Route オブジェクト、または有効な route オブジェクトが構築できなければ null</i></td>
 					</tr>
 					</tbody>
 				</table>
 
 				<p class="note">
-					通常の使用方法では、このメソッドは必要としないでしょう。これは、コントローラをロードするために、
+					通常の使用方法では、このメソッドを必要としません。これは、コントローラを読み込むために、
 					フレームワークの内部で使用されます。
 				</p>
 			</article>
@@ -103,9 +103,9 @@
 			<article>
 				<h4 class="method" id="method_add">add($path, $options = null, $prepend = false, $case_sensitive = null)</h4>
 				<p>
-					The <strong>add</strong> method allows you to manually add new routes at runtime. You might need this if you want to load
-					controllers that don't follow the normal URI scheme, or if you want to load routes from other sources then the routes.php
-					configuration files.
+					<strong>add</strong> メソッドは、実行時に手動で新しいルートを追加することができます。
+					正常な URI スキームでたどることができないコントローラを読み込みたい、または routes.php の設定ファイル以外のソースからルートを読み込みたければ、
+					これが必要になるかもしれません。
 				</p>
 				<table class="method">
 					<tbody>
@@ -125,22 +125,22 @@
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><i>必須</i></td>
-									<td>The URI path to be matched. This is the left side of your routes.php route definition.</td>
+									<td>マッチさせたい URI パス。これは、routes.php にあるルート定義の左側です。</td>
 								</tr>
 								<tr>
 									<th><kbd>$options</kbd></th>
 									<td><i>string|array|Route</i></td>
-									<td>Either the translation for $path, an array for verb routing (like the right side of your routes.php rout definition) or an instance of Route.</td>
+									<td>$path に対しての変換、HTTP メソッドルーティングの配列 (routes.php にあるルート定義の右側のように) 、または Route インスタンス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$prepend</kbd></th>
 									<td><code>false</code></td>
-									<td>If true, the new route will be prepended to the already loaded routes.</td>
+									<td>もし true の場合、既に読み込まれているルートの先頭に新しいルートを追加します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$case_sensitive</kbd></th>
 									<td><code>null</code></td>
-									<td>If false, the new route will be matched against the URI without regards to case. If true, the match will be case sensitive. If not given, the configured default will be used.</td>
+									<td>もし false の場合、新しいルートは URI の大文字小文字を区別しないとしてマッチさせます。もし true の場合、マッチは大文字小文字を区別します。もし指定がなければ、設定されているデフォルトが使われます。</td>
 								</tr>
 							</table>
 						</td>
@@ -152,13 +152,13 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// load a new route for 'this/that' => 'something/else'
+							<pre class="php"><code>// 新しいルート 'this/that' => 'something/else' を読み込む
 Router::add('this/that', 'something/else');
 
-// force it to be case sensitive
+// 大文字小文字を区別する
 Router::add('this/that', 'something/else', true);
 
-// manually create a Route instance which is treated as not case sensitive
+// 大文字小文字を区別しない Route インスタンスを手動で作成する
 $path = 'this/that';
 Router::add($path, new Route($path, 'something/else', false));
 </code></pre>
@@ -171,9 +171,9 @@ Router::add($path, new Route($path, 'something/else', false));
 			<article>
 				<h4 class="method" id="method_get">get($name, $named_params = array())</h4>
 				<p>
-					The <strong>get</strong> method allows you to do reverse routing for a named route. Based on the name passed,
-					it will retrieve the defined path for it, and return a URI that you can use in your views.
-					This means that if you change your routes, the links in your views will be updated accordingly.
+					<strong>get</strong> メソッドは、名前付きルートに対してリバースルーティングをすることができます。
+					渡された名前に基づいて、定義されているパスを検索し、ビューの中で使用できる URI を返します。
+					これは、あなたがルートを変更すれば、ビューの中のリンクがその都度更新されるということです。
 				</p>
 				<table class="method">
 					<tbody>
@@ -193,12 +193,12 @@ Router::add($path, new Route($path, 'something/else', false));
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Name of the route to load.</td>
+									<td>読み込むルートの名前。</td>
 								</tr>
 								<tr>
 									<th><kbd>$named_params</kbd></th>
 									<td><code>array()</code></td>
-									<td>Array of parameters to be added to the URI created.</td>
+									<td>作成した URI に追加するパラメータの配列。</td>
 								</tr>
 							</table>
 						</td>
@@ -210,37 +210,37 @@ Router::add($path, new Route($path, 'something/else', false));
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// if your routes are defined like this:
+							<pre class="php"><code>// このようにルートを定義した場合:
 return array(
-	'_root_'  => 'welcome/index',  // The default route
-	'_404_'   => 'welcome/404',    // The main 404 route
+	'_root_'  => 'welcome/index',  // デフォルトルート
+	'_404_'   => 'welcome/404',    // メインの 404 ルート
 
 	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
 );
 
-// this call will return 'http://your_base_url/welcome/hello'
+// この呼び出しは 'http://your_base_url/welcome/hello' を返す
 echo Router::get('hello');
 </code></pre>
 <br />
 <p>
-	You can also do this if your route contains a named parameters, a regex, or a combination of both.
+	ルートに名前付きパラメータ、正規表現、または両方の組み合わせを含めて、この様にもできます。
 </p>
-							<pre class="php"><code>// if your route is defined like this:
+<pre class="php"><code>// ルートをこの様に定義した場合:
 return array(
     'thread/(?P&lt;thread_id&gt;\d+?)/post' => array('post', 'name' => 'post'),
 );
 
-// these will return 'thread/1/post':
+// これらは 'thread/1/post' を返す:
 echo Router::get('post', array('thread_id' => 1));
 echo Router::get('post', array('$1' => 1));
 echo Router::get('post', array(1));
 
-// if your route is defined like this:
+// ルートをこの様に定義した場合:
 return array(
     'country/(?P&lt;country&gt;\d+?)/state/(?P&lt;state&gt;\d+?)/location' => array('location', 'name' => 'location'),
 );
 
-// these will return 'country/japan/state/tokyo/location':
+// これらは 'country/japan/state/tokyo/location' を返す:
 echo Router::get('location', array('country' => 'japan', 'state' => 'tokyo'));
 echo Router::get('location', array('$1' => 'japan', '$2' => 'tokyo'));
 echo Router::get('location', array('japan', 'tokyo'));
@@ -249,16 +249,16 @@ echo Router::get('location', array('$1' => 'japan', 'tokyo'));
 </code></pre>
 <br />
 <p class="note">
-	Note that if your route contains a mix of a traditional regex and a named parameter or a regex shortcut,
-	they will be replaced together, which might lead to unexpected results.
+	ルートに従来の正規表現と名前付きパラメータまたは正規表現ショートカットが混在して含まれている場合、
+	それらが共に変換されて、予期しない結果になってしまうかもしれないということに注意してください。
 </p>
-							<pre class="php"><code>// if your route is defined like this:
+<pre class="php"><code>// ルートをこの様に定義した場合:
 return array(
 	'hello/(:name)(/:segment)' => array('welcome/user', 'name' => 'user'),
 );
 
-// note that "(/:segment)" will be replaced in its entirely by "article", so
-// this call will return 'http://your_base_url/welcome/user/johnarticle' !
+// "(/:segment)" は "article" によって中身が完全に変換されてしまうことに注意してください、
+// したがって、この呼び出しは 'http://your_base_url/welcome/user/johnarticle' を返す。
 echo Router::get('user', array('name' => 'john', 'article'));
 </code></pre>
 						</td>
@@ -270,7 +270,7 @@ echo Router::get('user', array('name' => 'john', 'article'));
 			<article>
 				<h4 class="method" id="method_delete">delete($path, $case_sensitive = null)</h4>
 				<p>
-					The <strong>delete</strong> method allows you to manually delete existing routes at runtime.
+					<strong>delete</strong> メソッドは、実行時に手動で既にあるルートを削除します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -290,12 +290,12 @@ echo Router::get('user', array('name' => 'john', 'article'));
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><i>必須</i></td>
-									<td>The URI path to be matched. This is the left side of your routes.php route definition.</td>
+									<td>マッチさせたい URI パス。これは、routes.php にあるルート定義の左側です。</td>
 								</tr>
 								<tr>
 									<th><kbd>$case_sensitive</kbd></th>
 									<td><code>null</code></td>
-									<td>If false, the given route path will be matched against the URI without regards to case. If true, the match will be case sensitive. If not given, the configured default will be used.</td>
+									<td>もし false の場合、指定したルートパスは URI の大文字小文字を区別しないとしてマッチさせます。もし true の場合、マッチは大文字小文字を区別します。もし指定がなければ、設定されているデフォルトが使われます。</td>
 								</tr>
 							</table>
 						</td>
@@ -307,13 +307,13 @@ echo Router::get('user', array('name' => 'john', 'article'));
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// delete the route for 'this/that'
+							<pre class="php"><code>// 'this/that' に対するルーティングを削除する
 Router::delete('this/that');
 
-// force it to be case sensitive
+// 大文字小文字を区別する
 Router::delete('this/that', true);
 
-// delete all routes that point to a module controller
+// module controller への全てのルーティングを削除する
 Router::delete('module/controller(:any)');
 </code></pre>
 						</td>
