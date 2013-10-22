@@ -401,12 +401,15 @@ protected static $_observers = array(
 		'events' => array('before_insert'),
 		'source' => 'title',   // property used to base the slug on, may also be array of properties
 		'property' => 'slug',  // property to set the slug on when empty
+		'disable_soft' => false,  // soft model object deletion and recreation with the same source property
 	),
 );
 protected static $_observers = array('Orm\\Observer_Slug' => array('before_insert'));</code></pre>
 
 				<p>
-					The Observer creates the <kbd>slug</kbd> from the <kbd>title</kbd> using <a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a> and adds an index, if the slug already exists.
+					The Observer creates the <kbd>slug</kbd> from the <kbd>title</kbd> using <a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a> and adds an index, if the slug already exists.<br />
+					When using <a href="../model/soft.html">soft delete models</a> a situation can occur where objects cannot be deleted and recreated with the same source property (title by default). In these situations set the disable_soft property to TRUE.
+					
 				</p>
 			</article>
 
