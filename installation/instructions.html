@@ -161,21 +161,21 @@ php composer.phar update
 			<p>違いはありません。手順はまったく同じです。</p>
 
 			<p>
-				しかしながら、この場合は、アプリケーションへのアクセスは、フォルダ構成のため、少々複雑にあるかもしれません。But you can't just put
-				a simple .htaccess in, you probably still want to access other stuff installed in that same folder structure.
+				しかしながら、この場合のアプリケーションへのアクセスは、フォルダ構成のため少々複雑になるかもしれません。同じフォルダ構成のまま移動したファイル群にそのままアクセスすることは、
+				従来の .htaccess ではできません。
 			</p>
 			<p>
-				Assuming you have installed FuelPHP in the folder "/deep/sub/folder" of your DocumentRoot, you would normally have to access your FuelPHP application
-				using the URL http://example.org/deep/sub/folder.
+				FuelPHP がドキュメントルートの "/deep/sub/folder"  にインストールされているとすると、通常ならば
+				http://example.org/deep/sub/folder でアプリーケーションにアクセスする必要があります。
 			</p>
 
 			<p>
-				By placing this .htaccess into one of the higher folders, you can have the browser redirect to your FuelPHP application if no match was found on
-				file or	directory name:</p>
+				上位フォルダのどこかに以下の .htaccess を置くことで、存在しないファイルやディレクトリにアクセスがあった場合に、
+				あなたのアプリケーションにリダイレクトをさせることができます:</p>
 <pre class="plain"><code>&lt;IfModule mod_rewrite.c>
 	RewriteEngine on
 
-	# Send request to the subfolder, if its not a real file, folder or it's a root request
+	# 存在するファイルやフォルダでなかったり、ルートへのリクエストの場合、リクエストをサブフォルダに送る
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d [OR]
 	RewriteCond $1 ^$
@@ -184,12 +184,12 @@ php composer.phar update
 &lt;/IfModule>
 </code>
 </pre>
-			<p>Note that this does a redirect, it therefore does not hide the subfolders in the path from the user. If you want that, use this instead:</p>
+			<p>これはリダイレクトであることに注意してください。ユーザにサブフォルダを隠しません。もし、サブフォルダを隠したい場合は、代わりに以下を使ってください:</p>
 
 <pre class="plain"><code>&lt;IfModule mod_rewrite.c>
 	RewriteEngine on
 
-	# Send request to the subfolder, if its not a real file, folder or it's a root request
+	# 存在するファイルやフォルダでなかったり、ルートへのリクエストの場合、リクエストをサブフォルダに送る
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d [OR]
 	RewriteCond $1 ^$
@@ -198,7 +198,7 @@ php composer.phar update
 &lt;/IfModule>
 </code>
 </pre>
-			<p>Obviously, if you place it in the "sub" folder, you can hide "sub/folder" from the URL, but not "deep"...</p>
+			<p>もちろん、もし "sub" フォルダに配置した場合は、URL から "sub/folder" を隠せますが、"deep" は隠せません...</p>
 
 			<h2 id="setting_the_environment">環境を設定する</h2>
 
