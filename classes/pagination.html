@@ -80,18 +80,24 @@ return \View::forge('welcome/index', $data);</code></pre>
 
 				<h3 id="how_to_orm">How To Paginate with ORM</h3>
 
-				<pre class="php"><code>\Pagination::instance()->uri_segment = 3;
-\Pagination::instance()->per_page = 20;
-\Pagination::instance()->total_items = Model_Post::count();
-\Pagination::instance()->pagination_url = \Uri::create('posts/index');
+				<pre class="php"><code>$config = array(
+	'pagination_url' => 'http://localhost/fuel/posts/index/',
+	'total_items'    => Model_Post::count(),
+	'per_page'       => 10,
+	'uri_segment'    => 3,
+	// or if you prefer pagination by query string
+	//'uri_segment'    => 'page',
+);
+
+$pagination = Pagination::forge('mypagination', $config);
 
 $data['example_data'] = Model_Post::query()
-							->rows_offset(\Pagination::instance()->offset)
-							->rows_limit(\Pagination::instance()->per_page)
+							->rows_offset($pagination->per_page)
+							->rows_limit($pagination->offset)
 							->get();
 
 // we pass the object, it will be rendered when echo'd in the view
-$data['pagination'] = Pagination::instance();
+$data['pagination'] = $pagination;
 
 // return the view
 return \View::forge('posts/index', $data);</code></pre>
