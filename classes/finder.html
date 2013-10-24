@@ -49,22 +49,22 @@
 
 			<p>Finder クラスは検索対象パスから指定されたファイルを検索し、同じようにファイルを読み込むことができます。</p>
 
-			<h3 id="searchorder">Search order</h3>
+			<h3 id="searchorder">検索順</h3>
 
-			<p>The finder uses the following search logic to locale files:</p>
+			<p>finder はローカルのファイルに対して次の検索ロジックを用います。</p>
 			<ul>
-				<li>If there are any flash paths defined, these will be searched first, in order of definition</li>
-				<li>If the current request context is a module, the module will be searched next</li>
-				<li>If there are any more request paths defined, these will be the next in line, in order of definition</li>
-				<li>Next, the APPPATH is searched</li>
-				<li>All loaded packages will be searched</li>
-				<li>And finally, the COREPATH will be searched</li>
+				<li>もし、一時的なパス (フラッシュパス) が定義されていれば、それらは定義の順で一番最初に検索されます</li>
+				<li>現在のリクエストコンテキストがモジュールならば、モジュールが次に検索されます</li>
+				<li>さらにリクエストパスが定義されていれば、それらは定義の順で次の順番となります</li>
+				<li>次に、APPPATH が検索されます</li>
+				<li>全ての読み込まれたパッケージが検索されます</li>
+				<li>そして最後に、COREPATH が検索されます</li>
 			</ul>
 
 			<p>
-				If you have enabled <kbd>'caching'</kbd> in your app/config.php, and you have defined a valid cache path, the finder will
-				cache all files found, so it doesn't have to crawl the disk the next time a file is looked for. You can also specify the
-				cache lifetime in your config file.
+				app/config.php の中で <kbd>'caching'</kbd> を有効にし、かつ有効なキャッシュパスを定義している場合、finder は見つけたファイルを全てキャッシュします、
+				したがって次回ファイルを探す時にディスクをクロールする必要はありません。
+				設定ファイル中でキャッシュの有効期限を指定することもできます。
 			</p>
 
 			<article>
@@ -125,7 +125,7 @@ $finder = Finder::forge($array));
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							None
+							なし
 						</td>
 					</tr>
 					<tr>
@@ -179,7 +179,7 @@ $finder = Finder::forge($array));
 								<tr>
 									<th><kbd>$multiple</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>false を指定すると、最初のファイルが見つかった時点でストップします。true をしているすと全ての検索対象パスを検索して見つかった結果を配列て返します。</td>
+									<td>false を指定すると、最初のファイルが見つかった時点でストップします。true を指定すると全ての検索対象パスを検索して見つかった結果を配列で返します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$cache</kbd></th>
@@ -324,7 +324,7 @@ Finder::instance()->remove_path(PKGPATH.'mypackage');
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							None
+							なし
 						</td>
 					</tr>
 					<tr>
@@ -348,7 +348,7 @@ print_r($paths);
 				<h4 class="method" id="method_list_files">list_files($directory = null, $filter = '*.php')</h4>
 				<p>
 					<strong>list_files</strong> メソッドは検索パスから指定されたディレクトリの中にあるファイル全てのリストを取得します
-					( 例えばカスケードされたファイルシステムとか )。
+					(例えばカスケードされたファイルシステムとか) 。
 					これは全ての設定ファイルを検索パスの中から探したい時とかに使えます。
 				</p>
 				<table class="method">
@@ -394,7 +394,7 @@ $dbcfg = Finder::instance()->list_files('config', 'db.php');
 					</tbody>
 				</table>
 				<p class="note">
-					このメソッドは現在のコンテキストを認識しています。だから、呼び出されたアクティブなモジュールコントローラーが HMVC 構造のときにも
+					このメソッドは現在のコンテキストを認識しています。だから、呼び出されたアクティブなモジュールコントローラが HMVC 構造のときにも
 					モジュールのパスを動的に検索パスに追加します。
 				</p>
 			</article>
@@ -435,7 +435,7 @@ $dbcfg = Finder::instance()->list_files('config', 'db.php');
 								<tr>
 									<th><kbd>$multiple</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>false を指定すると、最初のファイルが見つかった時点でストップします。true をしているすと全ての検索対象パスを検索して見つかった結果を配列て返します。</td>
+									<td>false を指定すると、最初のファイルが見つかった時点でストップします。true を指定すると全ての検索対象パスを検索して見つかった結果を配列で返します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$cache</kbd></th>
