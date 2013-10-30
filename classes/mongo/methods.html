@@ -48,24 +48,24 @@
 			<h2>Mongo_Db クラス・メソッド</h2>
 
 			<p>
-				Mongo_Db クラスは、MongoDBデータベースとの対話を可能にします。
-				Mongo_Db クラスは、MySQLのようなデータベースの扱いに似ているものの、いくつかの点で、はっきりとした違いがあります。
+				Mongo_Db クラスは、MongoDB データベースとやり取りすることができます。
+				MySQL のようなデータベースとやり取りが似ている所もありますが、いくつかのはっきりとした違いがあります。
 			</p>
 
 			<p class="note">
-				すべてのソートオプション(order by や indexes) は、<em>DESC</em>の意味として、-1、 false、 'desc' または 'DESC' を使用します。 それら以外の値はすべて <em>ASC</em> として扱われます。
+				すべてのソートオプション (order by や indexes) は、<em>DESC</em> の意味として、-1、 false、 'desc' または 'DESC' を使用します。 それら以外の値はすべて <em>ASC</em> として扱われます。
 			</p>
 
 
 			<article>
 				<h4 class="method" id="method_instance">instance($name = 'default')</h4>
 				<p>
-					<strong>instance</strong> メソッドは、 新しい Mongo_Db インスタンスを返却します。
-					使用したい設定、データベース用の $name パラメータを指定して使用してください。
+					<strong>instance</strong> メソッドは、新しい Mongo_Db インスタンスを返却します。
+					設定と使用するデータベースを指定するために $name パラメータを使用してください。
 				</p>
 				<p class="note">
-					デフォルトでは、 <strong>$name</strong> は <em>'default'</em> が使用されます。そのため、db.php の設定として、'default' が設定されている必要があります。
-					<a href="introduction.html#config">Mongo_Db 設定の詳細はこちらを参照ください。</a>
+					デフォルトでは、 <strong>$name</strong> は <em>'default'</em> が使用されます。そのため、db.php の設定ファイルにデフォルト設定がされている必要があります。
+					<a href="introduction.html#config">Mongo_Db 設定の詳細はこちらをご参照ください。</a>
 				</p>
 				<table class="method">
 					<tbody>
@@ -87,7 +87,7 @@
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>'default'</code></pre></td>
-									<td>使用したい config group の名前を指定します。</td>
+									<td>使用したい設定グループの名前。</td>
 								</tr>
 							</table>
 						</td>
@@ -98,15 +98,15 @@
 					</tr>
 					<tr>
 						<th>例外</th>
-						<td>Mongo_DbException 指定されたインスタンス名に対応する設定が見つからなかった場合。</td>
+						<td>Mongo_DbException 、指定されたインスタンス名に対応する設定が見つからなかった場合。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get the default group
+							<pre class="php"><code>// デフォルトグループを取得
 $mongodb = \Mongo_Db::instance();
 
-// Get a custom group
+// カスタムグループを取得
 $mongodb = \Mongo_Db::instance('my_group');
 </code></pre>
 						</td>
@@ -118,13 +118,13 @@ $mongodb = \Mongo_Db::instance('my_group');
 			<article>
 				<h4 class="method" id="method_get">get($collection = "")</h4>
 				<p>
-					<strong>get</strong> メソッドは、 コレクションの検索結果を返却します。
+					<strong>get</strong> メソッドは、コレクションの検索結果を返却します。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -147,18 +147,18 @@ $mongodb = \Mongo_Db::instance('my_group');
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>結果の配列を含む stdClass オブジェクト</td>
+						<td>結果の配列を含む stdClass オブジェクト。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
 $result = $mongodb->get('users');
 foreach($result as $user)
 {
-	// Do something with $user
+	// $user に対して何かをする
 }
 </code></pre>
 						</td>
@@ -176,59 +176,7 @@ foreach($result as $user)
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
-					</tr>
-					<tr>
-						<th>パラメータ</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>パラメータ</th>
-									<th>型</th>
-									<th>デフォルト</th>
-									<th class="description">Description</th>
-								</tr>
-								<tr>
-									<th><kbd>$collection</kbd></th>
-									<td><em>string</em></td>
-									<td><pre class="php"><code>''</code></pre></td>
-									<td>コレクション名</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>返り値</th>
-						<td>A <a href="http://php.net/manual/en/class.mongocursor.php">MongoCursor</a> object.</td>
-					</tr>
-					<tr>
-						<th>例</th>
-						<td>
-							<pre class="php"><code>// Get an instance
-$mongodb = \Mongo_Db::instance();
-
-$result = $mongodb->get_cursor('documents');
-foreach($result as $document)
-{
-	// Do something with $document
-}
-</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_get">get_one($collection = "")</h4>
-				<p>
-					<strong>get_one</strong> メソッドは、コレクションから1つの結果を返します。
-				</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -251,12 +199,64 @@ foreach($result as $document)
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A stdClass object containing the single result array.</td>
+						<td><a href="http://php.net/manual/ja/class.mongocursor.php">MongoCursor</a> オブジェクト。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
+$mongodb = \Mongo_Db::instance();
+
+$result = $mongodb->get_cursor('documents');
+foreach($result as $document)
+{
+	// $document に対して何かをする
+}
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get">get_one($collection = "")</h4>
+				<p>
+					<strong>get_one</strong> メソッドは、コレクションから 1 つの結果を返します。
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
+					</tr>
+					<tr>
+						<th>パラメータ</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>パラメータ</th>
+									<th>型</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
+								</tr>
+								<tr>
+									<th><kbd>$collection</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>''</code></pre></td>
+									<td>コレクション名。</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>返り値</th>
+						<td>結果の配列を含んでいる stdClass オブジェクト。</td>
+					</tr>
+					<tr>
+						<th>例</th>
+						<td>
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
 $user = $mongodb->get_one('users');
@@ -270,14 +270,14 @@ $user = $mongodb->get_one('users');
 			<article>
 				<h4 class="method" id="method_get_where">get_where($collection = "", $where = array(), $limit = 99999)</h4>
 				<p>
-					<strong>get_where</strong> メソッドは、指定した検索条件、取得数上限のコレクションの結果を返却します。
-					検索条件は、配列で指定することができます。
+					<strong>get_where</strong> メソッドは、コレクションからの結果を返却します。
+					それに加えて、検索条件を配列で指定することや返却件数を制限することができます。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -293,25 +293,25 @@ $user = $mongodb->get_one('users');
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>コレクション名</td>
+									<td>コレクション名。</td>
 								</tr>
 								<tr>
 									<th><kbd>$where</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>An array of where statements.</td>
+									<td>where ステートメントの配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A stdClass object containing the result arrays.</td>
+						<td>結果の配列を含んでいる stdClass オブジェクト。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
 // 'active' が "yes" の条件に合致する、最初の 10 件を取得します。
@@ -321,7 +321,7 @@ $result = $mongodb->get_where('users', array(
 
 foreach($result as $user)
 {
-	// Do something with $user
+	// $user に対して何かをする
 }
 </code></pre>
 						</td>
@@ -333,16 +333,16 @@ foreach($result as $user)
 			<article>
 				<h4 class="method" id="method_select">select($includes = array(), $excludes = array())</h4>
 				<p>
-					<strong>select</strong> メソッドは、クエリにより、どのフィールドの値を取得するか、もしくは除外するか を指定します。
+					<strong>select</strong> メソッドは、クエリにより、どのフィールドの値を取得するか、または除外するかを指定します。
 				</p>
 				<p class="note">
-					除外リストを使用する場合には、取得リストは空である必要があります。
+					除外配列を使用する場合には、取得配列は空である必要があります。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -371,14 +371,14 @@ foreach($result as $user)
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
-// Just select these fields
+// これらのフィールドを選択
 $mongodb->select(array(
 	'name',
 	'surname',
@@ -386,10 +386,10 @@ $mongodb->select(array(
 ));
 $users = $mongodb->get('users');
 
-// Or use the exclude array
+// または、除外配列を使用する
 
 $mongodb = \Mongo_Db::instance();
-// Just select these fields
+// これらのフィールドを選択
 $mongodb->select(array(), array(
 	'not_this',
 	'or_this',
@@ -405,13 +405,13 @@ $users = $mongodb->get('users');
 			<article>
 				<h4 class="method" id="method_where">where($wheres = array())</h4>
 				<p>
-					<strong>where</strong> メソッドは、'where is equal to'  ステートメントをセットします。
+					<strong>where</strong> メソッドは、'where is equal to' ステートメントをセットします。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -427,19 +427,19 @@ $users = $mongodb->get('users');
 									<th><kbd>$wheres</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>キーをフィールド名、値を検索文字列とした、連想配列</td>
+									<td>キーをフィールド、値を検索条件とした、連想配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance.
+							<pre class="php"><code>// インスタンスを取得。
 $mongodb = \Mongo_Db::instance();
 
 $mongodb->where(array(
@@ -464,7 +464,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -480,19 +480,19 @@ $users = $mongodb->get('users');
 									<th><kbd>$wheres</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>キーをフィールド名、値を検索文字列とした、連想配列</td>
+									<td>キーをフィールド、値を検索条件とした連想配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->where(array(
 	'name' => 'John',
@@ -517,7 +517,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -533,25 +533,25 @@ $users = $mongodb->get('users');
 									<th><kbd>$field</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The field to query.</td>
+									<td>クエリとなるフィールド。</td>
 								</tr>
 								<tr>
 									<th><kbd>$in</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>An array of possible values.</td>
+									<td>取り得る値の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->where_in('name', array(
 	'John', 'James', 'Frank', 'Dave',
@@ -573,7 +573,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -589,25 +589,25 @@ $users = $mongodb->get('users');
 									<th><kbd>$field</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The field to query.</td>
+									<td>クエリとなるフィールド。</td>
 								</tr>
 								<tr>
 									<th><kbd>$in</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>An array of possible values.</td>
+									<td>取り得る値の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->where_in_all('name', array(
 	'John', 'James', 'Frank', 'Dave',
@@ -629,7 +629,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -645,25 +645,25 @@ $users = $mongodb->get('users');
 									<th><kbd>$field</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The field to query.</td>
+									<td>クエリとなるフィールド。</td>
 								</tr>
 								<tr>
 									<th><kbd>$in</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>An array of possible values.</td>
+									<td>取り得る値の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->where_not_in('name', array(
 	'John', 'James', 'Frank', 'Dave',
@@ -685,7 +685,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -701,25 +701,25 @@ $users = $mongodb->get('users');
 									<th><kbd>$field</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The field to query.</td>
+									<td>クエリとなるフィールド。</td>
 								</tr>
 								<tr>
 									<th><kbd>$x</kbd></th>
 									<td><em>mixed</em></td>
-									<td><strong>required</strong></td>
-									<td>The value to compare it to.</td>
+									<td><strong>必須</strong></td>
+									<td>比較するための値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->where_gt('age', 12);
 $users = $mongodb->get('users');
@@ -739,7 +739,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -755,25 +755,25 @@ $users = $mongodb->get('users');
 									<th><kbd>$field</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The field to query.</td>
+									<td>クエリとなるフィールド。</td>
 								</tr>
 								<tr>
 									<th><kbd>$x</kbd></th>
 									<td><em>mixed</em></td>
-									<td><strong>required</strong></td>
-									<td>The value to compare it to.</td>
+									<td><strong>必須</strong></td>
+									<td>比較するための値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->where_gte('age', 18);
 $users = $mongodb->get('users');
@@ -793,7 +793,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -809,25 +809,25 @@ $users = $mongodb->get('users');
 									<th><kbd>$field</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The field to query.</td>
+									<td>クエリとなるフィールド。</td>
 								</tr>
 								<tr>
 									<th><kbd>$x</kbd></th>
 									<td><em>mixed</em></td>
-									<td><strong>required</strong></td>
-									<td>The value to compare it to.</td>
+									<td><strong>必須</strong></td>
+									<td>比較するための値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->where_lt('age', 120);
 $users = $mongodb->get('users');
@@ -847,7 +847,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -863,25 +863,25 @@ $users = $mongodb->get('users');
 									<th><kbd>$field</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The field to query.</td>
+									<td>クエリとなるフィールド。</td>
 								</tr>
 								<tr>
 									<th><kbd>$x</kbd></th>
 									<td><em>mixed</em></td>
-									<td><strong>required</strong></td>
-									<td>The value to compare it to.</td>
+									<td><strong>必須</strong></td>
+									<td>比較するための値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->where_lt('age', 120);
 $users = $mongodb->get('users');
@@ -901,7 +901,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -917,31 +917,31 @@ $users = $mongodb->get('users');
 									<th><kbd>$field</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The field to query.</td>
+									<td>クエリとなるフィールド。</td>
 								</tr>
 								<tr>
 									<th><kbd>$x</kbd></th>
 									<td><em>mixed</em></td>
-									<td><strong>required</strong></td>
-									<td>The low value to compare it to.</td>
+									<td><strong>必須</strong></td>
+									<td>比較するための低い値。</td>
 								</tr>
 								<tr>
 									<th><kbd>$y</kbd></th>
 									<td><em>mixed</em></td>
-									<td><strong>required</strong></td>
-									<td>The high value to compare it to.</td>
+									<td><strong>必須</strong></td>
+									<td>比較するための高い値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->where_between('age', 10, 20);
 $users = $mongodb->get('users');
@@ -961,7 +961,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -977,31 +977,31 @@ $users = $mongodb->get('users');
 									<th><kbd>$field</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The field to query.</td>
+									<td>クエリとなるフィールド。</td>
 								</tr>
 								<tr>
 									<th><kbd>$x</kbd></th>
 									<td><em>mixed</em></td>
-									<td><strong>required</strong></td>
-									<td>The low value to compare it to.</td>
+									<td><strong>必須</strong></td>
+									<td>比較するための低い値。</td>
 								</tr>
 								<tr>
 									<th><kbd>$y</kbd></th>
 									<td><em>mixed</em></td>
-									<td><strong>required</strong></td>
-									<td>The high value to compare it to.</td>
+									<td><strong>必須</strong></td>
+									<td>比較するための高い値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->where_between_ne('age', 10, 20);
 $users = $mongodb->get('users');
@@ -1021,7 +1021,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1037,25 +1037,25 @@ $users = $mongodb->get('users');
 									<th><kbd>$field</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The field to query.</td>
+									<td>クエリとなるフィールド。</td>
 								</tr>
 								<tr>
 									<th><kbd>$x</kbd></th>
 									<td><em>mixed</em></td>
-									<td><strong>required</strong></td>
-									<td>The low value to compare it to.</td>
+									<td><strong>必須</strong></td>
+									<td>比較するための低い値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->where_ne('name', 'Allerd');
 $users = $mongodb->get('users');
@@ -1075,7 +1075,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1091,27 +1091,27 @@ $users = $mongodb->get('users');
 									<th><kbd>$field</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The field to query.</td>
+									<td>クエリとなるフィールド。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><em>mixed</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The value to compare it to.</td>
+									<td>比較するための値。</td>
 								</tr>
 								<tr>
 									<th><kbd>$flags</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>'i'</code></pre></td>
 									<td>
-										Allows you to set typical regular expression flags:
+										標準的な正規表現のフラグをセットすることができます:
 										<ul>
-											<li>i = case insensitive</li>
-											<li>m = multiline</li>
-											<li>x = can contain comments</li>
-											<li>l = locale</li>
-											<li>s = dotall, "." matches everything, including newlines</li>
-											<li>u = match unicode</li>
+											<li>i = 大文字小文字を区別しない</li>
+											<li>m = 複数行</li>
+											<li>x = コメントを含めることができる</li>
+											<li>l = ロケール依存</li>
+											<li>s = dotall モード、 "." は改行を含んだ全てにマッチします</li>
+											<li>u = unicode にマッチする</li>
 										</ul>
 									</td>
 								</tr>
@@ -1119,25 +1119,25 @@ $users = $mongodb->get('users');
 									<th><kbd>$enable_start_wildcard</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td><em>true</em> がセットされた場合、the beginning of the string must match.</td>
+									<td><em>true</em> がセットされた場合、文字列の先頭がマッチする。</td>
 								</tr>
 								<tr>
 									<th><kbd>$enable_end_wildcard</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>When set to <em>true</em> the ending of the string must match.</td>
+									<td><em>true</em> がセットされた場合、文字列の後尾がマッチする。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->like('name', 'fran', 'im', true);
 $users = $mongodb->get('users');
@@ -1157,7 +1157,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1173,19 +1173,19 @@ $users = $mongodb->get('users');
 									<th><kbd>$fields</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>ソート順を降順にセットしたい場合、 -1、 FALSE、 'desc' もしくは、 'DESC' を指定します。それ以外は1 (昇順)となります。</td>
+									<td>ソート順を降順にセットしたい場合、 -1、 FALSE、 'desc' または 'DESC' を指定します。それ以外は 1 (昇順) となります。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 $mongodb->order_by(array(
 	'age' => 'asc',
@@ -1209,7 +1209,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1225,21 +1225,21 @@ $users = $mongodb->get('users');
 									<th><kbd>$x</kbd></th>
 									<td><em>number</em></td>
 									<td><pre class="php"><code>99999</code></pre></td>
-									<td>The number of items to fetch.</td>
+									<td>取得したいアイテム数。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
-// Get the 10 oldest
+// 年齢が高い順で 10 件取得
 $mongodb->order_by(array(
 	'age' => 'desc',
 ))->limit(10);
@@ -1254,13 +1254,13 @@ $users = $mongodb->get('users');
 			<article>
 				<h4 class="method" id="method_offset">offset($x = 0)</h4>
 				<p>
-					The <strong>offset</strong> method sets the number of items skip.
+					<strong>offset</strong> メソッドは、スキップするアイテム数をセットします。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1276,21 +1276,21 @@ $users = $mongodb->get('users');
 									<th><kbd>$x</kbd></th>
 									<td><em>number</em></td>
 									<td><pre class="php"><code>0</code></pre></td>
-									<td>The number of items to skip.</td>
+									<td>スキップしたいアイテム数。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
-// Get row 10 to 15
+// 10 から 15 の行を取得
 $mongodb->order_by(array(
 	'age' => 'desc',
 ))->limit(5)->offset(10);
@@ -1311,7 +1311,7 @@ $users = $mongodb->get('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1327,28 +1327,28 @@ $users = $mongodb->get('users');
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection (table) to use.</td>
+									<td>使用するコレクション (テーブル) 。</td>
 								</tr>
 								<tr>
 									<th><kbd>$foundonly</kbd></th>
 									<td><em>boolean</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>if true, it will take the current limit and skip selections into account.</td>
+									<td>true の場合、現在の limit と skip の選択範囲を考慮します。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The number of rows.</td>
+						<td>行の数。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
-// Get the amount of users.
+// users の全体数を取得。
 $num_users = $mongodb->count('users');
 </code></pre>
 						</td>
@@ -1360,13 +1360,13 @@ $num_users = $mongodb->count('users');
 			<article>
 				<h4 class="method" id="method_insert">insert($collection = '', $insert = array())</h4>
 				<p>
-					<strong>insert</strong> メソッドは、指定されたコレクションにレコードを追加します。
+					<strong>insert</strong> メソッドは、指定されたコレクションに行を追加します。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1382,28 +1382,28 @@ $num_users = $mongodb->count('users');
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection (table) to use.</td>
+									<td>使用するコレクション (テーブル) 。</td>
 								</tr>
 								<tr>
 									<th><kbd>$insert</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>The values to insert</td>
+									<td>挿入する値</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The insert id, or <em>false</em> on failure.</td>
+						<td>insert id 、失敗した場合には <em>false</em> 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
-// Insert a new user
+// 新しい user を追加する
 $insert_id = $mongodb->insert('users', array(
 	'name' => 'John',
 	'surname' => 'Doe',
@@ -1419,16 +1419,16 @@ $insert_id = $mongodb->insert('users', array(
 			<article>
 				<h4 class="method" id="method_update">update($collection = "", $data = array(), $options = array())</h4>
 				<p>
-					<strong>update</strong> メソッドは、指定されたコレクションをアップデートします。
+					<strong>update</strong> メソッドは、指定されたコレクションを更新します。
 				</p>
 				<p class="note">
-					If you do not set the <em>"multiple"</em> option to <em>true</em> only the first encountered record will be updated.
+					<em>"multiple"</em> オプションを <em>true</em> にセットしないならば、最初にマッチしたレコードのみ更新されます。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1444,22 +1444,22 @@ $insert_id = $mongodb->insert('users', array(
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection (table) to use.</td>
+									<td>使用するコレクション (テーブル) 。</td>
 								</tr>
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>The new values.</td>
+									<td>新しい値。</td>
 								</tr>
 								<tr>
 									<th><kbd>$options</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
 									<td>
-										Supply optional extra options
-										<a target="_blank" href="http://php.net/manual/en/mongocollection.update.php#refsect1-mongocollection.update-parameters">(?)</a>
-										to the update command.
+										update コマンドに任意で追加のオプション
+										<a target="_blank" href="http://php.net/manual/ja/mongocollection.update.php#refsect1-mongocollection.update-parameters">(?)</a>
+										を与えます。
 									</td>
 								</tr>
 							</table>
@@ -1467,15 +1467,15 @@ $insert_id = $mongodb->insert('users', array(
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><em>true</em> on success</td>
+						<td>成功時に <em>true</em></td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
-// Update a user
+// user を更新
 $bool = $mongodb->where(array('id' => $an_id))->update('users', array(
 	'name' => 'John',
 	'surname' => 'Doe',
@@ -1491,13 +1491,13 @@ $bool = $mongodb->where(array('id' => $an_id))->update('users', array(
 			<article>
 				<h4 class="method" id="method_update_all">update_all($collection = "", $data = array())</h4>
 				<p>
-					<strong>update_all</strong> メソッドは、指定されたコレクションのすべてのレコードをアップデートします。
+					<strong>update_all</strong> メソッドは、指定されたコレクションのすべてのレコードを更新します。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1513,28 +1513,28 @@ $bool = $mongodb->where(array('id' => $an_id))->update('users', array(
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection (table) to use.</td>
+									<td>使用するコレクション (テーブル) 。</td>
 								</tr>
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>The new values.</td>
+									<td>新しい値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><em>true</em> on success</td>
+						<td>成功時に <em>true</em></td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
-// Update Spammer's surname.
+// Spammer の surname を更新。
 $bool = $mongodb->where('name', 'Spammer')->update_all('users', array(
 	'surname' => 'Don\'t believe us.',
 ));
@@ -1554,7 +1554,7 @@ $bool = $mongodb->where('name', 'Spammer')->update_all('users', array(
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1570,22 +1570,22 @@ $bool = $mongodb->where('name', 'Spammer')->update_all('users', array(
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection (table) to use.</td>
+									<td>使用するコレクション (テーブル) 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><em>true</em> on success</td>
+						<td>成功時に <em>true</em></td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
-// Delete a user named Spammer
+// Spammer という名前の user を削除
 $bool = $mongodb->where(array('name' => 'Spammer'))->delete('users');
 </code></pre>
 						</td>
@@ -1603,7 +1603,7 @@ $bool = $mongodb->where(array('name' => 'Spammer'))->delete('users');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1619,22 +1619,22 @@ $bool = $mongodb->where(array('name' => 'Spammer'))->delete('users');
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection (table) to use.</td>
+									<td>使用するコレクション (テーブル) 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><em>true</em> on success</td>
+						<td>成功時に <em>true</em></td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
-// Delete all users named Spammer
+// Spammer という名前の全ての user を削除
 $bool = $mongodb->where(array('name' => 'Spammer'))->delete_all('users');
 </code></pre>
 						</td>
@@ -1646,14 +1646,14 @@ $bool = $mongodb->where(array('name' => 'Spammer'))->delete_all('users');
 			<article>
 				<h4 class="method" id="method_command">command($query = array())</h4>
 				<p>
-					<strong>command</strong> メソッドは、MongoDB コマンドを実行します。コマンドについての詳細については、こちらをご参照ください。
-					<a href="http://www.mongodb.org/display/DOCS/Commands" target="_blank">the MongoDB docs</a>.
+					<strong>command</strong> メソッドは、MongoDB コマンドを実行します。コマンドについての詳細は、
+					<a href="http://www.mongodb.org/display/DOCS/Commands" target="_blank">the MongoDB docs</a> をご参照ください。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1669,19 +1669,19 @@ $bool = $mongodb->where(array('name' => 'Spammer'))->delete_all('users');
 									<th><kbd>$query</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>An array of command parameters.</td>
+									<td>command パラメータの配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The command result</td>
+						<td>command の結果</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
 $mongodb->command(array(
@@ -1700,14 +1700,14 @@ $mongodb->command(array(
 			<article>
 				<h4 class="method" id="method_add_index">add_index($collection = "", $keys = array(), $options = array())</h4>
 				<p>
-					<strong>add_index</strong> メソッドはコレクションのキーにインデックスを追加します。 指定可能なオプションについては、こちらをご覧ください。					
-					<a href="http://php.net/manual/en/mongocollection.ensureindex.php#refsect1-mongocollection.ensureindex-parameters" target="_blank">php.net</a>.
+					<strong>add_index</strong> メソッドは、任意のパラメーターと共に、コレクションにキーのインデックスを追加します。 指定可能なオプションについては、
+					<a href="http://php.net/manual/ja/mongocollection.ensureindex.php#refsect1-mongocollection.ensureindex-parameters" target="_blank">php.net</a> をご覧ください。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1723,31 +1723,31 @@ $mongodb->command(array(
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection (table) to use.</td>
+									<td>使用するコレクション (テーブル) 。</td>
 								</tr>
 								<tr>
 									<th><kbd>$keys</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>An associative array with fields and sorting directions.</td>
+									<td>フィールドとソート方向の連想配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$options</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>An array with optional settings.</td>
+									<td>オプション設定の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
 $mongodb->add_index('my_collection', array(
@@ -1772,7 +1772,7 @@ $mongodb->add_index('my_collection', array(
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1788,25 +1788,25 @@ $mongodb->add_index('my_collection', array(
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection (table) to use.</td>
+									<td>使用するコレクション (テーブル) 。</td>
 								</tr>
 								<tr>
 									<th><kbd>$keys</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>An associative array with fields (and sorting directions).</td>
+									<td>フィールド (とソート方向) の連想配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
 $mongodb->remove_index('my_collection', array(
@@ -1814,7 +1814,7 @@ $mongodb->remove_index('my_collection', array(
 	'last_name' => -1)
 ));
 
-// or
+// または
 
 $mongodb->remove_index('first_name');
 </code></pre>
@@ -1833,7 +1833,7 @@ $mongodb->remove_index('first_name');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1849,19 +1849,19 @@ $mongodb->remove_index('first_name');
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection (table) to use.</td>
+									<td>使用するコレクション (テーブル) 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current Mongo_Db instance.</td>
+						<td>現在の Mongo_Db インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
 $mongodb->remove_all_indexes('my_collection');
@@ -1881,7 +1881,7 @@ $mongodb->remove_all_indexes('my_collection');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1897,19 +1897,19 @@ $mongodb->remove_all_indexes('my_collection');
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection (table) to use.</td>
+									<td>使用するコレクション (テーブル) 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>An array of index names for this collection.</td>
+						<td>コレクションのインデックス名の配列。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get an instance
+							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
 $indexes = $mongodb->list_indexes('my_collection');
@@ -1923,13 +1923,13 @@ $indexes = $mongodb->list_indexes('my_collection');
 			<article>
 				<h4 class="method" id="get_collection">get_collection($collection = "")</h4>
 				<p>
-					<strong>get_collection</strong> メソッドは、MongoDB PHP Driver から、MongoCollection オブジェクトを返却します。<a href="http://www.php.net/manual/en/book.mongo.php">(?)</a>
+					<strong>get_collection</strong> メソッドは、MongoDB PHP ドライバから、MongoCollection オブジェクトを返却します。<a href="http://www.php.net/manual/ja/book.mongo.php">(?)</a>
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1945,25 +1945,25 @@ $indexes = $mongodb->list_indexes('my_collection');
 									<th><kbd>$collection</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>The collection (table) to use.</td>
+									<td>使用するコレクション (テーブル) 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A MongoCollection object from the core MongoDB PHP Driver.</td>
+						<td>MongoDB PHP ドライバからの MongoCollection オブジェクト。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get a collection
+							<pre class="php"><code>// コレクションを取得
 $mongodb       = \Mongo_Db::instance();
 $my_collection = $mongodb->get_collection('my_collection');
 $my_collection->update(array('_id' => $id), array('$push' => array('array.to.add.to' => $data)));
 </code></pre>
-						<br />
-						This was put in place due to the inherent lack of support for <a href="http://www.mongodb.org/display/DOCS/Updating#Updating-ModifierOperations">update modifier operation</a>.
+							<br />
+							これは、<a href="http://www.mongodb.org/display/DOCS/Updating#Updating-ModifierOperations">update の modifier オペレーション</a> のサポートが手薄いことから導入されました。
 						</td>
 					</tr>
 					</tbody>
