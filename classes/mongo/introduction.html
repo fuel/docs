@@ -49,19 +49,19 @@
 			<h3 id="intro">はじめに</h3>
 			<p>
 				Mongo_Db クラスは、
-				<a href="http://www.mongodb.org/" target="_blank">Mongo データベース</a> と対話する方法を提供します。
+				<a href="http://www.mongodb.org/" target="_blank">Mongo データベース</a> とやり取りするメソッドを提供します。
 			</p>
 			<p>
-				通常のインサート、セレクト、デリート、アップデートといった機能に加え、
-				Mongo_Db クラスは、データベース操作を助ける機能を提供します。
+				通常の insert、select、delete や update といった機能に加え、
+				データベース操作を助ける機能を提供します。
 			</p>
 
 			<h3 id="config">設定</h3>
 
 			<p>
-				すべての Mongo データベースの接続設定は、<em>app/config/db.php</em> の中の mongo という配列にされている必要があります。
-				設定オプションと説明は次のとおりです。
-				すべての設定には、ホスト名 と データベース名が必須となります。
+				すべての Mongo データベースの接続設定は、<em>app/config/db.php</em> の中で mongo という配列に設定されている必要があります。
+				設定オプションと説明を下にリストアップしました。
+				すべての設定には、ホスト名とデータベース名が必須となります。
 			</p>
 
 			<table class="config">
@@ -69,7 +69,7 @@
 					<tr class="header">
 						<th>パラメータ</th>
 						<th>型</th>
-						<th>Required</th>
+						<th>必須</th>
 						<th>説明</th>
 					</tr>
 					<tr>
@@ -87,33 +87,33 @@
 					<tr>
 						<th>port</th>
 						<td>number</td>
-						<td>no</td>
+						<td>いいえ</td>
 						<td>接続するポート番号</td>
 					</tr>
 					<tr>
 						<th>replicaset</th>
 						<td>string</td>
-						<td>no</td>
+						<td>いいえ</td>
 						<td>接続に使用するレプリカセット名</td>
 					</tr>
 					<tr>
 						<th>username</th>
 						<td>string</td>
-						<td>no</td>
-						<td>認証で使用するユーザ名（パスワードがセットされない場合には無視されます）</td>
+						<td>いいえ</td>
+						<td>認証で使用するユーザ名 (パスワードがセットされない場合には無視されます)</td>
 					</tr>
 					<tr>
 						<th>password</th>
 						<td>string</td>
-						<td>no</td>
-						<td>認証で使用するパスワード（パスワードがセットされない場合には無視されます）</td>
+						<td>いいえ</td>
+						<td>認証で使用するパスワード (パスワードがセットされない場合には無視されます)</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<p>Example config:</p>
+			<p>設定の例:</p>
 
-			<pre class="php"><code>// Inside app/config/db.php
+			<pre class="php"><code>// app/config/db.php の中に
 
 		'mongo' => array(
 			// このグループは、インスタンス名が省略された場合に使用されます。
@@ -122,7 +122,7 @@
 				'database'   => 'mongo_fuel',
 			),
 
-			// List your own groups below.
+			// 自分のグループを下にリストアップします。
 			'my_mongo_connection' => array(
 				'hostname'   => 'localhost',
 				'database'   => 'my_db',
@@ -137,7 +137,7 @@
 
 			<p class="note">
 				MongoDB を使用するには、それがあなたのサーバーで利用できるようになっていなければなりません。
-				あなたのサーバーでMongoDBがサポートされているか確認するには、<em>phpinfo()</em> の Mongo セクションを参照するか、ホスティング会社に確認してください。
+				あなたのサーバーで MongoDB がサポートされているか確認するには、<em>phpinfo()</em> の Mongo セクションを参照するか、ホスティング会社に尋ねてください。
 			</p>
 
 		</div>
