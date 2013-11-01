@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Usage - Email Package - FuelPHP ドキュメント</title>
+	<title>使い方 - Email パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -46,12 +46,12 @@
 
 			<h2>Email パッケージの使用方法</h2>
 
-			<p>email パッケージでメールを送るために必要な項目は、次の3つだけです。</p>
+			<p>email パッケージでメールを送るために必要な項目は、次の 3 つだけです。</p>
 
 			<ol>
-				<li>from のアドレス
-				<li>to のアドレス</li>
-				<li>そして、送りたいメッセージ</li>
+				<li>'送信者' のアドレス。</li>
+				<li>受信者のアドレス。</li>
+				<li>最後に大事な項目として、送りたいメッセージ</li>
 			</ol>
 
 			<h3 id="sending_mails">メールを送ってみましょう。</h3>
@@ -59,23 +59,23 @@
 			<pre class="php"><code>// インスタンスを生成する
 $email = Email::forge();
 
-// from を指定する
+// 送信者のアドレスを指定する
 $email->from('my@email.me', 'My Name');
 
-// to を指定する
+// 受信者のアドレスを指定する
 $email->to('receiver@elsewhere.co.uk', 'Johny Squid');
 
-// 件名を指定する
+// 表題を指定する
 $email->subject('This is the subject');
 
-// 複数の to を指定する場合
+// 送信者のアドレスを複数指定する場合
 
 $email->to(array(
 	'example@mail.com',
 	'another@mail.com' => 'With a Name',
 ));
 
-// 本文を指定する
+// 本文を指定する。
 $email->body('This is my message');
 </code></pre>
 
@@ -83,10 +83,10 @@ $email->body('This is my message');
 
 			<h3 id="exception">例外</h3>
 
-			<p>メールを送信する際、次の2種類の例外に遭遇する可能性があります。</p>
+			<p>メールを送信する際、次の 2 種類の例外が発生する可能性があります。</p>
 
 			<ul>
-				<li><strong>\EmailValidationFailedException</strong>: 1つ以上のメールアドレスがバリデーションを通過しない場合に投げられます。</li>
+				<li><strong>\EmailValidationFailedException</strong>: 1 つ以上のメールアドレスがバリデーションを通過しない場合に投げられます。</li>
 				<li><strong>\EmailSendingFailedException</strong>: ドライバの例外でメール送信出来なかった場合</li>
 			</ul>
 
@@ -105,7 +105,7 @@ catch(\EmailSendingFailedException $e)
 	// ドライバがメールを送信できなかったとき
 }</code></pre>
 
-			<h3 id="html_mails">HTML メール</h3>
+			<h3 id="html_mails">HTML メール。</h3>
 
 			<p>HTML メールの送信も、普通のメールの送信とあまり変わりません:</p>
 
@@ -113,15 +113,15 @@ catch(\EmailSendingFailedException $e)
 $email->html_body(\View::forge('email/template', $email_data));
 
 /** デフォルトでは、この機能は HTML から代替テキストも生成します。
-	また、本文中のファイルを添付します (http://... のようなパスでなく)。       **/
+	また、本文中のファイルを添付します (http://... のようなパスでないならば) 。      **/
 
-// オプションで、代替テキストを指定する
+// オプションで、代替テキストを指定する。
 $email->alt_body('This is my alt body, for non-html viewers.');</code></pre>
 
 			<h3 id="attachments">添付ファイル</h3>
 
 			<p>
-				Email パッケージは、通常の添付とインラインの2種類の添付をサポートします。
+				Email パッケージは、通常の添付とインラインの 2 種類の添付方法をサポートします。
 				メールの本文中に使いたい場合は、インライン添付を用います。例えば、図を挿入して、オフラインでも表示できるようにしたいときなどです。
 				ただし、受信側のメーラーによっては対応していないことに注意してください。
 			</p>
@@ -165,21 +165,21 @@ $email->string_attach($contents, $filename);
 
 			<pre class="php"><code>$email->priority(\Email::P_HIGH);</code></pre>
 
-			<h3 id="pipelining">Pipelining</h3>
+			<h3 id="pipelining">パイプライン</h3>
 
 			<p>
-				Pipelining is a mechanism with which you can send out multiple emails at once.
+				パイプラインは、一度に複数のメールを送信できる機能です。
 			</p>
 
 			<pre class="php"><code>$email->pipelining($true);</code></pre>
 
 			<p>
-				Once enabled, you can use the same <code>$email</code> object to construct and send multiple emails, re-using the same connection to the mailserver.
-				You should consult with your mail server hosting company to see if this is allowed, and what the maximum amount of emails is that you
-				can send out in a single pipeline. Most hosters limit this to a specific amount, after which the server disconnects.
+				一度有効にすれば、同じメールサーバーの接続を再利用して複数メールの構築や送信を行うために、同じ <code>$email</code> オブジェクトを使うことができます。
+				メールサーバーのホスティング会社がパイプラインを許可しているか、
+				またメールの最大送信数がどれだけなのかを考慮しなくてはいけません。
 			</p>
 			<p>
-				Currently, only the SMTP driver supports pipelining.
+				今のところ、 SMTP ドライバのみがパイプラインをサポートしています。
 			</p>
 
 		</div>

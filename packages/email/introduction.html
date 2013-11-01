@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>はじめに - Email Package - FuelPHP ドキュメント</title>
+	<title>はじめに - Email パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -46,15 +46,15 @@
 			<h2>Email パッケージ</h2>
 
 			<p>
-				The Email package provides an interface for sending email using either php's mail function, sendmail
-				or SMTP. The package supports:
+				Email パッケージは、 php のメール関数、 sendmail 、または SMTP のいずれかを利用して、メールを送信するインターフェースを提供します。
+				パッケージのサポート:
 			</p>
 
 			<ul>
 				<li>プレーンテキストメール</li>
-				<li>HTMLメール、と、オプションの代替本文</li>
+				<li>HTML メールとオプションの代替本文</li>
 				<li>添付ファイル</li>
-				<li>インラインの添付ファイル</li>
+				<li>インラインの添付ファイル。</li>
 			</ul>
 
 			<section>
@@ -62,8 +62,8 @@
 				<h3 id="installation">インストール</h3>
 				
 				<p>
-					emailパッケージは、本体(1.1以降)に含まれています。
-					あなたは、設定ファイルもしくはオートロード設定で、パッケージを有効にする必要があります。
+					Email パッケージは、本体 (1.1 以降) に含まれています。
+					アプリケーションの設定ファイルの中、または必要な時に呼び出して、パッケージを有効にする必要があります。
 				</p>
 
 					<pre class="php"><code>'always_load' => array(
@@ -72,7 +72,7 @@
 	),
 ),
 
-//もしくはControllerの上で...
+// または Controller の中で:
 
 \Package::load('email');
 </code></pre>
@@ -84,11 +84,11 @@
 				<h3 id="configuration">構成</h3>
 
 				<p>
-					Create (or copy from the package) a config file at <em>app/config/email.php</em>. And change the settings needed.
+					<em>app/config/email.php</em> にある設定ファイルを作成 (または package からコピー) します。そして、必要な設定項目を変更します。
 				</p>
 
 				<p class="note">
-					<strong>Please note:</strong> The Email package loads the email config for you, so there is no need to autoload it.
+					<strong>注意してください:</strong> Email パッケージがあなたの email 設定を読み込みます、従って設定を読み込むことは必要はありません。
 				</p>
 
 				<h4 id="general_config">一般的な構成</h4>
@@ -97,16 +97,16 @@
 					<tbody>
 						<tr class="header">
 							<th>パラメータ</th>
-							<th>タイプ</th>
-							<th>初期値</th>
+							<th>型</th>
+							<th>デフォルト</th>
 							<th>説明</th>
 						</tr>
 						<tr>
 							<th>defaults</th>
 							<td>array</td>
-							<td><pre class="php"><code>array( /* default config array */ )</code></pre></td>
+							<td><pre class="php"><code>array( /* デフォルト設定の配列 */ )</code></pre></td>
 							<td>
-								すべての設定グループのデフォルトの設定に使用します。セットアップグループでは、これらの値を上書きします。
+								デフォルト設定項目は、すべての設定グループに使用されます。あなたの設定グループは、これらの値を上書きします。
 							</td>
 						</tr>
 						<tr>
@@ -114,7 +114,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'default'</code></pre></td>
 							<td>
-								何もprofidedされていない場合に使用するデフォルトの設定。
+								何も指定されない場合に使用するデフォルト設定。
 							</td>
 						</tr>
 						<tr>
@@ -124,20 +124,20 @@
 		'default' => array(),
 	)</code></pre></td>
 							<td>
-								デフォルトの設定とセットアップの配列。あなた自身を追加したり、デフォルトの設定のグループを変更します。
+								デフォルト設定と一緒にする設定の配列。あなたの設定を追加するか、またはデフォルト設定のグループを変更します。
 							</td>
 						</tr>
 					</tbody>
 				</table>
 
-				<h4 id="group_config">グループ構成</h4>
+				<h4 id="group_config">グループの構成</h4>
 
 				<table class="config">
 					<tbody>
 						<tr class="header">
 							<th>パターン</th>
-							<th>タイプ</th>
-							<th>初期値</th>
+							<th>型</th>
+							<th>デフォルト</th>
 							<th>説明</th>
 						</tr>
 						<tr>
@@ -153,7 +153,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'mail'</code></pre></td>
 							<td>
-								The driver to use. Can be mail, smtp, sendmail or noop (only logs writes to log). Must be lowercase.
+								使うドライバ。 mail 、 smtp 、 sendmail または noop (ただログを書き込むだけ) 。小文字で指定します。
 							</td>
 						</tr>
 						<tr>
@@ -161,7 +161,7 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								HTML形式のメールとして、もしくはプレーンメールとして送信するかどうかを決めます。
+								HTML 形式のメール、もしくはテキスト形式のメールのどちらかで送信します。
 							</td>
 						</tr>
 						<tr>
@@ -169,8 +169,8 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								Whether to encode subject and recipient names.
-								Requires the <a href="http://www.php.net/manual/en/ref.mbstring.php" target="_blank">mbstring extension</a>.
+								メールの表題と受信者名をエンコードするかどうか。
+								<a href="http://www.php.net/manual/ja/ref.mbstring.php" target="_blank">mbstring 拡張モジュール</a> が必要となります。
 							</td>
 						</tr>
 						<tr>
@@ -186,7 +186,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'8bit'</code></pre></td>
 							<td>
-								メールメッセージのエンコードを指定します。 7bit, 8bit, quoted-printable と base64が使用できます。
+								メールメッセージのエンコードを指定します。 7bit 、 8bit 、 quoted printable 文字列と base64 が使用できます。
 							</td>
 						</tr>
 						<tr>
@@ -194,7 +194,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>\Email::P_NORMAL</code></pre></td>
 							<td>
-								メールの優先順位を指定することができます。
+								次のように、メールの優先順位を指定することができます。
 								<ul style="padding-bottom: 5px; padding-top: 5px;">
 									<li>\Email::P_LOWEST</li>
 									<li>\Email::P_LOW</li>
@@ -209,7 +209,7 @@
 							<td>string|false</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								デフォルト値のfrom mailを設定します。
+								デフォルトの from メールアドレスにセットします。
 							</td>
 						</tr>
 						<tr>
@@ -217,7 +217,7 @@
 							<td>string|false</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								デェフォルト値のfrom nameを設定します。
+								デフォルトの from 名をセットします。
 							</td>
 						</tr>
 						<tr>
@@ -225,7 +225,7 @@
 							<td>bool</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								あなたがアドレスを検証したくない場合は、falseに設定します。送信に失敗することができます。
+								アドレスを検証したくない場合は、 false に設定します。送信に失敗する可能性があります。
 							</td>
 						</tr>
 						<tr>
@@ -233,7 +233,7 @@
 							<td>bool</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								自動的に、HTML本文に背景画像を添付します。
+								HTML 本文から (背景) 画像を自動的に添付するかどうかを指定します。
 							</td>
 						</tr>
 						<tr>
@@ -241,7 +241,7 @@
 							<td>bool</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								自動的にHTML本文からのaltを生成するかどうか指定します。
+								HTML 本文から alt (代替テキスト) を自動的に生成するかどうかを指定します。
 							</td>
 						</tr>
 						<tr>
@@ -249,8 +249,7 @@
 							<td>int|false</td>
 							<td><pre class="php"><code>76</code></pre></td>
 							<td>
-								ワードラップのサイズ。 0より上のものよりも低い場合は折り返されます。 
-								base64またはquoted - printableを使用している場合、この設定は無視されます。
+								ワードラップのサイズ。 0 以下の場合は折り返されます。 base64 または quoted printable 文字列を使用している場合、この設定は無視されます。
 							</td>
 						</tr>
 						<tr>
@@ -258,7 +257,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'/usr/sbin/sendmail'</code></pre></td>
 							<td>
-								sendmailのパス
+								sendmail のパス。
 							</td>
 						</tr>
 						<tr>
@@ -266,7 +265,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>''</code></pre></td>
 							<td>
-								SMTP ホスト
+								SMTP ホスト。
 							</td>
 						</tr>
 						<tr>
@@ -274,7 +273,7 @@
 							<td>int</td>
 							<td><pre class="php"><code>25</code></pre></td>
 							<td>
-								SMTP ポート.
+								SMTP ポート。
 							</td>
 						</tr>
 						<tr>
@@ -282,7 +281,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>''</code></pre></td>
 							<td>
-								SMTP ユーザ名.
+								SMTP ユーザ名。
 							</td>
 						</tr>
 						<tr>
@@ -290,14 +289,15 @@
 							<td>string</td>
 							<td><pre class="php"><code>''</code></pre></td>
 							<td>
-								SMTP パスワード</td>
+								SMTP パスワード。
+							</td>
 						</tr>
 						<tr>
 							<th>smtp.timeout</th>
 							<td>string</td>
 							<td><pre class="php"><code>''</code></pre></td>
 							<td>
-								SMTPのタイムアウト 送信処理中にタイムアウトする場合はこの値を増やしてください。
+								SMTP のタイムアウトの値。送信処理中にタイムアウトが発生する場合はこの値を増やしてください。
 							</td>
 						</tr>
 						<tr>
@@ -305,7 +305,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>"\n"</code></pre></td>
 							<td>
-								新しい行
+								新しい行。
 							</td>
 						</tr>
 						<tr>
@@ -313,9 +313,9 @@
 							<td>array</td>
 							<td><pre class="php"><code>array('');</code></pre></td>
 							<td>
-								添付ファイルのパスを配列で設定します。
-								このドライバーは添付ファイルのパスを見て、見つかると添付します。<br>
-								空であった場合は、取り除きます。
+								添付ファイルのパスの配列。
+								添付ファイルを加える時、ドライバはこれらのパスを調べて、最初に見つけたものを添付します。
+								絶対パスを許可するために、そこに空 ('') を入れたままにしておいてください。
 							</td>
 						</tr>
 						<tr>
@@ -323,7 +323,7 @@
 							<td>string|false</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								Use this to set a default return-path email address.
+								デフォルトの return-path メールアドレスにセットします。
 							</td>
 						</tr>
 					</tbody>
