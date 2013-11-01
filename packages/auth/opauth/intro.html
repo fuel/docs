@@ -46,13 +46,13 @@
 			<h2>Opauth - はじめに</h2>
 
 			<p>Opauth は OAuth または OpenID プロバイダに対する認証のためのサポートを提供するマルチプロバイダ認証フレームワークです。
-			アプリケーションで Opauth を使用することにより、一連の新たな資格情報を作り、新しいパスワードを覚えておくことの代わりに、OAuth
-			を使うメジャーなウェブアプリケーションの一つからユーザーが既存の資格情報を利用することができます。 OAuth をサポートしているWebアプリケーションには、
+			アプリケーションで Opauth を使用することにより、一連の新たな認証情報を作り、新しいパスワードを覚えておくことの代わりに、OAuth
+			を使うメジャーなウェブアプリケーションの一つからユーザーが既存の認証情報を利用することができます。 OAuth をサポートしているWebアプリケーションには、
 			Facebook 、 Twitter 、 Google 、 Instagram 、 Paypal 、 LinkedIn 、 Vimeo 、 Foursquare や Flickr が含まれています。
 			</p>
 			<p>これらの OAuth プロバイダのいずれかから、 OAuth のサービスを使用するだけでなく、シングルサインオンも同様に提供しています。
 			これらのサービスのいずれか (例えば、 Facebook) のウェブサイトにユーザが既にログインしている場合に、あなたのウェブサイトに来て
-			Facebook のアカウントを使用しログインをしようとすると Opauth は既にログインしていることを検出するため、資格情報の入力をユーザーに求めることはありません。
+			Facebook のアカウントを使用しログインをしようとすると Opauth は既にログインしていることを検出するため、認証情報の入力をユーザーに求めることはありません。
 			その代わりに、ユーザーが意識することなくアプリケーションへログインされます。</p>
 
 			<h3 id="integration">統合</h3>
@@ -74,12 +74,12 @@
 
 			<h3 id="install_and_config">インストールと設定</h3>
 
-			<p>If this is your first encounter with the Auth package, check the sections on <a href="../simpleauth/intro.html">Simpleauth</a> and
-			<a href="../ormauth/intro.html">Ormauth</a> first, make a decision on which one you are going to use, and install that according to
-			the instructions. Once you have done that, come back here and read on.</p>
+			<p>もしこれが Auth パッケージとの最初の出会いならば、最初に <a href="../simpleauth/intro.html">Simpleauth</a> と <a href="../ormauth/intro.html">Ormauth</a>
+			のセクションを確認し、どちらを利用するか決定し、指示に従ってインストールしてください。
+			一旦それをしたならば、ここに戻り読み進めてください。</p>
 
-			<p>To be able to use Opauth, you need to install the Opauth library through composer first. Add it to your <strong>composer.json</strong>
-			file in the root of your FuelPHP installation:
+			<p>Opauth を使用できるようにするには、最初に Composer から Opauth ライブラリをインストールする必要があります。
+			FuelPHP をインストールしたルートで <strong>composer.json</strong> ファイルに Opauth ライブラリを追加します：
 			</p>
 
 <pre class="javascript"><code>"require": {
@@ -89,10 +89,10 @@
 	"fuelphp/upload": "2.0"
 },</code></pre>
 
-			<p>Besides the Opauth library itself, you also need to install strategy packages for each of the OAuth providers you want to
-			support in your application. Check the <a href="https://packagist.org/packages/opauth/">Packagist</a> website to see which
-			ones are readily available as a composer package. Let's say you want to use Facebook, Google and Github. Your <strong>composer.json</strong>
-			should then look like this:</p>
+			<p>Opauth ライブラリ自体に加え、OAuth のプロバイダごとにアプリケーションでサポートしたいストラテジーのパッケージをインストールする必要があります。
+			Composer パッケージとして何がすぐに利用できるかどうかは <a href="https://packagist.org/packages/opauth/">Packagist</a> のウェブサイトを確認してください。
+			私たちはあなたが Facebook 、 Google と Github を使いたいとしましょう。
+			あなたの <strong>composer.json</strong> はこのようになります：</p>
 
 <pre class="javascript"><code>"require": {
 	"php": ">=5.3.3",
@@ -104,14 +104,14 @@
 	"fuelphp/upload": "2.0"
 },</code></pre>
 
-			<p>この後、すべてをインストールするには composer を実行します：</p>
+			<p>この後、すべてをインストールするには Composer を実行します：</p>
 
 				<pre class="cli"><code>$ cd /data/www/myfuelwebsite
 $ php composer.phar update</code></pre>
 
-			<p>Opauth requires a database table in which the relation between the OAuth credentials and the local user account is stored.
-			This table is automatically created for you when you have installed either <a href="../simpleauth/intro.html#database">Simpleauth</a> or
-			<a href="../ormauth/intro.html#database">Ormauth</a>.</p>
+			<p>Opauth は OAuth の認証情報およびローカルユーザアカウントの関係が格納されているデータベーステーブルを必要とします。
+			<a href="../simpleauth/intro.html#database">Simpleauth</a> または <a href="../ormauth/intro.html#database">Ormauth</a>
+			のいずれかをインストールしている場合にはテーブルは自動的に作成されます。</p>
 
 			<h3 id="configuration">設定</h3>
 
@@ -125,10 +125,10 @@ $ php composer.phar update</code></pre>
 			<table class="config">
 				<thead>
 					<tr class="header">
-						<th style="width:20%;">Param</th>
-						<th style="width:10%;">Type</th>
-						<th>Default</th>
-						<th>Description</th>
+						<th style="width:20%;">パラメータ</th>
+						<th style="width:10%;">型</th>
+						<th>デフォルト</th>
+						<th>説明</th>
 					</tr>
 				</thead>
 				<tbody>
