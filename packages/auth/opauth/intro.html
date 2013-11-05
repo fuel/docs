@@ -138,9 +138,9 @@ $ php composer.phar update</code></pre>
 						<td><pre class="php"><code>true</code></pre>
 						</td>
 						<td>
-							Whether or not you want to support linking multiple OAuth providers to a single local account.
-							If it is set to <strong>false</strong> and a provider is already linked, the user will get an
-							error message when a second provider is used, and the login will be rejected.
+							単一のローカルアカウントへの複数の OAuth プロバイダのリンクをサポートするかどうか。
+							<strong>false</strong> に設定されていて、かつプロバイダが既にリンクされている場合に、
+							２つ目のプロバイダを使用した場合、ユーザへはエラーメッセージが表示されログインが拒否されます。
 						</td>
 					</tr>
 					<tr>
@@ -149,8 +149,8 @@ $ php composer.phar update</code></pre>
 						<td><pre class="php"><code>1</code></pre>
 						</td>
 						<td>
-							Group ID to assign to new local user accounts transparently created when a user uses an OAuth
-							provider for the first time. By default this is the ID of the Simpleauth 'users' group.
+							ユーザーが初めて OAuth プロバイダを利用する時に、ユーザーが意識することなく作成された新しいローカルアカウントに割り当てられるグループ ID 。
+						デフォルトでは、 Simpleauth での 'users' グループの ID です。
 						</td>
 					</tr>
 					<tr>
@@ -159,8 +159,8 @@ $ php composer.phar update</code></pre>
 						<td><pre class="php"><code>false</code></pre>
 						</td>
 						<td>
-							If <strong>true</strong> it enables the display of debugging messages within the Opauth library
-							and Strategy classes. Do not enable this on production sites!
+							<strong>true</strong> の場合には Opauth ライブラリとストラテジークラス内のデバッグメッセージを有効にします。
+							プロダクションサイトではこれを有効にしないでください！
 						</td>
 					</tr>
 					<tr>
@@ -169,8 +169,8 @@ $ php composer.phar update</code></pre>
 						<td><pre class="php"><code>null</code></pre>
 						</td>
 						<td>
-							A random string of characters which is used to salt the signing key of the authentication response.
-							You are required to define one, make sure it is sufficiently long and completely random!
+							認証応答の署名鍵のソルトに利用されるランダムな文字列。
+							定義を必要としており、十分に長く、そして十分にランダムであることを確かめてください！
 						</td>
 					</tr>
 					<tr>
@@ -179,8 +179,8 @@ $ php composer.phar update</code></pre>
 						<td><pre class="php"><code>300</code></pre>
 						</td>
 						<td>
-							Number of iterations to use when generating the signing hash. The higher the number, the more secure
-							your signing key is, but also the slower the login process is. This seems to be an acceptable default.
+							署名のハッシュを生成するときに使用する繰り返し回数。回数が多いほどより安全な署名鍵となりますが、
+							しかし、ログイン処理も同様に遅くなります。これは無難なデフォルト値であると思われます。
 						</td>
 					</tr>
 					<tr>
@@ -189,9 +189,9 @@ $ php composer.phar update</code></pre>
 						<td><pre class="php"><code>'2 minutes'</code></pre>
 						</td>
 						<td>
-							Time limit allowed for an auth response to be considered valid. Starting from auth response generation
+							認証応答が有効と見なされる時間を制限することを許可。 Starting from auth response generation
 							(ie. the time when callback is first requested) to the time when auth response is received and attempts
-							validation. Use any value compatible with <strong>strtotime()</strong>.
+							validation. <strong>strtotime()</strong> と互換性のある任意の値を使用します。
 						</td>
 					</tr>
 					<tr>
@@ -200,21 +200,21 @@ $ php composer.phar update</code></pre>
 						<td><pre class="php"><code>array()</code></pre>
 						</td>
 						<td>
-							The list of strategies supported by your application, which will include per stategy at your application ID
-							and application secret (as assigned to you by the OAuth provider), and any other optional configuration
-							items. It is possible to define multiple strategies for the same provider. See
-							<a href="https://github.com/opauth/opauth/wiki/Opauth-configuration#guide-to-multiple-configurations-for-a-single-strategy">this page</a>
-							for more information.
+							アプリケーションでサポートしているストラテジーのリストには、ストラテジー毎にあなたのアプリケーション ID
+							およびアプリケーションシークレット (として OAuth プロバイダからあなたに割り当てられた) 、そして、その他オプションの設定項目が含まれているでしょう。
+							これは同じプロバイダに対して複数のストラテジーを定義することができます。
+							詳細については、<a href="https://github.com/opauth/opauth/wiki/Opauth-configuration#guide-to-multiple-configurations-for-a-single-strategy">このページ</a>
+							を参照してください。
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
 			<p>
-				Pay attention to the differences in OpAuth Auth drivers when it comes to callbacks. For example, Facebook doesn't require you
-				to define a callback (redirect) URL, Twitter requires one in the form <strong>http://example.com/&lt;controller&gt;/callback/</strong>,
-				and Google one like this: <strong>http://example.com/&lt;controller&gt;/&lt;method&gt;/google/oauth2callback</strong> (where "method"
-				is the name of the method in your controller that instantiates the Auth_Opauth driver.
+				コールバックが来るときの OpAuth 認証ドライバの違いに注意をしてください。例えば、 Facebook は、コールバック (リダイレクト) URL
+				を定義する必要はありませんが、 Twitter は、 <strong>http://example.com/&lt;controller&gt;/callback/</strong> のような形で必要となり、
+				そして、 Google ではこのように： <strong>http://example.com/&lt;controller&gt;/&lt;method&gt;/google/oauth2callback</strong> ("method"
+				は、インスタンス化している Auth_Opauth ドライバのコントローラの中でのメソッド名) なります。
 			</p>
 
 			<p class="note">Pay very close attention to the value of <strong>default_group</strong>. For Ormauth, group id's are
