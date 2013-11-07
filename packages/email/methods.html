@@ -49,7 +49,7 @@
 
 			<article>
 				<h4 class="method" id="method_forge" data-class="Email">forge($setup = null, array $config = array())</h4>
-				<p>The <strong>forge</strong> returns a new Email_Driver instance based on the config or input it receives.</p>
+				<p><strong>forge</strong> は、設定または与えられた入力を基に新しい Email_Driver インスタンス を返却します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -67,16 +67,16 @@
 									<th class="description">説明</th>
 								</tr>
 								<tr>
-									<th><kbd>$arr</kbd></th>
+									<th><kbd>$setup</kbd></th>
 									<td><em>mixed</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Supply <em>null</em> for default config, a setup group name, or a config array.</td>
+									<td>デフォルト設定は <em>null</em> です。設定グループ名または設定配列。</td>
 								</tr>
 								<tr>
-									<th><kbd>$arr</kbd></th>
+									<th><kbd>$config</kbd></th>
 									<td><em>mixed</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>An additional config array to modify default configs on the fly.</td>
+									<td>その場でデフォルト設定の変更を行うための追加の設定配列。</td>
 								</tr>
 							</table>
 						</td>
@@ -88,18 +88,18 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Plain an simple:
+							<pre class="php"><code>// シンプルな例:
 $email = \Email::forge();
 
-// Config loaded from a group
+// グループから設定を読み込む
 $email = \Email::forge('my_defaults');
 
-// Config supplied
+// 設定を与える
 $email = \Email::forge(array(
 	'driver' => 'smtp',
 ));
 
-// Loaded config from group with an dynamic overwrite
+// グループから読み込んだ配列を動的に上書きする
 $email = \Email::forge('my_defaults', array(
 	'driver' => 'smtp',
 ));
@@ -110,21 +110,21 @@ $email = \Email::forge('my_defaults', array(
 				</table>
 			</article>
 
-			<h2 id="email_driver_methods">Email driver methods</h2>
+			<h2 id="email_driver_methods">Email ドライバメソッド</h2>
 
 			<p>
-				Every driver that extends <em>Email_Driver</em> has these methods. They are all you need
-				to get up and running.
+				<em>Email_Driver</em> を拡張した全てのドライバがこれらのメソッドを持ちます。
+				準備して動作させるのにはこれらで十分でしょう。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_body">body($body)</h4>
-				<p>The <strong>body</strong> converts the input to string and sets the message body.</p>
+				<p><strong>body</strong> は、入力を文字列に変換しメッセージを本文にセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -137,10 +137,10 @@ $email = \Email::forge('my_defaults', array(
 									<th class="description">説明</th>
 								</tr>
 								<tr>
-									<th><kbd>$arr</kbd></th>
+									<th><kbd>$body</kbd></th>
 									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>The message body.</td>
+									<td><em>必須</em></td>
+									<td>メッセージ本文。</td>
 								</tr>
 							</table>
 						</td>
@@ -154,7 +154,7 @@ $email = \Email::forge('my_defaults', array(
 						<td>
 							<pre class="php"><code>$email->body('This is my message.');
 
-//or pass it a View
+// または View に渡す
 $email->body(\View::forge('my/view', $data);</code></pre>
 						</td>
 					</tr>
@@ -164,12 +164,12 @@ $email->body(\View::forge('my/view', $data);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_alt_body">alt_body($alt_body)</h4>
-				<p>The <strong>alt_body</strong> converts the input to string and sets the message alternative body.</p>
+				<p><strong>alt_body</strong> は、入力を文字列に変換しメッセージを代替本文にセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -182,10 +182,10 @@ $email->body(\View::forge('my/view', $data);</code></pre>
 									<th class="description">説明</th>
 								</tr>
 								<tr>
-									<th><kbd>$arr</kbd></th>
+									<th><kbd>$alt_body</kbd></th>
 									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>The message body.</td>
+									<td><em>必須</em></td>
+									<td>メッセージ本文。</td>
 								</tr>
 							</table>
 						</td>
@@ -199,7 +199,7 @@ $email->body(\View::forge('my/view', $data);</code></pre>
 						<td>
 							<pre class="php"><code>$email->alt_body('This is my alternative message.');
 
-//or pass it a View
+// または View に渡す
 $email->alt_body(\View::forge('my/alt/view', $data);</code></pre>
 						</td>
 					</tr>
@@ -209,12 +209,12 @@ $email->alt_body(\View::forge('my/alt/view', $data);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_priority">priority($priority)</h4>
-				<p>The <strong>priority</strong> method sets the mail's priority.</p>
+				<p><strong>priority</strong> メソッドは、メールの優先度をセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -229,8 +229,8 @@ $email->alt_body(\View::forge('my/alt/view', $data);</code></pre>
 								<tr>
 									<th><kbd>$priority</kbd></th>
 									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>Priority: <a href="./introduction.html#config_priority">See all email priorities</a>.</td>
+									<td><em>必須</em></td>
+									<td>優先度: <a href="./introduction.html#config_priority">全てのメール優先度をご覧ください</a>。</td>
 								</tr>
 							</table>
 						</td>
@@ -251,13 +251,13 @@ $email->alt_body(\View::forge('my/alt/view', $data);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_html_body">html_body($html, $generate_alt = null, $auto_attach = null)</h4>
-				<p>The <strong>html_body</strong> method sets the message body and optionally generates the alt body from it. If specified the inline images will be attached inline automatically.</p>
-				<p class="note"><strong>Please note:</strong> By default automatic attaching is on (via config). To turn this off, either supply false, or change the config setting.</p>
+				<p><strong>html_body</strong> メソッドは、メッセージ本文をセットし任意で代替本文を作成します。インライン画像を指定した場合、自動的にインラインで添付されます。</p>
+				<p class="note"><strong>注意してください:</strong> (設定から) デフォルトでは自動添付は有効になっています。これを無効にするには、false を与えるか設定の設定値を変更してください。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -272,20 +272,20 @@ $email->alt_body(\View::forge('my/alt/view', $data);</code></pre>
 								<tr>
 									<th><kbd>$html</kbd></th>
 									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>The mail html.</td>
+									<td><em>必須</em></td>
+									<td>メールの html 。</td>
 								</tr>
 								<tr>
 									<th><kbd>$generate_alt</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Boolean whether to generate an alternative message body, falls back to config default when null is supplied.</td>
+									<td>代替のメッセージ本文を作成するかどうかの論理値。null の場合、デフォルトの設定が使われます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$auto_attach</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Set to true or false to attach embedded images, falls back to config default when null is supplied.</td>
+									<td>埋め込んだ画像の添付を true または false でセットします。null の場合、デフォルトの設定が使われます。</td>
 								</tr>
 							</table>
 						</td>
@@ -298,10 +298,10 @@ $email->alt_body(\View::forge('my/alt/view', $data);</code></pre>
 						<th>例</th>
 						<td>
 							<pre class="php"><code>$email->html_body(\View::forge('welcome/email', $data));
-// Don't generate the alt body
+// 代替本文を作成しない
 $email->html_body(\View::forge('welcome/email', $data), false);
 
-// Do generate the alt body, but don't auto attach images.
+// 代替本文を作成するが、自動で画像を添付しない。
 $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pre>
 						</td>
 					</tr>
@@ -311,12 +311,12 @@ $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pr
 
 			<article>
 				<h4 class="method" id="method_from">from($email, $name = false)</h4>
-				<p>The <strong>from</strong> method sets from address and name.</p>
+				<p><strong>from</strong> メソッドは、送信者 (from) のメールアドレスと名前をセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -331,14 +331,14 @@ $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pr
 								<tr>
 									<th><kbd>$email</kbd></th>
 									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>The from email.</td>
+									<td><em>必須</em></td>
+									<td>送信者のメールアドレス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>The from name.</td>
+									<td>送信者の名前。</td>
 								</tr>
 							</table>
 						</td>
@@ -359,12 +359,12 @@ $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pr
 
 			<article>
 				<h4 class="method" id="method_subject">subject($subject)</h4>
-				<p>The <strong>subject</strong> method sets the subject.</p>
+				<p><strong>subject</strong> メソッドは、表題をセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -379,8 +379,8 @@ $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pr
 								<tr>
 									<th><kbd>$subject</kbd></th>
 									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>The email subject.</td>
+									<td><em>必須</em></td>
+									<td>メールの表題。</td>
 								</tr>
 							</table>
 						</td>
@@ -401,12 +401,12 @@ $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pr
 
 			<article>
 				<h4 class="method" id="method_to">to($email, $name = false)</h4>
-				<p>The <strong>to</strong> method adds an address or an array of addresses to the <em>to</em> recipient array.</p>
+				<p><strong>to</strong> メソッドは、受信者 (<em>to</em>) のメールアドレスまたはその配列を追加します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -421,14 +421,14 @@ $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pr
 								<tr>
 									<th><kbd>$email</kbd></th>
 									<td><em>string|array</em></td>
-									<td><em>required</em></td>
-									<td>The from email.</td>
+									<td><em>必須</em></td>
+									<td>受信者のメールアドレス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>The from name, ignored when $email is an array.</td>
+									<td>受信者の名前。$email が配列の場合は無視されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -440,13 +440,13 @@ $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pr
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add a single address
+							<pre class="php"><code>// 1 つのメールアドレスを追加
 $email->to('me@example.com', 'My Name');
 
-// Add multiple addresses
+// 複数のメールアドレスを追加
 $email->to(array(
 	'me@example.com',
-	// with a name
+	// 名前と一緒に
 	'me@example.com' => 'His/Her name.',
 ));
 </code></pre>
@@ -458,12 +458,12 @@ $email->to(array(
 
 			<article>
 				<h4 class="method" id="method_cc">cc($email, $name = false)</h4>
-				<p>The <strong>cc</strong> method adds an address or an array of addresses to the <em>cc</em> recipient array.</p>
+				<p><strong>cc</strong> メソッドは、受信者 (<em>cc</em>) のメールアドレスまたはその配列を追加します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -478,14 +478,14 @@ $email->to(array(
 								<tr>
 									<th><kbd>$email</kbd></th>
 									<td><em>string|array</em></td>
-									<td><em>required</em></td>
-									<td>The from email.</td>
+									<td><em>必須</em></td>
+									<td>受信者のメールアドレス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>The from name, ignored when $email is an array.</td>
+									<td>受信者の名前。$email が配列の場合は無視されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -497,13 +497,13 @@ $email->to(array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add a single address
+							<pre class="php"><code>// 1 つのメールアドレスを追加
 $email->cc('me@example.com', 'My Name');
 
-// Add multiple addresses
+// 複数のメールアドレスを追加
 $email->cc(array(
 	'me@example.com',
-	// with a name
+	// 名前と一緒に
 	'me@example.com' => 'His/Her name.',
 ));
 </code></pre>
@@ -515,12 +515,12 @@ $email->cc(array(
 
 			<article>
 				<h4 class="method" id="method_bcc">bcc($email, $name = false)</h4>
-				<p>The <strong>bcc</strong> method adds an address or an array of addresses to the <em>bcc</em> recipient array.</p>
+				<p><strong>bcc</strong> メソッドは、受信者 (<em>bcc</em>) のメールアドレスまたはその配列を追加します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -535,14 +535,14 @@ $email->cc(array(
 								<tr>
 									<th><kbd>$email</kbd></th>
 									<td><em>string|array</em></td>
-									<td><em>required</em></td>
-									<td>The from email.</td>
+									<td><em>必須</em></td>
+									<td>受信者のメールアドレス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>The from name, ignored when $email is an array.</td>
+									<td>受信者の名前。$email が配列の場合は無視されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -554,13 +554,13 @@ $email->cc(array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add a single address
+							<pre class="php"><code>// 1 つのメールアドレスを追加
 $email->bcc('me@example.com', 'My Name');
 
-// Add multiple addresses
+// 複数のメールアドレスを追加
 $email->bcc(array(
 	'me@example.com',
-	// with a name
+	// 名前と一緒に
 	'me@example.com' => 'His/Her name.',
 ));
 </code></pre>
@@ -572,12 +572,12 @@ $email->bcc(array(
 
 			<article>
 				<h4 class="method" id="method_reply_to">reply_to($email, $name = false)</h4>
-				<p>The <strong>reply_to</strong> method adds an address or an array of addresses to the <em>reply to</em> recipient array.</p>
+				<p><strong>reply_to</strong> メソッドは、返信先 (<em>reply to</em>) のメールアドレスまたはその配列を追加します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -592,14 +592,14 @@ $email->bcc(array(
 								<tr>
 									<th><kbd>$email</kbd></th>
 									<td><em>string|array</em></td>
-									<td><em>required</em></td>
-									<td>The from email.</td>
+									<td><em>必須</em></td>
+									<td>返信先のメールアドレス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>The from name, ignored when $email is an array.</td>
+									<td>返信先の名前。$email が配列の場合は無視されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -611,13 +611,13 @@ $email->bcc(array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add a single address
+							<pre class="php"><code>// 1 つのメールアドレスを追加
 $email->reply_to('me@example.com', 'My Name');
 
-// Add multiple addresses
+// 複数のメールアドレスを追加
 $email->reply_to(array(
 	'me@example.com',
-	// with a name
+	// 名前と一緒に
 	'me@example.com' => 'His/Her name.',
 ));
 </code></pre>
@@ -629,12 +629,12 @@ $email->reply_to(array(
 			
 			<article>
 				<h4 class="method" id="method_header">header($header, $value = null)</h4>
-				<p>The <strong>header</strong> method adds a custom header to you mail headers.</p>
+				<p><strong>header</strong> メソッドは、メールヘッダにカスタムヘッダを追加します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -649,14 +649,14 @@ $email->reply_to(array(
 								<tr>
 									<th><kbd>$header</kbd></th>
 									<td><em>string|array</em></td>
-									<td><em>required</em></td>
-									<td>The header type or array of headers.</td>
+									<td><em>必須</em></td>
+									<td>ヘッダの種類またはヘッダの配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The header value.</td>
+									<td>ヘッダの値。</td>
 								</tr>
 							</table>
 						</td>
@@ -668,10 +668,10 @@ $email->reply_to(array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add a single address
+							<pre class="php"><code>// 1 つのカスタムヘッダを追加
 $email->header('X-SMTPAP', 'XXXXXXXX');
 
-// Add multiple addresses
+// 複数のカスタムヘッダを追加
 $email->reply_to(array(
 	'X-SMTPAP' => 'XXXXXX',
 	'X-SMTPAP2' => 'XXXXXA',
@@ -685,17 +685,17 @@ $email->reply_to(array(
 
 			<article>
 				<h4 class="method" id="method_clear_recipients">clear_recipients()</h4>
-				<p>The <strong>clear_recipients</strong> method empties the to, cc and bcc lists.</p>
+				<p><strong>clear_recipients</strong> メソッドは、受信者の一覧 (to 、cc や bcc) を空にします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
@@ -705,17 +705,17 @@ $email->reply_to(array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add a single address
+							<pre class="php"><code>// 1 つのメールアドレスを追加
 $email->bcc('me@example.com', 'My Name');
 
-// Add multiple addresses
+// 複数のメールアドレスを追加
 $email->to(array(
 	'me@example.com',
-	// with a name
+	// 名前と一緒に
 	'me@example.com' => 'His/Her name.',
 ));
 
-// Reset them
+// それらをリセットする
 $email->clear_recipients();
 </code></pre>
 						</td>
@@ -726,17 +726,17 @@ $email->clear_recipients();
 
 			<article>
 				<h4 class="method" id="method_clear_addresses">clear_addresses()</h4>
-				<p>The <strong>clear_addresses</strong> method empties the to, cc, bcc and reply to lists.</p>
+				<p><strong>clear_addresses</strong> メソッドは、受信者と返信先の一覧 (to 、cc 、bcc や reply to) を空にします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
@@ -746,17 +746,17 @@ $email->clear_recipients();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add a single address
+							<pre class="php"><code>// 1 つのメールアドレスを追加
 $email->reply_to('me@example.com', 'My Name');
 
-// Add multiple addresses
+// 複数のメールアドレスを追加
 $email->to(array(
 	'me@example.com',
-	// with a name
+	// 名前と一緒に
 	'me@example.com' => 'His/Her name.',
 ));
 
-// Reset them
+// それらをリセットする
 $email->clear_addresses();
 </code></pre>
 						</td>
@@ -767,17 +767,17 @@ $email->clear_addresses();
 
 			<article>
 				<h4 class="method" id="method_clear_to">clear_to()</h4>
-				<p>The <strong>clear_to</strong> method empties the <em>to</em> recipient list.</p>
+				<p><strong>clear_to</strong> メソッドは、受信者の一覧 (<em>to</em>) を空にします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
@@ -787,14 +787,14 @@ $email->clear_addresses();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add multiple addresses
+							<pre class="php"><code>// 複数のメールアドレスを追加
 $email->to(array(
 	'me@example.com',
-	// with a name
+	// 名前と一緒に
 	'me@example.com' => 'His/Her name.',
 ));
 
-// Reset them
+// それらをリセットする
 $email->clear_to();
 </code></pre>
 						</td>
@@ -805,17 +805,17 @@ $email->clear_to();
 
 			<article>
 				<h4 class="method" id="method_clear_cc">clear_cc()</h4>
-				<p>The <strong>clear_cc</strong> method empties the <em>cc</em> recipient list.</p>
+				<p><strong>clear_cc</strong> メソッドは、受信者の一覧 (cc) を空にします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
@@ -825,14 +825,14 @@ $email->clear_to();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add multiple addresses
+							<pre class="php"><code>// 複数のメールアドレスを追加
 $email->cc(array(
 	'me@example.com',
-	// with a name
+	// 名前と一緒に
 	'me@example.com' => 'His/Her name.',
 ));
 
-// Reset them
+// それらをリセットする
 $email->clear_cc();
 </code></pre>
 						</td>
@@ -843,17 +843,17 @@ $email->clear_cc();
 
 			<article>
 				<h4 class="method" id="method_clear_bcc">clear_bcc()</h4>
-				<p>The <strong>clear_bcc</strong> method empties the <em>bcc</em> recipient list.</p>
+				<p><strong>clear_bcc</strong> メソッドは、受信者の一覧 (bcc) を空にします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
@@ -863,14 +863,14 @@ $email->clear_cc();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add multiple addresses
+							<pre class="php"><code>// 複数のメールアドレスを追加
 $email->bcc(array(
 	'me@example.com',
-	// with a name
+	// 名前と一緒に
 	'me@example.com' => 'His/Her name.',
 ));
 
-// Reset them
+// それらをリセットする
 $email->clear_bcc();
 </code></pre>
 						</td>
@@ -881,17 +881,17 @@ $email->clear_bcc();
 
 			<article>
 				<h4 class="method" id="method_clear_reply_to">clear_reply_to()</h4>
-				<p>The <strong>clear_reply_to</strong> method empties the <em>reply to</em> list.</p>
+				<p><strong>clear_reply_to</strong> メソッドは、返信先の一覧 (reply to) を空にします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
@@ -901,14 +901,14 @@ $email->clear_bcc();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add multiple addresses
+							<pre class="php"><code>// 複数のメールアドレスを追加
 $email->reply_to(array(
 	'me@example.com',
-	// with a name
+	// 名前と一緒に
 	'me@example.com' => 'His/Her name.',
 ));
 
-// Reset them
+// それらをリセットする
 $email->clear_reply_to();
 </code></pre>
 						</td>
@@ -919,13 +919,13 @@ $email->clear_reply_to();
 
 			<article>
 				<h4 class="method" id="method_attach">attach($file, $inline = false, $cid = null, $mime = null, $name = null)</h4>
-				<p>The <strong>attach</strong> method attaches a file.</p>
-				<p class="note">This method will search for the file in the attachment paths set (config/email.php) in the <em>attach_paths</em> array</p>
+				<p><strong>attach</strong> メソッドは、ファイルを添付します。</p>
+				<p class="note">このメソッドは、(config/email.php の) <em>attach_paths</em> 配列にセットされた添付パスの中にあるファイルを検索します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -941,31 +941,31 @@ $email->clear_reply_to();
 									<th><kbd>$file</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Path to the file to include.</td>
+									<td>同封したいファイルのパス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$inline</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Whether to attach the file inline.</td>
+									<td>インラインでファイルを添付するかどうか。</td>
 								</tr>
 								<tr>
 									<th><kbd>$cid</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The content identifier. Used when attaching inline images.</td>
+									<td>コンテンツ ID 。インライン画像として添付する場合に使われます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$mime</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>By default the mimetype is looked up in the core/config/mimes array, use this to overwrite it.</td>
+									<td>デフォルトでは、mimetype は core/config/mimes の配列から検索されます。それを上書きするために、これを使用します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Attachment name overwrite.</td>
+									<td>上書きする添付名。</td>
 								</tr>
 							</table>
 						</td>
@@ -977,12 +977,12 @@ $email->clear_reply_to();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add an attachment
+							<pre class="php"><code>// 1 つを添付
 $email->attach(DOCROOT.'attachments/report.pdf');
 
-// Attach an image inline
+// 画像をインラインで添付
 $email->attach(DOCROOT.'assets/img/mail/header.png', true, 'cid:headerimage');
-// This image would be bound to &lt;img src="cid:headerimage" /&gt;
+// この画像は、 &lt;img src="cid:headerimage" /&gt; となるだろう
 </code></pre>
 						</td>
 					</tr>
@@ -992,12 +992,12 @@ $email->attach(DOCROOT.'assets/img/mail/header.png', true, 'cid:headerimage');
 
 			<article>
 				<h4 class="method" id="method_string_attach">string_attach($contents, $filename, $cid = null, $inline = false, $mime = null)</h4>
-				<p>The <strong>string_attach</strong> method attaches a file from a string input.</p>
+				<p><strong>string_attach</strong> メソッドは、文字列の入力をファイルとして添付します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1012,32 +1012,32 @@ $email->attach(DOCROOT.'assets/img/mail/header.png', true, 'cid:headerimage');
 								<tr>
 									<th><kbd>$contents</kbd></th>
 									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>The attachment contents.</td>
+									<td><em>必須</em></td>
+									<td>添付する内容。</td>
 								</tr>
 								<tr>
 									<th><kbd>$filename</kbd></th>
 									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>The filename to use.</td>
+									<td><em>必須</em></td>
+									<td>使用するファイル名。</td>
 								</tr>
 								<tr>
 									<th><kbd>$cid</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The content identifier. Used when attaching inline images.</td>
+									<td>コンテンツ識別子。インライン画像として添付する場合に使われます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$inline</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Whether to attach the file inline.</td>
+									<td>インラインでファイルを添付するかどうか。</td>
 								</tr>
 								<tr>
 									<th><kbd>$mime</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>By default the mimetype is looked up in the core/config/mimes array, use this to overwrite it.</td>
+									<td>デフォルトでは、mimetype は core/config/mimes の配列から検索されます。それを上書きするために、これを使用します。</td>
 								</tr>
 							</table>
 						</td>
@@ -1049,7 +1049,7 @@ $email->attach(DOCROOT.'assets/img/mail/header.png', true, 'cid:headerimage');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add an attachment
+							<pre class="php"><code>// 1 つを添付
 $email->string_attach('This is a textfile', 'test.txt');
 </code></pre>
 						</td>
@@ -1060,17 +1060,17 @@ $email->string_attach('This is a textfile', 'test.txt');
 
 			<article>
 				<h4 class="method" id="method_clear_attachments">clear_attachments()</h4>
-				<p>The <strong>clear_attachments</strong> method clears the attachments array.</p>
+				<p><strong>clear_attachments</strong> メソッドは、添付配列を空にします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
@@ -1080,11 +1080,11 @@ $email->string_attach('This is a textfile', 'test.txt');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Add some attachments
+							<pre class="php"><code>// なんらかの添付を追加する
 $email->string_attach('This is a textfile', 'test.txt');
 $email->attach(DOCROOT.'uploads/attach.pdf');
 
-// And empty the attachments
+// 添付を空にする
 $email->clear_attachments();
 </code></pre>
 						</td>
@@ -1094,29 +1094,29 @@ $email->clear_attachments();
 			</article>
 
 			<article>
-				<h4 class="method" id="method_send">send()</h4>
-				<p>The <strong>send</strong> method sends the mail.</p>
+				<h4 class="method" id="method_send">send($validate = null)</h4>
+				<p><strong>send</strong> メソッドは、メールを送信します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>型</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$validate</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Whether to validate the addresses, falls back to config setting.</td>
+									<td>メールアドレスのバリデートを実行するかどうか。指定がない場合、設定の設定値が使われます。</td>
 								</tr>
 							</table>
 						</td>
@@ -1133,11 +1133,11 @@ $email->clear_attachments();
 }
 catch(\EmailSendingFailedException $e)
 {
-	// The driver could not send the mail.
+	// ドライバがメールを送信できなかった。
 }
 catch(\EmailValidationFailedException $e)
 {
-	// One or more email addresses failed validation.
+	// 1 つ以上のメールアドレスがバリデーションで失敗した。
 }
 </code></pre>
 						</td>
@@ -1148,17 +1148,17 @@ catch(\EmailValidationFailedException $e)
 
 			<article>
 				<h4 class="method" id="method_get_invalid_addresses">get_invalid_addresses()</h4>
-				<p>The <strong>get_invalid_addresses</strong> method returns the email addresses that did not pass validation.</p>
+				<p><strong>get_invalid_addresses</strong> メソッドは、バリデーションをパスしないメールアドレスを返却します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
@@ -1173,11 +1173,11 @@ catch(\EmailValidationFailedException $e)
 }
 catch(\EmailSendingFailedException $e)
 {
-	// The driver could not send the mail.
+	// ドライバがメールを送信できなかった。
 }
 catch(\EmailValidationFailedException $e)
 {
-	// One or more email addresses failed validation.
+	// 1 つ以上のメールアドレスがバリデーションで失敗した。
 	$these_failed = $email->get_invalid_addresses();
 }
 </code></pre>
@@ -1189,12 +1189,12 @@ catch(\EmailValidationFailedException $e)
                         
 			<article>
 				<h4 class="method" id="method_from">return_path($email)</h4>
-				<p>The <strong>return_path</strong> method sets return-path address.</p>
+				<p><strong>return_path</strong> メソッドは、差し戻し先 (return-path) のメールアドレスを追加します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1209,8 +1209,8 @@ catch(\EmailValidationFailedException $e)
 								<tr>
 									<th><kbd>$email</kbd></th>
 									<td><em>string</em></td>
-									<td><em>required</em></td>
-									<td>The return-path email.</td>
+									<td><em>必須</em></td>
+									<td>差し戻し先のメールアドレス。</td>
 								</tr>
 							</table>
 						</td>
@@ -1232,40 +1232,40 @@ catch(\EmailValidationFailedException $e)
 			<article>
 				<h4 class="method" id="method_pipelining">pipelining($pipelining = true)</h4>
 				<p>
-					The <strong>pipelining</strong> method enables pipelining (sending multiple messages in one go). For drivers that
-					do not support this, this method is a NOOP. Pipelining is disabled by default.
+					<strong>pipelining</strong> メソッドは、パイプライン (一度に複数のメッセージを送信すること) を可能にします。
+					これをサポートしていないドライバでは、このメソッドは何もしません。パイプラインはデフォルトで無効になっています。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>型</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$pipelining</kbd></th>
 									<td><em>boolean</em></td>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>Whether or not pipelining should be enabled.</td>
+									<td>パイプラインを有効にするかどうか。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>$this</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$email->pipelining(true);</code></pre>
 						</td>
@@ -1278,27 +1278,27 @@ catch(\EmailValidationFailedException $e)
 
 			<article>
 				<h4 class="method" id="method_get_from">get_from()</h4>
-				<p>The <strong>get_from</strong> method returns the configured "from" address.</p>
+				<p><strong>get_from</strong> メソッドは、設定された "from" のメールアドレスを返却します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns the address set by from()
+							<pre class="php"><code>// from() でセットされたメールアドレスを返す
 $from = $email->get_from();
 </code></pre>
 						</td>
@@ -1309,27 +1309,27 @@ $from = $email->get_from();
 
 			<article>
 				<h4 class="method" id="method_get_to">get_to()</h4>
-				<p>The <strong>get_to</strong> method returns the configured "to" addresses.</p>
+				<p><strong>get_to</strong> メソッドは、設定された "to" のメールアドレスを返却します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns the addresses set by to()
+							<pre class="php"><code>// to() でセットされたメールアドレスを返す
 $to = $email->get_to();
 </code></pre>
 						</td>
@@ -1340,27 +1340,27 @@ $to = $email->get_to();
 
 			<article>
 				<h4 class="method" id="method_get_cc">get_cc()</h4>
-				<p>The <strong>get_cc</strong> method returns the configured "cc" addresses.</p>
+				<p><strong>get_cc</strong> メソッドは、設定された "cc" のメールアドレスを返却します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns the address set by cc()
+							<pre class="php"><code>// cc() でセットされたメールアドレスを返す
 $cc = $email->get_cc();
 </code></pre>
 						</td>
@@ -1371,27 +1371,27 @@ $cc = $email->get_cc();
 
 			<article>
 				<h4 class="method" id="method_get_bcc">get_bcc()</h4>
-				<p>The <strong>get_bcc</strong> method returns the configured "bcc" addresses.</p>
+				<p><strong>get_bcc</strong> メソッドは、設定された "bcc" のメールアドレスを返却します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns the address set by bcc()
+							<pre class="php"><code>// bcc() でセットされたメールアドレスを返す
 $bcc = $email->get_bcc();
 </code></pre>
 						</td>
@@ -1402,27 +1402,27 @@ $bcc = $email->get_bcc();
 
 			<article>
 				<h4 class="method" id="method_get_reply_to">get_reply_to()</h4>
-				<p>The <strong>get_reply_to</strong> method returns the configured "reply_to" address.</p>
+				<p><strong>get_reply_to</strong> メソッドは、設定された "reply_to" のメールアドレスを返却します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns the addresses set by reply_to()
+							<pre class="php"><code>// reply_to() でセットされたメールアドレスを返す
 $reply_to = $email->get_reply_to();
 </code></pre>
 						</td>
@@ -1433,27 +1433,27 @@ $reply_to = $email->get_reply_to();
 
 			<article>
 				<h4 class="method" id="method_get_body">get_body()</h4>
-				<p>The <strong>get_body</strong> method returns the email body set.</p>
+				<p><strong>get_body</strong> メソッドは、メールの本文を返却します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns the email body
+							<pre class="php"><code>// メールの本文を返す
 $text = $email->get_body();
 </code></pre>
 						</td>
@@ -1464,27 +1464,27 @@ $text = $email->get_body();
 
 			<article>
 				<h4 class="method" id="method_subject">get_subject()</h4>
-				<p>The <strong>get_subject</strong> method returns the configured email "subject".</p>
+				<p><strong>get_subject</strong> メソッドは、設定されたメールの "subject" (表題) を返却します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// returns the subject set by subject()
+							<pre class="php"><code>// subject() でセットされた表題を返す
 $subject = $email->get_subject();
 </code></pre>
 						</td>
