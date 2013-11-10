@@ -1,11 +1,11 @@
 /* set the page title, including the version of these docs */
-var DocVersion = "1.7";
+var DocVersion = "1.8-dev";
 
 // set the google CSE key based on the docversion
-if (DocVersion.indexOf('-dev')) {
-	var GoogleCSE = "012250717400967371289:ppk4n-fr51y";
+if (DocVersion.indexOf('-dev') == -1) {
+	var GoogleCSE = "006268519150918941486:vg1sweimb7m";
 } else {
-	var GoogleCSE = "012250717400967371289:ppk4n-fr51y";
+	var GoogleCSE = "006268519150918941486:avkdxx7rmmc";
 }
 
 /*! jQuery v1.9.1 | (c) 2005, 2012 jQuery Foundation, Inc. | jquery.org/license

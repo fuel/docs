@@ -49,6 +49,54 @@
 
 			<p>Redis_Db クラスは key-value ストアである<a href="http://redis.io/">Redis</a> とデータをやり取りすることができます。</p>
 
+			<h3 id="configuration">Configuration</h3>
+
+			<p>For every Redis database connection there must be a config in redis array in app/config/&lt;environment&gt;/db.php. Configuration options and explanation are listed below. Every config requires to contain a hostname and a port.</p>
+
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th>Param</th>
+						<th>Type</th>
+						<th>Default</th>
+						<th>Description</th>
+
+					</tr>
+					<tr>
+						<th>hostname</th>
+						<td>string</td>
+						<td><pre class="php"><code>'127.0.0.1'</code></pre></td>
+						<td>
+							Hostname
+						</td>
+					</tr>
+					<tr>
+						<th>port</th>
+						<td>integer</td>
+						<td><pre class="php"><code>6379</code></pre></td>
+						<td>
+							Port to use in the connection
+						</td>
+					</tr>
+					<tr>
+						<th>timeout</th>
+						<td>mixed</td>
+						<td><pre class="php"><code>null</code></pre></td>
+						<td>
+							Connection timeout
+						</td>
+					</tr>
+					<tr>
+						<th>database</th>
+						<td>integer</td>
+						<td><pre class="php"><code>0</code></pre></td>
+						<td>
+							Database zero-based index
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
 			<article>
 				<h4 class="method" id="method_forge">forge($name = 'default', $config = array())</h4>
 				<p>新しい名前の redis インスタンスを生成します。必要に応じて、設定を変更することができます。</p>

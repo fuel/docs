@@ -107,7 +107,12 @@ protected static $_observers = array(
 					<kbd>updated_at</kbd> property which will be set to the Unix timestamp when saving (also during the
 					first time).</p>
 
-				<pre class="php"><code>// Don't use this, it will make it run twice!
+                <p>
+                    When you use <kbd>before_save</kbd>, the updatedAt column will be updated on both an insert and an update.
+                    When you use <kbd>before_update</kbd>, the updatedAt column will be updated only on updates.
+                </p>
+
+                <pre class="php"><code>// Don't use this, it will make it run twice!
 protected static $_observers = array('Orm\\Observer_UpdatedAt');
 
 // 設定追加:
@@ -115,17 +120,31 @@ protected static $_observers = array('Orm\\Observer_UpdatedAt');
 // - mysqlのタイムスタンプを使用（デフォルトではUNIXタイムスタンプを使用しています）
 // - "updated_at"の代わりに、"updated"を使用
 protected static $_observers = array(
-	'Orm\\Observer_UpdatedAt' => array(
-		'events' => array('before_save'),
-		'mysql_timestamp' => true,
-		'property' => 'updated',
-	),
+    'Orm\\Observer_UpdatedAt' => array(
+        'events' => array('before_save'),
+        'mysql_timestamp' => true,
+        'property' => 'updated',
+        'relations' => array(
+            'my_relation',
+        ),
+    ),
 );</code></pre>
-				<p>
-					When you use <kbd>before_save</kbd>, the updatedAt column will be updated on both an insert and an update.
-					When you use <kbd>before_update</kbd>, the updatedAt column will be updated only on updates.
-				</p>
 
+				<p>By default the timestamp will not be updated if a child object has changed. This behaviour can be changed
+                    by adding the names of the relations to the optional <kbd>relations</kbd> property.</p>
+
+                <p>For example, if you have a <kbd>Model_Blog</kbd> that has many <kbd>Model_Post</kbd>s, with the slug observer applied to the blog,
+                    then update a post through the blog's relations the blog's updated_at will not be triggered.</p>
+
+                <pre class="php"><code>
+$blog->post[0]->title = 'foobar';
+$blog->save();
+                </code></pre>
+
+                <p>With the post relation specified in the <kbd>relations</kbd> property
+                the updated at observer will update the timestamp in the blog if the post is edited.</p>
+
+                <p class="note">If a relation is not loaded then it will be ignored by the updated at observer.</p>
 
 				<h4 id="os_validation">Observer_Validation</h4>
 

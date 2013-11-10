@@ -199,17 +199,17 @@ $role->save();</code></pre>
 				そして、ロールまたはグループ定義のいずれかを変更した場合にも、同じくフラッシュします。
 			</p>
 
-<pre class="php"><code>// キャッシュされているすべてのパーミッションをフラッシュ
-\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.permissions');
+<pre class="php"><code>// ユーザーごとのパーミッションをフラッシュする (id 12211 とともに)
+\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.permissions.user_12211');
+
+// キャッシュされているすべてのパーミッションをフラッシュ
+\Cache::delete_all(\Config::get('ormauth.cache_prefix', 'auth').'.permissions');
 
 // キャッシュされたすべてのグループをフラッシュ
 \Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.groups');
 
 // キャッシュされたすべてのロールをフラッシュ
-\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.roles');
-
-// ユーザーごとのパーミッションをフラッシュする (id 12211 とともに)
-\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.permissions.user_12211');</code></pre>
+\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.roles');</code></pre>
 
 			<h3 id="configuration">設定</h3>
 
