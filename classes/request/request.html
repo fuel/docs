@@ -47,11 +47,11 @@
 
 			<h2>Request クラス</h2>
 
-			<p>Request クラスは URI リクエストを処理します。Fuel は index.php 内で、ユーザーからの URI リクエストを処理するために同クラスを使用しています。また、HMVC コンテクストの中でリクエストを生成するためには、このクラスを使う必要があります。</p>
+			<p>Request クラスは、 URI リクエストを処理します。Fuel は index.php 内で、ユーザーからの URI リクエストを処理するために同クラスを使用しています。また、HMVC コンテキストの中でリクエストを生成するためには、このクラスを使う必要があります。</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($uri = null, $route = true)</h4>
-				<p><strong>forge</strong> メソッドは新しいリクエストオブジェクトを返します。</p>
+				<p><strong>forge</strong> メソッドは、新しい request オブジェクトを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -59,23 +59,23 @@
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>パラメタ</th>
-									<th>初期値</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
 									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$uri</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>リクエストされている URI。このパラメタが存在しない場合は、URI を見つけるために URI クラスが使われます。</td>
+									<td>リクエストされている URI 。このパラメータが存在しない場合は、URI を検出するために URI クラスが使われます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$route</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>もし true であれば、渡された (passed) あるいは見つけだされた URI は Routing クラスで処理されます。もし経路 (ルート) が存在しないのであれば 404 が生成されます。もし非公開の URI をリクエストするのであれば、このパラメタには <strong>false</strong> を設定してください。</td>
+									<td>もし true であれば、渡されたまたは検出された URI は Routing クラスで処理されます。もしルート (経路) が存在しないのであれば、 404 が生成されます。もし非公開の URI をリクエストするのであれば、このパラメータには <strong>false</strong> をセットしてください。</td>
 								</tr>
 							</table>
 						</td>
@@ -87,39 +87,39 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// 管理コントローラーのログインメソッドのリクエストオブジェクトを生成する。
+							<pre class="php"><code>// admin コントローラ内にある login メソッドの request オブジェクトを生成する
 $request = Request::forge('admin/login');
 
-// 注意：オブジェクトを生成するだけであって、リクエストを実行するわけではない！。</code></pre>
+// これはオブジェクトを生成するだけであって、リクエストを実行するわけではないことに注意！</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">You can also use Request::forge() to forge a <a href="curl.html">cURL</a> or a <a href="soap.html">SOAP</a> request object.</p>
+				<p class="note"><a href="curl.html">cURL</a> または <a href="soap.html">SOAP</a> リクエストのオブジェクトを生成するのに、Request::forge() を使うこともできます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_execute">execute($method_params = null)</h4>
-				<p>The <strong>execute</strong> method executes a request and stores the resulting response in the request object to be used later.</p>
+				<p><strong>execute</strong> メソッドは、リクエストを実行し、返された結果を後で使用される request オブジェクトに格納します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$method_params</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>An array of optional parameters to pass to the controller being called.</td>
+									<td>コールされているコントローラへ渡す、オプションのパラメータ配列。</td>
 								</tr>
 							</table>
 						</td>
@@ -131,10 +131,10 @@ $request = Request::forge('admin/login');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// create and execute the request object for the admin controller, login method
+							<pre class="php"><code>// admin コントローラ内にある login メソッドの request オブジェクトを生成して実行する
 $request = Request::forge('admin/login')->execute();
 
-// pass an object to the login controller
+// login コントローラにオブジェクトを渡す
 $object = new Object();
 $request = Request::forge('admin/login')->execute(array('object' => $object);</code></pre>
 						</td>
@@ -145,16 +145,16 @@ $request = Request::forge('admin/login')->execute(array('object' => $object);</c
 
 			<article>
 				<h4 class="method" id="method_response">response()</h4>
-				<p><strong>response</strong> メソッドは、実行されたリクエストのレスポンスオブジェクトを取得します。</p>
+				<p><strong>response</strong> メソッドは、実行されたリクエストの response オブジェクトを取得します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
-						<td>No</td>
+						<th>パラメータ</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
@@ -163,11 +163,11 @@ $request = Request::forge('admin/login')->execute(array('object' => $object);</c
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// リクエストを実行し、レスポンスを取得し、それを表示する。
+							<pre class="php"><code>// リクエストを実行し、レスポンスを取得し、それを表示する
 $response = Request::forge('admin/login')->execute()->response();
 echo $response;
 
-// リクエストオブジェクトには、出力取得の別の方法として __toString() メソッドが含まれている。
+// Request オブジェクトには、出力を取得する別の方法として __toString() メソッドが含まれています
 $output = Request::forge('admin/login')->execute();
 echo $output;</code></pre>
 						</td>
@@ -178,16 +178,16 @@ echo $output;</code></pre>
 
 			<article>
 				<h4 class="method" id="method_params">params()</h4>
-				<p>Returns an array of all named parameters in the route that triggered this request.</p>
+				<p>このリクエストのトリガーとなるルートの中にある全ての名前付きパラメータの配列を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
@@ -196,7 +196,7 @@ echo $output;</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the list of named parameters
+							<pre class="php"><code>// 名前付きパラメータの一覧を取得
 $params = Request::active()->params();</code></pre>
 						</td>
 					</tr>
@@ -206,25 +206,25 @@ $params = Request::active()->params();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_get_method">get_method()</h4>
-				<p>Gets the request method.</p>
+				<p>リクエストメソッドを取得します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
-						<td>none</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Request method</td>
+						<td>リクエストメソッド</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get the request method on a forged request
+							<pre class="php"><code>// 生成されたリクエストのリクエストメソッドを取得
 $method = Request::main()->get_method();</code></pre>
 						</td>
 					</tr>
@@ -234,12 +234,12 @@ $method = Request::main()->get_method();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set_method">set_method($method)</h4>
-				<p>Sets the request method.</p>
+				<p>リクエストメソッドをセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -252,20 +252,20 @@ $method = Request::main()->get_method();</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$method</kbd></th>
-									<td>string, required</td>
-									<td>The name of the parameter to be returned. This must be exactly the same as defined in the route.</td>
+									<td>string 、必須</td>
+									<td>返されるパラメータ名。これはルートの中で定義されたものとまったく同じでないといけません。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>current instance</td>
+						<td>現在のインスタンス</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Set the request method on a forged request
+							<pre class="php"><code>// 生成されたリクエストにリクエストメソッドをセット
 $params = Request::forge('some/route')->set_method('POST');</code></pre>
 						</td>
 					</tr>
@@ -275,12 +275,12 @@ $params = Request::forge('some/route')->set_method('POST');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_param">param($param, $default = null)</h4>
-				<p>Returns a specific named parameter in the route that triggered this request, of the default if the parameter is not found.</p>
+				<p>このリクエストのトリガーとなるルートの中にある特定の名前付きパラメータを返します。パラメータが見つからなかった場合はデフォルト。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -293,13 +293,13 @@ $params = Request::forge('some/route')->set_method('POST');</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$param</kbd></th>
-									<td>string, required</td>
-									<td>The name of the parameter to be returned. This must be exactly the same as defined in the route.</td>
+									<td>string 、必須</td>
+									<td>返されるパラメータ名。ルートで定義されているものと同じでないとならない。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>value to be returned if the named parameter requested is not defined.</td>
+									<td>名前付きパラメータのリクエストが定義されていないならば、デフォルトの値が返されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -311,36 +311,36 @@ $params = Request::forge('some/route')->set_method('POST');</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get a specific named parameter called 'name'
+							<pre class="php"><code>// 'name' という特定の名前のパラメータを取得
 $param = Request::active()->param('name', 'none');</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">The <a href="../../general/routing.html#/named_routes">routing</a> section explains how named paramaters can be defined in a route.</p>
+				<p class="note"><a href="../../general/routing.html#/named_routes">ルーティング</a> の項目は、名前付きパラメータがルートの中でどのように定義されるかを説明しています。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_parent">parent()</h4>
-				<p>リクエストを生成した<strong>リクエスト</strong></p>
+				<p>この Request を生成した <strong>Request</strong></p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
-						<td>No</td>
+						<th>パラメータ</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Fuel\Core\Request オブジェクト。メインリクエストの場合はnull。</td>
+						<td>Fuel\Core\Request オブジェクト、またはメイン request の場合は null</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// 現在実行されているリクエストの親を取得
+							<pre class="php"><code>// 現在実行されている Request の親を取得
 $parent = Request::active()->parent();</code></pre>
 						</td>
 					</tr>
@@ -350,16 +350,16 @@ $parent = Request::active()->parent();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_children">children()</h4>
-				<p>リクエスト処理中に生成された<strong>リクエスト</strong>の各種オブジェクト。</p>
+				<p>リクエスト処理中に生成された <strong>Request</strong> オブジェクト。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
-						<td>No</td>
+						<th>パラメータ</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
@@ -368,7 +368,7 @@ $parent = Request::active()->parent();</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// メインリクエスト処理中に生成された各種リクエストを取得
+							<pre class="php"><code>// メイン Request 処理中に生成された各種リクエストを取得
 $children = Request::main()->children();</code></pre>
 						</td>
 					</tr>
@@ -378,7 +378,7 @@ $children = Request::main()->children();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_main">main()</h4>
-				<p><strong>main</strong> メソッドはメインリクエストのインスタンス (最初のページリクエストで生成されたもの) 
+				<p><strong>main</strong> メソッドは、メイン Request インスタンス (最初のページリクエストで生成されたもの)
 					を返します。</p>
 				<table class="method">
 					<tbody>
@@ -387,12 +387,12 @@ $children = Request::main()->children();</code></pre>
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
-						<td>No</td>
+						<th>パラメータ</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Fuel\Core\Request オブジェクト、あるいはメインリクエストインスタンスが存在しない場合は false を返す。</td>
+						<td>Fuel\Core\Request オブジェクト、あるいはメイン request インスタンスが存在しない場合は false を返す。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -410,7 +410,7 @@ $children = Request::main()->children();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_active">active()</h4>
-				<p><strong>active</strong> メソッドはアクティブなリクエストインスタンスを返します。</p>
+				<p><strong>active</strong> メソッドは、アクティブなリクエストインスタンスを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -418,8 +418,8 @@ $children = Request::main()->children();</code></pre>
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
-						<td>No</td>
+						<th>パラメータ</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
@@ -437,31 +437,31 @@ $children = Request::main()->children();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_add_path">add_path($path, $prefix = false)</h4>
-				<p>The <strong>add_path</strong> method allows you to add a search path to the current request instance. The search paths are used by Finder::search() to locate files within your application.</p>
+				<p><strong>add_path</strong> メソッドは、現在の request インスタンスに検索パスを追加します。検索パスは、アプリケーション内のファイルを見つけるために Finder::search() で使われます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>パラメタ</th>
-									<th>初期値</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
 									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><i>必須</i></td>
-									<td>リクエスト一覧に、ローカルサーチパスを加える</td>
+									<td>リクエスト一覧に、ローカル検索パスを加える</td>
 								</tr>
 								<tr>
 									<th><kbd>$prefix</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td><strong>false</strong> なら、パスはサーチパスの後ろに、<strong>true</strong> ならサーチパスの前に付加されます。</td>
+									<td><strong>false</strong> なら、パスは検索パスの後ろに、<strong>true</strong> なら検索パスの前に付加されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -473,7 +473,7 @@ $children = Request::main()->children();</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// アプリケーションの myfiles フォルダをアクティブなリクエストインスタンスのサーチパスに付け加える。
+							<pre class="php"><code>// アプリケーションの myfiles フォルダをアクティブな request インスタンスの検索パスに付け加える。
 Request::active()->add_path(APPPATH.'myfiles'.DS);</code></pre>
 						</td>
 					</tr>
@@ -483,16 +483,16 @@ Request::active()->add_path(APPPATH.'myfiles'.DS);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_get_paths">get_paths()</h4>
-				<p><strong>get_paths</strong> メソッドは設定されているサーチパス一覧を返します。</p>
+				<p><strong>get_paths</strong> メソッドは、設定されている検索パス一覧を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>パラメタ</th>
-						<td>No</td>
+						<th>パラメータ</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
@@ -501,7 +501,7 @@ Request::active()->add_path(APPPATH.'myfiles'.DS);</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// アクティブなリクエストインスタンス内で設定されているサーチパスを取得
+							<pre class="php"><code>// アクティブな request インスタンス内で設定されている検索パスを取得
 $paths = Request::active()->get_paths();</code></pre>
 						</td>
 					</tr>
