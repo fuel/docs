@@ -584,7 +584,7 @@ panes.email = {
 };
 
 panes.orm = {
-	"Orm Package": {
+	"ORM Package": {
 		"Introduction":		"packages/orm/intro.html",
 		"Creating Models":	"packages/orm/creating_models.html",
 		"CRUD":				"packages/orm/crud.html",
@@ -605,7 +605,8 @@ panes.orm = {
 			"Introduction":			"packages/orm/observers/intro.html",
 			"Included observers":	"packages/orm/observers/included.html",
 			"Writing your own":		"packages/orm/observers/creating.html"
-		}
+		},
+		"Troubleshooting":		"packages/orm/troubleshooting.html",
 	}
 };
 
