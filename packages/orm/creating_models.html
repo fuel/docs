@@ -54,21 +54,41 @@
 			<section>
 				<h2 id="creation">Creating Models</h2>
 
-				<p>Creating a model takes little time, the convention is to use the <kbd>Model_</kbd>
-					prefix for the class (eg Model_Article using the filename article.php) and thus
-					place them in <kbd>app/classes/model/</kbd> but you are free to use
-					whatever name you choose.</p>
+				<p>ORM Models are stored in your <kbd>app/classes/model/</kbd> folder.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
+				<p>The basic prototype for an ORM model class is this:</p>
 
-				<p class="note">The above only works with the MySQL and MySQLi drivers because it needs to fetch the model
-					properties from the database. It is however not very efficient and thus <strong>discouraged</strong> to use it this way
-					because you'll always need that one extra query per model just to fetch the column names.</p>
+				<pre class="php"><code>class Model_Name extends \Orm\Model
+{
+	protected static $_properties = array('id', 'example_column_name');
+}</code></pre>
+					
+		
+				<p>The convention is to use the <kbd>Model_</kbd> prefix for the class, but it is not required.</p>
 
-				<pre class="php"><code>class Model_Article extends Orm\Model
+				<p>For example, if your class is this:</p>
+
+				<pre class="php"><code>class Model_Article extends \Orm\Model
 {
 	protected static $_properties = array('id', 'title', 'contents', 'publish');
 }</code></pre>
+				<p>Then your file should be this:</p>
+
+				<pre class="text"><code>app/classes/model/article.php</code></pre>
+
+				<p>And your table should be named this: 
+
+				<pre class="text"><code>articles</code></pre>
+
+				<p>By default, the table name should be the plural form of the file name. If you need the table name to be different than the file name, you can add the <a href="#table_name">$_table_name</a> configuration property to your ORM model class.</p>
+
+				<p>There is an alternative way to create an ORM model, but it is not recommended because it is very inefficient.
+				<br />
+				The following code will automatically determine the tables <a href="#properties">$_properties</a> by making a query to the table. However, this is very inefficient. For every query you make to this model, it must first make an additional query to determine the tables columns and set <a href="#properties">$_properties</a>. 
+				<br /></p>
+				<p>Note: This alternative only works with MySQL and MySQLi.</p>
+
+				<pre class="php"><code>class Model_Article extends \Orm\Model {}</code></pre>
 
 				<h2 id="config">Configuration</h2>
 
@@ -106,7 +126,7 @@
 					It is not required for the PK to be auto_increment (though preferred) and you can specify the PK
 					yourself, but only the first time. Once it's set, it's set.</p>
 
-				<h3 id="propperties">protected static $_properties</h3>
+				<h3 id="properties">protected static $_properties</h3>
 
 				<p>There's already a simple example above of adding all model properties, they can also be configured by
 				using the column name as the key and setting options like type, label and validation.</p>
