@@ -585,8 +585,10 @@ panes.email = {
 
 panes.orm = {
 	"ORM Package": {
+		"What is ORM?":		"packages/orm/what_is_orm.html",
 		"Introduction":		"packages/orm/intro.html",
-		"Creating Models":	"packages/orm/creating_models.html",
+		"Installation":		"packages/orm/install.html",
+		"Create an ORM Model":	"packages/orm/creating_models.html",
 		"CRUD":				"packages/orm/crud.html",
 		"Relating Models": {
 			"Introduction":	"packages/orm/relations/intro.html",
