@@ -598,6 +598,7 @@ panes.orm = {
 			"Many to Many":	"packages/orm/relations/many_many.html"
 		},
 		"Models": {
+			"Introduction":       "packages/orm/model/intro.html",
 			"Soft Delete":        "packages/orm/model/soft.html",
 			"Temporal/Revisions": "packages/orm/model/temporal.html",
 			"NestedSets":         "packages/orm/model/nestedset.html"
