@@ -10,7 +10,6 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>ビューモデル - 概要 - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -61,9 +60,10 @@
 
 				<p>最初は <code>app/classes/view/index.php</code> で、空のビューモデルを作成します:</p>
 
-				<pre><code>class View_Index extends ViewModel {}</code></pre>
 
-				<p>そして、<code>app/views/index.php</code> でこれが属するビューを作成します:</p>
+				<p class="note"><strong>Note:</strong> Viewmodels are located in <kbd>APPPATH/classes/view</kbd>. Views are located in <kbd>APPPATH/views</kbd>.</p>
+
+				<pre><code>class View_Index extends Viewmodel {}</code></pre>
 
 				<pre><code>&lt;h1&gt;&lt;?php echo $title; ?&gt;&lt;/h1&gt;
 
@@ -86,13 +86,13 @@
 
 				<p>最後に、ビューモデルをコントローラから呼び出します:</p>
 
-				<pre class="php"><code>ViewModel::forge('index');</code></pre>
+				<pre class="php"><code>Viewmodel::forge('index');</code></pre>
 
 				<p>これですべてを設定しました; しかし、まだデータがビューに渡されていません。
 				<code>$title</code> の文字列と <code>$articles</code> の配列を渡す必要があります。
 				ビューモデルにこのデータを与える <code>view()</code> メソッドを追加します:</p>
 
-				<pre><code>class View_Index extends ViewModel
+				<pre><code>class View_Index extends Viewmodel
 {
 
 	public function view()
@@ -142,7 +142,7 @@ $echo_upper('this string'); // 出力: "THIS STRING"</code></pre>
 				<code>ViewModel::forge()</code> メソッドを追加します:</p>
 				
 				<pre class="php"><code>// 上記の例からビューモデル上の other_method() メソッドを呼ぶ
-ViewModel::forge('index', 'other_method');</code></pre>
+Viewmodel::forge('index', 'other_method');</code></pre>
 
 				<h4 id="before_after">before と after メソッド</h4>
 
@@ -164,11 +164,11 @@ ViewModel::forge('index', 'other_method');</code></pre>
 					どのビューを読み込むかを決定する自動機構を使わないように指示することもできます:</p>
 
 				<pre class="php"><code>// 'index' ビューの代わりに 'other/index' ビューを使う
-ViewModel::forge('index', 'other_method', null, 'other/index');
+Viewmodel::forge('index', 'other_method', null, 'other/index');
 
 // ビューオブジェクトを直接渡すこともできる
 $view = View::forge('other/index');
-ViewModel::forge('index', 'other_method', null, $view);</code></pre>
+Viewmodel::forge('index', 'other_method', null, $view);</code></pre>
 
 				<h4 id="access_to_view">ビューへのアクセス</h4>
 				<p>ビューモデルの外部からビューオブジェクトにアクセスするには、 <code>get_view()</code> メソッドを使用することができます。</p>

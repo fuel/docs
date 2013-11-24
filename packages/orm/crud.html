@@ -252,13 +252,32 @@ Model_Article::find('all', array('select' =&gt; array(array('name' =&gt; false))
 Model_Article::query()-&gt;related(array('author', 'comments'));
 Model_Article::find('all', array('related' =&gt; array('author', 'comments')));
 
-// include conditions on the relation (only supported when chaining)
+//=============================
+// Include one or more conditions on a relation (only supported when chaining)
+//=============================
+
+// First method - using an array
+//----------------------------
+// one condition
 Model_Article::query()
     -&gt;related('author', array('where' =&gt; array(array('active', '=', 1))));
 
-// include multiple conditions on the relation
+// multiple conditions
 Model_Article::query()
     -&gt;related('author', array('where' =&gt; array(array('active', '=', 1), array('status', '=', 'X'))));
+
+// Second method - use dot notation
+//----------------------------
+// one condition
+Model_Article::query()
+	-&gt;related('author')
+	-&gt;where('author.active', 1);
+
+// multiple conditions
+Model_Article::query()
+	-&gt;related('author')
+	-&gt;where('author.active', 1);
+	-&gt;where('author.status', 1);
 </code></pre>
 								</td>
 							</tr>
