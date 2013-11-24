@@ -99,8 +99,11 @@ protected static $_observers = array(
 		'events' => array('before_insert'),
 		'mysql_timestamp' => true,
 		'property' => 'created',
+		'overwrite' => true,
 	),
 );</code></pre>
+				<p>If you want to be able to set the created_at timestamp in your code, set the 'overwrite' property to false.
+				This will cause the observer to keep the value you have set manually.</p>
 
 				<h4 id="os_updated">Observer_UpdatedAt</h4>
 
