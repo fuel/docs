@@ -57,7 +57,7 @@
 			<strong>Auth::instance()->get_user_id()</strong>, <strong>Auth::instance()->force_login()</strong> and
 			<strong>Auth::create_user()</strong>, with prototypes compatible with Simpleauth. Without these, it will not work.</p>
 
-			<h3 id="runtime_config">Runtime configuration</h3>
+			<h3 id="runtime_config">ランタイム設定</h3>
 
 			<p>Most of the Opauth configuration is done through the <strong>opauth.php</strong> configuration file, and all of the options in that
 			file can be altered at runtime by passing a new value to the forge() using the $config array. In addition to this, there are some
@@ -67,17 +67,17 @@
 			<table class="config">
 				<thead>
 					<tr class="header">
-						<th style="width:20%;">Param</th>
-						<th style="width:10%;">Type</th>
-						<th>Default</th>
-						<th>Description</th>
+						<th style="width:20%;">パラメータ</th>
+						<th style="width:10%;">型</th>
+						<th>デフォルト</th>
+						<th>説明</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>table</td>
 						<td>string</td>
-						<td><pre><i>auto detected</i></pre></td>
+						<td><pre><i>自動検出</i></pre></td>
 						<td>
 							Allows you to define the name of the table that contains the provider information manually. When using Simpleauth or
 							Ormauth, the name of this table is auto-detected. If you use a custom Auth driver set, and have created the table
@@ -87,7 +87,7 @@
 					<tr>
 						<td>path</td>
 						<td>string</td>
-						<td><pre><i>auto detected</i></pre></td>
+						<td><pre><i>自動検出</i></pre></td>
 						<td>
 							URI path to the controller method that does your OAuth authentication. By default, it is set to whatever the current
 							path is when you forge an Opauth object.
@@ -96,7 +96,7 @@
 					<tr>
 						<td>callback_url</td>
 						<td>string</td>
-						<td><pre><i>auto detected</i></pre></td>
+						<td><pre><i>自動検出</i></pre></td>
 						<td>
 							URI path to the controller method that handles the OAuth provider callback. By default, it is set to call the 'action_callback'
 							or 'get_callback' method in the same controller that <strong>path</strong> points to.
@@ -105,7 +105,7 @@
 					<tr>
 						<td>provider</td>
 						<td>string</td>
-						<td><pre><i>auto detected</i></pre></td>
+						<td><pre><i>自動検出</i></pre></td>
 						<td>
 							If you have manually set the <strong>path</strong>, auto detection of the OAuth provider called doesn't work, and you will
 							have to define the provider name manually. This is case sensitive, and MUST match the case used by the strategy provider
@@ -117,7 +117,7 @@
 			<p class="note">When using Simpleauth or Ormauth, and you have followed the example code for integrating Opauth in your application,
 			none of these runtime configuration values are needed, the auto-detected values will do the	trick just fine.</p>
 
-			<h3 id="classmethods">Class methods</h3>
+			<h3 id="classmethods">クラスメソッド</h3>
 
 			<article>
 				<h4 id="method_forge" class="method">forge($config = array(), $autorun = true)</h4>
@@ -151,7 +151,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Auth_Opauth</td>
 					</tr>
 					<tr>
@@ -201,7 +201,7 @@ $opauth = \Auth_Opauth::forge(array(
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>
 							string, status code. The following status codes are supported:
 							<ul>
@@ -235,8 +235,8 @@ $status = $opauth->login_or_register();
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -256,7 +256,7 @@ $status = $opauth->login_or_register();
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed. The <strong>insert id</strong> of the created provider link record, or <strong>false</strong> if the creation failed.</td>
 					</tr>
 					<tr>
@@ -301,8 +301,8 @@ else
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -327,16 +327,16 @@ else
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed. The value referenced by the given key, or whatever was defined as $default.</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the opauth object
+							<pre class="php"><code>// opauth オブジェクトを取得
 $opauth = \Auth_Opauth::forge(false);
 
-// get some auth data
+// いくつかの認証データを取得
 $provider = $opauth->get('auth.provider');
 $uid = $opauth->get('auth.uid');
 $token = $opauth->get('credentials.token', null);
