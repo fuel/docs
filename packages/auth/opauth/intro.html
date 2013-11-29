@@ -60,16 +60,16 @@
 			<p>Auth パッケージは、アプリケーションで簡単に使用できるような Opauth ライブラリのラッパークラスを提供し、
 			Simpleauth と Ormauth ドライバセットの両方とのシームレスな統合を提供します。</p>
 
-			<p>The complete integration means that when a user visits your application for the first time and chooses an OAuth provider as the means
-			to login, the Opauth integration class will transparently create a local user account, and logs the user in using that local account.
-			This means that all functionality of the Auth driver set you have selected (such as group assignments or ACL's) will also work for users
-			logging in through Opauth.
+			<p>完全な統合とは、ユーザが初めてアプリケーションを訪問し、ログインするための手段としてのOAuthプロバイダを選択した時に、
+			Opauth 統合クラスがユーザーに意識させることなく、ローカルユーザーのアカウントを作成し、そのローカルアカウントを使用してユーザーをログインすることを意味します。
+			これは、選択した Auth ドライバセットの (グループの割り当てや ACL のような) すべての機能も Opauth
+			を通じてログインするユーザーで有効であることを意味します。
 			</p>
 
-			<p>You can also enable multiple provider support. This allows a user to link additional OAuth providers to an existing account,
-			whether it is an account transparently created, or an account created manually. So whether they want to use their Facebook, Twitter
-			or Google credentials, your application sees the same user account, and ACL's can be applied without having to worry about a user
-			being in your system multiple times, which would be more difficult to manage.
+			<p>また、複数のプロバイダのサポートを有効にすることもできます。これは、ユーザーに意識させることなく作成されたアカウントであろうと、
+			手動で作成したアカウントであろうと、ユーザーが既存のアカウントに追加の OAuth プロバイダーをリンクすることができます。まあ、彼らは自分の Facebook 、 Twitter や Google
+			の認証情報を使用するにせよ使用しないにせよ、管理がより困難になるでしょうが、あなたのアプリケーションは、同じユーザーアカウントを見ており、
+			ユーザーが実在するかについての心配することなく、あなたのシステムに複数回 ACL を適用することができるでしょう。
 			</p>
 
 			<h3 id="install_and_config">インストールと設定</h3>
@@ -91,7 +91,7 @@
 
 			<p>Opauth ライブラリ自体に加え、OAuth のプロバイダごとにアプリケーションでサポートしたいストラテジーのパッケージをインストールする必要があります。
 			Composer パッケージとして何がすぐに利用できるかどうかは <a href="https://packagist.org/packages/opauth/">Packagist</a> のウェブサイトを確認してください。
-			私たちはあなたが Facebook 、 Google と Github を使いたいとしましょう。
+			仮にあなたが Facebook や Google と Github を使いたいとしましょう。
 			あなたの <strong>composer.json</strong> はこのようになります：</p>
 
 <pre class="javascript"><code>"require": {
@@ -189,9 +189,9 @@ $ php composer.phar update</code></pre>
 						<td><pre class="php"><code>'2 minutes'</code></pre>
 						</td>
 						<td>
-							認証応答が有効と見なされる時間を制限することを許可。 Starting from auth response generation
-							(ie. the time when callback is first requested) to the time when auth response is received and attempts
-							validation. <strong>strtotime()</strong> と互換性のある任意の値を使用します。
+							認証応答が有効と見なされる時間の制限。認証応答の受信と試行が
+							検証されたときの認証応答の生成 (つまり、コールバックが最初に要求された)
+							時間を開始とします。 <strong>strtotime()</strong> と互換性のある任意の値を使用します。
 						</td>
 					</tr>
 					<tr>
@@ -217,9 +217,9 @@ $ php composer.phar update</code></pre>
 				は、インスタンス化している Auth_Opauth ドライバのコントローラの中でのメソッド名) なります。
 			</p>
 
-			<p class="note">Pay very close attention to the value of <strong>default_group</strong>. For Ormauth, group id's are
-			not fixed as they are autoincrement in your database table. You don't want to define the wrong one, and ending up
-			giving every OAuth user administrator access!!!</p>
+			<p class="note"><strong>default_group</strong> の値にとくに細心の注意を払いましょう。Ormauth の場合、データーベーステーブルでは
+			group id は固定ではなく自動インクリメントされます。間違ったものを定義すると、管理者へのアクセス権をすべての OAuth
+			ユーザーに与えることになります！！！</p>
 		</div>
 
 		<footer>
