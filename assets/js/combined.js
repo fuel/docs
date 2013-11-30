@@ -465,12 +465,15 @@ panes.core = {
 		"Event":		"classes/event.html",
 		// "Error":		"todo.html",
 		// "Exception":	"todo.html",
-		"Fieldset":		"classes/fieldset.html",
+		"Fieldset": {
+			"Fieldset":			"classes/fieldset/fieldset.html",
+			"Fieldset Field":	"classes/fieldset/field.html",
+		},
 		"File": {
 			"Introduction":	"classes/file/intro.html",
 			"Usage":		"classes/file/usage.html",
 			"Advanced":		"classes/file/advanced.html",
-			"Handlers":		"classes/file/handlers.html",
+			"Handlers":		"classes/file/handlers.html"
 		},
 		"Finder":		"classes/finder.html",
 		"Form":			"classes/form.html",
