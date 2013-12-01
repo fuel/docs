@@ -154,7 +154,7 @@ $blog->save();
 
 				<p>This observer can act on <kbd>before_insert</kbd> and/or <kbd>before_update</kbd>, or on <kbd>before_save</kbd>.
 					Do not use both <kbd>before_save</kbd> and one of the others, that would cause your rules to be called twice.
-					It is used to prevent the model from saving if validation rules fail. It uses the <a href="../../../classes/fieldset.html">Fieldset</a> class
+					It is used to prevent the model from saving if validation rules fail. It uses the <a href="../../../classes/fieldset/fieldset.html">Fieldset</a> class
 					and can also generate the form for you.</p>
 
 				<p class="note">The primary key(s) are not added to Validation nor to the Form as they're not editable
@@ -281,7 +281,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 	}
 }</code></pre>
 
-				<p>As this uses the <a href="../../../classes/fieldset.html">Fieldset</a> class to perform validation,
+				<p>As this uses the <a href="../../../classes/fieldset/fieldset.html">Fieldset</a> class to perform validation,
 					it can also create forms for a model. In the following example, the create and edit forms are
 					defined in a common view however you can just as easily define it in the model and obtain an
 					instance of it in the view using <code>Fieldset::instance()</code>.</p>
