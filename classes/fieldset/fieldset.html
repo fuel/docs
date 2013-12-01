@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
-	<link rel="shortcut icon" href="./../favicon.ico" />
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		var path = './../';
+		var path = './../../';
 		var class_prefix = "Fieldset::";
 	</script>
-	<script src="./../assets/js/combined.js"></script>
+	<script src="./../../assets/js/combined.js"></script>
 	<title>Fieldset - Classes - FuelPHP Documentation</title>
 </head>
 <body>
@@ -51,6 +51,10 @@
 				The Fieldset class is used to create a form and handle its validation in an object oriented way. It uses the Form
 				and Validation classes. This class itself is only meant to model the fieldset and its fields while the other
 				two classes do the real work.
+			</p>
+			<p>
+				Every field in a fieldset is defined by a <a href="field.html">Fieldset_Field</a> object, which you can access
+				and manipulate directly using the <kbd>field()</kbd> method of the Fieldset.
 			</p>
 			<p>
 				The resulting form markup is generated when passing the Fieldset instance to a View or by calling <kbd>build()</kbd>.
@@ -231,7 +235,7 @@
 
 			<article>
 				<h4 class="method" id="method_add">add($name, $label = '', array $attributes = array(), array $rules = array())</h4>
-				<p>Creates a Fieldset_Field instance and adds it to the current Fieldset.</p>
+				<p>Creates a <a href="field.html">Fieldset_Field</a> instance and adds it to the current Fieldset.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -274,7 +278,7 @@
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>\Fieldset_Field Object</td>
+						<td><a href="field.html">Fieldset_Field</a> instance</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -316,7 +320,7 @@ $form->add(
 
 			<article>
 				<h4 class="method" id="method_add_before">add_before($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
-				<p>Creates a Fieldset_Field instance and adds it to the current Fieldset, just before an already defined field identified by <strong>$fieldname</strong>.</p>
+				<p>Creates a <a href="field.html">Fieldset_Field</a> instance and adds it to the current Fieldset, just before an already defined field identified by <strong>$fieldname</strong>.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -364,7 +368,7 @@ $form->add(
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>\Fieldset_Field Object</td>
+						<td><a href="field.html">Fieldset_Field</a> Object</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -380,7 +384,7 @@ $form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'val
 
 			<article>
 				<h4 class="method" id="method_add_after">add_after($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
-				<p>Creates a Fieldset_Field instance and adds it to the current Fieldset, just after an already defined field identified by <strong>$fieldname</strong>.</p>
+				<p>Creates a <a href="field.html">Fieldset_Field</a> instance and adds it to the current Fieldset, just after an already defined field identified by <strong>$fieldname</strong>.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -428,7 +432,7 @@ $form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'val
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>\Fieldset_Field Object</td>
+						<td><a href="field.html">Fieldset_Field</a> Object</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -444,7 +448,7 @@ $form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'valu
 
 			<article>
 				<h4 class="method" id="method_field">field($name = null)</h4>
-				<p>Gets one or all Fieldset_Field instances for the current Fieldset.</p>
+				<p>Gets one or all <a href="field.html">Fieldset_Field</a> instances for the current Fieldset.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -472,8 +476,8 @@ $form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'valu
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>\Fieldset_Field Object<br />
-						or <kbd>array()</kbd> of Fieldset_Fields</td>
+						<td><a href="field.html">Fieldset_Field</a> instance<br />
+						or an <kbd>array()</kbd> of <a href="field.html">Fieldset_Field</a> instances</td>
 					</tr>
 					<tr>
 						<th>Example</th>

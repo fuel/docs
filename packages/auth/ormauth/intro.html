@@ -199,17 +199,17 @@ $role->save();</code></pre>
 				definitions, flush them too.
 			</p>
 
-<pre class="php"><code>// flush all the cached permissions
-\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.permissions');
+<pre class="php"><code>// flush the permissions of a single user (with id 12211)
+\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.permissions.user_12211');
+
+// flush all the cached permissions
+\Cache::delete_all(\Config::get('ormauth.cache_prefix', 'auth').'.permissions');
 
 // flush all the cached groups
 \Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.groups');
 
 // flush all the cached roles
-\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.roles');
-
-// flush the permissions of a single user (with id 12211)
-\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.permissions.user_12211');</code></pre>
+\Cache::delete(\Config::get('ormauth.cache_prefix', 'auth').'.roles');</code></pre>
 
 			<h3 id="configuration">Configuration</h3>
 

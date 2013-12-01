@@ -1,8 +1,10 @@
 /* set the page title, including the version of these docs */
-var DocVersion = "1.7";
+var DocVersion = "1.7.1";
 
 // set the google CSE key based on the docversion
-if (DocVersion.indexOf('-dev')) {
+if (DocVersion.indexOf('-dev') == -1) {
+	var GoogleCSE = "006268519150918941486:vg1sweimb7m";
+} else {
 	var GoogleCSE = "006268519150918941486:avkdxx7rmmc";
 } else {
 	var GoogleCSE = "006268519150918941486:vg1sweimb7m";
@@ -465,12 +467,15 @@ panes.core = {
 		"Event":		"classes/event.html",
 		// "Error":		"todo.html",
 		// "Exception":	"todo.html",
-		"Fieldset":		"classes/fieldset.html",
+		"Fieldset": {
+			"Fieldset":			"classes/fieldset/fieldset.html",
+			"Fieldset Field":	"classes/fieldset/field.html",
+		},
 		"File": {
 			"Introduction":	"classes/file/intro.html",
 			"Usage":		"classes/file/usage.html",
 			"Advanced":		"classes/file/advanced.html",
-			"Handlers":		"classes/file/handlers.html",
+			"Handlers":		"classes/file/handlers.html"
 		},
 		"Finder":		"classes/finder.html",
 		"Form":			"classes/form.html",

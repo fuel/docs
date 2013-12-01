@@ -67,13 +67,13 @@
 									<th class="description">Description</th>
 								</tr>
 								<tr>
-									<th><kbd>$arr</kbd></th>
+									<th><kbd>$setup</kbd></th>
 									<td><em>mixed</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>Supply <em>null</em> for default config, a setup group name, or a config array.</td>
 								</tr>
 								<tr>
-									<th><kbd>$arr</kbd></th>
+									<th><kbd>$config</kbd></th>
 									<td><em>mixed</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>An additional config array to modify default configs on the fly.</td>
@@ -137,7 +137,7 @@ $email = \Email::forge('my_defaults', array(
 									<th class="description">Description</th>
 								</tr>
 								<tr>
-									<th><kbd>$arr</kbd></th>
+									<th><kbd>$body</kbd></th>
 									<td><em>string</em></td>
 									<td><em>required</em></td>
 									<td>The message body.</td>
@@ -182,7 +182,7 @@ $email->body(\View::forge('my/view', $data);</code></pre>
 									<th class="description">Description</th>
 								</tr>
 								<tr>
-									<th><kbd>$arr</kbd></th>
+									<th><kbd>$alt_body</kbd></th>
 									<td><em>string</em></td>
 									<td><em>required</em></td>
 									<td>The message body.</td>
@@ -1094,7 +1094,7 @@ $email->clear_attachments();
 			</article>
 
 			<article>
-				<h4 class="method" id="method_send">send()</h4>
+				<h4 class="method" id="method_send">send($validate = null)</h4>
 				<p>The <strong>send</strong> method sends the mail.</p>
 				<table class="method">
 					<tbody>
