@@ -6,8 +6,6 @@ if (DocVersion.indexOf('-dev') == -1) {
 	var GoogleCSE = "006268519150918941486:vg1sweimb7m";
 } else {
 	var GoogleCSE = "006268519150918941486:avkdxx7rmmc";
-} else {
-	var GoogleCSE = "006268519150918941486:vg1sweimb7m";
 }
 
 /*! jQuery v1.9.1 | (c) 2005, 2012 jQuery Foundation, Inc. | jquery.org/license
