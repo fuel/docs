@@ -48,57 +48,57 @@
 			<h2>Request_Curl クラス</h2>
 
 			<p>
-				Request_Curl クラスは主にPHPのcURL拡張モジュールを介してREST要求を処理することを意図していますが、HTTP要求を介して任意のコンテンツを取得するために
-				使用することができます。
+				Request_Curl クラスは、主に PHP の cURL 拡張モジュールを介して REST リクエストを処理することを意図していますが、
+				HTTP リクエストを介して任意のコンテンツを取得するために使用することができます。
 			</p>
 
-			<h3>インスタンス生成</h3>
+			<h3>インスタンスの生成</h3>
 
 			<p>
-				You can forge an instance of this class through the Request class:
+				Request クラスを介して、このクラスのインスタンスを生成できます:
 			</p>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// note that this only creates the object, it does not execute the request!</code></pre>
+// これはオブジェクトを作成するだけであって、リクエストを実行するわけではないことに注意！</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set_method">set_method($method)</h4>
-				<p>The <strong>set_method</strong> method allows you to set the HTTP request method.</p>
+				<p><strong>set_method</strong> メソッドは、HTTP リクエストメソッドをセットできます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$method</kbd></th>
-									<td><i>required</i></td>
-									<td>The HTTP method (GET, HEAD, POST, PUT, DELETE) to use for this request.</td>
+									<td><i>必須</i></td>
+									<td>リクエストに使われる HTTP メソッド (GET 、HEAD 、POST 、PUT 、DELETE) 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Curl, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Curl 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// this is going to be an HTTP POST
+// これは HTTP POST になる
 $curl->set_method('post');
 </code></pre>
 						</td>
@@ -109,33 +109,33 @@ $curl->set_method('post');
 
 			<article>
 				<h4 class="method" id="method_get_method">get_method()</h4>
-				<p><strong>get_method</strong> メソッドを使用すると、現在のHTTPリクエストメソッドのセットを取得することができます</p>
+				<p><strong>get_method</strong> メソッドは、現在の HTTP リクエストメソッドのセットを取得することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None.
+							なし。
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed, defined HTTP method in uppercase, or <strong>null</strong> if none set.</td>
+						<td>mixed 。定義されている HTTP メソッド (大文字) 、セットされていない場合は <strong>null</strong> 。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// this is going to be an HTTP POST
+// これは HTTP POST になる
 $curl->set_method('post');
 
-// returns 'POST'
+// 'POST' を返す
 $method = $curl->get_method();
 </code></pre>
 						</td>
@@ -146,41 +146,41 @@ $method = $curl->get_method();
 
 			<article>
 				<h4 class="method" id="method_set_params">set_params($params)</h4>
-				<p>The <strong>set_params</strong> メソッドを使用すると、HTTPリクエストで渡すパラメータを設定することができます</p>
+				<p><strong>set_params</strong> メソッドは、HTTP リクエストに渡すパラメータを設定することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$params</kbd></th>
-									<td><i>required</i></td>
-									<td>Array of parameters for the request.</td>
+									<td><i>必須</i></td>
+									<td>リクエストに使用するパラメータの配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Curl, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Curl 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// set some parameters
+// いくつかのパラメータをセット
 $curl->set_params(array('userid' => 12, 'data' => $payload));
 </code></pre>
 						</td>
@@ -188,53 +188,53 @@ $curl->set_params(array('userid' => 12, 'data' => $payload));
 					</tbody>
 				</table>
 				<p class="note">
-					これらのパラメータが使用されている方法は、生成されたリクエストに応じて異なります。
-					GET リクエストの場合、クエリ文字列に変換され、POST リクエストの場合、body になります
+					これらパラメータの使用のされ方は、生成されたリクエストによって異なります。
+					GET リクエストの場合はクエリ文字列に変換され、POST リクエストの場合は POST のボディになります。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_set_option">set_option($option, $value)</h4>
-				<p>The <strong>set_option</strong> メソッドを使用すると、リクエストに渡される CURL オプションを定義することができます。</p>
+				<p><strong>set_option</strong> メソッドは、リクエストに渡される CURL オプションを定義することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$option</kbd></th>
-									<td><i>required</i></td>
-									<td>cURL option to set. Usually, this is one of the cURL constants.</td>
+									<td><i>必須</i></td>
+									<td>セットする cURL オプション。通常は、1 つの cURL 定数。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>required</i></td>
-									<td>Value to set this option to.</td>
+									<td><i>必須</i></td>
+									<td>オプションにセットする値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Request_Curl, for chaining</td>
+						<td>Request_Curl 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// set a username and password to be used in the request
+// リクエストで使うためのユーザ名とパスワードをセット
 $curl->set_option(CURLOPT_USERPWD, $username . ':' . $password);
 </code></pre>
 						</td>
@@ -245,41 +245,41 @@ $curl->set_option(CURLOPT_USERPWD, $username . ':' . $password);
 
 			<article>
 				<h4 class="method" id="method_set_options">set_options(array $options)</h4>
-				<p>The <strong>set_options</strong> メソッドを使用すると、リクエストに渡される複数 CURL オプションを定義することができます</p>
+				<p><strong>set_options</strong> メソッドは、リクエストに渡される複数の CURL オプションを定義することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$options</kbd></th>
-									<td><i>required</i></td>
-									<td>Array of cURL options and values to set.</td>
+									<td><i>必須</i></td>
+									<td>cURL オプションとセットしたい値の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Curl, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Curl 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// set some options to be used in the request
+// リクエストで使用するいくつかのオプションをセット
 $curl->set_options(array(
 	CURLOPT_TIMEOUT => 30,
 	CURLOPT_FOLLOWLOCATION => true,
@@ -294,49 +294,49 @@ $curl->set_options(array(
 
 			<article>
 				<h4 class="method" id="method_add_param">add_param($param, $value = null)</h4>
-				<p>The <strong>add_param</strong> メソッドを使用すると、すでに定義されたものに1つ以上のパラメータを追加することができます</p>
+				<p><strong>add_param</strong> メソッドは、すでに定義されたものに 1 つ以上のパラメータを追加することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$param</kbd></th>
-									<td><i>required</i></td>
-									<td>Name of the parameter to set, or an array of parameters and values.</td>
+									<td><i>必須</i></td>
+									<td>セットしたいパラメータの名前、またはパラメータと値の配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Value to be defined. Only used when $param is a string value.</td>
+									<td>定義したい値。$param が文字列値の場合のみ使われる。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Curl, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Curl 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// add some parameters
+// いくつかパラメータを追加
 $curl->add_param(array('userid' => 12, 'data' => $payload));
 
-// or add a single one
+// または、1 つを追加
 $curl->add_param('data', $payload);
 </code></pre>
 						</td>
@@ -347,84 +347,84 @@ $curl->add_param('data', $payload);
 
 			<article>
 				<h4 class="method" id="method_set_header">set_header($header, $content = null)</h4>
-				<p>The <strong>set_header</strong> メソッドを使用すると、リクエストの一部として HTTP リクエストヘッダを設定することができます</p>
+				<p><strong>set_header</strong> メソッドは、リクエストの一部として HTTP リクエストヘッダをセットすることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$header</kbd></th>
-									<td><i>required</i></td>
-									<td>The name of the HTTP header entry.</td>
+									<td><i>必須</i></td>
+									<td>HTTP ヘッダエントリの名前。</td>
 								</tr>
 								<tr>
 									<th><kbd>$content</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The header value to be set.</td>
+									<td>セットしたいヘッダの値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Curl, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Curl 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// pass an authentication token to the backend server
+// バックエンドサーバに認証トークンを渡す
 $curl->set_header('auth-token', 'WV4YaeV8QeWVVVOE');
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">If you need to set a header that is not in the form "Name: Value", pass the value in $header, and do not pass any content.</p>
+				<p class="note">"名前: 値" の形式でないヘッダをセットする必要がある場合、値は $header の中で渡し、$content には何も渡さないこと。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_headers">get_headers()</h4>
-				<p>The <strong>get_headers</strong> メソッドを使用すると、現在定義されているすべての HTTP リクエストヘッダを取得することができます</p>
+				<p><strong>get_headers</strong> メソッドは、現在定義されているすべての HTTP リクエストヘッダを取得することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None.
+							なし。
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Array, all headers set.</td>
+						<th>返り値</th>
+						<td>Array 、全てのヘッダセット。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// pass an authentication token to the backend server
+// バックエンドサーバに認証トークンを渡す
 $curl->set_header('auth-token', 'WV4YaeV8QeWVVVOE');
 
-// returns array('auth-token:WV4YaeV8QeWVVVOE')
+// array('auth-token:WV4YaeV8QeWVVVOE') を返す
 $headers = $curl->get_headers();
 </code></pre>
 						</td>
@@ -435,28 +435,28 @@ $headers = $curl->get_headers();
 
 			<article>
 				<h4 class="method" id="method_set_mime_type">set_mime_type($mime)</h4>
-				<p>The <strong>set_mime_type</strong> メソッドを使用すると、HTTP ヘッダを ACCEPT 定義することができます</p>
+				<p><strong>set_mime_type</strong> メソッドは、HTTP ACCEPT ヘッダを定義することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$mime</kbd></th>
-									<td><i>required</i></td>
+									<td><i>必須</i></td>
 									<td>
-										The mime type of the requested response. This will be used to set the ACCEPT header.
-			<pre class="php"><code>// currently supported types are:
+										リクエストしたレスポンスの mime タイプ。これは、ACCEPT ヘッダをセットするために使われます。
+			<pre class="php"><code>// 現在サポートされているタイプ:
 'xml' => 'application/xml',
 'json' => 'application/json',
 'serialize' => 'application/vnd.php.serialized',
@@ -469,16 +469,16 @@ $headers = $curl->get_headers();
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Curl, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Curl 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// tell the backend we want json returned
+// json で返して欲しいとバックエンドに伝える
 $curl->set_mime_type('json');
 </code></pre>
 						</td>
@@ -486,48 +486,48 @@ $curl->set_mime_type('json');
 					</tbody>
 				</table>
 				<p class="note">
-					This is only a request. You should verify if the service you're calling actually supports
-					and uses the mime type in the HTTP ACCEPT header, and if it supports the type you're requesting.
+					これはリクエストだけです。呼んでいるサービスが実際にサポートされていて、 HTTP ACCEPT ヘッダの中の mime タイプが利用できるか確認すべきです。
+					サポートされているならばリクエストできます。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_set_auto_format">set_auto_format($auto_format)</h4>
-				<p>The <strong>set_auto_format</strong> メソッドを使用すると、オンまたはオフ、オートフォーマットを切り替えることができます。</p>
+				<p><strong>set_auto_format</strong> メソッドは、オートフォーマットの有効・無効を切り替えることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$auto_format</kbd></th>
-									<td><i>required</i></td>
-									<td>True if you want the returned response to be converted into an array, false if you want to access it as it is received.</td>
+									<td><i>必須</i></td>
+									<td>返ってきたレスポンスを配列に変換したいならば True 、受け取ったそのままにアクセスしたいならば false 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Curl, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Curl 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// we want an array returned
+// 配列で返り値が欲しい
 $curl->set_auto_format(true);
 </code></pre>
 						</td>
@@ -538,41 +538,41 @@ $curl->set_auto_format(true);
 
 			<article>
 				<h4 class="method" id="method_execute">execute(array $additional_params = array())</h4>
-				<p>The <strong>execute</strong> メソッドを使用すると、定義された cURL の要求を実行します</p>
+				<p><strong>execute</strong> メソッドは、定義された cURL リクエストを実行します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$additional_params</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Any additional parameters you want to pass to the request.</td>
+									<td>リクエストに渡したい追加のパラメータ。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Curl, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Curl 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+							<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// execute the request
+// リクエストを実行
 $result = $curl->execute();
 </code></pre>
 						</td>
@@ -583,94 +583,94 @@ $result = $curl->execute();
 
 			<article>
 				<h4 class="method" id="method_set_response">set_response($body, $status, $mime = null, $headers = array())</h4>
-				<p>The <strong>set_response</strong> メソッドを使用すると、要求から受信した応答を設定します</p>
+				<p><strong>set_response</strong> メソッドは、リクエストから受け取ったレスポンスをセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$body</kbd></th>
-									<td><i>required</i></td>
-									<td>The data to be set as the response body.</td>
+									<td><i>必須</i></td>
+									<td>レスポンスボディとしてセットされるデータ。</td>
 								</tr>
 								<tr>
 									<th><kbd>$status</kbd></th>
-									<td><i>required</i></td>
-									<td>The HTTP status of the created response.</td>
+									<td><i>必須</i></td>
+									<td>レスポンスを作成した HTTP ステータス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$mime</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The mime type the data is in. This is used with <em>auto_format</em> to convert the body into an array.</td>
+									<td>データの mime タイプ。これは <em>auto_format</em> でボディを配列へ変換するために使われます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$headers</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Any HTTP response headers you want to set.</td>
+									<td>セットしたい HTTP レスポンスヘッダ。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Response, the created response object.</td>
+						<th>返り値</th>
+						<td>Response 、作成された response オブジェクト。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// create a custom response
+// カスタムレスポンスを作成
 $curl->set_response($body, $this->response_info('http_code', 200), 'json', array('auth-token' => 'WV4YaeV8QeWVVVOE'));
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">Normally you should not use this method. It is used after the request is executed to prepare the requests response object.</p>
+				<p class="note">通常は、このメソッドを使用すべきではありません。リクエストがリクエストのレスポンスオブジェクトを準備するために実行された後、このメソッドが使用されます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_response">response()</h4>
-				<p>The <strong>response</strong> method returns the current request response.</p>
+				<p><strong>response</strong> メソッドは、現在のリクエストレスポンスを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None.
+							なし。
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Response, the created response object.</td>
+						<th>返り値</th>
+						<td>Response 、作成された response オブジェクト。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// assume some parameters and options were set, and execute
+// いくつかのパラメータとオプションがセットされているとして、実行する
 $curl->execute();
 
-// fetch the resulting Response object
+// 結果の Response オブジェクトを取得
 $result = $curl->response();
 </code></pre>
 						</td>
@@ -681,49 +681,49 @@ $result = $curl->response();
 
 			<article>
 				<h4 class="method" id="method_response_info">response_info($key = null, $default = null)</h4>
-				<p>The <strong>response_info</strong> メソッドを使用すると、cURL の応答値、またはすべての応答値を取得することができます。</p>
+				<p><strong>response_info</strong> メソッドは、cURL レスポンスの値、または全てのレスポンスの値を取得することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Specific response value to retrieve. Don't specify it when you want to retrieve all values.</td>
+									<td>取得したいレスポンスの値を指定します。全ての値を取得したい場合は指定しないでください。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Value to be returned when the requested value does not exist.</td>
+									<td>リクエストした値が存在しない場合に返される値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Mixed, depending on the data type of the requested value.</td>
+						<th>返り値</th>
+						<td>Mixed 、リクエストした値のデータタイプによる。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// assume some parameters and options were set, and execute
+// いくつかのパラメータとオプションがセットされているとして、実行する
 $curl->execute();
 
-// get the number of bytes downloaded in the request
+// リクエストでダウンロードしたバイト数を取得
 $size = $curl->response_info(CURLINFO_SIZE_DOWNLOAD, false);
 </code></pre>
 						</td>
@@ -734,51 +734,51 @@ $size = $curl->response_info(CURLINFO_SIZE_DOWNLOAD, false);
 
 			<article>
 				<h4 class="method" id="method_http_login">http_login($username = '', $password = '', $type = 'any')</h4>
-				<p>The <strong>http_login</strong> メソッドを使用すると、リクエストを実行する際に基本認証を使用することができます。</p>
-					<table class="method">
+				<p><strong>http_login</strong> メソッドは、リクエストを実行する際に basic 認証を使用することができます。</p>
+				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$username</kbd></th>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>Name of the user you want to use to perform the authentication.</td>
+									<td>認証を行うユーザの名前。</td>
 								</tr>
 								<tr>
 									<th><kbd>$password</kbd></th>
 									<td><pre class="php"><code>''</code></pre></td>
-									<td>That users password.</td>
+									<td>ユーザのパスワード。</td>
 								</tr>
 								<tr>
 									<th><kbd>$type</kbd></th>
 									<td><pre class="php"><code>'any'</code></pre></td>
-									<td>Type of authentication to perform. Supported are: BASIC, DIGEST, GSSNEGOTIATE, NTLM, ANY and ANYSAFE.</td>
+									<td>認証方法のタイプ。サポートしているのは: BASIC 、DIGEST 、GSSNEGOTIATE 、NTLM 、ANY と ANYSAFE 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Response, the created response object.</td>
+						<th>返り値</th>
+						<td>Response 、作成した response オブジェクト。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Curl object
+			<pre class="php"><code>// Request_Curl オブジェクトを作成
 $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
-// authenticate against an IIS server
+// IIS サーバの認証を試みる
 $curl->http_login('username', 'mypass', 'NTLM');
 </code></pre>
 						</td>

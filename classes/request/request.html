@@ -119,7 +119,7 @@ $request = Request::forge('admin/login');
 								<tr>
 									<th><kbd>$method_params</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>コールされているコントローラへ渡す、オプションのパラメータ配列。</td>
+									<td>コールされているコントローラへ渡すオプションのパラメータ配列。</td>
 								</tr>
 							</table>
 						</td>
@@ -335,7 +335,7 @@ $param = Request::active()->param('name', 'none');</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Fuel\Core\Request オブジェクト、またはメイン request の場合は null</td>
+						<td>Fuel\Core\Request オブジェクト、またはメインのリクエストの場合は null</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -368,7 +368,7 @@ $parent = Request::active()->parent();</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// メイン Request 処理中に生成された各種リクエストを取得
+							<pre class="php"><code>// メインのリクエスト処理中に生成された各種リクエストを取得
 $children = Request::main()->children();</code></pre>
 						</td>
 					</tr>
@@ -378,7 +378,7 @@ $children = Request::main()->children();</code></pre>
 
 			<article>
 				<h4 class="method" id="method_main">main()</h4>
-				<p><strong>main</strong> メソッドは、メイン Request インスタンス (最初のページリクエストで生成されたもの)
+				<p><strong>main</strong> メソッドは、メインの Request インスタンス (最初のページリクエストで生成されたもの)
 					を返します。</p>
 				<table class="method">
 					<tbody>
@@ -392,7 +392,7 @@ $children = Request::main()->children();</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Fuel\Core\Request オブジェクト、あるいはメイン request インスタンスが存在しない場合は false を返す。</td>
+						<td>Fuel\Core\Request オブジェクト、あるいはメインの request インスタンスが存在しない場合は false を返す。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -403,14 +403,14 @@ $children = Request::main()->children();</code></pre>
 					</tbody>
 				</table>
 
-				<p class="note">これは最初に実行されたリクエストインスタンスであって、必ずしも現在のリクエストのルート親 (root parent) のインスタンスではありません。
-					たとえば、メインリクエストが 404 で (<kbd>_404_</kbd> にルート付けられたものが実行された) 
+				<p class="note">これは最初に実行された request インスタンスであって、必ずしも現在のリクエストの親ルートインスタンスではありません。
+					たとえば、メインのリクエストが 404 で (<kbd>_404_</kbd> にルート付けられたものが実行された)
 					その後に新しいリクエストを生成するという様なケースがそれにあたるでしょう。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_active">active()</h4>
-				<p><strong>active</strong> メソッドは、アクティブなリクエストインスタンスを返します。</p>
+				<p><strong>active</strong> メソッドは、アクティブな request インスタンスを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -423,7 +423,7 @@ $children = Request::main()->children();</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Fuel\Core\Request オブジェクト、 あるいはアクティブなリクエストインスタンスが存在しない場合は false を返す。</td>
+						<td>Fuel\Core\Request オブジェクト、 あるいはアクティブな request インスタンスが存在しない場合は false を返す。</td>
 					</tr>
 					<tr>
 						<th>例</th>
