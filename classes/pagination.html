@@ -50,8 +50,8 @@
 			<p>pagination クラスは、表示したいレコードのページネーションを簡単に設定することができます。</p>
 
 			<section>
-				<h3 id="how_to">使い方</h3>
 				<p>Pagination クラスの分かりやすい使用方法の例。コントローラのアクションメソッドへ書くことができます。</p>
+				<h3 id="how_to_query_builder">How To Paginate with the Query Builder</h3>
 
 				<pre class="php"><code>$config = array(
 	'pagination_url' => 'http://localhost/fuel/welcome/index/',
@@ -77,6 +77,30 @@ $data['pagination'] = $pagination;
 
 // ビューを返す
 return \View::forge('welcome/index', $data);</code></pre>
+
+				<h3 id="how_to_orm">How To Paginate with ORM</h3>
+
+				<pre class="php"><code>$config = array(
+	'pagination_url' => 'http://localhost/fuel/posts/index/',
+	'total_items'    => Model_Post::count(),
+	'per_page'       => 10,
+	'uri_segment'    => 3,
+	// or if you prefer pagination by query string
+	//'uri_segment'    => 'page',
+);
+
+$pagination = Pagination::forge('mypagination', $config);
+
+$data['example_data'] = Model_Post::query()
+							->rows_offset($pagination->per_page)
+							->rows_limit($pagination->offset)
+							->get();
+
+// we pass the object, it will be rendered when echo'd in the view
+$data['pagination'] = $pagination;
+
+// return the view
+return \View::forge('posts/index', $data);</code></pre>
 			</section>
 
 			<section>
@@ -432,7 +456,7 @@ return \View::forge('welcome/index', $data);</code></pre>
 							<td>
 								<pre class="php"><code>// pagination インスタンスを作る
 $pagination = Pagination::forge('mypagination', array(
-    'pagination_url' => 'http://docs.fuelphp.com/',
+	'pagination_url' => 'http://docs.fuelphp.com/',
 	'uri_segment' => 2,
 	'total_items' => 10,
 	'per_page' => 20,

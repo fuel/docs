@@ -99,8 +99,11 @@ protected static $_observers = array(
 		'events' => array('before_insert'),
 		'mysql_timestamp' => true,
 		'property' => 'created',
+		'overwrite' => true,
 	),
 );</code></pre>
+				<p>If you want to be able to set the created_at timestamp in your code, set the 'overwrite' property to false.
+				This will cause the observer to keep the value you have set manually.</p>
 
 				<h4 id="os_updated">Observer_UpdatedAt</h4>
 				<p>This observer acts only upon <kbd>before_save</kbd> or <kbd>before_update</kbd> and expects your model to have a
@@ -150,7 +153,7 @@ $blog->save();
 
 				<p>This observer can act on <kbd>before_insert</kbd> and/or <kbd>before_update</kbd>, or on <kbd>before_save</kbd>.
 					Do not use both <kbd>before_save</kbd> and one of the others, that would cause your rules to be called twice.
-					It is used to prevent the model from saving if validation rules fail. It uses the <a href="../../../classes/fieldset.html">Fieldset</a> class
+					It is used to prevent the model from saving if validation rules fail. It uses the <a href="../../../classes/fieldset/fieldset.html">Fieldset</a> class
 					and can also generate the form for you.</p>
 
 				<p class="note">主要なキーは編集できませんし、検証にも、フォームにも追加されません。
@@ -277,7 +280,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 	}
 }</code></pre>
 
-				<p>これは、<a href="../../../classes/fieldset.html">Fieldset</a> クラスを使用しているので、検証を実行し、
+				<p>これは、<a href="../../../classes/fieldset/fieldset.html">Fieldset</a> クラスを使用しているので、検証を実行し、
                                     また、モデル用のフォームを作成することができます。次の例では、作成と編集フォームが一般的なビューで定義されています。
                                     しかし、同じように簡単にモデルにそれを定義し、
                                     <code>Fieldset::instance()</code> を使用することで、
@@ -399,8 +402,14 @@ protected static $_observers = array('Orm\\Observer_Slug');
 protected static $_observers = array(
 	'Orm\\Observer_Slug' => array(
 		'events' => array('before_insert'),
+<<<<<<< HEAD
 		'source' => 'title',   // 上にスラグをベースに使用されるプロパティはプロパティの配列かもしれません。
 		'property' => 'slug',  // プロパティが空のときにスラグを設定します。
+=======
+		'source' => 'title',   // property used to base the slug on, may also be array of properties
+		'property' => 'slug',  // property to set the slug on when empty
+		'separator' => '-',  // property to set the separator
+>>>>>>> ad15586dd51a3c3e01c762a610d20c0594b3536d
 	),
 );
 protected static $_observers = array('Orm\\Observer_Slug' => array('before_insert'));</code></pre>

@@ -49,7 +49,7 @@
 
 			<p>
 				Validation クラスは、ユーザ入力をバリデーションする際の手助けをします。
-				フォームの生成とバリデーションを同時にしたい場合は、代わりに <a href="../fieldset.html">Fieldset</a> クラスを使用してください。
+				フォームの生成とバリデーションを同時にしたい場合は、代わりに <a href="../fieldset/fieldset.html">Fieldset</a> クラスを使用してください。
 			</p>
 
 			<h3 id="class_methods">Class Methods</h3>
@@ -555,6 +555,196 @@ $val->get_message('required', null);
 			</article>
 
 			<article>
+				<h4 class="method" id="method_run">run($input = null, $allow_partial = false, $temp_callables = array())</h4>
+				<p>
+					Runs the defined validation rules against the input passed, or Input::post() if nothing was passed.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$input</kbd></th>
+										<td><em>array</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Assoc array of input fields and values</td>
+									</tr>
+									<tr>
+										<th><kbd>$allow_partial</kbd></th>
+										<td><em>bool</em></td>
+										<td><pre class="php"><code>false</code></pre></td>
+										<td>If false, all fields that have validation rules defined MUST be present in the input</td>
+									</tr>
+									<tr>
+										<th><kbd>$temp_callables</kbd></th>
+										<td><em>array</em></td>
+										<td><pre class="php"><code>array()</code></pre></td>
+										<td>Any additional callables required to run all defined validation rules</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Boolean, true if the input validated, false if it failed</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$val = Validation::forge('article');
+$val->add_field('title', 'Title', 'required');
+
+if ( ! $val->run())
+{
+	foreach ($val->error() as $field => $error)
+	{
+		echo $error->get_message();
+		// The field Title is required and must contain a value.
+	}
+}
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_input">input($key = null, $default = null)</h4>
+				<p>
+					Returns one or all input values, or the default value if the requested key is not present in the input.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$key</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Name of the input field, or null to return all input</td>
+									</tr>
+									<tr>
+										<th><kbd>$default</kbd></th>
+										<td><em>mixed</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Value to return if the key is not present in the input</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Mixed, the input value or the value specified as $default</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$val = Validation::forge('article');
+$val->add_field('title', 'Title', 'required');
+
+if ($val->run())
+{
+	// if something was posted, echo it
+	echo $val->input('title');
+}
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					Input is only available after the validation rules have run.
+					By default, <kbd>input()</kbd> will fall back to <kbd>Input::param()</kbd> when no rules have run. This behaviour can be controlled through the validation config file.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_validated">validated($field = null, $default = false)</h4>
+				<p>
+					Returns one or all validated input values, or the default value if the requested key is not present in the validated input.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$field</kbd></th>
+										<td><em>string</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Name of the input field, or null to return all input</td>
+									</tr>
+									<tr>
+										<th><kbd>$default</kbd></th>
+										<td><em>mixed</em></td>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Value to return if the key is not present in the input</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Mixed, the validated input value or the value specified as $default</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$val = Validation::forge('article');
+$val->add_field('title', 'Title', 'required');
+
+if ($val->run())
+{
+	// if something was posted, echo it
+	echo $val->validated('title');
+}
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					Where <kbd>input()</kbd> returns the raw input value, <kbd>validated()</kbd> will return the validated value,
+					which might be different than the input because some validation rules alter the input (for example a rule like <kbd>strtoupper</kbd>).
+				</p>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_error">error($field = null, $default = false)</h4>
 				<p>
 					<strong>error</strong> メソッドはバリデーション中に発生する特定のエラーまたは全てのエラーを返します。
@@ -678,7 +868,81 @@ if ( ! $val->run(array()))
 				</table>
 			</article>
 
-			<p>More coming soon...</p>
+			<article>
+				<h4 class="method" id="method_show_errors">show_errors($options = array())</h4>
+				<p>
+					The <strong>show_errors</strong> returns the list of validation errors rendered in HTML according to the defined template.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$options</kbd></th>
+										<td><em>array</em></td>
+										<td><pre class="php"><code>array()</code></pre></td>
+										<td>Options for the HTML template, to override the defaults from the validation config file</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>string, the rendered HTML</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$val = Validation::forge('article');
+$val->add_field('title', 'Title', 'required');
+
+if ( ! $val->run(array()))
+{
+	echo $val->show_errors();
+}
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					The following options can be passed: 'open_list', 'close_list', 'open_error', 'close_error' and 'no_errors'. By default
+					an unordered list is generated, and an empty string is returned if no validation errors were found.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add">add($name, $label = '', array $attributes = array(), array $rules = array())</h4>
+				<p>
+					Alias for the <a href="../fieldset/fieldset.html#method_add">Fieldset add()</a> method.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add_model">add_model($class, $instance = null, $method = 'set_form_fields')</h4>
+				<p>
+					Alias for the <a href="../fieldset/fieldset.html#method_add_model">Fieldset add_model()</a> method.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_field">field($name = null, $flatten = false)</h4>
+				<p>
+					Alias for the <a href="../fieldset/fieldset.html#method_field">Fieldset field()</a> method.
+				</p>
+			</article>
 		</div>
 
 		<footer>

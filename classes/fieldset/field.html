@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+		var class_prefix = "Fieldset_Field::";
+	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Fieldset_Field - Classes - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>Fieldset_Field Class</h2>
+
+			<p>
+				The Fieldset_Field class defines a single field inside a fieldset. It defines the type of field, how the field
+				should be rendered, and which validation rules should be used when validating field input.
+			</p>
+
+			<p class="note">
+				Although it is technically possible to create stand-alone Fieldset_Field instances, normally they will be created
+				as part of a Fieldset, using the Fieldsets <kbd>add_field()</kbd> method.
+			</p>
+
+			<article>
+				<h4 class="method" id="method_set_fieldset">set_fieldset(Fieldset $fieldset)</h4>
+				<p>
+					If you have created a standalone Fieldset_Field object (i.e. not via the Fieldset class), you can use the
+					<strong>set_fieldset</strong> method to assign the field object to a fieldset object.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$fieldset</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>Instance of Fieldset you want to assign this Field object to.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset_Field Object, for chaining</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$fieldset = \Fieldset::forge('myfieldset');
+$field = new \Fieldset_Field('client', 'Name of the client');
+$field-&gt;set_fieldset($fieldset);
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_label">set_label($label)</h4>
+				<p>
+					Set or change the label of a field.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$label</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>Label to be displayed for the field when generating the HTML for this field.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset_Field Object, for chaining</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$fieldset-&gt;field('fieldname')-&gt;set_label('New Label');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_type">set_type($type)</h4>
+				<p>
+					Set or change the HTML form field type.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$type</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>Input field type used when generating the HTML for this field.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset_Field Object, for chaining</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// will generate &lt;input type="hidden"... &gt;
+$fieldset-&gt;field('fieldname')-&gt;set_type('hidden');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_value">set_value($value, $repopulate = false)</h4>
+				<p>
+					Set or changes the value of the field. For radio buttons and checkboxes, you can choose to repopulate, which
+					will recalculate the "checked" value of the field based on the current and the passed value.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$type</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>Input field type used when generating the HTML for this field.</td>
+									</tr>
+									<tr>
+										<th><kbd>$repopulate</kbd></th>
+										<td><pre class="php"><code>false</code></pre></td>
+										<td>If true, the field will be repopulated based on the value (only for radio buttons and checkboxes).</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset_Field Object, for chaining</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$fieldset-&gt;field('fieldname')-&gt;set_value('this is the new value');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_description">set_description($description)</h4>
+				<p>
+					Set or changes the fields description. The description is mapped to the <strong>{description}</strong>  ta
+					in the form field template, and can for example be used to display a help text.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$description</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>Field description.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset_Field Object, for chaining</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$fieldset
+	-&gt;field('fieldname')
+	-&gt;set_description('We would like you to enter something here');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_template">set_template($template = null)</h4>
+				<p>
+					Sets or resets a custom form field template for this field.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$template</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>The template to be used to render the HTML for this field.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset_Field Object, for chaining</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$fieldset
+	-&gt;field('fieldname')
+	-&gt;set_template('&lt;div class=\"{error_class}\"&gt;{label}{required}&lt;/div&gt;&lt;div class="field-fieldname">{field} {description} {error_msg}&lt;/div&gt;');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">If you don't pass anything, or pass <kbd>null</kbd>, the default field template as defined in the <strong>form.php</strong> config file will be used.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_error_message">set_error_message($rule, $msg)</h4>
+				<p>
+					Set a custom error message for a specific validation rule.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$rule</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>Validation rule for which you want to override the default error message.</td>
+									</tr>
+									<tr>
+										<th><kbd>$msg</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>
+											The message to display. You can use <strong>:label</strong> as a placeholder for the field label, and
+											<strong>:param:&lt;number&gt;</strong> for the parameters passed to the rule.
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset_Field Object, for chaining</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// set a custom error message for the "valid_string" validation rule
+$fieldset
+	-&gt;field('fieldname')
+	-&gt;set_error_message('valid_string', ':label must contain both upper and lowercase characters!');
+
+// set a custom error message for "exact_length"
+
+$fieldset
+	-&gt;field('fieldname')
+	-&gt;set_error_message('exact_length', ':label is not exactly :param:1 long!');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get_error_message">get_error_message($rule)</h4>
+				<p>
+					Checks if a custom message for a validation rule is defined, and if so, the message is returned.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$rule</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>The name of the validation rule who's message should be fetched.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Mixed, string if there is a custom message, or <kbd>null</kbd> if not</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// set a custom error message for the "valid_string" validation rule
+$fieldset
+	-&gt;field('fieldname')
+	-&gt;set_error_message('valid_string', ':label must contain both upper and lowercase characters!');
+
+// returns: :label must contain both upper and lowercase characters!
+$message = $fieldset-&gt;field('fieldname')-&gt;get_error_message('valid_string');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add_rule">add_rule($callback)</h4>
+				<p>
+					Add a validation rule to a field, either an internal validation rule identified by name, or a valid callback that
+					validates the field.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$callback</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>Either a string with a valid validation rule name, or full callback.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset_Field Object, for chaining</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// set a valid_string rule on the field
+$fieldset-&gt;field('fieldname')-&gt;add_rule('valid_string', array('alpha-numeric', 'dots', 'spaces'));
+
+// and make the field required
+$message = $fieldset->field('fieldname')->add_rule('required');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">When you set the required rule, the "required" attribute of the form input tag will be set.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_delete_rule">delete_rule($callback, $set_attr = true)</h4>
+				<p>
+					Removes a validation rule to a field, identified by either an internal validation rule identified by name, or a valid callback that
+					validates the field.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$callback</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>Either a string with a valid validation rule name, or full callback.</td>
+									</tr>
+									<tr>
+										<th><kbd>$set_attr</kbd></th>
+										<td><pre class="php"><code>true</code></pre></td>
+										<td>If true, attributes related to the rule are updated too.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset_Field Object, for chaining</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// remove the valid_string rule from the field
+$fieldset-&gt;field('fieldname')-&gt;delete_rule('valid_string');
+
+// and make the field no longer required
+$message = $fieldset->field('fieldname')->delete_rule('required', true);</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">When you remove the required rule, the "required" attribute of the form input tag will be removed if <kbd>$set_attr</kbd> is set to <kbd>true</kbd>.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_attribute">set_attribute($attr, $value = null)</h4>
+				<p>
+					Set one or more HTML field attributes for the field.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$attr</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>Either a string with the name of the attribute, or an assoc array of attributes and values.</td>
+									</tr>
+									<tr>
+										<th><kbd>$value</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>The attributes value. Ignored if $attr is an array.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset_Field Object, for chaining</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// add a custom CSS style
+$fieldset-&gt;field('fieldname')
+	-&gt;set_attribute('style', 'font-weight:bold;color:yellow;');
+
+// or multiple attributes at once
+$fieldset-&gt;field('fieldname')-&gt;set_attribute(array(
+	'style' => 'font-weight:bold;color:yellow;',
+	'disabled' => 'disabled'
+));</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">If you pass <kbd>null</kbd> as a value, the attribute will be removed from the field attribute list.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get_attribute">get_attribute($key = null, $default = null)</h4>
+				<p>
+					Get one or all HTML field attributes of the field.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$key</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Name or array of names of attribute(s) to get. If null, all attributes set are returned.</td>
+									</tr>
+									<tr>
+										<th><kbd>$default</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Value to return if the requested attribute has not been set.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Mixed, a single attribute value, or multiple values in an array if $key was an array of attributes</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get any custom style defined, or false if no style is set
+$style = $fieldset-&gt;field('fieldname')
+	-&gt;get_attribute('style', false);</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_options">set_options($value, $label = null, $replace_options = false)</h4>
+				<p>
+					Set one or more options. Only valid for radio buttons, checkboxes and selects.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$value</kbd></th>
+										<td><pre class="php">required</pre></td>
+										<td>Value of the option, or an assoc array of values and labels.</td>
+									</tr>
+									<tr>
+										<th><kbd>$label</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Label to be set on the value. Only used if $value is not an array.</td>
+									</tr>
+									<tr>
+										<th><kbd>$replace_options</kbd></th>
+										<td><pre class="php"><code>false</code></pre></td>
+										<td>If true, existing options will be deleted before setting the new one(s).</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset_Field Object, for chaining</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// if the field is a select: &lt;option value="1"&gt;Label&lt;/option&gt;
+// if the field is a checkbox: &lt;label&gt;Label&lt;/label&gt;&lt;input type="checkbox" ... /&gt;
+$style = $fieldset-&gt;field('fieldname')-&gt;set_options('1', 'Label');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_fieldset">fieldset()</h4>
+				<p>
+					Get the Fieldset object this Field is associated with.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Fieldset instance</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// returns true
+$same = ($fieldset === $fieldset-&gt;field('fieldname')-&gt;fieldset());</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add">add($name, $label = '', array $attributes = array(), array $rules = array())</h4>
+				<p>
+					Alias for the <a href="fieldset.html#method_add">Fieldset add()</a> method.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add_before">add_before($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
+				<p>
+					Alias for the <a href="fieldset.html#method_add_before">Fieldset add_before()</a> method.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add_after">add_after($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
+				<p>
+					Alias for the <a href="fieldset.html#method_add_after">Fieldset add_after()</a> method.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_build">build()</h4>
+				<p>
+					Generates the form HTML for the field.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string, the generated HTML</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// if the field is a select: &lt;option value="1"&gt;Label&lt;/option&gt;
+// if the field is a checkbox: &lt;label&gt;Label&lt;/label&gt;&lt;input type="checkbox" ... /&gt;
+$style = $fieldset-&gt;field('fieldname')-&gt;set_options('1', 'Label');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_input">input()</h4>
+				<p>
+					Alias for the <a href="../validation/methods.html#method_input">Validation input()</a> method,
+					and returning the input value for the current field. Returns <kbd>null</kbd> if no input value
+					is present.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_validated">validated()</h4>
+				<p>
+					Alias for the <a href="../validation/methods.html#method_validated">Validation validated()</a> method,
+					and returning the validated input value for the current field. Returns <kbd>null</kbd> if no validated
+					input value is present.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_error">error()</h4>
+				<p>
+					Alias for the <a href="../validation/methods.html#method_error">Validation error()</a> method,
+					and any error messages present after the validation of this field has run. Returns <kbd>false</kbd>
+					if no errors were detected.
+				</p>
+			</article>
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

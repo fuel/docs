@@ -1948,6 +1948,65 @@ $children = $bill->children;
 							As with all ORM array's, the table's primary key is used as array index. Note that because the ORM uses objects by
 							reference from a single cache, if you choose to use 'as_object', children will be added to existing objects too.</p>
 					</article>
+
+					<article>
+						<h4 id="method_related" class="method">related($relation, $conditions = array())</h4>
+						<p>
+							The <strong>related</strong> method allows you to fetch related objects when executing a nested set command, indentical
+							to a normal Orm model query.
+						</p>
+						<table class="method">
+							<tbody>
+								<tr>
+									<th class="legend">Static</th>
+									<td>No</td>
+								</tr>
+								<tr>
+									<th>Parameters</th>
+									<td>
+										<table class="parameters">
+											<tr>
+												<th>Param</th>
+												<th>Default</th>
+												<th class="description">Description</th>
+											</tr>
+											<tr>
+												<th><kbd>$related</kbd></th>
+												<td><pre class="php">required</pre></td>
+												<td>The name of the relation to include.</td>
+											</tr>
+											<tr>
+												<th><kbd>$conditions</kbd></th>
+												<td><pre class="php">array()</pre></td>
+												<td>Any conditions you want to pass on when fetching the related objects.</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<th>Returns</th>
+									<td>Model_Nestedset, for chaining.</td>
+								</tr>
+								<tr>
+									<th>Example</th>
+									<td>
+										<pre class="php"><code>// include related 'child' objects in the result
+$tree = $bill->related('child')->dump_tree();
+
+// get the descendants of $ben
+$descendants = $ben->descendants()->related('child')->get();
+
+// This will NOT include the child relation!
+$descendants = $ben->related('child')->descendants()->get();
+</code></pre>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="note">
+							If you want to use this method on any nested set operation (like for example decendants()), make sure to setup that
+							operation first. If you don't, your included relations will be reset my the nested set operation method call!</p>
+					</article>
                 </section>
 			</div>
 		<footer>

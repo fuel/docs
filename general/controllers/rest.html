@@ -233,8 +233,10 @@
 				<li><strong>serialize</strong> – PHP でアンシリアライズ可能な、シリアライズされたデータ</li>
 			</ul>
 			<p class="note">
-				If your controller method returns an array, but the requested output format is <strong>html</strong>, you will
-				get a var_dump() representation of the array, because array's can't be output as string.
+				If your controller method returns an array, but the requested output format is something that an array can not be
+				converted to (such as <strong>html</strong>), you will get a 406 NOT ACCEPTABLE status returned when your
+				application runs in a production environment, or a warning message and a JSON dump of the array when in
+				any other environment.
 			</p>
 
 			<h3 id="format_determination">フォーマットの決定</h3>

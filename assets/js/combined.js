@@ -465,12 +465,15 @@ panes.core = {
 		"Event":		"classes/event.html",
 		// "Error":		"todo.html",
 		// "Exception":	"todo.html",
-		"Fieldset":		"classes/fieldset.html",
+		"Fieldset": {
+			"Fieldset":			"classes/fieldset/fieldset.html",
+			"Fieldset Field":	"classes/fieldset/field.html",
+		},
 		"File": {
 			"はじめに":	"classes/file/intro.html",
 			"使用法":		"classes/file/usage.html",
 			"高度な使用法":		"classes/file/advanced.html",
-			"ハンドラ":		"classes/file/handlers.html",
+			"ハンドラ":		"classes/file/handlers.html"
 		},
 		"Finder":		"classes/finder.html",
 		"Form":			"classes/form.html",

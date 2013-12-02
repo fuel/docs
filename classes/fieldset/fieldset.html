@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
-	<link rel="shortcut icon" href="./../favicon.ico" />
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		var path = './../';
+		var path = './../../';
 		var class_prefix = "Fieldset::";
 	</script>
-	<script src="./../assets/js/combined.js"></script>
+	<script src="./../../assets/js/combined.js"></script>
 	<title>Fieldset - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
@@ -53,7 +53,11 @@
 				実際には、Form と Validation の 2 つのクラスが仕事をすることになります。
 			</p>
 			<p>
-				フォームは、Fieldset インスタンスを View に渡すとき、あるいは <kbd>build() を呼び出すときに生成されます。</kbd>.
+				Every field in a fieldset is defined by a <a href="field.html">Fieldset_Field</a> object, which you can access
+				and manipulate directly using the <kbd>field()</kbd> method of the Fieldset.
+			</p>
+			<p>
+				The resulting form markup is generated when passing the Fieldset instance to a View or by calling <kbd>build()</kbd>.
 			</p>
 
 			<article>
@@ -231,7 +235,7 @@
 
 			<article>
 				<h4 class="method" id="method_add">add($name, $label = '', array $attributes = array(), array $rules = array())</h4>
-				<p>Fieldset_Field インスタンスを作成し、現在のFieldsetに追加する。</p>
+				<p><a href="field.html">Fieldset_Field</a>インスタンスを作成し、現在のFieldsetに追加する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -274,7 +278,7 @@
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>\Fieldset_Field Object</td>
+						<td><a href="field.html">Fieldset_Field</a> instance</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -316,7 +320,7 @@ $form->add(
 
 			<article>
 				<h4 class="method" id="method_add_before">add_before($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
-				<p>Fieldset_Field インスタンスを作成し、現在のFieldsetの<strong>$fieldname</strong>で識別される定義済みフィールドの前に追加する。</p>
+				<p>Creates a <a href="field.html">Fieldset_Field</a> instance and adds it to the current Fieldset, just before an already defined field identified by <strong>$fieldname</strong>.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -364,7 +368,7 @@ $form->add(
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>\Fieldset_Field Object</td>
+						<td><a href="field.html">Fieldset_Field</a> Object</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -380,7 +384,8 @@ $form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'val
 
 			<article>
 				<h4 class="method" id="method_add_after">add_after($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
-				<p>Fieldset_Field インスタンスを作成し、現在のFieldsetの<strong>$fieldname</strong>で識別される定義済みフィールドの後に追加する。</p>
+
+				<p><a href="field.html">Fieldset_Field</a> インスタンスを作成し、現在のFieldsetの<strong>$fieldname</strong>で識別される定義済みフィールドの後に追加する。</p>l
 				<table class="method">
 					<tbody>
 					<tr>
@@ -428,7 +433,7 @@ $form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'val
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>\Fieldset_Field Object</td>
+						<td><a href="field.html">Fieldset_Field</a> Object</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -444,7 +449,7 @@ $form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'valu
 
 			<article>
 				<h4 class="method" id="method_field">field($name = null)</h4>
-				<p>現在のFieldsetから Fieldset_Field インスタンスを1つまたは全て取得する。</p>
+				<p>現在のFieldsetから <a href="field.html">Fieldset_Field</a> インスタンスを1つまたは全て取得する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -473,7 +478,7 @@ $form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'valu
 					<tr>
 						<th>返り値</th>
 						<td>\Fieldset_Field Object<br />
-						または Fieldset_Fields の<kbd>array()</kbd></td>
+						または <a href="field.html">Fieldset_Field</a>  の<kbd>array()</kbd></td>
 					</tr>
 					<tr>
 						<th>例</th>
