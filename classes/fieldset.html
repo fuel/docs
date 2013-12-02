@@ -316,7 +316,7 @@ $form->add(
 
 			<article>
 				<h4 class="method" id="method_add_before">add_before($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
-				<p>Creates a Fieldset_Field instance and adds it to the current Fieldset, just before an already defined field identified by <strong>$fieldname</strong>.</p>
+				<p>Fieldset_Field インスタンスを作成し、現在のFieldsetの<strong>$fieldname</strong>で識別される定義済みフィールドの前に追加する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -336,27 +336,27 @@ $form->add(
 									<tr>
 										<th><kbd>$name</kbd></th>
 										<td><i>必須</i></td>
-										<td>HTML name attribute, also used for referencing the field within the Fieldset</td>
+										<td>HTML name 属性、Fieldset でフィールドを参照するのにも使用する</td>
 									</tr>
 									<tr>
 										<th><kbd>$label</kbd></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>Field label</td>
+										<td>フィールドラベル</td>
 									</tr>
 									<tr>
 										<th><kbd>$attributes</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>HTML attributes as an associative array</td>
+										<td>HTML 属性の連想配列</td>
 									</tr>
 									<tr>
 										<th><kbd>$rules</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>Validation rules to be applied to this Field</td>
+										<td>このフィールドに適用する検証ルール</td>
 									</tr>
 									<tr>
 										<th><kbd>$fieldname</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Already defined field to which this field must be prepended</td>
+										<td>先に追加されているはずの定義済みフィールド</td>
 									</tr>
 								</tbody>
 							</table>
@@ -369,7 +369,7 @@ $form->add(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Radio button field, to be added before the 'location' field.
+							<pre class="php"><code>// 'location' フィールドの前に追加されるラジオボタンフィールド
 $ops = array('male', 'female');
 $form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'value' => 'true'), array(), 'location');</code></pre>
 						</td>
@@ -380,7 +380,7 @@ $form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'val
 
 			<article>
 				<h4 class="method" id="method_add_after">add_after($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
-				<p>Creates a Fieldset_Field instance and adds it to the current Fieldset, just after an already defined field identified by <strong>$fieldname</strong>.</p>
+				<p>Fieldset_Field インスタンスを作成し、現在のFieldsetの<strong>$fieldname</strong>で識別される定義済みフィールドの後に追加する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -400,27 +400,27 @@ $form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'val
 									<tr>
 										<th><kbd>$name</kbd></th>
 										<td><i>必須</i></td>
-										<td>HTML name attribute, also used for referencing the field within the Fieldset</td>
+										<td>HTML name 属性、Fieldset でフィールドを参照するのにも使用する</td>
 									</tr>
 									<tr>
 										<th><kbd>$label</kbd></th>
 										<td><pre class="php"><code>''</code></pre></td>
-										<td>Field label</td>
+										<td>フィールドラベル</td>
 									</tr>
 									<tr>
 										<th><kbd>$attributes</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>HTML attributes as an associative array</td>
+										<td>HTML 属性の連想配列</td>
 									</tr>
 									<tr>
 										<th><kbd>$rules</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>Validation rules to be applied to this Field</td>
+										<td>このフィールドに適用する検証ルール</td>
 									</tr>
 									<tr>
 										<th><kbd>$fieldname</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Already defined field to which this field must be appended</td>
+										<td>既に追加されているはずの定義済みフィールド</td>
 									</tr>
 								</tbody>
 							</table>
@@ -433,7 +433,7 @@ $form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'val
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Radio button field, to be added after the 'location' field.
+							<pre class="php"><code>// 'location' フィールドの後に追加されるラジオボタンフィールド
 $ops = array('male', 'female');
 $form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'value' => 'true'), array(), 'location');</code></pre>
 						</td>
@@ -444,7 +444,7 @@ $form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'valu
 
 			<article>
 				<h4 class="method" id="method_field">field($name = null)</h4>
-				<p>Gets one or all Fieldset_Field instances for the current Fieldset.</p>
+				<p>現在のFieldsetから Fieldset_Field インスタンスを1つまたは全て取得する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -464,7 +464,7 @@ $form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'valu
 									<tr>
 										<th><kbd>$name</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of an existing field in this Fieldset or null to get all fields.</td>
+										<td>Fieldsetに存在しているフィールドの名前 または 全てのフィールドを取得するためのnull。</td>
 									</tr>
 								</tbody>
 							</table>
@@ -473,7 +473,7 @@ $form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'valu
 					<tr>
 						<th>返り値</th>
 						<td>\Fieldset_Field Object<br />
-						or <kbd>array()</kbd> of Fieldset_Fields</td>
+						または Fieldset_Fields の<kbd>array()</kbd></td>
 					</tr>
 					<tr>
 						<th>例</th>
