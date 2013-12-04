@@ -47,19 +47,19 @@
 
 			<h2>Redis_Db クラス</h2>
 
-			<p>Redis_Db クラスは key-value ストアである<a href="http://redis.io/">Redis</a> とデータをやり取りすることができます。</p>
+			<p>Redis_Db クラスは、key-value ストアである <a href="http://redis.io/">Redis</a> とデータをやり取りすることができます。</p>
 
-			<h3 id="configuration">Configuration</h3>
+			<h3 id="configuration">設定</h3>
 
-			<p>For every Redis database connection there must be a config in redis array in app/config/&lt;environment&gt;/db.php. Configuration options and explanation are listed below. Every config requires to contain a hostname and a port.</p>
+			<p>すべての Redis データベースの接続設定は、app/config/&lt;environment&gt;/db.php の redis 配列の中で設定されている必要があります。設定オプションと説明を下にリストアップしました。すべての設定には、ホスト名とポートが必須となります。</p>
 
 			<table class="config">
 				<tbody>
 					<tr class="header">
-						<th>Param</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th>Description</th>
+						<th>パラメータ</th>
+						<th>型</th>
+						<th>デフォルト</th>
+						<th>説明</th>
 
 					</tr>
 					<tr>
@@ -67,7 +67,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>'127.0.0.1'</code></pre></td>
 						<td>
-							Hostname
+							ホスト名
 						</td>
 					</tr>
 					<tr>
@@ -75,7 +75,7 @@
 						<td>integer</td>
 						<td><pre class="php"><code>6379</code></pre></td>
 						<td>
-							Port to use in the connection
+							接続を受け付けるポート
 						</td>
 					</tr>
 					<tr>
@@ -83,7 +83,7 @@
 						<td>mixed</td>
 						<td><pre class="php"><code>null</code></pre></td>
 						<td>
-							Connection timeout
+							接続のタイムアウト
 						</td>
 					</tr>
 					<tr>
@@ -91,7 +91,7 @@
 						<td>integer</td>
 						<td><pre class="php"><code>0</code></pre></td>
 						<td>
-							Database zero-based index
+							0 が基点となるデータベース番号
 						</td>
 					</tr>
 				</tbody>
@@ -99,7 +99,7 @@
 
 			<article>
 				<h4 class="method" id="method_forge">forge($name = 'default', $config = array())</h4>
-				<p>新しい名前の redis インスタンスを生成します。必要に応じて、設定を変更することができます。</p>
+				<p>新しい名前の redis インスタンスを作成します。必要に応じて、設定を変更することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -123,7 +123,7 @@
 								<tr>
 									<th><kbd>$config</kbd></th>
 									<td><i><pre class="php"><code>array()</code></pre></i></td>
-									<td>設定。 db.php 設定ファイルで設定している設定を上書きすることができます。</td>
+									<td>カスタム設定。 db.php 設定ファイルで定義されている値を上書きすることができます。</td>
 								</tr>
 							</table>
 						</td>
@@ -135,7 +135,7 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// 'mystore' という名前の redis インスタンスを生成
+							<pre class="php"><code>// 'mystore' という Redis インスタンスを作成
 $redis = Redis_Db::forge('mystore');</code></pre>
 						</td>
 					</tr>
@@ -145,7 +145,7 @@ $redis = Redis_Db::forge('mystore');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_instance">instance($name = 'default')</h4>
-				<p>以前に生成したインスタンスを名前を指定して返します。</p>
+				<p>以前に作成したインスタンスを名前を指定して返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -164,7 +164,7 @@ $redis = Redis_Db::forge('mystore');</code></pre>
 								<tr>
 									<th><kbd>$name</kbd></th>
 									<td><i><pre class="php"><code>'default'</code></pre></i></td>
-									<td>forge() メソッドで事前に生成されているインスタンスの名前。</td>
+									<td>forge() メソッドで事前に作成されているインスタンスの名前。</td>
 								</tr>
 							</table>
 						</td>
@@ -176,7 +176,7 @@ $redis = Redis_Db::forge('mystore');</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// 'mystore' という名前の redis インスタンスを取り出す
+							<pre class="php"><code>// 'mystore' という Redis インスタンスを取り出す
 $redis = Redis_Db::instance('mystore');</code></pre>
 						</td>
 					</tr>
@@ -186,9 +186,9 @@ $redis = Redis_Db::instance('mystore');</code></pre>
 
 			<article>
 				<h4 id="redis_commands">Redis のコマンド</h4>
-				<p>一度 redis オブジェクトを生成したらあとは instance() メソッドを使います。 様々な redis コマンド (<a href="http://redis.io/commands">Redis ドキュメント</a>を参照のこと) はオブジェクトのメソッドのように使うことができます。</p>
+				<p>一度 redis オブジェクトを作成したらあとは instance() メソッドを使います。様々な redis コマンド (<a href="http://redis.io/commands">Redis ドキュメント</a>を参照のこと) はオブジェクトのメソッドのように使うことができます。</p>
 				<p>いくつかの例:</p>
-				<pre class="php"><code>// create the Redis 'mystore' instance
+				<pre class="php"><code>// 'mystore' という Redis インスタンスを作成
 $redis = Redis_Db::forge('mystore');
 
 // テストデータを作成
@@ -199,7 +199,7 @@ $redis->rpush('particles', 'neutron');
 // 範囲を指定して取り出す
 $particles = $redis->lrange('particles', 0, -1);
 
-// 要素の数を取得
+// 要素の数をカウント
 $particle_count = $redis->llen('particles');
 
 // 結果を表示
@@ -213,13 +213,13 @@ echo "&lt;/ul>";
 			</article>
 
 			<article>
-				<h4 id="redis_pipelining">パイプ</h4>
-				<p>いくつかの Redis コマンドをつなげることができ、それは1度だけ実行されます。</p>
+				<h4 id="redis_pipelining">パイプライニング</h4>
+				<p>いくつかの Redis コマンドをつなげることができ、それは 1 度だけ実行されます。</p>
 				<p>例:</p>
-				<pre class="php"><code>// 'mystore' という名前の redis インスタンスを生成
+				<pre class="php"><code>// 'mystore' という Redis インスタンスを作成
 $redis = Redis_Db::forge('mystore');
 
-// いくつかの redis コマンドをパイプして実行
+// いくつかの redis コマンドをパイプラインして実行
 $result = $redis->pipeline()
 	->sadd('list', 4)
 	->sadd('list', 1)
