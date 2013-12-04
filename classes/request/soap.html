@@ -48,49 +48,49 @@
 			<h2>Request_Soap クラス</h2>
 
 			<p>
-				Request_SoapクラスはPHPの<a href="http://php.net/manual/ja/class.soapclient.php">SoapClient</a>拡張を介してSOAPリクエストを処理するためにあります。
-				PHPのインストールには、"--enable-soap"のオプションをつける必要があります。<strong>phpinfo()</strong>でそれを確認する事ができます。
+				Request_Soap クラスは PHP の <a href="http://php.net/manual/ja/class.soapclient.php">SoapClient</a> 拡張を介して SOAP リクエストを処理するためにあります。
+				PHP のインストールには、 "--enable-soap" のオプションをつける必要があります。<strong>phpinfo()</strong> でそれを確認する事ができます。
 			</p>
 
 			<h3>インスタンスの作成</h3>
 
 			<p>
-				あなたは、Requestクラスを使用してこのクラスのインスタンスを作ることが出来ます。
+				Request クラスを使用してこのクラスのインスタンスの生成ができます。
 			</p>
-			<pre class="php"><code>// Request_Soap objectを作る
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// これは、オブジェクトを作成するだけで、リクエストを実行するわけではない事に注意してください!</code></pre>
+// これは、オブジェクトを作成するだけで、リクエストを実行するわけではない事に注意！</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set_params">set_params($params)</h4>
-				<p><strong>set_params</strong>を使用すると、SOAP要求の呼び出し時に渡すパラメータを設定することができます。</p>
+				<p><strong>set_params</strong> メソッドは、SOAP リクエストを呼び出し時に渡すパラメータをセットすることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$params</kbd></th>
-									<td><i>required</i></td>
-									<td>リクエストのパラメータの配列</td>
+									<td><i>必須</i></td>
+									<td>リクエストに使用するパラメータの配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Soap, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Soap 、チェーンさせるために</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -106,54 +106,54 @@ $soap->set_params(array('userid' => 12, 'data' => $payload));
 					</tbody>
 				</table>
 				<p class="note">
-					Please note that the format in which you have to define the parameters is dependent on the SOAP service
-					being called. Some for example expect them to be wrapped in an array. The SOAP Request driver will pass the
-					parameters to the service in the format you use on <kbd>set_params</kbd>, so make sure it is correct.
+					定義が必要なパラメータの形式は、呼ばれている SOAP サービス に依存することに注意してください。
+					例えば、それらが配列で内包されていると期待する人もいるでしょう。
+					SOAP リクエストドライバはパラメータを <kbd>set_params</kbd> で使った形式でサービスに渡します。ですから、それが正しいかを確認してください。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_set_option">set_option($option, $value)</h4>
-				<p>The <strong>set_option</strong> method allows you to define a SoapClient option to be passed to the request.</p>
+				<p><strong>set_option</strong> メソッドは、リクエストへ渡される SoapClient オプションを定義することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$option</kbd></th>
-									<td><i>required</i></td>
-									<td>SoapClient option to set.</td>
+									<td><i>必須</i></td>
+									<td>セットしたい SoapClient オプション。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
-									<td><i>required</i></td>
-									<td>Value to set this option to.</td>
+									<td><i>必須</i></td>
+									<td>このオプションへセットする値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Soap, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Soap 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// set the username to be used in the request
+// リクエストで使われるユーザ名をセット
 $soap->set_option('login', $username);
 </code></pre>
 						</td>
@@ -164,41 +164,41 @@ $soap->set_option('login', $username);
 
 			<article>
 				<h4 class="method" id="method_set_options">set_options(array $options)</h4>
-				<p>The <strong>set_options</strong> method allows you to define multiple SoapClient options to be passed to the request.</p>
+				<p><strong>set_options</strong> メソッドは、リクエストへ渡される複数の SoapClient オプションを定義することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$options</kbd></th>
-									<td><i>required</i></td>
-									<td>Array of SoapClient options and values to set.</td>
+									<td><i>必須</i></td>
+									<td>セットしたい SoapClient オプションと値の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Soap, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Soap 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// set a username and password to be used in the request
+// リクエストで使われるユーザ名とパスワードをセット
 $soap->set_options(array(
 	'login' => $username,
 	'password' => $password,
@@ -213,49 +213,49 @@ $soap->set_options(array(
 
 			<article>
 				<h4 class="method" id="method_add_param">add_param($param, $value = null)</h4>
-				<p>The <strong>add_param</strong> method allows you to add one or more parameters to the ones already defined.</p>
+				<p><strong>add_param</strong> メソッドは、すでに定義されたものに 1 つ以上のパラメータを追加することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$param</kbd></th>
-									<td><i>required</i></td>
-									<td>Name of the parameter to set, or an array of parameters and values.</td>
+									<td><i>必須</i></td>
+									<td>セットしたいパラメータの名前、またはパラメータと値の配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Value to be defined. Only used when $param is a string value.</td>
+									<td>定義したい値。$param が文字列値の場合のみ使われる。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Soap, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Soap 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// add some parameters
+// いくつかパラメータを追加
 $soap->add_param(array('userid' => 12, 'data' => $payload));
 
-// or add a single one
+// または、1 つを追加
 $soap->add_param('data', $payload);
 </code></pre>
 						</td>
@@ -266,84 +266,84 @@ $soap->add_param('data', $payload);
 
 			<article>
 				<h4 class="method" id="method_set_header">set_header($header, $content = null)</h4>
-				<p>The <strong>set_header</strong> method allows you to set a HTTP request header as part of the request.</p>
+				<p><strong>set_header</strong> メソッドは、リクエストの一部として HTTP リクエストヘッダをセットすることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$header</kbd></th>
-									<td><i>required</i></td>
-									<td>The name of the HTTP header entry.</td>
+									<td><i>必須</i></td>
+									<td>HTTP ヘッダエントリの名前。</td>
 								</tr>
 								<tr>
 									<th><kbd>$content</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The header value to be set.</td>
+									<td>セットしたいヘッダの値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Soap, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Soap 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// pass an authentication token to the backend server
+// バックエンドサーバに認証トークンを渡す
 $soap->set_header('auth-token', 'WV4YaeV8QeWVVVOE');
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">If you need to set a header that is not in the form "Name: Value", pass the value in $header, and do not pass any content.</p>
+				<p class="note">"名前: 値" の形式でないヘッダをセットする必要がある場合、値は $header の中で渡し、$content には何も渡さないこと。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_headers">get_headers()</h4>
-				<p>The <strong>get_headers</strong> method allows you to retrieve all currently defined HTTP request headers.</p>
+				<p><strong>get_headers</strong> メソッドは、現在定義されているすべての HTTP リクエストヘッダを取得することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None.
+							なし。
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Array, all headers set.</td>
+						<th>返り値</th>
+						<td>Array 、全てのヘッダセット。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// pass an authentication token to the backend server
+// バックエンドサーバに認証トークンを渡す
 $soap->set_header('auth-token', 'WV4YaeV8QeWVVVOE');
 
-// returns array('auth-token:WV4YaeV8QeWVVVOE')
+// array('auth-token:WV4YaeV8QeWVVVOE') を返す
 $headers = $soap->get_headers();
 </code></pre>
 						</td>
@@ -354,41 +354,41 @@ $headers = $soap->get_headers();
 
 			<article>
 				<h4 class="method" id="method_set_auto_format">set_auto_format($auto_format)</h4>
-				<p>The <strong>set_auto_format</strong> method allows you to switch auto formatting on or off.</p>
+				<p><strong>set_auto_format</strong> メソッドは、オートフォーマットの有効・無効を切り替えることができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$auto_format</kbd></th>
-									<td><i>required</i></td>
-									<td>True if you want the returned response to be converted into an array, false if you want to access it as it is received.</td>
+									<td><i>必須</i></td>
+									<td>返ってきたレスポンスを配列に変換したいならば True 、受け取ったそのままにアクセスしたいならば false 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Soap, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Soap 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// we want an array returned
+// 配列で返り値が欲しい
 $soap->set_auto_format(true);
 </code></pre>
 						</td>
@@ -399,41 +399,41 @@ $soap->set_auto_format(true);
 
 			<article>
 				<h4 class="method" id="method_execute">execute(array $additional_params = array())</h4>
-				<p>The <strong>execute</strong> method executes the defined SOAP request.</p>
+				<p><strong>execute</strong> メソッドは、定義された SOAP リクエストを実行します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$additional_params</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Any additional parameters you want to pass to the request.</td>
+									<td>リクエストに渡したい追加のパラメータ。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Soap, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Soap 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// execute the request
+// リクエストを実行
 $result = $soap->execute();
 </code></pre>
 						</td>
@@ -444,94 +444,94 @@ $result = $soap->execute();
 
 			<article>
 				<h4 class="method" id="method_set_response">set_response($body, $status, $mime = null, $headers = array())</h4>
-				<p>The <strong>set_response</strong> method sets the response received from the request.</p>
+				<p><strong>set_response</strong> メソッドは、リクエストから受け取ったレスポンスをセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$body</kbd></th>
-									<td><i>required</i></td>
-									<td>The data to be set as the response body.</td>
+									<td><i>必須</i></td>
+									<td>レスポンスボディとしてセットされるデータ。</td>
 								</tr>
 								<tr>
 									<th><kbd>$status</kbd></th>
-									<td><i>required</i></td>
-									<td>The HTTP status of the created response.</td>
+									<td><i>必須</i></td>
+									<td>レスポンスを作成した HTTP ステータス。</td>
 								</tr>
 								<tr>
 									<th><kbd>$mime</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The mime type the data is in. This is used with <em>auto_format</em> to convert the body into an array.</td>
+									<td>データの mime タイプ。これは <em>auto_format</em> でボディを配列へ変換するために使われます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$headers</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Any HTTP response headers you want to set.</td>
+									<td>セットしたい HTTP レスポンスヘッダ。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Response, the created response object.</td>
+						<th>返り値</th>
+						<td>Response 、作成された response オブジェクト。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// create a custom response (SOAP responses should always be in XML)
+// カスタムレスポンスを作成 (SOAP レスポンスは常に XML です)
 $soap->set_response($body, $this->response_info('http_code', 200), 'xml', array('auth-token' => 'WV4YaeV8QeWVVVOE'));
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">Normally you should not use this method. It is used after the request is executed to prepare the requests response object.</p>
+				<p class="note">通常は、このメソッドを使用すべきではありません。リクエストがリクエストのレスポンスオブジェクトを準備するために実行された後、このメソッドが使用されます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_response">response()</h4>
-				<p>The <strong>response</strong> method returns the current request response.</p>
+				<p><strong>response</strong> メソッドは、現在のリクエストレスポンスを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None.
+							なし。
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Response, the created response object.</td>
+						<th>返り値</th>
+						<td>Response 、作成された response オブジェクト。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// assume some parameters and options were set, and execute
+// いくつかのパラメータとオプションがセットされているとして、実行する
 $soap->execute();
 
-// fetch the resulting Response object
+// 結果の Response オブジェクトを取得
 $result = $soap->response();
 </code></pre>
 						</td>
@@ -542,95 +542,95 @@ $result = $soap->response();
 
 			<article>
 				<h4 class="method" id="method_response_info">response_info($key = null, $default = null)</h4>
-				<p>The <strong>response_info</strong> method allows you to retrieve a cURL response value, or all response values.</p>
+				<p><strong>response_info</strong> メソッドは、SOAP レスポンスの値、または全てのレスポンスの値を取得することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Specific response value to retrieve. Don't specify it when you want to retrieve all values.</td>
+									<td>取得したいレスポンスの値を指定します。全ての値を取得したい場合は指定しないでください。</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Value to be returned when the requested value does not exist.</td>
+									<td>リクエストした値が存在しない場合に返される値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Mixed, depending on the data type of the requested value.</td>
+						<th>返り値</th>
+						<td>Mixed 、リクエストした値のデータタイプによる。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// assume some parameters and options were set, and execute
+// いくつかのパラメータとオプションがセットされているとして、実行する
 $soap->execute();
 
-// get the soap action executed from the response header
+// レスポンスヘッダから実行した soap action を取得
 $size = $soap->response_info('SOAPAction', false);
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">This method allows access to the HTTP headers of the response.</p>
+				<p class="note">このメソッドは、レスポンスの HTTP ヘッダーへのアクセスを許可します。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_set_function">set_function($function)</h4>
-				<p>The <strong>set_function</strong> method sets the function to execute on the SoapClient.</p>
+				<p><strong>set_function</strong> メソッドは、SoapClient 上で実行させる関数をセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$function</kbd></th>
-									<td><i>required</i></td>
-									<td>The name of the SOAP function to call.</td>
+									<td><i>必須</i></td>
+									<td>呼び出したい SOAP 関数の名前。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Request_Soap, for chaining</td>
+						<th>返り値</th>
+						<td>Request_Soap 、チェーンさせるために</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// set the soapcall function to fetch some user data
+// いくつかのユーザデータを取得するために、 soapcall 関数をセットする
 $soap->set_function('GetUserInfo');
 </code></pre>
 						</td>
@@ -641,260 +641,260 @@ $soap->set_function('GetUserInfo');
 
 			<article>
 				<h4 class="method" id="method_get_functions">get_functions()</h4>
-				<p>The <strong>get_functions</strong> method returns the list of functions defined in the WSDL.</p>
+				<p><strong>get_functions</strong> メソッドは、WSDL に定義されている関数のリストを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None.
+							なし。
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Array of available SOAP functions</td>
+						<th>返り値</th>
+						<td>存在する SOAP 関数の配列</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// retrieve the SOAP function list
+// SOAP 関数リストを取得
 $functions = $soap->get_functions();
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">This method requires the SoapClient to work in WDSL mode.</p>
+				<p class="note">このメソッドは、SoapClient が WDSL モードで動作している必要があります。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_request_xml">get_request_xml()</h4>
-				<p>The <strong>get_request_xml</strong> method returns the last request XML.</p>
+				<p><strong>get_request_xml</strong> メソッドは、直近のリクエスト XML を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None.
+							なし。
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String, The last XML request</td>
+						<th>返り値</th>
+						<td>String 、直近の XML リクエスト</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// some code here...
+// 何かのコードをここに...
 
-// retrieve the last XML request
+// 直近の XML リクエストを取得
 $request = $soap->get_request_xml();
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">This method requires the 'trace' option to be enabled.</p>
+				<p class="note">このメソッドは、'trace' オプションが有効になっている必要があります。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_request_headers">get_request_headers()</h4>
-				<p>The <strong>get_request_headers</strong> method returns the headers of the last request.</p>
+				<p><strong>get_request_headers</strong> メソッドは、直近のリクエストのヘッダを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None.
+							なし。
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String, the SOAP headers from the last request. May contain newlines.</td>
+						<th>返り値</th>
+						<td>String 、直近のリクエストの SOAP ヘッダ。改行が含まれている可能性があります。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// some code here...
+// 何かのコードをここに...
 
-// retrieve the headers of the last request
+// 直近の XML リクエストのヘッダを取得
 $headers = $soap->get_request_headers();
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">This method requires the 'trace' option to be enabled.</p>
+				<p class="note">このメソッドは、'trace' オプションが有効になっている必要があります。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_response_xml">get_response_xml()</h4>
-				<p>The <strong>get_response_xml</strong> method returns the last response XML.</p>
+				<p><strong>get_response_xml</strong> メソッドは、直近のレスポンス XML を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None.
+							なし。
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String, The last XML response</td>
+						<th>返り値</th>
+						<td>String 、直近の XML レスポンス</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// some code here...
+// 何かのコードをここに...
 
-// retrieve the last XML response
+// 直近の XML レスポンスを取得
 $response = $soap->get_response_xml();
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">This method requires the 'trace' option to be enabled.</p>
+				<p class="note">このメソッドは、'trace' オプションが有効になっている必要があります。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_response_headers">get_response_headers()</h4>
-				<p>The <strong>get_response_headers</strong> method returns the headers of the last response.</p>
+				<p><strong>get_response_headers</strong> メソッドは、直近のレスポンスのヘッダを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None.
+							なし。
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>String, the SOAP headers from the last response. May contain newlines.</td>
+						<th>返り値</th>
+						<td>String 、直近のレスポンスの SOAP ヘッダ。改行が含まれている可能性があります。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// some code here...
+// 何かのコードをここに...
 
-// retrieve the headers of the last response
+// 直近のレスポンスのヘッダを取得
 $response = $soap->get_response_headers();
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">This method requires the 'trace' option to be enabled.</p>
+				<p class="note">このメソッドは、'trace' オプションが有効になっている必要があります。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_types">get_types()</h4>
-				<p>The <strong>get_types</strong> method returns the list of supported get types.</p>
+				<p><strong>get_types</strong> メソッドは、サポートされている型のリストを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None.
+							なし。
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>array of SOAP types, detailing all structures and types.</td>
+						<th>返り値</th>
+						<td>SOAP 型の配列、全ての構造と型の詳細。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// get the list of types described in the WSDL for this web service
+// このウェブサービスの WSDL に記述されている型のリストを取得
 $types = $soap->get_types();
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">This method requires the SoapClient to work in WDSL mode.</p>
+				<p class="note">このメソッドは、SoapClient が WDSL モードで動作している必要があります。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_set_cookie">set_cookie($name, $value = null)</h4>
-				<p>The <strong>set_cookie</strong> method sets the request cookie for subsequent requests.</p>
+				<p><strong>set_cookie</strong> メソッドは、後のリクエストのためにリクエスト cookie をセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><i>required</i></td>
-									<td>The name of the cookie.</td>
+									<td><i>必須</i></td>
+									<td>cookie の名前。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The value of the cookie. If not specified, the cookie will be deleted.</td>
+									<td>cookie の値。指定がない場合、cookie は削除されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// set an auth token as a cookie in the HTTP request header
+// HTTP リクエストヘッダに cookie として認証トークンをセット
 $soap->set_cookie('auth-token', 'WV4YaeV8QeWVVVOE');
 </code></pre>
 						</td>
@@ -905,37 +905,37 @@ $soap->set_cookie('auth-token', 'WV4YaeV8QeWVVVOE');
 
 			<article>
 				<h4 class="method" id="method_set_location">set_location($location)</h4>
-				<p>The <strong>set_location</strong> method allows you to change the endpoint location.</p>
+				<p><strong>set_location</strong> メソッドは、エンドポイントの場所を変更することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$location</kbd></th>
-									<td><i>required</i></td>
-									<td>The new endpoint URL.</td>
+									<td><i>必須</i></td>
+									<td>新しいエンドポイント URL 。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-			<pre class="php"><code>// create a Request_Soap object
+			<pre class="php"><code>// Request_Soap オブジェクトを作成
 $soap = Request::forge('http://soap.example.org/api/v1/this/info', 'soap');
 
-// change the endpoint of the request
+// リクエストのエンドポイントを変更
 $soap->set_location('http://moresoap.example.org/api/v2/other/info');
 </code></pre>
 						</td>
