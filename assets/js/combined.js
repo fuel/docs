@@ -544,7 +544,8 @@ panes.oil = {
 		"Refine":			"packages/oil/refine.html",
 		"Package":			"packages/oil/package.html",
 		"Test":				"packages/oil/test.html",
-		"Console":			"packages/oil/console.html"
+		"Console":			"packages/oil/console.html",
+		"Server":			"packages/oil/server.html"
 	}
 };
 
