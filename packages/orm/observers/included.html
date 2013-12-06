@@ -106,6 +106,7 @@ protected static $_observers = array(
 				This will cause the observer to keep the value you have set manually.</p>
 
 				<h4 id="os_updated">Observer_UpdatedAt</h4>
+
 				<p>This observer acts only upon <kbd>before_save</kbd> or <kbd>before_update</kbd> and expects your model to have a
 					<kbd>updated_at</kbd> property which will be set to the Unix timestamp when saving (also during the
 					first time).</p>
@@ -281,10 +282,9 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 }</code></pre>
 
 				<p>これは、<a href="../../../classes/fieldset/fieldset.html">Fieldset</a> クラスを使用しているので、検証を実行し、
-                                    また、モデル用のフォームを作成することができます。次の例では、作成と編集フォームが一般的なビューで定義されています。
-                                    しかし、同じように簡単にモデルにそれを定義し、
-                                    <code>Fieldset::instance()</code> を使用することで、
-                                    viewでそれのインスタンスを取得することができます。</p>
+					また、モデル用のフォームを作成することができます。次の例では、作成と編集フォームが一般的なビューで定義されています。
+					しかし、同じように簡単にモデルにそれを定義し、<code>Fieldset::instance()</code> を使用することで、
+					viewでそれのインスタンスを取得することができます。</p>
 
 				<pre class="php"><code>// フォームを作成する Model_Article のインスタンスを使用して、あなたはまた、クラス名を渡すことができます。
 $fieldset = Fieldset::forge()->add_model($article);
@@ -402,14 +402,9 @@ protected static $_observers = array('Orm\\Observer_Slug');
 protected static $_observers = array(
 	'Orm\\Observer_Slug' => array(
 		'events' => array('before_insert'),
-<<<<<<< HEAD
 		'source' => 'title',   // 上にスラグをベースに使用されるプロパティはプロパティの配列かもしれません。
 		'property' => 'slug',  // プロパティが空のときにスラグを設定します。
-=======
-		'source' => 'title',   // property used to base the slug on, may also be array of properties
-		'property' => 'slug',  // property to set the slug on when empty
 		'separator' => '-',  // property to set the separator
->>>>>>> ad15586dd51a3c3e01c762a610d20c0594b3536d
 	),
 );
 protected static $_observers = array('Orm\\Observer_Slug' => array('before_insert'));</code></pre>
