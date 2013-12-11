@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -121,7 +121,7 @@
 
 			<article>
 				<h4 id="method_forge" class="method">forge($config = array(), $autorun = true)</h4>
-				<p>The <strong>forge</strong> method creates an instance of the Auth_Opauth class, which provides OAuth integration to your application.</p>
+				<p><strong>forge</strong> メソッドは Auth_Opauth クラスのインスタンスを作成し、アプリケーションに OAuth の統合を提供します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -215,10 +215,10 @@ $opauth = \Auth_Opauth::forge(array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the Opauth object
+							<pre class="php"><code>// opauth オブジェクトを取得
 $opauth = \Auth_Opauth::forge(false);
 
-// attempt to auto-login using the provider callback data
+// プロバイダのコールバックデータを使用し自動ログインを試す
 $status = $opauth->login_or_register();
 </code></pre>
 						</td>
@@ -262,16 +262,16 @@ $status = $opauth->login_or_register();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the opauth object
+							<pre class="php"><code>// opauth オブジェクトを取得
 $opauth = \Auth_Opauth::forge(false);
 
-// do we have OAuth strategy data?
+// OAuth ストラテジーデータを我々は持っていますか？
 if ($authentication = \Session::get('auth-strategy.authentication', array()))
 {
-	// get the current Auth userid
+	// 現在の認証済みユーザーIDを取得
 	list(, $userid) = \Auth::instance()->get_user_id();
 
-	// and link it to the provider
+	// そして、プロバイダとそれをリンク
 	$insert_id = $opauth->link_provider(array(
 		'parent_id' => $userid,
 		'provider' => $authentication['provider'],
@@ -315,7 +315,7 @@ else
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the key to the desired value in the response array</td>
 								</tr>
 								<tr>
