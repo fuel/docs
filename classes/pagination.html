@@ -51,7 +51,7 @@
 
 			<section>
 				<p>Pagination クラスの分かりやすい使用方法の例。コントローラのアクションメソッドへ書くことができます。</p>
-				<h3 id="how_to_query_builder">How To Paginate with the Query Builder</h3>
+				<h3 id="how_to_query_builder">Query Builder を使ったページネーションの方法</h3>
 
 				<pre class="php"><code>$config = array(
 	'pagination_url' => 'http://localhost/fuel/welcome/index/',
@@ -78,14 +78,14 @@ $data['pagination'] = $pagination;
 // ビューを返す
 return \View::forge('welcome/index', $data);</code></pre>
 
-				<h3 id="how_to_orm">How To Paginate with ORM</h3>
+				<h3 id="how_to_orm">ORM を使ったページネーションの方法</h3>
 
 				<pre class="php"><code>$config = array(
 	'pagination_url' => 'http://localhost/fuel/posts/index/',
 	'total_items'    => Model_Post::count(),
 	'per_page'       => 10,
 	'uri_segment'    => 3,
-	// or if you prefer pagination by query string
+	// もしくは、クエリ文字列によるページネーションがよいのであれば
 	//'uri_segment'    => 'page',
 );
 
@@ -96,10 +96,10 @@ $data['example_data'] = Model_Post::query()
 							->rows_limit($pagination->offset)
 							->get();
 
-// we pass the object, it will be rendered when echo'd in the view
+// オブジェクトを渡し、ビューの中に echo で出力される時に表示される
 $data['pagination'] = $pagination;
 
-// return the view
+// ビューを返す
 return \View::forge('posts/index', $data);</code></pre>
 			</section>
 
