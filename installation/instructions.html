@@ -153,8 +153,8 @@ php composer.phar update
 				すべてのファイルを 1つ上の階層に移動し、public フォルダを削除します。public フォルダの唯一の目的は、Web サーバのドキュメントルートのためのアンカーポイントを提供することです。
 				FuelPHP をドキュメントルートフォルダにインストールしたら、もはや必要ありません。
 			</p>
-			<p>これらの移動の後に、index.php の中のアプリケーションの位置を変更します:</p>
-			<pre class="php"><code>define('APPPATH', realpath(__DIR__.'/fuel/app/').DIRECTORY_SEPARATOR);</code></pre>
+			<p>After the move, change the location of the application, the packages and the framework core in your index.php to:</p>
+            <pre class="php"><code>define('APPPATH', realpath(__DIR__.'/fuel/app/').DIRECTORY_SEPARATOR);<br>define('PKGPATH', realpath(__DIR__.'/fuel/packages/').DIRECTORY_SEPARATOR);<br>define('COREPATH', realpath(__DIR__.'/fuel/core/').DIRECTORY_SEPARATOR);</code></pre>
 
 			<h3 id="install_inside_root2">いくつかのフォルダをより深くするのはどうでしょう？</h3>
 
