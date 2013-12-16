@@ -45,13 +45,13 @@
 
 		<div id="main">
 
-			<h2>Model_Crud Methods</h2>
+			<h2>Model_Crud メソッド</h2>
 
-			<p class="note">The classes used the examples are assumed to extend the Model_Crud class.</p>
+			<p class="note">例として使われているクラスは、Model_Crud を継承したものとします。</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($data = array())</h4>
-				<p>The <strong>forge</strong> method returns a new Model_Crud class instance.</p>
+				<p><strong>forge</strong> メソッドは、新しい Model_Crud クラスのインスタンスを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -72,22 +72,22 @@
 									<th><kbd>$data</kbd></th>
 									<th><em>array</em></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Values for the new instance.</td>
+									<td>新しいインスタンスの値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A new instance of the extended class (Model_Crud child).</td>
+						<td>継承したクラス (Model_Crud の子) の新しいインスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get a new instance
+							<pre class="php"><code>// 新しいインスタンスを取得
 $user = Model_User::forge();
 
-// A new instance with values
+// 値を持った新しいインスタンス
 $user = Model_User::forge(array(
 	'name' => 'John',
 	'surname' => 'Doe',
@@ -102,7 +102,7 @@ $user = Model_User::forge(array(
 
 			<article>
 				<h4 class="method" id="method_find_by_pk">find_by_pk($value)</h4>
-				<p>The <strong>find_by_pk</strong> method finds a record by the primary key.  Internally this uses the <a href="#method_find_one_by">find_one_by</a> method.</p>
+				<p><strong>find_by_pk</strong> メソッドは、主キーからレコードを検索します。内部では <a href="#method_find_one_by">find_one_by</a> メソッドを使用します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -123,28 +123,28 @@ $user = Model_User::forge(array(
 									<th><kbd>$value</kbd></th>
 									<th><em>mixed</em></th>
 									<td><em>必須</em></td>
-									<td>Primary key value to look for.</td>
+									<td>探したい主キーの値。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A Model_Crud instance with the loaded result, <em>null</em> when not found.</td>
+						<td>結果を含む Model_Crud インスタンス、見つからない場合は <em>null</em> 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get a record where `id` = 2
+							<pre class="php"><code>// 条件が `id` = 2 のレコードを取得
 $user = Model_User::find_by_pk(2);
 
 if($user === null)
 {
-	// not found
+	// 見つからない
 }
 else
 {
-	// found
+	// 見つかった
 	echo $user->email;
 }
 </code></pre>
@@ -156,7 +156,7 @@ else
 
 			<article>
 				<h4 class="method" id="method_find_one_by">find_one_by($column, $value = null, $operator = '=')</h4>
-				<p>The <strong>find_one_by</strong> method finds one record by the given column and value.  Internally this uses the <a href="#method_find">find</a> method.</p>
+				<p><strong>find_one_by</strong> メソッドは、与えられたカラムと値から 1 つのレコードを検索します。内部では <a href="#method_find">find</a> メソッドを使用します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -177,40 +177,40 @@ else
 									<th><kbd>$column</kbd></th>
 									<th><em>string</em></th>
 									<td><em>必須</em></td>
-									<td>The column to use.</td>
+									<td>使いたいカラム。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<th><em>mixed</em></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The value to check for.</td>
+									<td>調べたい値。</td>
 								</tr>
 								<tr>
 									<th><kbd>$operator</kbd></th>
 									<th><em>string</em></th>
 									<td><pre class="php"><code>'='</code></pre></td>
-									<td>The operator to use</td>
+									<td>使いたい演算子。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A Model_Crud instance with the loaded result, <em>null</em> when not found.</td>
+						<td>結果を含む Model_Crud インスタンス、見つからない場合は <em>null</em> 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get a record where `email` = "info@example.com"
+							<pre class="php"><code>// 条件が `email` = "info@example.com" のレコードを取得
 $user = Model_User::find_one_by('email', 'info@example.com');
 
 if($user === null)
 {
-	// not found
+	// 見つからない
 }
 else
 {
-	// found
+	// 見つかった
 	echo $user->email;
 }
 </code></pre>
@@ -222,7 +222,7 @@ else
 
 			<article>
 				<h4 class="method" id="method_find_by">find_by($column = null, $value = null, $operator = '=', $limit = null, $offset = 0)</h4>
-				<p>The <strong>find_by</strong> method finds all records matching the column and value given.  You can optionally give an operator, limit, and offset.  Internally this uses the <a href="#method_find">find</a> method.</p>
+				<p><strong>find_by</strong> メソッドは、与えられたカラムと値にマッチする全てのレコードを検索します。オプションとして演算子、limit や offset を与えることができます。内部では <a href="#method_find">find</a> メソッドを使用します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -243,38 +243,38 @@ else
 									<th><kbd>$column</kbd></th>
 									<th><em>string</em></th>
 									<td><em>必須</em></td>
-									<td>The column to use or an array of where statements.</td>
+									<td>使用したいカラムまたは where 句の配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<th><em>mixed</em></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The value to check for.</td>
+									<td>調べたい値。</td>
 								</tr>
 								<tr>
 									<th><kbd>$operator</kbd></th>
 									<th><em>string</em></th>
 									<td><pre class="php"><code>'='</code></pre></td>
-									<td>The operator to use.</td>
+									<td>使いたい演算子。</td>
 								</tr>
 								<tr>
 									<th><kbd>$limit</kbd></th>
 									<th><em>int</em></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The limit.</td>
+									<td>limit 句。</td>
 								</tr>
 								<tr>
 									<th><kbd>$offset</kbd></th>
 									<th><em>int</em></th>
 									<td><pre class="php"><code>0</code></pre></td>
-									<td>The offset.</td>
+									<td>offset 句。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>An array of instances with the loaded result, <em>null</em> when none found.</td>
+						<td>結果を含む Model_Crud インスタンスの配列、見つからない場合は <em>null</em> 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -290,13 +290,13 @@ $users = \Model_User::find_by(array(
 
 if($users === null)
 {
-	// not found
+	// 見つからない
 }
 else
 {
 	foreach($users as $user)
 	{
-		// Do something with $user
+		// $user で何かをする
 	}
 }
 </code></pre>
@@ -308,26 +308,26 @@ else
 
 			<article>
 				<h4 class="method" id="method_find_by_magic">find_by_*($value = null)</h4>
-				<p>This is a magic method.  You can specify the column to name to find by after the <code>find_by_</code> portion of the method name.</p>
+				<p>これはマジックメソッドです。メソッド名の <code>find_by_</code> の後の部分に検索したいカラムの名前を指定することができます。</p>
 
-				<strong>Example</strong><br>
-				<pre class="php"><code>// This is equivelent to $user = Model_User::find_by('email', 'foo@example.com');
+				<strong>例</strong><br>
+				<pre class="php"><code>// これは、 $user = Model_User::find_by('email', 'foo@example.com'); と同じ
 $user = Model_User::find_by_email('foo@example.com');
 </code></pre>
 			</article>
 						<article>
 				<h4 class="method" id="method_find_one_by_magic">find_one_by_*($value = null)</h4>
-				<p>This is a magic method which returns a single record.  You can specify the column to name to find by after the <code>find_by_</code> portion of the method name.</p>
+				<p>これは 1 つのレコードを返すマジックメソッドです。メソッド名の <code>find_one_by_</code> の後の部分に検索したいカラムの名前を指定することができます。</p>
 
-				<strong>Example</strong><br>
-				<pre class="php"><code>// This is equivelent to $user = Model_User::find_one_by('email', 'foo@example.com');
+				<strong>例</strong><br>
+				<pre class="php"><code>// これは、 $user = Model_User::find_one_by('email', 'foo@example.com'); と同じ
 $user = Model_User::find_one_by_email('foo@example.com');
 </code></pre>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_find_all">find_all($limit = null, $offset = 0)</h4>
-				<p>The <strong>find_all</strong> method finds all record with an optional limit and offset.  Internally this uses the <a href="#method_find">find</a> method.</p>
+				<p><strong>find_all</strong> メソッドは、オプションの limit と offset を使い全てのレコードを検索します。内部では <a href="#method_find">find</a> メソッドを使用します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -348,20 +348,20 @@ $user = Model_User::find_one_by_email('foo@example.com');
 									<th><kbd>$limit</kbd></th>
 									<th><em>int</em></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The limit.</td>
+									<td>limit 句。</td>
 								</tr>
 								<tr>
 									<th><kbd>$offset</kbd></th>
 									<th><em>int</em></th>
 									<td><pre class="php"><code>0</code></pre></td>
-									<td>The offset.</td>
+									<td>offset 句。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>An array of instances with the loaded result, <em>null</em> when none found.</td>
+						<td>結果を含む Model_Crud インスタンスの配列、見つからない場合は <em>null</em> 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -377,9 +377,9 @@ $users = Model_User::find_all(10, 20);
 
 			<article>
 				<h4 class="method" id="method_find">find($config = array(), $key = null)</h4>
-				<p>The <strong>find</strong> method finds all record with a conditions array to influence the query.</p>
-				<p>This method also accepts a <code>Closure</code> as the first argument.  When a closure is sent, it is called and sent a <code>Database_Query</code> object.  You can use this to modify the query before it is executed.  The Closure must return the modified Database_Query object.</p>
-				<p class="note">This method is used by all of the other find methods.  You should use it when creating custom finders as well.</p>
+				<p><strong>find</strong> メソッドは、クエリに影響を与える条件の配列を使って全てのレコードを検索します。</p>
+				<p>このメソッドは、最初の引数として <code>クロージャ</code> も受け取ります。クロージャが与えられた場合、それが呼び出されて (クロージャに) <code>Database_Query</code> オブジェクトが送られます。これを使って、クエリが実行される前にクエリを修正することができます。クロージャは、修正した Database_Query オブジェクトを返さなければいけません。</p>
+				<p class="note">このメソッドは、他の検索メソッドの全てに使われています。カスタムな検索をしたい場合に限って使用したほうがよいでしょう。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -400,25 +400,25 @@ $users = Model_User::find_all(10, 20);
 									<th><kbd>$config</kbd></th>
 									<th><em>array|Closure</em></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>The conditions array or a Closure to modify the query.</td>
+									<td>条件の配列またはクエリを修正するクロージャ。</td>
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<th><em>string</em></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Set this to a table column to use that as the result array key.</td>
+									<td>結果の配列キーとして使うために、これをテーブルのカラムにセットする。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>An array of instances with the loaded result, <em>null</em> when none found.</td>
+						<td>結果を含む Model_Crud インスタンスの配列、見つからない場合は <em>null</em> 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<strong>Basic Usage</strong>
+							<strong>基本的な使用法</strong>
 							<pre class="php"><code>$users = Model_User::find(array(
 	'select' => array('id', 'name', 'email'),
 	'where' => array(
@@ -434,7 +434,7 @@ $users = Model_User::find_all(10, 20);
 	'offset' => 20,
 ));</code></pre>
 							<hr>
-							<strong>Basic Usage with a Key</strong>
+							<strong>キーを使った基本的な使用法</strong>
 							<pre class="php"><code>$users = Model_User::find(array(
 	'where' => array(
 		'active' => 'yes',
@@ -443,7 +443,7 @@ $users = Model_User::find_all(10, 20);
 	'order_by' => array('id' => 'desc'),
 ), 'id');</code></pre>
 							<hr>
-							<strong>Advanced Usage with Closure</strong>
+							<strong>クロージャを使った高度な使用法</strong>
 							<pre class="php"><code>$users = Model_User::find(function ($query)
 {
 	return $query->join('roles')
@@ -459,7 +459,7 @@ $users = Model_User::find_all(10, 20);
 
 			<article>
 				<h4 class="method" id="method_pre_find">pre_find(&amp;$query)</h4>
-				<p>Replace the <strong>pre_find</strong> method to alter the query before executing.</p>
+				<p>実行する前にクエリを変更するために、 <strong>pre_find</strong> メソッドを置き換えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -478,9 +478,9 @@ $users = Model_User::find_all(10, 20);
 								</tr>
 								<tr>
 									<th><kbd>$query</kbd></th>
-									<th><em>\Query_Builder_Select object</em></th>
+									<th><em>\Query_Builder_Select オブジェクト</em></th>
 									<td><em>必須</em></td>
-									<td>The query object.</td>
+									<td>クエリオブジェクト。</td>
 								</tr>
 							</table>
 						</td>
@@ -492,10 +492,10 @@ $users = Model_User::find_all(10, 20);
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Inside your model
+							<pre class="php"><code>// モデルの中で
 protected static function pre_find(&$query)
 {
-	// alter the query
+	// クエリを変更
 	$query->where('active', 'yes');
 }
 </code></pre>
@@ -507,7 +507,7 @@ protected static function pre_find(&$query)
 
 			<article>
 				<h4 class="method" id="method_post_find">post_find($result)</h4>
-				<p>Replace the <strong>post_find</strong> method to alter the result before returning.</p>
+				<p>返す前に結果を変更するために、 <strong>post_find</strong> メソッドを置き換えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -526,29 +526,29 @@ protected static function pre_find(&$query)
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
-									<th><em>\Query_Builder_Select object</em></th>
+									<th><em>\Query_Builder_Select オブジェクト</em></th>
 									<td><em>必須</em></td>
-									<td>Null when no records are found, or the result array.</td>
+									<td>レコードが見つからない場合は Null 、または結果の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Must return the result (array or null).</td>
+						<td>結果 (配列または null) を返す。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Inside your model
+							<pre class="php"><code>// モデルの中で
 protected static function post_find($result)
 {
 	if($result !== null)
 	{
-		// alter the result array
+		// 結果の配列を変更
 	}
 
-	// return the result
+	// 結果を返す
 	return $result;
 }
 </code></pre>
@@ -560,12 +560,12 @@ protected static function post_find($result)
 
 			<article>
 				<h4 class="method" id="method_set">set($values)</h4>
-				<p>The <strong>set</strong> method sets an array of values to the current model instance.</p>
+				<p><strong>set</strong> メソッドは、現在のモデルインスタンスに値の配列をセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -581,14 +581,14 @@ protected static function post_find($result)
 									<th><kbd>$values</kbd></th>
 									<th><em>array</em></th>
 									<td><em>必須</em></td>
-									<td>An array with values.</td>
+									<td>値の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current model instance.</td>
+						<td>現在のモデルインスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -606,12 +606,12 @@ protected static function post_find($result)
 
 			<article>
 				<h4 class="method" id="method_save">save($validate = true)</h4>
-				<p>The <strong>save</strong> method inserts or updates a record.</p>
+				<p><strong>save</strong> メソッドは、レコードを挿入または更新します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -627,14 +627,14 @@ protected static function post_find($result)
 									<th><kbd>$validate</kbd></th>
 									<th><em>boolean</em></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>Whether to run the validation.</td>
+									<td>バリデーションを実行するかどうか。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>False when not passing validation, insert result when inserted, update result when updated.</td>
+						<td>バリデーションを通らなかった場合は False 、挿入した場合は挿入の結果、更新した場合は更新の結果。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -644,17 +644,17 @@ protected static function post_find($result)
 	'surname' => 'My Surname',
 ));
 
-// Insert a new user
+// 新しいユーザを挿入
 $result = $user->save();
 
 $user = Model_User::find_by_pk(2);
 
 $user->name = 'New Name';
 
-// Update a user
+// ユーザを更新
 $user->save();
 
-// Update without running validation
+// バリデーションを実行せずに更新
 $user->save(false);
 </code></pre>
 						</td>
@@ -665,22 +665,22 @@ $user->save(false);
 
 			<article>
 				<h4 class="method" id="method_delete">delete()</h4>
-				<p>The <strong>delete</strong> method deletes a record.</p>
+				<p><strong>delete</strong> メソッドは、レコードを削除します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The delete query result, number of rows affected.</td>
+						<td>削除クエリの結果、変更された行の数。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -688,7 +688,7 @@ $user->save(false);
 							<pre class="php"><code>$user = Model_User::find_by_pk(2);
 if($user)
 {
-	// delete the user;
+	// ユーザを削除
 	$user->delete();
 }
 </code></pre>
@@ -700,12 +700,12 @@ if($user)
 
 			<article>
 				<h4 class="method" id="method_is_new">is_new($new = null)</h4>
-				<p>The <strong>is_new</strong> method checks if the record is new or sets whether it is new or not.</p>
+				<p><strong>is_new</strong> メソッドは、レコードが新しいかをチェックします、または新しいかそうでないかをセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -721,14 +721,14 @@ if($user)
 									<th><kbd>$new</kbd></th>
 									<th><em>null|bool</em></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Supply a boolean to set whether the record is new.</td>
+									<td>レコードが新しいかどうかをセットするために boolean を与えます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current instance.</td>
+						<td>現在のインスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -741,7 +741,7 @@ if($user)
 
 $user->is_new(false);
 
-// Update
+// 更新
 $user->save();
 </code></pre>
 						</td>
@@ -752,61 +752,61 @@ $user->save();
 
 			<article>
 				<h4 class="method" id="method_count">count($column = null, $distinct = true, $where = array(), $group_by = null)</h4>
-				<p>The <strong>count</strong> method returns a row count.</p>
+				<p><strong>count</strong> メソッドは、列をカウントして返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>Yes</td>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>型</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$column</kbd></th>
 									<th><em>string</em></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The name of the column to count on. If not given the primary key will be used.</td>
+									<td>カウントするカラムの名前。与えられなかった場合、主キーを使います。</td>
 								</tr>
 								<tr>
 									<th><kbd>$distinct</kbd></th>
 									<th><em>boolean</em></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>Whether or not to run a distinct query.</td>
+									<td>distinct 句のクエリを実行するかしないか。</td>
 								</tr>
 								<tr>
 									<th><kbd>$where</kbd></th>
 									<th><em>array</em></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Array with where clauses to filter the result.</td>
+									<td>結果に検索条件をつける where 句の配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$group_by</kbd></th>
 									<th><em>string</em></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Column to group by.</td>
+									<td>group by するカラム。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Mixed. Integer with the result of the count query, or false in case the query failed.</td>
+						<th>返り値</th>
+						<td>Mixed 。カウントしたクエリの結果の整数、またはクエリが失敗した場合は false 。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// count all records in the table
+							<pre class="php"><code>// テーブルの中の全てのレコードをカウント
 $nbr_of_records = Model_User::count();
 
-// filter the result count by only counting admin users
+// 結果のカウントに管理者ユーザだけをフィルタ
 $nbr_of_records = Model_User::count('id', true, array('group', '=', 100));
 </code></pre>
 						</td>
@@ -817,12 +817,12 @@ $nbr_of_records = Model_User::count('id', true, array('group', '=', 100));
 
 			<article>
 				<h4 class="method" id="method_frozen">frozen($frozen = null)</h4>
-				<p>The <strong>frozen</strong> method checks if the record is frozen or sets whether it is frozen or not.</p>
+				<p><strong>frozen</strong> メソッドは、レコードが凍結されているかをチェックします、または凍結するかしないかをセットします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -838,14 +838,14 @@ $nbr_of_records = Model_User::count('id', true, array('group', '=', 100));
 									<th><kbd>$frozen</kbd></th>
 									<th><em>null|bool</em></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Supply a boolean to set whether the record is frozen.</td>
+									<td>レコードを凍結させるかどうかをセットするために boolean を与えます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The current instance.</td>
+						<td>現在のインスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -853,10 +853,10 @@ $nbr_of_records = Model_User::count('id', true, array('group', '=', 100));
 							<pre class="php"><code>$user = Model_User::find_by_pk(2);
 $user->frozen(true);
 
-// Pass the frozen object arround, no-one can change it...
+// 凍結したオブジェクトは誰も変更することができません...
 
 $user->frozen(false);
-// Now you can use it again.
+// これで再び使うことができる。
 
 </code></pre>
 						</td>
@@ -867,22 +867,22 @@ $user->frozen(false);
 
 			<article>
 				<h4 class="method" id="method_validation">validation()</h4>
-				<p>The <strong>validation</strong> method (creates and) returns the models validation instance.</p>
+				<p><strong>validation</strong> メソッドは、モデルの validation インスタンスを (作成し) 返す。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A Validation instance.</td>
+						<td>Validation インスタンス。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -898,22 +898,22 @@ $validation_object = $user->validation();
 
 			<article>
 				<h4 class="method" id="method_validates">validates()</h4>
-				<p>The <strong>validates</strong> method returns whether or not the instance will pass validation.</p>
+				<p><strong>validates</strong> メソッドは、インスタンスがバリデーションをパスするかどうかを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A succes boolean.</td>
+						<td>結果の boolean 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -926,12 +926,12 @@ $model->set(array(
 
 if ($model->validates())
 {
-	// model is valid, skip validation.
+	// モデルが有効、バリデーションを通過。
 	$model->save(false)
 }
 else
 {
-	// model is not valid
+	// モデルが無効
 }
 </code></pre>
 						</td>
@@ -942,22 +942,22 @@ else
 
 			<article>
 				<h4 class="method" id="method_to_array">to_array()</h4>
-				<p>The <strong>to_array</strong> method returns the models public vars.</p>
+				<p><strong>to_array</strong> メソッドは、モデルの public の変数を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<em>None</em>
+							<em>なし</em>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A Validation instance.</td>
+						<td>array</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -973,12 +973,12 @@ $user_array = $user->to_array();
 
 			<article>
 				<h4 class="method" id="method_pre_save">pre_save(&$query)</h4>
-				<p>Replace the <strong>pre_save</strong> method to alter the query before inserting.</p>
+				<p>挿入する前にクエリを変更するために、 <strong>pre_save</strong> メソッドを置き換えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -992,9 +992,9 @@ $user_array = $user->to_array();
 								</tr>
 								<tr>
 									<th><kbd>$query</kbd></th>
-									<th><em>\Database_Query_Builder_Insert object</em></th>
+									<th><em>\Database_Query_Builder_Insert オブジェクト</em></th>
 									<td><em>必須</em></td>
-									<td>The insert query object.</td>
+									<td>挿入クエリオブジェクト</td>
 								</tr>
 							</table>
 						</td>
@@ -1006,10 +1006,10 @@ $user_array = $user->to_array();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Inside your model
+							<pre class="php"><code>// モデルの中で
 protected function pre_save(&$query)
 {
-	// change the query
+	// クエリを変更
 	$query->set(array('field' => 'value'));
 }
 </code></pre>
@@ -1021,12 +1021,12 @@ protected function pre_save(&$query)
 
 			<article>
 				<h4 class="method" id="method_post_save">post_save($result)</h4>
-				<p>Replace the <strong>post_save</strong> method to alter/act on the insert result.</p>
+				<p>挿入した結果に変更や振舞いを行うために、 <strong>post_save</strong> メソッドを置き換えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1042,22 +1042,22 @@ protected function pre_save(&$query)
 									<th><kbd>$result</kbd></th>
 									<th><em>array</em></th>
 									<td><em>必須</em></td>
-									<td>The insert result array.</td>
+									<td>挿入した結果の配列。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The insert result array.</td>
+						<td>挿入した結果の配列。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Inside your model
+							<pre class="php"><code>// モデルの中で
 protected function post_save($result)
 {
-	// Do something with the result
+	// 結果を使って何かをする
 	return $result;
 }
 </code></pre>
@@ -1069,7 +1069,7 @@ protected function post_save($result)
 
 			<article>
 				<h4 class="method" id="method_pre_update">pre_update(&$query)</h4>
-				<p>Replace the <strong>pre_update</strong> method to alter the query before updating.</p>
+				<p>更新する前にクエリを変更するために、 <strong>pre_update</strong> メソッドを置き換えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1088,9 +1088,9 @@ protected function post_save($result)
 								</tr>
 								<tr>
 									<th><kbd>$query</kbd></th>
-									<th><em>\Database_Query_Builder_Update object</em></th>
+									<th><em>\Database_Query_Builder_Update オブジェクト</em></th>
 									<td><em>必須</em></td>
-									<td>The update query object.</td>
+									<td>更新クエリオブジェクト。</td>
 								</tr>
 							</table>
 						</td>
@@ -1102,10 +1102,10 @@ protected function post_save($result)
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Inside your model
+							<pre class="php"><code>// モデルの中で
 protected function pre_update(&$query)
 {
-	// Change the update query.
+	// 更新クエリを変更。
 	$query->set(array('field' => 'value'));
 }
 </code></pre>
@@ -1117,12 +1117,12 @@ protected function pre_update(&$query)
 
 			<article>
 				<h4 class="method" id="method_post_update">post_update($result)</h4>
-				<p>Replace the <strong>post_update</strong> method to alter the update query result.</p>
+				<p>更新クエリの結果を変更するために、 <strong>post_update</strong> メソッドを置き換えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1138,22 +1138,22 @@ protected function pre_update(&$query)
 									<th><kbd>$result</kbd></th>
 									<th><em>int</em></th>
 									<td><em>必須</em></td>
-									<td>The number of rows affected.</td>
+									<td>変更された行の数。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The update query object.</td>
+						<td>更新クエリオブジェクト。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Inside your model
+							<pre class="php"><code>// モデルの中で
 protected function post_update($result)
 {
-	// Do something with the result
+	// 結果を使って何かをする
 	return $result;
 }
 </code></pre>
@@ -1165,12 +1165,12 @@ protected function post_update($result)
 
 			<article>
 				<h4 class="method" id="method_pre_delete">pre_delete(&$query)</h4>
-				<p>Replace the <strong>pre_delete</strong> method to alter the query before deleting.</p>
+				<p>削除する前にクエリを変更するために、 <strong>pre_delete</strong> メソッドを置き換えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1184,9 +1184,9 @@ protected function post_update($result)
 								</tr>
 								<tr>
 									<th><kbd>$query</kbd></th>
-									<th><em>\Database_Query_Builder_Delete object</em></th>
+									<th><em>\Database_Query_Builder_Delete オブジェクト</em></th>
 									<td><em>必須</em></td>
-									<td>The update query object.</td>
+									<td>削除クエリオブジェクト。</td>
 								</tr>
 							</table>
 						</td>
@@ -1198,10 +1198,10 @@ protected function post_update($result)
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Inside your model
+							<pre class="php"><code>// モデルの中で
 protected function pre_delete(&$query)
 {
-	// Do something with the delete query
+	// 削除クエリを使って何かをする
 }
 </code></pre>
 						</td>
@@ -1212,12 +1212,12 @@ protected function pre_delete(&$query)
 
 			<article>
 				<h4 class="method" id="method_post_delete">post_delete($result)</h4>
-				<p>Replace the <strong>post_delete</strong> method to alter the delete result.</p>
+				<p>削除した結果を変更するために、 <strong>post_delete</strong> メソッドを置き換えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1233,22 +1233,22 @@ protected function pre_delete(&$query)
 									<th><kbd>$result</kbd></th>
 									<th><em>int</em></th>
 									<td><em>必須</em></td>
-									<td>The number of affected rows.</td>
+									<td>変更された行の数。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The number of affected rows.</td>
+						<td>変更された行の数。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Inside your model
+							<pre class="php"><code>// モデルの中で
 protected function post_delete($result)
 {
-	// Do something with the result
+	// 結果を使って何かをする
 	return $result;
 }
 </code></pre>
@@ -1260,12 +1260,12 @@ protected function post_delete($result)
 
 			<article>
 				<h4 class="method" id="method_pre_validate">pre_validate($data)</h4>
-				<p>Replace the <strong>pre_validate</strong> method to alter the insert/update data before validation.</p>
+				<p>バリデーションの前に挿入か更新されたデータを変更するために、 <strong>pre_validate</strong> メソッドを置き換えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1281,22 +1281,22 @@ protected function post_delete($result)
 									<th><kbd>$data</kbd></th>
 									<th><em>array</em></th>
 									<td><em>必須</em></td>
-									<td>The model's record data.</td>
+									<td>モデルのレコードデータ。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The model's record data.</td>
+						<td>モデルのレコードデータ。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Inside your model
+							<pre class="php"><code>// モデルの中で
 protected function pre_validate($data)
 {
-	// Do something with the data
+	// データを使って何かをする
 	return $data;
 }
 </code></pre>
@@ -1308,12 +1308,12 @@ protected function pre_validate($data)
 
 			<article>
 				<h4 class="method" id="method_post_validate">post_validate($data)</h4>
-				<p>Replace the <strong>post_validate</strong> method to alter the insert/update data after validation.</p>
+				<p>バリデーションの後に挿入か更新されたデータを変更するために、 <strong>post_validate</strong> メソッドを置き換えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1329,22 +1329,22 @@ protected function pre_validate($data)
 									<th><kbd>$data</kbd></th>
 									<th><em>array</em></th>
 									<td><em>必須</em></td>
-									<td>The model's record data.</td>
+									<td>モデルのレコードデータ。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The model's record data.</td>
+						<td>モデルのレコードデータ。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Inside your model
+							<pre class="php"><code>// モデルの中で
 protected function post_validate($data)
 {
-	// Do something with the data
+	// データを使って何かをする
 	return $data;
 }
 </code></pre>
@@ -1356,12 +1356,12 @@ protected function post_validate($data)
 
 			<article>
 				<h4 class="method" id="method_prep_values">prep_values($data)</h4>
-				<p>Replace the <strong>prep_values</strong> method to alter the insert/update data before validation or query execution.</p>
+				<p>バリデーションまたはクエリを実行する前に挿入か更新されたデータを変更するために、 <strong>prep_values</strong> メソッドを置き換えます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1377,22 +1377,22 @@ protected function post_validate($data)
 									<th><kbd>$data</kbd></th>
 									<th><em>array</em></th>
 									<td><em>必須</em></td>
-									<td>The model's record data.</td>
+									<td>モデルのレコードデータ。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The model's record data.</td>
+						<td>モデルのレコードデータ。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Inside your model
+							<pre class="php"><code>// モデルの中で
 protected function prep_values($data)
 {
-	// Do something with the data
+	// データを使って何かをする
 	return $data;
 }
 </code></pre>
