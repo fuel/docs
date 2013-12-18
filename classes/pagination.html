@@ -188,7 +188,7 @@ return \View::forge('posts/index', $data);</code></pre>
 							<td>int / float</td>
 							<td><pre class="php"><code>0.50</code></pre></td>
 							<td>
-								Offset of the active link in the pagination block, either in a decimal between 0 and 1, or in an integer (precentage) between 0 and 100.
+								ページネーションブロックの中でアクティブなリンクのオフセット量、小数で 0 から 1 までの間または整数 (パーセンテージ) で 0 から 100 までの間のどちらか。
 							</td>
 						</tr>
 					</tbody>
@@ -196,53 +196,53 @@ return \View::forge('posts/index', $data);</code></pre>
 			</section>
 
 			<section>
-				<h3 id="linkoffsets">Link offsets</h3>
+				<h3 id="linkoffsets">リンクのオフセット量</h3>
 				<p>
-					By default, the Pagination class will try to position the active link (the one for the current page) in the middle of the pagination
-					block.
+					デフォルトで、 Pagination クラスはページネーションブロックの中央に ("現在のページ" の) 
+					アクティブなリンクを配置します。
 				</p>
 				<p>
-					You can control this behaviour using the <kbd>link_offset</kbd> value in the configuration. This value is defined either by a
-					float between 0 and 1, or by an integer between 0 and 100 (like a percentage). By default this value is set to <code>0.5</code> (= 50%).
-					If you make the value smaller, the active link will move to the left, if you make the value bigger, the active link will move
-					to the right.
+					設定にある <kbd>link_offset</kbd> の値を使うことで、この振舞いをコントロールすることができます。
+					この値は、float の 0 から 1 までの間か integer の 0 から 100 までの間 (パーセンテージのように) のどちらかで定義することができます。この値はデフォルトで <code>0.5</code> (= 50%) にセットされています。
+					この値を小さくした場合、アクティブなリンクは左へ移動し、
+					大きくした場合、アクティブなリンクは右へ移動します。
 				</p>
 
-				<h5 id="linkoffsetexample">Example</h5>
+				<h5 id="linkoffsetexample">例</h5>
 
 				<p>
-					Let's assume you have a total of 20 pages you can display. You have set <kbd>num_links</kbd> to 5, displaying links for 5 pages
-					in total, and you're displaying previous and next links as well. The page you have currently selected is page 6.
+					ここで、表示できるページが全部で 20 ページあると仮定してみましょう。 <kbd>num_links</kbd> は 5 にセットされていて、表示されるリンクは全部で 5 ページとなります、
+					同様に "前" と "次" のリンクも表示されています。現在選択しているページは 6 ページ目となります。
 				</p>
 				<ul>
 					<li>
-						With the default setting of <kbd>0.5</kbd>, <blockquote><code>&laquo;</code>&nbsp;&nbsp;<code>4</code>&nbsp;&nbsp;<code>5</code>&nbsp;&nbsp;6&nbsp;&nbsp;<code>7</code>&nbsp;&nbsp;<code>8</code>&nbsp;&nbsp;<code>&raquo;</code></blockquote> is displayed, keeping
-						the selected page 6 nicely in the middle of the block.
+						デフォルトの設定である <kbd>0.5</kbd> では、 <blockquote><code>&laquo;</code>&nbsp;&nbsp;<code>4</code>&nbsp;&nbsp;<code>5</code>&nbsp;&nbsp;6&nbsp;&nbsp;<code>7</code>&nbsp;&nbsp;<code>8</code>&nbsp;&nbsp;<code>&raquo;</code></blockquote> と表示されます、
+						選択しているページの 6 がブロックの中央部分にうまくキープされています。
 					</li>
 					<li>
-						 When you change the setting to <kbd>0</kbd>, Pagination will always try to make the first link the active link. In this case,
+						 設定を <kbd>0</kbd> に変更した場合、 Pagination は常にアクティブなリンクを最初のリンクとします。このケースでは、
 						 <blockquote><code>&laquo;</code>&nbsp;&nbsp;6&nbsp;&nbsp;<code>7</code>&nbsp;&nbsp;<code>8</code>&nbsp;&nbsp;<code>9</code>&nbsp;&nbsp;<code>10</code>&nbsp;&nbsp;<code>&raquo;</code></blockquote>
-						is being displayed, making the selected page 6 the first link in the block.
+						と表示されます、選択しているページの 6 がブロックの最初のリンクになっています。
 					</li>
 					<li>
-						If you would change the setting to <kbd>1</kbd>, Pagination will always try to make the last link the active link. In this case,
+						設定を <kbd>1</kbd> に変更した場合、 Pagination は常にアクティブなリンクを最後のリンクにします。このケースでは、
 						<blockquote><code>&laquo;</code>&nbsp;&nbsp;<code>2</code>&nbsp;&nbsp;<code>3</code>&nbsp;&nbsp;<code>4</code>&nbsp;&nbsp;<code>5</code>&nbsp;&nbsp;6&nbsp;&nbsp;<code>&raquo;</code></blockquote>
-						will be displayed.
+						と表示されます。
 					</li>
 				</ul>
 				<p>
-					You can use any value in the range, to progressively shift the active focus either left or right. Obviously, the more links you
-					display, the more granular you can shift the focus.
+					アクティブの焦点を左や右へ徐々に移動させるために、範囲の中で任意の値を取ることができます。
+					当然ですが、表示したいリンクがあればあるほど、焦点の移動をするための粒度は細かくなっていきます。
 				</p>
 				<p class="note">
-					This only works if there are enough pages to do so. If you only have 5 pages available, you want to display 5 links, and page 3 is the
-					current page, no previous and next links are displayed, and the current page will be in the middle, no matter what the setting of
-					<kbd>link_offset</kbd> is. There are simply not enough pages available to move the current page link left or right.
+					これは十分なページがある場合に限って動作します。もしも、たったの 5 ページしかなくて、 5 つのリンクを表示したい、そして 3 ページ目が "現在のページ" の場合、
+					"前" と "次" のリンクは表示されませんし、 <kbd>link_offset</kbd> がどんな設定であっても "現在のページ" は中央となります。
+					これは単純に "現在のページ" のリンクを左や右へ移動できるほどの十分なページがないからです。
 				</p>
 			</section>
 
 			<section>
-                <h3 id="templating">テンプレート</h3>
+				<h3 id="templating">テンプレート</h3>
 
 				<p>
 					全ての pagination インスタンスは、ページネーションのマークアップを作成するために HTML を生成するテンプレートを用います。
