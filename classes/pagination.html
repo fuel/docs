@@ -51,7 +51,7 @@
 
 			<section>
 				<p>Pagination クラスの分かりやすい使用方法の例。コントローラのアクションメソッドへ書くことができます。</p>
-				<h3 id="how_to_query_builder">How To Paginate with the Query Builder</h3>
+				<h3 id="how_to_query_builder">Query Builder を使ったページネーションの方法</h3>
 
 				<pre class="php"><code>$config = array(
 	'pagination_url' => 'http://localhost/fuel/welcome/index/',
@@ -78,14 +78,14 @@ $data['pagination'] = $pagination;
 // ビューを返す
 return \View::forge('welcome/index', $data);</code></pre>
 
-				<h3 id="how_to_orm">How To Paginate with ORM</h3>
+				<h3 id="how_to_orm">ORM を使ったページネーションの方法</h3>
 
 				<pre class="php"><code>$config = array(
 	'pagination_url' => 'http://localhost/fuel/posts/index/',
 	'total_items'    => Model_Post::count(),
 	'per_page'       => 10,
 	'uri_segment'    => 3,
-	// or if you prefer pagination by query string
+	// もしくは、クエリ文字列によるページネーションがよいのであれば
 	//'uri_segment'    => 'page',
 );
 
@@ -96,10 +96,10 @@ $data['example_data'] = Model_Post::query()
 							->rows_limit($pagination->offset)
 							->get();
 
-// we pass the object, it will be rendered when echo'd in the view
+// オブジェクトを渡し、ビューの中に echo で出力される時に表示される
 $data['pagination'] = $pagination;
 
-// return the view
+// ビューを返す
 return \View::forge('posts/index', $data);</code></pre>
 			</section>
 
@@ -183,8 +183,62 @@ return \View::forge('posts/index', $data);</code></pre>
 								true かつ最後のページではない場合に '最後のページヘ' のリンクを生成します。
 							</td>
 						</tr>
+						<tr>
+							<th>link_offset</th>
+							<td>int / float</td>
+							<td><pre class="php"><code>0.50</code></pre></td>
+							<td>
+								ページネーションブロックの中でアクティブなリンクのオフセット量、小数で 0 から 1 までの間または整数 (パーセンテージ) で 0 から 100 までの間のどちらか。
+							</td>
+						</tr>
 					</tbody>
 				</table>
+			</section>
+
+			<section>
+				<h3 id="linkoffsets">リンクのオフセット量</h3>
+				<p>
+					デフォルトで、 Pagination クラスはページネーションブロックの中央に ("現在のページ" の) 
+					アクティブなリンクを配置します。
+				</p>
+				<p>
+					設定にある <kbd>link_offset</kbd> の値を使うことで、この振舞いをコントロールすることができます。
+					この値は、float の 0 から 1 までの間か integer の 0 から 100 までの間 (パーセンテージのように) のどちらかで定義することができます。この値はデフォルトで <code>0.5</code> (= 50%) にセットされています。
+					この値を小さくした場合、アクティブなリンクは左へ移動し、
+					大きくした場合、アクティブなリンクは右へ移動します。
+				</p>
+
+				<h5 id="linkoffsetexample">例</h5>
+
+				<p>
+					ここで、表示できるページが全部で 20 ページあると仮定してみましょう。 <kbd>num_links</kbd> は 5 にセットされていて、表示されるリンクは全部で 5 ページとなります、
+					同様に "前" と "次" のリンクも表示されています。現在選択しているページは 6 ページ目となります。
+				</p>
+				<ul>
+					<li>
+						デフォルトの設定である <kbd>0.5</kbd> では、 <blockquote><code>&laquo;</code>&nbsp;&nbsp;<code>4</code>&nbsp;&nbsp;<code>5</code>&nbsp;&nbsp;6&nbsp;&nbsp;<code>7</code>&nbsp;&nbsp;<code>8</code>&nbsp;&nbsp;<code>&raquo;</code></blockquote> と表示されます、
+						選択しているページの 6 がブロックの中央部分にうまくキープされています。
+					</li>
+					<li>
+						 設定を <kbd>0</kbd> に変更した場合、 Pagination は常にアクティブなリンクを最初のリンクとします。このケースでは、
+						 <blockquote><code>&laquo;</code>&nbsp;&nbsp;6&nbsp;&nbsp;<code>7</code>&nbsp;&nbsp;<code>8</code>&nbsp;&nbsp;<code>9</code>&nbsp;&nbsp;<code>10</code>&nbsp;&nbsp;<code>&raquo;</code></blockquote>
+						と表示されます、選択しているページの 6 がブロックの最初のリンクになっています。
+					</li>
+					<li>
+						設定を <kbd>1</kbd> に変更した場合、 Pagination は常にアクティブなリンクを最後のリンクにします。このケースでは、
+						<blockquote><code>&laquo;</code>&nbsp;&nbsp;<code>2</code>&nbsp;&nbsp;<code>3</code>&nbsp;&nbsp;<code>4</code>&nbsp;&nbsp;<code>5</code>&nbsp;&nbsp;6&nbsp;&nbsp;<code>&raquo;</code></blockquote>
+						と表示されます。
+					</li>
+				</ul>
+				<p>
+					アクティブの焦点を左や右へ徐々に移動させるために、範囲の中で任意の値を取ることができます。
+					当然ですが、表示したいリンクがあればあるほど、焦点の移動をするための粒度は細かくなっていきます。
+				</p>
+				<p class="note">
+					これは十分なページがある場合に限って動作します。もしも、たったの 5 ページしかなくて、 5 つのリンクを表示したい、そして 3 ページ目が "現在のページ" の場合、
+					"前" と "次" のリンクは表示されませんし、 <kbd>link_offset</kbd> がどんな設定であっても "現在のページ" は中央となります。
+					これは単純に "現在のページ" のリンクを左や右へ移動できるほどの十分なページがないからです。
+				</p>
 			</section>
 
 			<section>
