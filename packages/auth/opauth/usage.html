@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -121,7 +121,7 @@
 
 			<article>
 				<h4 id="method_forge" class="method">forge($config = array(), $autorun = true)</h4>
-				<p>The <strong>forge</strong> method creates an instance of the Auth_Opauth class, which provides OAuth integration to your application.</p>
+				<p><strong>forge</strong> メソッドは Auth_Opauth クラスのインスタンスを作成し、アプリケーションに OAuth の統合を提供します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -185,9 +185,9 @@ $opauth = \Auth_Opauth::forge(array(
 
 			<article>
 				<h4 id="method_login_or_register" class="method">login_or_register()</h4>
-				<p>The <strong>login_or_register</strong> method processes the provider callback. If the returned provider UID is known, the user will
-				be logged in using the local account it is associated to. If not, the user is asked to either register for a new account, or login with
-				and existing account and associate the UID with that account.</p>
+				<p>The <strong>login_or_register</strong> メソッドは、プロバイダーのコールバックを処理します。既知のプロバイダの UID が返された場合、
+				ユーザーは、そのプロバイダに関連付けられているローカルアカウントを利用しログインすることができます。そうでないなら、ユーザーは、
+				新しいアカウントの登録、もしくは、既存のアカウントを利用しログインを行い、そのアカウントと UID を関連付けることのいずれかを求めています。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -215,10 +215,10 @@ $opauth = \Auth_Opauth::forge(array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the Opauth object
+							<pre class="php"><code>// opauth オブジェクトを取得
 $opauth = \Auth_Opauth::forge(false);
 
-// attempt to auto-login using the provider callback data
+// プロバイダのコールバックデータを使用し自動ログインを試す
 $status = $opauth->login_or_register();
 </code></pre>
 						</td>
@@ -229,9 +229,9 @@ $status = $opauth->login_or_register();
 
 			<article>
 				<h4 id="method_link_provider" class="method">link_provider(array $data)</h4>
-				<p>The <strong>link_provider</strong> method allows you to manually link a local user account to an OAuth login. You need this if you want
-				to provide the option for new users to register for a local account first, and then create the link between that account and the provider
-				UID manually.</p>
+				<p><strong>link_provider</strong> メソッドを使用すると、 OAuth ログインに手動でローカルユーザーアカウントをリンクすることができます。
+				もし、ローカルアカウントを最初に登録し、その後、手動でそのアカウントとプロバイダの UID との間のリンクを作成するためのオプションを、
+				新規ユーザーに提供したい場合は、この処理が必要となります。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -262,16 +262,16 @@ $status = $opauth->login_or_register();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the opauth object
+							<pre class="php"><code>// opauth オブジェクトを取得
 $opauth = \Auth_Opauth::forge(false);
 
-// do we have OAuth strategy data?
+// OAuth ストラテジーデータを我々は持っていますか？
 if ($authentication = \Session::get('auth-strategy.authentication', array()))
 {
-	// get the current Auth userid
+	// 現在の認証済みユーザーIDを取得
 	list(, $userid) = \Auth::instance()->get_user_id();
 
-	// and link it to the provider
+	// そして、プロバイダとそれをリンク
 	$insert_id = $opauth->link_provider(array(
 		'parent_id' => $userid,
 		'provider' => $authentication['provider'],
@@ -296,8 +296,8 @@ else
 
 			<article>
 				<h4 id="method_get" class="method">get($key, $default = null)</h4>
-				<p>The <strong>get</strong> method is a getter that allows direct access to the raw provider callback response structure as
-				created by the Opauth strategy.</p>
+				<p><strong>get</strong> メソッドは Opauth ストラテジーによって作成された生のプロバイダのコールバック応答構造に
+				直接アクセスすることが可能な getter です。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -315,7 +315,7 @@ else
 								</tr>
 								<tr>
 									<th><kbd>$key</kbd></th>
-									<td><em>required</em></td>
+									<td><em>必須</em></td>
 									<td>Name of the key to the desired value in the response array</td>
 								</tr>
 								<tr>
