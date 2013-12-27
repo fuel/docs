@@ -62,11 +62,11 @@
                 </section>
 
                 <section>
-                    <h2 id="settings">Settings</h2>
-                    <p>There are currently two extra settings that can be set for soft delete models.</p>
-                    <p><kbd>deleted_field</kbd> is the field that stores the timestamp. In the database this should be either a MySQL or unix timestamp and default to <kbd>NULL</kbd>. Any entries with a <kbd>NULL</kbd> timestamp are not deleted. The column name defaults to deleted_at.</p>
-                    <p><kbd>mysql_timestamp</kbd> is if the timestamp generated should be a MySQL timestamp or a unix timestamp. This defaults to <kbd>false</kbd> (use a unix timestamp).</p>
-                    <p>Example model with default settings:</p>
+                    <h2 id="settings">設定</h2>
+                    <p>論理削除モデルには 2 つの設定があります。</p>
+                    <p><kbd>deleted_field</kbd> はタイムスタンプを保存するカラム名を指定します。データベースでは MySQL タイムスタンプか UNIX タイムスタンプのいずれか、または <kbd>NULL</kbd> を保存します。<kbd>NULL</kbd> のタイムスタンプを持つレコードは削除されていません。デフォルトでは deleted_at というカラム名が指定されています。</p>
+                    <p><kbd>mysql_timestamp</kbd> が <kbd>true</kbd> の場合は MySQL タイムスタンプを保存します。デフォルトでは <kbd>false</kbd> になっていて UNIX タイムスタンプを保存します。</p>
+                    <p>設定例:</p>
                     <pre id="php"><code>class Model_Employee extends \Orm\Model_Soft
 {
     protected static $_soft_delete = array(
@@ -84,10 +84,10 @@ $employee->delete(); // この従業員はまさに論理削除されました</
                 </section>
 
                 <section>
-                    <h2 id="delete">Permanently Deleting</h2>
-                    <p>To delete a record permanently, call the <kbd>purge()</kbd> function on the object after selecting. This deletes the record permanently from the database.</p>
+                    <h2 id="delete">永久削除</h2>
+                    <p>レコードを永久に削除するにはレコードオブジェクトから <kbd>purge()</kbd> メソッドを呼び出します。これでこのレコードはデータベースから永久にさくじょされます。</p>
                     <pre id="php"><code>$employee = Model_Employee::find(1);
-$employee->purge(); //The employee has now been deleted.</code></pre>
+$employee->purge(); // この従業員は永久に削除されました。</code></pre>
                 </section>
 
                 <section>
