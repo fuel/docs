@@ -736,7 +736,7 @@ list(, $userid) = Auth::get_user_id();
 
 				<article>
 					<h4 id="method_get_groups" class="method">get_groups()</h4>
-					<p><strong>get_groups</strong> メソッドは、ログインしているユーザが所属するグループを返します。</p>
+					<p>The <strong>get_groups</strong> method returns the ORM user group object assigned to the currently logged-in user.</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -751,7 +751,9 @@ list(, $userid) = Auth::get_user_id();
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed 。ユーザがログイン中なら、 <strong>array(array(driver, group_id))</strong> 形式の配列を、そうでなければ <strong>false</strong> を返します。</td>
+							<td>
+								mixed. Returns an array in the form <strong>array(array(driver, group-object))</strong> if a user is logged in, or <strong>false</strong> otherwise.
+							</td>
 						</tr>
 							<th>例</th>
 							<td>
@@ -763,7 +765,7 @@ if ($id_info)
 {
 	foreach ($id_info as $info)
 	{
-		echo 'Driver: ',$info[0],' with group ID ',$info[1],'&lt;br /&gt;';
+		echo 'Driver: ',$info[0],' with group ID ',$info[1]->id,'&lt;br /&gt;';
 	}
 }
 else
@@ -772,7 +774,8 @@ else
 }
 
 // ドライバを一つのみ使用する場合、次のようにできます。
-list($driver, $groupid) = Auth::get_groups();
+list($driver, $group) = Auth::get_groups();
+echo 'Driver: ',$driver,' with group ID ',$group->id,'&lt;br /&gt;';
 </code></pre>
 							</td>
 						</tr>
