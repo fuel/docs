@@ -184,9 +184,8 @@ foreach ($mr->statistics as $statistic)
 }
 </code></pre>
 				<p class="note">
-					Note that at the moment you CAN NOT use this access method to create new attributes
-					in the related table the EAV container maps too. You will have to do that the classic
-					way, by using $mr->statistics[] = Statistics::forge($newdata);
+					Note that when your model has an EAV container defined, you can no longer use custom
+					data properties for that model, as every new property will be seen as a new EAV key.
 				</p>
 			</section>
 
