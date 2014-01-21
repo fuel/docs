@@ -97,38 +97,38 @@
 {
 	// list of properties for this model, shortened for this example
 	protected static $_properties = array(
-		'id',				// primary key
+		'id',					// primary key
 	);
 
 	// set up the statistics relation the usual way
 	protected static $_has_many = array(
 		'statistics' => array(
-			'key_from' => 'id',		// key in this model
-			'model_to' => Model_Statistic,      // related model
-			'key_to' => 'patient_id',	// key in the related model
-			'cascade_save' => true,	// update the related table on save
-			'cascade_delete' => true,	// delete the related data when deleting the parent
+			'key_from' => 'id',			// key in this model
+			'model_to' => 'Model_Statistic',      // related model
+			'key_to' => 'patient_id',		// key in the related model
+			'cascade_save' => true,		// update the related table on save
+			'cascade_delete' => true,		// delete the related data when deleting the parent
 		)
 	);
 
 	// define the EAV container like so
 	protected static $_eav = array(
-		'statistics' => array(		// we use the statistics relation to store the EAV data
-			'model_to' => Model_Statistic,      // related model
-			'attribute' => 'key',	// the key column in the related table contains the attribute
-			'value' => 'value',		// the value column in the related table contains the value
+		'statistics' => array(			// we use the statistics relation to store the EAV data
+			'model_to' => 'Model_Statistic',      // related model
+			'attribute' => 'key',		// the key column in the related table contains the attribute
+			'value' => 'value',			// the value column in the related table contains the value
 		)
 	);
 }
 
-class Model_Statistics extend \Orm\Model
+class Model_Statistic extend \Orm\Model
 {
 	// list of properties for this model
 	protected static $_properties = array(
-		'id',				// primary key
-		'patient_id',			// foreign key
-		'key',				// attribute column
-		'value',			// value column
+		'id',					// primary key
+		'patient_id',				// foreign key
+		'key',					// attribute column
+		'value',				// value column
 	);
 	
 	// set up the patient relation the usual way
