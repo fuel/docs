@@ -140,7 +140,7 @@ $query = DB::query('SELECT * FROM `users`');
 							<th>例</th>
 							<td>
 								<pre class="php"><code>// クエリを実行する
-$user = DB::select()->from('users')->where('id', 1);
+$user = DB::select()->from('users')->where('id', 1)->execute();
 
 echo DB::last_query();
 // SELECT * FROM `users` WHERE `id` = 1

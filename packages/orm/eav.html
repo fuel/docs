@@ -93,41 +93,54 @@
 				  それでは例題として、病院の患者と、その病院が保持している患者の統計情報のモデルを作ってみましょう。
 				  それは患者の病気に依存していて、前もって予測することはできません。
 				</p>
-				<pre class="php"><code>class Patient extends \Orm\Model
+				<pre class="php"><code>class Model_Patient extends \Orm\Model
 {
 	// このモデルのプロパティのリスト、この例では最短で
 	protected static $_properties = array(
-		'id',				// primary key
+		'id',					// primary key
 	);
 
 	// 通常の方法で statistics との関係を記述します
 	protected static $_has_many = array(
 		'statistics' => array(
-			'key_from' => 'id',		// このモデルのキー
-			'key_to' => 'patient_id',	// 関連するモデルでのキー
-			'cascade_save' => true,	// 関係するテーブルが保存されるときに同時にアップデート
-			'cascade_delete' => true,	// 親テーブルの関連レコードが削除されるときに同時に削除
+			'key_from' => 'id',			// このモデルのキー
+			'model_to' => 'Model_Statistic',      // related model
+			'key_to' => 'patient_id',		// 関連するモデルでのキー
+			'cascade_save' => true,		// 関係するテーブルが保存されるときに同時にアップデート
+			'cascade_delete' => true,		// 親テーブルの関連レコードが削除されるときに同時に削除
 		)
 	);
 
 	// EAV コンテナはこのように定義します
 	protected static $_eav = array(
-		'statistics' => array(		// we use the statistics relation to store the EAV data
-			'attribute' => 'key',	// the key column in the related table contains the attribute
-			'value' => 'value',		// the value column in the related table contains the value
+		'statistics' => array(			// we use the statistics relation to store the EAV data
+			'model_to' => 'Model_Statistic',      // related model
+			'attribute' => 'key',		// the key column in the related table contains the attribute
+			'value' => 'value',			// the value column in the related table contains the value
 		)
 	);
 }
 
-class Statistics extend \Orm\Model
+class Model_Statistic extend \Orm\Model
 {
 	// このモデルのプロパティのリスト
 	protected static $_properties = array(
-		'id',				// primary key
-		'patient_id',			// foreign key
-		'key',				// attribute column
-		'value',			// value column
+		'id',					// primary key
+		'patient_id',				// foreign key
+		'key',					// attribute column
+		'value',				// value column
 	);
+	
+	// set up the patient relation the usual way
+	protected static $_belongs_to = array(
+	    'patient' => array(
+	        'key_from' => 'patient_id',
+	        'model_to' => 'Model_Patient',
+	        'key_to' => 'id',
+	        'cascade_save' => true,
+	        'cascade_delete' => true,
+	    )
+	);	
 }</code></pre>
 
 			<p>
@@ -173,9 +186,9 @@ echo $ms->Temperature;		// '37.9'
 echo $mr->Headache;		// 'yes'
 echo $ms->Headache;		// プロパティが見つからないので例外が投げられます
 
-// 直接値をセットすることもできます
-$mr->Temperature = '36.9';	// 患者はの容態は改善したようです
-$mr-save();			// patient レコードと EAV レコードをアップデートします
+// or set them directly
+$mr->Temperature = '36.9';	// our patient seems to have improved
+$mr->save();			// updates the patient record, and the updated EAV records
 
 // 古いやり方でアクセスすることもできます
 foreach ($mr->statistics as $statistic)
