@@ -92,8 +92,8 @@ return \View::forge('welcome/index', $data);</code></pre>
 $pagination = Pagination::forge('mypagination', $config);
 
 $data['example_data'] = Model_Post::query()
-							->rows_offset($pagination->per_page)
-							->rows_limit($pagination->offset)
+							->rows_offset($pagination->offset)
+							->rows_limit($pagination->per_page)
 							->get();
 
 // we pass the object, it will be rendered when echo'd in the view
