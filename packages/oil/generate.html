@@ -59,7 +59,7 @@
 					<li><a href="#viewmodels">ビューモデル</a></li>
 					<li><a href="#migrations">マイグレーションs</a></li>
 					<li><a href="#scaffolding">スキャフォールド</a></li>
-					<li><a href="#admin">Admin scaffolding</a></li>
+					<li><a href="#admin">Admin スキャフォールド</a></li>
 					<li><a href="#tasks">タスク</a></li>
 					<li><a href="#configs">設定</a></li>
 					<li><a href="#packages">Packages</a></li>
@@ -426,7 +426,7 @@ $ php oil refine migrate:up
 	Created migration: APPPATH/migrations/002_rename_table_users_to_accounts.php</code></pre>
 
 				<h3 id="magic_migrations">Magic マイグレーション</h3>
-				<p>いくるかの "magic" マイグレーションがあり、自動的にあなたのマイグレーション名のプレフィックスに基づいたマイグレーションをビルドします。</p>
+				<p>いくつかの "magic" マイグレーションがあり、自動的にあなたのマイグレーション名のプレフィックスに基づいたマイグレーションをビルドします。</p>
 				<pre class="cli"><code>$ php oil generate migration create_users name:text email:string[50] password:string[125]
 $ php oil generate migration rename_table_users_to_accounts
 $ php oil generate migration add_bio_to_accounts bio:text
@@ -563,13 +563,13 @@ Migrated to latest version: 3.
 
 }</code></pre>
 
-				<h3 id="admin">Admin scaffolding</h3>
+				<h3 id="admin">スキャフォールド</h3>
 
 				<p>
-					You can swap scaffold with admin and generate a controller which extends Controller_Admin instead of Controller_Template.
-					On the first use of this command an admin skeleton will be generated, to expand this skeleton use the skip force argument.
+					scaffoldではなくadminと入力することで、Controller_Adminを継承したコントローラをController_Templateの代わりに生成できます。
+					初めてこのコマンドを使うときには、Adminのスケルトンが生成されます。また、このスケルトンを展開する際には、<code>-s</code>と<code>-f</code>オプションが使えます。
 
-					To generate in subdirectories name the prefix the model's name accordingly.
+					サブディレクトリに生成する際は、モデルの名前に基づいたプレフィクスとなります。
 				</p>
 
 				<pre class="cli"><code>$ php oil g admin project_entry title:string abstract:text full_text:text project_id:int is_draft:int order:int -s
