@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -64,7 +64,7 @@
 			prefer to use Controller_Template, set the template content instead of returning View objects. If you're using the theme class,
 			set the required partial instead.</p>
 
-			<h3 id="login">Login</h3>
+			<h3 id="login">ログイン</h3>
 
 			<p>This is the example code for the login method. It expects input from a form that contains the input fields
 			<strong>username</strong> (which may contain either username or email address), <strong>password</strong> and
@@ -73,7 +73,7 @@
 
 <pre class="php"><code>public function action_login()
 {
-	// already logged in?
+	// すでにログイン済み？
 	if (\Auth::check())
 	{
 		// yes, so go back to the page the user came from, or the
@@ -82,10 +82,10 @@
 		\Response::redirect_back('dashboard');
 	}
 
-	// was the login form posted?
+	// ログインフォームが投稿された？
 	if (\Input::method() == 'POST')
 	{
-		// check the credentials.
+		// 資格情報のチェック
 		if (\Auth::instance()->login(\Input::param('username'), \Input::param('password')))
 		{
 			// did the user want to be remembered?
@@ -106,16 +106,16 @@
 		}
 		else
 		{
-			// login failed, show an error message
+			// ログイン失敗、エラーメッセージを表示
 			\Messages::error(__('login.failure'));
 		}
 	}
 
-	// display the login page
+	// ログインページを表示
 	return \View::forge('login/login');
 }</code></pre>
 
-			<h3 id="logout">Logout</h3>
+			<h3 id="logout">ログアウト</h3>
 
 			<p>This is the example code for the logout method. It will remove the remember-me cookie (as that would cause an automatic re-login on
 			the next page request), </p>
@@ -125,7 +125,7 @@
 	// remove the remember-me cookie, we logged-out on purpose
 	\Auth::dont_remember_me();
 
-	// logout
+	// ログアウト
 	\Auth::logout();
 
 	// inform the user the logout was successful
@@ -136,7 +136,7 @@
 	\Response::redirect_back();
 }</code></pre>
 
-			<h3 id="registration">Registration</h3>
+			<h3 id="registration">登録</h3>
 
 			<p>This is the example code for the new user registration method. As this example uses Ormauth, it's obvious that we can use the
 			Auth user model to create the fieldset for the registration form. If you're using Simpleauth, you can still use the model as a
@@ -146,7 +146,7 @@
 
 <pre class="php"><code>public function action_register()
 {
-	// is registration enabled?
+	// 登録が有効？
 	if ( ! \Config::get('application.user.registration', false))
 	{
 		// inform the user registration is not possible
@@ -156,19 +156,19 @@
 		\Response::redirect_back();
 	}
 
-	// create the registration fieldset
+	// 登録用フィールドセットを作成
 	$form = \Fieldset::forge('registerform');
 
-	// add a csrf token to prevent CSRF attacks
+	// CSRF 攻撃を防ぐために CSRF トークンを追加
 	$form->form()->add_csrf();
 
-	// and populate the form with the model properties
+	// そしてモデルのプロパティを持つフォームを投入
 	$form->add_model('Model\\Auth_User');
 
 	// add the fullname field, it's a profile property, not a user property
 	$form->add_after('fullname', __('login.form.fullname'), array(), array(), 'username')->add_rule('required');
 
-	// add a password confirmation field
+	// パスワードの確認フィールドを追加
 	$form->add_after('confirm', __('login.form.confirm'), array('type' => 'password'), array(), 'password')->add_rule('required');
 
 	// make sure the password is required
@@ -180,18 +180,18 @@
 	// since it's not on the form, make sure validation doesn't trip on its absence
 	$form->field('group_id')->delete_rule('required')->delete_rule('is_numeric');
 
-	// was the registration form posted?
+	// 登録フォームが投稿された？
 	if (\Input::method() == 'POST')
 	{
-		// validate the input
+		// 入力を検証
 		$form->validation()->run();
 
-		// if validated, create the user
+		// 検証済みの場合、ユーザーを作成
 		if ( ! $form->validation()->error())
 		{
 			try
 			{
-				// call Auth to create this user
+				// ユーザーを作成するために Auth を呼び出す
 				$created = \Auth::create_user(
 					$form->validated('username'),
 					$form->validated('password'),
@@ -202,10 +202,10 @@
 					)
 				);
 
-				// if a user was created succesfully
+				// ユーザーが正常に作成された場合
 				if ($created)
 				{
-					// inform the user
+					// ユーザに通知
 					\Messages::success(__('login.new-account-created'));
 
 					// and go back to the previous page, or show the
@@ -222,13 +222,13 @@
 			// catch exceptions from the create_user() call
 			catch (\SimpleUserUpdateException $e)
 			{
-				// duplicate email address
+				// メールアドレスが重複
 				if ($e->getCode() == 2)
 				{
 					\Messages::error(__('login.email-already-exists'));
 				}
 
-				// duplicate username
+				// ユーザー名が重複
 				elseif ($e->getCode() == 3)
 				{
 					\Messages::error(__('login.username-already-exists'));
@@ -256,7 +256,7 @@
 			have a look at the password recovery method below to get some pointers on how to generate this hash, where to store it, and how
 			to send an email out.</p>
 
-			<h3 id="password-recovery">Password recovery</h3>
+			<h3 id="password-recovery">パスワードの復元</h3>
 
 			<p>This is the example code for the password-recovery method. It requires a form with an 'email' input field on which the user can
 			enter his email address. This is then used to lookup the user, and send out an email with a recovery link. There is no visible
@@ -308,7 +308,7 @@
 				// and off it goes (if all goes well)!
 				try
 				{
-					// send the email
+					// メールを送信
 					$email->send();
 				}
 
