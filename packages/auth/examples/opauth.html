@@ -24,7 +24,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -48,7 +48,7 @@
 			<p>On this page you will find an example of the methods needed to integrate OAuth authentication in your application. It extends
 			the functionality from the standard Auth controller, documented <a href="auth.html">here</a>.
 
-			<h3 id="login">Login</h3>
+			<h3 id="login">ログイン</h3>
 
 			<p>This is the example code for the oauth method. It expects the name of the OAuth provider as a URI parameter,
 			so it should be called like "login/oath/facebook" if you want to use the Facebook Opauth Strategy. As an alternative
@@ -64,7 +64,7 @@
 		\Response::redirect_back();
 	}
 
-	// load Opauth, it will load the provider strategy and redirect to the provider
+	// Opauth の読み込み、プロバイダのストラテジーを読み込みプロバイダにリダイレクトするでしょう
 	\Auth_Opauth::forge();
 }</code></pre>
 
@@ -85,10 +85,10 @@
 		// Opauth can throw all kinds of nasty bits, so be prepared
 		try
 		{
-			// get the Opauth object
+			// Opauth オブジェクトを取得
 			$opauth = \Auth_Opauth::forge(false);
 
-			// and process the callback
+			// そして、コールバックを処理
 			$status = $opauth->login_or_register();
 
 			// fetch the provider name from the opauth response so we can display a message
@@ -133,7 +133,7 @@
 					throw new \FuelException('Auth_Opauth::login_or_register() has come up with a result that we dont know how to handle.');
 			}
 
-			// redirect to the url set
+			// リダイレクト先の URL をセット
 			\Response::redirect($url);
 		}
 
@@ -153,7 +153,7 @@
 
 }</code></pre>
 
-			<h3 id="registration">Registration</h3>
+			<h3 id="registration">登録</h3>
 
 			<p>This is the example code for the new user registration method. It is based on the standard registration method that has been
 			documented in this <a href="auth.html#registration">example</a>, and is extended to support user registration after a valid
@@ -161,7 +161,7 @@
 
 <pre class="php"><code>public function action_register()
 {
-	// is registration enabled?
+	// 登録が有効？
 	if ( ! \Config::get('application.user.registration', false))
 	{
 		// inform the user registration is not possible
@@ -171,19 +171,19 @@
 		\Response::redirect_back();
 	}
 
-	// create the registration fieldset
+	// 登録用フィールドセットを作成
 	$form = \Fieldset::forge('registerform');
 
-	// add a csrf token to prevent CSRF attacks
+	// CSRF 攻撃を防ぐために CSRF トークンを追加
 	$form->form()->add_csrf();
 
-	// and populate the form with the model properties
+	// そしてモデルのプロパティを持つフォームを投入
 	$form->add_model('Model\\Auth_User');
 
 	// add the fullname field, it's a profile property, not a user property
 	$form->add_after('fullname', __('login.form.fullname'), array(), array(), 'username')->add_rule('required');
 
-	// add a password confirmation field
+	// パスワードの確認フィールドを追加
 	$form->add_after('confirm', __('login.form.confirm'), array('type' => 'password'), array(), 'password')->add_rule('required');
 
 	// make sure the password is required
@@ -195,7 +195,7 @@
 	// since it's not on the form, make sure validation doesn't trip on its absence
 	$form->field('group_id')->delete_rule('required')->delete_rule('is_numeric');
 
-	// fetch the oauth provider from the session (if present)
+	// セッションからの OAuth プロバイダを取得 (存在する場合)
 	$provider = \Session::get('auth-strategy.authentication.provider', false);
 
 	// if we have provider information, create the login fieldset too
@@ -209,7 +209,7 @@
 		$login->form()->add_csrf();
 		$login->add_model('Model\\Auth_User');
 
-		// we only need username and password
+		// ユーザー名とパスワードだけでいい
 		$login->disable('group_id')->disable('email');
 
 		// since they're not on the form, make sure validation doesn't trip on their absence
@@ -217,19 +217,19 @@
 		$login->field('email')->delete_rule('required')->delete_rule('valid_email');
 	}
 
-	// was the registration form posted?
+	// 登録フォームが投稿された？
 	if (\Input::method() == 'POST')
 	{
-		// was the login form posted?
+		// ログインフォームが投稿された？
 		if ($provider and \Input::post('login'))
 		{
-			// check the credentials.
+			// 資格情報のチェック
 			if (\Auth::instance()->login(\Input::param('username'), \Input::param('password')))
 			{
-				// get the current logged-in user's id
+				// 現在ログインしているユーザーの ID を取得
 				list(, $userid) = \Auth::instance()->get_user_id();
 
-				// so we can link it to the provider manually
+				// 手動でプロバイダにリンクします
 				$this->link_provider($userid);
 
 				// inform the user we're linked
@@ -241,23 +241,23 @@
 			}
 			else
 			{
-				// login failed, show an error message
+				// ログイン失敗、エラーメッセージを表示
 				\Messages::error(__('login.failure'));
 			}
 		}
 
-		// was the registration form posted?
+		// 登録フォームが投稿された？
 		elseif (\Input::post('register'))
 		{
-			// validate the input
+			// 入力を検証
 			$form->validation()->run();
 
-			// if validated, create the user
+			// 検証済みの場合、ユーザーを作成
 			if ( ! $form->validation()->error())
 			{
 				try
 				{
-					// call Auth to create this user
+					// ユーザーを作成するために Auth を呼び出す
 					$created = \Auth::create_user(
 						$form->validated('username'),
 						$form->validated('password'),
@@ -268,10 +268,10 @@
 						)
 					);
 
-					// if a user was created succesfully
+					// ユーザーが正常に作成された場合
 					if ($created)
 					{
-						// inform the user
+						// ユーザに通知
 						\Messages::success(__('login.new-account-created'));
 
 						// and go back to the previous page, or show the
@@ -288,13 +288,13 @@
 				// catch exceptions from the create_user() call
 				catch (\SimpleUserUpdateException $e)
 				{
-					// duplicate email address
+					// メールアドレスが重複
 					if ($e->getCode() == 2)
 					{
 						\Messages::error(__('login.email-already-exists'));
 					}
 
-					// duplicate username
+					// ユーザー名が重複
 					elseif ($e->getCode() == 3)
 					{
 						\Messages::error(__('login.username-already-exists'));
@@ -314,7 +314,7 @@
 	}
 	else
 	{
-		// get the auth-strategy data from the session (created by the callback)
+		// セッションから (コールバックにより作成された) auth-strategy データを取得
 		$user_hash = \Session::get('auth-strategy.user', array());
 
 		// populate the registration form with the data from the provider callback
@@ -338,7 +338,7 @@
 			the second login form. This can be controlled by the form variable $login, which is null if there if it's a normal registration,
 			and contains a fieldset if it's a registration after a provider callback.</p>
 
-			<h3 id="link_provider">Linking a provider to a local account</h3>
+			<h3 id="link_provider">ローカルアカウントへのプロバイダの関連づけ</h3>
 
 			<p>After new user registration is succesful, the new account needs to be linked to the provider the user used to login to your
 			application. The functionality for this is part of the Auth_Opauth class, but we use a local method to aid in calling it.</p>
