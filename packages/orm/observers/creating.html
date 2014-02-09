@@ -53,16 +53,16 @@
 				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
 
 			<article>
-				<h3 id="creating_observers">オブザーバ：自分の作成</h3>
+				<h3 id="creating_observers">オブザーバ：あなた自身での作成</h3>
 
-				<p>完全なclassname（名前空間を含めて）をモデルのオブザーバ・プロパティに加えることにで、オブザーバとしてあなたはどんなクラスでも
-					加えることができます。オブザーバとして使われることができるクラスを作成するには2つの方法があります:</p>
+				<p>完全なクラス名 (名前空間を含む) をモデルのオブザーバ・プロパティに加えることで、オブザーバとして任意のクラスを
+					追加することができます。オブザーバとして利用できるクラスを作成するには 2 つの方法があります:</p>
 
-				<h3>Extend the Orm\Observer class</h3>
+				<h3>Orm\Observer クラスを拡張</h3>
 
-				<p><kbd>Orm\Observer</kbd>を展開する新しいクラスを作成して、あなたのオブザーバが行動することを望むイベントのための
-					方法を作成してください。 下記の例は、それが<kbd>after_insert</kbd>に作用することを望んでいます。
-					メソッドは、それを実行する対象モデルのインスタンスが渡されます。</p>
+				<p><kbd>Orm\Observer</kbd> を拡張する新しいクラスを作成し、イベントがあなたのオブザーバーに作用するようにメソッドを作成してください。
+					下記の例では、 <kbd>after_insert</kbd> に対して作用します。
+					メソッドへは、それを実行する対象モデルのインスタンスが渡されます。</p>
 
 				<pre class="php"><code>class Observer_Something extends Orm\Observer
 {
@@ -73,21 +73,21 @@
 	}
 }</code></pre>
 
-				<p class="note">Orm\Observer タイプの拡張機能は、デフォルトでシングルトンのように、 
-					<kbd>$_INSTANCE</kbd> または <kbd>instance()</kbd> のプロパティを使用できなくなる、
-					もしくは動かなくなるでしょう。</p>
+				<p class="note">Orm\Observer タイプの拡張機能は、デフォルトでシングルトンなので、 <kbd>instance()</kbd> メソッドや 
+					<kbd>$_instance</kbd> プロパティ を利用できなくなるか、もしくは動かなくなるでしょう。
+					そのため、このメソッドは、静的もしくは非静的のどちらでもよいでしょう。</p>
 
-				<h3>orm_notify() メソッドを持っています</h3>
+				<h3>orm_notify() メソッドを持つ</h3>
 
-				<p>あなたは<kbd>Orm\Observer</kbd>クラスを拡張するとき、それはイベントに一致するメソッドがあるかどうかを確認し、
-				可能な場合はそれを呼びます<kbd>orm_notify()</kbd>メソッドを継承します。
-				それは<kbd>orm_notify()</kbd>メソッドを持っているとして、しかし、あなたがいる限りオブザーバーとして任意のクラスを使用することができます。それはイベントで呼び出され、
-				イベント名とモデルのインスタンスを渡すことができます。</p>
+				<p>あなたが <kbd>Orm\Observer</kbd> クラスを拡張している場合、イベントと一致しているかどうか確認され、
+					可能であれば継承した <kbd>orm_notify()</kbd> メソッドを呼び出します。しかし、 <kbd>orm_notify()</kbd>
+					メソッドを含んでいるのであれば、あなたは任意のクラスをオブザーバーとして利用することが出来ます。
+					つまり、イベント名とモデルインスタンスが渡され、イベントから呼び出されます。</p>
 
 				<pre class="php"><code>class Some_Other_Class
 {
 
-	// それはorm_notifyメソッドの前または後に、多くのメソッドとプロパティを持つことができます。
+	// それは orm_notify メソッドの前後に、多くのメソッドとプロパティを持つことができます。
 
 	public static function orm_notify(Orm\Model $model, $event)
 	{
@@ -97,21 +97,21 @@
 				<h3 id="event_names">イベント名</h3>
 
 				<ul>
-					<li><kbd>after_create</kbd>は、オブジェクトが作成されたら__construct()メソッドによって呼び出されます。</li>
-					<li><kbd>after_load</kbd>はオブジェクトがデータベースからロードされた時に、__construct()メソッドによって呼び出されます。</li>
-					<li><kbd>before_save</kbd>, 何が行われる前に、save()メソッドによって呼び出されます</li>
-					<li><kbd>after_save</kbd>, 何かが完了した後に、save()メソッドによって呼び出されます</li>
-					<li><kbd>before_insert</kbd>, オブジェクトが最初にデータベースに保存される前に呼び出されます</li>
-					<li><kbd>after_insert</kbd>, オブジェクトが最初にデータベースに保存された後に呼び出されます</li>
-					<li><kbd>before_update</kbd>, オブジェクトがデータベースに保存される前に呼び出されます（初回を除く）</li>
-					<li><kbd>after_update</kbd>, オブジェクトがデータベースに保存された後呼び出されます（初回を除く）</li>
-					<li><kbd>before_delete</kbd>,あなたがデータベースからオブジェクトを削除するときに呼び出されます</li>
-					<li><kbd>after_delete</kbd>, あなたがデータベースからオブジェクトを削除した後に呼び出されます</li>
-					<li><kbd>after_clone</kbd>, オブジェクトが正常にクローン化された後に呼び出されます</li>
+					<li><kbd>after_create</kbd> は、オブジェクトが作成された時に __construct() メソッドから呼び出されます</li>
+					<li><kbd>after_load</kbd> は、オブジェクトがデータベースからロードされた時に __construct() メソッドから呼び出されます</li>
+					<li><kbd>before_save</kbd> は、何かが行われる前に save() メソッドから呼び出されます</li>
+					<li><kbd>after_save</kbd> は、保存が完了した後に save() メソッドから呼び出されます</li>
+					<li><kbd>before_insert</kbd> は、オブジェクトが最初にデータベースへ保存される前に呼び出されます</li>
+					<li><kbd>after_insert</kbd> は、オブジェクトが最初にデータベースへ保存された後に呼び出されます</li>
+					<li><kbd>before_update</kbd> は、オブジェクトがデータベースに保存される前に呼び出されます (初回を除く)</li>
+					<li><kbd>after_update</kbd> は、オブジェクトがデータベースに保存された後呼び出されます (初回を除く)</li>
+					<li><kbd>before_delete</kbd> は、あなたがデータベースからオブジェクトを削除するときに呼び出されます</li>
+					<li><kbd>after_delete</kbd> は、あなたがデータベースからオブジェクトを削除した後に呼び出されます</li>
+					<li><kbd>after_clone</kbd> は、オブジェクトが正常にクローン化された後に呼び出されます</li>
 				</ul>
 
 				<p class="note">
-					<kbd>before_insert</kbd> and <kbd>before_update</kbd> are triggered <em>only</em> if the object has been changed. If you need to trigger an event even if the object has not been changed (ex.: to handle $_FILES datas), you should use <kbd>before_save</kbd>.
+					オブジェクトが変更された場合に<em>のみ</em> <kbd>before_insert</kbd> と <kbd>before_update</kbd> は引き起こされます。イベントをオブジェクトが変更されていない場合でも引き起こす必要がある場合 (例： $_FILES のデータを処理するため) 、あなたは <kbd>before_save</kbd> を利用する必要があります。
 				</p>
 
 			</article>
