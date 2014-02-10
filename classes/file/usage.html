@@ -60,6 +60,59 @@
 			</section>
 
 			<article>
+				<h4 class="method" id="method_exists">exists($path, $area = null)</h4>
+				<p>Checks if a file exists. If $path points to a symlink, the symlinks are resolved to make sure whatever it points to is a file.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$path</kbd></th>
+									<td><em>required</em></td>
+									<td>Location of the file to check</td>
+								</tr>
+								<tr>
+									<th><kbd>$area</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
+									usage</a> for more information)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><kbd>boolean</kbd> true if the file in $path exists, false if not</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>
+							<kbd>OutsideAreaException</kbd> when a path not inside the file area.
+							<kbd>FileAccessException</kbd> when an area is used and there is an extension violation.
+						</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$exists = File::exists(DOCROOT.'/test.txt');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_create">create($basepath, $name, $contents = null, $area = null)</h4>
 				<p>Create a file.</p>
 				<table class="method">
