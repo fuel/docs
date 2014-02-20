@@ -93,6 +93,12 @@
 							<td><pre class="php"><code>'\\'</code></pre></td>
 							<td>The escape character</td>
 						</tr>
+						<tr>
+							<th>enclose_numbers</th>
+							<td>bool</td>
+							<td><pre class="php"><code>true</code></pre></td>
+							<td>If false, numbers will not be enclosed. If true, numbers will be enclosed too</td>
+						</tr>
 					</tbody>
 				</table>
 
@@ -309,7 +315,7 @@ print_r(Format::forge($array)->to_xml());
 			</article>
 
 			<article>
-				<h4 class="method" id="method_to_csv">to_csv($data = null, $separator = ',')</h4>
+				<h4 class="method" id="method_to_csv">to_csv($data = null, $delimiter = null, $enclose_numbers = null)</h4>
 				<p>The <strong>to_csv</strong> method returns the given data as a CSV string. Do not call this directly, use the <strong>forge</strong> method as described in the example.</p>
 				<table class="method">
 					<tbody>
@@ -329,12 +335,17 @@ print_r(Format::forge($array)->to_xml());
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Data to be converted.</td>
+									<td>Data to be converted. If not given, the input of forge() is used.</td>
 								</tr>
 								<tr>
-									<th><kbd>$separator</kbd></th>
-									<td><pre class="php"><code>','</code></pre></td>
-									<td>CSV field separator. Defaults to a comma.</td>
+									<th><kbd>$delimiter</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>CSV field separator. If not given, the configured default is used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$enclose_numbers</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>If false, number will not be enclosed. If true, numbers will be enclosed too. If not given, the configured default is used.</td>
 								</tr>
 							</table>
 						</td>
@@ -346,12 +357,12 @@ print_r(Format::forge($array)->to_xml());
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
-print_r(Format::forge($json_string, 'json')->to_csv());
+							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux","nr":1}';
+print_r(Format::forge($json_string, 'json')->to_csv(null, null, false));
 
 // Returns
-// foo,baz
-// "bar","qux"</code>
+// "foo","baz","nr"
+// "bar","qux",1</code>
 							</pre>
 						</td>
 					</tr>
