@@ -225,7 +225,7 @@ echo Arr::to_assoc($arr);
 			</article>
 
 			<article>
-				<h4 id="method_assoc_to_keyval" class="method">assoc_to_keyval($assoc = null, $key_field = null, $val_field = null)</h4>
+				<h4 id="method_assoc_to_keyval" class="method">assoc_to_keyval($assoc, $key_field, $val_field)</h4>
 				<p><strong>assoc_to_keyval</strong> メソッドは多次元配列を key=>val の配列に変換します。</p>
 				<table class="method">
 					<tbody>
@@ -299,8 +299,84 @@ Array
 			</article>
 
 			<article>
-				<h4 id="method_average" class="method">average($array = null)</h4>
-				<p><strong>average</strong> メソッドは全ての配列の値から平均値を求めて返します。</p>
+				<h4 id="method_keyval_to_assoc" class="method">keyval_to_assoc($array, $key_field, $val_field)</h4>
+				<p>The <strong>keyval_to_assoc</strong> method turns an array of key => values into a multi-dimensional associative array with the provided field names.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to transform.</td>
+								</tr>
+								<tr>
+									<th><kbd>$key_field</kbd></th>
+									<td><em>required</em></td>
+									<td>The associative array field to map the key to.</td>
+								</tr>
+								<tr>
+									<th><kbd>$val_field</kbd></th>
+									<td><em>required</em></td>
+									<td>The associative array field to map the value to.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td><kbd>InvalidArgumentException</kbd> when the first argument isn't an array or doesn't
+							implement the Iterator interface.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$people = array(
+	"Jack" => 21,
+	"Jill" => 23
+);
+
+print_r(Arr::keyval_to_assoc($people, 'name', 'age'));
+
+// Result:
+Array
+(
+	[0] => Array
+	(
+		["name"] => "Jack"
+		["age"] => 21
+	)
+	[1] => Array
+	(
+		["name"] => "Jill"
+		["age"] => 23
+	)
+)
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 id="method_average" class="method">average($array)</h4>
+				<p>The <strong>average</strong> method takes all values of an array and returns the average value.</p>
 				<table class="method">
 					<tbody>
 					<tr>

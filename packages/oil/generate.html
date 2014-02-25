@@ -63,6 +63,7 @@
 					<li><a href="#tasks">タスク</a></li>
 					<li><a href="#configs">設定</a></li>
 					<li><a href="#packages">Packages</a></li>
+					<li><a href="#modules">Modules</a></li>
 				</ul>
 
 				<h3 id="controllers">コントローラ</h3>
@@ -732,6 +733,29 @@ class Newtask
 	Creating file: PKGPATH/sample/classes/sample.php
 	Creating file: PKGPATH/sample/config/sample.php
 	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
+
+				<h3 id="modules">Modules</h3>
+
+				<p>
+					To generate a <a href="../../general/modules.html">Module</a>, use the following command:
+				</p>
+
+				<pre class="cli"><code>$ php oil g module blog</code></pre>
+
+				<p>
+					This command will create a folder called <code>blog</code> in you app's module path defined in <code>config.module_paths</code>. If you have multiple module paths defined, you will get a list of paths that you can choose from, e.g.:
+				</p>
+
+				<pre class="cli"><code>$ php oil g module blog
+Your app has multiple module paths defined. Please choose the appropriate path from the list below
+[1] /var/www/fuel/shared/modules/
+[2] /var/www/fuel/app/modules/</code></pre>
+
+				<p>
+					To provide for even easier module generation, you can supply the <code>--folders</code> option with a list of comma-separated folders to be created. These can be nested almost indefinitely and you don't need to provide every parent folder. A short yet useful example can be:
+				</p>
+
+				<pre class="cli"><code>$ php oil g module blog --folders=classes/model,classes/controller,config,lang</code></pre>
 
 			</section>
 
