@@ -203,12 +203,12 @@ $opauth = \Auth_Opauth::forge(array(
 					<tr>
 						<th>返り値</th>
 						<td>
-							string, status code. The following status codes are supported:
+							string, ステータスコード。次のステータスコードがサポートされている：
 							<ul>
-								<li>'linked': the UID is succesfully linked to the current logged-in user</li>
-								<li>'logged_in': the user is succesfully logged-in using the OAuth account</li>
-								<li>'registered': the UID is linked to a newly registered account, and the user is logged-in</li>
-								<li>'register': the UID is not known, and no logged-in user exists, have the user register first</li>
+								<li>'linked': UID は現在ログインしているユーザーに正常にリンクされた</li>
+								<li>'logged_in': OAuth のアカウントを使用しユーザーは正常にログインした</li>
+								<li>'registered': UID は新しく登録されたアカウントにリンクされ、そのユーザーでログインをした</li>
+								<li>'register': UID は既知ではなく、まだログインしているユーザが存在しないため、ユーザ登録を先に行う</li>
 							</ul>
 						</td>
 					</tr>
@@ -250,14 +250,14 @@ $status = $opauth->login_or_register();
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Array with all data required to create the link (see example)</td>
+									<td>リンクを作成するために必要なすべてのデータの配列 (例を参照)</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed. The <strong>insert id</strong> of the created provider link record, or <strong>false</strong> if the creation failed.</td>
+						<td>作成されたプロバイダリンクレコードの <strong>挿入 ID</strong> か、作成に失敗した場合は <strong>false</strong> 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -285,7 +285,7 @@ if ($authentication = \Session::get('auth-strategy.authentication', array()))
 }
 else
 {
-	// no data available, looks like we didn't receive an OAuth callback earlier?
+	// 有効なデータがありません、先ほどの OAuth コールバックを受け取っていないように見えます。
 }
 </code></pre>
 						</td>
@@ -296,7 +296,7 @@ else
 
 			<article>
 				<h4 id="method_get" class="method">get($key, $default = null)</h4>
-				<p><strong>get</strong> メソッドは Opauth ストラテジーによって作成された生のプロバイダのコールバック応答構造に
+				<p><strong>get</strong> メソッドは Opauth ストラテジーによって作成された生のプロバイダのコールバックレスポンスの構造に
 				直接アクセスすることが可能な getter です。</p>
 				<table class="method">
 					<tbody>
@@ -316,19 +316,19 @@ else
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<td><em>必須</em></td>
-									<td>Name of the key to the desired value in the response array</td>
+									<td>レスポンス配列内の値を要求するキーの名前</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Default value to return if the requested key does not exist</td>
+									<td>要求されたキーが存在しない場合はデフォルト値が返されます</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed. The value referenced by the given key, or whatever was defined as $default.</td>
+						<td>mixed 。指定されたキーによって参照される値、もしくは $default で定義された値。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -348,9 +348,9 @@ $refresh_token = $opauth->get('credentials.refresh_token', null);
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">You can only use this in the method in which you are processing the callback. In all other cases, there
-				is no OAuth response available. If there was a valid response processed earlier, its basic data is stored in the session
-				using the session key "auth-strategy".</p>
+				<p class="note">コールバックを処理する中でのみこのメソッドを利用することができます。
+				他のすべての場合において、利用可能な OAuth レスポンスはありません。 以前に処理された有効なレスポンスがあった場合、
+				その基本データはセッションキー "auth-strategy" を使用してセッションに格納されています。</p>
 			</article>
 		</div>
 
