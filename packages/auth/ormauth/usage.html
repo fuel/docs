@@ -196,7 +196,7 @@ if (Auth::login($name, $pass))
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>boolean. returns <strong>true</strong> if a logged-in user is present, <strong>false</strong> otherwise.</td>
+							<td>boolean。ログインしたユーザが存在する場合は <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -235,7 +235,7 @@ if ( ! Auth::check())
 									</tr>
 									<tr>
 										<th><kbd>$user_id</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>ログインさせたいユーザの id もしくは、有効な \Model\Auth_User のインスタンス</td>
 									</tr>
 								</table>
@@ -320,17 +320,17 @@ Auth::logout();
 									</tr>
 									<tr>
 										<th><kbd>$username</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>作成したいユーザー名</td>
 									</tr>
 									<tr>
 										<th><kbd>$password</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>ユーザーに割り当てるパスワード</td>
 									</tr>
 									<tr>
 										<th><kbd>$email</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>作成するユーザの電子メールアドレス</td>
 									</tr>
 									<tr>
@@ -463,12 +463,12 @@ Auth::update_user(
 									</tr>
 									<tr>
 										<th><kbd>$old_password</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>ユーザの現在のパスワード</td>
 									</tr>
 									<tr>
 										<th><kbd>$new_password</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>ユーザの新しいパスワード</td>
 									</tr>
 									<tr>
@@ -525,7 +525,7 @@ Auth::change_password('thisismynewpassword','thisismysecretpassword');
 									</tr>
 									<tr>
 										<th><kbd>$username</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>パスワードをリセットしたいユーザのユーザ名</td>
 									</tr>
 								</table>
@@ -573,7 +573,7 @@ $new_password = Auth::reset_password('thisusername');
 									</tr>
 									<tr>
 										<th><kbd>$username</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>削除したいユーザのユーザ名</td>
 									</tr>
 								</table>
@@ -654,7 +654,7 @@ Auth::create_login_hash();
 									</tr>
 									<tr>
 										<th><kbd>$field</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>値が欲しいプロパティの名前</td>
 									</tr>
 									<tr>
@@ -736,7 +736,7 @@ list(, $userid) = Auth::get_user_id();
 
 				<article>
 					<h4 id="method_get_groups" class="method">get_groups()</h4>
-					<p>The <strong>get_groups</strong> method returns the ORM user group object assigned to the currently logged-in user.</p>
+					<p><strong>get_groups</strong> メソッドは、現在ログインしているユーザーに割り当てられた ORM ユーザーグループオブジェクトを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -752,7 +752,7 @@ list(, $userid) = Auth::get_user_id();
 						<tr>
 							<th>返り値</th>
 							<td>
-								mixed. Returns an array in the form <strong>array(array(driver, group-object))</strong> if a user is logged in, or <strong>false</strong> otherwise.
+								mixed 。ユーザがログイン中なら、 <strong>array(array(driver, group-object))</strong> 形式の配列を、そうでなければ <strong>false</strong> を返します。
 							</td>
 						</tr>
 							<th>例</th>
@@ -905,10 +905,10 @@ if (empty($name))
 								<pre class="php"><code>// すべてのプロフィールフィールドが定義される
 $profile = Auth::get_profile_fields();
 
-// get a specific profile fields defined
+// 定義済みの特定のプロファイルフィールドを取得
 $fullname = Auth::get_profile_fields('fullname', 'Unknown');
 
-// will return null, as username is not part of the metadata
+// ユーザ名はメタデータの一部ではないので、 NULL が返る
 $fullname = Auth::get_profile_fields('username', 'Unknown username');
 </code></pre>
 							</td>
@@ -937,7 +937,7 @@ $fullname = Auth::get_profile_fields('username', 'Unknown username');
 									</tr>
 									<tr>
 										<th><kbd>$group</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>チェックしたいグループの id もしくは、有効な \Model\Auth_Group のインスタンス</td>
 									</tr>
 									<tr>
@@ -1141,7 +1141,7 @@ $name = Auth::group('Ormgroup')->get_name(100);	// 'Administrators' が返る
 									</tr>
 									<tr>
 										<th><kbd>$condition</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>検査したいアクセス条件</td>
 									</tr>
 								</table>

@@ -196,7 +196,7 @@ if (Auth::login($name, $pass))
 						</tr>
 						<tr>
 							<th>戻り値</th>
-							<td>boolean. returns <strong>true</strong> if a logged-in user is present, <strong>false</strong> otherwise.</td>
+							<td>boolean。ログインしたユーザが存在する場合は <strong>true</strong> を、そうでなければ <strong>false</strong> を返す。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -235,7 +235,7 @@ if ( ! Auth::check())
 									</tr>
 									<tr>
 										<th><kbd>$user_id</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>ログインさせたいユーザの id</td>
 									</tr>
 								</table>
@@ -314,17 +314,17 @@ Auth::logout();
 									</tr>
 									<tr>
 										<th><kbd>$username</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>作成したいユーザー名</td>
 									</tr>
 									<tr>
 										<th><kbd>$password</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>ユーザーに割り当てるパスワード</td>
 									</tr>
 									<tr>
 										<th><kbd>$email</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>作成するユーザの電子メールアドレス</td>
 									</tr>
 									<tr>
@@ -455,12 +455,12 @@ Auth::update_user(
 									</tr>
 									<tr>
 										<th><kbd>$old_password</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>ユーザの現在のパスワード</td>
 									</tr>
 									<tr>
 										<th><kbd>$new_password</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>ユーザの新しいパスワード</td>
 									</tr>
 									<tr>
@@ -517,7 +517,7 @@ Auth::change_password('mycurrentpassword','mynewpassword');
 									</tr>
 									<tr>
 										<th><kbd>$username</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>パスワードをリセットしたいユーザのユーザ名</td>
 									</tr>
 								</table>
@@ -565,7 +565,7 @@ $new_password = Auth::reset_password('thisusername');
 									</tr>
 									<tr>
 										<th><kbd>$username</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>削除したいユーザのユーザ名</td>
 									</tr>
 								</table>
@@ -645,7 +645,7 @@ Auth::create_login_hash();
 									</tr>
 									<tr>
 										<th><kbd>$field</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>値が欲しいプロパティの名前</td>
 									</tr>
 									<tr>
@@ -722,12 +722,12 @@ list(, $userid) = Auth::get_user_id();
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのユーザ id が返るので <strong>false</strong> は返ることはありません。</p>
+					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのユーザ id が返るので <strong>false</strong> が返ることはありません。</p>
 				</article>
 
 				<article>
 					<h4 id="method_get_groups" class="method">get_groups()</h4>
-					<p><strong>get_groups</strong> メソッドは、ログインしているユーザが所属するグループを返します。</p>
+					<p><strong>get_groups</strong> メソッドは、現在ログインしているユーザーに割り当てられたユーザーグループを返します。</p>
 					<table class="method">
 						<tbody>
 						<tr>
@@ -769,7 +769,7 @@ list($driver, $groupid) = Auth::get_groups();
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのグループ情報が返るので <strong>false</strong> は返ることはありません。</p>
+					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのグループ情報が返るので <strong>false</strong> が返ることはありません。</p>
 				</article>
 
 				<article>
@@ -811,7 +811,7 @@ if (empty($email))
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのメールアドレスが返るので <strong>false</strong> は返ることはありません。</p>
+					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのメールアドレスが返るので <strong>false</strong> が返ることはありません。</p>
 				</article>
 
 				<article>
@@ -849,7 +849,7 @@ if (empty($name))
 						</tr>
 						</tbody>
 					</table>
-					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのユーザー名が返るので <strong>false</strong> は返ることはありません。</p>
+					<p class="note">ゲストユーザをサポートしている場合、ゲストユーザのユーザー名が返るので <strong>false</strong> が返ることはありません。</p>
 				</article>
 
 				<article>
@@ -919,7 +919,7 @@ $profile = Auth::get_profile_fields();
 									</tr>
 									<tr>
 										<th><kbd>$group</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>チェックしたいグループの id</td>
 									</tr>
 									<tr>
@@ -1116,7 +1116,7 @@ $name = Auth::group('Simplegroup')->get_name(100);	// 'Administrators' が返る
 									</tr>
 									<tr>
 										<th><kbd>$condition</kbd></th>
-										<td>required</td>
+										<td>必須</td>
 										<td>検査したいアクセス条件</td>
 									</tr>
 								</table>
