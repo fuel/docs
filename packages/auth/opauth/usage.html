@@ -47,21 +47,21 @@
 
 			<h2 id="usage">Opauth の使用方法</h2>
 
-			<p>As said in the <a href="intro.html">introduction</a> of the Opauth extension to Auth, the wrapper class configures itself
-			automatically for either Simpleauth or Ormauth, based on the driver configured in the <strong>auth.php</strong> configuration
-			file.</p>
+			<p>Auth を拡張する Opauth の <a href="intro.html">はじめに</a> で述べたとおり、ラッパークラスは
+			<strong>auth.php</strong> 設定ファイルで構成されたドライバに基づいて、自動的に Simpleauth または Ormauth
+			のいずれかに設定されます。</p>
 
-			<p>If you don't use these drivers, but you have enrolled your own driver set in the Auth framework, you can still use the Opauth
-			integration class, but you'll have to create the 'providers' table defined in the migration 008 manually.
-			You can name it anything you like. Also, your custom Login driver should provide the methods <strong>Auth::check()</strong>,
-			<strong>Auth::instance()->get_user_id()</strong>, <strong>Auth::instance()->force_login()</strong> and
-			<strong>Auth::create_user()</strong>, with prototypes compatible with Simpleauth. Without these, it will not work.</p>
+			<p>認証フレームワークで独自のドライバセットを登録し、 Simpleauth または Ormauth のドライバを使用しない場合でも、
+			あなたはまだ Opauth 統合クラスを使用することができますが、マイグレーション 008 で定義された 'providers' のテーブルを手動で作成する必要があります。
+			あなたは独自のドライバセットに好きな名前を付けることができます。また、カスタムログインドライバは Simpleauth とプロトタイプ互換がある
+			<strong>Auth::check()</strong> 、 <strong>Auth::instance()->get_user_id()</strong> 、 <strong>Auth::instance()->force_login()</strong> と 
+			<strong>Auth::create_user()</strong> のメソッドを提供する必要があります。これらがないと、 Opauth 統合クラスは動作しません。</p>
 
-			<h3 id="runtime_config">ランタイム設定</h3>
+			<h3 id="runtime_config">実行時の設定</h3>
 
-			<p>Most of the Opauth configuration is done through the <strong>opauth.php</strong> configuration file, and all of the options in that
-			file can be altered at runtime by passing a new value to the forge() using the $config array. In addition to this, there are some
-			configuration values you can only pass at runtime, they are not supported in the configuration file:
+			<p>Opauth の設定の大部分は、設定ファイルの <strong>opauth.php</strong> を介して行われ、そして、そのファイル内のすべてのオプションは、
+			$config 配列を使用して、 forge() に新しい値を渡すことにより実行時に変更することができます。
+			これに加え、設定ファイルではサポートされず実行時にのみ渡すことができるいくつかの設定値が存在します：
 			</p>
 
 			<table class="config">
@@ -89,8 +89,8 @@
 						<td>string</td>
 						<td><pre><i>自動検出</i></pre></td>
 						<td>
-							URI path to the controller method that does your OAuth authentication. By default, it is set to whatever the current
-							path is when you forge an Opauth object.
+							あなたの OAuth 認証を行うコントローラのメソッドへの URI パス。
+							デフォルトでは、 Opauth オブジェクトを forge したときの現在のパスが設定されています。
 						</td>
 					</tr>
 					<tr>
