@@ -79,9 +79,9 @@
 						<td>string</td>
 						<td><pre><i>自動検出</i></pre></td>
 						<td>
-							Allows you to define the name of the table that contains the provider information manually. When using Simpleauth or
-							Ormauth, the name of this table is auto-detected. If you use a custom Auth driver set, and have created the table
-							manually, you will have to pass this table name on every forge call.
+							手動でプロバイダ情報を含むテーブルの名前を定義することができます。
+							このテーブルの名前は Simpleauth または Ormauth を利用する場合は自動的に検出されます。
+							カスタム認証ドライバセットを利用し手動でテーブルを作成した場合は、すべての生成時の呼び出しでこのテーブル名を渡す必要があります。
 						</td>
 					</tr>
 					<tr>
@@ -90,7 +90,7 @@
 						<td><pre><i>自動検出</i></pre></td>
 						<td>
 							あなたの OAuth 認証を行うコントローラのメソッドへの URI パス。
-							デフォルトでは、 Opauth オブジェクトを forge したときの現在のパスが設定されています。
+							デフォルトでは、 Opauth オブジェクトを生成したときの現在のパスが設定されています。
 						</td>
 					</tr>
 					<tr>
@@ -98,8 +98,8 @@
 						<td>string</td>
 						<td><pre><i>自動検出</i></pre></td>
 						<td>
-							URI path to the controller method that handles the OAuth provider callback. By default, it is set to call the 'action_callback'
-							or 'get_callback' method in the same controller that <strong>path</strong> points to.
+							OAuth プロバイダのコールバックを処理するコントローラメソッドへの URI パス。デフォルトでは、 <strong>path</strong>
+							が指す同じコントローラ内の 'action_callback' または 'get_callback' メソッドを呼び出すように設定されています。
 						</td>
 					</tr>
 					<tr>
@@ -107,15 +107,15 @@
 						<td>string</td>
 						<td><pre><i>自動検出</i></pre></td>
 						<td>
-							If you have manually set the <strong>path</strong>, auto detection of the OAuth provider called doesn't work, and you will
-							have to define the provider name manually. This is case sensitive, and MUST match the case used by the strategy provider
-							and the key used to define the strategy in the <strong>opauth.php</strong> configuration file.
+							手動で <strong>path</strong> を設定している場合、OAuthプロバイダの呼び出しの自動検出が機能しないため
+							手動でプロバイダ名を定義する必要があります。これは大文字と小文字が区別され、ストラテジープロバイダの利用時と設定ファイルの
+							<strong>opauth.php</strong> でストラテジーの定義をするために利用するキーは一致しなければなりません。
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<p class="note">When using Simpleauth or Ormauth, and you have followed the example code for integrating Opauth in your application,
-			none of these runtime configuration values are needed, the auto-detected values will do the	trick just fine.</p>
+			<p class="note">Simpleauth または Ormauth を利用しており、あなたのアプリケーションが Opauth を統合するためサンプルコードに従っている場合は、
+			これら実行時の設定値はいずれも必要がありません。自動検出した値でうまく動きます。</p>
 
 			<h3 id="classmethods">クラスメソッド</h3>
 
@@ -140,7 +140,7 @@
 								<tr>
 									<th><kbd>$config</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Any runtime configuration values you want to pass to the instance</td>
+									<td>インスタンスに渡したい任意の実行時の設定値</td>
 								</tr>
 								<tr>
 									<th><kbd>$autorun</kbd></th>
@@ -158,19 +158,19 @@
 						<th>例</th>
 						<td>
 							<pre class="php"><code>/**
- * load the wrapper, and have it process the provider defined in the URI
+ * ラッパーがロードされ、 URI に定義されているプロバイダを処理している
  *
- * this redirects to the providers authentication page, so it should be the
- * last line in your method
+ * プロバイダの認証ページにリダイレクトされるため、
+ * メソッドの最後の行である必要がある
  */
 \Auth_Opauth::forge();
 
-// forge an object with a runtime config
+// ランタイム設定を持つオブジェクトを生成
 \Auth_Opauth::forge(array(
     'default_group' => $custom_group_id,
 ));
 
-// forge an object with a runtime config, to process a callback
+// ランタイム設定を持つオブジェクトを生成しコールバックを処理
 $opauth = \Auth_Opauth::forge(array(
     'default_group' => $custom_group_id,
 ), false);
@@ -179,8 +179,8 @@ $opauth = \Auth_Opauth::forge(array(
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">If you want to process a callback without passing a custom config, you don't have to pass an empty array, you
-				can use <strong>\Auth_Opauth::forge(false);</strong> as a shortcut.</p>
+				<p class="note">カスタム設定を渡さずに、コールバックを処理したい場合は空の配列を渡す必要はなく、 
+				<strong>\Auth_Opauth::forge(false);</strong> をショートカットとして利用できます。</p>
 			</article>
 
 			<article>
