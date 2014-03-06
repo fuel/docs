@@ -43,7 +43,7 @@
 		</div>
 
 		<div id="main">
-			<h2>Using Opauth in your application</h2>
+			<h2>Opauth をアプリケーションで使う</h2>
 
 			<p>On this page you will find an example of the methods needed to integrate OAuth authentication in your application. It extends
 			the functionality from the standard Auth controller, documented <a href="auth.html">here</a>.
@@ -57,7 +57,7 @@
 
 <pre class="php"><code>public function action_oauth($provider = null)
 {
-	// bail out if we don't have an OAuth provider to call
+	// 呼び出すための OAuth プロバイダを持っていない場合は出て行く
 	if ($provider === null)
 	{
 		\Messages::error(__('login-no-provider-specified'));
@@ -82,7 +82,7 @@
 
 <pre class="php"><code>public function action_callback()
 	{
-		// Opauth can throw all kinds of nasty bits, so be prepared
+		// Opauth は厄介な雑用のすべての種類を投げることができます、さあ、準備ができました
 		try
 		{
 			// Opauth オブジェクトを取得
@@ -91,41 +91,41 @@
 			// そして、コールバックを処理
 			$status = $opauth->login_or_register();
 
-			// fetch the provider name from the opauth response so we can display a message
+			// メッセージを表示できるように opauth 応答からプロバイダ名を取得
 			$provider = $opauth->get('auth.provider', '?');
 
-			// deal with the result of the callback process
+			// コールバック処理の結果を扱う
 			switch ($status)
 			{
-				// a local user was logged-in, the provider has been linked to this user
+				// ローカルのユーザがログインしていて、プロバイダはこのユーザーにリンクされている
 				case 'linked':
-					// inform the user the link was succesfully made
+					// リンクが正常に行われたことをユーザに通知
 					\Messages::success(sprintf(__('login.provider-linked'), ucfirst($provider)));
-					// and set the redirect url for this status
+					// そして、この状態のためのリダイレクト URL を設定
 					$url = 'dashboard';
 				break;
 
 				// the provider was known and linked, the linked account as logged-in
-				case 'logged_in':
-					// inform the user the login using the provider was succesful
+				case 'logged_in':ユーザに通知するプロバイダを使用してログインが成功した
+					// プロバイダを使用してログインが成功したことをユーザーに通知
 					\Messages::success(sprintf(__('login.logged_in_using_provider'), ucfirst($provider)));
-					// and set the redirect url for this status
+					// そして、この状態のためのリダイレクト URL を設定
 					$url = 'dashboard';
 				break;
 
-				// we don't know this provider login, ask the user to create a local account first
+				// このプロバイダでのログインは知らないので、最初にユーザーにローカルアカウントを作成するように依頼
 				case 'register':
-					// inform the user the login using the provider was succesful, but we need a local account to continue
+					// プロバイダを使用してログインが成功したことをユーザーに通知、しかし、続けるにはローカルアカウントが必要です
 					\Messages::info(sprintf(__('login.register-first'), ucfirst($provider)));
-					// and set the redirect url for this status
+					// そして、この状態のためのリダイレクト URL を設定
 					$url = 'users/register';
 				break;
 
-				// we didn't know this provider login, but enough info was returned to auto-register the user
+				// このプロバイダでのログインは知らなかったが、十分な情報が返されたのでユーザーを自動的に登録した
 				case 'registered':
-					// inform the user the login using the provider was succesful, and we created a local account
+					// プロバイダを使用してログインが成功したことをユーザーに通知、そして、ローカルアカウントが作成された
 					\Messages::success(__('login.auto-registered'));
-					// and set the redirect url for this status
+					// そして、この状態のためのリダイレクト URL を設定
 					$url = 'dashboard';
 				break;
 
@@ -137,7 +137,7 @@
 			\Response::redirect($url);
 		}
 
-		// deal with Opauth exceptions
+		// Opauth の例外を処理
 		catch (\OpauthException $e)
 		{
 			\Messages::error($e->getMessage());
@@ -164,10 +164,10 @@
 	// 登録が有効？
 	if ( ! \Config::get('application.user.registration', false))
 	{
-		// inform the user registration is not possible
+		// ユーザ登録ができないことをお知らせ
 		\Messages::error(__('login.registation-not-enabled'));
 
-		// and go back to the previous page (or the homepage)
+		// そして、前のページ (またはホームページ) に戻る
 		\Response::redirect_back();
 	}
 
@@ -180,19 +180,19 @@
 	// そしてモデルのプロパティを持つフォームを投入
 	$form->add_model('Model\\Auth_User');
 
-	// add the fullname field, it's a profile property, not a user property
+	// そして、フルネームフィールド、それは、ユーザーのプロパティではなくプロファイルのプロパティ
 	$form->add_after('fullname', __('login.form.fullname'), array(), array(), 'username')->add_rule('required');
 
 	// パスワードの確認フィールドを追加
 	$form->add_after('confirm', __('login.form.confirm'), array('type' => 'password'), array(), 'password')->add_rule('required');
 
-	// make sure the password is required
+	// パスワードは必要なので確認
 	$form->field('password')->add_rule('required');
 
-	// and new users are not allowed to select the group they're in (duh!)
+	// そして、新規ユーザーは彼らが属しているグループを選択できません (当たり前じゃないか)
 	$form->disable('group_id');
 
-	// since it's not on the form, make sure validation doesn't trip on its absence
+	// それはフォーム上にはないので、それの不足で検証が失敗しないように
 	$form->field('group_id')->delete_rule('required')->delete_rule('is_numeric');
 
 	// セッションからの OAuth プロバイダを取得 (存在する場合)
@@ -212,7 +212,7 @@
 		// ユーザー名とパスワードだけでいい
 		$login->disable('group_id')->disable('email');
 
-		// since they're not on the form, make sure validation doesn't trip on their absence
+		// それらはフォーム上にはないので、それらの不足で検証が失敗しないように
 		$login->field('group_id')->delete_rule('required')->delete_rule('is_numeric');
 		$login->field('email')->delete_rule('required')->delete_rule('valid_email');
 	}
@@ -274,18 +274,18 @@
 						// ユーザに通知
 						\Messages::success(__('login.new-account-created'));
 
-						// and go back to the previous page, or show the
-						// application dashboard if we don't have any
+						// そして、前のページか、前のページがない場合は
+						// アプリケーションのダッシュボードを表示
 						\Response::redirect_back('dashboard');
 					}
 					else
 					{
-						// oops, creating a new user failed?
+						// おっと、新しいユーザーの作成に失敗しました？
 						\Messages::error(__('login.account-creation-failed'));
 					}
 				}
 
-				// catch exceptions from the create_user() call
+				// create_user() の呼び出し時の例外を捕捉
 				catch (\SimpleUserUpdateException $e)
 				{
 					// メールアドレスが重複
@@ -300,7 +300,7 @@
 						\Messages::error(__('login.username-already-exists'));
 					}
 
-					// this can't happen, but you'll never know...
+					// これは起こり得ないが、ずっとそうとは限らない...
 					else
 					{
 						\Messages::error($e->getMessage());
@@ -309,7 +309,7 @@
 			}
 		}
 
-		// validation failed, repopulate the form from the posted data
+		// 検証失敗、ポストされたデータをフォームへ再投入
 		$form->repopulate();
 	}
 	else
@@ -317,7 +317,7 @@
 		// セッションから (コールバックにより作成された) auth-strategy データを取得
 		$user_hash = \Session::get('auth-strategy.user', array());
 
-		// populate the registration form with the data from the provider callback
+		// プロバイダのコールバックからのデータを登録フォームへ投入
 		$form->populate(array(
 			'username' => \Arr::get($user_hash, 'nickname'),
 			'fullname' => \Arr::get($user_hash, 'name'),
@@ -325,7 +325,7 @@
 		));
 	}
 
-	// pass the fieldset to the form, and display the new user registration view
+	// フォームにフィールドセットを渡し、新規ユーザの登録ビューを表示
 	return \View::forge('login/registration')->set('form', $form, false)->set('login', isset($login) ? $login : null, false);
 }</code></pre>
 
