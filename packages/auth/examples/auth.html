@@ -117,8 +117,8 @@
 
 			<h3 id="logout">ログアウト</h3>
 
-			<p>This is the example code for the logout method. It will remove the remember-me cookie (as that would cause an automatic re-login on
-			the next page request), </p>
+			<p>これはログアウトメソッドのコード例です。 (次にページを要求した時に自動再ログインを引き起すため)
+			remember-me クッキーを削除します。</p>
 
 <pre class="php"><code>public function action_logout()
 {
@@ -385,8 +385,8 @@
 	}
 }</code></pre>
 
-		<p>As mentioned before, this example uses Ormauth, and can therefore use the provided Orm models to access the users table. If you
-		use Simpleauth, use this code instead:</p>
+		<p>前述のように、この例では、 Ormauth を使用しているのでユーザーがテーブルにアクセスするために提供された
+		ORM モデルを利用することができます。 Simpleauth を使用する場合は、このコードを代わりに使用します：</p>
 
 <pre class="php"><code>$user = \DB::select_array(\Config::get('simpleauth.table_columns', array('*')))
 	->where('email', '=', $email)
