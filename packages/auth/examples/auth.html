@@ -52,7 +52,7 @@
 
 			<p>実際のアプリケーションを基にしたこの例では、Ormauth の実装に基づいて、ログイン、ログアウト、新規ユーザー登録、パスワードを忘れた場合の復旧措置について説明します。
 				「remember-me」(ログイン状態を保持)機能をサポートし、必要なフォームを生成するために
-				fieldset を利用します。異なるセクションを説明しやすくするために、コントローラは別のパーツに分けられています。
+				フィールドセットを利用します。異なるセクションを説明しやすくするために、コントローラは別のパーツに分けられています。
 				使う時には、すべての例をコピーしてひとつのコントローラにまとめてかまいません。</p>
 
 				It also uses language files for all data strings (it assumes you have a language file called <i>login</i> that contains all
@@ -76,8 +76,8 @@
 	// すでにログイン済み？
 	if (\Auth::check())
 	{
-		// yes, so go back to the page the user came from, or the
-		// application dashboard if no previous page can be detected
+		// そうです、ユーザーが居た以前のページか、以前のページが
+		// 検出できない場合はアプリケーションのダッシュボードへ戻ります
 		\Messages::info(__('login.already-logged-in'));
 		\Response::redirect_back('dashboard');
 	}
@@ -88,20 +88,20 @@
 		// 資格情報のチェック
 		if (\Auth::instance()->login(\Input::param('username'), \Input::param('password')))
 		{
-			// did the user want to be remembered?
+			// ユーザーを覚えてほしい？
 			if (\Input::param('remember', false))
 			{
-				// create the remember-me cookie
+				// remember-me クッキーを作成
 				\Auth::remember_me();
 			}
 			else
 			{
-				// delete the remember-me cookie if present
+				// 存在する場合、 remember-me クッキーを削除
 				\Auth::dont_remember_me();
 			}
 
-			// logged in, go back to the page the user came from, or the
-			// application dashboard if no previous page can be detected
+			// ログイン、ユーザーが居た以前のページか、以前のページが
+			// 検出できない場合はアプリケーションのダッシュボードへ戻ります
 			\Response::redirect_back('dashboard');
 		}
 		else
@@ -122,17 +122,17 @@
 
 <pre class="php"><code>public function action_logout()
 {
-	// remove the remember-me cookie, we logged-out on purpose
+	// remember-me クッキーを削除し、意図的にログアウト
 	\Auth::dont_remember_me();
 
 	// ログアウト
 	\Auth::logout();
 
-	// inform the user the logout was successful
+	// ログアウトの成功をユーザーに知らせる
 	\Messages::success(__('login.logged-out'));
 
-	// and go back to where you came from (or the application
-	// homepage if no previous page can be determined)
+	// そして、あなたがやってきたところに (もしくは、前のページを
+	// 決定することができない場合はアプリケーションのホームページに) 戻る
 	\Response::redirect_back();
 }</code></pre>
 
@@ -149,10 +149,10 @@
 	// 登録が有効？
 	if ( ! \Config::get('application.user.registration', false))
 	{
-		// inform the user registration is not possible
+		// ユーザ登録ができないことをお知らせ
 		\Messages::error(__('login.registation-not-enabled'));
 
-		// and go back to the previous page (or the homepage)
+		// そして、前のページ (またはホームページ) に戻る
 		\Response::redirect_back();
 	}
 
@@ -165,19 +165,19 @@
 	// そしてモデルのプロパティを持つフォームを投入
 	$form->add_model('Model\\Auth_User');
 
-	// add the fullname field, it's a profile property, not a user property
+	// そして、フルネームフィールド、それは、ユーザーのプロパティではなくプロファイルのプロパティ
 	$form->add_after('fullname', __('login.form.fullname'), array(), array(), 'username')->add_rule('required');
 
 	// パスワードの確認フィールドを追加
 	$form->add_after('confirm', __('login.form.confirm'), array('type' => 'password'), array(), 'password')->add_rule('required');
 
-	// make sure the password is required
+	// パスワードは必要なので確認
 	$form->field('password')->add_rule('required');
 
-	// and new users are not allowed to select the group they're in (duh!)
+	// そして、新規ユーザーは彼らが属しているグループを選択できない (当たり前じゃないか)
 	$form->disable('group_id');
 
-	// since it's not on the form, make sure validation doesn't trip on its absence
+	// それはフォーム上にはないので、それの不足で検証が失敗しないように
 	$form->field('group_id')->delete_rule('required')->delete_rule('is_numeric');
 
 	// 登録フォームが投稿された？
@@ -208,18 +208,18 @@
 					// ユーザに通知
 					\Messages::success(__('login.new-account-created'));
 
-					// and go back to the previous page, or show the
-					// application dashboard if we don't have any
+					// そして、前のページか、前のページがない場合は
+					// アプリケーションのダッシュボードを表示
 					\Response::redirect_back('dashboard');
 				}
 				else
 				{
-					// oops, creating a new user failed?
+					// おっと、新しいユーザーの作成に失敗しました？
 					\Messages::error(__('login.account-creation-failed'));
 				}
 			}
 
-			// catch exceptions from the create_user() call
+			// create_user() の呼び出し時の例外を捕捉
 			catch (\SimpleUserUpdateException $e)
 			{
 				// メールアドレスが重複
@@ -234,7 +234,7 @@
 					\Messages::error(__('login.username-already-exists'));
 				}
 
-				// this can't happen, but you'll never know...
+				// これは起こり得ないが、ずっとそうとは限らない...
 				else
 				{
 					\Messages::error($e->getMessage());
@@ -242,11 +242,11 @@
 			}
 		}
 
-		// validation failed, repopulate the form from the posted data
+		// 検証失敗、ポストされたデータをフォームへ再投入
 		$form->repopulate();
 	}
 
-	// pass the fieldset to the form, and display the new user registration view
+	// フォームにフィールドセットを渡し、新規ユーザの登録ビューを表示
 	return \View::forge('login/registration')->set('form', $form, false);
 }</code></pre>
 
@@ -264,19 +264,19 @@
 
 <pre class="php"><code>public function action_lostpassword($hash = null)
 {
-	// was the lostpassword form posted?
+	// lostpassword フォームが投稿された？
 	if (\Input::method() == 'POST')
 	{
-		// do we have a posted email address?
+		// 投稿されたメールアドレスを持っている？
 		if ($email = \Input::post('email'))
 		{
-			// do we know this user?
+			// このユーザーを知っている？
 			if ($user = \Model\Auth_User::find_by_email($email))
 			{
-				// generate a recovery hash
+				// 復元ハッシュを生成
 				$hash = \Auth::instance()->hash_password(\Str::random()).$user->id;
 
-				// and store it in the user profile
+				// そして、ユーザープロファイルに格納
 				\Auth::update_user(
 					array(
 						'lostpassword_hash' => $hash,
@@ -285,11 +285,11 @@
 					$user->username
 				);
 
-				// send an email out with a reset link
+				// リセットリンクを記載したメールを送信
 				\Package::load('email');
 				$email = \Email::forge();
 
-				// use a view file to generate the email message
+				// 電子メールメッセージを生成するためにビューファイルを使用
 				$email->html_body(
 					\Theme::instance()->view('login/lostpassword')
 						->set('url', \Uri::create('login/lostpassword/'.$hash), false)
@@ -297,32 +297,32 @@
 						->render()
 				);
 
-				// give it a subject
+				// それに件名を与える
 				$email->subject(__('login.password-recovery'));
 
-				// add from- and to address
+				// 差出人と宛先を追加
 				$from = \Config::get('application.email-addresses.from.website', 'website@example.org');
 				$email->from($from['email'], $from['name']);
 				$email->to($user->email, $user->fullname);
 
-				// and off it goes (if all goes well)!
+				// そして (すべてがうまくいけば) それを出す！
 				try
 				{
 					// メールを送信
 					$email->send();
 				}
 
-				// this should never happen, a users email was validated, right?
+				// このようなことは起こりません。ユーザーのメールは検証済み、そうでしょう？
 				catch(\EmailValidationFailedException $e)
 				{
 					\Messages::error(__('login.invalid-email-address'));
 					\Response::redirect_back();
 				}
 
-				// what went wrong now?
+				// 何かが間違っていた？
 				catch(\Exception $e)
 				{
-					// log the error so an administrator can have a look
+					// エラーを管理者が確認できるログに記録
 					logger(\Fuel::L_ERROR, '*** Error sending email ('.__FILE__.'#'.__LINE__.'): '.$e->getMessage());
 
 					\Messages::error(__('login.error-sending-email'));
@@ -331,31 +331,31 @@
 			}
 		}
 
-		// posted form, but email address posted?
+		// フォームは投稿されたがメールアドレスは投稿した？
 		else
 		{
-			// inform the user and fall through to the form
+			// フォームに失敗を渡しユーザーに通知
 			\Messages::error(__('login.error-missing-email'));
 		}
 
-		// inform the user an email is on the way (or not ;-))
+		// 今メールしたこと (か、そうでないこと ;-)) をユーザーに通知
 		\Messages::info(__('login.recovery-email-send'));
 		\Response::redirect_back();
 	}
 
-	// no form posted, do we have a hash passed in the URL?
+	// フォームの投稿が無く、 URL で渡されたハッシュを持っていますか？
 	elseif ($hash !== null)
 	{
-		// get the userid from the hash
+		// ユーザー ID をハッシュから取得
 		$user = substr($hash, 44);
 
-		// and find the user with this id
+		// そして、この ID を持つユーザーを見つける
 		if ($user = \Model\Auth_User::find_by_id($user))
 		{
-			// do we have this hash for this user, and hasn't it expired yet (we allow for 24 hours response)?
+			// このユーザーは、このハッシュを持っていて、かつ、まだ失効していないか (24 時間未満の応答を許可) ？
 			if (isset($user->lostpassword_hash) and $user->lostpassword_hash == $hash and time() - $user->lostpassword_created &lt; 86400)
 			{
-				// invalidate the hash
+				// ハッシュを無効に
 				\Auth::update_user(
 					array(
 						'lostpassword_hash' => null,
@@ -364,7 +364,7 @@
 					$user->username
 				);
 
-				// log the user in and go to the profile to change the password
+				// ユーザーをログインさせ、パスワードを変更させるためにプロフィールに行く
 				if (\Auth::instance()->force_login($user->id))
 				{
 					\Messages::info(__('login.password-recovery-accepted'));
@@ -373,12 +373,12 @@
 			}
 		}
 
-		// something wrong with the hash
+		// ハッシュがおかしい
 		\Messages::error(__('login.recovery-hash-invalid'));
 		\Response::redirect_back();
 	}
 
-	// no form posted, and no hash present. no clue what we do here
+	// フォームの投稿が無く、ハッシュも提供されていない。何をすべきか見当もつかない
 	else
 	{
 		\Response::redirect_back();
@@ -393,10 +393,10 @@
 	->from(\Config::get('simpleauth.table_name'))
 	->as_object()->execute(\Config::get('simpleauth.db_connection'))->current();
 
-	// do we know this user?
+	// このユーザーを知っている？
 	if ($user)
 	{
-		// etc...
+		// その他...
 </code></pre>
 
 		<p>and likewise for the second lookup, which is on 'id'. You will also have to modify the check on the lostpassword fields, as with
