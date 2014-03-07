@@ -105,7 +105,7 @@
 					$url = 'dashboard';
 				break;
 
-				// the provider was known and linked, the linked account as logged-in
+				// 既知のプロバイダへリンクされ、リンクされたアカウントでログイン
 				case 'logged_in':ユーザに通知するプロバイダを使用してログインが成功した
 					// プロバイダを使用してログインが成功したことをユーザーに通知
 					\Messages::success(sprintf(__('login.logged_in_using_provider'), ucfirst($provider)));
@@ -144,10 +144,10 @@
 			\Response::redirect_back();
 		}
 
-		// catch a user cancelling the authentication attempt (some providers allow that)
+		// 認証の試みをユーザーが取り消しをしたことを捕捉 (一部のプロバイダはこれを許可)
 		catch (\OpauthCancelException $e)
 		{
-			// you should probably do something a bit more clean here...
+			// おそらく、ここでもう少しきれいな何かをする必要があります...
 			exit('It looks like you canceled your authorisation.'.\Html::anchor('users/oath/'.$provider, 'Click here').' to try again.');
 		}
 
@@ -198,13 +198,13 @@
 	// セッションからの OAuth プロバイダを取得 (存在する場合)
 	$provider = \Session::get('auth-strategy.authentication.provider', false);
 
-	// if we have provider information, create the login fieldset too
+	// プロバイダ情報を保持している場合、加えてログインフィールドセットも作成
 	if ($provider)
 	{
-		// disable the username, it was passed to us by the Oauth strategy
+		// OAuth ストラテジーからユーザー名を渡されたのでそれを無効にする
 		$form->field('username')->set_attribute('readonly', true);
 
-		// create an additional login form so we can link providers to existing accounts
+		// 追加のログインフォームを作成し、既存のアカウントにプロバイダをリンクする
 		$login = \Fieldset::forge('loginform');
 		$login->form()->add_csrf();
 		$login->add_model('Model\\Auth_User');
@@ -232,11 +232,11 @@
 				// 手動でプロバイダにリンクします
 				$this->link_provider($userid);
 
-				// inform the user we're linked
+				// リンクしたことをユーザーに通知
 				\Messages::success(sprintf(__('login.provider-linked'), ucfirst($provider)));
 
-				// logged in, go back where we came from,
-				// or the the user dashboard if we don't know
+				// ログインし、あなたたちがやってきたところか、
+				// 分らない場合はユーザーのダッシュボードへ戻る
 				\Response::redirect_back('dashboard');
 			}
 			else
@@ -345,13 +345,13 @@
 
 <pre class="php"><code>protected function link_provider($userid)
 {
-	// do we have an auth strategy to match?
+	// 一致する認証ストラテジーを持っていますか？
 	if ($authentication = \Session::get('auth-strategy.authentication', array()))
 	{
-		// don't forget to pass false, we need an object instance, not a strategy call
+		// ストラテジーの呼び出しではなくオブジェクトのインスタンスが必要なので false を渡すことを忘れないでください。
 		$opauth = \Auth_Opauth::forge(false);
 
-		// call Opauth to link the provider login with the local user
+		// ローカルユーザーとプロバイダーのログインをリンクするため Opauth を呼び出し
 		$insert_id = $opauth->link_provider(array(
 			'parent_id' => $userid,
 			'provider' => $authentication['provider'],
