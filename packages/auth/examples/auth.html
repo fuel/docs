@@ -55,21 +55,21 @@
 				フィールドセットを利用します。異なるセクションを説明しやすくするために、コントローラは別のパーツに分けられています。
 				使う時には、すべての例をコピーしてひとつのコントローラにまとめてかまいません。</p>
 
-				It also uses language files for all data strings (it assumes you have a language file called <i>login</i> that contains all
-			the language strings used), a central <i>application</i> configuration file to configure application	behaviour and a <i>Message</i>
-			class that deals with messaging in the application, which are all outside the scope of this example. You can replace that with
-			whatever mechanism you use in your application control behaviour and to relay messages back to the user.</p>
+			<p>また、すべてのデータ列で言語ファイル (それは使用された言語文字列すべてを含んいる <i>login</i> と呼ばれた言語ファイルを持っていると仮定)
+			を利用しており、アプリケーションの動作を設定する <i>application</i> 構成ファイルやアプリケーションでのメッセージを扱う <i>Message</i> クラス、
+			それらは完全にこの例の範囲外です。アプリケーションのコントロールの動きとユーザーへのメッセージの伝達で
+			あなたが利用するどのようなメカニズムにも置き換えることができます。</p>
 
-			<p>The original code uses the Theme class, but the example has been adapted to use standard Views for simplicity reasons. If you
-			prefer to use Controller_Template, set the template content instead of returning View objects. If you're using the theme class,
-			set the required partial instead.</p>
+			<p>元のコードはテーマクラスを利用しますが、例は簡単にするために標準的なビューを利用するように合わせてあります。
+			Controller_Template を利用したい場合は、 View オブジェクトを返す代わりにテンプレートコンテンツを設定します。
+			テーマクラスを使用している場合は、必要な部分を代わりに設定します。</p>
 
 			<h3 id="login">ログイン</h3>
 
-			<p>This is the example code for the login method. It expects input from a form that contains the input fields
-			<strong>username</strong> (which may contain either username or email address), <strong>password</strong> and
-			<strong>remember</strong> (which is used as a toggle, so it can be a checkbox). If no form input is present,
-			or if a login failure is detected, it falls through and displays the login view.</p>
+			<p>これはログインメソッドのコード例です。入力フィールドに
+			<strong>username</strong> (ユーザー名かメールアドレスのどちらか一方を含んでいてもよい)、 <strong>password</strong> そして、
+			<strong>remember</strong> (トグルとして使用されるのでチェックボックスであること) が含まれているフォームからの入力を想定しています。
+			まだフォームに入力が存在しない場合や、ログインの失敗が検出された場合、それは失敗しログインビューが表示されます。</p>
 
 <pre class="php"><code>public function action_login()
 {
@@ -117,8 +117,8 @@
 
 			<h3 id="logout">ログアウト</h3>
 
-			<p>This is the example code for the logout method. It will remove the remember-me cookie (as that would cause an automatic re-login on
-			the next page request), </p>
+			<p>これはログアウトメソッドのコード例です。 (次にページを要求した時に自動再ログインを引き起されるため)
+			remember-me クッキーを削除します。</p>
 
 <pre class="php"><code>public function action_logout()
 {
@@ -138,7 +138,7 @@
 
 			<h3 id="registration">登録</h3>
 
-			<p>This is the example code for the new user registration method. As this example uses Ormauth, it's obvious that we can use the
+			<p>これは新規ユーザー登録メソッドのコード例です。 As this example uses Ormauth, it's obvious that we can use the
 			Auth user model to create the fieldset for the registration form. If you're using Simpleauth, you can still use the model as a
 			fieldset template, as we're not using it to interact with the database. Using it does mean you need to have the Orm package loaded
 			though, otherwise the Model class can't be loaded.
@@ -258,7 +258,7 @@
 
 			<h3 id="password-recovery">パスワードの復元</h3>
 
-			<p>This is the example code for the password-recovery method. It requires a form with an 'email' input field on which the user can
+			<p>これはパスワード復元メソッドのコード例です。 It requires a form with an 'email' input field on which the user can
 			enter his email address. This is then used to lookup the user, and send out an email with a recovery link. There is no visible
 			feedback to the user whether or not the email was correct, to avoid account and email guessing.</p>
 
@@ -385,8 +385,8 @@
 	}
 }</code></pre>
 
-		<p>As mentioned before, this example uses Ormauth, and can therefore use the provided Orm models to access the users table. If you
-		use Simpleauth, use this code instead:</p>
+		<p>前述のように、この例では、 Ormauth を使用しているのでユーザーがテーブルにアクセスするために提供された
+		ORM モデルを利用することができます。 Simpleauth を使用する場合は、このコードを代わりに使用します：</p>
 
 <pre class="php"><code>$user = \DB::select_array(\Config::get('simpleauth.table_columns', array('*')))
 	->where('email', '=', $email)
