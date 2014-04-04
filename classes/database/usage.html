@@ -50,7 +50,7 @@
 				通常のデータベース命令は、<a href="./db.html">DB クラス</a>を通じて実行することになります。
 				Fuel ではどのようにデータベースを取り扱うかを以下の例で確認してみてください。
 			</p>
-			<p>データベースの使用法は大きく２つに分けられます:</p>
+			<p>データベースの使用法は大きく 2 つに分けられます:</p>
 
 			<ul>
 				<li><a href="#running-queries">クエリの実行</a></li>
@@ -114,14 +114,14 @@ $colums = array('id', 'name');
 $result = DB::select_array($columns)->from('users')->execute();
 </code></pre>
 
-				<p>列にエイリアス（別名）を付けたい場合は、代わりの文字列を配列で指定します。</p>
+				<p>列にエイリアス (別名) を付けたい場合は、代わりの文字列を配列で指定します。</p>
 
-				<pre class="php"><code>// 「SELECT `name` as `the_name` FROM `users`;」 が実行されます
+				<pre class="php"><code>// 「SELECT `name` as `the_name` FROM `users`;」が実行されます
 $result = DB::select(array('name','the_name'))->from('users')->execute();
 </code></pre>
 
 				<p>distinct に <em>true</em> を指定して、重複のないデータを取得します:</p>
-				<pre class="php"><code>// 「SELECT DISTINCT `name` FROM `users`;」 が実行されます
+				<pre class="php"><code>// 「SELECT DISTINCT `name` FROM `users`;」が実行されます
 $users = DB::select('name')->from('users')->distinct(true)->execute();
 
 print_r($users->as_array());
@@ -144,7 +144,7 @@ Array
 
 				<h3 id="results">結果の取得</h3>
 				<p>
-					SELECTクエリの実行は、要求されたデータベースのレコードの値を含む結果オブジェクトを生成します。
+					SELECT クエリの実行は、要求されたデータベースのレコードの値を含む結果オブジェクトを生成します。
 					デフォルトでは、結果は連想配列で取得します。以下に、
 					この振る舞いを変更する例を示します。
 				</p>
@@ -157,7 +157,7 @@ $result = DB::select('id','name')->from('users')->as_object()->execute();
 // Model_Users オブジェクトとして結果が返ります。
 $result = DB::select()->from('users')->as_object('Model_Users')->execute();
 
-// Model_Users オブジェクトとして結果が返ります。 (Usersモジュールのmodel)
+// Model_Users オブジェクトとして結果が返ります。 (Users モジュールの model)
 $result = DB::select()->from('users')->as_object('\\Users\\Model_Users')->execute();
 </code></pre>
 				<p class="note">
@@ -184,7 +184,7 @@ foreach($result_array as $item)
 }
 </code></pre>
 
-				<p>オプションとして、<em>as_array</em>から返る配列のキーと値を指定することもできます。 </p>
+				<p>オプションとして、<em>as_array</em> から返る配列のキーと値を指定することもできます。 </p>
 				<pre class="php"><code>$result = DB::select()->from('users')->execute();
 $on_key = $result->as_array('id');
 foreach($on_key as $id => $item)
@@ -209,7 +209,7 @@ foreach($key_value as $id => $email)
 				<h4 id="where_statements">WHERE 句</h4>
 				<p>
 					クエリに条件を追加するために、私たちは、WHERE 句をセットすることができます。
-					これらの例は、UPDATE句とDELETE句にも当てはまります。
+					これらの例は、UPDATE 句と DELETE 句にも当てはまります。
 				</p>
 				<pre class="php"><code>// SELECT * FROM `users` WHERE `id` = 1 を実行
 $result = DB::select()->from('users')->where('id', 1)->execute();
@@ -234,7 +234,7 @@ $who = "john%";
 $result = DB::select()->from('users')->where('name', 'like', $who)->execute();
 </code></pre>
 
-				<p id="grouped_where">グループ化されたWHERE句もサポートされています：</p>
+				<p id="grouped_where">グループ化された WHERE 句もサポートされています：</p>
 
 				<pre class="php"><code>// SELECT * FROM `users` WHERE (`name` = 'John' AND `email` = 'john@example.com')
 // OR (`name` = 'mike' OR `name` = 'dirk')
@@ -248,7 +248,7 @@ $result = DB::select()->from('users')->where_open()
 ->or_where_close()->execute();
 </code></pre>
 
-				<p id="where_between_in"><em>BETWEEN</em>句と、<em>IN</em>句も <em>where</em>メソッドで指定できます。</p>
+				<p id="where_between_in"><em>BETWEEN</em> 句と、<em>IN</em> 句も <em>where</em> メソッドで指定できます。</p>
 				<pre class="php"><code>// SELECT * FROM `users` WHERE `id` BETWEEN 1 AND 10
 $users = DB::select()->from('users')->where('id', 'between', array(1, 10))->execute();
 
@@ -271,7 +271,7 @@ DB::select()->from('users')->order_by('name');
 </code></pre>
 
 				<h4 id="limit_offset">LIMIT 句、OFFSET 句</h4>
-				<p>取得するレコード数を制限するには、limit メソッド及び、offset メソッドを使用します。 offsetメソッドは、データを取得する際にのみ利用可能なことに注意してください。</p>
+				<p>取得するレコード数を制限するには、limit メソッド及び、offset メソッドを使用します。 offset メソッドは、データを取得する際にのみ利用可能なことに注意してください。</p>
 				<pre class="php"><code>// SELECT * FROM `users` LIMIT 1
 DB::select()->from('users')->limit(1);
 
@@ -288,7 +288,7 @@ DB::select()->from('users')->order_by('id','asc')->limit(10);
 
 				<h3 id="updating">UPDATE 文</h3>
 				<p>
-					データを更新するためには、<a href="./db.html#method_update">DB::update</a>を使用します。
+					データを更新するためには、<a href="./db.html#method_update">DB::update</a> を使用します。
 					もし更新クエリの実行が成功した場合には、更新が影響したレコード数を
 					整数値で返却します。
 				</p>
@@ -321,7 +321,7 @@ $result = DB::update('users')
 				<h3 id="inserting">INSERT 文</h3>
 				<p>
 					データをインサートするには、<a href="./db.html#method_insert">DB::insert</a>を使用します。
-					INSERT 文が成功した場合には、インサートされたIDのリストと、インサートされた
+					INSERT 文が成功した場合には、インサートされた ID のリストと、インサートされた
 					レコード数を含む配列が返却されます。
 				</p>
 				<pre class="php"><code>// INSERT INTO `users`(`name`,`email`,`password`)
@@ -383,8 +383,8 @@ $result = DB::select()->from('users')->join('roles','right outer')->on('roles.id
 
 				<h3 id="escaping">エスケープ</h3>
 
-				<p>データベース操作の際、カラム名と値 は、デフォルトでエスケープされます。いくつかの場面で値をエスケープしたくないと思うでしょう。DBクラスは<em>データベース表現</em>を作成する機能、<a href="./db.html#method_expr">DB::expr</a> を提供します。もし値をエスケープされるのを望まない場合、データベース表現の中でそれを囲んでください。</p>
-				<p>データベース表現は <em>COUNT</em>のようなMySQLのネイティブ関数  や<em>DEFAULT</em> のような定数を扱う際に特に有用です。 </p>
+				<p>データベース操作の際、カラム名と値 は、デフォルトでエスケープされます。いくつかの場面で値をエスケープしたくないと思うでしょう。DB クラスは<em>データベース表現</em>を作成する機能、<a href="./db.html#method_expr">DB::expr</a> を提供します。もし値をエスケープされるのを望まない場合、データベース表現の中でそれを囲んでください。</p>
+				<p>データベース表現は <em>COUNT</em> のような MySQL のネイティブ関数  や<em>DEFAULT</em> のような定数を扱う際に特に有用です。 </p>
 
 				<pre class="php"><code>// カラムにデフォルト値でセットする
 DB::update('users')->where('id', '=', 1)->set(array(
@@ -394,7 +394,7 @@ DB::update('users')->where('id', '=', 1)->set(array(
 // SELECT COUNT(*) as count FROM `users`
 $result = DB::select(DB::expr('COUNT(*) as count'))->from('users')->execute();
 
-// 現在(先頭)の結果セットを取得
+// 現在 (先頭) の結果セットを取得
 $result_arr = $result->current();
 
 // 行数を取得
@@ -405,16 +405,16 @@ $count = $result_arr['count'];
 
 			<article>
 
-				<h3 id="binding">値のバインド</h3>
+				<h3 id="binding">クエリのバインディング</h3>
 
-				<p>クエリービルダは、安全かつ確実なやり方で手書きのクエリに変数を割り当てる、
+				<p>クエリビルダは、安全かつ確実なやり方で手書きのクエリに変数を割り当てる、
 				バインディング機能を提供します。</p>
 
-				<p>クエリバインディングは、 SQLの中でユニークなプレースホルダを置くことにより動作します。 クエリビルダは、
-				 (バインドした時ではなく)クエリが実行のためにコンパイルされる際に、
+				<p>クエリのバインディングは、 SQL の中でユニークなプレースホルダを置くことにより動作します。 クエリビルダは、
+				 (バインドした時ではなく) クエリが実行のためにコンパイルされる際に、
 				 これらのプレースホルダを対応する値で置換します。</p>
 
-				<p>あなたはFuelPHP標準記法を使用して、プレースホールダーを定義します。それはコロンから始まる文字列です。
+				<p>あなたは FuelPHP 標準記法を使用して、プレースホルダを定義します。それはコロンから始まる文字列です。
 				例 (:varname)</p>
 
 				<pre class="php"><code>$name = 'John'; // 割り当てたい変数をセット
@@ -462,9 +462,9 @@ $query->parameters(array('name' => &amp;$name, 'state' => 'new'));
 // クエリを実行。SELECT * FROM users WHERE username = 'John' AND state = 'new' が生成される
 $result = $query->execute();</code></pre>
 
-				<p class="note">いくつかのフレームワークは、クエスチョンマーク（?）をプレースホルダに使用します。そのバインディングシステムは、
+				<p class="note">いくつかのフレームワークは、クエスチョンマーク (?) をプレースホルダに使用します。そのバインディングシステムは、
 				最初のクエスチョンマークが最初の値で置換される、といった順番に依存し動作します。
-				しかし、FuelPHPでは、順番によるバインディングは適切ではなく、プレースホールダーと値には1対1の対応があります。
+				しかし、FuelPHP では、順番によるバインディングは適切ではなく、プレースホールダーと値には1対1の対応があります。
 				それは同様に、1 つのクエリでプレースホルダを複数回使用できることを意味します。
 				</p>
 
@@ -478,15 +478,15 @@ $result = $query->execute();</code></pre>
 					これは、バックエンドでキャッシュクラスを使用し、キャッシュの読み込みと再生成の両方を行います。
 					<br />
 					<code>cached()</code> メソッドは、３つの引数をとります： 第一引数は有効期限 (キャッシュが有効となる秒数)、
-					第二引数は、クエリのカスタムキー (デフォルトでは、SQLのmd5 ハッシュ値)、そして最後は、あなたが空の結果をキャッシュしたくないか
-					を指定する、boolean値です。 カスタムキャッシュキーを使用すると、
+					第二引数は、クエリのカスタムキー (デフォルトでは、SQL の md5 ハッシュ値)、そして最後は、あなたが空の結果をキャッシュしたくないか
+					を指定する、boolean 値です。 カスタムキャッシュキーを使用すると、
 					手動で特定のクエリのキャッシュを削除したり、特定の階層へクエリキャッシュのセットを
 					グループ化したりできるようになります。</p>
 
-				<pre class="php"><code>// クエリを実行し、１時間キャッシュします。
+				<pre class="php"><code>// クエリを実行し、1 時間キャッシュします。
 // もしまったく同じクエリが次回実行された場合、キャッシュされた値が返ります。
 // これは、 3600 秒間有効です。もし有効期限後にクエリが実行された場合、
-// 再度クエリが走り、再度 3600秒間キャッシュされるでしょう。
+// 再度クエリが走り、再度 3600 秒間キャッシュされるでしょう。
 $query = DB::query("SELECT * FROM users")->cached(3600)->execute();
 
 // キャッシュされた結果を削除するために、キーを指定します。 
