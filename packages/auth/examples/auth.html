@@ -138,10 +138,10 @@
 
 			<h3 id="registration">登録</h3>
 
-			<p>これは新規ユーザー登録メソッドのコード例です。 As this example uses Ormauth, it's obvious that we can use the
-			Auth user model to create the fieldset for the registration form. If you're using Simpleauth, you can still use the model as a
-			fieldset template, as we're not using it to interact with the database. Using it does mean you need to have the Orm package loaded
-			though, otherwise the Model class can't be loaded.
+			<p>これは新規ユーザー登録メソッドのコード例です。この例は Ormauth を利用するので、登録フォームのフィールドセットを作成するために
+			認証ユーザーモデルが利用できるのは明らかです。あなたが Simpleauth を使用している場合、またフィールドセットのテンプレートとしてモデルを利用できますが、
+			我々はデータベースと対話するためにそれを利用していません。それを使用するということは Orm
+			パッケージが読み込まれている必要があることを意味し、そうでなければモデルクラスは読み込まれません。
 			</p>
 
 <pre class="php"><code>public function action_register()
@@ -250,17 +250,17 @@
 	return \View::forge('login/registration')->set('form', $form, false);
 }</code></pre>
 
-			<p>With this code, new user accounts are immediately active. You can add a validation stage by creating a separate group for users
-			in that stage, and send a confirmation email out. That email should then contain a link to a new 'confirm' method with a hash,
-			that after validation of the hash changes the group from 'validating' to 'active'. How to do this is left to the reader. You can
-			have a look at the password recovery method below to get some pointers on how to generate this hash, where to store it, and how
-			to send an email out.</p>
+			<p>このコードでは、新しいユーザーのアカウントはすぐさまアクティブになります。その段階でユーザーごとに別のグループを作成することで
+			検証段階を追加することや確認メールの送信をすることができます。そのメールには、新しい 'confirm' メソッドへのリンクがハッシュと
+			共に含まれている必要があり、そのハッシュの検証後、'validating' から 'active' へグループを変更します。これらのやり方は読者に委ねられています。
+			このハッシュを生成する方法や、どこに収納するか、どのようにメールを送信するか、
+			についていくつかの助言を得るために以下のパスワードの回復方法を見ることができます。</p>
 
 			<h3 id="password-recovery">パスワードの復元</h3>
 
-			<p>これはパスワード復元メソッドのコード例です。 It requires a form with an 'email' input field on which the user can
-			enter his email address. This is then used to lookup the user, and send out an email with a recovery link. There is no visible
-			feedback to the user whether or not the email was correct, to avoid account and email guessing.</p>
+			<p>これはパスワード復元メソッドのコード例です。 これはユーザーが自分の電子メールアドレスを入力することができる 'email'
+			入力フィールドを持つフォームが必要です。これはユーザを検索し、復元用リンクを含むメールを送信するために使用されます。
+			アカウントおよびメールの推測を避けるために、メールが正しかったかどうかについてユーザーに目に見えるフィードバックはありません。</p>
 
 <pre class="php"><code>public function action_lostpassword($hash = null)
 {
@@ -399,13 +399,13 @@
 		// その他...
 </code></pre>
 
-		<p>and likewise for the second lookup, which is on 'id'. You will also have to modify the check on the lostpassword fields, as with
-		Simpleauth they are stored in the profile fields array. This means that you have to the profile_fields column from the query result,
-		unserialize it if it's not empty, and get the hash and timestamp out of it.</p>
+		<p>そして、 'id' のための 2 つ目の検索も同様です。 lostpassword フィールドのチェックもまた変更する必要があり、
+		Simpleauth では同様にそれらはプロファイルフィールドの配列に格納されます。これは、クエリ結果が profile_fields カラムを持つことを意味し、
+		それをアンシリアライズし、それが空でなければ、そこからハッシュとタイムスタンプを取得します。</p>
 
-		<p>You may also notice that the user-id is added to the hash. This is done to be able to support Simpleauth. With Ormauth, you could do
-		a metadata lookup, and get the related user object from the metadata. With Simpleauth, there is no lookup possible since the data is
-		stored in a serialized array inside the profile_fields column.</p>
+		<p>ユーザ ID がハッシュに追加されていることにあなたは気が付くでしょう。これは Simpleauth をサポートするために行っています。
+		Ormauth を使用すると、メタデータの検索を行うことができ、メタデータから関連するユーザーオブジェクトを取得できます。
+		Simpleauth を使用すると、データは profile_fields カラムの内部にシリアル化された配列で格納されているため検索することができません。</p>
 		</div>
 
 		<footer>
