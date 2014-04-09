@@ -413,6 +413,9 @@ protected static $_observers = array('Orm\\Observer_Slug' => array('before_inser
 				<p>
 					The Observer creates the <kbd>slug</kbd> from the <kbd>title</kbd> using <a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a> and adds an index, if the slug already exists.
 				</p>
+				<p class="note">
+					In case of the overwrite property is false, you can assign a slug manually, which won't be overwritten by the Observer. Upon <kbd>before_update</kbd> the slug gets overwritten with the generated one from the <kbd>title</kbd> field (no matter overwrite property is false or not), but only in case the slug itself is not changed.
+				</p>
 			</article>
 
 		</div>
