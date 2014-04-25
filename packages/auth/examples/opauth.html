@@ -50,10 +50,10 @@
 
 			<h3 id="login">ログイン</h3>
 
-			<p>This is the example code for the oauth method. It expects the name of the OAuth provider as a URI parameter,
-			so it should be called like "login/oath/facebook" if you want to use the Facebook Opauth Strategy. As an alternative
-			you could opt to integrate this functionality in the standard login method, which then could deal with manual login
-			through a form if no provider was given.</p>
+			<p>これは oauth メソッドのコード例です。それは、 URI パラメータとして OAuth のプロバイダ名を期待しており、そのため、
+			Facebook Opauth ストラテジーを使用したい場合、 "login/oath/facebook" のように呼び出す必要があります。別の方法としては、
+			この機能を標準のログイン方法と統合することもでき、もし、何もプロバイダが指定されなかった場合、
+			その後、フォームを介して手動ログインに対応することもできます。</p>
 
 <pre class="php"><code>public function action_oauth($provider = null)
 {
@@ -68,17 +68,17 @@
 	\Auth_Opauth::forge();
 }</code></pre>
 
-			<p>You should check the <a href="../opauth/intro.html">Opauth</a> class documentation to see how it works, and how it can
-			be configured. Here, we're using the default setup.</p>
+			<p>これがどのように設定をすることができ、また、動作するかは <a href="../opauth/intro.html">Opauth</a>
+			クラスのドキュメントを確認してください。ここでは、デフォルトの設定を使用しています。</p>
 
 			<h3 id="callback">OAuth のコールバック</h3>
 
-			<p>Since we've used a default configuration when we called the OAuth provider in the previous method, the callback URL passed
-			to the provider was generated for us. By default, it will return to a method called 'callback' in the same controller (technically,
-			the same URI path, as you can use routes to have to point to a different controller) as which contains the login method.</p>
+			<p>以前のメソッド内で OAuth プロバイダを呼び出したとき、デフォルト設定を使用しているので、プロバイダに引き継がれたコールバック URL
+			は、私たちのために生成されました。デフォルトでは、 login メソッドを含む同一のコントローラ (技術的には、同じ URI
+			パスが別のコントローラを指すようにしたルートを使用することも可能) の 'callback' メソッドへ戻ります。</p>
 
-			<p>This is the example code for the callback method. It uses the Opauth 'login_or_register' method to process the callback and
-			get the associated local user. The returned status will tell you want to do next.</p>
+			<p>これはコールバックメソッドのコード例です。これはコールバックを処理し関連するローカルユーザを取得するために Opauth の
+			'login_or_register' メソッドを使用しています。次に何をすべきかは返された状態が教えてくれます。</p>
 
 <pre class="php"><code>public function action_callback()
 	{
@@ -97,16 +97,16 @@
 			// コールバック処理の結果を扱う
 			switch ($status)
 			{
-				// ローカルのユーザがログインしていて、プロバイダはこのユーザーにリンクされている
+				// ローカルのユーザがログインしていて、プロバイダはこのユーザーと関連付けられている
 				case 'linked':
-					// リンクが正常に行われたことをユーザに通知
+					// 関連付けが正常に行われたことをユーザに通知
 					\Messages::success(sprintf(__('login.provider-linked'), ucfirst($provider)));
 					// そして、この状態のためのリダイレクト URL を設定
 					$url = 'dashboard';
 				break;
 
-				// 既知のプロバイダへリンクされ、リンクされたアカウントでログイン
-				case 'logged_in':ユーザに通知するプロバイダを使用してログインが成功した
+				// 既知のプロバイダへ関連付けられ、そのアカウントでログイン
+				case 'logged_in':
 					// プロバイダを使用してログインが成功したことをユーザーに通知
 					\Messages::success(sprintf(__('login.logged_in_using_provider'), ucfirst($provider)));
 					// そして、この状態のためのリダイレクト URL を設定
@@ -155,9 +155,9 @@
 
 			<h3 id="registration">登録</h3>
 
-			<p>This is the example code for the new user registration method. It is based on the standard registration method that has been
-			documented in this <a href="auth.html#registration">example</a>, and is extended to support user registration after a valid
-			Opauth callback (the call to 'login_or_register' has returned the 'register' status).</p>
+			<p>これは新規ユーザー登録メソッドのコード例です。この<a href="auth.html#registration">例</a>に記載されている標準的な登録メソッドに基づき、有効な
+			Opauth のコールバックの後にユーザ登録をサポートするように拡張されています
+			('login_or_register' の呼び出しは  'register' 状態を返した) 。</p>
 
 <pre class="php"><code>public function action_register()
 {
@@ -204,7 +204,7 @@
 		// OAuth ストラテジーからユーザー名を渡されたのでそれを無効にする
 		$form->field('username')->set_attribute('readonly', true);
 
-		// 追加のログインフォームを作成し、既存のアカウントにプロバイダをリンクする
+		// 追加のログインフォームを作成し、既存のアカウントとプロバイダを関連付け
 		$login = \Fieldset::forge('loginform');
 		$login->form()->add_csrf();
 		$login->add_model('Model\\Auth_User');
@@ -229,10 +229,10 @@
 				// 現在ログインしているユーザーの ID を取得
 				list(, $userid) = \Auth::instance()->get_user_id();
 
-				// 手動でプロバイダにリンクします
+				// 手動でプロバイダと関連付け
 				$this->link_provider($userid);
 
-				// リンクしたことをユーザーに通知
+				// 関連付けたことをユーザーに通知
 				\Messages::success(sprintf(__('login.provider-linked'), ucfirst($provider)));
 
 				// ログインし、あなたたちがやってきたところか、
@@ -280,7 +280,7 @@
 					}
 					else
 					{
-						// おっと、新しいユーザーの作成に失敗しました？
+						// おっと、新しいユーザーの作成に失敗しましたか？
 						\Messages::error(__('login.account-creation-failed'));
 					}
 				}
@@ -329,29 +329,29 @@
 	return \View::forge('login/registration')->set('form', $form, false)->set('login', isset($login) ? $login : null, false);
 }</code></pre>
 
-			<p>As we now have a registration page with two forms (a registration form and a login form), we have to distinguish which of the
-			forms was submitted. To do so, we have used the name of the submit button here, which is either 'login' or 'register'. You are
-			free to use any another method if you want.
+			<p>私たちは今、二つの形式 (登録フォームとログインフォーム) で登録ページを持っているとして、投稿されたフォームがどれかを区別しなければならない。
+			そのために、ここでは、'login' または 'register' のどちらかの送信ボタンの名前を利用しています。
+			あなたは自由に必要に応じ任意の他の方法を利用できます。
 			</p>
 
-			<p>Note that we use this registration method also for normal new user registrations. For those obviously you should not display
-			the second login form. This can be controlled by the form variable $login, which is null if there if it's a normal registration,
-			and contains a fieldset if it's a registration after a provider callback.</p>
+			<p>留意すべきは、新規ユーザー登録の場合にも通常はこの登録方法を利用するということです。言うまでもなくそれらの人のために
+			2 番目のログインフォームを表示しないようにしてください。これは、フォームの $login 変数によって制御することができ、通常の登録の場合はそれは
+			null となり、そして、プロバイダのコールバック後の登録の場合はフィールドセットが含まれています。</p>
 
-			<h3 id="link_provider">ローカルアカウントへのプロバイダの関連づけ</h3>
+			<h3 id="link_provider">ローカルアカウントへのプロバイダの関連付け</h3>
 
-			<p>After new user registration is succesful, the new account needs to be linked to the provider the user used to login to your
-			application. The functionality for this is part of the Auth_Opauth class, but we use a local method to aid in calling it.</p>
+			<p>新規ユーザの登録に成功した後、新しいアカウントはユーザーがアプリケーションにログインするために利用されるプロバイダと関連付ける必要があります。
+			そのための機能は Auth_Opauth クラスの一部ですが、その機能の呼び出しを支援するためにローカルのメソッドを利用します。</p>
 
 <pre class="php"><code>protected function link_provider($userid)
 {
-	// 一致する認証ストラテジーを持っていますか？
+	// 一致する認証ストラテジーを持っているか？
 	if ($authentication = \Session::get('auth-strategy.authentication', array()))
 	{
-		// ストラテジーの呼び出しではなくオブジェクトのインスタンスが必要なので false を渡すことを忘れないでください。
+		// ストラテジーの呼び出しではなくオブジェクトのインスタンスが必要なので false を渡すことを忘れないでください
 		$opauth = \Auth_Opauth::forge(false);
 
-		// ローカルユーザーとプロバイダーのログインをリンクするため Opauth を呼び出し
+		// ローカルユーザーとプロバイダのログインを関連付けるため Opauth を呼び出す
 		$insert_id = $opauth->link_provider(array(
 			'parent_id' => $userid,
 			'provider' => $authentication['provider'],
