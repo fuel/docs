@@ -121,8 +121,12 @@
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// 識別子を "test" として 'String to be cached' を 3 時間の有効期限でキャッシュする
-Cache::set('test', 'String to be cached.', 3600 * 3);</code></pre>
+								<pre class="php"><code>// Cache 'String to be cached' for 3 hours with identifier "test"
+Cache::set('test', 'String to be cached.', 3600 * 3);
+
+// You can add a section or directory of the cache with dot-notation
+Cache::set('test.test', 'String to be cached.', 3600 * 3);
+</code></pre>
 							</td>
 						</tr>
 						</tbody>
