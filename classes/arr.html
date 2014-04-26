@@ -89,7 +89,7 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Single array
+							<pre class="php"><code>// 1 次元配列
 $arr = array('one' => 1, 'two' => 2);
 echo Arr::is_multi($arr);
 // 実行結果: false
@@ -226,7 +226,7 @@ echo Arr::to_assoc($arr);
 
 			<article>
 				<h4 id="method_assoc_to_keyval" class="method">assoc_to_keyval($assoc, $key_field, $val_field)</h4>
-				<p><strong>assoc_to_keyval</strong> メソッドは多次元配列を key=>val の配列に変換します。</p>
+				<p><strong>assoc_to_keyval</strong> メソッドは多次元配列を key=&gt;val の配列に変換します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -300,51 +300,51 @@ Array
 
 			<article>
 				<h4 id="method_keyval_to_assoc" class="method">keyval_to_assoc($array, $key_field, $val_field)</h4>
-				<p>The <strong>keyval_to_assoc</strong> method turns an array of key => values into a multi-dimensional associative array with the provided field names.</p>
+				<p><strong>keyval_to_assoc</strong> メソッドは key =&gt; values の配列を与えられたフィールド名と共に多次元配列へ変換します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
-									<td><em>required</em></td>
-									<td>The array to transform.</td>
+									<td><em>必須</em></td>
+									<td>変換する配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$key_field</kbd></th>
-									<td><em>required</em></td>
-									<td>The associative array field to map the key to.</td>
+									<td><em>必須</em></td>
+									<td>キーをマッピングする連想配列の添え字。</td>
 								</tr>
 								<tr>
 									<th><kbd>$val_field</kbd></th>
-									<td><em>required</em></td>
-									<td>The associative array field to map the value to.</td>
+									<td><em>必須</em></td>
+									<td>値をマッピングする連想配列の添え字。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>array</td>
 					</tr>
 					<tr>
-						<th>Throws</th>
-						<td><kbd>InvalidArgumentException</kbd> when the first argument isn't an array or doesn't
-							implement the Iterator interface.</td>
+						<th>例外</th>
+						<td><kbd>InvalidArgumentException</kbd> 1番目の引数が配列でないか、
+							Iterator インターフェイスを実装していないとき。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$people = array(
 	"Jack" => 21,
@@ -353,7 +353,7 @@ Array
 
 print_r(Arr::keyval_to_assoc($people, 'name', 'age'));
 
-// Result:
+// 実行結果:
 Array
 (
 	[0] => Array
@@ -376,7 +376,7 @@ Array
 
 			<article>
 				<h4 id="method_average" class="method">average($array)</h4>
-				<p>The <strong>average</strong> method takes all values of an array and returns the average value.</p>
+				<p><strong>average</strong> メソッドは配列のすべての値をとり、その平均値を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1238,7 +1238,7 @@ echo Arr::get($person, "name", "Unknown Name");
 echo Arr::get($person, "job", "Unknown job");
 // 実行結果: "Unknown job"
 
-// This method can also dive into arrays by using a dot to separate between keys
+// このメソッドは、キーの間を ドット (.) で区切ることで、より深い配列に潜ることが可能
 echo Arr::get($person, "location.city", "Unknown City");
 // 実行結果: "Pittsburgh"</code></pre>
 						</td>
@@ -1304,7 +1304,7 @@ echo Arr::get($person, "location.city", "Unknown City");
 Arr::set($person, "name", "John");
 // $person['name'] には "John" がセットされます。
 
-// This method can also dive into arrays by using a dot to separate between keys
+// このメソッドは、キーの間を ドット (.) で区切ることで、より深い配列に潜ることが可能
 Arr::set($person, "location.city", "Philadelphia");
 // $person['location']['city'] には "Philadelphia" がセットされます。
 
@@ -1443,7 +1443,7 @@ $names = \Arr::pluck($collection, 'name', 'id');
 $result = Arr::delete($person, "name");
 // $person['name'] は配列から削除され、 true が返されます。
 
-// このメソッドは、キーの間に ドット (.) を入れることで、より深い配列に潜ることができます。
+// このメソッドは、キーの間を ドット (.) で区切ることで、より深い配列に潜ることが可能
 $result = Arr::delete($person, "location.city");
 // $person['location']['city'] は配列から削除され、 true が返されます。
 
@@ -1569,7 +1569,7 @@ Array
 							<table class="parameters">
 								<tr>
 									<th>パラメータ</th>
-									<th>Default</th>
+									<th>デフォルト</th>
 									<th class="description">説明</th>
 								</tr>
 								<tr>
@@ -1604,7 +1604,7 @@ Array
 Arr::insert_assoc($people, array("initial" =&gt; "P.", 1);
 print_r($people);
 
-// 結果:
+// 実行結果:
 Array
 (
 	[name] =&gt; Jack
@@ -1620,8 +1620,8 @@ Array
 
 			<article>
 				<h4 id="method_insert_before_key" class="method">insert_before_key(Array &amp;$original, $value, $key)</h4>
-				<p>The <strong>insert_before_key</strong> メソッドは与えられたキーの手前に要素を１つ追加します。<br />
-				<u>WARNING</u>: 元の配列は参照渡しされるので直接書き換えられます。成功かどうかを表すブール値のみが返ります。</p>
+				<p><strong>insert_before_key</strong> メソッドは与えられたキーの手前に要素を１つ追加します。<br />
+				<u>警告</u>: 元の配列は参照渡しされるので直接書き換えられます。成功かどうかを表すブール値のみが返ります。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -2326,7 +2326,7 @@ Array
 									<th><kbd>$strict</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Do a strict comparison on key values</td>
+									<td>キーに厳密な比較を用いるかどうか</td>
 								</tr>
 							</table>
 						</td>
