@@ -1067,7 +1067,7 @@ $users = $mongodb->get('users');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_like">like($field = '', $value = '', $flags = 'i', $enable_start_wildcard = true, $enable_end_wildcard = true)</h4>
+				<h4 class="method" id="method_like">like($field = '', $value = '', $flags = 'i', $disable_start_wildcard = false, $disable_end_wildcard = false)</h4>
 				<p>
 					The <strong>like</strong> method a sets a 'like' statement.
 				</p>
@@ -1116,16 +1116,16 @@ $users = $mongodb->get('users');
 									</td>
 								</tr>
 								<tr>
-									<th><kbd>$enable_start_wildcard</kbd></th>
+									<th><kbd>$disable_start_wildcard</kbd></th>
 									<td><em>bool</em></td>
-									<td><pre class="php"><code>true</code></pre></td>
-									<td>When set to <em>true</em> the beginning of the string must match.</td>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>When set to <em>false</em> the beginning of the string must match.</td>
 								</tr>
 								<tr>
-									<th><kbd>$enable_end_wildcard</kbd></th>
+									<th><kbd>$disable_end_wildcard</kbd></th>
 									<td><em>bool</em></td>
-									<td><pre class="php"><code>true</code></pre></td>
-									<td>When set to <em>true</em> the ending of the string must match.</td>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>When set to <em>false</em> the ending of the string must match.</td>
 								</tr>
 							</table>
 						</td>
@@ -1139,7 +1139,9 @@ $users = $mongodb->get('users');
 						<td>
 							<pre class="php"><code>// Get an instance
 $mongodb = \Mongo_Db::instance();
-$mongodb->like('name', 'fran', 'im', true);
+
+// look for users with a name starting with 'fran'...
+$mongodb->like('name', 'fran', 'im', false, true);
 $users = $mongodb->get('users');
 </code></pre>
 						</td>
