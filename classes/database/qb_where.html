@@ -60,22 +60,22 @@
 			</ul>
 
 			<p id="returned_instance" class="note">
-				<strong>注意:</strong> Query_Builder_Where は上記のクラスから継承されるため、"current instance" はそれらの一つが返却されます。
+				<strong>注意:</strong> Query_Builder_Where は上記のクラスから継承されるため、 "現在のインスタンス" はそれらの一つが返却されます。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_where">where()</h4>
-				<p><strong>where</strong> メソッドは<a href="#method_and_where">and_where</a>のエイリアスです。</p>
+				<p><strong>where</strong> メソッドは <a href="#method_and_where">and_where</a> のエイリアスです。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_and_where">and_where($column, $op = null, $value = null)</h4>
-				<p><strong>and_where</strong> メソッドは、WHERE ステートメントを追加します。</p>
+				<p><strong>and_where</strong> メソッドは、 WHERE ステートメントを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -91,13 +91,13 @@
 										<th><kbd>$column</kbd></th>
 										<td><em>mixed</em></td>
 										<td><em>必須</em></td>
-										<td>Column name or array($column, $alias), object, or callback</td>
+										<td>カラム名か、 array($column, $alias) 、オブジェクト、もしくはコールバック</td>
 									</tr>
 									<tr>
 										<th><kbd>$op</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Logic operator: =, !=, IN, BETWEEN and LIKE. If none is provided this will fallback to '='</td>
+										<td>論理演算子: =, !=, IN, BETWEEN と LIKE 。何も提供されていない場合、 '=' が使われます。</td>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
@@ -110,12 +110,12 @@
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+							<td><a href="#returned_instance">現在のインスタンス</a>を返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// select 文を準備します
+								<pre class="php"><code>// select 文を準備
 $query = DB::select('*')->from('users');
 
 // 最初の where ステートメントをセット
@@ -130,7 +130,7 @@ $query->where(function($query){
 		->or_where('email', 'haha@joke.com');
 });
 
-// 結果:
+// 実行結果:
 // SELECT * FROM `users` WHERE `name` != "John" AND `surname` = "Doe"
 // AND (`email` = "jim@jim.com" OR `email` = "haha@joke.com")
 </code></pre>
@@ -147,7 +147,7 @@ $query->where(function($query){
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -163,13 +163,13 @@ $query->where(function($query){
 										<th><kbd>$column</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>Column name or array($column, $alias), object or callback</td>
+										<td>カラム名か、 array($column, $alias) 、オブジェクト、もしくはコールバック</td>
 									</tr>
 									<tr>
 										<th><kbd>$op</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Logic operator: =, !=, IN, BETWEEN. If none is provided this will fallback to '='</td>
+										<td>論理演算子: =, !=, IN, BETWEEN 。何も提供されていない場合、 '=' が使われます。</td>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
@@ -182,12 +182,12 @@ $query->where(function($query){
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+							<td><a href="#returned_instance">現在のインスタンス</a>を返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// select 文を準備します
+								<pre class="php"><code>// select 文を準備
 $query = DB::select('*')->from('users');
 
 // 最初の where ステートメントをセット
@@ -196,13 +196,13 @@ $query->where('name', '=', 'John');
 // あたらしい条件を追加
 $query->or_where('surname', 'Doe');
 
-// nested where through callback
+// ネストした where をコールバックで
 $query->or_where(function($query){
 	$query->where('email', 'jim@jim.com')
 		->and_where('id', 4);
 });
 
-// Resulting in:
+// 実行結果:
 // SELECT * FROM `users` WHERE `name` != "John" OR `surname` = "Doe"
 // OR (`email` = "jim@jim.com" AND `id` = 4)
 </code></pre>
@@ -214,7 +214,7 @@ $query->or_where(function($query){
 
 			<article>
 				<h4 class="method" id="method_where_open">where_open()</h4>
-				<p><strong>where_open</strong> メソッドは、<a href="#method_and_where_open">and_where_open</a>のエイリアスです。</p>
+				<p><strong>where_open</strong> メソッドは、 <a href="#method_and_where_open">and_where_open</a> のエイリアスです。</p>
 			</article>
 
 			<article>
@@ -224,22 +224,22 @@ $query->or_where(function($query){
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								<em>None</em>
+								<em>なし</em>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+							<td><a href="#returned_instance">現在のインスタンス</a>を返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// select 文を準備します
+								<pre class="php"><code>// select 文を準備
 $query = DB::select('*')->from('users');
 
 // where ステートメントをセット
@@ -263,22 +263,22 @@ $query->and_where_open();
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								<em>None</em>
+								<em>なし</em>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+							<td><a href="#returned_instance">現在のインスタンス</a>を返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// select 文を準備します
+								<pre class="php"><code>// select 文を準備
 $query = DB::select('*')->from('users');
 
 // where ステートメントをセット
@@ -297,32 +297,32 @@ $query->or_where_open();
 
 			<article>
 				<h4 class="method" id="method_where_close">where_close()</h4>
-				<p><strong>where_close</strong> メソッドは <a href="#method_and_where_close">and_where_close</a>のエイリアスです。</p>
+				<p><strong>where_close</strong> メソッドは <a href="#method_and_where_close">and_where_close</a> のエイリアスです。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_and_where_close">and_where_close()</h4>
-				<p><strong>and_where_close</strong> メソッドは、SQL クロージャを閉じます。</p>
+				<p><strong>and_where_close</strong> メソッドは、 SQL クロージャを閉じます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								<em>None</em>
+								<em>なし</em>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+							<td><a href="#returned_instance">現在のインスタンス</a>を返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// select 文を準備します
+								<pre class="php"><code>// select 文を準備
 $query = DB::select('*')->from('users');
 
 // where ステートメントをセット
@@ -347,27 +347,27 @@ $query->and_where_close();
 
 			<article>
 				<h4 class="method" id="method_or_where_close">or_where_close()</h4>
-				<p><strong>or_where_close</strong> メソッドは、SQL クロージャを閉じます。</p>
+				<p><strong>or_where_close</strong> メソッドは、 SQL クロージャを閉じます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								<em>None</em>
+								<em>なし</em>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+							<td><a href="#returned_instance">現在のインスタンス</a>を返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// select 文を準備します
+								<pre class="php"><code>// select 文を準備
 $query = DB::select('*')->from('users');
 
 // where ステートメントをセット
@@ -396,7 +396,7 @@ $query->or_where_close();
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -418,19 +418,19 @@ $query->or_where_close();
 										<th><kbd>$direction</kbd></th>
 										<td><em>string</em></td>
 										<td><em>null</em></td>
-										<td> <em>'asc'</em> もしくは <em>'desc'</em>が指定可能です。</td>
+										<td> <em>'asc'</em> もしくは <em>'desc'</em> が指定可能です。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+							<td><a href="#returned_instance">現在のインスタンス</a>を返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// select 文を準備します
+								<pre class="php"><code>// select 文を準備
 $query = DB::select('*')->from('users');
 
 // order by をセット
@@ -453,7 +453,7 @@ $query->order_by('surname', 'desc');
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -469,19 +469,19 @@ $query->order_by('surname', 'desc');
 										<th><kbd>$number</kbd></th>
 										<td><em>int</em></td>
 										<td><em>必須</em></td>
-										<td>The number of rows</td>
+										<td>行数</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the <a href="#returned_instance">current instance</a>.</td>
+							<td><a href="#returned_instance">現在のインスタンス</a>を返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// select 文を準備します
+								<pre class="php"><code>// select 文を準備
 $query = DB::select('*')->from('users');
 
 // limit句をセット

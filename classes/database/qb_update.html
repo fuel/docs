@@ -51,7 +51,7 @@
 
 			<p>
 				Query_Builder_Update クラスは、クエリ構築のためのすべてのアップデート 操作を扱います。
-				これは、Query_Builder_Where クラスを拡張しており、すべてのメソッドが継承されます。
+				これは、 Query_Builder_Where クラスを拡張しており、すべてのメソッドが継承されます。
 			</p>
 
 			<article>
@@ -61,7 +61,7 @@
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -84,12 +84,12 @@
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the current instance.</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// update 文を準備します
+								<pre class="php"><code>// update 文を準備
 $query = DB::update('users');
 
 // アップデートするテーブル名をセット
@@ -111,7 +111,7 @@ $query->table('admins');
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -140,12 +140,12 @@ $query->table('admins');
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the current instance.</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// update 文を準備します
+								<pre class="php"><code>// update 文を準備
 $query = DB::update('users');
 
 // カラムに値をセット
@@ -166,7 +166,7 @@ $query->value('name', 'Frank');
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -189,12 +189,12 @@ $query->value('name', 'Frank');
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the current instance.</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// update 文を準備します
+								<pre class="php"><code>// update 文を準備
 $query = DB::update('users');
 
 // カラム名と値をセット
@@ -213,12 +213,12 @@ $query->set(array(
 
 			<article>
 				<h4 class="method" id="method_compile">compile(\Database_Connection$db)</h4>
-				<p><strong>compile</strong> メソッドは、アップデートを行うSQL クエリを文字列で返却します。</p>
+				<p><strong>compile</strong> メソッドは、アップデートを行う SQL クエリを文字列で返却します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -246,7 +246,7 @@ $query->set(array(
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// update 文を準備します
+								<pre class="php"><code>// update 文を準備
 $query = DB::update('users');
 
 // ２つの値をセット
@@ -258,7 +258,7 @@ $query->set(array(
 // データベース接続を取得
 $connection = Database_Connection::instance();
 
-// SQL文を取得
+// SQL 文を取得
 $sql = $query->compile($connection);
 </code></pre>
 							</td>
@@ -274,22 +274,22 @@ $sql = $query->compile($connection);
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								<em>None</em>
+								<em>なし</em>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the current instance.</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// update 文を準備します
+								<pre class="php"><code>// update 文を準備
 $query = DB::update('users');
 
 // ２つの値をセット
@@ -307,7 +307,7 @@ $query->value('name', 'Hank');
 // データベース接続を取得
 $connection = Database_Connection::instance();
 
-// SQL文を取得
+// SQL 文を取得
 $sql = $query->compile($connection);
 
 // UPDATE `users` SET `name` = "Hank"
@@ -320,12 +320,12 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_join">join($table, $type = null)</h4>
-				<p><strong>join</strong> メソッドは、JOINするテーブルを追加します。</p>
+				<p><strong>join</strong> メソッドは、 JOIN するテーブルを追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -341,20 +341,20 @@ $sql = $query->compile($connection);
 										<th><kbd>$table</kbd></th>
 										<td><em>mixed</em></td>
 										<td><em>必須</em></td>
-										<td>table name or array($table, $alias)</td>
+										<td>テーブル名か、 array($table, $alias)</td>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><em>mixed</em></td>
 										<td><pre class="php"><code>true</code></pre></td>
-										<td>JOINタイプ (LEFT, RIGHT, INNER, など)</td>
+										<td>JOIN タイプ (LEFT, RIGHT, INNER, など)</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the current instance.</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -368,12 +368,12 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_on">on($c1, $op, $c2)</h4>
-				<p><strong>on</strong> メソッドは、最後に作られたJOINステートメントに対し、 "ON ..." 条件を追加します。</p>
+				<p><strong>on</strong> メソッドは、最後に作られた JOIN ステートメントに対し、 "ON ..." 条件を追加します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -389,34 +389,34 @@ $sql = $query->compile($connection);
 										<th><kbd>$c1</kbd></th>
 										<td><em>mixed</em></td>
 										<td><em>必須</em></td>
-										<td>table name or array($table, $alias)</td>
+										<td>テーブル名か、 array($table, $alias)</td>
 									</tr>
 									<tr>
 										<th><kbd>$op</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>logical operator</td>
+										<td>論理演算子</td>
 									</tr>
 									<tr>
 										<th><kbd>$c2</kbd></th>
 										<td><em>mixed</em></td>
 										<td><em>必須</em></td>
-										<td>table name or array($table, $alias)</td>
+										<td>テーブル名か、 array($table, $alias)</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>Returns the current instance.</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre id="join_example" class="php"><code>// update 文を準備します
+								<pre id="join_example" class="php"><code>// update 文を準備
 $query = DB::update('users');
 
-// テーブルをJOIN
+// テーブルを JOIN
 $query->join('profiles');
 $query->on('users.id', '=', 'profiles.user_id');
 
