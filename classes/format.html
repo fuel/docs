@@ -325,7 +325,7 @@ print_r(Format::forge($array)->to_xml());
 			</article>
 
 			<article>
-				<h4 class="method" id="method_to_csv">to_csv($data = null, $delimiter = null, $enclose_numbers = null)</h4>
+				<h4 class="method" id="method_to_csv">to_csv($data = null, $delimiter = null, $enclose_numbers = null, array $headings = array())</h4>
 				<p>The <strong>to_csv</strong> method returns the given data as a CSV string. Do not call this directly, use the <strong>forge</strong> method as described in the example.</p>
 				<table class="method">
 					<tbody>
@@ -357,6 +357,11 @@ print_r(Format::forge($array)->to_xml());
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>If false, number will not be enclosed. If true, numbers will be enclosed too. If not given, the configured default is used.</td>
 								</tr>
+								<tr>
+									<th><kbd>$headings</kbd></th>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td>Array of CSV fieldnames. If not given, the fieldnames will be based on what is defined in the first row of the data array.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -372,6 +377,13 @@ print_r(Format::forge($json_string, 'json')->to_csv(null, null, false));
 
 // Returns
 // "foo","baz","nr"
+// "bar","qux",1
+
+$json_string = '{"foo":"bar","baz":"qux","nr":1}';
+print_r(Format::forge($json_string, 'json')->to_csv(null, null, false, array('this', 'that', 'num')));
+
+// Returns
+// "this","that","num"
 // "bar","qux",1</code>
 							</pre>
 						</td>
