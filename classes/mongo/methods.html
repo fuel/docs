@@ -1972,6 +1972,51 @@ $my_collection->update(array('_id' => $id), array('$push' => array('array.to.add
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="list_collections">list_collections($system_collections = false)</h4>
+				<p>
+					The <strong>list_collections</strong> method returns an array of MongoCollection objects of all collections present in the database. Optionally you can specify that you want all system collections returned too.</a>
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>system_collections</kbd></th>
+									<td><em>bool</em></td>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Whether or not to include the system collections.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>An array of MongoCollection objects.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get a mongo instance
+$mongodb     = \Mongo_Db::instance();
+$collections = $mongodb->list_collections();
+</code></pre>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 		</div>
 
 		<footer>
