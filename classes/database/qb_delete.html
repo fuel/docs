@@ -53,7 +53,7 @@
 
 			<p>
 				The Query_Builder_Delete クラスは、クラスは、クエリ構築のためのすべてのデリート 操作を扱います。 
-				これは、Query_Builder_Where クラスを拡張しており、すべてのメソッドが継承されます。
+				これは、 Query_Builder_Where クラスを拡張しており、すべてのメソッドが継承されます。
 			</p>
 
 			<article>
@@ -63,7 +63,7 @@
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -79,19 +79,19 @@
 										<th><kbd>$table</kbd></th>
 										<td><em>string</em></td>
 										<td><em>必須</em></td>
-										<td>the table name</td>
+										<td>テーブル名</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>現在のインスタンス</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a delete statement
+								<pre class="php"><code>// delete 文を準備
 $query = DB::delete('users');
 
 // 削除するテーブルをセットする
@@ -107,12 +107,12 @@ $query->table('admins');
 
 			<article>
 				<h4 class="method" id="method_compile">compile(\Database_Connection$db)</h4>
-				<p><strong>compile</strong> メソッドは、デリートを行うSQL クエリを文字列で返却します。</p>
+				<p><strong>compile</strong> メソッドは、デリートを行う SQL クエリを文字列で返却します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -135,21 +135,21 @@ $query->table('admins');
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>SQL文の文字列</td>
+							<td>SQL 文の文字列</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// prepare a delete statement
+								<pre class="php"><code>// delete 文を準備
 $query = DB::delete('users');
 
-// WHERE句をセット
+// WHERE 句をセット
 $query->where('looks', 'like', '%spammer%');
 
 // データベース接続を取得
 $connection = Database_Connection::instance();
 
-// SQL文を取得
+// SQL 文を取得
 $sql = $query->compile($connection);
 
 // DELETE FROM `users` WHERE `looks` LIKE "%spammer%"
@@ -167,37 +167,37 @@ $sql = $query->compile($connection);
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								<em>None</em>
+								<em>なし</em>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>現在のインスタンス</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// delete 文を準備します
+								<pre class="php"><code>// delete 文を準備
 $query = DB:delete('users');
 
-// WHERE句をセット
+// WHERE 句をセット
 $query->where('it_look', 'ok to me');
 
 // 上記をリセット
 $query->reset();
 
-// 別のWHERE句をセット
+// 別の WHERE 句をセット
 $query->where('looks', 'like', '%bad mister%');
 
 // データベース接続を取得
 $connection = Database_Connection::instance();
 
-// SQL文を取得
+// SQL 文を取得
 $sql = $query->compile($connection);
 
 // DELETE FROM `users` WHERE `looks` LIKE "%bad mister%"

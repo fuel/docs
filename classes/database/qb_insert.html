@@ -52,8 +52,8 @@
 			</p>
 
 			<p>
-				Query_Builder_Insert クラスは、クエリ構築のためのすべてのインサート 操作を扱います。
-				 これは、Query_Builder_Where クラスを拡張しており、すべてのメソッドが継承されます。
+				Query_Builder_Insert クラスは、クエリ構築のためのすべてのインサート操作を扱います。
+				 これは、 Query_Builder_Where クラスを拡張しており、すべてのメソッドが継承されます。
 			</p>
 
 			<article>
@@ -63,7 +63,7 @@
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -86,12 +86,12 @@
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>現在のインスタンス</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// insert 文を準備します
+								<pre class="php"><code>// insert 文を準備
 $query = DB::insert('users');
 
 // 挿入するテーブル名を更新
@@ -112,7 +112,7 @@ $query->table('admins');
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -135,12 +135,12 @@ $query->table('admins');
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>現在のインスタンス</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// insert 文を準備します
+								<pre class="php"><code>// insert 文を準備
 $query = DB::insert('users');
 
 // カラム名をセット
@@ -165,7 +165,7 @@ $query->columns(array(
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -188,12 +188,12 @@ $query->columns(array(
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>現在のインスタンス</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// insert 文を準備します
+								<pre class="php"><code>// insert 文を準備
 $query = DB::insert('users');
 
 // カラム名をセット
@@ -226,7 +226,7 @@ $query->values(array(
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -249,15 +249,15 @@ $query->values(array(
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>現在のインスタンス</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// insert 文を準備します
+								<pre class="php"><code>// insert 文を準備
 $query = DB::insert('users');
 
-// Set the columns and values
+// カラム名と値をセット
 $query->set(array(
 	'name' => 'John',
 	'surname' => 'Doe',
@@ -274,12 +274,12 @@ $query->set(array(
 
 			<article>
 				<h4 class="method" id="method_compile">compile(\Database_Connection$db)</h4>
-				<p><strong>compile</strong> メソッドは、インサートを行うSQL クエリを文字列で返却します。</p>
+				<p><strong>compile</strong> メソッドは、インサートを行う SQL クエリを文字列で返却します。</p>
 				<table class="method">
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
@@ -307,17 +307,17 @@ $query->set(array(
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// insert 文を準備します
+								<pre class="php"><code>// insert 文を準備
 $query = DB::select('*')->from('users');
 
-// Set the limit and offset
+// 件数の制限と取得開始位置をセット
 $query->limit(10);
 $query->offset(5);
 
 // データベースコネクションを取得
 $connection = Database_Connection::instance();
 
-// SQLクエリを取得
+// SQL クエリを取得
 $sql = $query->compile($connection);
 </code></pre>
 							</td>
@@ -328,27 +328,27 @@ $sql = $query->compile($connection);
 
 			<article>
 				<h4 class="method" id="method_reset">reset()</h4>
-				<p><strong>reset</strong>メソッドは、現在のインスタンスのすべての値をリセットします。</p>
+				<p><strong>reset</strong> メソッドは、現在のインスタンスのすべての値をリセットします。</p>
 				<table class="method">
 					<tbody>
 						<tr>
 							<th>静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								<em>None</em>
+								<em>なし</em>
 							</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>現在のインスタンス</td>
+							<td>現在のインスタンスを返します。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// insert 文を準備します
+								<pre class="php"><code>// insert 文を準備
 $query = DB::insert('users');
 
 // いくつかの値をセット
@@ -366,7 +366,7 @@ $query->table('admins')->set(array(
 	'surname' => 'Handriks'
 ));
 
-// The SQL query will now be:
+// 現在の SQL クエリはこうなります：
 // INSERT INTO `admins` (`name`, `surname`) VALUES ("Mark", "Hendriks")
 </code></pre>
 							</td>
