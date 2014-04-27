@@ -155,8 +155,12 @@
 				</table>
 			</article>
 
+			<p class="note">
+				 Be aware that the result of some combinations are unpredicable. For example, if you have CSV data without enclosure characters, no headings, and embedded newline characters in the first row, the correct number of fields in the file can not be calculated.
+			</p>
+
 			<article>
-				<h4 class="method" id="method_forge">forge($data = null, $from_type = null)</h4>
+				<h4 class="method" id="method_forge">forge($data = null, $from_type = null, $params = null)</h4>
 				<p>The <strong>forge</strong> method returns a new format object. <strong>$from_type</strong> supports <strong>'xml'</strong>, <strong>'yaml'</strong>, <strong>'csv'</strong>, <strong>'json'</strong>, <strong>'serialize'</strong> and <strong>'xml:ns'</strong>. 'xml:ns' allows you to parse fully namespaced-xml. When $from_type is not specified, <strong>$data</strong> will be delivered as it is.</p>
 				<table class="method">
 					<tbody>
@@ -182,6 +186,11 @@
 									<th><kbd>$from_type</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>Format of the data provided.</td>
+								</tr>
+								<tr>
+									<th><kbd>$param</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Optional parameter to be passed on to the converter.</td>
 								</tr>
 							</table>
 						</td>
@@ -209,6 +218,9 @@ Fuel\Core\Format Object
 					</tr>
 					</tbody>
 				</table>
+				<p class="note">
+						When converting from CSV format, you can pass <kbd>false</kbd> as <kbd>$param</kbd> to indicate the CSV source does not contain any headers. If so, the end result will be an indexed array.
+				</p>
 			</article>
 
 			<article>
