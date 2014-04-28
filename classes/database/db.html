@@ -1192,7 +1192,7 @@ DB::count_last_query();
 			</article>
 
 			<article>
-				<h4 class="method" id="method_rollback_transaction">rollback_transaction($db = null)</h4>
+				<h4 class="method" id="method_rollback_transaction">rollback_transaction($db = null, $rollback_all = true)</h4>
 				<p><strong>rollback_transaction</strong> メソッドは、未決のすべてのトランザクションクエリをロールバックします。</p>
 				<table class="method">
 					<tbody>
@@ -1212,7 +1212,12 @@ DB::count_last_query();
 									<tr>
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">データベースコネクション</td>
+										<td class="description">データベースコネクション。</td>
+									</tr>
+									<tr>
+										<th><kbd>$rollback_all</kbd></th>
+										<td><strong>true</strong></td>
+										<td class="description">The rollback mode:<br>true - rollback everything and close transaction;<br>false - rollback only current level.</td>
 									</tr>
 								</table>
 							</td>
