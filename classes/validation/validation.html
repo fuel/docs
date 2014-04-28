@@ -141,7 +141,11 @@ $val->add('username', 'Your username')->add_rule('required');
 // そしてさらにパスワード用のフィールドを追加し、3文字以上10文字以下の入力必須にする
 $val->add('password', 'Your password')->add_rule('required')
     ->add_rule('min_length', 3)
-    ->add_rule('max_length', 10);</code></pre>
+    ->add_rule('max_length', 10);
+
+// Now add another field for gender, and require it to contain either "M" or "F".
+$val->add('gender', 'Your gender')->add_rule('required')
+    ->add_rule('match_collection', array('M', 'F'));</code></pre>
 
 				<p>add_rule() メソッドの第1パラメータには、本機能で提供するルールに加え、任意の PHP のネイティブ関数やコールバック関数、無名関数を指定することもできます。
 				コールバック関数は、バリデーションされる値を第一パラメータに取ります。
@@ -154,7 +158,8 @@ $val->add('password', 'Your password')->add_rule('required')
 				<pre class="php"><code>// 上記の例と同じ動作をします
 $val = Validation::forge('my_validation');
 $val->add_field('username', 'Your username', 'required');
-$val->add_field('password', 'Your password', 'required|min_length[3]|max_length[10]');</code></pre>
+$val->add_field('password', 'Your password', 'required|min_length[3]|max_length[10]');
+$val->add_field('gender', 'Your gender', 'required|match_collection[M,F]');</code></pre>
 
 				<p>すべてのフィールドを追加したら、バリデーションを実行することが出来ます。
 				デフォルトでは $_POST ですが、入力を与えることで、上書きや拡張することが出来ます。</p>
@@ -248,6 +253,13 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 								入力値が <kbd>$fieldname</kbd> フィールドと一致するかどうか。
 								比較には === が使用される。
 								<p class="note"><strong>重要:</strong> このルールを追加するフィールドよりも前に追加されたフィールドのみ一致対象とすることができます。</p>
+							</td>
+						</tr>
+						<tr>
+							<th>match_collection</th>
+							<td><kbd>$collection</kbd> = array()</td>
+							<td>
+								Will try to match the field against a collection of valid values.
 							</td>
 						</tr>
 						<tr>
