@@ -58,7 +58,7 @@
 				<p>ほとんどの人は、上記の最初の段落で迷子になるので、例を上げてこれを説明して行きましょう。</p>
 
 				<p>
-				  エンティティ(レコードを表すORM用語)が子レコードに対して関連するたくさんの属性を持つ時には、通常 EAV のコンテナを使用します。
+				  エンティティ (レコードを表す ORM 用語) が子レコードに対して関連するたくさんの属性を持つ時には、通常 EAV のコンテナを使用します。
 				  しかし全レコードを見ると、それらの属性はレコードごとに異なっているかも知れません。
 				  これは属性名をそのままカラム名にしたエンティティテーブルを作ることは不可能であることを意味しています。
 				  なぜならあまりにも多く存在するだろうカラムのうちほとんどはデータを持つことはないからです。
@@ -66,7 +66,7 @@
 				</p>
 
 				<p>
-				  この問題を「リレーショナル」スタイルで解決するために、「一対多(One-to-Many)」の関係でエンティティに対する子テーブルを作成し、
+				  この問題を「リレーショナル」スタイルで解決するために、「一対多 (One-to-Many) 」の関係でエンティティに対する子テーブルを作成し、
 				  すべての属性が属性が子テーブルのレコードから得られるようにするでしょう。
 				  このアプローチの欠点は、特定の属性値を取得しようとした時に表れます。
 				  すべての関連レコードをループ処理して、見つけたい属性と属性カラムの値を比較し、
@@ -86,7 +86,7 @@
 
 				<p>
 				  モデルで EAV コンテナを有効にするには、属性と値のカラムを持った子テーブルがモデルに対して必要になります。
-				  子テーブルは「一対多(One-to-Many)」か「多対多 (Many-to-Many)」の関係でなければなりません。
+				  子テーブルは「一対多 (One-to-Many) 」か「多対多 (Many-to-Many) 」の関係でなければなりません。
 				</p>
 
 				<p>
@@ -97,14 +97,14 @@
 {
 	// このモデルのプロパティのリスト、この例では最短で
 	protected static $_properties = array(
-		'id',					// primary key
+		'id',					// 主キー
 	);
 
 	// 通常の方法で statistics との関係を記述します
 	protected static $_has_many = array(
 		'statistics' => array(
 			'key_from' => 'id',			// このモデルのキー
-			'model_to' => 'Model_Statistic',      // related model
+			'model_to' => 'Model_Statistic',      // 関連するモデル
 			'key_to' => 'patient_id',		// 関連するモデルでのキー
 			'cascade_save' => true,		// 関係するテーブルが保存されるときに同時にアップデート
 			'cascade_delete' => true,		// 親テーブルの関連レコードが削除されるときに同時に削除
@@ -113,10 +113,10 @@
 
 	// EAV コンテナはこのように定義します
 	protected static $_eav = array(
-		'statistics' => array(			// we use the statistics relation to store the EAV data
-			'model_to' => 'Model_Statistic',      // related model
-			'attribute' => 'key',		// the key column in the related table contains the attribute
-			'value' => 'value',			// the value column in the related table contains the value
+		'statistics' => array(			// EAV データを格納する statistics の関係を利用
+			'model_to' => 'Model_Statistic',      // 関連するモデル
+			'attribute' => 'key',		// 関連するテーブル内のキー列は属性を含む
+			'value' => 'value',			// 関連するテーブル内の値列は値を含む
 		)
 	);
 }
@@ -125,13 +125,13 @@ class Model_Statistic extend \Orm\Model
 {
 	// このモデルのプロパティのリスト
 	protected static $_properties = array(
-		'id',					// primary key
-		'patient_id',				// foreign key
-		'key',					// attribute column
-		'value',				// value column
+		'id',					// 主キー
+		'patient_id',				// 外部キー
+		'key',					// 属性カラム
+		'value',				// 値カラム
 	);
 	
-	// set up the patient relation the usual way
+	// patient の関係は通常通りの方法で設定
 	protected static $_belongs_to = array(
 	    'patient' => array(
 	        'key_from' => 'patient_id',
@@ -186,9 +186,9 @@ echo $ms->Temperature;		// '37.9'
 echo $mr->Headache;		// 'yes'
 echo $ms->Headache;		// プロパティが見つからないので例外が投げられます
 
-// or set them directly
-$mr->Temperature = '36.9';	// our patient seems to have improved
-$mr->save();			// updates the patient record, and the updated EAV records
+//または、それらを直接設定
+$mr->Temperature = '36.9';	// 私たちの患者は改善しているようだ
+$mr->save();			// 患者記録を更新し、EAV レコードも更新
 
 // 古いやり方でアクセスすることもできます
 foreach ($mr->statistics as $statistic)
@@ -197,8 +197,8 @@ foreach ($mr->statistics as $statistic)
 }
 </code></pre>
 				<p class="note">
-					Note that when your model has an EAV container defined, you can no longer use custom
-					data properties for that model, as every new property will be seen as a new EAV key.
+					ここで留意すべきは、利用しているモデルが定義済みの EAV コンテナを有する場合、すべての新しいプロパティは新しい
+					EAV キーとして見られるために、もはや、そのモデルのカスタムデータプロパティを利用することはできないと言うことである。
 				</p>
 			</section>
 
