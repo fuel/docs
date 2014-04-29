@@ -233,10 +233,10 @@
 				<li><strong>serialize</strong> – PHP でアンシリアライズ可能な、シリアライズされたデータ</li>
 			</ul>
 			<p class="note">
-				If your controller method returns an array, but the requested output format is something that an array can not be
-				converted to (such as <strong>html</strong>), you will get a 406 NOT ACCEPTABLE status returned when your
-				application runs in a production environment, or a warning message and a JSON dump of the array when in
-				any other environment.
+				もし、あなたのコントローラのメソッドが配列を返す場合で、
+				リクエストされた出力フォーマットが (<strong>html</strong> のような) 配列に変換できないとき、
+				本番環境では、406 NOT ACCEPTABLE ステータスが、
+				他の環境では警告メッセージと配列の JSON ダンプが返ります。
 			</p>
 
 			<h3 id="format_determination">フォーマットの決定</h3>
@@ -248,7 +248,7 @@
 				<li>対応フォーマットを含むなら、protected なプロパティである <kbd>$format</kbd> を使用する</li>
 				<li>対応フォーマットであるなら、URL の拡張子を使用する</li>
 				<li>対応フォーマットを含むなら、ルートの中で指定された <kbd>:format</kbd> 変数のフォーマットを使用する</li>
-				<li>use the format specified by the <kbd>format</kbd> variable in the request</li>
+				<li>リクエストの中の <kbd>format</kbd> 変数で指定されたフォーマット</li>
 				<li><kbd>HTTP_ACCEPT</kbd> で定義されたフォーマットを使用する</li>
 				<li>あなたのクラスの <kbd>$rest_format</kbd> プロパティで定義されたデフォルト値を使用する</li>
 				<li>グローバル設定の <kbd>default_format</kbd> でで意義された値を使用する</li>
