@@ -48,7 +48,7 @@
 
 			<h3 id="intro">はじめに</h3>
 			<p>
-				Theme クラスは、あなたのアプリケーションにテーマ設定を提供します。
+				Theme クラスはアプリケーションにテーマを提供します。
 			</p>
 			<p>
 				テーマはテンプレート (ビュー) とアセットをグループ化し、アクティブなテーマを切り替える事で、
@@ -56,7 +56,7 @@
 			</p>
 			<p>
 				モジュールやパッケージのように、テーマを複数の場所に保存する事ができます。
-				あなたはこれらのパスをコンフィグファイルに定義するか、実行時にテーマのインスタンスに追加する事ができます。
+				あなたはこれらのパスを設定ファイルに定義するか、実行時にテーマのインスタンスに追加する事ができます。
 				テーマは名前で識別され、テーマのフォルダ名と同じでなければいけません。
 				テーマが複数の場所で定義されてる場合、最初に見つかったものが使用されます。
 			</p>
@@ -65,23 +65,23 @@
 
 			<p>
 				テーマ情報ファイルで、テーマの設定情報を提供することができます。
-				このファイルは全てのテーマの固定の名前を持っており、グローバルコンフィグファイルを使用して設定する事ができます。
+				このファイルは全てのテーマの固定の名前を持っており、グローバルな設定ファイルを使用して設定する事ができます。
 				また、このファイルを必須にするオプションがあります。
 			</p>
 			<p>
-				テーマ情報ファイルの書式は、通常のコンフィグファイルと同じ書式で、ファイルタイプも同じものに対応しています。
-				テーマ情報ファイルは「options」とよばれる、特別なセクションを含める事ができます。 options は、 get か set がソースコードより利用でき、
+				テーマ情報ファイルの書式は、通常の設定ファイルと同じ書式で、ファイルタイプも同じものに対応しています。
+				テーマ情報ファイルは 'options' と呼ぶ、特別なセクションを含める事ができます。 options は、 get か set がソースコードより利用でき、
 				テーマのいくつかの特性、例えば使用する色や、カラースキームを選択するためのカスタムCSSファイル名を操作するのに使用する事ができます。
 			</p>
-			<p class="note">テーマ情報ファイルは、読み込み専用です。実行時にオプションを変更する事はできますが、変更内容を書き込み保存する事はできません。</p>
+			<p class="note">テーマ情報ファイルは、読み込み専用です。実行時に options を変更する事はできますが、変更内容を書き込み保存する事はできません。</p>
 
 			<h3 id="assets">テーマアセット</h3>
 
 			<p>
-				あなたのテーマはアセット (画像、JavaScript、CSSファイル) を持っているでしょう。アセットはブラウザがそれらのファイルをロードできるように
+				あなたのテーマはアセット (画像、 JavaScript 、 CSS ファイル) を持っているでしょう。アセットはブラウザがそれらのファイルをロードできるように
 				<strong>DOCROOT</strong> の中に配置する必要があります。テーマディレクトリ内にアセットを配置するように選択する事ができ、これは、
 				<strong>DOCROOT</strong> の中か、<strong>DOCROOT</strong> の外か、<strong>DOCROOT</strong> の中の別のフォルダ内にテーマファイルを持つ必要がある事を意味しています。
-				CDN を利用する場合など、ベースURLでアセットを指定する事もできます。
+				CDN を利用する場合など、ベース URL でアセットを指定する事もできます。
 			</p>
 			<p>
 				次のロジックが、テーマのアセットファイルの場所を決めるために利用されます:
@@ -90,12 +90,12 @@
 						アセットフォルダが URL である場合、テーマ名がサフィックスとアセットのベース URL として利用されます。
 					</li>
 					<li>
-						テーマフォルダが <strong>DOCROOT</strong> の <u>中</u> にあり、コンフィグの <strong>assets_folder</strong> に設定した名前のフォルダを持つ場合、
-						これがテーマのアセットのURLになります。
+						テーマフォルダが <strong>DOCROOT</strong> の <u>中</u> にあり、それが <strong>assets_folder</strong> に設定した名前のフォルダを含む場合、
+						これがテーマのアセットの URL になります。
 					</li>
 					<li>
 						テーマフォルダが <strong>DOCROOT</strong> の <u>中</u> にあり、
-						コンフィグの <strong>assets_folder</strong> に設定した名前のフォルダを持たない場合、
+						それが <strong>assets_folder</strong> に設定した名前のフォルダを含まれていない場合、
 						<strong>assets_folder</strong> は、テーマの名前が追加されるまで、全てのテーマのアセットのルートと仮定されるでしょう。
 					</li>
 					<li>
@@ -105,41 +105,41 @@
 				</ul>
 
 				<p class="note">
-					もし標準の Asset クラスを利用したい場合、アセットフォルダは互換性のある /css 、 /img 、 /js サブフォルダ構造である必要があります。
+					もし標準の Asset クラスを利用したい場合、アセットフォルダは互換性のある /css 、 /img 、や /js サブフォルダ構造である必要があります。
 				</p>
 			</p>
 
 			<h3 id="layouts">テーマテンプレートかレイアウト</h3>
 
 			<p>
-				テーマは、ページのレイアウトを定義するビューファイルである、テーマテンプレートかレイアウトと連携します。
+				テーマはそのページのレイアウトを定義するビューファイルでテーマテンプレートやレイアウトと連携します。
 			</p>
 
 			<h3 id="partials">テーマテンプレートパーシャル</h3>
 
 			<p>
 				テンプレートの変数セクションは、テンプレートパーシャルを使用して定義する事ができ、ページのセクションを分割されたビューで構築します。
-				大規模なアプリケーションの設計では、パーシャルはよく別々のコードで作られ、HMVCの呼び出しからアクセスされます。
+				大規模なアプリケーションの設計では、パーシャルはよく別々のコードで作られ、 HMVC の呼び出しからアクセスされます。
 			</p>
 			<p>
-				The contents of a partials section can be accessed through a view variable $partials, an array with an entry for each of the partial
-				sections defined. You access a section using it's name. So for a partial section called 'sidebar', you would use <strong>echo $partials['sidebar'];</strong> in your page template.
+				パーシャルセクションの内容は、それぞれのパーシャルセクションためのエントリを持つ配列が定義されたビュー変数 $partials を介してアクセスすることができます。
+				あなたはパーシャルセクションの名前を利用しセクションにアクセスします。つまり、 'sidebar' と呼ばれるパーシャルセクションでは、 <strong>echo $partials['sidebar'];</strong> をページ·テンプレート内で利用します。
 			</p>
 
 			<h3 id="chrome">パーシャルクローム</h3>
 
 			<p>
-				'Chrome' is a term used in UI interface design, and describes the design and styling of a window border. In the context of the Theme
-				class, it is a view that can be used to encapsulate a template partial section, which allows you to style that section independent
-				of the template itself and of the partial output. Chrome will only be generated if there are partials to render. A chrome template
-				will encapsulate a partial section, which may contain multiple partials.
+				「クローム」は UI インタフェースの設計で使用される用語であり、ウィンドウの境界のデザインとスタイリングを記述します。テーマクラスのコンテキストでは、
+				それはテンプレートパーシャルセクションをカプセル化するために利用することができ、これはテンプレート自体のそのセクションからの独立と部分的な出力が可能なスタイルです。
+				レンダリングするパーシャルがある場合にのみクロームは生成されます。 
+				クロムテンプレートは、複数のパーシャルが含まれている可能性があるパーシャルセクションをカプセル化します。
 			</p>
 			<p>
-				For example, if you have a UI with windows, some of which can be opened and closed, some of which can be moved, and some are static,
-				you can use different chrome templates assigned to each of the template sections representing such a window. Each chrome template
-				contains the HTML and javascript code to achieve the desired functionality. From your application code, you can control the window
-				behaviour by simply assigning the correct chrome template. This can be particularly useful in CMS type applications, where the user
-				can control the behaviour of the UI.
+				例えば、あなたが、一部は開閉することができ、そのいくつかは移動させることができ、そしていくつかは固定されているウインドウがある
+				UI を持っている場合、あなたは、ウィンドウを表すテンプレートの各セクションに割り当てられた異なるクロムテンプレートを使用することができます。 
+				各クロムテンプレートは HTML と目的の機能を達成するための JavaScript コードが含まれています。
+				アプリケーションのコードから、単に正しいクロムテンプレートを割り当てることでウィンドウの動作を制御することができます。
+				これは CMS 型のアプリケーションにおいて UI の動作をユーザーが制御できることから特に役に立ちます。
 			</p>
 
 			<p>サンプル:</p>
@@ -164,7 +164,7 @@ class Homepage extends \Controller
 		// ホームページナビゲーションメニューをセット
 		$this->theme->set_partial('navbar', 'homepage/navbar');
 
-		// 角丸のボーダーのサイドバーセクションを持つchromeを定義
+		// 角丸のボーダーのサイドバーセクションを持つクロームを定義
 		$this->theme->set_chrome('sidebar', 'chrome/borders/rounded', 'partial');
 
 		// ホームページのサイドバーのコンテンツのパーシャルをセット
@@ -181,7 +181,7 @@ class Homepage extends \Controller
 	 */
 	public function action_index()
 	{
-		// ホームページにはFlashイメージのバナーがあります
+		// ホームページには Flash イメージのバナーがあります
 		$this->theme->set_partial('banner', 'homepage/banner');
 
 		// a block of static content
@@ -213,9 +213,9 @@ class Homepage extends \Controller
 			<h3 id="config">設定</h3>
 
 			<p>
-				テーマクラスのコンフィグは <strong>app/config/theme.php</strong> で設定されています。
-				デフォルトのコンフィグファイルは fuel/core/config 内にあります。
-				このファイルをアプリケーションコンフィグディレクトリにコピーして、必要な箇所を変更する事で、オーバーライドする事ができます。
+				テーマクラスの設定は <strong>app/config/theme.php</strong> で設定されています。
+				デフォルトの設定ファイルは fuel/core/config 内にあります。
+				このファイルをアプリケーションの設定ディレクトリにコピーして、必要な箇所を変更する事で、オーバーライドする事ができます。
 			</p>
 
 			<table class="config">
@@ -272,7 +272,7 @@ class Homepage extends \Controller
 						<th>info_file_type</th>
 						<td>string</td>
 						<td><pre class="php"><code>'php'</code></pre></td>
-						<td>テーマ情報ファイルのファイルタイプです。php、ini、json、yaml が指定できます。</td>
+						<td>テーマ情報ファイルのファイルタイプです。 php 、 ini 、 json 、 yaml が指定できます。</td>
 					</tr>
 					<tr>
 						<th>use_modules</th>
@@ -287,14 +287,14 @@ class Homepage extends \Controller
 				</tbody>
 			</table>
 
-			<p>コンフィグファイルのサンプル:</p>
+			<p>設定ファイルのサンプル:</p>
 
 			<pre class="php"><code>// app/config/theme.php の中
 
 return array(
 	'active' => 'default',
 	'fallback' => 'default',
-	'paths' => array(			// DOCROOTの外にあるテーマファイルはここ
+	'paths' => array(			// DOCROOT の外にあるテーマファイルはここ
 		APPPATH.'themes',
 	),
 	'assets_folder' => 'themes',	// これは &lt;localpath&gt;/public/themes/&lt;themename&gt;... を意味します
