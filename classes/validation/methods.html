@@ -557,51 +557,51 @@ $val->get_message('required', null);
 			<article>
 				<h4 class="method" id="method_run">run($input = null, $allow_partial = false, $temp_callables = array())</h4>
 				<p>
-					Runs the defined validation rules against the input passed, or Input::post() if nothing was passed.
+					メソッドに渡した入力に対して、定義済みバリデーションルールを実行します。入力が無い場合は Input::post() をバリデーションします。
 				</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
+							<th class="legend">静的</th>
+							<td>いいえ</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$input</kbd></th>
 										<td><em>array</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Assoc array of input fields and values</td>
+										<td>入力フィールドと値からなる連想配列</td>
 									</tr>
 									<tr>
 										<th><kbd>$allow_partial</kbd></th>
 										<td><em>bool</em></td>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If false, all fields that have validation rules defined MUST be present in the input</td>
+										<td>false の場合、バリデーションルールが定義されたフィールドが全て入力に存在しなければならない</td>
 									</tr>
 									<tr>
 										<th><kbd>$temp_callables</kbd></th>
 										<td><em>array</em></td>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>Any additional callables required to run all defined validation rules</td>
+										<td>全ての定義済みバリデーションを実行するために必要なコーラブル関数</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Boolean, true if the input validated, false if it failed</td>
+							<th>返り値</th>
+							<td>Boolean, バリデーションされれば true、そうでなければ false</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>$val = Validation::forge('article');
 $val->add_field('title', 'Title', 'required');
@@ -611,7 +611,7 @@ if ( ! $val->run())
 	foreach ($val->error() as $field => $error)
 	{
 		echo $error->get_message();
-		// The field Title is required and must contain a value.
+		// フィールドのタイトルが必要であり、値を含まなければいけません。
 	}
 }
 </code></pre>
@@ -624,52 +624,52 @@ if ( ! $val->run())
 			<article>
 				<h4 class="method" id="method_input">input($key = null, $default = null)</h4>
 				<p>
-					Returns one or all input values, or the default value if the requested key is not present in the input.
+					入力値を一つまたは全て返す。要求したキーが入力に無い場合はデフォルトを返す。
 				</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
+							<th class="legend">静的</th>
+							<td>いいえ</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$key</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Name of the input field, or null to return all input</td>
+										<td>入力フィールド名。null の場合、全入力を返す。</td>
 									</tr>
 									<tr>
 										<th><kbd>$default</kbd></th>
 										<td><em>mixed</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Value to return if the key is not present in the input</td>
+										<td>キーが入力に無い場合に返す値。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Mixed, the input value or the value specified as $default</td>
+							<th>返り値</th>
+							<td>Mixed, 入力値または $default で指定した値</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>$val = Validation::forge('article');
 $val->add_field('title', 'Title', 'required');
 
 if ($val->run())
 {
-	// if something was posted, echo it
+	// なにか投稿された場合は出力する
 	echo $val->input('title');
 }
 </code></pre>
@@ -678,59 +678,59 @@ if ($val->run())
 					</tbody>
 				</table>
 				<p class="note">
-					Input is only available after the validation rules have run.
-					By default, <kbd>input()</kbd> will fall back to <kbd>Input::param()</kbd> when no rules have run. This behaviour can be controlled through the validation config file.</p>
+					Input は、バリデーションルールが実行された後のみ利用可能です。
+					デフォルトでは、ルールが実行されていない場合 <kbd>input()</kbd> は <kbd>Input::param()</kbd> に戻ります。この振る舞いは、バリデーション設定ファイルで制御できます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_validated">validated($field = null, $default = false)</h4>
 				<p>
-					Returns one or all validated input values, or the default value if the requested key is not present in the validated input.
+					バリデーションされた入力値を一つまたは全て返す。要求したキーが入力に無い場合はデフォルトを返す。
 				</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
+							<th class="legend">静的</th>
+							<td>いいえ</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$field</kbd></th>
 										<td><em>string</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Name of the input field, or null to return all input</td>
+										<td>入力フィールド名。null の場合、全入力を返す。</td>
 									</tr>
 									<tr>
 										<th><kbd>$default</kbd></th>
 										<td><em>mixed</em></td>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Value to return if the key is not present in the input</td>
+										<td>キーが入力に無い場合に返す値。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>Mixed, the validated input value or the value specified as $default</td>
+							<th>返り値</th>
+							<td>Mixed, バリデーションされた入力値または $default で指定した値</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>$val = Validation::forge('article');
 $val->add_field('title', 'Title', 'required');
 
 if ($val->run())
 {
-	// if something was posted, echo it
+	// なにか投稿された場合は出力する
 	echo $val->validated('title');
 }
 </code></pre>
@@ -739,8 +739,8 @@ if ($val->run())
 					</tbody>
 				</table>
 				<p class="note">
-					Where <kbd>input()</kbd> returns the raw input value, <kbd>validated()</kbd> will return the validated value,
-					which might be different than the input because some validation rules alter the input (for example a rule like <kbd>strtoupper</kbd>).
+					<kbd>input()</kbd> は元の入力値を返しますが、<kbd>validated()</kbd> はバリデーションされた値を返します。
+					(たとえば <kbd>strtoupper</kbd> のような)いくつかのバリデーションルールは入力値を書き換えるので、<kbd>validated()</kbd> の出力する値は元の入力値と異なることがあります。
 				</p>
 			</article>
 
@@ -796,7 +796,7 @@ if ( ! $val->run(array()))
 	foreach ($val->error() as $field => $error)
 	{
 		echo $error->get_message();
-		// The field Title is required and must contain a value.
+		// フィールドのタイトルが必要であり、値を含まなければいけません。
 	}
 }
 </code></pre>
@@ -871,39 +871,39 @@ if ( ! $val->run(array()))
 			<article>
 				<h4 class="method" id="method_show_errors">show_errors($options = array())</h4>
 				<p>
-					The <strong>show_errors</strong> returns the list of validation errors rendered in HTML according to the defined template.
+					<strong>show_errors</strong> は定義済みテンプレートに従って、HTML形式で、バリデーションエラーのリストを返します。
 				</p>
 				<table class="method">
 					<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
+							<th class="legend">静的</th>
+							<td>いいえ</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>型</th>
+										<th>でフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$options</kbd></th>
 										<td><em>array</em></td>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>Options for the HTML template, to override the defaults from the validation config file</td>
+										<td>HTML テンプレートのオプション。バリデーション設定ファイルのデフォルトを上書きする。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>string, the rendered HTML</td>
+							<th>返り値</th>
+							<td>string, レンダリングされた HTML</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
 								<pre class="php"><code>$val = Validation::forge('article');
 $val->add_field('title', 'Title', 'required');
@@ -918,29 +918,29 @@ if ( ! $val->run(array()))
 					</tbody>
 				</table>
 				<p class="note">
-					The following options can be passed: 'open_list', 'close_list', 'open_error', 'close_error' and 'no_errors'. By default
-					an unordered list is generated, and an empty string is returned if no validation errors were found.
+					オプションは、'open_list', 'close_list', 'open_error', 'close_error', 'no_errors' から選択可能。
+					デフォルトでは順序無しリストが生成される。バリデーションエラーが無い場合は空文字列。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_add">add($name, $label = '', array $attributes = array(), array $rules = array())</h4>
 				<p>
-					Alias for the <a href="../fieldset/fieldset.html#method_add">Fieldset add()</a> method.
+					<a href="../fieldset/fieldset.html#method_add">Fieldset add()</a> メソッドの別名
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_add_model">add_model($class, $instance = null, $method = 'set_form_fields')</h4>
 				<p>
-					Alias for the <a href="../fieldset/fieldset.html#method_add_model">Fieldset add_model()</a> method.
+					<a href="../fieldset/fieldset.html#method_add_model">Fieldset add_model()</a> メソッドの別名
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_field">field($name = null, $flatten = false)</h4>
 				<p>
-					Alias for the <a href="../fieldset/fieldset.html#method_field">Fieldset field()</a> method.
+					<a href="../fieldset/fieldset.html#method_field">Fieldset field()</a> メソッドの別名
 				</p>
 			</article>
 		</div>
