@@ -45,9 +45,9 @@
 
             <div id="main">
                 <section>
-                    <h2 id="introduction">Introduction</h2>
-                    <p>The temporal model is a lot less scary than it sounds. </p>
-                    <p>Usually in a database entities are represented by a row in a table, when this row is updated the old information is overwritten. The temporal model allows data to be referenced in time, it makes it possible to query the state of an entity at a given time.</p>
+                    <h2 id="introduction">はじめに</h2>
+                    <p>テンポラルモデルは思ったよりもずっと怖くはない。</p>
+                    <p>通常はデータベースエンティティのテーブル内の行で表され、この行が更新されると、古い情報が上書きされます。テンポラルモデルはデータを時間で参照でき、それにより、ある時点でのエンティティの状態を照会することができます。</p>
                     <p>For example, say you wanted to keep track of changes to products so when an order is placed you know the state of the product without having to duplicate data in the orders table. You can make the products temporal and use the time of the order to reference the state of the ordered products at that time rather than how they currently are, as would happen without using temporal data.</p>
                     <p>The temporal model could also be used for auditing changes to things like wiki pages. Any changes would be automatically logged without having to use a separate log table.</p>
 					<p>An "entity" would be any item in your design, for example, a product, a user, a gallery folder, anything that you would use as a Model can be considered an entity. The Temporal Model allows you to track changes to these entities over time by storing changes, each new set of changes is called a "revision". Because each revision is saved along with time (temporal) data it makes it possible to get the state of an entity at any given time.</p>
@@ -57,7 +57,7 @@
                 </section>
                 
                 <section>
-                    <h2 id="use">Use</h2>
+                    <h2 id="use">使用法</h2>
                     <p>The table must be set up with a compound primary key of the entity ID, just a standard auto-incrementing number (for example), and the timestamps that represent the valid time span of the row.</p>
                     <pre id="php"><code>class Model_MyTemporal extends Orm\Model_Temporal
 {
@@ -83,21 +83,21 @@
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>Yes</td>
+                                <th class="legend">静的</th>
+                                <td>はい</td>
                             </tr>
                             <tr>
-                                <th>Parameters</th>
+                                <th>パラメータ</th>
                                 <td>
                                     <table class="parameters">
                                         <tr>
-                                            <th>Param</th>
-                                            <th>Default</th>
+                                            <th>パラメータ</th>
+                                            <th>デフォルト</th>
                                             <th class="description">Description</th>
                                         </tr>
                                         <tr>
                                             <th><kbd>$id</kbd></th>
-                                            <td><em>required</em></td>
+                                            <td><em>必須</em></td>
                                             <td>The ID of the entity to search for.</td>
                                         </tr>
                                         <tr>
@@ -114,11 +114,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Returns</th>
-                                <td>A single subclass of <kbd>Model_Temporal</kbd></td>
+                                <th>戻り値</th>
+                                <td>単一の <kbd>Model_Temporal</kbd> のサブクラス</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>Model_Product::find_revision($id, '2012-11-09 12:04:00', array('images', 'reviews'));</code></pre>
                                 </td>
@@ -133,21 +133,21 @@
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>Yes</td>
+                                <th class="legend">静的</th>
+                                <td>はい</td>
                             </tr>
                             <tr>
-                                <th>Parameters</th>
+                                <th>パラメータ</th>
                                 <td>
                                     <table class="parameters">
                                         <tr>
-                                            <th>Param</th>
-                                            <th>Default</th>
+                                            <th>パラメータ</th>
+                                            <th>デフォルト</th>
                                             <th class="description">Description</th>
                                         </tr>
                                         <tr>
                                             <th><kbd>$id</kbd></th>
-                                            <td><em>required</em></td>
+                                            <td><em>必須</em></td>
                                             <td>The ID of the entity to search for.</td>
                                         </tr>
                                         <tr>
@@ -164,11 +164,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Returns</th>
-                                <td>An array of subclasses of <kbd>Model_Temporal</kbd></td>
+                                <th>戻り値</th>
+                                <td><kbd>Model_Temporal</kbd> のサブクラスの配列</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>Model_Product::find_revisions_between($id, '2012-11-09 12:04:00', '2012-12-10 19:00:00');</code></pre>
                                 </td>
@@ -183,11 +183,11 @@
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>No</td>
+                                <th class="legend">静的</th>
+                                <td>いいえ</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>Model_Product::find(5)->delete();</code></pre>
                                 </td>
@@ -202,11 +202,11 @@
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>No</td>
+                                <th class="legend">静的</th>
+                                <td>いいえ</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>$product = Model_Product::find(5);
 $product->name = 'Super Awesome 12000';
@@ -223,11 +223,11 @@ $product->overwrite();</code></pre>
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>No</td>
+                                <th class="legend">静的</th>
+                                <td>いいえ</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>Model_Product::find_revision(5, '2012-11-09 12:04:00')->restore();</code></pre>
                                 </td>
@@ -241,11 +241,11 @@ $product->overwrite();</code></pre>
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>No</td>
+                                <th class="legend">静的</th>
+                                <td>いいえ</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>Model_Product::find(5)->purge();</code></pre>
                                 </td>
