@@ -45,9 +45,9 @@
 		<div id="main">
 			<h2>Orm</h2>
 
-			<p>ORMは<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
-				関係マッピング</a>の略です。 これは、2つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
-				それはあなたがそれらのオブジェクト間の関係を確立することができます。<br />
+			<p>ORM は<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
+				関係マッピング</a>の略です。 これは、 2 つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
+				それはあなたがそれらのオブジェクト間のリレーションを確立することができます。<br />
 				それは <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">
 				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
 
@@ -71,9 +71,9 @@
 
 				<pre class="php"><code>protected static $_has_many = array('comments');</code></pre>
 
-				<p>例えば、<kbd>Model_Article</kbd>で指定した場合、
-					<kbd>コメント</kbd>インスタンスを通して主要なキーにマッチしているフィールド<kbd>article_id</kbd>を持つ多数の
-					<kbd>Model_Comment</kbd>オブジェクトとして取得する事を可能にします。</p>
+				<p>例えば、 <kbd>Model_Article</kbd> で指定した場合、
+					<kbd>comments</kbd> のインスタンスを通して主キーにマッチしている <kbd>article_id</kbd> フィールドを持つ多数の
+					<kbd>Model_Comment</kbd> オブジェクトとして取得する事を可能にします。</p>
 
 				<h3>完全な設定</h3>
 
@@ -83,23 +83,23 @@
 	'key_to' => 'parent_article_id',
 	'cascade_save' => true,
 	'cascade_delete' => false,
-	// 特定の関係タイプのために、もう少しオプションがあります
+	// 特定のリレーションタイプのために、もう少しオプションがあります
 ));</code></pre>
 
-				<p>基本的な例に、Ormはモデル名とフィールド・マッピングを自動的に行います。 この例は
-					目標モデルのクラス名をはっきりと指定します、フィールドはそれらを関連させたものです。
-					そして、アクションが進行中に実行したかどうかにかかわらず、オブジェクトがそうでなければならない流れはターゲットに対しカスケード(縦列)になりました。 It will return an array of
-					<kbd>Model_Fancy_Comment</kbd> オブジェクトは<kbd>parent_article_id</kbd>フィールドと
-					<kbd>article_id</kbd>が一致する場合に、配列を返します。 オブジェクトに操作を保持する時、
+				<p>基本的な例として、 Orm はモデル名とフィールドのマッピングを自動的に行います。この例では、明示的にターゲットモデルのクラス名を指定しており、
+					フィールドはそれらを関連付けることや、現在のオブジェクト上で行なわれた動作をターゲットに
+					カスケードする必要があるかどうかで利用されます。
+					comment の <kbd>parent_article_id</kbd> フィールドが現在のオブジェクトの <kbd>article_id</kbd> に対応する 
+					<kbd>Model_Fancy_Comment</kbd> オブジェクトの配列を返します。 オブジェクトに操作を保持する時、
 					その操作は、そのロードしたリレーションに関しても実行されます。削除することはデフォルトではカスケードされませんが、
-					あなたがこのスイッチをONにするならば、可能です。</p>
+					あなたがこのスイッチを ON にするならば、可能です。</p>
 
 				<p class="note">リレーションを取得し、それらの出力を制限するときの制限: あなたは、メインオブジェクトのステートメントを
-					複合して使うことができません。 それは<kbd>where_open()</kbd>を使った
-					ネスト状態の括弧を使っている問合わせです。問合わせがあることができる標準（非ネスト）は、問題なく適用できます。<br />
+					複合して使うことができません。 それは <kbd>where_open()</kbd> を使った
+					ネスト状態の括弧を使っている問合わせです。問合わせがあることができる標準 (非ネスト) は、問題なく適用できます。<br />
 					技術的に、それはこのように働きます : 出力を制限するために、ベース・モデルのテーブルの上の問合わせは、
 					実は制限をそれの上に置くサブクエリです。ネストになったそれらのどの状況でも、
-					サブクエリとさらに加わられた関係の結果に関して適用されます。</p>
+					サブクエリとさらに加わられたリレーションの結果に関して適用されます。</p>
 
 				<h3>構成オプション</h3>
 
@@ -114,32 +114,32 @@
 						</tr>
 						<tr>
 							<th>model_to</th>
-							<td>Calculated from alias</td>
-							<td>If specified, must the the full class name of the target model (ex. <kbd>Model_Comment</kbd>).<br />
-								By default, this value is formed by prepending 'Model_' to the singular form of the alias
-								(ex. 'comments' becomes 'Model_Comment'). If your model is in another namespace, you must specify
-								the full namespace, excluding the leading backslash (ex. 'Admin\Model_User'), PHP doesn't support
-								relative namespaces in strings.</td>
+							<td>別名から算出</td>
+							<td>指定された場合は、対象モデルの完全なクラス名を必要とします (例えば Model_Comment)<br />
+								デフォルトでは、この値はエイリアスの単数形に "Model_"を付加することによって形成されます
+								(例えば 'comments' は 'Model_Comment' となる) 。モデルが別の名前空間にある場合、 PHP
+								は文字列内での相対的な名前空間をサポートしいないため、先頭のバックスラッシュを除いた、
+								完全な名前空間を指定する必要があります (例えば 'Admin\Model_User') 。</td>
 						</tr>
 						<tr>
 							<th>key_from</th>
-							<td>キーが、現在のモデル（通常<kbd>ID</kbd>）で、リレーションのために使われます</td>
+							<td>現在のモデルでのリレーションのために使用するキー (通常は <kbd>id</kbd>)</td>
 							<td>ターゲットモデルを現在のモデルのテーブルの任意のフィールドにマップすることを許可します。</td>
 						</tr>
 						<tr>
 							<th>key_to</th>
-							<td>現在のモデル名から算出します。</td>
-							<td>デフォルトでは、<kbd>Model_Article</kbd>から多くの<kbd>Model_Comment</kbd>への関係は、
-								comments テーブルの<kbd>article_id</kbd>フィールドを使用します</td>
+							<td>現在のモデル名から算出</td>
+							<td>デフォルトでは、 <kbd>Model_Article</kbd> から多くの <kbd>Model_Comment</kbd> へのリレーションは、
+								comments テーブルの <kbd>article_id</kbd> フィールドを使用します</td>
 						</tr>
 						<tr>
 							<th>cascade_save</th>
 							<td>bool <kbd>true</kbd></td>
-							<td rowspan="2">カスケードすることは、モデルの活動がその関係に関して繰り返されることを意味します。 このように、
-								保存をカスケードすることは同様に関係を保持し、削除をカスケードすることは、
-								同様に関係も削除します。 <strong>カスケード削除について特に注意をしてください!</strong><br />
-								あなたは、元のモデルの  <kbd>delete()</kbd>もしくは<kbd>save()</kbd>を呼び出すときに、
-								最初の引数に<kbd>true</kbd>を渡すことで、実行時にこれらのオプションを無効にすることができます。</td>
+							<td rowspan="2">カスケードすることは、モデルの活動がそのリレーションに関して繰り返されることを意味します。 このように、
+								保存をカスケードすることは同様にリレーションを保持し、削除をカスケードすることは、
+								同様にリレーションも削除します。 <strong>カスケード削除について特に注意をしてください!</strong><br />
+								あなたは、元のモデルの  <kbd>delete()</kbd> もしくは <kbd>save()</kbd> を呼び出すときに、
+								最初の引数に <kbd>true</kbd> を渡すことで、実行時にこれらのオプションを無効にすることができます。</td>
 						</tr>
 						<tr>
 							<th>cascade_delete</th>
@@ -148,10 +148,10 @@
 						<tr>
 							<th>conditions</th>
 							<td><kbd>array()</kbd></td>
-							<td> 'where'と'order_by' キーを受け取ります。これらは、通常の使用よりも制限されます:
-								<kbd>where</kbd>は配列含む配列でなければなりません。
-								<kbd>array(field, compare, value)</kbd>. <kbd>order_by</kbd>はフィールドや連想の配列が含まれています。
-								<kbd>field => direction</kbd>.<br />
+							<td>'where' と 'order_by' キーを受け取ります。これらは、通常の使用よりも制限されます:
+								<kbd>where</kbd> は <kbd>array(field, compare, value)</kbd> を含む配列の配列でなければなりません。
+								<kbd>order_by</kbd> はフィールドの配列や連想の <kbd>field => direction</kbd>
+								が含まれています。<br />
 								<strong>Note:</strong> これらは常に使用され、オフにすることはできません。</td>
 						</tr>
 					</tbody>
@@ -161,33 +161,33 @@
 			<article id="usage">
 				<h2>使い方</h2>
 
-				<p>ORMはリレーションの一括読み込みと遅延読み込みの両方を可能にします。一括読み込みは、
-					一部（またはすべて）のリレーションは、元の照会でフェッチされていることを意味します。 遅延読み込みは、
+				<p>ORM はリレーションの一括読み込みと遅延読み込みの両方を可能にします。一括読み込みは、
+					一部 (またはすべて) のリレーションは、元の照会でフェッチされていることを意味します。 遅延読み込みは、
 					あなたがそれらを要求するまでリレーションがフェッチされないことを意味します。</p>
 
-				<pre class="php"><code>// eager loading, using joins:
+				<pre class="php"><code>// 一括読み込みを使用して結合：
 $post = Model_Post::find('all', array('related' => array('comments')));
-// or
+// もしくは
 $post = Model_Post::query()->related('comments')->get();
-// $post->comments is available without any further querying after this
+// $post->comments は、この後にさらに問い合わせることなく使用可能
 
-// もしくは、遅延読み込みを使ってください。それはリレーションを使用しますが、一度要求されたリレーションを照会しません。
-// 最初の "post"は、結合せずに1クエリを取得します。
+// もしくは、遅延読み込みを使ってください。それはリレーションを使用しますが、一度要求されたリレーションは照会しません。
+// 最初の "post" は、結合せずに 1 クエリを取得します。
 $post = Model_Post::find('first');
-// 自動的にjoinすることなく、別のクエリを実行される、コメントを（まだロードされていない）を要求します。
+// 自動的に join することなく、別のクエリを実行される、 (まだロードされていない) コメントを要求します。
 $comments = $post->comments;
 
-// alternatively, you can use get(), which allows additional conditions:
+// あるいは、get() が利用でき、これは、追加の条件が可能:
 $comments = $post->get('comments', array('where' => array(array('field', '=', $value))));</code></pre>
 
-				<h3 id="usage_rel_conditions">使い方  where/order_by 条件</h3>
+				<h3 id="usage_rel_conditions">where/order_by 条件と使い方</h3>
 
-				<p>ORMでフェッチするときにも、条件を追加することができます。 また、取得したデータだけで
-					それらをフェッチしているとの条件に有効であることを意味するでしょうが、注意をしてください。<br />
-					追加条件は、任意のデフォルトの条件です（see config table above）​​。
-					もちろん、遅延読み込みでも、一括読み込みでも可能です。</p>
+				<p>ORM でフェッチするときにも条件を追加することができます。 それはまたデータ検索で
+					それらをフェッチしている時のみ条件が有効なことに注意してください。<br />
+					遅延ロードでも任意のデフォルト条件 (上記の設定の表を参照) は当然ながら使用されますが、
+					追加の条件は一括読み込みでのみ可能です。</p>
 
-				<pre class="php"><code>// 照会配列を使用
+				<pre class="php"><code>// クエリ配列を使用
 $post = Model_Post::find('first', array(
 	'related' => array(
 		'articles' => array(
@@ -205,27 +205,27 @@ $post = Model_Post::query()->related('articles', array(
 	'order_by' => array('id' => 'desc'),
 	'where' => array(
 		array('publish_date', '>', time()),
-		array('published', 1), // '='を用いてそれが省略されることができるとき
+		array('published', 1), // 使用時に '=' は省略することができる
 	),
 )->get_one();
 
-// しかし、同じことがまた列にリレーション名を付けることによって行うことができます:
+// しかし、同じことがまたカラムにリレーション名を付けることによって行うことができます:
 $post = Model_Post::query()->related('articles')
 	->order_by('articles.id', 'desc')
 	->where('articles.publish_date', '>', time())
 	->where('articles.published', 1)
 	->get_one();</code></pre>
 
-				<h3 id="usage_nested_rels">入れ子になったリレーションシップを持つ用法</h3>
+				<h3 id="usage_nested_rels">入れ子になったリレーションシップと使い方</h3>
 
-				<p>それは（あなたがあまりにも多くの結合が必要なクエリーを作成注意したいかもしれませんが）
-					無制限の深さに関係の関係を取得することも可能です。これらのすべて、または一部は、以下に例示されている場所と
+				<p>それは (あまりにも多くの結合が必要なためクエリの作成に注意が必要ですが)
+					深さに制限無くリレーションのリレーションを取得することも可能です。これらのすべて、または一部は、以下に例示されている場所と
 					order_by を条件と組み合わせることができます。</p>
 
-				<p class="note">あなたは、その関係の前に "parent" の関係をロードする必要がありリレーションの関係を取得したい場合、
-					order は、ここで問題となることに注意してください。それ以外の場合、例外が投げられます。</p>
+				<p class="note">リレーションのリレーションを取得したい場合は、そのリレーションの前に "parent" 
+					のリレーションをロードする必要があるため、順番がここで問題になることに注意してください。そうでない場合は例外が投げられます。</p>
 
-				<pre class="php"><code>//照会配列を使用
+				<pre class="php"><code>// クエリ配列を使用
 $post = Model_Post::find('first', array(
 	'related' => array(
 		'articles' => array(
@@ -300,24 +300,24 @@ $post = Model_Post::query()
     ),
 ));
 				</code></pre>
-				<p>これは、WHERE 句の条件の代わりに、ON 句の検索条件として追加します。</p>
+				<p>これは、 WHERE 句の条件の代わりに、 ON 句の検索条件として追加します。</p>
 
-				<p class='note'>Note that if you want to pass a literal value to a join, you will have to encapsulate it in a DB::expr() to avoid it being escaped as a column name.</p>
+				<p class='note'>結合時にリテラル値を渡したい場合は、カラム名としてエスケープされるのを避けるために DB::expr() でカプセル化しなければならないことに注意してください。</p>
 			</article>
 
 			<article id="relation_types">
 				<h2>リレーションタイプ</h2>
 
-				<p>ORM はネイティブに次の関係のタイプをサポートしています。</p>
+				<p>ORM はネイティブに次のリレーションのタイプをサポートしています。</p>
 
 				<ul>
 					<li><a href="belongs_to.html">Belongs To</a><br />
-						そのテーブルにリレーションを保持する主キーを持つ、1関連オブジェクトに属します。</li>
+						そのテーブルにリレーションを保持する主キーを持つ、 1 つの関連オブジェクトに属します。</li>
 					<li><a href="has_one.html">Has One</a><br />
-						別のテーブル（これに属する）のいずれかの他の行に保存され、その主キーは、
-						1関連オブジェクトを持っています。</li>
+						別のテーブル (これに属する) のいずれかの他の行に保存され、その主キーは、
+						1 つの関連オブジェクトを持っています。</li>
 					<li><a href="has_many.html">Has Many</a><br />
-						別のテーブル（これは、このいずれかに属している）他の多くの行に保存され、
+						別のテーブル (このいずれかに属している) 他の多くの行に保存され、
 						その主キーに関連する多くのオブジェクトを持っています。</li>
 					<li><a href="many_many.html">Many to Many</a><br />
 						それらの主キーは、両方のテーブルから主キーのペアを保持し、間にテーブルに保存されています。
