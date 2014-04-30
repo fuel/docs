@@ -3,6 +3,7 @@
 ## Version 1.8
 
 * sharkpp <https://github.com/sharkpp>
+* Fumito Mizuno <https://github.com/ounziw>
 
 ## Version 1.7
 
