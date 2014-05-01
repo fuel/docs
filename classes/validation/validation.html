@@ -143,7 +143,7 @@ $val->add('password', 'Your password')->add_rule('required')
     ->add_rule('min_length', 3)
     ->add_rule('max_length', 10);
 
-// Now add another field for gender, and require it to contain either "M" or "F".
+// そしてさらにジェンダーフィールドを追加し、"M" か "F" が含まれるようにする
 $val->add('gender', 'Your gender')->add_rule('required')
     ->add_rule('match_collection', array('M', 'F'));</code></pre>
 
@@ -183,7 +183,7 @@ if ($val->run(array('username' => 'something')))</code></pre>
 $vars = $val->validated();
 // バリデーションエラーをフィールドとエラー内容の組の配列で取得する
 $errors = $val->error();
-// get an array of the input that was validated, this merged the post & input given to run()
+// バリデーションされた入力の配列を取得する。POSTと、run() の入力がマージされる
 $input = $val->input();
 
 // これらのメソッドでは、一つのフィールドにおいて値だけを取得することもできます
@@ -259,7 +259,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<th>match_collection</th>
 							<td><kbd>$collection</kbd> = array()</td>
 							<td>
-								Will try to match the field against a collection of valid values.
+								有効な値のいずれかにマッチするかどうか。
 							</td>
 						</tr>
 						<tr>
@@ -422,15 +422,15 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 						</tr>
 						<tr>
 							<th>forwardslashes</th>
-							<td>Allow forward slashes.</td>
+							<td>スラッシュ</td>
 						</tr>
 						<tr>
 							<th>backwardslashes</th>
-							<td>Allow backward slashes.</td>
+							<td>バックスラッシュ</td>
 						</tr>
 						<tr>
 							<th>slashes</th>
-							<td>Allow forward and backward slashes.</td>
+							<td>スラッシュとバックスラッシュ</td>
 						</tr>
 						<tr>
 							<th>brackets</th>
