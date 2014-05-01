@@ -7,6 +7,7 @@
 * sharkpp <https://github.com/sharkpp>
 * Fumito Mizuno <https://github.com/ounziw>
 * Kenji Suzuki <https://github.com/kenjis>
+* Yoshiyuki Ieyama <https://github.com/yukku0423>
 
 ## Version 1.7
 
