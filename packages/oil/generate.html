@@ -50,7 +50,7 @@
 
 				<p>
 					コード生成を使用すると、多く繰り返すコードをビルドする開発回数をスピードアップすることができます。
-					これは - oil 全体にも言えますが- 完全にオプションです。後で全てのコードは好きなように編集可能です。次のような項目を生成することができます:
+					これは - oil 全体にも言えますが - 完全にオプションです。後で全てのコードは好きなように編集可能です。次のような項目を生成することができます:
 				</p>
 
 				<ul>
@@ -62,8 +62,8 @@
 					<li><a href="#admin">Admin スキャフォールド</a></li>
 					<li><a href="#tasks">タスク</a></li>
 					<li><a href="#configs">設定</a></li>
-					<li><a href="#packages">Packages</a></li>
-					<li><a href="#modules">Modules</a></li>
+					<li><a href="#packages">パッケージ</a></li>
+					<li><a href="#modules">モジュール</a></li>
 				</ul>
 
 				<h3 id="controllers">コントローラ</h3>
@@ -609,7 +609,7 @@ class Newtask
 		echo "\n-------------------------------------------\n\n";
 
 		/***************************
-		 Put in TASK DETAILS HERE
+		 タスクの詳細をここに
 		 **************************/
 	}
 
@@ -620,7 +620,7 @@ class Newtask
 		echo "\n-------------------------------------------\n\n";
 
 		/***************************
-		 Put in TASK DETAILS HERE
+		 タスクの詳細をここに
 		 **************************/
 	}
 
@@ -631,7 +631,7 @@ class Newtask
 		echo "\n-------------------------------------------\n\n";
 
 		/***************************
-		 Put in TASK DETAILS HERE
+		 タスクの詳細をここに
 		 **************************/
 	}
 }
@@ -640,7 +640,7 @@ class Newtask
 				<h3 id="configs">設定</h3>
 
 				<p>
-					<a href="../../classes/config.html">Config</a> を生成するために次のコマンドを使用します:
+					<a href="../../classes/config.html">設定</a> を生成するために次のコマンドを使用します:
 				</p>
 
 				<pre class="cli"><code>$ php oil g config sample hello:world
@@ -690,10 +690,10 @@ class Newtask
 
 /* End of file form.php */</code></pre>
 
-				<h3 id="packages">Packages</h3>
+				<h3 id="packages">パッケージ</h3>
 
 				<p>
-					To generate a <a href="../../general/packages.html">Package</a>, use the following command:
+					<a href="../../general/packages.html">パッケージ</a> を生成するには、次のコマンドを使います:
 				</p>
 
 				<pre class="cli"><code>$ php oil g package sample
@@ -701,11 +701,11 @@ class Newtask
 	Creating file: PKGPATH/sample/config/sample.php
 	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
 
-				<p class="note">The path where the package is generated is PKGPATH by default, but this value can be changed to any path defined in the <code>package_paths</code> config by passing the <code>--path=package_path</code> or <code>-p=package_path</code> option to the command.</p>
+				<p class="note">パッケージが生成されるパスは、デフォルトでは PKGPATH ですが、この値は <code>package_paths</code> 設定に設定されているどのパスにも <code>--path=package_path</code> または <code>-p=package_path</code> オプションをコマンドに渡すことで、変更できます。</p>
 
-				<h3>Generate Driver-based Package</h3>
+				<h3>ドライバベースのパッケージを生成する</h3>
 
-				<p>If you wish to generate a driver-based package, simply supply the <code>--drivers</code> or <code>-d</code> option:</p>
+				<p>もし、ドライバベースのパッケージを生成したい場合は、<code>--drivers</code> または <code>-d</code> オプションを指定してください:</p>
 
 				<pre class="cli"><code>$ php oil g package sample -d
 	Creating file: PKGPATH/sample/classes/sample.php
@@ -713,7 +713,7 @@ class Newtask
 	Creating file: PKGPATH/sample/config/sample.php
 	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
 
-				<p>You can also generate your own drivers. Simply pass the driver names separated by commas to the <code>--drivers</code> or <code>-d</code> option:</p>
+				<p>独自のドライバを生成することも可能です。カンマ区切りのドライバ名を <code>--drivers</code> または <code>-d</code> オプションに渡してください:</p>
 
 				<pre class="cli"><code>$ php oil g package sample -d=driver1,driver2
 	Creating file: PKGPATH/sample/classes/sample.php
@@ -723,9 +723,9 @@ class Newtask
 	Creating file: PKGPATH/sample/config/sample.php
 	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
 
-				<h3>Generate Package with VCS files</h3>
+				<h3>VCS ファイル付きのパッケージを生成する</h3>
 
-				<p>If you wish to generate composer.json and README.md files for your package, simply supply the <code>--vcs</code> or <code>-v</code> option:</p>
+				<p>パッケージのための composer.json と README.md ファイルを生成したい場合は、<code>--vcs</code> または <code>-v</code> オプションを追加してください:</p>
 
 				<pre class="cli"><code>$ php oil g package sample -v
 	Creating file: PKGPATH/sample/composer.json
@@ -734,16 +734,16 @@ class Newtask
 	Creating file: PKGPATH/sample/config/sample.php
 	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
 
-				<h3 id="modules">Modules</h3>
+				<h3 id="modules">モジュール</h3>
 
 				<p>
-					To generate a <a href="../../general/modules.html">Module</a>, use the following command:
+					<a href="../../general/modules.html">モジュール</a> を生成するには、次のコマンドを使います:
 				</p>
 
 				<pre class="cli"><code>$ php oil g module blog</code></pre>
 
 				<p>
-					This command will create a folder called <code>blog</code> in you app's module path defined in <code>config.module_paths</code>. If you have multiple module paths defined, you will get a list of paths that you can choose from, e.g.:
+					このコマンドは <code>blog</code> フォルダをあなたのアプリケーションの <code>config.module_paths</code> で定義されたモジュールパスに作成します。もし、複数のパスが定義されていれば、例えば、次のような選択するパスのリストが表示されます:
 				</p>
 
 				<pre class="cli"><code>$ php oil g module blog
@@ -752,7 +752,7 @@ Your app has multiple module paths defined. Please choose the appropriate path f
 [2] /var/www/fuel/app/modules/</code></pre>
 
 				<p>
-					To provide for even easier module generation, you can supply the <code>--folders</code> option with a list of comma-separated folders to be created. These can be nested almost indefinitely and you don't need to provide every parent folder. A short yet useful example can be:
+					より楽にモジュールを生成するために、<code>--folders</code> オプションで、カンマ区切りの生成するフォルダのリストを指定することができます。それらはほぼ無制限にネストすることができ、親フォルダを指定する必要はありません。短く、しかし、有用な例は次のようになります:
 				</p>
 
 				<pre class="cli"><code>$ php oil g module blog --folders=classes/model,classes/controller,config,lang</code></pre>
