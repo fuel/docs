@@ -904,7 +904,7 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 
 			<article>
 				<h4 class="method" id="method_open_file">open_file($path, $lock = true, $area = null)</h4>
-				<p>Opens a file and locks it.</p>
+				<p>ファイルを開き、ロックする。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -923,31 +923,31 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>必須</em></td>
-									<td>Location of the file to open</td>
+									<td>開くファイルの場所</td>
 								</tr>
 								<tr>
 									<th><kbd>$lock</kbd></th>
 									<td><em>true</em></td>
-									<td>Whether to lock the file when opening.</td>
+									<td>開いた時にファイルをロックする</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
-									usage</a> for more information)</td>
+									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ(詳しい情報は <a href="advanced.html">高度な使い方
+									</a> を参照)</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><kbd>resource</kbd>, the file resource</td>
+						<td>ファイルの<kbd>リソース</kbd></td>
 					</tr>
 					<tr>
 						<th>例外</th>
 						<td>
-							<kbd>OutsideAreaException</kbd> when a path not inside the file area.
-							<kbd>FileAccessException</kbd> when the file could not be locked.
+							<kbd>OutsideAreaException</kbd> パスがエリア内になかった場合。
+							<kbd>FileAccessException</kbd> ファイルがロック出来なかった場合。
 						</td>
 					</tr>
 					<tr>
