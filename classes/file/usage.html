@@ -722,7 +722,7 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 
 			<article>
 				<h4 class="method" id="method_copy_dir">copy_dir($path, $new_path, $area = null, $source_area = null, $target_area = null)</h4>
-				<p>Copies a directory.</p>
+				<p>ディレクトリのコピー。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -741,18 +741,18 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>必須</em></td>
-									<td>Location of the directory to copy</td>
+									<td>コピー元のディレクトリの場所</td>
 								</tr>
 								<tr>
 									<th><kbd>$new_path</kbd></th>
 									<td><em>必須</em></td>
-									<td>Path to copy to</td>
+									<td>コピー先のパス</td>
 								</tr>
 								<tr>
 									<th><kbd>$source_area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
-									usage</a> for more information)</td>
+									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ(詳しい情報は <a href="advanced.html">高度な使い方
+									</a> を参照)</td>
 								</tr>
 								<tr>
 									<th><kbd>$target_area</kbd></th>
@@ -770,9 +770,9 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 					<tr>
 						<th>例外</th>
 						<td>
-							<kbd>OutsideAreaException</kbd> when a path not inside the file area.
-							<kbd>InvalidPathException</kbd> when the source path is not a directory.
-							<kbd>FileAccessException</kbd> when the destination directory already exists.
+							<kbd>OutsideAreaException</kbd> パスがエリア内になかった場合。
+							<kbd>InvalidPathException</kbd> コピー元がディレクトリではない場合。
+							<kbd>FileAccessException</kbd> コピー先にすでにディレクトリが存在する場合。
 						</td>
 					</tr>
 					<tr>
