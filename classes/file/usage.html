@@ -840,7 +840,7 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 
 			<article>
 				<h4 class="method" id="method_delete_dir">delete_dir($path, $recursive = true, $delete_top = true, $area = null)</h4>
-				<p>Deletes a file.</p>
+				<p>ディレクトリの削除</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -859,37 +859,37 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>必須</em></td>
-									<td>Location of the directory to delete</td>
+									<td>削除するディレクトリの場所</td>
 								</tr>
 								<tr>
 									<th><kbd>$recursive</kbd></th>
 									<td><em>true</em></td>
-									<td>Whether to also delete contents of subdirectories</td>
+									<td>サブディレクトリの内容も削除する</td>
 								</tr>
 								<tr>
 									<th><kbd>$delete_top</kbd></th>
 									<td><em>true</em></td>
-									<td>whether to delete the parent dir itself when empty</td>
+									<td>親ディレクトリが空になる場合、親ディレクトリも削除する</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
-									usage</a> for more information)</td>
+									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ(詳しい情報は <a href="advanced.html">高度な使い方
+									</a> を参照)</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><kbd>boolean</kbd> result of <em>unlink()</em> or true when not deleting content of subdirectories</td>
+						<td><kbd>boolean</kbd> <em>unlink()</em> の結果、または、サブディレクトリの内容を削除しなかった場合は true</td>
 					</tr>
 					<tr>
 						<th>例外</th>
 						<td>
-							<kbd>OutsideAreaException</kbd> when a path not inside the file area.
-							<kbd>InvalidPathException</kbd> when the source path is not a directory.
-							<kbd>FileAccessException</kbd> when something went wrong during the delete process.
+							<kbd>OutsideAreaException</kbd> パスがエリア内になかった場合。
+							<kbd>InvalidPathException</kbd> source path がディレクトリではない場合。
+							<kbd>FileAccessException</kbd> 削除中に異常が発生した場合。
 						</td>
 					</tr>
 					<tr>
