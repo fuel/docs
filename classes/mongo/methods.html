@@ -1140,7 +1140,7 @@ $users = $mongodb->get('users');
 							<pre class="php"><code>// インスタンスを取得
 $mongodb = \Mongo_Db::instance();
 
-// look for users with a name starting with 'fran'...
+// 'fran' で始まる名前を持つユーザーを探して...
 $mongodb->like('name', 'fran', 'im', false, true);
 $users = $mongodb->get('users');
 </code></pre>
@@ -1975,41 +1975,41 @@ $my_collection->update(array('_id' => $id), array('$push' => array('array.to.add
 			<article>
 				<h4 class="method" id="list_collections">list_collections($system_collections = false)</h4>
 				<p>
-					The <strong>list_collections</strong> method returns an array of MongoCollection objects of all collections present in the database. Optionally you can specify that you want all system collections returned too.</a>
+					<strong>list_collections</strong> メソッドは、データベース内に存在するすべてのコレクションの MongoCollection オブジェクトの配列を返します。必要に応じてすべてのシステムのコレクションもまた返すように指定できます。</a>
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Type</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>型</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>system_collections</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>Whether or not to include the system collections.</td>
+									<td>システムのコレクションを含めるかどうか。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>An array of MongoCollection objects.</td>
+						<th>戻り値</th>
+						<td>MongoCollection オブジェクトの配列。</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get a mongo instance
+							<pre class="php"><code>// mongo インスタンスを取得
 $mongodb     = \Mongo_Db::instance();
 $collections = $mongodb->list_collections();
 </code></pre>
