@@ -174,8 +174,8 @@ $email->string_attach($contents, $filename);
 			<pre class="php"><code>$email->pipelining($true);</code></pre>
 
 			<p>
-				一度有効にすれば、同じメールサーバーの接続を再利用して複数メールの構築や送信を行うために、同じ <code>$email</code> オブジェクトを使うことができます。
-				メールサーバーのホスティング会社がパイプラインを許可しているか、
+				一度有効にすれば、同じメールサーバの接続を再利用して複数メールの構築や送信を行うために、同じ <code>$email</code> オブジェクトを使うことができます。
+				メールサーバのホスティング会社がパイプラインを許可しているか、
 				またメールの最大送信数がどれだけなのかを考慮しなくてはいけません。
 			</p>
 			<p>
@@ -183,28 +183,28 @@ $email->string_attach($contents, $filename);
 			</p>
 
 
-            <h2 id="drivers">Drivers</h2>
-            <h3 id="mailgun">Mailgun driver</h3>
-            <p><a href="http://www.mailgun.com/">Mailgun</a> is a service by Rackspace that allows you to send emails by demand. You will need to install the <a href="https://github.com/mailgun/mailgun-php">Mailgun library</a> with composer in your FuelPHP.</p>
+            <h2 id="drivers">ドライバ</h2>
+            <h3 id="mailgun">Mailgun ドライバ</h3>
+            <p><a href="http://www.mailgun.com/">Mailgun</a> は、Rackspace によるメール送信サービスです。 <a href="https://github.com/mailgun/mailgun-php">Mailgun ライブラリ</a> を Composer であなたの FuelPHP にインストールする必要があります。</p>
 
-            <p>Add the next line to your <i>composer.json</i> file and execute the update</p>
+            <p><i>composer.json</i> ファイルに次の行を追加して update コマンドを実行してください</p>
 
             <pre class="cli"><code class="body">"mailgun/mailgun-php": "1.6"</code></pre>
 
             <pre class="cli"><code>$ composer update</code></pre>
 
-            <p>Once you have installed the package you will have to set up the config for your App.</p>
+            <p>パッケージをインストールしたら、アプリケーションのための設定をしてください。</p>
 
             <pre class="php"><code>
 /**
- * Override default Email.php config
+ * デフォルトの Email.php 設定をオーバーライドする
  */
 return array(
     'defaults' => array(
         'driver' => 'mailgun',
         'mailgun' => array(
-            'key' => 'YOUR KEY',
-            'domain' => 'YOUR DOMAIN'
+            'key' => 'あなたのキー',
+            'domain' => 'あなたのドメイン'
         ),
     ),
 );
