@@ -648,7 +648,7 @@ File::rename(APPPATH.'tmp/file.jpg', DOCROOT.'folder/image.jpg', 'tmp', 'public'
 
 			<article>
 				<h4 class="method" id="method_copy">copy($path, $new_path, $area = null, $source_area = null, $target_area = null)</h4>
-				<p>Copies a file.</p>
+				<p>ファイルのコピー。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -667,18 +667,18 @@ File::rename(APPPATH.'tmp/file.jpg', DOCROOT.'folder/image.jpg', 'tmp', 'public'
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>必須</em></td>
-									<td>Location of the file to copy</td>
+									<td>コピー元のファイルの場所</td>
 								</tr>
 								<tr>
 									<th><kbd>$new_path</kbd></th>
 									<td><em>必須</em></td>
-									<td>Full path, including filename, to copy to</td>
+									<td>ファイル名を含んだコピー先のフルパス</td>
 								</tr>
 								<tr>
 									<th><kbd>$source_area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
-									usage</a> for more information)</td>
+									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ(詳しい情報は <a href="advanced.html">高度な使い方
+									</a> を参照)</td>
 								</tr>
 								<tr>
 									<th><kbd>$target_area</kbd></th>
@@ -696,10 +696,10 @@ File::rename(APPPATH.'tmp/file.jpg', DOCROOT.'folder/image.jpg', 'tmp', 'public'
 					<tr>
 						<th>例外</th>
 						<td>
-							<kbd>OutsideAreaException</kbd> when a path not inside the file area.
-							<kbd>FileAccessException</kbd> when the filetype is not allowed.
-							<kbd>InvalidPathException</kbd> when the source path is not a file.
-							<kbd>FileAccessException</kbd> when the destination file already exists.
+							<kbd>OutsideAreaException</kbd> パスがエリア内になかった場合。
+							<kbd>FileAccessException</kbd> 許可されていないファイルタイプの場合。
+							<kbd>InvalidPathException</kbd> コピー元のパスにファイルが存在しない場合。
+							<kbd>FileAccessException</kbd> コピー先にすでにファイルが存在する場合。
 						</td>
 					</tr>
 					<tr>
