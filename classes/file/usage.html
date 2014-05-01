@@ -1181,7 +1181,7 @@ File::close_file($resource);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_get_time">get_time($path, $type = 'modified', $area = null)</h4>
-				<p>Retrieves the created or modified time of a file or directory.</p>
+				<p>ファイルまたはディレクトリの作成／更新日時を取得する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1200,31 +1200,31 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>必須</em></td>
-									<td>Path to the file</td>
+									<td>ファイルのパス</td>
 								</tr>
 								<tr>
 									<th><kbd>$type</kbd></th>
 									<td><strong>'modified'</strong></td>
-									<td>Type of time to retrieve. Must be <em>modified</em> or <em>created</em></td>
+									<td>取得するタイプ。<em>modified</em> または <em>created</em> を指定。</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
-									usage</a> for more information)</td>
+									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ(詳しい情報は <a href="advanced.html">高度な使い方
+									</a> を参照)</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>The file created/modified unix timestamp</td>
+						<td>UNIX Timestamp形式のファイルの作成／更新日時</td>
 					</tr>
 					<tr>
 						<th>例外</th>
 						<td>
-							<kbd>OutsideAreaException</kbd> when a path not inside the file area.
-							<kbd>FileAccessException</kbd> when the file extension is not allowed.
+							<kbd>OutsideAreaException</kbd> パスがエリア内になかった場合。
+							<kbd>FileAccessException</kbd> 許可されていない拡張子の場合。
 						</td>
 					</tr>
 					<tr>
