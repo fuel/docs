@@ -61,49 +61,49 @@
 
 			<article>
 				<h4 class="method" id="method_exists">exists($path, $area = null)</h4>
-				<p>Checks if a file exists. If $path points to a symlink, the symlinks are resolved to make sure whatever it points to is a file.</p>
+				<p>ファイルの存在を確認します。$path がシンボリックリンクの場合は、実体のファイルパスを解決します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$path</kbd></th>
-									<td><em>required</em></td>
-									<td>Location of the file to check</td>
+									<td><em>必須</em></td>
+									<td>存在を確認するファイルパス</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
-									usage</a> for more information)</td>
+									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ(詳しい情報は <a href="advanced.html">高度な使い方
+									</a> を参照)</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td><kbd>boolean</kbd> true if the file in $path exists, false if not</td>
+						<th>返り値</th>
+						<td><kbd>boolean</kbd> $path にファイルが存在する場合は true、しない場合は false。</td>
 					</tr>
 					<tr>
-						<th>Throws</th>
+						<th>例外</th>
 						<td>
-							<kbd>OutsideAreaException</kbd> when a path not inside the file area.
+							<kbd>OutsideAreaException</kbd> パスがエリア内になかった場合。
 							<kbd>FileAccessException</kbd> when an area is used and there is an extension violation.
 						</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$exists = File::exists(DOCROOT.'/test.txt');</code></pre>
 						</td>
