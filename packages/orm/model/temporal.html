@@ -93,12 +93,12 @@
                                         <tr>
                                             <th>パラメータ</th>
                                             <th>デフォルト</th>
-                                            <th class="description">Description</th>
+                                            <th class="description">説明</th>
                                         </tr>
                                         <tr>
                                             <th><kbd>$id</kbd></th>
                                             <td><em>必須</em></td>
-                                            <td>The ID of the entity to search for.</td>
+                                            <td>検索対象のエンティティの ID 。</td>
                                         </tr>
                                         <tr>
                                             <th><kbd>$timestamp</kbd></th>
@@ -129,7 +129,7 @@
                 </article>
                 <article>
                     <h4 id="method_find_revisions_between" class="method"><a class="interal_link" href="#/method_find_revisions_between">find_revisions_between($id, $earliestTime = null, $latestTime = null)</a></h4>
-                    <p>This method will return the states of an entity between the given times.</p>
+                    <p>このメソッドは、指定された時刻の間のエンティティの状態を返します。</p>
                     <table class="method">
                         <tbody>
                             <tr>
@@ -143,22 +143,22 @@
                                         <tr>
                                             <th>パラメータ</th>
                                             <th>デフォルト</th>
-                                            <th class="description">Description</th>
+                                            <th class="description">説明</th>
                                         </tr>
                                         <tr>
                                             <th><kbd>$id</kbd></th>
                                             <td><em>必須</em></td>
-                                            <td>The ID of the entity to search for.</td>
+                                            <td>検索対象のエンティティの ID 。</td>
                                         </tr>
                                         <tr>
                                             <th><kbd>$earliestTime</kbd></th>
                                             <td><pre class="php"><span class="keyword">null</span></pre></td>
-                                            <td>The time of the earliest revision to find or <kbd>null</kbd> for an infinite number of previous revisions.</td>
+                                            <td>検索する最古のリビジョン、もしくは、以前のリビジョンの数が無限の場合は <kbd>null</kbd> 。</td>
                                         </tr>
                                         <tr>
                                             <th><kbd>$latestTime</kbd></th>
                                             <td><pre class="php"><span class="keyword">null</span></pre>, <pre class="php"><span class="keyword">string</span></pre> or <pre class="php"><span class="keyword">integer</span></pre></td>
-                                            <td>The time of the latest revision to find or <kbd>null</kbd> for an infinite number of revisions (up to the latest).</td>
+                                            <td>検索する最新のリビジョン、もしくは、リビジョンの数が無限 (最新まで) の場合は <kbd>null</kbd> 。</td>
                                         </tr>
                                     </table>
                                 </td>
@@ -175,11 +175,11 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p class="note">It is currently not possible to select relations at the same time using find_revisions_between.</p>
+                    <p class="note">それは find_revisions_between を使用し同時にリレーションを選択することは出来ません。</p>
                 </article>
 				<article>
                     <h4 id="method_delete" class="method"><a class="interal_link" href="#/method_delete">delete($cascade = null, $use_transaction = false)</a></h4>
-                    <p>This method will delete the object from the database. It works in exactly the same way as the normal Model's delete function except that the information is not removed from the database. This means that you can still reference the object at a given time, but it is no longer valid for the present.</p>
+                    <p>このメソッドはデータベースからオブジェクトを削除します。これはデータベースから情報が削除されていないことを除き普通のモデルの delete 関数とまったく同じように機能します。これはあなたがまだある時点でオブジェクトを参照できることを意味しますが、差し当たりそれはもはや有効ではありません。</p>
                     <table class="method">
                         <tbody>
                             <tr>
@@ -194,11 +194,11 @@
                             </tr>
                         </tbody>
                     </table>
-					<p class="note">Cascade delete will delete as normal. Any relations that are not Soft or Temporal will be deleted as normal.</p>
+					<p class="note">カスケードされた削除は通常どおり削除されます。Soft または Temporal されていない任意のリレーションは通常どおり削除されます。</p>
                 </article>
 				<article>
                     <h4 id="method_overwrite" class="method"><a class="interal_link" href="#/method_overwrite">overwrite($cascade = null, $use_transaction = false)</a></h4>
-                    <p>Allows information to be saved without creating a new revision. Works the same as Model::save()</p>
+                    <p>新しいリビジョンを作成せずに情報を保存することができます。 Model::save() と同じように動作します。</p>
                     <table class="method">
                         <tbody>
                             <tr>
@@ -210,7 +210,7 @@
                                 <td>
                                     <pre class="php"><code>$product = Model_Product::find(5);
 $product->name = 'Super Awesome 12000';
-//Product is updated without creating a new row in the database.
+//データベースへ新しい行を作成せず Product を更新
 $product->overwrite();</code></pre>
                                 </td>
                             </tr>
@@ -219,7 +219,7 @@ $product->overwrite();</code></pre>
                 </article>
 				<article>
                     <h4 id="method_restore" class="method"><a class="interal_link" href="#/method_restore">restore()</a></h4>
-                    <p>If an entity has been deleted this method restores the entity to the current state. Nothing will happen if the entity has not been deleted.</p>
+                    <p>エンティティが削除されている場合、このメソッドは現在の状態にエンティティを復元します。エンティティが削除されていない場合は何も起こりません。</p>
                     <table class="method">
                         <tbody>
                             <tr>
@@ -237,7 +237,7 @@ $product->overwrite();</code></pre>
                 </article>
 				<article>
                     <h4 id="method_purge" class="method"><a class="interal_link" href="#/method_purge">purge()</a></h4>
-                    <p>Removes all revisions of this entity from the database. This is <strong>permanent</strong>! It cannot be undone.</p>
+                    <p>データベースからこのエンティティのすべてのリビジョンを削除します。これは <strong>永続的</strong> です！これは元に戻すことはできません。</p>
                     <table class="method">
                         <tbody>
                             <tr>
@@ -252,7 +252,7 @@ $product->overwrite();</code></pre>
                             </tr>
                         </tbody>
                     </table>
-					<p class="note">This cannot be undone, it will delete all revisions of the entity from the database. If you do this the data will be destroyed!</p>
+					<p class="note">これは元に戻すことはできず、データベースからエンティティのすべてのリビジョンが削除されます。もし、これを行う場合はデータが破棄されます！</p>
                 </article>
             </div>
 
