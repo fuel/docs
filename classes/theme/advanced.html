@@ -48,23 +48,23 @@
 			<h2>Theme クラス</h2>
 
 			<p>
-				The Theme class provides theming to your application.
+				Theme クラスはアプリケーションにテーマを提供します。
 			</p>
 
-			<h3 id="asset">Asset support</h3>
+			<h3 id="asset">アセットサポート</h3>
 
 			<p>
-				Every Theme class instance has it's own instance of the Asset class, to make it easy to load assets from the theme.
-				The Asset instance is populated with the asset paths of both the active and the fallback theme, which will provide
-				the same fallback features for your assets as you have for other theme elements like templates and views.
+				全てのテーマクラスのインスタンスは、テーマからアセットを簡単に読み込むことができるように、それ自信がアセットクラスのインスタンスを持っています。
+				アセットのインスタンスはアクティブ用とフォールバック用のテーマのアセットのパスを集合させており、
+				テンプレートやビューのように、あなたのアセットにも、他のテーマアセットのフォールバックの機能が提供されます。
 			</p>
 
-			<p>Example:</p>
+			<p>例:</p>
 
-			<pre class="php"><code>// load an asset using the default theme instance
+			<pre class="php"><code>// デフォルトのテーマインスタンスを使ってアセットを読み込む
 echo \Theme::instance()->asset->css('bootstrap.css');</code></pre>
 
-			<h3 id="advanced_config">Advanced configuration</h3>
+			<h3 id="advanced_config">高度な設定</h3>
 
 			<p>
 				The methods <a href="methods.html#method_active">active()</a>, <a href="methods.html#method_fallback">fallback()</a>,
@@ -73,7 +73,7 @@ echo \Theme::instance()->asset->css('bootstrap.css');</code></pre>
 				These methods allow you to pass an theme definition array instead, which makes it possible to pass extra configuration information.
 			</p>
 
-			<p>The following theme variables are defined:</p>
+			<p>以下のテーマ変数が定義されます:</p>
 
 			<table class="config">
 				<tbody>
@@ -87,13 +87,13 @@ echo \Theme::instance()->asset->css('bootstrap.css');</code></pre>
 						<th>name</th>
 						<td>string</td>
 						<td><strong>required</strong></td>
-						<td>The name of the theme. This must match to a folder in the path specified.</td>
+						<td>テーマの名前。これはパスのディレクトリ名に合わせる必要があります。</td>
 					</tr>
 					<tr>
 						<th>path</th>
 						<td>string</td>
 						<td><strong>required</strong></td>
-						<td>The path of the theme. This must include the name of the theme, and end with a directory separator.</td>
+						<td>テーマのパス。これはテーマの名前を含むこと、かつディレクトリセパレータで終わっている必要があります。</td>
 					</tr>
 					<tr>
 						<th>asset_base</th>
@@ -111,35 +111,35 @@ echo \Theme::instance()->asset->css('bootstrap.css');</code></pre>
 						<th>info</th>
 						<td>array</td>
 						<td><strong>optional</strong></td>
-						<td>The theme's information array. If not defined, it will be created from the information in the theme info file.</td>
+						<td>テーマの情報配列。未定義の場合は、テーマ情報ファイルから作成されます。</td>
 					</tr>
 					<tr>
 						<th>find_file</th>
 						<td>boolean</td>
 						<td><strong>optional</strong></td>
-						<td>If set to <strong>true</strong>, the <a href="../finder.html#method_search">Finder::search()</a> method will be used to locate view files and theme info files.</td>
+						<td><strong>true</strong>にセットした場合、<a href="../finder.html#method_search">Finder::search()</a> メソッドがビューファイルとテーマ情報ファイルの場所を突き止めます。</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<p>Example:</p>
+			<p>例:</p>
 
-			<pre class="php"><code>// standard usage: create an instance and set the active theme
+			<pre class="php"><code>// 基本的な使い方: インスタンスを作り、アクティブなテーマとしてセットします
 $theme = \Theme::forge();
 $theme->active('darkglow');
 
-// advanced usage
+// 高度な使い方
 \Config::load('theme', true, false, true);
 $config = \Config::get('theme', false);
 
-// override some config values
+// いくつかの設定値を上書きする
 $config['info_file_name'] = 'setup.info';
 $config['info_file_type'] = 'ini';
 
-// create the theme instance
+// テーマインスタンスの生成
 $theme = \Theme::forge($config);
 
-// set the active theme
+// アクティブなテーマとして設定
 $theme->active(
 	array(
 		'name' => 'darkglow',
