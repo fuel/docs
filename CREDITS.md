@@ -1,8 +1,13 @@
 # FuelPHP Documentation 日本語翻訳
 
+この FuelPHP Documentation 日本語翻訳は [MIT ライセンス](http://opensource.org/licenses/MIT) でリリースされています。
+
 ## Version 1.8
 
 * sharkpp <https://github.com/sharkpp>
+* Fumito Mizuno <https://github.com/ounziw>
+* Kenji Suzuki <https://github.com/kenjis>
+* Yoshiyuki Ieyama <https://github.com/yukku0423>
 
 ## Version 1.7
 
