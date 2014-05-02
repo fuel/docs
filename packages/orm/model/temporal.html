@@ -48,7 +48,7 @@
                     <h2 id="introduction">はじめに</h2>
                     <p>テンポラルモデルは思ったよりもずっと怖くはないでしょう。</p>
                     <p>通常はデータベースエンティティのテーブル内の行で表され、この行が更新されると、古い情報が上書きされます。テンポラルモデルはデータを時間で参照でき、それにより、ある時点でのエンティティの状態を照会することができます。</p>
-                    <p>For example, say you wanted to keep track of changes to products so when an order is placed you know the state of the product without having to duplicate data in the orders table. You can make the products temporal and use the time of the order to reference the state of the ordered products at that time rather than how they currently are, as would happen without using temporal data.</p>
+                    <p>たとえば、製品への変更を追跡するため、注文が出されたときに Orders テーブル内のデータを複製することなく商品の状態を知っていたいとします。 You can make the products temporal and use the time of the order to reference the state of the ordered products at that time rather than how they currently are, as would happen without using temporal data.</p>
                     <p>The temporal model could also be used for auditing changes to things like wiki pages. Any changes would be automatically logged without having to use a separate log table.</p>
 					<p>An "entity" would be any item in your design, for example, a product, a user, a gallery folder, anything that you would use as a Model can be considered an entity. The Temporal Model allows you to track changes to these entities over time by storing changes, each new set of changes is called a "revision". Because each revision is saved along with time (temporal) data it makes it possible to get the state of an entity at any given time.</p>
                     <p>This implementation of a temporal model stores revisions of entities in the same table as the original data, removing the need for duplicate "log" tables. While the implementation here is not the only way of implementing revisions, it is the most flexible given the limitations of the ORM and the fact that it must work in multiple database environments.</p>
@@ -63,23 +63,23 @@
 {
 	protected static $_primary_key = array('id', 'temporal_start', 'temporal_end');
 	protected static $_temporal = array(
-		'start_column' => 'temporal_start', //The name of the column that contains the time this row is valid from
-		'end_column' => 'temporal_end', //The name of the column that contains the time this row is valid to
-		'mysql_timestamp' => false, //If set to true will use MySQL timestamps rather than unix timestamps
+		'start_column' => 'temporal_start', //この行は有効部分の始まりの時刻が含まれているカラムの名前
+		'end_column' => 'temporal_end', //この行は有効部分の終わりの時刻が含まれているカラムの名前
+		'mysql_timestamp' => false, //true に設定すると MySQL のタイムスタンプではなく UNIX タイムスタンプを使用します
 	);
 }</code></pre>
-                    <p class="note">Please note that the primary key must be a compound key between the entity id and the temporal timestamps.</p>
-                    <p class="note">Any relations that are defined using temporal models should relate only on the id and <strong>not</strong> both id and timestamp.</p>
+                    <p class="note">主キーはエンティティ ID と一時的なタイムスタンプとの間で複合キーである必要がありますのでご注意ください。</p>
+                    <p class="note">テンポラルモデルを使用して定義されているすべてのリレーションは id とタイムスタンプの両方ではなく id にのみ関連する必要があります。</p>
                 </section>
                 
                 <article>
                     <h4 id="method_find" class="method"><a class="interal_link" href="#/method_find">find()</a></h4>
-                    <p>The find method works exactly the same as the regular model's implementation except that a where clause is added to select only the latest revision of an entity.</p>
+                    <p>Findメソッドは、正確に動作し、 where 句はエンティティの最新のリビジョンのみを選択するために追加されていること以外は通常のモデルの実装と同じです。</p>
                 </article>
                 
                 <article>
                     <h4 id="method_find_revision" class="method"><a class="interal_link" href="#/method_find_revision">find_revision($id, $timestamp=null, $relations = array())</a></h4>
-                    <p>This method can be used to query the state of an entity at the given time.</p>
+                    <p>このメソッドは指定された時間にエンティティの状態を照会するために利用することができます。</p>
                     <table class="method">
                         <tbody>
                             <tr>
