@@ -45,10 +45,10 @@
 
             <div id="main">
                 <section>
-                    <h2 id="introduction">Introduction</h2>
-                    <p>The temporal model is a lot less scary than it sounds. </p>
-                    <p>Usually in a database entities are represented by a row in a table, when this row is updated the old information is overwritten. The temporal model allows data to be referenced in time, it makes it possible to query the state of an entity at a given time.</p>
-                    <p>For example, say you wanted to keep track of changes to products so when an order is placed you know the state of the product without having to duplicate data in the orders table. You can make the products temporal and use the time of the order to reference the state of the ordered products at that time rather than how they currently are, as would happen without using temporal data.</p>
+                    <h2 id="introduction">はじめに</h2>
+                    <p>テンポラルモデルは思ったよりもずっと怖くはないでしょう。</p>
+                    <p>通常はデータベースエンティティのテーブル内の行で表され、この行が更新されると、古い情報が上書きされます。テンポラルモデルはデータを時間で参照でき、それにより、ある時点でのエンティティの状態を問い合わせることができます。</p>
+                    <p>たとえば、製品への変更を追跡するため、注文が出されたときに Orders テーブル内のデータを複製することなく商品の状態を知っていたいとします。 You can make the products temporal and use the time of the order to reference the state of the ordered products at that time rather than how they currently are, as would happen without using temporal data.</p>
                     <p>The temporal model could also be used for auditing changes to things like wiki pages. Any changes would be automatically logged without having to use a separate log table.</p>
 					<p>An "entity" would be any item in your design, for example, a product, a user, a gallery folder, anything that you would use as a Model can be considered an entity. The Temporal Model allows you to track changes to these entities over time by storing changes, each new set of changes is called a "revision". Because each revision is saved along with time (temporal) data it makes it possible to get the state of an entity at any given time.</p>
                     <p>This implementation of a temporal model stores revisions of entities in the same table as the original data, removing the need for duplicate "log" tables. While the implementation here is not the only way of implementing revisions, it is the most flexible given the limitations of the ORM and the fact that it must work in multiple database environments.</p>
@@ -57,160 +57,160 @@
                 </section>
                 
                 <section>
-                    <h2 id="use">Use</h2>
-                    <p>The table must be set up with a compound primary key of the entity ID, just a standard auto-incrementing number (for example), and the timestamps that represent the valid time span of the row.</p>
+                    <h2 id="use">使用法</h2>
+                    <p>テーブルは、エンティティ ID の複合主キー、 (例えば) 単に標準の自動インクリメントする値、そして行の有効期間を表すタイムスタンプを使用して設定する必要があります。</p>
                     <pre id="php"><code>class Model_MyTemporal extends Orm\Model_Temporal
 {
 	protected static $_primary_key = array('id', 'temporal_start', 'temporal_end');
 	protected static $_temporal = array(
-		'start_column' => 'temporal_start', //The name of the column that contains the time this row is valid from
-		'end_column' => 'temporal_end', //The name of the column that contains the time this row is valid to
-		'mysql_timestamp' => false, //If set to true will use MySQL timestamps rather than unix timestamps
+		'start_column' => 'temporal_start', //この行は有効部分の始まりの時刻が含まれているカラムの名前
+		'end_column' => 'temporal_end', //この行は有効部分の終わりの時刻が含まれているカラムの名前
+		'mysql_timestamp' => false, //true に設定すると MySQL のタイムスタンプではなく UNIX タイムスタンプを使用します
 	);
 }</code></pre>
-                    <p class="note">Please note that the primary key must be a compound key between the entity id and the temporal timestamps.</p>
-                    <p class="note">Any relations that are defined using temporal models should relate only on the id and <strong>not</strong> both id and timestamp.</p>
+                    <p class="note">主キーはエンティティ ID とテンポラルのタイムスタンプとの間で複合キーである必要がありますのでご注意ください。</p>
+                    <p class="note">テンポラルモデルを使用して定義されているすべてのリレーションは id とタイムスタンプの両方ではなく id にのみ関連する必要があります。</p>
                 </section>
                 
                 <article>
                     <h4 id="method_find" class="method"><a class="interal_link" href="#/method_find">find()</a></h4>
-                    <p>The find method works exactly the same as the regular model's implementation except that a where clause is added to select only the latest revision of an entity.</p>
+                    <p>Findメソッドは、正確に動作し、 where 句はエンティティの最新のリビジョンのみを選択するために追加されていること以外は通常のモデルの実装と同じです。</p>
                 </article>
                 
                 <article>
                     <h4 id="method_find_revision" class="method"><a class="interal_link" href="#/method_find_revision">find_revision($id, $timestamp=null, $relations = array())</a></h4>
-                    <p>This method can be used to query the state of an entity at the given time.</p>
+                    <p>このメソッドは指定された時間にエンティティの状態を照会するために利用することができます。</p>
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>Yes</td>
+                                <th class="legend">静的</th>
+                                <td>はい</td>
                             </tr>
                             <tr>
-                                <th>Parameters</th>
+                                <th>パラメータ</th>
                                 <td>
                                     <table class="parameters">
                                         <tr>
-                                            <th>Param</th>
-                                            <th>Default</th>
-                                            <th class="description">Description</th>
+                                            <th>パラメータ</th>
+                                            <th>デフォルト</th>
+                                            <th class="description">説明</th>
                                         </tr>
                                         <tr>
                                             <th><kbd>$id</kbd></th>
-                                            <td><em>required</em></td>
-                                            <td>The ID of the entity to search for.</td>
+                                            <td><em>必須</em></td>
+                                            <td>検索対象のエンティティの ID 。</td>
                                         </tr>
                                         <tr>
                                             <th><kbd>$timestamp</kbd></th>
                                             <td><pre class="php"><span class="keyword">null</span></pre></td>
-                                            <td>The time to reference the entity at. <kbd>null</kbd> will return the most current revision.</td>
+                                            <td>エンティティを参照するための時間。 <kbd>null</kbd> は最新のリビジョンを返します。</td>
                                         </tr>
                                         <tr>
                                             <th><kbd>$relations</kbd></th>
                                             <td><pre class="php"><span class="keyword">array</span></pre></td>
-                                            <td>Names of the relations to load with the entity.</td>
+                                            <td>エンティティとともにロードするリレーションの名前。</td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
                             <tr>
-                                <th>Returns</th>
-                                <td>A single subclass of <kbd>Model_Temporal</kbd></td>
+                                <th>戻り値</th>
+                                <td>単一の <kbd>Model_Temporal</kbd> のサブクラス</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>Model_Product::find_revision($id, '2012-11-09 12:04:00', array('images', 'reviews'));</code></pre>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-					<p class="note">Any model fetched through <kbd>find_revision</kbd> or <kbd>find_revisions</kbd> should be considered <strong>read only</strong> as it should not be possible to modify the past!.</p>
+					<p class="note"><kbd>find_revision</kbd> もしくは <kbd>find_revisions</kbd> を介して取得された任意のモデルは過去を変更出来ないように <strong>読み取り専用</strong> になっていることが考慮されるべきである！</p>
                 </article>
                 <article>
                     <h4 id="method_find_revisions_between" class="method"><a class="interal_link" href="#/method_find_revisions_between">find_revisions_between($id, $earliestTime = null, $latestTime = null)</a></h4>
-                    <p>This method will return the states of an entity between the given times.</p>
+                    <p>このメソッドは、指定された時刻の間のエンティティの状態を返します。</p>
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>Yes</td>
+                                <th class="legend">静的</th>
+                                <td>はい</td>
                             </tr>
                             <tr>
-                                <th>Parameters</th>
+                                <th>パラメータ</th>
                                 <td>
                                     <table class="parameters">
                                         <tr>
-                                            <th>Param</th>
-                                            <th>Default</th>
-                                            <th class="description">Description</th>
+                                            <th>パラメータ</th>
+                                            <th>デフォルト</th>
+                                            <th class="description">説明</th>
                                         </tr>
                                         <tr>
                                             <th><kbd>$id</kbd></th>
-                                            <td><em>required</em></td>
-                                            <td>The ID of the entity to search for.</td>
+                                            <td><em>必須</em></td>
+                                            <td>検索対象のエンティティの ID 。</td>
                                         </tr>
                                         <tr>
                                             <th><kbd>$earliestTime</kbd></th>
                                             <td><pre class="php"><span class="keyword">null</span></pre></td>
-                                            <td>The time of the earliest revision to find or <kbd>null</kbd> for an infinite number of previous revisions.</td>
+                                            <td>検索する最古のリビジョン、もしくは、以前のリビジョンの数が無限の場合は <kbd>null</kbd> 。</td>
                                         </tr>
                                         <tr>
                                             <th><kbd>$latestTime</kbd></th>
                                             <td><pre class="php"><span class="keyword">null</span></pre>, <pre class="php"><span class="keyword">string</span></pre> or <pre class="php"><span class="keyword">integer</span></pre></td>
-                                            <td>The time of the latest revision to find or <kbd>null</kbd> for an infinite number of revisions (up to the latest).</td>
+                                            <td>検索する最新のリビジョン、もしくは、リビジョンの数が無限 (最新まで) の場合は <kbd>null</kbd> 。</td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
                             <tr>
-                                <th>Returns</th>
-                                <td>An array of subclasses of <kbd>Model_Temporal</kbd></td>
+                                <th>戻り値</th>
+                                <td><kbd>Model_Temporal</kbd> のサブクラスの配列</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>Model_Product::find_revisions_between($id, '2012-11-09 12:04:00', '2012-12-10 19:00:00');</code></pre>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <p class="note">It is currently not possible to select relations at the same time using find_revisions_between.</p>
+                    <p class="note">それは find_revisions_between を使用し同時にリレーションを選択することは出来ません。</p>
                 </article>
 				<article>
                     <h4 id="method_delete" class="method"><a class="interal_link" href="#/method_delete">delete($cascade = null, $use_transaction = false)</a></h4>
-                    <p>This method will delete the object from the database. It works in exactly the same way as the normal Model's delete function except that the information is not removed from the database. This means that you can still reference the object at a given time, but it is no longer valid for the present.</p>
+                    <p>このメソッドはデータベースからオブジェクトを削除します。これはデータベースから情報が削除されていないことを除き普通のモデルの delete 関数とまったく同じように機能します。これはあなたがまだある時点でオブジェクトを参照できることを意味しますが、差し当たりそれはもはや有効ではありません。</p>
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>No</td>
+                                <th class="legend">静的</th>
+                                <td>いいえ</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>Model_Product::find(5)->delete();</code></pre>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-					<p class="note">Cascade delete will delete as normal. Any relations that are not Soft or Temporal will be deleted as normal.</p>
+					<p class="note">カスケードされた削除は通常どおり削除されます。Soft または Temporal されていない任意のリレーションは通常どおり削除されます。</p>
                 </article>
 				<article>
                     <h4 id="method_overwrite" class="method"><a class="interal_link" href="#/method_overwrite">overwrite($cascade = null, $use_transaction = false)</a></h4>
-                    <p>Allows information to be saved without creating a new revision. Works the same as Model::save()</p>
+                    <p>新しいリビジョンを作成せずに情報を保存することができます。 Model::save() と同じように動作します。</p>
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>No</td>
+                                <th class="legend">静的</th>
+                                <td>いいえ</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>$product = Model_Product::find(5);
 $product->name = 'Super Awesome 12000';
-//Product is updated without creating a new row in the database.
+//データベースへ新しい行を作成せず Product を更新
 $product->overwrite();</code></pre>
                                 </td>
                             </tr>
@@ -219,15 +219,15 @@ $product->overwrite();</code></pre>
                 </article>
 				<article>
                     <h4 id="method_restore" class="method"><a class="interal_link" href="#/method_restore">restore()</a></h4>
-                    <p>If an entity has been deleted this method restores the entity to the current state. Nothing will happen if the entity has not been deleted.</p>
+                    <p>エンティティが削除されている場合、このメソッドは現在の状態にエンティティを復元します。エンティティが削除されていない場合は何も起こりません。</p>
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>No</td>
+                                <th class="legend">静的</th>
+                                <td>いいえ</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>Model_Product::find_revision(5, '2012-11-09 12:04:00')->restore();</code></pre>
                                 </td>
@@ -237,22 +237,22 @@ $product->overwrite();</code></pre>
                 </article>
 				<article>
                     <h4 id="method_purge" class="method"><a class="interal_link" href="#/method_purge">purge()</a></h4>
-                    <p>Removes all revisions of this entity from the database. This is <strong>permanent</strong>! It cannot be undone.</p>
+                    <p>データベースからこのエンティティのすべてのリビジョンを削除します。これは <strong>永続的</strong> です！これは元に戻すことはできません。</p>
                     <table class="method">
                         <tbody>
                             <tr>
-                                <th class="legend">Static</th>
-                                <td>No</td>
+                                <th class="legend">静的</th>
+                                <td>いいえ</td>
                             </tr>
                             <tr>
-                                <th>Example</th>
+                                <th>例</th>
                                 <td>
                                     <pre class="php"><code>Model_Product::find(5)->purge();</code></pre>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-					<p class="note">This cannot be undone, it will delete all revisions of the entity from the database. If you do this the data will be destroyed!</p>
+					<p class="note">これは元に戻すことはできず、データベースからエンティティのすべてのリビジョンが削除されます。もし、これを行う場合はデータが破棄されます！</p>
                 </article>
             </div>
 
