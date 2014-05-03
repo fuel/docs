@@ -58,7 +58,7 @@
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>パラメーター</th>
+							<th>パラメータ</th>
 							<th>タイプ</th>
 							<th>デフォルト</th>
 							<th>説明</th>
@@ -90,9 +90,9 @@
 					</tbody>
 				</table>
 				<p>
-					By default, these configuration settings are used both for import and for export of CSV data. In case you need to
-					configure different settings for either import or export, you can an array key for it, and move the configuration
-					in there. The default configuration file already has this setup for you.
+					デフォルトでは、これらの設定は CSV データのインポートにもエクスポートにも使われます。
+					インポートとエクスポートで別の設定が必要な場合、配列のキーを用い設定をその中に移します。
+					デフォルトの設定ファイルはすでにそのようになっています。
 				</p>
 
 				<table class="config">
@@ -107,7 +107,7 @@
 							<th>enclose_numbers</th>
 							<td>bool</td>
 							<td><pre class="php"><code>true</code></pre></td>
-							<td>If false, numbers will not be enclosed. If true, numbers will be enclosed too</td>
+							<td>false の場合、数字は囲まれません。true の場合、数字も囲まれます</td>
 						</tr>
 					</tbody>
 				</table>
@@ -156,7 +156,7 @@
 			</article>
 
 			<p class="note">
-				 Be aware that the result of some combinations are unpredicable. For example, if you have CSV data without enclosure characters, no headings, and embedded newline characters in the first row, the correct number of fields in the file can not be calculated.
+				 いつくかの組み合わせは予測不可能であることに留意してください。例えば、囲み文字なし、ヘッダなし、最初の行に改行コードが含まれない CSV データは、ファイルの正確なフィールド数を計算できません。
 			</p>
 
 			<article>
@@ -190,14 +190,14 @@
 								<tr>
 									<th><kbd>$param</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Optional parameter to be passed on to the converter.</td>
+									<td>コンバータに渡されるオプションのパラメータ。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Fuel\Core\Format Object</td>
+						<td>Fuel\Core\Format オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -219,7 +219,7 @@ Fuel\Core\Format Object
 					</tbody>
 				</table>
 				<p class="note">
-						When converting from CSV format, you can pass <kbd>false</kbd> as <kbd>$param</kbd> to indicate the CSV source does not contain any headers. If so, the end result will be an indexed array.
+						CSV フォーマットから変換する場合、<kbd>$param</kbd> に <kbd>false</kbd> を渡すと、CSV ソースがヘッダを含まないことを示せます。その場合、結果はインデックス配列になります。
 				</p>
 			</article>
 
@@ -357,22 +357,22 @@ print_r(Format::forge($array)->to_xml());
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Data to be converted. If not given, the input of forge() is used.</td>
+									<td>変換するデータ。与えられない場合、forge() の入力が用いられる。</td>
 								</tr>
 								<tr>
 									<th><kbd>$delimiter</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>CSV field separator. If not given, the configured default is used.</td>
+									<td>CSV フィールド区切り文字。与えられない場合、設定されたデフォルトが用いられる。</td>
 								</tr>
 								<tr>
 									<th><kbd>$enclose_numbers</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>If false, number will not be enclosed. If true, numbers will be enclosed too. If not given, the configured default is used.</td>
+									<td>false の場合、数字は囲まれない。true の場合、数字も囲われる。与えられない場合、設定されたデフォルトが用いられる。</td>
 								</tr>
 								<tr>
 									<th><kbd>$headings</kbd></th>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>Array of CSV fieldnames. If not given, the fieldnames will be based on what is defined in the first row of the data array.</td>
+									<td>CSV フィールド名の配列。与えられない場合、データの配列の最初の行が使われる。</td>
 								</tr>
 							</table>
 						</td>
@@ -461,7 +461,7 @@ print_r(Format::forge($array)->to_serialized());
 
 			<article>
 				<h4 class="method" id="method_to_php">to_php()</h4>
-				<p><strong>to_php</strong> メソッドは、与えられたデータを 文字列表現された PHP コードとして返します。この PHP コードを eval() 関数で評価することや、他にも思いもつかないようなことに利用することができます。</p>
+				<p><strong>to_php</strong> メソッドは、与えられたデータを 文字列表現された PHP コードとして返します。この PHP コードを eval() で評価することや、他にも思いもつかないようなことに利用することができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
