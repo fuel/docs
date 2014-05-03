@@ -49,11 +49,11 @@
                     <p>テンポラルモデルは思ったよりもずっと怖くはないでしょう。</p>
                     <p>通常はデータベースエンティティのテーブル内の行で表され、この行が更新されると、古い情報が上書きされます。テンポラルモデルはデータを時間で参照でき、それにより、ある時点でのエンティティの状態を問い合わせることができます。</p>
                     <p>たとえば、製品への変更を追跡するため、注文が出されたときに Orders テーブル内のデータを複製することなく商品の状態を知っていたいとします。 You can make the products temporal and use the time of the order to reference the state of the ordered products at that time rather than how they currently are, as would happen without using temporal data.</p>
-                    <p>The temporal model could also be used for auditing changes to things like wiki pages. Any changes would be automatically logged without having to use a separate log table.</p>
-					<p>An "entity" would be any item in your design, for example, a product, a user, a gallery folder, anything that you would use as a Model can be considered an entity. The Temporal Model allows you to track changes to these entities over time by storing changes, each new set of changes is called a "revision". Because each revision is saved along with time (temporal) data it makes it possible to get the state of an entity at any given time.</p>
-                    <p>This implementation of a temporal model stores revisions of entities in the same table as the original data, removing the need for duplicate "log" tables. While the implementation here is not the only way of implementing revisions, it is the most flexible given the limitations of the ORM and the fact that it must work in multiple database environments.</p>
-                    <h1>Why do this in the ORM and not just choose a database system that allows it?</h1>
-                    <p>Implementing the temporal functionality within the ORM allows the mechanics to be abstracted out of the database level, this allows the use of any database that the ORM supports with temporal models, providing greater flexibility. This model does not replace the ability to use a database that supports temporal information but provides an "out of the box" implementation.</p>
+                    <p>テンポラルモデルは Wiki ページのようなものへの監査の変更を利用できます。すべての変更は別々のログテーブルを使用せず自動的に記録されます。</p>
+					<p>"エンティティ" は、デザイン内の任意の項目で、例えば、製品、ユーザー、ギャラリーのフォルダ、あなたがモデルとして使用する物はなんであれエンティティと見なすことが出来ます。テンポラルモデルを使用すると、変更内容を保存することにより時間の経過とともにこれらのエンティティへの変更を追跡することを可能し、変化のそれぞれの新しいセットは "リビジョン" と呼ばれています。各リビジョンは時間 (テンポラル) データと共に保存されるので任意の時点でのエンティティの状態を取得することが可能となります。</p>
+                    <p>テンポラルモデルの実装は、元のデータと同じテーブル内にエンティティのリビジョンを格納し、 "ログ" テーブルの重複を取り除くことが必要となります。それは複数のデータベース環境で機能しなければならないという事実と ORM の制限を考慮すると最も柔軟性があります。</p>
+                    <h1>なぜこれを ORM で行い、それを可能にするデータベースシステムを選択しないのですか？</h1>
+                    <p>ORM 内のテンポラル機能の実装はデーターベース階層から抜け出した抽象化の仕組みを可能にし、テンポラルモデル内の ORM サポートは任意のデータベースを利用することが可能で、より高い柔軟性を提供します。このモデルでは、データベースを利用する機能を置き換えるものではなく、テンポラル情報のサポートをするものですが、しかし、 "そのまま使える" 実装を提供します。</p>
                 </section>
                 
                 <section>
