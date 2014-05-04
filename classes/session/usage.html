@@ -320,14 +320,14 @@ Session::delete('array.varC');
 								<tr>
 									<th><kbd>$variable</kbd></th>
 									<td><em>必須</em></td>
-									<td>Name of the session flash variable to set.</td>
+									<td>セッションにセットするフラッシュ変数名</td>
 								</tr>
 								<tr>
 									<th><kbd>$value</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>
-										The session flash variables value.<br />
-										This can be any data type, but pay attention when storing objects in the session, as session data is serialized, and there are restrictions to serializing an object.
+										フラッシュ変数の値。<br />
+										フラッシュ変数はいかなるデータ型も格納できます。しかしセッションにオブジェクトを格納するときは注意してください。セッションのデータはシリアライズされるため、オブジェクトのシリアライズは制限されます。
 									</td>
 								</tr>
 							</table>
@@ -340,10 +340,10 @@ Session::delete('array.varC');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// tell the next page request which step to process
+							<pre class="php"><code>// 次のページリクエストにどのステップを実行するか伝えます
 Session::set_flash('step', 2);
 
-// you can also store more complex values
+// また、より複雑な値を格納できます
 Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'));
 </code></pre>
 						</td>
@@ -351,14 +351,14 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 					</tbody>
 				</table>
 				<p class="note">
-					This method supports limited 'dot-notation' to save an element in a multidimensional array. Only the top-level is versioned, the
-					entire multidimensional array will expire at the same time.
+					このメソッドは多次元配列へ要素を保存するのに、限定的な「ドット記法」をサポートしています。トップレベル要素のみ配列になり、
+					と同時にセッション変数は解放されます。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_flash">get_flash($variable, $default = null, $expire = false)</h4>
-				<p><strong>get_flash</strong> メソッドはセッションからフラッシュ変数を取り出します。フラッシュ変数は限定されたライフスパンを持ちます。設定に依存し、次のページリクエストか取り出された後に削除されます。</p>
+				<p><strong>get_flash</strong> メソッドはセッションからフラッシュ変数を取り出します。フラッシュ変数は限定されたライフスパンを持ちます。設定に依存し、次のページリクエストか取り出された後に解放されます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -377,36 +377,36 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 								<tr>
 									<th><kbd>$variable</kbd></th>
 									<td><em>必須</em></td>
-									<td>Name of the session variable to get.</td>
+									<td>Name of the session variable to get.取得するフラッシュ変数の名前</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Default value to return in case the requested variable does not exist. If no default is given, the method will return <kbd>null</kbd>.</td>
+									<td>要求した値が存在しない場合のデフォルト値。もしデフォルト値が指定されなかった場合 <kbd>null</kbd> を返します。</td>
 								</tr>
 								<tr>
 									<th><kbd>$expire</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>if <kbd>true</kbd>, the session variable expires immediately, even if it is set in the same request.</td>
+									<td>もし <kbd>true</kbd> なら、同じリクエストで生成されたフラッシュ変数であっても直ちに解放されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed - Dependent on the type of the stored <var>$variable</var>. The method returns <kbd>null</kbd> if the requested variable does not exist.</td>
+						<td>mixed - 格納された <var>$variable</var>の型によります。 このメソッドは要求した変数が存在しない場合 null を返します。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// find out which step to process
+							<pre class="php"><code>// どのステップを実行するか調べます。
 $step = Session::get_flash('step');
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">This method supports 'dot-notation' to retrieve an element from a multidimensional array.</p>
+				<p class="note">このメソッドは多次元配列から要素を取得するのに「ドット記法」をサポートしています。</p>
 			</article>
 
 			<article>
@@ -430,7 +430,7 @@ $step = Session::get_flash('step');
 								<tr>
 									<th><kbd>$variable</kbd></th>
 									<td><em>必須</em></td>
-									<td>Name of the flash variable to keep.</td>
+									<td>維持するフラッシュ変数の名前</td>
 								</tr>
 							</table>
 						</td>
@@ -442,7 +442,7 @@ $step = Session::get_flash('step');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// keep the step value for one more page request
+							<pre class="php"><code>// 次のページリクエストまでステップの値を維持する。
 Session::keep_flash('step');
 </code></pre>
 						</td>
@@ -472,7 +472,7 @@ Session::keep_flash('step');
 								<tr>
 									<th><kbd>$variable</kbd></th>
 									<td><em>必須</em></td>
-									<td>Name of the flash variable to delete.</td>
+									<td>削除するフラッシュ変数の名前</td>
 								</tr>
 							</table>
 						</td>
@@ -484,7 +484,7 @@ Session::keep_flash('step');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// delete the step from the session
+							<pre class="php"><code>// セッションからステップを削除する
 Session::delete_flash('userid');
 </code></pre>
 						</td>
@@ -513,7 +513,7 @@ Session::delete_flash('userid');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// create a new session
+							<pre class="php"><code>// 新しいセッションを生成する
 Session::create();
 </code></pre>
 						</td>
@@ -542,7 +542,7 @@ Session::create();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// destroy a session
+							<pre class="php"><code>// セッションを破棄する
 Session::destroy();
 </code></pre>
 						</td>
@@ -571,7 +571,7 @@ Session::destroy();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// read the session
+							<pre class="php"><code>// セッションを読み込む
 Session::read();
 </code></pre>
 						</td>
@@ -634,7 +634,7 @@ Session::write();
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// rotate the session
+							<pre class="php"><code>// セッションIDを変更する
 Session::rotate();
 </code></pre>
 						</td>
@@ -668,9 +668,9 @@ Session::rotate();
 									<th><kbd>$name</kbd></th>
 									<td><em>optional</em></td>
 									<td>
-										Name of the key element. By default, it is set to 'session_id'.
-										Other elements that may be available are 'ip_hash', 'created', 'updated'
-										'user_agent' and 'payload'.
+										キー要素の名前。デフォルトでは 'session_id' が設定されています。
+										'ip_hash'、 'created'、 'updated'、
+										'user_agent' そして 'payload' が利用可能です。
 									</td>
 								</tr>
 							</table>
@@ -678,12 +678,12 @@ Session::rotate();
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed - element value, or <kbd>false</kbd> if the requested element does not exist.</td>
+						<td>mixed - 要素の値、もしくは要求した要素が存在しなければ <kbd>false</kbd> を返します。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the current session id
+							<pre class="php"><code>// 現在のセッションIDを取得する
 $session_id = Session::key('session_id');
 </code></pre>
 						</td>
