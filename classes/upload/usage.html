@@ -48,14 +48,14 @@
 			<h2>Upload クラス</h2>
 
 			<p>
-				The upload class allows to securely process files that have been uploaded to the application.
-				It allows you to filter uploads in various ways, define what the destination filenames should look like, or filter on size or length of the filename.
+				upload クラスは、アプリケーションにアップロードされたファイルを安全に処理する事ができます。
+				アップロードを様々な方法でフィルタできます。目的のファイル名がどんな名前であるべきか、ファイルサイズやファイル名の長さでフィルタするか、等を定義できます。
 			</p>
 
-			<h3 id="uploaded_files_array">Uploaded files array</h3>
+			<h3 id="uploaded_files_array">アップロードされたファイルの配列</h3>
 
-			<p>Information of every uploaded file is stored in a multidimensional array within the Upload class.
-				For every file, an array is defined with the following fields:
+			<p>アップロードされたファイルの情報はすべて、Upload クラス内の多次元配列に格納されます。
+				ファイル毎に、以下のフィールドが定義された配列が作成されます。
 			</p>
 
 			<table class="config">
@@ -69,88 +69,88 @@
 						<th>field</th>
 						<td>string</td>
 						<td>
-							Name of the form field that was used to upload the file. If the form field was a (multidimensional) array,
-							the	array keys will be added to the fieldname separated by colons.
-							So a field called "field[a][b][]" will be stored as "field:a:b:0".
+							ファイルアップロードに使用されたフォームのフィールド名。フォームフィールドが (多次元の) 配列の場合は、
+							配列のキーをコロンで区切って追加します。
+							フィールドが "field[a][b][]" の場合は "field:a:b:0" と格納されます。
 						</td>
 					</tr>
 					<tr>
 						<th>name</th>
 						<td>string</td>
 						<td>
-							Name of the file uploaded.
+							アップロードされたファイルの名前。
 						</td>
 					</tr>
 					<tr>
 						<th>type</th>
 						<td>string</td>
 						<td>
-							Mime-type of the file uploaded, as defined by the browser.
+							アップロードされたファイルの Mime-type。ブラウザが定義したもの。
 						</td>
 					</tr>
 					<tr>
 						<th>mimetype</th>
 						<td>string</td>
 						<td>
-							Mime-type of the file uploaded, as determined by the Upload class.
-							Note that this requires an up-to-date 'mime magic' file to be installed.
-							This file is present on every *nix platform, but on Windows platforms, you might have to install this file yourself.
-							If the mime-type can not be determined, this field contains the same value as 'type'.
+							アップロードされたファイルの Mime-type。Upload クラスが判定したもの。
+							最新の 'mime magic' ファイルがインストールされている必要があります。
+							このファイルはすべての *nix プラットフォームにありますが、Windows プラットフォームにはありませんので、インストールが必要かもしれません。
+							mime-type が判定できなかった場合は、'type' の値と同じになります。
 						</td>
 					</tr>
 					<tr>
 						<th>file</th>
 						<td>string</td>
 						<td>
-							The fully qualified filename of the temporary location of the uploaded file.
+							アップロードされたファイルの一時的な置き場所の完全修飾名。
 						</td>
 					</tr>
 					<tr>
 						<th>filename</th>
 						<td>string</td>
 						<td>
-							The filename (basename) of the file uploaded.
+							アップロードされたファイルのファイル名 (basename)
 						</td>
 					</tr>
 					<tr>
 						<th>extension</th>
 						<td>string</td>
 						<td>
-							The extension of the file uploaded.
+							アップロードされたファイルの拡張子
 						</td>
 					</tr>
 					<tr>
 						<th>size</th>
 						<td>integer</td>
 						<td>
-							The size in bytes of the file uploaded.
+							アップロードされたファイルのバイト数。
 						</td>
 					</tr>
 					<tr>
 						<th>error</th>
 						<td>boolean</td>
 						<td>
-							If true, the upload has failed, and the errors array contains why.
+							アップロードに失敗した場合は true となり、errors 配列に原因が記述される。
 						</td>
 					</tr>
 					<tr>
 						<th>errors</th>
 						<td>array</td>
 						<td>
-							An array of arrays, each with two values. 'error', containing the error code, and 'message', containing the error text.
+							配列を要素とする配列。それぞれ 'error' と 'message' の 2 つの値をもち、'error' にはエラーコード、'message' にはエラー文字列が記述される。
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
 			<p>
-				Note that mime-type will always contain the most specific type. So if the browser claims it's an MS-Word document, but the mime-type
-				is determined as being "application/octet-stream", the browser's mime-type is used, even if this may be wrong or unexpected!
-				For example, a Microsoft .xlsx file might be detected as being "application/zip".
+				mime-type は最も限定されたものになることに注意してください。たとえば、ブラウザが MS-Word document であると主張し、mime-type が
+				 "application/octet-stream" と判定された場合、ブラウザの mime-type が使用されます。ブラウザの mime-type が間違っている場合や予想外だったとしてもです。
+				例えば、Microsoft .xlsx file が、"application/zip" と判定されるかもしれません。
 			</p>
 
 			<p>
-				After you have called the save() method, this array structure is expanded with two extra fields, giving you information about what was actually saved.
+				save() メソッドを呼び出した後、この配列にはさらに 2 つのフィールドが追加されます。これらのフィールドは何が保存されたかの情報が記述されます。
 			</p>
 
 			<table class="config">
@@ -164,29 +164,29 @@
 						<th>saved_to</th>
 						<td>string</td>
 						<td>
-							Fully qualified path where the uploaded file was saved.
+							アップロードされたファイルが保存されている完全修飾パス。
 						</td>
 					</tr>
 					<tr>
 						<th>saved_as</th>
 						<td>string</td>
 						<td>
-							Name of the file that was saved
+							保存されたファイルのファイル名。
 						</td>
 					</tr>
 					<tr>
 						<th>errors</th>
 						<td>array</td>
 						<td>
-							The errors array (and the error boolean) will be updated after calling save() to indicate any errors encountered when trying to save the file.
+							errors 配列 (と error 真偽値) は、save() メソッド呼び出し後に更新され、ファイルを保存する時に発生したエラーを記述します。
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<h3 id="error_constants">Defined error constants</h3>
+			<h3 id="error_constants">定義済みエラー定数</h3>
 
-			<p>The Upload class defines the following error constants:</p>
+			<p>Upload クラスで定義されているエラー定数です。</p>
 
 			<table class="config">
 				<tbody>
@@ -197,117 +197,117 @@
 					<tr>
 						<th>UPLOAD_ERR_OK</th>
 						<td>
-							There is no error, the file uploaded with success.
+							エラーが発生せず、ファイルが正常にアップロードされた。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_INI_SIZE</th>
 						<td>
-							The uploaded file exceeds the upload_max_filesize directive in php.ini.
+							ファイルサイズが php.ini の upload_max_filesize ディレクティブを超えた。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_FORM_SIZE</th>
 						<td>
-							The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.
+							ファイルサイズが HTML フォームの MAX_FILE_SIZE ディレクティブを超えた。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_PARTIAL</th>
 						<td>
-							The uploaded file was only partially uploaded.
+							ファイルが一部しかアップロードされなかった。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_NO_FILE</th>
 						<td>
-							No file was uploaded. Note that entries with this error will be filtered when the uploaded file list is processed.
+							ファイルがアップロードされなかった。このエラーのあるエントリは、アップロードされたファイル一覧が処理されるときにフィルタリングされます。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_NO_TMP_DIR</th>
 						<td>
-							Missing a temporary folder.
+							一時フォルダが無い。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_CANT_WRITE</th>
 						<td>
-							Failed to write file to disk.
+							ディスクへの書き込みに失敗した。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_EXTENSION</th>
 						<td>
-							A PHP extension stopped the file upload. PHP does not provide a way to ascertain which extension caused the file upload to stop; examining the list of loaded extensions with phpinfo() may help.
+							PHP の拡張モジュールがファイルのアップロードを中止した。どの拡張モジュールがファイルアップロードを中止させたのかを突き止めることはできません。 読み込まれている拡張モジュールの一覧を phpinfo() で取得すれば参考になるでしょう。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_MAX_SIZE</th>
 						<td>
-							The file uploaded exceeds the maximum file size defined in the configuration.
+							ファイルサイズが、FuelPHP の設定で定義した最大サイズを超えた。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_EXT_BLACKLISTED</th>
 						<td>
-							The extension of the file uploaded is defined in the extension blacklist.
+							ファイル拡張子が、FuelPHP の設定で定義したブラックリストに合致した。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_EXT_NOT_WHITELISTED</th>
 						<td>
-							The extension of the file uploaded is not defined in the extension whitelist.
+							ファイル拡張子が、FuelPHP の設定で定義したホワイトリストに無い。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_TYPE_BLACKLISTED</th>
 						<td>
-							The extension of the file uploaded is defined in the type blacklist.
+							ファイル拡張子が、FuelPHP の設定で定義したファイルタイプのブラックリストに合致した。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_TYPE_NOT_WHITELISTED</th>
 						<td>
-							The extension of the file uploaded is not defined in the type whitelist.
+							ファイル拡張子が、FuelPHP の設定で定義したファイルタイプのホワイトリストに無い。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_MIME_BLACKLISTED</th>
 						<td>
-							The extension of the file uploaded is defined in the mime-type blacklist.
+							ファイル拡張子が、FuelPHP の設定で定義した mime-type のブラックリストに合致した。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_MIME_NOT_WHITELISTED</th>
 						<td>
-							The extension of the file uploaded is not defined in the mime-type whitelist.
+							ファイル拡張子が、FuelPHP の設定で定義した mime-type のホワイトリストに無い。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_MAX_FILENAME_LENGTH</th>
 						<td>
-							The uploaded filename exceeds the defined maximum filename length.
+							ファイル名が、FuelPHP の設定で定義したファイル名の長さを超えた。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_MOVE_FAILED</th>
 						<td>
-							The uploaded filename could not be moved from temporary storage to the path specified. This could mean that there's a permission issue.
+							ファイルが、FuelPHP の設定で定義したパスに移動できなかった。パーミッションの問題の可能性があります。
 						</td>
 					</tr>
 					<tr>
 						<th>UPLOAD_ERR_DUPLICATE_FILE</th>
 						<td>
-							The uploaded filename could not be saved because a file with that name already exists.
+							同名のファイルが既に存在するため、保存できなかった。
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
 			<p class="note">
-				Note that to be able to upload files, your HTML &lt;form&gt; tag MUST contain <strong>enctype="multipart/form-data"</strong>, and your form
-				MUST contain at least one input field of type "file". Without it, all uploads will fail, and Upload::process will throw an exception!
+				アップロード可能にするには、HTML &lt;form&gt; タグに <strong>enctype="multipart/form-data"</strong> が含まれていなければなりません。またフォームには
+				タイプが "file" のフィールドが最低 1 つ含まれていなければなりません。そうしないと、アップロードは失敗し、Upload::process が例外を投げます。
 			</p>
 
 			<h3 id="usage_example">Usage example</h3>
