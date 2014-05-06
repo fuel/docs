@@ -45,20 +45,20 @@
 
 		<div id="main">
 
-			<h2>Theme Class Methods</h2>
+			<h2>Theme クラスメソッド</h2>
 
 			<p>
-				The Theme class provides theming to your application.
+				Theme クラスはアプリケーションにテーマの切り替えを提供します。
 			</p>
 
 
 			<article>
 				<h4 class="method" id="method_instance">instance($name = '_default_', array $config = array())</h4>
 				<p>
-					The <strong>instance</strong> method acts as a multiton. It will return the instance identified by $name. If this
-					instance does not exist, it will create a new Theme instance, using the configuration array passed. If no
-					parameters are passed, instance will create the default Theme instance, using the default configuration
-					specified in the theme config file.
+					<strong>インスタンス</strong>メソッドはマルチトンとして振る舞います。$name によって指定されたインスタンスを返します。
+					インスタンスが存在しない場合は、設定配列を使った、新しいテーマのインスタンスが生成されます。
+					設定が与えられなかった場合は、テーマコンフィグファイルのデフォルトの設定を使った、
+					デフォルトのテーマインスタンスが生成されます。
 				</p>
 
 				<table class="method">
@@ -81,28 +81,28 @@
 									<th><kbd>$name</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>'_default_'</code></pre></td>
-									<td>The Theme class instance name.</td>
+									<td>テーマクラスのインスタンス名</td>
 								</tr>
 								<tr>
 									<th><kbd>$config</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>The theme instance configuration. Will be ignored if the instance already exists.</td>
+									<td>テーマインスタンスの設定。インスタンスがすでに存在する場合は無視されます。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A Theme instance</td>
+						<td>テーマのインスタンス</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get the default instance
+							<pre class="php"><code>// デフォルトのインスタンスを取得
 $theme = \Theme::instance();
 
-// Get a custom instance
+// カスタムインスタンスを取得
 $theme = \Theme::instance(
 	'custom',
 	array(
@@ -120,13 +120,12 @@ $theme = \Theme::instance(
 			<article>
 				<h4 class="method" id="method_forge">forge(array $config = array())</h4>
 				<p>
-					The <strong>forge</strong> method returns a new Theme instance.
+					<strong>forge</strong> メソッドは新しいテーマインスタンスを返します。
 				</p>
 
 				<p class="note">
-					If no configuration is passed, the configuration is loaded from the global configuration file.
-					Note that if you pass a partial configuration, it will be merged with the defaults shown
-					in the <a href="./introduction.html#config">はじめに</a>, <strong>NOT</strong> with the defaults in your configuration file!
+					設定が渡されなかった場合は、グローバル設定ファイルから読み込まれた設定が使用されます。
+					設定が一部だけ渡された場合は、設定ファイルのデフォルト<strong>ではなくて</strong>、<a href="./introduction.html#config">はじめに</a>で記されたデフォルトとマージされます。
 				</p>
 
 				<table class="method">
@@ -149,19 +148,19 @@ $theme = \Theme::instance(
 									<th><kbd>$config</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td>The theme instance configuration.</td>
+									<td>テーマインスタンスの設定</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A Theme instance</td>
+						<td>テーマのインスタンス</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get a Theme instance
+							<pre class="php"><code>// テーマインスタンスの取得
 $theme = \Theme::forge(array(
 	'active' => 'custom',
 	'fallback' => 'default',
