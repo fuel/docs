@@ -310,39 +310,39 @@
 				タイプが "file" のフィールドが最低 1 つ含まれていなければなりません。そうしないと、アップロードは失敗し、Upload::process が例外を投げます。
 			</p>
 
-			<h3 id="usage_example">Usage example</h3>
-			<pre class="php"><code>// Custom configuration for this upload
+			<h3 id="usage_example">使用例</h3>
+			<pre class="php"><code>// このアップロードのカスタム設定
 $config = array(
 	'path' => DOCROOT.'files',
 	'randomize' => true,
 	'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
 );
 
-// process the uploaded files in $_FILES
+// $_FILES 内のアップロードされたファイルを処理する
 Upload::process($config);
 
-// if there are any valid files
+// 有効なファイルがある場合
 if (Upload::is_valid())
 {
-	// save them according to the config
+	// 設定にしたがって保存する
 	Upload::save();
 
-	// call a model method to update the database
+	// モデルを呼び出してデータベースを更新する
 	Model_Uploads::add(Upload::get_files());
 }
 
-// and process any errors
+// エラーを処理する
 foreach (Upload::get_errors() as $file)
 {
-	// $file is an array with all file information,
-	// $file['errors'] contains an array of all error occurred
-	// each array element is an an array containing 'error' and 'message'
+	// $file はファイル情報の配列
+	// $file['errors'] は発生したエラーの内容を含む配列で、
+	// 配列の要素は 'error' と 'message' を含む配列
 }
 </code></pre>
 
 			<article>
 				<h4 class="method" id="method_is_valid">is_valid()</h4>
-				<p>The <strong>is_valid</strong> method can be used to check if there are any uploaded files present that have passed the upload validation.</p>
+				<p><strong>is_valid</strong> メソッドは、バリデーションを通過したファイルがあるかどうかをチェックします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -355,12 +355,12 @@ foreach (Upload::get_errors() as $file)
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>boolean - true if validated files exist, false if not.</td>
+						<td>boolean - バリデーションされたファイルがあれば true、無ければ false。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// do we have any uploaded files to save?
+							<pre class="php"><code>// 保存したいファイルがあるか？
 if (Upload::is_valid())
 {
 	Upload::save();
@@ -374,7 +374,7 @@ if (Upload::is_valid())
 
 			<article>
 				<h4 class="method" id="method_get_files">get_files($index = null)</h4>
-				<p>The <strong>get_files</strong> method returns a multi-dimensional array with all files uploaded that have an error value of <strong>false</strong>.</p>
+				<p><strong>get_files</strong> メソッドは、エラーの値が <strong>false</strong> である全てのファイルから成る多次元配列を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -393,8 +393,8 @@ if (Upload::is_valid())
 								<tr>
 									<th><kbd>$index</kbd></th>
 									<td><i>optional</i></td>
-									<td>index number of the file in the uploaded files array, or the name of a form field. If not specified, an array with all validated files is returned.
-									If the index number is invalid, or if the index refers to a file with an error status of <strong>true</strong>, an exception is thrown.</td>
+									<td>配列の添字、またはフォームフィールド名。未指定の場合、バリデーションされた全てのファイルから成る配列を返します。
+									添字が有効でない場合や、エラーステータスが <strong>true</strong> のファイルを指定した場合は、例外が投げられます。</td>
 								</tr>
 							</table>
 						</td>
@@ -406,16 +406,16 @@ if (Upload::is_valid())
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the list of successfully uploaded files
+							<pre class="php"><code>// アップロードに成功したファイルの一覧を取得する
 foreach(Upload::get_files() as $file)
 {
-	// do something with the file info
+	// ファイル情報を処理する
 }
 
-// get the first uploaded file by index
+// 添字0を指定し、最初にアップロードされたファイルを取得する
 if ( ! Upload::get_files(0))
 {
-	// first uploaded file was not succesfully uploaded
+	// 最初にアップロードされたファイルはアップロードに失敗しました。
 }
 </code></pre>
 						</td>
@@ -426,7 +426,7 @@ if ( ! Upload::get_files(0))
 
 			<article>
 				<h4 class="method" id="method_get_errors">get_errors($index = null)</h4>
-				<p>The <strong>get_errors</strong> method returns a multi-dimensional array with all files uploaded that have an error status of <strong>true</strong>.</p>
+				<p><strong>get_errors</strong> エラーステータスが <strong>true</strong> である全てのファイルから成る多次元配列を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -445,8 +445,8 @@ if ( ! Upload::get_files(0))
 								<tr>
 									<th><kbd>$index</kbd></th>
 									<td><i>optional</i></td>
-									<td>index number of the file in the uploaded files array or the name of a form field. If not specified, an array with all invalid files is returned.
-									If the index number is invalid, or if the index refers to a file with an error status of <strong>false</strong>, an exception is thrown.</td>
+									<td>配列の添字、またはフォームフィールド名。未指定の場合、有効でない全てのファイルから成る配列を返します。
+									添字が有効でない場合や、エラーステータスが <strong>false</strong> のファイルを指定した場合は、例外が投げられます。</td>
 								</tr>
 							</table>
 						</td>
@@ -458,17 +458,17 @@ if ( ! Upload::get_files(0))
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// get the list of uploaded files with errors
+							<pre class="php"><code>// エラーが発生したファイルの一覧を取得する
 foreach(Upload::get_errors() as $file)
 {
-	// do something with the file info
+	// ファイル情報を処理する
 }
 
-// get the first uploaded file by field name
+// フィールド名を指定し、アップロードされたファイルを取得する
 if (Upload::get_errors('new_image'))
 {
-	// there was an error uploading the file for the form field 'new_image'
-	// defined as &lt;input type="file" name="new_image" /&gt;
+	// &lt;input type="file" name="new_image" /&gt; で定義される
+	// フォームフィールドが 'new_image' のファイルのアップロード時にエラーが発生しました。
 }
 </code></pre>
 						</td>
@@ -476,16 +476,16 @@ if (Upload::get_errors('new_image'))
 					</tbody>
 				</table>
 				<p class="note">
-					Note that all upload fields in your form are submitted, even if they are optional. For fields that are left empty, the
-					uploaded files array will have an empty file entry, with an error code of <strong>Upload::UPLOAD_ERR_NO_FILE</strong>. When processing
-					errors, check the error code first, before trying to use any of the other fields in the returned array.</p>
+					全てのフォームのアップロードフィールドが送信されることに注意してください。たとえそれらがオプションであったとしてもです。空欄のままのフィールドは、
+					アップロードされたファイルの配列に、エラーコード <strong>Upload::UPLOAD_ERR_NO_FILE</strong> の空エントリが記述されます。
+					エラーを処理するとき、まずエラーコードをチェックし、その後、エラー以外のフィールドを使用してください。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_register">register($event, $callback)</h4>
 				<p>
-					The <strong>register</strong> method allows you to register callbacks for specific upload events,
-					and allow you to add your own code to the <strong>process()</strong> and <strong>save()</strong> methods.
+					<strong>register</strong> メソッドは、特定のアップロードイベントにコールバックを登録します。
+					また、あなたの独自のコードに <strong>process()</strong> と <strong>save()</strong> メソッドを追加できます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -505,24 +505,24 @@ if (Upload::get_errors('new_image'))
 								<tr>
 									<th><kbd>$event</kbd></th>
 									<td><i>必須</i></td>
-									<td>name of the callback event you want to register. Valid names are 'validate', 'before' and 'after'.</td>
+									<td>登録したいコールバックイベント名。'validate'、'before'、'after' から選択する。</td>
 								</tr>
 								<tr>
 									<th><kbd>$callback</kbd></th>
 									<td><i>必須</i></td>
-									<td>Valid PHP callback function. This can be a function, a dynamic or static method, or a closure.</td>
+									<td>有効な PHP コールバック関数。関数、動的／静的メソッド、クロージャが可能。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>boolean - true if the callback was registered, false if the registration failed.</td>
+						<td>boolean - コールバックが登録されていれば true、登録に失敗していれば false。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// register a before callback using a closure
+							<pre class="php"><code>// before コールバックに、クロージャ登録
 Upload::register('before', function (&amp;$file) {
 	if ($file['error'] == Upload::UPLOAD_ERR_OK)
 	{
@@ -531,22 +531,22 @@ Upload::register('before', function (&amp;$file) {
 			case "jpg":
 			case "png":
 			case "gif":
-				// store these in the images subdirectory
+				// images サブディレクトリに保存する
 				$file['file'] .= 'images/';
 			break;
 
 			case "css":
-				// store these in the css subdirectory
+				// css サブディレクトリに保存する
 				$file['file'] .= 'css/';
 			break;
 
 			case "js":
-				// store these in the javascript subdirectory
+				// javascript サブディレクトリに保存する
 				$file['file'] .= 'js/';
 			break;
 
 			default:
-				// don't modify the path for all others
+				// それ以外の場合はパスを変更しない
 		}
 	}
 });
@@ -556,33 +556,33 @@ Upload::register('before', function (&amp;$file) {
 					</tbody>
 				</table>
 				<p>
-					If you want to use a 'validate' callback, be sure to register it before you call Upload::process().
-					If you have used the 'auto_process' configuration setting, Upload::process() will be called as soon as you use the Upload class,
-					which means you can't use this setting if you want to define callbacks at runtime.
+					'validate' コールバックを使用したい場合は、Upload::process() を呼び出す前に登録するようにしてください。
+					'auto_process' 設定にしている場合は、Upload クラスを使用するとすぐに Upload::process() が呼び出されます。
+					つまり、実行時にコールバックを定義したい場合は、この設定にすることはできません。
 				</p>
 				<p>
-					The callback will receive a FuelPHP\Upload\File object as parameter. The entry is passed by reference, which allows
-					the callback function to modify the entries of the array. You can access it as an array for backward compatibility
-					reasons, but if migrate your application a version &lt; 1.6 to 1.6+, check the value passed to your callbacks, as
-					not all attributes are named the same as in pre-1.6.<br />
-					If the callback function returns an integer, it is assumed to be an update of the uploaded file's error code.
-					All other return values are ignored.
+					コールバックは、FuelPHP\Upload\File オブジェクトをパラメータとして受け取ります。エントリは参照で渡されるので、
+					コールバックがエントリを変更することができます。後方互換のために配列としてアクセスすることができますが、
+					バージョン &lt; 1.6 から 1.6+ へ移行する場合、コールバックに渡される値をチェックしてください。
+					全ての属性が 1.6 以前と同じではないからです。<br />
+					コールバック関数が整数を返す場合、アップロードされたファイルのエラーコードを修正する、とみなされます。
+					その他の返り値は無視されます。
 				</p>
 
 				<p class="note">
-					<strong>Note:</strong> if you alter the contents of the <strong>$file</strong> array in your callback, you have to make sure that the
-					information is still valid, as the Upload class won't perform its checks again. The only exception to this rule is the '<strong>file</strong>' path,
-					which will be checked and created if required after the callback has been executed.
+					<strong>注意:</strong> コールバックで <strong>$file</strong> 配列の内容を変更する場合、情報が有効のままであるようにする必要があります。
+					Upload クラスは再チェックしません。'<strong>file</strong>' パスについては例外で、
+					コールバック実行後に必要ならばチェックして作成されます。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_process">process($config = array())</h4>
 				<p>
-					The <strong>process</strong> method processes the information about all uploaded files,
-					normalizes the different permutations of form field names that can be used,
-					fetches additional information about the file and its mimetype,
-					and validates the file.
+					<strong>process</strong> メソッドは、アップロードされた全てのファイルの情報を処理し、
+					フォームフィールド名の並びを統一し、
+					ファイルとその mimetype の追加情報を取得し、
+					ファイルをバリデーションします。
 				</p>
 				<table class="method">
 					<tbody>
@@ -602,7 +602,7 @@ Upload::register('before', function (&amp;$file) {
 								<tr>
 									<th><kbd>$config</kbd></th>
 									<td><i>optional</i></td>
-									<td>array of configuration items, so you can override the settings defined in the configuration file.</td>
+									<td>設定アイテムの配列。設定ファイルに定義されている設定を上書きできる。</td>
 								</tr>
 							</table>
 						</td>
@@ -613,13 +613,13 @@ Upload::register('before', function (&amp;$file) {
 					</tr>
 					<tr>
 						<th>Throws</th>
-						<td>FuelException, when no file upload attempt could be detected (i.e. form without "Enctype" or input field of type="file")</td>
+						<td>FuelException。ファイルアップロード試行が検出されなかったとき ("Enctype" や type="file" のフィールドがないフォーム)</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>// process the uploaded files
-// set the max size to 10Kb, and allow overwrites of duplicate files
+							<pre class="php"><code>// アップロードされたファイルを処理する
+// 最大サイズを 10Kb にセットし、重複ファイルを上書きする
 Upload::process(array(
 	'max_size'    => 10240,
 	'auto_rename' => false,
@@ -630,12 +630,12 @@ Upload::process(array(
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">If you intend to use this method, disable <strong>auto_process</strong> in the config, to avoid processing the uploaded files twice!</p>
+				<p class="note">このメソッドを使用する場合は、設定で <strong>auto_process</strong> を無効にして、2 回処理するのを回避してください。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_save">save( ... )</h4>
-				<p>The <strong>save</strong> method saves all validated files uploaded to the path specified.</p>
+				<p><strong>save</strong> メソッドは、バリデーションされた全てのファイルを指定したパスに保存します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -654,21 +654,21 @@ Upload::process(array(
 								<tr>
 									<th><kbd>$integer</kbd></th>
 									<td><i>optional</i></td>
-									<td>Key of the files array returned by <strong>get_files()</strong>. This allows you to save an individual file from a set of uploaded files.</td>
+									<td><strong>get_files()</strong> が返す配列のキー。アップロードされたファイルのセットから、1 つのファイルを保存することができます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$array</kbd></th>
 									<td><i>optional</i></td>
-									<td>Array of keys of the files array returned by <strong>get_files()</strong>. This allows you to save a selection of files from a set of uploaded files.</td>
+									<td><strong>get_files()</strong> が返す配列のキーの配列。アップロードされたファイルのセットから、複数のファイルを保存することができます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$string</kbd></th>
 									<td><i>optional</i></td>
-									<td>The path the files should be saved to. This overrides the path specified in the configuration, or passed in the $config array when the <strong>process()</strong> method was called.</td>
+									<td>ファイルを保存するパス。設定で指定したパスや、<strong>process()</strong> メソッドが呼び出された時の $config を上書きします。</td>
 								</tr>
 							</table>
 							<br />
-							Note that the order in which these parameters are given is not relevant, and all of them are optional. But either use $integer or $array, and not both. If you do, the last one specified will be used.
+							これらのパラメータは全てオプションで、パラメータの順序は定められていません。しかし、$integer と $array はどちらかだけを指定してください。双方を指定した場合、最後に指定したものを使用します。
 						</td>
 					</tr>
 					<tr>
@@ -678,23 +678,23 @@ Upload::process(array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// save all validated files
+							<pre class="php"><code>// バリデーションされた全てのファイルを保存する
 Upload::save();
 
-// save only the first uploaded file
+// 最初にアップロードされたファイルだけを保存する
 Upload::save(0);
 
-// save the first, second and fourth uploaded file
+// 1 つ目、2 つ目、4 つ目のファイルを保存する
 Upload::save(0, 1, 3);
 
-// save all validated files, and to an alternate location
+// バリデーションされた全てのファイルを別の場所に保存する
 $arr = Upload::get_files();
 Upload::save(DOCROOT.'assets', array_keys($arr));
 
-// process any errors on these files
+// これらのファイルのエラーを処理する
 foreach (Upload::get_errors() as $key => $file)
 {
-	// process the errors here
+	// ここでエラーを処理する
 }
 </code></pre>
 						</td>
