@@ -48,9 +48,9 @@
 			<h2>File クラス</h2>
 
 			<p>
-				The file class offers a set of methods to working with files &amp; directories. This can be done through
-				some helper methods or through a more advanced object oriented method where all files and directories are
-				wrapped in objects.
+				file クラスは、ファイルとディレクトリを扱う様々なメソッドを提供します。いくつかのヘルパーメソッドを通して、
+				あるいは、すべてのファイルとディレクトリがオブジェクトでラップされている高度なオブジェクト指向メソッドを通して
+				提供されます。
 			</p>
 
 			<section>
@@ -99,7 +99,7 @@
 						<th>例外</th>
 						<td>
 							<kbd>OutsideAreaException</kbd> パスがエリア内になかった場合。
-							<kbd>FileAccessException</kbd> when an area is used and there is an extension violation.
+							<kbd>FileAccessException</kbd> このエリアが使用されており、拡張子違反がある場合。
 						</td>
 					</tr>
 					<tr>
@@ -344,9 +344,9 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>array - a natural-case sorted array with subdirectories on top. Directories have a string key
-						with array value (or false when not read because of $depth limitation) and files are int indexed
-						with filename as value. All directories are suffixed with a directory separator.</td>
+						<td>array - サブディレクトリを上にし、自然順、大文字小文字を区別してソートし亜mす。ディレクトリは
+						キーが文字列、値が配列 ($depth 制限で読み込みできない場合は false)となり、ファイルはファイル名を値とする添字配列です。
+						すべてのディレクトリには、末尾にディレクトリ区切りが付加されます。</td>
 					</tr>
 					<tr>
 						<th>例外</th>
@@ -1326,16 +1326,16 @@ File::close_file($resource);</code></pre>
 					<tr>
 						<th>返り値</th>
 						<td>
-							An array with file information items. The array will contain path, filename and extension information,
-							the file size and permissions, the creation and last modified timestamps, the detected mime-type and
-							the file's character set.
+							ファイル情報から成る配列。配列には、パス、ファイル名、拡張子情報、
+							ファイルサイズ、パーミッション、作成日時、更新日時、検出された mime-type、
+							ファイルの文字セットが含まれる。
 						</td>
 					</tr>
 					<tr>
 						<th>例外</th>
 						<td>
 							<kbd>InvalidPathException</kbd> ファイルが存在しない場合。
-							<kbd>InvalidArgumentException</kbd> when the file info could be determined.
+							<kbd>InvalidArgumentException</kbd> ファイルが決定できない場合。
 						</td>
 					</tr>
 					<tr>
@@ -1397,13 +1397,13 @@ File::close_file($resource);</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>n/a - this method exits after initiating the download.</td>
+						<td>n/a - このメソッドはダウンロード処理を起動すると終了する。</td>
 					</tr>
 					<tr>
 						<th>例外</th>
 						<td>
 							<kbd>InvalidPathException</kbd> ファイルが存在しない場合。
-							<kbd>InvalidArgumentException</kbd> if no file info could be retrieved for the file.
+							<kbd>InvalidArgumentException</kbd> ファイル情報が取得できない場合。
 							<kbd>FileAccessException</kbd> ファイルが開けないか読みこむことが出来ない場合。
 						</td>
 					</tr>
@@ -1416,9 +1416,9 @@ File::close_file($resource);</code></pre>
 					</tbody>
 				</table>
 				<p class="note">
-					Note that when you call this method, it doesn't immediately download the file. It will schedule a shutdown event
-					in which the file is downloaded, and then terminates the script. This ensures that all Fuel shutdown functions,
-					like updating sessions, will execute as normal.
+					このメソッドを呼び出すとき、即座にダウンロードしませんのでご注意ください。ファイルがダウンロードされ、スクリプトを終了するシャットダウンイベントを準備します。
+					これにより、セッション更新などの FuelPHP の全てのシャットダウン関数を、
+					正常に実行できます。
 				</p>
 			</article>
 
