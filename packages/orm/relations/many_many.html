@@ -45,29 +45,29 @@
 		<div id="main">
 			<h2>Orm</h2>
 
-			<p>ORMは<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
-				関係マッピング</a>の略です。 これは、2つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
+			<p>ORM は<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト関係マッピング</a>の略です。
+				これは、 2 つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
 				それはあなたがそれらのオブジェクト間の関係を確立することができます。<br />
-				それは <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">
-				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
+				それは <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">Active Record パターン</a>
+				に従いますが、 他のシステムにも影響も受けます。</p>
 
 			<section>
 				<h2 id="many_many">リレーション：多対多</h2>
 
 				<p>別のモデルに多対多のリレーションシップを指定します。対象モデルは、他の方向の関係と
 					同じ型を持ちます。 双方のテーブルの間に、デュアルプライマリーキーとして使用する 
-					2IDがあれば、 リレーションが可能です。</p>
+					2 つの ID があれば、リレーションが可能です。</p>
 
 				<h4>値と関係を保つ</h4>
 
-				<p>リレーションシップ·テーブルに値を保存する必要がある場合は、ManyManyを使用していますが、 
-					そうでなければManyMany関係と呼ぶようなものの両側に
-					属する代わりの間でモデルを作成する必要はありません。それについては、<a href="intro.html#usage_nested_rels">入れ子になったリレーションシップの使用法
-					</a>で説明されています。</p>
+				<p>リレーションシップテーブルに値を保存する必要がある場合は、ManyMany を使用していますが、 
+					そうでなければ ManyMany 関係と呼ぶようなものの両側に
+					属する代わりの間でモデルを作成する必要はありません。それについては、<a href="intro.html#usage_nested_rels">入れ子になったリレーションシップの使用法</a>
+					で説明されています。</p>
 
 				<h3>設定オプション</h3>
 
-				<p>ManyMany関係は他の人に比べて3つの追加の設定オプションがあります。
+				<p>ManyMany 関係は他の人に比べて 3 つの追加の設定オプションがあります。
 					最も一般的な命名規則を使用するときは、これらのすべてはまだオプションです。</p>
 
 				<table class="config">
@@ -79,53 +79,53 @@
 						</tr>
 						<tr>
 							<th>table_through</th>
-							<td>アルファベット順に、model_toとmodel_fromから算出</td>
-							<td>これは、2つのモデルを接続し、そこに両方それらのIDを持つテーブルです。 Model_UserとModel_Postのような2つのモデルの場合は、
-								デフォルトでposts_users（両方の複数形）という名前になります。</td>
+							<td>アルファベット順に、 model_to と model_from から算出</td>
+							<td>これは、 2 つのモデルを接続し、そこに両方それらの ID を持つテーブルです。 Model_User と Model_Post のような2つのモデルの場合は、
+								デフォルトで posts_users (両方の複数形) という名前になります。</td>
 						</tr>
 						<tr>
 							<th>key_through_from</th>
 							<td>現在のモデル名から算出</td>
-							<td>現行モデルの主キーと一致するキー。 現在のモデルはModel_Postの場合、
-								これはデフォルトでpost_idとなります。</td>
+							<td>現行モデルの主キーと一致するキー。 現在のモデルは Model_Post の場合、
+								これはデフォルトで post_id となります。</td>
 						</tr>
 						<tr>
 							<th>key_through_to</th>
 							<td>関連するモデル名から算出</td>
-							<td>関連モデルの主キーと一致するキー。 関連モデルがModel_Userである場合、
-								これはデフォルトでuser_idとなります。</td>
+							<td>関連モデルの主キーと一致するキー。 関連モデルが Model_User である場合、
+								これはデフォルトで user_id となります。</td>
 						</tr>
 					</tbody>
 				</table>
 
-				<h4>Ordering on a column in the through table</h4>
+				<h4>スルーテーブル内のカラムの順序付け</h4>
 
 				<p>
-					In addition to the normal default order you can define in a relationship definition, you can also
-					define now the records from <kbd>table_through</kbd> need to be ordered:
+					リレーションシップ定義で定義することができ、通常のデフォルトの順序に加えて、順序付けらた
+					<kbd>table_through</kbd> からのレコードを今必要であれば定義できます:
 
 				<pre class="php"><code>protected static $_many_many = array(
 	'users' => array(
-		'table_through' => 'posts_users', 	// both models plural without prefix in alphabetical order
+		'table_through' => 'posts_users', 	// アルファベット順に接頭辞のない両方のモデルの複数形
 		'order_by' => array(
-			'posts_users.status' => 'ASC'	// define custom through table ordering
+			'posts_users.status' => 'ASC'	// スルーテーブルのカスタムな順序を定義
 		),
 	)
 );
-// other fields that may be required have been ommitted for this example</code></pre>
+// この例のために必要とされている他のフィールドは省略されている</code></pre>
 
-				<h3>Example</h3>
+				<h3>例</h3>
 
-				<p> <kbd>Model_Post</kbd>があるします。そしてそれは <kbd>Model_User</kbd>などと<em>多くを持って、多くに属しています。</em>
-					 Model_PostのIDは、呼ばれるテーブル<kbd>posts_users</kbd>に、Model_UserのIDとともにあります。
+				<p> <kbd>Model_Post</kbd> があるします。そしてそれは <kbd>Model_User</kbd> などと<em>多くを持って、多くに属しています</em>。
+					 Model_Post の ID は、呼ばれるテーブル <kbd>posts_users</kbd> に、 Model_User の ID とともにあります。
 					 (デフォルトの順序はアルファベット順です) そのテーブルは、ちょうど2カラムがあります。:
 					<kbd>post_id</kbd> と <kbd>user_id</kbd> は共にそれらのテーブルの主キーです。<br />
-					あなたがデフォルトを維持する場合に必要な作業は <kbd>'users'</kbd>の為に、
-					<kbd>$_many_many</kbd>をModel_Postの静的プロパティに加えることです。:</p>
+					あなたがデフォルトを維持する場合に必要な作業は <kbd>'users'</kbd> の為に、
+					<kbd>$_many_many</kbd> を Model_Post の静的プロパティに加えることです:</p>
 
 				<pre class="php"><code>protected static $_many_many = array('users');</code></pre>
 
-				<p>そして、あなたはSQLにこのようなテーブルを追加する必要があります:</p>
+				<p>そして、あなたは SQL にこのようなテーブルを追加する必要があります:</p>
 
 				<pre class="sql"><code>CREATE TABLE IF NOT EXISTS `posts_users` (
   `post_id` int(11) NOT NULL,
@@ -133,7 +133,7 @@
   PRIMARY KEY (`post_id`,`user_id`)
 );</code></pre>
 
-				<p>has-manyリレーションを確立し、解消するための例:</p>
+				<p>has-many リレーションを確立し、解消するための例:</p>
 
 				<pre class="php"><code>// 両方のメインと関連オブジェクトが新たに追加:
 $post = new Model_Post();
@@ -153,13 +153,13 @@ $post->save();</code></pre>
 				<h3>デフォルト値を持つ完全な設定例</h3>
 
 				<pre class="php"><code>// Model_Post の中身は、多くのユーザーに属しています。
-// = ユーザーごとに複数のポストとポストごとに複数のユーザ（著者）があります。
+// = ユーザーごとに複数のポストとポストごとに複数のユーザ (著者) があります。
 protected static $_many_many = array(
 	'users' => array(
 		'key_from' => 'id',
-		'key_through_from' => 'post_id', // テーブル間のカラム1は、posts.idと一致する必要があります
-		'table_through' => 'posts_users', // アルファベット順にプレフィックスなしの複数のmodel双方に
-		'key_through_to' => 'user_id', // テーブル間のカラム2は、users.idと一致する必要があります
+		'key_through_from' => 'post_id', // テーブル間のカラム 1 は、 posts.id と一致する必要があります
+		'table_through' => 'posts_users', // アルファベット順にプレフィックスなしの複数の model 双方に
+		'key_through_to' => 'user_id', // テーブル間のカラム 2 は、 users.id と一致する必要があります
 		'model_to' => 'Model_User',
 		'key_to' => 'id',
 		'cascade_save' => true,
