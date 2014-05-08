@@ -67,10 +67,10 @@ echo \Theme::instance()->asset->css('bootstrap.css');</code></pre>
 			<h3 id="advanced_config">高度な設定</h3>
 
 			<p>
-				The methods <a href="methods.html#method_active">active()</a>, <a href="methods.html#method_fallback">fallback()</a>,
-				<a href="methods.html#method_get_info">get_info()</a> and <a href="methods.html#method_load_info">load_info()</a> by default allow you
-				to pass a string with the name of an installed theme.
-				These methods allow you to pass an theme definition array instead, which makes it possible to pass extra configuration information.
+				メソッドの <a href="methods.html#method_active">active()</a>, <a href="methods.html#method_fallback">fallback()</a>,
+				<a href="methods.html#method_get_info">get_info()</a> そして <a href="methods.html#method_load_info">load_info()</a>
+				は、デフォルトではインストールしたテーマの名前を文字列で渡すことができます。
+				これらのメソッドは代わりにテーマ定義の配列を渡すことができ、これらのメソッドへ追加の設定情報を渡すことができます。
 			</p>
 
 			<p>以下のテーマ変数が定義されます:</p>
@@ -86,38 +86,38 @@ echo \Theme::instance()->asset->css('bootstrap.css');</code></pre>
 					<tr>
 						<th>name</th>
 						<td>string</td>
-						<td><strong>required</strong></td>
+						<td><strong>必須</strong></td>
 						<td>テーマの名前。これはパスのディレクトリ名に合わせる必要があります。</td>
 					</tr>
 					<tr>
 						<th>path</th>
 						<td>string</td>
-						<td><strong>required</strong></td>
+						<td><strong>必須</strong></td>
 						<td>テーマのパス。これはテーマの名前を含むこと、かつディレクトリセパレータで終わっている必要があります。</td>
 					</tr>
 					<tr>
 						<th>asset_base</th>
 						<td>string</td>
-						<td><strong>optional</strong></td>
+						<td><strong>オプション</strong></td>
 						<td>
-							The base path to the assets of this theme, relative to the application <strong>DOCROOT</strong>.
-							If outside the <strong>DOCROOT</strong>, the path should be fully qualified.
-							It should end with a directory separator.
-							If not specified, it will be constructed from the given theme path, the configured assets_folder,
-							and the configured base_url.
+							アプリケーションの <strong>DOCROOT</strong> から相対的なこのテーマのアセットへの基準パス。
+							<strong>DOCROOT</strong> 外の場合はパスを完全修飾にする必要があります。
+							これはディレクトリセパレータで終了する必要があります。
+							指定しない場合は、与えられたテーマのパス、設定された assets_folder 、および、設定された
+							base_url から構築されます。
 						</td>
 					</tr>
 					<tr>
 						<th>info</th>
 						<td>array</td>
-						<td><strong>optional</strong></td>
+						<td><strong>オプション</strong></td>
 						<td>テーマの情報配列。未定義の場合は、テーマ情報ファイルから作成されます。</td>
 					</tr>
 					<tr>
 						<th>find_file</th>
 						<td>boolean</td>
-						<td><strong>optional</strong></td>
-						<td><strong>true</strong>にセットした場合、<a href="../finder.html#method_search">Finder::search()</a> メソッドがビューファイルとテーマ情報ファイルの場所を突き止めます。</td>
+						<td><strong>オプション</strong></td>
+						<td><strong>true</strong> にセットした場合、 <a href="../finder.html#method_search">Finder::search()</a> メソッドがビューファイルとテーマ情報ファイルの場所を突き止めます。</td>
 					</tr>
 				</tbody>
 			</table>
