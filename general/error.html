@@ -149,7 +149,7 @@ public function action_404()
 	$data['title'] = $messages[array_rand($messages)];
 
 	// Set a HTTP 404 output header
-	return Response::forge(View::forge('welcome/404', $data), 404);
+	return Response::forge(Presenter::forge('welcome/404', $data), 404);
 }</code></pre>
 
 			<p>
@@ -159,7 +159,7 @@ public function action_404()
 			</p>
 
 			<p class="note">
-				Note that Fuel doesn't set the 404 status, your response must set this. Return <em>Response::forge(ViewModel::forge('welcome/404'), 404);</em>
+				Note that Fuel doesn't set the 404 status, your response must set this. Return <em>Response::forge(Presenter::forge('welcome/404'), 404);</em>
 				in order to send the correct status header.
 			</p>
 
