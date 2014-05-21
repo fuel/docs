@@ -149,7 +149,7 @@ public function action_404()
 	$data['title'] = $messages[array_rand($messages)];
 
 	// HTTP 404 出力ヘッダを設定する
-	return Response::forge(View::forge('welcome/404', $data), 404);
+	return Response::forge(Presenter::forge('welcome/404', $data), 404);
 }</code></pre>
 
 			<p>
@@ -160,7 +160,7 @@ public function action_404()
 
 			<p class="note">
 				Fuel は 404 ステータスを設定していませんので、ご自分で HTTP レスポンスを設定する必要があることに留意ください。正しいステータスヘッダを送信するには、
-				<em>Response::forge(ViewModel::forge('welcome/404'), 404);</em> を返します。
+				<em>Response::forge(Presenter::forge('welcome/404'), 404);</em> を返します。
 			</p>
 
 			<h4 id="catch_all">Catch all</h4>

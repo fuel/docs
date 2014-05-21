@@ -396,13 +396,14 @@ panes.main = {
 		"Model-View-Controller":	"general/mvc.html",
 		"モデル":			"general/models.html",
 		"ビュー":			"general/views.html",
-		"ビューモデル":		"general/viewmodels.html",
+		"Presenters":		"general/presenters.html",
 		"コントローラ": {
 			"ベース" :		"general/controllers/base.html",
 			"Template":		"general/controllers/template.html",
 			"Rest":			"general/controllers/rest.html",
 			"Hybrid":		"general/controllers/hybrid.html"
 		},
+		"Namespacing":		"general/namespacing.html",
 		"ルーティング":			"general/routing.html",
 		"セキュリティ":			"general/security.html",
 		"モジュール":			"general/modules.html",
@@ -501,6 +502,7 @@ panes.core = {
 		"Num":			"classes/num.html",
 		"Package":		"classes/package.html",
 		"Pagination":	"classes/pagination.html",
+		"Presenter":	"classes/presenter.html",
 		"Profiler":		"classes/profiler.html",
 		"Redis_Db":		"classes/redis.html",
 		"Request": {

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+		var class_prefix = "Presenter::";
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Presenter - Classes - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>Presenter Class</h2>
+
+			<p>
+				The Presenter class acts as an object wrapper for "views", and is used to abstract all logic
+				related to the view away from the controller. <a href="../general/presenters.html">Read more about using presenters.</a>
+				Like a Controller, a Presenter supports <kbd>before()</kbd> and <kbd>after()</kbd> methods, which you can use for code generic to all methods for view prepping.
+			</p>
+
+			<article>
+				<h4 class="method" id="method_forge">forge($presenter, $method = 'view', $auto_filter = null, $view = null)</h4>
+				<p>The <strong>forge</strong> method returns a new Presenter object.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$presenter</kbd></th>
+										<td><em>required</em></td>
+										<td class="description">Name of the presenter, and by default of it's associated view, using <a href="./view.html#method_forge">View</a> notation.</td>
+									</tr>
+									<tr>
+										<th><kbd>$method</kbd></th>
+										<td><pre class="php"><code>'view'</code></pre></td>
+										<td class="description">Name of the presenter method that will prep the View for rendering. You can have multiple prep methods defined in the Presenter, for example to generate different layouts of the same view.</td>
+									</tr>
+									<tr>
+										<th><kbd>$auto_filter</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">set to <em>true</em> or <em>false</em> to set auto encoding, defaults to main config setting (app/config/config.php)</td>
+									</tr>
+									<tr>
+										<th><kbd>$view</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description"></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>a new <em>Presenter</em> object</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// Will create a Presenter object
+// for the APPPATH/views/admin/index.php view file
+// using the Presenter_Admin_Index class in APPPATH/classes/presenter/admin/index.php
+
+$presenter = Presenter::Forge('admin/index');
+
+// use the custom() method in the presenter to render the view differently
+$presenter = Presenter::Forge('admin/index', 'custom');
+
+// use a custom view
+$presenter = Presenter::Forge('admin/index', 'custom', null, 'admin/different/view');
+
+// or even a custom view object
+$view = View::forge('admin/different/view', array(
+	'menu' => $menu,
+	'articles' => $articles,
+	'footer_links' => $footer_links,
+));
+
+$presenter = Presenter::Forge('admin/index', 'custom', null, $view);</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get_view">get_view()</h4>
+				<p>The <strong>get_view</strong> method returns the View instance associated with the Presenter object.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>The associated View object</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// create a presenter instance
+$presenter = Presenter::Forge('admin/index');
+
+// and the view associated with it
+$view = $presenter->get_view();</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_view">view()</h4>
+				<p>The <strong>view</strong> method is the default method which is called when the Presenter is rendered. It contains the logic to prep the view for rendering.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						<tr>
+							<th>Example</th>
+							<td>
+								See the <a href="../general/presenter.html">Presenter</a> overview page.
+							</td>
+						</tr>
+						</tr>
+					</tbody>
+				</table>
+
+				<p class="note">
+					A presenter can contain multiple prepping methods, which are used when you need multiple sets of logic for generating the view.
+					You could for example have a custom method that generates the view without headers and footers, or one that creates a custom
+					view optimized for mobile devices. It allows you to keep the controller generic, it doesn't need to know what output has to be
+					generated by the presenter.
+				</p>
+			</article>
+
+			<h3 id="view">View object compatibility</h3>
+
+			<p>
+				The Presenter class is interchangeable with the View class in your code. This means that if you start with Views, and later
+				realize you need to have additional view prepping logic and you want to use a Presenter instead, you don't have to change
+				your controller code, other than forging a Presenter instead of a View.
+			</p>
+			<p>
+				To support this, the Presenter exposes the <kbd>set()</kbd>, <kbd>set_safe()</kbd>, <kbd>bind()</kbd>, <kbd>auto_filter()</kbd> and
+				<kbd>render()</kbd> methods of the associated View object. Is also has magic getter and setters to access and set properties on the
+				associated View object.
+			</p>
+			<p>
+				The Presenter doesn't support the static methods <kbd>set_global()</kbd> and <kbd>bind_global()</kbd>, if you need global variables
+				for your views, you still have to set them on the View class. For the Presenter, this is transparent.
+			</p>
+
+			<p class="note">
+				If you want to extend the Presenter to be able to swap View instances after the Presenter object has been created, know that the
+				presenter doesn't have it's own data container. Instead, it uses the associated View object to store all data, which means that
+				if you swap that View object by a new one, you lose all variables set on it!
+			</p>
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

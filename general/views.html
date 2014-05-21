@@ -54,7 +54,6 @@
 
 			<p>FuelPHP では、 ビューは <kbd>APPPATH/views</kbd> ディレクトリに置きます。サブディレクトリに置くこともできます。fuel/app/views からのディレクトリパスとファイル名から命名します。従って、<em>fuel/app/views/user/join.php</em> にあるビューファイルは <kbd>user/join</kbd> と命名されます。</p>
 
-			<p class="note"><strong>Note:</strong> ビューは <kbd>APPPATH/views</kbd> に配置します。ビューモデルは <kbd>APPPATH/classes/view</kbd> に配置します。</p>
 			<p>例:</p>
 
 	<pre class="html"><code>&lt;html&gt;
@@ -152,11 +151,11 @@
 			出力フィルタをグローバルに無効化することができます。しかし、セキュリティ上の理由から、この設定を行わないしないことを
 			強く推奨します。</p>
 
-			<p class="note"><strong>オブジェクトについての注意:</strong> 渡されるオブジェクトが View、ViewModel あるいは Closure のインスタンスでない限り、 
+			<p class="note"><strong>オブジェクトについての注意:</strong> 渡されるオブジェクトが View、Presenter あるいは Closure のインスタンスでない限り、
 			オブジェクトは <kbd>__toString()</kbd> メソッドを持つことが期待され、出力フィルタリングが有効なとき文字列に強制変換されます。どうしても渡したい場合は、
 			<kbd>set($name, $value, false)</kbd> を使用する必要がありますが、 フィルタすることを決して忘れないで
 			ください。<br />
-			View と ViewModels は HTML を含み、サニタイズされないものを独自にフィルタリングすることが期待されます。
+			View と Presenter は HTML を含み、サニタイズされないものを独自にフィルタリングすることが期待されます。
 			Closures はサニタイズできませんので、必要ならば内部でサニタイズが確実に行われるように
 			注意すべきです。</p>
 
