@@ -153,7 +153,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'mail'</code></pre></td>
 							<td>
-								The driver to use. Can be mail, smtp, sendmail or noop (only logs writes to log). Must be lowercase.
+								The driver to use. Can be mail, smtp, sendmail, mailgun, mandrill or noop (only logs writes to log). Must be lowercase.
 							</td>
 						</tr>
 						<tr>
@@ -342,6 +342,7 @@
 								When true, all comments inside the HTML body will be stripped.
 							</td>
 						</tr>
+						<tr>
 							<th>relative_protocol_replacement</th>
 							<td>string|false</td>
 							<td><pre class="php"><code>false</code></pre></td>
@@ -351,8 +352,52 @@
 								https://, since some Email clients (Outlook!) do not support relative protocol URI's.
 							</td>
 						</tr>
+						<tr>
+							<th>mandrill.key</th>
+							<td>string</td>
+							<td><pre class="php"><code>'api_key'</code></pre></td>
+							<td>
+								Your Mandrill API Key.
+							</td>
+						</tr>
+						<tr>
+							<th>mandrill.message_options</th>
+							<td>array</td>
+							<td><pre class="php"><code>array()</code></pre></td>
+							<td>
+								Check Mandrill <a href="https://mandrillapp.com/api/docs/messages.JSON.html#method=send">docs</a>. (Look for message struct)
+							</td>
+						</tr>
+						<tr>
+							<th>mandrill.send_options.async</th>
+							<td>bool</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								Enable a background sending mode
+							</td>
+						</tr>
+						<tr>
+							<th>mandrill.send_options.ip_pool</th>
+							<td>string</td>
+							<td><pre class="php"><code>null</code></pre></td>
+							<td>
+								The name of the dedicated ip pool that should be used to send the message
+							</td>
+						</tr>
+						<tr>
+							<th>mandrill.send_options.send_at</th>
+							<td>string</td>
+							<td><pre class="php"><code>null</code></pre></td>
+							<td>
+								When this message should be sent as a UTC timestamp in YYYY-MM-DD HH:MM:SS format.
+							</td>
+						</tr>
 					</tbody>
 				</table>
+				
+				<p class="note">
+					Make sure to install <strong>mandrill/mandrill</strong> composer package if you want to use the mandrill driver.
+				</p>
 
 
                 <h4 id="mailgun">Mailgun configuration</h4>
