@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Introduction - Orm Package - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+			<h2>Troubleshooting</h2>
+
+			<p>Below are some of the most common problems and questions. If you don't find your answer here, head over to our <a href="http://fuelphp.com/forums/categories/orm">forums</a> or the <a href="http://stackoverflow.com/questions/tagged/fuelphp">FuelPHP community on stackoverflow.</a></p>
+
+			<h3>My relations/foreign keys aren't being saved (1)</h3>
+			<p>This happens most often when you're using the wrong type of relationship. Especially Has-one and
+				Belongs-to tend to get mixed up. Reread the examples in the docs to make sure you're using the
+				correct relation types and check if everything is configured correctly.</p>
+
+			<h3>I can't relate objects (2)</h3>
+			<p>Make sure your model is extending <code>Orm\Model</code> and not <code>Model_Crud</code>.</p>
+
+			<h3>I get an exception that my related model in a package/module can't be found</h3>
+			<p>Make sure the package or module is loaded by Fuel, otherwise the Autoloader won't be able to find
+				the class.<br />
+				And when configuring the related model <code>"model_to"</code> make sure you configure the full
+				classname, this includes the namespace <em>even if you're in that namespace</em>. Classnames in
+				strings are always taken from global context, no matter the current namespace context.</p>
+
+			<h3>I get an Orm\FrozenObject exception</h3>
+			<p>Objects can't be edited while being saved to the database, that prevents circular saving and resaving
+				already saved objects. This shouldn't happen during normal usage and is most often caused by faulty
+				configuration of relations.<br />
+				Sometimes this can be caused by a bug, especially when you're not using a stable release.</p>
+
+			<h3>I have defined a limit and offset, but the results are not correct</h3>
+			<p>The ORM always makes sure that query results are consistent. If you run a query that contains related
+				models, a subquery will be generated to make sure the entire related resultset is fetched. Even if this
+				means more records then the limit you have set will be fetched. This is because once you start manipulating
+				incomplete resultsets, very bad things might happen to your related models.</p>
+			<p>If you are absolutely sure you are not going to manipulate the results, for example because you need them
+				for pagination only, you can use <kbd>rows_limit()</kbd> and <kbd>rows_offset()</kbd> instead, which will
+				forces them on the entire query.</p>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

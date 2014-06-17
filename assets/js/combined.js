@@ -590,9 +590,11 @@ panes.email = {
 };
 
 panes.orm = {
-	"Orm Package": {
+	"ORM Package": {
+		"What is ORM?":		"packages/orm/what_is_orm.html",
 		"Introduction":		"packages/orm/intro.html",
-		"Creating Models":	"packages/orm/creating_models.html",
+		"Installation":		"packages/orm/install.html",
+		"Create an ORM Model":	"packages/orm/creating_models.html",
 		"CRUD":				"packages/orm/crud.html",
 		"Relating Models": {
 			"Introduction":	"packages/orm/relations/intro.html",
@@ -602,6 +604,7 @@ panes.orm = {
 			"Many to Many":	"packages/orm/relations/many_many.html"
 		},
 		"Models": {
+			"Introduction":       "packages/orm/model/intro.html",
 			"Soft Delete":        "packages/orm/model/soft.html",
 			"Temporal/Revisions": "packages/orm/model/temporal.html",
 			"NestedSets":         "packages/orm/model/nestedset.html"
@@ -611,7 +614,8 @@ panes.orm = {
 			"Introduction":			"packages/orm/observers/intro.html",
 			"Included observers":	"packages/orm/observers/included.html",
 			"Writing your own":		"packages/orm/observers/creating.html"
-		}
+		},
+		"Troubleshooting":		"packages/orm/troubleshooting.html",
 	}
 };
 

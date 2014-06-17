@@ -43,69 +43,159 @@
 		</div>
 
 		<div id="main">
-			<h2>Orm</h2>
-
-			<p>Orm is short for <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">Object
-				Relational Mapper</a> which does 2 things: it maps your database table rows to objects and it allows you
-				to establish relations between those objects.<br />
-				It follows the <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">
-				Active Record Pattern</a> closely, but was also influenced by other systems.</p>
-
+			
 			<section>
-				<h2 id="intro">Introduction</h2>
+				<h2 id="introduction">Introduction to ORM</h2>
+				<p>The use of the ORM package is <strong>optional</strong>. It can be used to replace the functionality of <a href="../../classes/model_crud/introduction.html">FuelPHP's Model_Crud</a> class. If you are not sure if you should use the ORM package, check out <a href="what_is_orm.html">What is ORM?</a> for more details about the benefits of ORM.</p>
 
-				<p>Unlike many other ActiveRecord implementations, ours is small, fast and dead simple to use. It attempts
-					to make creating, updating and deleting items from your database as easy as possible. It does this by
-					doing all the hard work for you.</p>
+				<p>Unlike many other ActiveRecord implementations, FuelPHP's is small, fast, and dead simple to use. It attempts to make creating, updating, and deleting items from your database as easy as possible. It does this by doing all the hard work for you.</p>
+
+				<p>This introduction will give you a basic overview of the different parts of the ORM package. After reading this, you should have a better idea of the pieces of FuelPHP's ORM and how they interact with one another.</p>
+
+				<p>This introduction will also provide you with a basic example of how to use the ORM Package. Throughout the rest of the ORM documentation, code examples may refer back to this example. We will not go into great detail on any given part since these details can be found in the rest of the ORM documentation.</p>
 			</section>
 
 			<section>
-				<h2 id="install">Installation</h2>
+				<h2 id="parts">Anatomy of the ORM Package</h2>
 
-				<p>The Orm package is included in the Fuel download. All you need to do is enable it in your config.</p>
-					<pre class="php"><code>'always_load' => array(
-	'packages' => array(
-		'orm',
-	),
-),</code></pre>
+				<p>There are three main parts to FuelPHP’s ORM package. First, you must setup your Models and configure them. Then you need to configure the relationships between these models. And finally, you access the models to display or update database records. In addition to these three main parts, there are also some additional features including <a href="observers/intro.html">Observers</a> and <a href="eav.html">EAV containers.</a></p>
+
+				<h3>Models</h3>
+				<p>In FuelPHP’s ORM package, there are several types of models available; each designed to make a different data access situation simple. Understanding what different model classes you have at your disposel is important to truly utilize the power of FuelPHP’s ORM package. In this introduction, we will briefly look at the standard ORM Model class. You can read more about the other model classes under the <a href="model/intro.html">Models Introduction.</a></p>
+
+				<h3>Relationships</h3>
+				<p>Model relationships provide a way to associate each model's data with another model's data. There are a few different kinds of relationships including: one-to-one, one-to-many, and many-to-many. Having these relationships setup is where the true power of ORM comes into play. It allows you to write simple code that can retrieve complex datasets in an organized fashion. Meaning, your code will be easier to read and easier to write. After you create your model classes you are ready to setup relationships between the models. You can read more about setting up relationships under the <a href="relations/intro.html">Model Relationship Introduction.</a></p>
+
+				<h3>Accessing Data</h3>
+				<p>Finally, after you have setup your models and their relationships you are ready to access the data. To help you understand how all these parts work together we have included a <a href="#/example">basic example</a> below. We use this example throughout the rest of the documentation's example code.</p>
+
+				<h3>Observers</h3>
+				<p>While observers are not required to get started with ORM, they provide some powerful features. Observers are an event based system to allow you to add behavior to specific events. You can read more on the under the <a href="observers/intro.html">Observers Introduction</a></p>
+
+				<h3>EAV Containers</h3>
+				<p><a href="eav.html">EAV Containers Introduction</a></p>
+
 			</section>
 
 			<section>
-				<h2 id="troubleshooting">Troubleshooting</h2>
+				<h2 id="example">Example (AITP)</h2>
 
-				<p>Some common problems and frequent questions.</p>
+				<p>In order to help you understand how all the parts of ORM interact with one another, we have created a very basic contact and events management system that we will use throughout all the ORM package documentation’s example code. This next section will walk you through the basics. For sake of brevity, we have omitted many of the nitty gritty details that are important when actually implementing the ORM pacakage. This example is meant to be an overview. All the nitty gritty details can be found on the other pages of documentation.</p>
 
-				<h3>My relations/foreign keys aren't being saved (1)</h3>
-				<p>This happens most often when you're using the wrong type of relationship. Especially Has-one and
-					Belongs-to tend to get mixed up. Reread the examples in the docs to make sure you're using the
-					correct relation types and check if everything is configured correctly.</p>
+				<p>You can download the example project we created, install it on your webhost, and run almost any of the code examples provided in the ORM documentation to see them in action and experiment with them. Downloading this example project is no necessary. You do not need it to use FuelPHP’s ORM package. It is simply a learning tool for you to experiment with if you would like. <a href="https://github.com/zechdc/fuelphpORMexample">Example Project - Github page</a>.</p>
 
-				<h3>I can't relate objects (2)</h3>
-				<p>Make sure your model is extending <code>Orm\Model</code> and not <code>Model_Crud</code>.</p>
+				<h3>AITP Scenario</h3>
+				<p>Here is the scenario we had in mind when creating this example project.</p>
 
-				<h3>I get an exception that my related model in a package/module can't be found</h3>
-				<p>Make sure the package or module is loaded by Fuel, otherwise the Autoloader won't be able to find
-					the class.<br />
-					And when configuring the related model <code>"model_to"</code> make sure you configure the full
-					classname, this includes the namespace <em>even if you're in that namespace</em>. Classnames in
-					strings are always taken from global context, no matter the current namespace context.</p>
+				<p>You are in charge of a small organization called AITP. AITP holds events and member meetings from time to time. You would like to keep track of all your members, what events they will be attending, and what events they have attended in the past. You would also like every member to have their own public profile on your organization website that they can customize, but only if they want one. We have designed a basic set of tables to meet these needs, which you will find in the next section.</p>
 
-				<h3>I get an Orm\FrozenObject exception</h3>
-				<p>Objects can't be edited while being saved to the database, that prevents circular saving and resaving
-					already saved objects. This shouldn't happen during normal usage and is most often caused by faulty
-					configuration of relations.<br />
-					Sometimes this can be caused by a bug, especially when you're not using a stable release.</p>
+				<h3>AITP Database Structure</h3>
 
-				<h3>I have defined a limit and offset, but the results are not correct</h3>
-				<p>The ORM always makes sure that query results are consistent. If you run a query that contains related
-					models, a subquery will be generated to make sure the entire related resultset is fetched. Even if this
-					means more records then the limit you have set will be fetched. This is because once you start manipulating
-					incomplete resultsets, very bad things might happen to your related models.</p>
-				<p>If you are absolutely sure you are not going to manipulate the results, for example because you need them
-					for pagination only, you can use <kbd>rows_limit()</kbd> and <kbd>rows_offset()</kbd> instead, which will
-					forces them on the entire query.</p>
+				<p>You can see these tables in the Entity Relationship Diagram (ERD) below. Don’t worry if you are not familiar with the term ERD. An ERD is just a database design tool that uses rectangles to convey what each database table looks like and lines connecting the rectangles to symbolize how the data in these tables are related to each other. This is not part of FuelPHP's ORM package, but simply a way to illustrate what our database in this example will look like. If you are curious, we created this ERD using <a href="http://www.mysql.com/products/workbench/">MySQL Workbench.</a></p>
+
+				<img src="https://github.com/zechdc/fuelphpORMexample/blob/dev/internalDocs/fuelphpOrmExampleERD.png?raw=true" />
+
+
+				<p>Here is how we plan to store all this information from our example scenario.</p>
+				<ul>
+					<li>member information will be stored in the ‘contacts’ table</li>
+					<li>event details will be stored in ‘events’ table</li>
+					<li>The table that keeps track of what members will be attending or have already attended a meeting will be stored in the ‘guests’ table.</li>
+				</ul>
+
+				<p>We also have a few tables to keep track of our members phone numbers. We assumed that our members will have more than one phone number. The ‘phones’ table stores the actual phone number while the ‘contact_phones’ table allows use to have multiple phones for each user. There is also a ‘phone_types’ table. This allows us to store different phone types like ‘work phone’, ‘mobile phone’, etc in one database. We could have just as easily dropped this table and made a ‘phone_type’ VARCHAR field in the ‘phones’ table, but we opted for the ‘phone_types’ table design design to allow use to create more code examples for you. You can ignore the tables related to phone numbers for now. We use it in our examples on the Model Relationships pages.</p>
+ 
+				<p>You will also notice a table called ‘contact_profile’. This table will store information about our members that will displayed as their public profile on our organization website. A user does not have to setup a profile, so the relationship between ‘contacts’ and ‘contact_profile’ is zero-to-one, a contact may have zero ‘contact_profile’ records or one ‘contact_profile’ record. You can ignore this table for now. We use it in our examples on the Model Relationships pages.</p>
+
+
+
+				<h5>Step 1 - Create Models</h5>
+				<p>First you would create an ORM Model for every table. As an example we will look at what is involved in creating the 'contacts' table. First we would create a file called <code>'contacts.php'</code> in our <code>'app/classes/model/'</code> folder. You could either do this manually or using the <a href="../oil/generate.html#models">Oil Model Generation</a> commands.</p>
+
+				<p>If we continue with the manual process (not using Oil Model Generation), then we would define the contact model class like this:</p>
+<pre class="php"><code>class Model_Contact extends \Orm\Model
+{
+	protected static $_properties = array(
+		'id', 
+		'first_name',
+		'last_name', 
+		'address_line_1',
+		'email',
+		'created_at',
+		'updated_at'
+	);
+}</code></pre>
+			
+			<p>We would continue this process for each table. This is the most basic ORM model configuration. There are of course times when this simple model won’t meet your needs. For example, if you wanted your model class to be called ‘Model_Members’ but did not want to change the name of the ‘contacts’ table, you could use the $_table_name configuration option. There are many more options like this that allow for great flexibility. These options are covered in more detail under the Standard ORM Model page.</p>
+
+			<h5>Step 2 - Create Model Relationships</h5>
+
+			<p>The next step is to relate this model to another model. This allows use to do some fancy queries very easily as you will see later on.</p>
+
+			<p>There are a few different kinds of relationships we can setup. In our example we have used every type of relationship that is available. In this example we will just show one of those relationships and go into more details about each in the Model Relationships pages.</p>
+
+			<p>So, we have setup our Contact model, now lets relate it to our contact_profile model. As you can see from the ERD, a contact can have zero profiles or it can have one profile associated with it. And a profile can and must have one and only one contact associated with it. FuelPHP calls this a has_one relationship. So here is how we setup that relationship.</p>
+
+			<p>In our Model_Contact class we the $_has_one configuration option like this:</p>
+
+			<pre class="php"><code>protected static $_has_one = array('profile');</code></pre>
+
+			<p>And in our Model_Contact_Profile class we use the $_belongs_to configuration option like this:</p>
+
+			<pre class="php"><code>protected static $_belongs_to = array(‘contact’);</code></pre>
+
+			<p>There are a hand full of configuration options you can pass into $_has_one and $_belongs_to, but the important thing to notice here is that every relationship must be specified in two models for it to be properly configured. Every relationship you specify in one model class, must have a $_belongs_to in the other model class being referenced in the first.</p>
+
+			<p>We will talk more about the different types of relationships and how to use them on the Model Relationship page. </p>
+
+			<h5>Step 3 - Access Data</h5>
+			<p>Now that you have your relationships in place, the next step would be to access the data!</p>
+
+			<p>Here is a simple example of how we can access the data in our Model_Contact and Model_Contact_Profile classes. This query will get a contact and the related profile.</p>
+			
+			<pre class="php"><code>$contact_data = Model_Contact::query()
+	->related('contact_profile')
+	->get();</code></pre>
+
+			<p>This simple statement does a pretty cool thing. It will grab all the contacts and if any of those contacts has a contact_profile setup, it will grab those as well and have the relationship between the data already setup. This means you can access this data like this:</p>
+
+			<pre class="php"><code>$contact_data[1]->contact_profile->display_name;</code></pre>
+
+			<p>A few important things to notice here:</p>
+
+			<ol>
+				<li><code>$contact_data[1]</code> - Accesses a specific element in this object because we are getting all contacts.</li>
+				<li><code>->contact_profile</code> - Notice that contact_profile is the name of the relationship you setup earlier, not the name of the table.</li>
+			</ol>
+
+			<p>You can also edit, save, and delete data from you database with this code:</p>
+
+			<pre class="php"><code>$contact_data = Model_Contact::query()
+	->related('contact_profile')
+	->get_one();
+
+//Change the members first name and their profile name
+$contact_data->first_name = 'Bill';
+$contact_data->contact_profile->display_name = 'AwesomeBill';
+$contact_data->save();
+
+//Delete the member
+$contact_data->delete();</code></pre>
+			
+			<p>One thing to pay attention to is that we changed <code>->get()</code> to <code>->get_one()</code> in our original query. This will select a single contact and their profile if it exists.</p>
+
+			<p>That's it! You have just seen the basics of how you can create models, create relationships between those models, and access the models data.</p>
+
+
 			</section>
 
+			<section>
+				<h2 id="next">What's Next?</h2>
+
+				<p>Now that you have a basic idea of how ORM works, lets get started by installing FuelPHP's ORM on your application. Continue to <a href="install.html">Installation</a></p>
+
+			</section>
+			
 		</div>
 
 		<footer>
