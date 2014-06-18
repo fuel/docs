@@ -115,9 +115,9 @@
 				To create a custom environment, just use a custom string such as <em>mike_dev</em> and create a matching folder in /fuel/app/config/.
 			</p>
 			<p>
-				For example: 
+				For example:
 				</br>
-				If you have a developer named Mike, you can create a custom environment called <i>mike_dev</i>. 
+				If you have a developer named Mike, you can create a custom environment called <i>mike_dev</i>.
 				<ol>
 					<li>Create a folder in /fuel/app/config/ called <i>mike_dev</i></li>
 					<li>Place any config files that pertain to Mike in the new config folder, for example, place db.php in /fuel/app/config/mike_dev/ to a load custom database configuration when the <em>mike_dev</em> environment is set.</li>
@@ -139,11 +139,25 @@
 			<h4 id="env_server">Set Environment with server environment variables (Recommended)</h4>
 
 			<p>
-				You can use the server environment variable <strong>SetEnv</strong> to set the environment your application should run in. Every server has its own envrionment variables. Below includes instructions for known configurations. If your server is not included below, <a href="http://en.wikipedia.org/wiki/Environment_variable">read more about environment variables here</a>. 
+				You can use the server environment variable <strong>SetEnv</strong> to set the environment your application should run in. Every server has its own envrionment variables. Below includes instructions for known configurations. If your server is not included below, <a href="http://en.wikipedia.org/wiki/Environment_variable">read more about environment variables here</a>.
 			</p>
+			<p class="note">The variable name <strong>FUEL_ENV</strong> should be specified in UPPERCASE, the environment name in lowercase.</p>
 
-			<h5>Apache</h5>
+			<h5>Apache - Server Configuration</h5>
 			<ol>
+				<li>Make sure your apache server configuration loads the extension mod_env</li>
+				<li>
+					Edit the <pre>httpd.conf</pre> file (or if you include virtual host configurations the desired virtual host config file)
+					and add the following code.
+					</br>
+					<pre class="php"><code>// run this application in production mode
+SetEnv FUEL_ENV production</code></pre>
+				</li>
+			</ol>
+
+			<h5>Apache - User Configuration</h5>
+			<ol>
+				<li>Make sure your apache server configuration loads the extension mod_env</li>
 				<li>Create an <pre>.htaccess</pre> file in the <pre>/public</pre> directory of your application</li>
 				<li>
 					Edit the <pre>.htaccess</pre> file and add the following code.
@@ -152,10 +166,21 @@
 SetEnv FUEL_ENV production</code></pre>
 				</li>
 			</ol>
+			<p class="note">Note that enabling .htaccess will slow Apache down considerably. If possible, use a server configuration and disable the use of .htaccess!</p>
 
-			
-			<p class="note">The variable name <strong>FUEL_ENV</strong> should be specified in UPPERCASE, the environment name in lowercase.</p>
-			
+			<h5>Nginx</h5>
+			<ol>
+				<li>
+					Edit the desired file in <pre>/etc/nginx/sites-available</pre> and add the following code.
+					</br>
+					<pre class="php"><code># run this application in production mode
+  location ~ \.php$ {
+    fastcgi_param FUEL_ENV production;
+  }</code></pre>
+				</li>
+			</ol>
+
+
 			<h4 id="env_manual">Set Environment with /fuel/app/bootstrap.php</h4>
 			<p>
 				If you are unable to set the environment using <a href="#env_server">the FUEL_ENV server variable</a>, you can manually change the setting in <em>fuel/app/bootstrap.php</em>.
@@ -174,6 +199,7 @@ SetEnv FUEL_ENV production</code></pre>
  *
  */
 Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::PRODUCTION);</code></pre>
+			<p class="note">Note that when using this code, the environment variable has precedence when set!</p>
 
 			<h3 id="env_oil">Set Environment when using Oil</h3>
 
@@ -190,7 +216,7 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::PRODUCT
 				When using Windows, this has been reported to work:
 			</p>
 
-			<pre class="cli"><code><strong>C:\> </strong>set FUEL_ENV=production&php oil -v</code></pre>
+			<pre class="cli"><code><strong>C:\> </strong>set FUEL_ENV=production &amp;&amp; php oil -v</code></pre>
 
 		</div>
 
