@@ -1349,8 +1349,8 @@ File::close_file($resource);</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_download">download($path, $name = null, $mime = null, $area = null, $delete = false)</h4>
-				<p>ダウンロードしたファイルを出力する。</p>
+				<h4 class="method" id="method_download">download($path, $name = null, $mime = null, $area = null, $delete = false, $disposition = 'attachment')</h4>
+				<p>Outputs a file, inline or as a downloaded attachment.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1392,6 +1392,11 @@ File::close_file($resource);</code></pre>
 									<td><kbd>false</kbd></td>
 									<td>ダウンロード後に削除するかどうか</td>
 								</tr>
+								<tr>
+									<th><kbd>$disposition</kbd></th>
+									<td><kbd>'attachment'</kbd></td>
+									<td>whether to download or output inline. Accepts 'attachment' or 'inline', and defaults to 'attachment'.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -1410,7 +1415,12 @@ File::close_file($resource);</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>File::download(DOCROOT.'/my_dir/text.txt', 'newfile.txt');</code></pre>
+							<pre class="php"><code>// download file
+File::download(DOCROOT.'/my_dir/text.txt', 'newfile.txt');
+
+// output an inline image, for use as an &lt;img&gt; tag source
+File::download(DOCROOT.'/img/image.jpg', null, 'image/jpeg', null, false, 'inline');
+</code></pre>
 						</td>
 					</tr>
 					</tbody>

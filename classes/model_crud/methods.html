@@ -138,7 +138,7 @@ $user = Model_User::forge(array(
 							<pre class="php"><code>// 条件が `id` = 2 のレコードを取得
 $user = Model_User::find_by_pk(2);
 
-if($user === null)
+if ($user === null)
 {
 	// 見つからない
 }
@@ -204,7 +204,7 @@ else
 							<pre class="php"><code>// 条件が `email` = "info@example.com" のレコードを取得
 $user = Model_User::find_one_by('email', 'info@example.com');
 
-if($user === null)
+if ($user === null)
 {
 	// 見つからない
 }
@@ -288,7 +288,7 @@ $users = \Model_User::find_by(array(
 	array('surname', 'like', '%Surname%'),
 ), null, null, 10);
 
-if($users === null)
+if ($users === null)
 {
 	// 見つからない
 }
@@ -543,7 +543,7 @@ protected static function pre_find(&$query)
 							<pre class="php"><code>// モデルの中で
 protected static function post_find($result)
 {
-	if($result !== null)
+	if ($result !== null)
 	{
 		// 結果の配列を変更
 	}
@@ -686,7 +686,7 @@ $user->save(false);
 						<th>例</th>
 						<td>
 							<pre class="php"><code>$user = Model_User::find_by_pk(2);
-if($user)
+if ($user)
 {
 	// ユーザを削除
 	$user->delete();
