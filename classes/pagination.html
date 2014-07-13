@@ -92,8 +92,8 @@ return \View::forge('welcome/index', $data);</code></pre>
 $pagination = Pagination::forge('mypagination', $config);
 
 $data['example_data'] = Model_Post::query()
-							->rows_offset($pagination->per_page)
-							->rows_limit($pagination->offset)
+							->rows_offset($pagination->offset)
+							->rows_limit($pagination->per_page)
 							->get();
 
 // we pass the object, it will be rendered when echo'd in the view
@@ -183,8 +183,62 @@ return \View::forge('posts/index', $data);</code></pre>
 								Generates a 'to the last page' link if true and not already on the last page.
 							</td>
 						</tr>
+						<tr>
+							<th>link_offset</th>
+							<td>int / float</td>
+							<td><pre class="php"><code>0.50</code></pre></td>
+							<td>
+								Offset of the active link in the pagination block, either in a decimal between 0 and 1, or in an integer (precentage) between 0 and 100.
+							</td>
+						</tr>
 					</tbody>
 				</table>
+			</section>
+
+			<section>
+				<h3 id="linkoffsets">Link offsets</h3>
+				<p>
+					By default, the Pagination class will try to position the active link (the one for the current page) in the middle of the pagination
+					block.
+				</p>
+				<p>
+					You can control this behaviour using the <kbd>link_offset</kbd> value in the configuration. This value is defined either by a
+					float between 0 and 1, or by an integer between 0 and 100 (like a percentage). By default this value is set to <code>0.5</code> (= 50%).
+					If you make the value smaller, the active link will move to the left, if you make the value bigger, the active link will move
+					to the right.
+				</p>
+
+				<h5 id="linkoffsetexample">Example</h5>
+
+				<p>
+					Let's assume you have a total of 20 pages you can display. You have set <kbd>num_links</kbd> to 5, displaying links for 5 pages
+					in total, and you're displaying previous and next links as well. The page you have currently selected is page 6.
+				</p>
+				<ul>
+					<li>
+						With the default setting of <kbd>0.5</kbd>, <blockquote><code>&laquo;</code>&nbsp;&nbsp;<code>4</code>&nbsp;&nbsp;<code>5</code>&nbsp;&nbsp;6&nbsp;&nbsp;<code>7</code>&nbsp;&nbsp;<code>8</code>&nbsp;&nbsp;<code>&raquo;</code></blockquote> is displayed, keeping
+						the selected page 6 nicely in the middle of the block.
+					</li>
+					<li>
+						 When you change the setting to <kbd>0</kbd>, Pagination will always try to make the first link the active link. In this case,
+						 <blockquote><code>&laquo;</code>&nbsp;&nbsp;6&nbsp;&nbsp;<code>7</code>&nbsp;&nbsp;<code>8</code>&nbsp;&nbsp;<code>9</code>&nbsp;&nbsp;<code>10</code>&nbsp;&nbsp;<code>&raquo;</code></blockquote>
+						is being displayed, making the selected page 6 the first link in the block.
+					</li>
+					<li>
+						If you would change the setting to <kbd>1</kbd>, Pagination will always try to make the last link the active link. In this case,
+						<blockquote><code>&laquo;</code>&nbsp;&nbsp;<code>2</code>&nbsp;&nbsp;<code>3</code>&nbsp;&nbsp;<code>4</code>&nbsp;&nbsp;<code>5</code>&nbsp;&nbsp;6&nbsp;&nbsp;<code>&raquo;</code></blockquote>
+						will be displayed.
+					</li>
+				</ul>
+				<p>
+					You can use any value in the range, to progressively shift the active focus either left or right. Obviously, the more links you
+					display, the more granular you can shift the focus.
+				</p>
+				<p class="note">
+					This only works if there are enough pages to do so. If you only have 5 pages available, you want to display 5 links, and page 3 is the
+					current page, no previous and next links are displayed, and the current page will be in the middle, no matter what the setting of
+					<kbd>link_offset</kbd> is. There are simply not enough pages available to move the current page link left or right.
+				</p>
 			</section>
 
 			<section>
@@ -194,7 +248,7 @@ return \View::forge('posts/index', $data);</code></pre>
 					Every pagination instance uses a template to generate the HTML needed to create the pagination markup.
 					You can store your standard templates in the <em>config/pagination.php</em> file. Copy the file from the
 					core config folder to your app config folder before you make any modifications. The default configuration
-					file comes with two templates, the FuelPHP default, and a Twitter Bootstrap v2 compatible template.
+					file comes with three templates, the FuelPHP default, and a Twitter Bootstrap v2 and v3 compatible template.
 				</p>
 				<p>The following template entries must be defined:</p>
 				<table class="config">
@@ -901,7 +955,7 @@ Model_Article::query()
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

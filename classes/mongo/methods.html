@@ -1067,7 +1067,7 @@ $users = $mongodb->get('users');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_like">like($field = '', $value = '', $flags = 'i', $enable_start_wildcard = true, $enable_end_wildcard = true)</h4>
+				<h4 class="method" id="method_like">like($field = '', $value = '', $flags = 'i', $disable_start_wildcard = false, $disable_end_wildcard = false)</h4>
 				<p>
 					The <strong>like</strong> method a sets a 'like' statement.
 				</p>
@@ -1116,16 +1116,16 @@ $users = $mongodb->get('users');
 									</td>
 								</tr>
 								<tr>
-									<th><kbd>$enable_start_wildcard</kbd></th>
+									<th><kbd>$disable_start_wildcard</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>When set to <em>true</em> the beginning of the string must match.</td>
+									<td>When set to <em>false</em> the beginning of the string must match.</td>
 								</tr>
 								<tr>
-									<th><kbd>$enable_end_wildcard</kbd></th>
+									<th><kbd>$disable_end_wildcard</kbd></th>
 									<td><em>bool</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>When set to <em>true</em> the ending of the string must match.</td>
+									<td>When set to <em>false</em> the ending of the string must match.</td>
 								</tr>
 							</table>
 						</td>
@@ -1139,7 +1139,9 @@ $users = $mongodb->get('users');
 						<td>
 							<pre class="php"><code>// Get an instance
 $mongodb = \Mongo_Db::instance();
-$mongodb->like('name', 'fran', 'im', true);
+
+// look for users with a name starting with 'fran'...
+$mongodb->like('name', 'fran', 'im', false, true);
 $users = $mongodb->get('users');
 </code></pre>
 						</td>
@@ -1970,11 +1972,56 @@ $my_collection->update(array('_id' => $id), array('$push' => array('array.to.add
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="list_collections">list_collections($system_collections = false)</h4>
+				<p>
+					The <strong>list_collections</strong> method returns an array of MongoCollection objects of all collections present in the database. Optionally you can specify that you want all system collections returned too.</a>
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>system_collections</kbd></th>
+									<td><em>bool</em></td>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Whether or not to include the system collections.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>An array of MongoCollection objects.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get a mongo instance
+$mongodb     = \Mongo_Db::instance();
+$collections = $mongodb->list_collections();
+</code></pre>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

@@ -122,7 +122,7 @@ $email->alt_body('This is my alt body, for non-html viewers.');</code></pre>
 
 			<p>
 				The Email package supports two kinds of attachments: normal (attachment), and inline. Use an inline attachment if
-				you want to use in inside the mail. You might, for instance, want to have a graphic in your mail, and you want people to
+				you want to use in inside the mail. You might, for instance, want to have a graphic in your mail, and you want people to see
 				that image offline also. Some clients don't cache that, and yes that's dumb. But it's the interwebs and stuff like that happens.
 			</p>
 
@@ -182,13 +182,42 @@ $email->string_attach($contents, $filename);
 				Currently, only the SMTP driver supports pipelining.
 			</p>
 
-		</div>
+
+            <h2 id="drivers">Drivers</h2>
+            <h3 id="mailgun">Mailgun driver</h3>
+            <p><a href="http://www.mailgun.com/">Mailgun</a> is a service by Rackspace that allows you to send emails by demand. You will need to install the <a href="https://github.com/mailgun/mailgun-php">Mailgun library</a> with composer in your FuelPHP.</p>
+
+            <p>Add the next line to your <i>composer.json</i> file and execute the update</p>
+
+            <pre class="cli"><code class="body">"mailgun/mailgun-php": "1.6"</code></pre>
+
+            <pre class="cli"><code>$ composer update</code></pre>
+
+            <p>Once you have installed the package you will have to set up the config for your App.</p>
+
+            <pre class="php"><code>
+/**
+ * Override default Email.php config
+ */
+return array(
+    'defaults' => array(
+        'driver' => 'mailgun',
+        'mailgun' => array(
+            'key' => 'YOUR KEY',
+            'domain' => 'YOUR DOMAIN'
+        ),
+    ),
+);
+            </code></pre>
+
+        </div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
+
 	</div>
 </body>
 </html>

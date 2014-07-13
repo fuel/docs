@@ -138,7 +138,7 @@ $user = Model_User::forge(array(
 							<pre class="php"><code>// Get a record where `id` = 2
 $user = Model_User::find_by_pk(2);
 
-if($user === null)
+if ($user === null)
 {
 	// not found
 }
@@ -204,7 +204,7 @@ else
 							<pre class="php"><code>// Get a record where `email` = "info@example.com"
 $user = Model_User::find_one_by('email', 'info@example.com');
 
-if($user === null)
+if ($user === null)
 {
 	// not found
 }
@@ -288,7 +288,7 @@ $users = \Model_User::find_by(array(
 	array('surname', 'like', '%Surname%'),
 ), null, null, 10);
 
-if($users === null)
+if ($users === null)
 {
 	// not found
 }
@@ -543,7 +543,7 @@ protected static function pre_find(&$query)
 							<pre class="php"><code>// Inside your model
 protected static function post_find($result)
 {
-	if($result !== null)
+	if ($result !== null)
 	{
 		// alter the result array
 	}
@@ -686,7 +686,7 @@ $user->save(false);
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>$user = Model_User::find_by_pk(2);
-if($user)
+if ($user)
 {
 	// delete the user;
 	$user->delete();
@@ -913,7 +913,7 @@ $validation_object = $user->validation();
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>A succes boolean.</td>
+						<td>A success boolean.</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -957,7 +957,7 @@ else
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>A Validation instance.</td>
+						<td>array</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -1186,7 +1186,7 @@ protected function post_update($result)
 									<th><kbd>$query</kbd></th>
 									<th><em>\Database_Query_Builder_Delete object</em></th>
 									<td><em>required</em></td>
-									<td>The update query object.</td>
+									<td>The delete query object.</td>
 								</tr>
 							</table>
 						</td>
@@ -1406,7 +1406,7 @@ protected function prep_values($data)
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

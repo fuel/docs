@@ -246,10 +246,10 @@ $view = $theme->view('template/homepage');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_viewmodel">viewmodel($view, $method = 'view', $auto_filter = null)</h4>
+				<h4 class="method" id="method_presenter">presenter($view, $method = 'view', $auto_filter = null)</h4>
 				<p>
-					The <strong>viewmodel</strong> method loads and return a Viewmodel object based on the $view string passed. It
-					will use the <strong>view</strong> method documented above to pass the theme view to the Viewmodel.
+					The <strong>presenter</strong> method loads and return a Presenter object based on the $view string passed. It
+					will use the <strong>view</strong> method documented above to pass the theme view to the Presenter.
 				</p>
 
 				<table class="method">
@@ -272,13 +272,13 @@ $view = $theme->view('template/homepage');
 									<th><kbd>$view</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td class="description">The viewmodel name. See the <a href="../../general/viewmodels.html">Viewmodel</a> for more information.</td>
+									<td class="description">The presenter name. See the <a href="../../general/presenters.html">Presenter</a> for more information.</td>
 								</tr>
 								<tr>
 									<th><kbd>$method</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>'view'</code></pre></td>
-									<td class="description">name of the method in the Viewmodel instance that will be called to process the data prior to rendering the view.</td>
+									<td class="description">name of the method in the Presenter instance that will be called to process the data prior to rendering the view.</td>
 								</tr>
 								<tr>
 									<th><kbd>$auto_filter</kbd></th>
@@ -291,7 +291,7 @@ $view = $theme->view('template/homepage');
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>A new <em>ViewModel</em> object</td>
+						<td>A new <em>Presenter</em> object</td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -304,11 +304,11 @@ $view = $theme->view('template/homepage');
 $theme = \Theme::instance();
 
 /**
- * with the default settings, will load the ViewModel defined in
+ * with the default settings, will load the Presenter defined in
  * APPPATH.'classes/view/template/homepage.php', using the
  * THEMEDIR.'/template/homepage.php' view file
  */
-$viewmodel = $theme->viewmodel('template/homepage');
+$presenter = $theme->presenter('template/homepage');
 </code></pre>
 						</td>
 					</tr>
@@ -1416,7 +1416,7 @@ $theme->set_info('color', 'blue', 'fallback');
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

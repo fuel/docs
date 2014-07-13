@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Query Builder - Classes - FuelPHP Documentation</title>
+	<title>Server - Oil Package - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
@@ -43,36 +43,24 @@
 		</div>
 
 		<div id="main">
+			<section>
 
-			<h2 id="introduction">Query Building</h2>
+				<h2 id="server">Server</h2>
 
-			<p class="note">
-				<strong>Note:</strong>
-				At the time of writing the query builder classes are reworked so they can handle multiple sql dialects.
-			</p>
-			<p>
-				The abstraction of writing SQL for database queries is done by the <strong>Query Builder</strong>. The query builder
-				consists a set of classes, each handling a specific part of the query building process.
-			</p>
-			<p>
-				Using the query builder is will go unnoticed most of the times as the <a href="db.html">DB class</a> provides shortcuts for
-				creating new query builder objects. It's advised to use these methods to get the right query builder. this is common
-				practice and will keep your code readable.
-			</p>
+				<p>
+					With the oil server implementation, you don't even need to have a full blown webserver installed! It will use
+					the webserver build into PHP as of version 5.4. Start it on the commandline, and use your browser to point to
+					the hostname and port you've specified (by default, http://localhost:8000).
+				</p>
 
-			<p>
-				Here are the classes that query builder consists of:
-			</p>
+				<pre class="cli"><code>$ php oil server
+Listening on http://localhost:8000
+Document root is public/
+Press Ctrl-C to quit.</code></pre>
 
-			<ul>
-				<li>Query_Builder (abstract)</li>
-				<li><a href="qb_where.html">Query_Builder_Where</a> (abstract)</li>
-				<li><a href="qb_select.html">Query_Builder_Select</a></li>
-				<li><a href="qb_insert.html">Query_Builder_Insert</a></li>
-				<li><a href="qb_update.html">Query_Builder_Update</a></li>
-				<li><a href="qb_delete.html">Query_Builder_Delete</a></li>
-				<li>Query_Builder_Join</li>
-			</ul>
+				<p>When you're finished, press Ctrl-C to terminate the server.</p>
+
+			</section>
 
 		</div>
 

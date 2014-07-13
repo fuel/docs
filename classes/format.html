@@ -82,16 +82,32 @@
 							<td>The newline character used by to_csv() method</td>
 						</tr>
 						<tr>
+							<th>escape</th>
+							<td>string</td>
+							<td><pre class="php"><code>'\\'</code></pre></td>
+							<td>The escape character</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					By default, these configuration settings are used both for import and for export of CSV data. In case you need to
+					configure different settings for either import or export, you can an array key for it, and move the configuration
+					in there. The default configuration file already has this setup for you.
+				</p>
+
+				<table class="config">
+					<tbody>
+						<tr>
 							<th>regex_newline</th>
 							<td>string</td>
 							<td><pre class="php"><code>'\n'</code></pre></td>
 							<td>The newline character used by regex to convert input data</td>
 						</tr>
 						<tr>
-							<th>escape</th>
-							<td>string</td>
-							<td><pre class="php"><code>'\\'</code></pre></td>
-							<td>The escape character</td>
+							<th>enclose_numbers</th>
+							<td>bool</td>
+							<td><pre class="php"><code>true</code></pre></td>
+							<td>If false, numbers will not be enclosed. If true, numbers will be enclosed too</td>
 						</tr>
 					</tbody>
 				</table>
@@ -119,10 +135,32 @@
 						</tr>
 					</tbody>
 				</table>
+
+				<h4>JSON</h4>
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<th>options</th>
+							<td>integer</td>
+							<td><pre class="php"><code>JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP</code></pre></td>
+							<td>json_encode() options</td>
+						</tr>
+					</tbody>
+				</table>
 			</article>
 
+			<p class="note">
+				 Be aware that the result of some combinations are unpredicable. For example, if you have CSV data without enclosure characters, no headings, and embedded newline characters in the first row, the correct number of fields in the file can not be calculated.
+			</p>
+
 			<article>
-				<h4 class="method" id="method_forge">forge($data = null, $from_type = null)</h4>
+				<h4 class="method" id="method_forge">forge($data = null, $from_type = null, $params = null)</h4>
 				<p>The <strong>forge</strong> method returns a new format object. <strong>$from_type</strong> supports <strong>'xml'</strong>, <strong>'yaml'</strong>, <strong>'csv'</strong>, <strong>'json'</strong>, <strong>'serialize'</strong> and <strong>'xml:ns'</strong>. 'xml:ns' allows you to parse fully namespaced-xml. When $from_type is not specified, <strong>$data</strong> will be delivered as it is.</p>
 				<table class="method">
 					<tbody>
@@ -148,6 +186,11 @@
 									<th><kbd>$from_type</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>Format of the data provided.</td>
+								</tr>
+								<tr>
+									<th><kbd>$param</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Optional parameter to be passed on to the converter.</td>
 								</tr>
 							</table>
 						</td>
@@ -175,6 +218,9 @@ Fuel\Core\Format Object
 					</tr>
 					</tbody>
 				</table>
+				<p class="note">
+						When converting from CSV format, you can pass <kbd>false</kbd> as <kbd>$param</kbd> to indicate the CSV source does not contain any headers. If so, the end result will be an indexed array.
+				</p>
 			</article>
 
 			<article>
@@ -291,7 +337,7 @@ print_r(Format::forge($array)->to_xml());
 			</article>
 
 			<article>
-				<h4 class="method" id="method_to_csv">to_csv($data = null, $separator = ',')</h4>
+				<h4 class="method" id="method_to_csv">to_csv($data = null, $delimiter = null, $enclose_numbers = null, array $headings = array())</h4>
 				<p>The <strong>to_csv</strong> method returns the given data as a CSV string. Do not call this directly, use the <strong>forge</strong> method as described in the example.</p>
 				<table class="method">
 					<tbody>
@@ -311,12 +357,22 @@ print_r(Format::forge($array)->to_xml());
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>Data to be converted.</td>
+									<td>Data to be converted. If not given, the input of forge() is used.</td>
 								</tr>
 								<tr>
-									<th><kbd>$separator</kbd></th>
-									<td><pre class="php"><code>','</code></pre></td>
-									<td>CSV field separator. Defaults to a comma.</td>
+									<th><kbd>$delimiter</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>CSV field separator. If not given, the configured default is used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$enclose_numbers</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>If false, number will not be enclosed. If true, numbers will be enclosed too. If not given, the configured default is used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$headings</kbd></th>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td>Array of CSV fieldnames. If not given, the fieldnames will be based on what is defined in the first row of the data array.</td>
 								</tr>
 							</table>
 						</td>
@@ -328,12 +384,19 @@ print_r(Format::forge($array)->to_xml());
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
-print_r(Format::forge($json_string, 'json')->to_csv());
+							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux","nr":1}';
+print_r(Format::forge($json_string, 'json')->to_csv(null, null, false));
 
 // Returns
-// foo,baz
-// "bar","qux"</code>
+// "foo","baz","nr"
+// "bar","qux",1
+
+$json_string = '{"foo":"bar","baz":"qux","nr":1}';
+print_r(Format::forge($json_string, 'json')->to_csv(null, null, false, array('this', 'that', 'num')));
+
+// Returns
+// "this","that","num"
+// "bar","qux",1</code>
 							</pre>
 						</td>
 					</tr>
@@ -436,7 +499,7 @@ Array
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

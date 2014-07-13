@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Namespacing - General - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>Namespacing</h2>
+
+			<p>
+				FuelPHP, as a PHP 5.3+ framework, relies heavily on namespacing to separate the different components of the framework and
+				of your application, to make the code as portable as possible, and to prevent any collisons in class names when you're moving
+				bits of your application around.
+			</p>
+			<p>
+				By default, the exception to this is your main application code, which resides in <code>APPPATH/classes</code>. All main application
+				classes are defined in the global namespace (they do not have a namespace set), and use the cascading file system to create unique
+				classnames.
+			</p>
+			<p>
+				While this makes it easier for the novice to start using the FuelPHP framework, it will create more complex class names, and it will
+				make those classes less portable or interchangable.
+			</p>
+
+			<h3 id="controllers">Namespacing your controllers</h3>
+
+			<p>
+				As mentioned in the <a href="controllers/base.html">introduction</a>, by default controllers are created in the <code>APPPATH/classes/controller</code> folder,
+				and are prefixed with <var>Controller_</var>. This prefix is defined in your <code>APPPATH/config/config.php</code> configuration file
+				(and if not this is the default), but can be changed if you want to namespace your controllers, or if you
+				want to move them to a different folder structure.
+			</p>
+
+			<p>
+				Lets move the example given above to the <kbd>Controller</kbd> namespace. You tell FuelPHP that you've done this by setting the
+				config setting <var>controller_prefix</var> from <kbd>'Controller_'</kbd> to <kbd>'Controller\\'</kbd> in your app's config.php file.
+			</p>
+
+			<pre class="php"><code>namespace Controller;
+
+class Example extends \Controller
+{
+	public function action_index()
+	{
+		// some code here
+	}
+}</code></pre>
+
+			<p>
+				Once you have enabled namespacing for your controllers, <strong>ALL</strong> your controller classes need to be namespaced!
+				This means a controller in a module called <kbd>Mymodule</kbd> will look like this:
+			</p>
+
+			<pre class="php"><code>namespace Mymodule\Controller;
+
+class Example extends \Controller
+{
+	public function action_index()
+	{
+		// some code here
+	}
+}</code></pre>
+
+			<p>
+				Namespacing your controllers is completely transparent for your application, you can implement it without altering anything else.
+				You can even mix-and-match namespacing and the cascading filesystem, and create a controller like <kbd>\Controller\Admin\User_Groups</kbd>
+				which is defined in <code>APPPATH/classes/controller/admin/user/groups.php</code>.
+			</p>
+
+			<p class="note">
+				Note that now that your controller lives in a namespace, you have to prefix all global classes (like "Controller" in the example) with a
+				backslash, since it needs to be loaded from the global namespace. Alternative, you can use the 'use' keyword to import classes into the
+				current namespace.
+			</p>
+
+			<h3 id="models">Namespacing your models</h3>
+
+			<p>
+				You can start namespacing your models right away, no additional configuration is needed.
+			</p>
+
+			<pre class="php"><code>namespace Model;
+
+class Example extends \Orm\Model
+{
+	// some code here
+}</code></pre>
+
+			<p>or in a module:</p>
+
+			<pre class="php"><code>namespace Mymodule\Model;
+
+class Example extends \Model_Crud
+{
+	// some code here
+}</code></pre>
+
+			<p>You can then access the model in your controllers like so:</p>
+
+			<pre class="php"><code>// the ORM model created above
+$orm = \Model\Example::forge();
+
+// the module crud model created above
+$crud = \Mymodule\Model\Example::forge();</code></pre>
+
+			<h3 id="presenters">Namespacing your presenters</h3>
+
+			<p>
+				Since there is no configuration for the Presenter prefix, namespacing your presenters is a bit more complicated.
+				It requires an extension of the Presenter class in your app. Create the following class:
+			</p>
+
+			<pre class="php"><code>// file located in APPPATH/classes/presenter.php
+class Presenter extends \Fuel\Core\Presenter
+{
+	// namespace prefix
+	protected static $ns_prefix = 'Presenter\\';
+}
+</code></pre>
+			<p>
+				And inform the framework you have extended the class by adding this to your <code>APPPATH/bootstrap.php</code>:
+			</p>
+
+			<pre class="php"><code>// add our presenter override
+Autoloader::add_classes(array(
+	'Presenter' => APPPATH.'classes/presenter.php',
+));
+</code></pre>
+
+			<p>Make sure you add it before the Autoloader is registered!</p>
+
+			<p>
+				Once you have made this change, you can define your Presenters like so:
+			</p>
+
+			<pre class="php"><code>// file located in APPPATH/classes/presenter/users/group.php
+namespace Presenter\Admin\Users;
+
+class Group
+{
+	public function view()
+	{
+		// your presenter code
+	}
+}
+</code></pre>
+
+			<h3 id="others">Namespacing other classes</h3>
+
+			<p>
+				Any other class in the classes folder can be namespaced without problems, as long as the fully namespaced name of class
+				can be mapped to the file which defines the class:
+			</p>
+
+			<pre class="php"><code>// file located in APPPATH/classes/admin/users/group.php
+namespace Admin\Users;
+
+class Group
+{
+	// some code here
+}
+
+// alternative for the same file and class
+namespace Admin;
+
+class Users_Group
+{
+	// some code here
+}
+
+// or even old style without namespace
+class Admin_Users_Group
+{
+	// some code here
+}
+</code></pre>
+
+			<h3 id="caveats">Caveats</h3>
+
+			<h4 id="caveats_mixnmatch">Do not mix different naming styles for the same class</h4>
+
+			<p>
+				Although you can mix-and-match namespaces and underscores to construct your class names, you can not mix-and-match it's usage.
+				If you have defined a class <kbd>\Admin\Users\Group</kbd>, using <kbd>\Admin\Users_Group::method();</kbd> will load the correct
+				file (since it maps correctly to the right file), but the autoloader will throw an exception because the expected <kbd>\Admin\Users_Group</kbd> class is
+				not defined in that file.
+			</p>
+			<p>
+				So it is best to decide on a naming convention for your applications, and stick to it!
+			</p>
+
+			<h4 id="caveats_collisions">Class name collisions</h4>
+
+			<p>
+				When executing a Request, modules have precedence over the main app. This has some implications as to the names and namespaces you
+				can use in your app, in relation to your module.
+			</p>
+			<p>
+				Say you have a module called <kbd>Admin</kbd>, then all classes in that module will be defined in a namespace that starts with <kbd>\Admin</kbd>.
+				If at the same time you have classes in <code>APPPATH/classes/admin</code>, like in the example above, then<br />
+				- those app classes will always work as long as the module isn't loaded.<br />
+				- if the module is loaded, a module class with the same name has precedence, the app class can never be loaded.<br />
+			</p>
+			<p>
+				Similarly, if you have a app Controller called <kbd>Controller_Admin_Users</kbd>, and you have a module called <kbd>Admin</kbd>, you can never
+				have a URL Request load that app controller, since the Framework will look for that controller in the module based on the admin prefix.
+			</p>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

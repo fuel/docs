@@ -206,6 +206,14 @@
 							</td>
 						</tr>
 						<tr>
+							<th>native_emulation</th>
+							<td>boolean</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								When set to true, the session class will add support for PHP native sessions through <a href="#native_emulation">emulation</a>.
+							</td>
+						</tr>
+						<tr>
 							<th>cookie</th>
 							<td>array</td>
 							<td>
@@ -412,24 +420,6 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 							</tr>
 						</tbody>
 					</table>
-
-					<h3 id="oil_session_setup">Using Oil to Create/Control Your Sessions Table</h3>
-						<p>
-							An oil task has been provided to allow you to create, remove and clear your sessions table using
-							the oil command line utility.
-						</p>
-						<pre class="cli"><code># display menu
-$ php oil r session
-
-#reate the sessions table
-$ php oil r session:create
-
-# remove the sessions table
-$ php oil r session:remove
-
-# clear (truncate) the sessions table
-$ php oil r session:clear</code></pre>
-
 				</section>
 
 				<section>
@@ -500,13 +490,53 @@ $ php oil r session:clear</code></pre>
 					</table>
 				</section>
 
+				<h3 id="oil_session_setup">Using Oil to Create/Control Your Sessions Table</h3>
+					<p>
+						An oil task has been provided to allow you to create, remove and clear your sessions table using
+						the oil command line utility.
+					</p>
+					<pre class="cli"><code># display menu
+$ php oil r session
+
+# create the sessions table
+$ php oil r session:create
+
+# remove the sessions table
+$ php oil r session:remove
+
+# clear (truncate) the sessions table
+$ php oil r session:clear</code></pre>
+
+				<h3 id="native_emulation">PHP native session emulation</h3>
+
+				<p>
+					When activated via the configuration, the Session class will enable some basic emulation of PHP's native session mechanism that
+					can be accessed via the <kbd>$_SESSION</kbd> global variable. This only works on the default session instance, the one accessable via the
+					static interface.
+				</p>
+				<p>
+					When enabled, the Session class will setup a custom session handler, that will capture the calls to the PHP functions
+					<kbd>session_start()</kbd>, <kbd>session_close()</kbd> and <kbd>session_write_close()</kbd>. If will force a close at shutdown when an open native session
+					is detected.
+				</p>
+				<ul>
+					<li>When <kbd>session_start()</kbd> is called, all session data stored in the Fuel session store you have configured will be copied into the <kbd>$_SESSION</kbd> array, so it can be accessed by non-Fuel code requiring sessions.</li>
+					<li>When the session is closed, a diff is made and changes in $_SESSION are copied back into the Fuel session store.</li>
+				</ul>
+
+				<p class="note">
+					This mechanism means that if you have a session variable that is modified both inside- and outside Fuel, it is undetermined which of
+					the changes will be saved. This depends on the position of the last <kbd>session_close()</kbd> call in the code. If the session is
+					not closed, Fuel's shutdown event will close it, and it will overwrite any data set via standard Session calls!
+				</p>
+
 			</section>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

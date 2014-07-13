@@ -70,11 +70,19 @@
 						</td>
 					</tr>
 					<tr>
+						<th>log_file</th>
+						<td>string</td>
+						<td><pre class="php"><code>null</code></pre></td>
+						<td>
+							Name of the log file. If not given, it will be generated in the form "./YYYY/MM/DD.log", with one logfile per day.
+						</td>
+					</tr>
+					<tr>
 						<th>log_path</th>
 						<td>string</td>
 						<td><pre class="php"><code>APPPATH.'logs/'</code></pre></td>
 						<td>
-							Where to put the log files. (Folder must be writable)
+							Where to put the log file(s). (Folder must be writable)
 						</td>
 					</tr>
 					<tr>
@@ -118,7 +126,14 @@ Log::write('Link', 'More info on http://fuelphp.com/');</code></pre>
 
 			<h5 id="output">Output</h5>
 
-			<p>All log files are being placed in the defined folder (see above), composed in folders named by the current <strong>year</strong> followed by the <strong>month</strong> (<em>"2011/06"</em> for example) with the day of the month as the filename (<em>"15.php"</em> for example).<br/>The complete path to our example log file would be: <strong>APPPATH.'logs/2011/06/15.php'</strong></p>
+			<p>
+				All log files are being placed in the defined folder (see above).<br />
+				If you have configured a filename, all logs will be written to this file. You need to setup your own log rotation mechanism
+				(for example Linux logrotate) to avoid the file from becoming very large. If you have not configured a filename, log files
+				are composed in folders named by the current <strong>year</strong> followed by the <strong>month</strong> (<em>"2013/06"</em> for example)
+				with the day of the month as the filename (<em>"15.php"</em> for example).<br/>
+				The complete path to our example log file would be: <strong>APPPATH.'logs/2011/06/15.php'</strong>
+			</p>
 
 			<p><strong>The examples above would write the following code to the log file:</strong></p>
 			<pre class="php"><code>&lt;?php defined('COREPATH') or exit('No direct script access allowed'); ?&gt;<br/><br/>Info - 2011-01-03 18:44:45 --> my_init_function() - Application started (with $var = 1)<br/>Debug - 2011-01-03 18:44:45 --> $var is now 5<br/>Warning - 2011-01-03 18:44:45 --> Although $var has been changed, we will keep going.<br/>Error - 2011-01-03 18:44:45 --> We cannot keep going, $var has been changed! :o<br/>Link - 2011-01-03 18:44:45 --> More info on http://fuelphp.com/</code></pre>
@@ -406,7 +421,7 @@ Log::write('Link', 'More info on http://fuelphp.com/')</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

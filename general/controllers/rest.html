@@ -233,8 +233,10 @@
 				<li><strong>serialize</strong> - Serialized data that can be unserialized in PHP</li>
 			</ul>
 			<p class="note">
-				If your controller method returns an array, but the requested output format is <strong>html</strong>, you will
-				get a var_dump() representation of the array, because array's can't be output as string.
+				If your controller method returns an array, but the requested output format is something that an array can not be
+				converted to (such as <strong>html</strong>), you will get a 406 NOT ACCEPTABLE status returned when your
+				application runs in a production environment, or a warning message and a JSON dump of the array when in
+				any other environment.
 			</p>
 
 			<h3 id="format_determination">Format determination</h3>
@@ -246,6 +248,7 @@
 				<li>use the protected property <kbd>$format</kbd> if it contains a supported format</li>
 				<li>use the URL extension if it is a supported format</li>
 				<li>use the format specified by the <kbd>:format</kbd> variable in the route if it contains a supported format</li>
+				<li>use the format specified by the <kbd>format</kbd> variable in the request</li>
 				<li>use the format defined in the <kbd>HTTP_ACCEPT</kbd> header</li>
 				<li>use the default value defined by the <kbd>$rest_format</kbd> property of your class</li>
 				<li>use the <kbd>default_format</kbd> value defined in the global configuration file</li>
@@ -308,7 +311,7 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

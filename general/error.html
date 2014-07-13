@@ -149,7 +149,7 @@ public function action_404()
 	$data['title'] = $messages[array_rand($messages)];
 
 	// Set a HTTP 404 output header
-	return Response::forge(View::forge('welcome/404', $data), 404);
+	return Response::forge(Presenter::forge('welcome/404', $data), 404);
 }</code></pre>
 
 			<p>
@@ -159,7 +159,7 @@ public function action_404()
 			</p>
 
 			<p class="note">
-				Note that Fuel doesn't set the 404 status, your response must set this. Return <em>Response::forge(ViewModel::forge('welcome/404'), 404);</em>
+				Note that Fuel doesn't set the 404 status, your response must set this. Return <em>Response::forge(Presenter::forge('welcome/404'), 404);</em>
 				in order to send the correct status header.
 			</p>
 
@@ -205,11 +205,22 @@ public function action_my404()
 
 			<pre class="php"><code>throw new HttpServerErrorException;</code></pre>
 
+			<h3 id="cli">Errors in CLI mode</h3>
+
+			<p>
+				When an error happens in CLI mode, either interactively through the oil console, or when running a task,
+				the error is simply displayed, and depending on the type of error, the current action may be aborted.
+			</p>
+			<p>
+				You can enable dumping a backtrace when a fatal error occurs by setting the <code>cli_backtrace</code> configuration
+				key in the <kbd>config.php</kbd> config file to <code>true</code>.
+			</p>
+
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

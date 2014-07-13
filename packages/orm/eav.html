@@ -93,41 +93,54 @@
 					Let's create an example of a hospital patient, of which the hospital keeps a record of statistics.
 					Which depends on the illness of the patient, they can't be predicted up front.
 				</p>
-				<pre class="php"><code>class Patient extends \Orm\Model
+				<pre class="php"><code>class Model_Patient extends \Orm\Model
 {
 	// list of properties for this model, shortened for this example
 	protected static $_properties = array(
-		'id',				// primary key
+		'id',					// primary key
 	);
 
 	// set up the statistics relation the usual way
 	protected static $_has_many = array(
 		'statistics' => array(
-			'key_from' => 'id',		// key in this model
-			'key_to' => 'patient_id',	// key in the related model
-			'cascade_save' => true,	// update the related table on save
-			'cascade_delete' => true,	// delete the related data when deleting the parent
+			'key_from' => 'id',			// key in this model
+			'model_to' => 'Model_Statistic',      // related model
+			'key_to' => 'patient_id',		// key in the related model
+			'cascade_save' => true,		// update the related table on save
+			'cascade_delete' => true,		// delete the related data when deleting the parent
 		)
 	);
 
 	// define the EAV container like so
 	protected static $_eav = array(
-		'statistics' => array(		// we use the statistics relation to store the EAV data
-			'attribute' => 'key',	// the key column in the related table contains the attribute
-			'value' => 'value',		// the value column in the related table contains the value
+		'statistics' => array(			// we use the statistics relation to store the EAV data
+			'model_to' => 'Model_Statistic',      // related model
+			'attribute' => 'key',		// the key column in the related table contains the attribute
+			'value' => 'value',			// the value column in the related table contains the value
 		)
 	);
 }
 
-class Statistics extend \Orm\Model
+class Model_Statistic extend \Orm\Model
 {
 	// list of properties for this model
 	protected static $_properties = array(
-		'id',				// primary key
-		'patient_id',			// foreign key
-		'key',				// attribute column
-		'value',			// value column
+		'id',					// primary key
+		'patient_id',				// foreign key
+		'key',					// attribute column
+		'value',				// value column
 	);
+	
+	// set up the patient relation the usual way
+	protected static $_belongs_to = array(
+	    'patient' => array(
+	        'key_from' => 'patient_id',
+	        'model_to' => 'Model_Patient',
+	        'key_to' => 'id',
+	        'cascade_save' => true,
+	        'cascade_delete' => true,
+	    )
+	);	
 }</code></pre>
 
 			<p>
@@ -175,7 +188,7 @@ echo $ms->Headache;		// throws a property not found exception
 
 // or set them directly
 $mr->Temperature = '36.9';	// our patient seems to have improved
-$mr-save();			// updates the patient record, and the updated EAV records
+$mr->save();			// updates the patient record, and the updated EAV records
 
 // you can still access the data the old-fashioned way
 foreach ($mr->statistics as $statistic)
@@ -184,9 +197,8 @@ foreach ($mr->statistics as $statistic)
 }
 </code></pre>
 				<p class="note">
-					Note that at the moment you CAN NOT use this access method to create new attributes
-					in the related table the EAV container maps too. You will have to do that the classic
-					way, by using $mr->statistics[] = Statistics::forge($newdata);
+					Note that when your model has an EAV container defined, you can no longer use custom
+					data properties for that model, as every new property will be seen as a new EAV key.
 				</p>
 			</section>
 
@@ -194,7 +206,7 @@ foreach ($mr->statistics as $statistic)
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

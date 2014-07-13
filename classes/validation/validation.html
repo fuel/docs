@@ -141,7 +141,11 @@ $val->add('username', 'Your username')->add_rule('required');
 // Now add another field for password, and require it to contain at least 3 and at most 10 characters
 $val->add('password', 'Your password')->add_rule('required')
     ->add_rule('min_length', 3)
-    ->add_rule('max_length', 10);</code></pre>
+    ->add_rule('max_length', 10);
+
+// Now add another field for gender, and require it to contain either "M" or "F".
+$val->add('gender', 'Your gender')->add_rule('required')
+    ->add_rule('match_collection', array('M', 'F'));</code></pre>
 
 				<p>The first parameter of the add_rule() method can contain PHP native function names, any valid PHP
 				callback and Closures in addition to the provided validation methods. The method will get the value to
@@ -154,7 +158,8 @@ $val->add('password', 'Your password')->add_rule('required')
 				<pre class="php"><code>// The same fields as the example above
 $val = Validation::forge('my_validation');
 $val->add_field('username', 'Your username', 'required');
-$val->add_field('password', 'Your password', 'required|min_length[3]|max_length[10]');</code></pre>
+$val->add_field('password', 'Your password', 'required|min_length[3]|max_length[10]');
+$val->add_field('gender', 'Your gender', 'required|match_collection[M,F]');</code></pre>
 
 				<p>Once all the fields have been added you can run your validation. This will default to $_POST input, but
 				can be extended and overwritten when given an input array.</p>
@@ -248,6 +253,13 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 								Will try to match the field to the field with the given fieldname, the matching is done
 								using ===.
 								<p class="note"><strong>Important:</strong> you can only match against a field that was added before the field this rule is added to.</p>
+							</td>
+						</tr>
+						<tr>
+							<th>match_collection</th>
+							<td><kbd>$collection</kbd> = array()</td>
+							<td>
+								Will try to match the field against a collection of valid values.
 							</td>
 						</tr>
 						<tr>
@@ -409,6 +421,18 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td>Allow single and double quotes.</td>
 						</tr>
 						<tr>
+							<th>forwardslashes</th>
+							<td>Allow forward slashes.</td>
+						</tr>
+						<tr>
+							<th>backwardslashes</th>
+							<td>Allow backward slashes.</td>
+						</tr>
+						<tr>
+							<th>slashes</th>
+							<td>Allow forward and backward slashes.</td>
+						</tr>
+						<tr>
 							<th>brackets</th>
 							<td>Allow open and close brackets.</td>
 						</tr>
@@ -437,7 +461,7 @@ class MyRules
 	{
 		list($table, $field) = explode('.', $options);
 
-		$result = DB::select("LOWER (\"$field\")")
+		$result = DB::select(DB::expr("LOWER (\"$field\")"))
 		->where($field, '=', Str::lower($val))
 		->from($table)->execute();
 
@@ -495,7 +519,7 @@ $val->add_model('Model_User');</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

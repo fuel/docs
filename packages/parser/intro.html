@@ -52,13 +52,14 @@
 
 				<p>The Parser package changes nothing about the way you work with Views, but it will allow you to
 					use any template parser you want instead of PHP. The package comes with many drivers for parsers like
-					Mustache, Markdown, Twig and Smarty.</p>
+					Dwoo, Haml, Jade, Lex, Markdown, Mustache, PHPTal, Smarty and Twig.</p>
 
-				<p>Which parser is used is chosen by the file extension of your view file. Normal views are extended
-					<kbd>.php</kbd> and will use PHP to parse the template, for these the <kbd>.php</kbd> extension may
-					also be omitted. All others have their own specific extension, for example <kbd>foo.mustache</kbd>
-					will use the Mustache driver and <kbd>foo.tpl</kbd> will use the Dwoo driver (expected extensions can
-					be changed in config).</p>
+				<p>Which parser is used is determined by the file extension of your view file. Normal views, parsed by PHP
+					use the file extension <kbd>.php</kbd>. This is also the default, if no extension is specified, it is
+					assumed to have the <kbd>.php</kbd> extension.</p>
+				<p>All others have their own specific extension, for example <kbd>foo.mustache</kbd> will use the Mustache
+				    driver, <kbd>foo.tpl</kbd> will use the Dwoo driver, <kbd>foo.lex</kbd> will use the Lex driver, and
+				    so on. The default extension can be changed in config).</p>
 
 				<section>
 					<h3 id="install">Installation</h3>
@@ -70,24 +71,27 @@
 		'parser',
 	),
 ),</code></pre>
-					<p>
-						While many drivers are included, most of the libraries are not. Only Mustache and Markdown are
-						included in the <kbd>vendor</kbd> directory of the package and work out of the box.
-					</p>
-					<p>
-						Mustache, Twig, MtHaml and Smarty should be installed via Composer. Simply add the libraries
-						to your project's <kbd>composer.json</kbd> then run "<kbd>php composer.phar install</kbd>":
-					</p>
+					<p>To be able to use one of the supported parsers, you need to install them via composer.
+					    Simply add the libraries to your project's <kbd>composer.json</kbd> then run <kbd>php composer.phar install</kbd>:</p>
 
 					<pre class="javascript"><code>{
     "require": {
+        "dwoo/dwoo" : "*",
         "mustache/mustache" : "*",
         "smarty/smarty" : "*",
         "twig/twig" : "*",
-        "mthaml/mthaml": "*"
+        "mthaml/mthaml": "*",
+		"pyrocms/lex": "*"
     }
 }
 </code></pre>
+
+					<p class="note">Note that the  Markdown parser is installed by default, as it is also used by the FuelPHP core class </kbd>Markdown</kbd>.</p>
+
+					<p>Libraries that can not be installed through composer are expected to be installed in in <kbd>APPPATH/vendor/lib_name</kbd>
+					    (capitalize lib_name), and you'll have to download them yourself. Don't change the casing or anything, keep it as
+					    much original as possible within the </kbd>vendor/lib_name</kbd> dir to keep updating easy (also because some come with
+					    their own autoloader).</p>
 				</section>
 
 				<section>
@@ -108,11 +112,16 @@
 								<td>array</td>
 								<td>(array with extensions and View class which parses them)</td>
 								<td>
-									Defines which extensions are valid and what their View driver is.
+									Defines which extensions are valid and what their View driver is.<br />
+									ex: 'md' => 'View_Markdown'
 								</td>
 							</tr>
 						</tbody>
 					</table>
+					<p>For every View driver supported, the configuration file contains a array entry with
+					    the same name as the driver, which lists the driver specific configuration (limited
+					    to the configuration items supported by the driver. This may be a subset of all
+					    configuration the parser supports).</p>
 				</section>
 
 				<section>
@@ -128,6 +137,8 @@ $view->parser()->clearCache('example.smarty');
 
 // Example static usage
 View_Smarty::parser()->clearCache('example.smarty');</code></pre>
+
+					<p>This can also be used when you need to pass custom configuration to the driver.</p>
 				</section>
 
 			</section>
@@ -136,7 +147,7 @@ View_Smarty::parser()->clearCache('example.smarty');</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

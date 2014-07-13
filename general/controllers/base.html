@@ -117,36 +117,7 @@
 
 			<h4 id="controller_namespacing">Namespacing controllers</h4>
 
-			<p>
-				As mentioned in the introduction by default controllers are created in the <kbd>app/classes/controller</kbd> folder,
-				and are prefixed with <var>Controller_</var>. This prefix is defined in your <kbd>app/config/config.php</kbd> configuration file
-				(and if not this is the default), but can be changed if you want to namespace your controllers, or if you
-				want to move them to a different folder structure.
-			</p>
-
-			<p>
-				Lets move the example given above to the <kbd>Controller</kbd> namespace. You tell FuelPHP that you've done this by setting the
-				config setting <var>controller_prefix</var> from <kbd>'Controller_'</kbd> to <kbd>'Controller\\'</kbd> in your app's config.php file.
-			</p>
-
-			<pre class="php"><code>namespace Controller;
-
-class Example extends \Controller
-{
-
-	public function action_index()
-	{
-		$data['css'] = Asset::css(array('reset.css','960.css','main.css'));
-		return Response::forge(View::forge('welcome/index'));
-	}
-}</code></pre>
-
-			<p class="note">
-				Note that now that your controller lives in a namespace, you have to prefix "Controller" with a backslash, since it needs to be
-				loaded from the global namespace.
-			</p>
-
-
+			<p>See the page on <a href="../namespacing.html">namespacing</a> to see how you can namespace your controllers</p>
 
 			<h4 id="more_parameters">Using more parameters from the URL</h4>
 
@@ -304,7 +275,7 @@ class Example extends \Controller
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

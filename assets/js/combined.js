@@ -396,13 +396,14 @@ panes.main = {
 		"Model-View-Controller":	"general/mvc.html",
 		"Models":			"general/models.html",
 		"Views":			"general/views.html",
-		"ViewModels":		"general/viewmodels.html",
+		"Presenters":		"general/presenters.html",
 		"Controllers": {
 			"Base" :		"general/controllers/base.html",
 			"Template":		"general/controllers/template.html",
 			"Rest":			"general/controllers/rest.html",
 			"Hybrid":		"general/controllers/hybrid.html"
 		},
+		"Namespacing":		"general/namespacing.html",
 		"Routing":			"general/routing.html",
 		"Security":			"general/security.html",
 		"Modules":			"general/modules.html",
@@ -501,6 +502,7 @@ panes.core = {
 		"Num":			"classes/num.html",
 		"Package":		"classes/package.html",
 		"Pagination":	"classes/pagination.html",
+		"Presenter":	"classes/presenter.html",
 		"Profiler":		"classes/profiler.html",
 		"Redis_Db":		"classes/redis.html",
 		"Request": {
@@ -544,7 +546,8 @@ panes.oil = {
 		"Refine":			"packages/oil/refine.html",
 		"Package":			"packages/oil/package.html",
 		"Test":				"packages/oil/test.html",
-		"Console":			"packages/oil/console.html"
+		"Console":			"packages/oil/console.html",
+		"Server":			"packages/oil/server.html"
 	}
 };
 

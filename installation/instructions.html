@@ -153,8 +153,8 @@ $ php composer.phar update
 				move everything in the public folder one level up, and remove the public folder. The only purpose of that folder is to provide an anchor point for
 				your webservers DocumentRoot. You don't need that anymore, since you have installed FuelPHP in the folder that is the DocumentRoot.
 			</p>
-			<p>After the move, change the location of the application in your index.php to:</p>
-			<pre class="php"><code>define('APPPATH', realpath(__DIR__.'/fuel/app/').DIRECTORY_SEPARATOR);</code></pre>
+			<p>After the move, change the location of the application, the packages and the framework core in your index.php to:</p>
+            <pre class="php"><code>define('APPPATH', realpath(__DIR__.'/fuel/app/').DIRECTORY_SEPARATOR);<br>define('PKGPATH', realpath(__DIR__.'/fuel/packages/').DIRECTORY_SEPARATOR);<br>define('COREPATH', realpath(__DIR__.'/fuel/core/').DIRECTORY_SEPARATOR);</code></pre>
 
 			<h3 id="install_inside_root2">What about several folders deep?</h3>
 
@@ -169,6 +169,7 @@ $ php composer.phar update
 				using the URL http://example.org/deep/sub/folder.
 			</p>
 
+			<h4>Apache</h4>
 			<p>
 				By placing this .htaccess into one of the higher folders, you can have the browser redirect to your FuelPHP application if no match was found on
 				file or	directory name:</p>
@@ -200,6 +201,41 @@ $ php composer.phar update
 </pre>
 			<p>Obviously, if you place it in the "sub" folder, you can hide "sub/folder" from the URL, but not "deep"...</p>
 
+			<p class="note">
+				Note that having a .htaccess enabled will slow your Apache server down considerably. If you have access to the server configuration,
+				consider disabling this functionality, and add the rewrite rules to the virtualhost definition.
+			</p>
+
+			<h4>Nginx</h4>
+
+			<p>
+				Nginx doesn't support client configurated files, you so need to add the rewrite to the Nginx configuration file for the virtual host.
+				You can use this as a guideline:
+			</p>
+
+<pre class="plain"><code>server {
+	server_name fuelphp.local;
+
+	# make sure Nginx can write to these files
+	access_log /var/www/fuelphp/nginxlogs/access.log;
+	error_log /var/www/fuelphp/nginxlogs/error.log;
+	root /var/www/fuelphp/public;
+
+	location / {
+		index index.php;
+		try_files $uri $uri/ /deep/sub/folder/index.php$is_args$args;
+	}
+
+	location ~ \.php$ {
+		include /etc/nginx/fastcgi_params;
+		fastcgi_pass 127.0.0.1:9000;
+		fastcgi_index index.php;
+		fastcgi_param FUEL_ENV "development";
+		fastcgi_param SCRIPT_FILENAME /var/www/fuelphp/public$fastcgi_script_name;
+	}
+}
+</code></pre>
+
 			<h2 id="setting_the_environment">Setting the Environment</h2>
 
 			<p>
@@ -217,7 +253,7 @@ $ php composer.phar update
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

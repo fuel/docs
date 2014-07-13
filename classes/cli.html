@@ -396,11 +396,122 @@ Cli::wait(5, true);</code></pre>
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_stdout">stdout($resource = null)</h4>
+				<p>Changes or retrieves the current stdout stream. This is STDOUT by default.<br/>
+                    <br/>
+                    Note the public property <code>$nocolor</code> can be set to true to force all output
+                    to plaintext.
+                </p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$resource</kbd></th>
+									<td><i>null</i></td>
+									<td>Any writable filehandle, or null to retrieve the current filehandle.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>The previous value of the filehandle (or current value if you are not changing it)</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$buffer = fopen('php://temp', 'w+');
+$stdout = Cli::stdout($buffer);
+Cli::write("Hello World!");
+Cli::error("Where's my text? :(");
+Cli::stdout($stdout);
+Cli::write("There it is!");
+
+rewind($buffer);
+file_put_contents('out.log', stream_get_contents($buffer));
+
+// $ cat out.log
+// Hello World!</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+
+			<article>
+				<h4 class="method" id="method_stderr">stderr($resource = null)</h4>
+				<p>Changes or retrieves the current stderr stream. This is STDERR by default.<br/>
+                    <br/>
+                    Note the public property <code>$nocolor</code> can be set to true to force all output
+                    to plaintext.
+                </p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$resource</kbd></th>
+									<td><i>null</i></td>
+									<td>Any writable filehandle, or null to retrieve the current filehandle.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>The previous value of the filehandle (or current value if you are not changing it)</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$errors = fopen('php://temp', 'w+');
+$stderr = Cli::stderr($errors);
+Cli::write("Hello World!");
+Cli::error("Where's my text? :(");
+Cli::stderr($stderr);
+Cli::write("There it is!");
+
+rewind($errors);
+file_put_contents('out.log', stream_get_contents($errors));
+
+// $ cat out.log
+// Where's my text? :(
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

@@ -231,7 +231,7 @@ $result = DB::select()->from('users')->where('id', '!=', 1)->execute();
 
 // Will execute SELECT * FROM `users` WHERE `name` LIKE "john%"
 $who = "john%";
-$result = DB::select()->from('users')->where('id', 'like', $who)->execute();
+$result = DB::select()->from('users')->where('name', 'like', $who)->execute();
 </code></pre>
 
 				<p id="grouped_where">Grouped where statements are also supported:</p>
@@ -279,7 +279,7 @@ DB::select()->from('users')->limit(1);
 DB::select()->from('users')->limit(10)->offset(5);
 
 // SELECT * FROM `users` ORDER BY `id` ASC LIMIT 10
-DB::select('users')->order_by('id','asc')->limit(10);
+DB::select()->from('users')->order_by('id','asc')->limit(10);
 </code></pre>
 
 			</article>
@@ -391,7 +391,7 @@ DB::update('users')->where('id', '=', 1)->set(array(
 	'some_column' => DB::expr('DEFAULT'),
 ))->execute();
 
-// SELECT COUNT(*) FROM `users`
+// SELECT COUNT(*) as count FROM `users`
 $result = DB::select(DB::expr('COUNT(*) as count'))->from('users')->execute();
 
 // Get the current/first result
@@ -509,7 +509,7 @@ Cache::delete_all("db");</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

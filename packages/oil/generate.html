@@ -56,13 +56,14 @@
 				<ul>
 					<li><a href="#controllers">Controllers</a></li>
 					<li><a href="#models">Models</a></li>
-					<li><a href="#viewmodels">Viewmodels</a></li>
+					<li><a href="#presenters">Presenters</a></li>
 					<li><a href="#migrations">Migrations</a></li>
 					<li><a href="#scaffolding">Scaffolding</a></li>
 					<li><a href="#admin">Admin scaffolding</a></li>
 					<li><a href="#tasks">Tasks</a></li>
 					<li><a href="#configs">Configs</a></li>
 					<li><a href="#packages">Packages</a></li>
+					<li><a href="#modules">Modules</a></li>
 				</ul>
 
 				<h3 id="controllers">Controllers</h3>
@@ -382,13 +383,143 @@ class Create_posts
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --soft-delete --deleted-at=mydeleted</code></pre>
 
-				<h3 id="viewmodels">Viewmodels</h3>
+				<h4 id="model_temporal">Generating Model using Model_Temporal</h4>
 
 				<p>
-					Optionally you have have oil to generate a Viewmodel class to accompany the view.
+					Add <code>--temporal</code> to use Model_Temporal.
 				</p>
 
-				<pre class="cli"><code>$ php oil g controller posts action1 action2 action3 --with-viewmodel</code></pre>
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --temporal</code></pre>
+
+				<p>Which will give you:</p>
+
+				<pre class="php"><code>&lt;?php
+
+class Model_Post extends \Orm\Model_Temporal
+{
+	protected static $_properties = array(
+		'id',
+		'temporal_start',
+		'temporal_end',
+		'title',
+		'body',
+		'user_id',
+	);
+
+
+	protected static $_temporal = array(
+		'mysql_timestamp' => false,
+	);
+
+	protected static $_primary_key = array('id', 'temporal_start', 'temporal_end');
+	protected static $_table_name = 'posts';
+
+}
+</code></pre>
+
+<pre class="php"><code>&lt;?php
+
+namespace Fuel\Migrations;
+
+class Create_posts
+{
+	public function up()
+	{
+		\DBUtil::create_table('posts', array(
+			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true, 'unsigned' => true),
+			'temporal_start' => array('constraint' => 11, 'type' => 'int'),
+			'temporal_end' => array('constraint' => 11, 'type' => 'int'),
+			'title' => array('constraint' => 50, 'type' => 'varchar'),
+			'body' => array('type' => 'text'),
+			'user_id' => array('constraint' => 11, 'type' => 'int'),
+
+		), array('id'));
+	}
+
+	public function down()
+	{
+		\DBUtil::drop_table('posts');
+	}
+}</code></pre>
+
+				<p class="note">Please note that <b>temporal_start</b> and <b>temporal_end</b> are not added to the migration's primary_key array. You have to add them manually.</p>
+
+				<p class="note"><code>--no-timestamp</code> is set to true by default which means both <b>created_at</b> and <b>updated_at</b> fields and the related observers are ommited. You can bypass this default with <code>--no-timestamp=0</code> to get them back.</p>
+
+				<p>
+					If you wish changing temporal_start or temporal_end field name. Use <code>--temporal-start</code> or <code>--temporal-end</code> option to set your own field name.
+				</p>
+
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --temporal --temporal-start=mystart --temporal-end=myend</code></pre>
+
+				<h4 id="model_nestedset">Generating Model using Model_Nestedset</h4>
+
+				<p>
+					Add <code>--nestedset</code> to use Model_Nestedset.
+				</p>
+
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --nestedset</code></pre>
+
+				<p>Which will give you:</p>
+
+				<pre class="php"><code>&lt;?php
+
+class Model_Post extends \Orm\Model_Nestedset
+{
+	protected static $_properties = array(
+		'id',
+		'left_id',
+		'right_id',
+		'title',
+		'body',
+		'user_id',
+	);
+
+	protected static $_table_name = 'posts';
+
+}
+</code></pre>
+
+<pre class="php"><code>&lt;?php
+
+namespace Fuel\Migrations;
+
+class Create_posts
+{
+	public function up()
+	{
+		\DBUtil::create_table('posts', array(
+			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true, 'unsigned' => true),
+			'left_id' => array('constraint' => 11, 'type' => 'int', 'unsigned' => true),
+			'right_id' => array('constraint' => 11, 'type' => 'int', 'unsigned' => true),
+			'title' => array('constraint' => 50, 'type' => 'varchar'),
+			'body' => array('type' => 'text'),
+			'user_id' => array('constraint' => 11, 'type' => 'int'),
+
+		), array('id'));
+	}
+
+	public function down()
+	{
+		\DBUtil::drop_table('posts');
+	}
+}</code></pre>
+
+				<p class="note"><code>--no-timestamp</code> is set to true by default which means both <b>created_at</b> and <b>updated_at</b> fields and the related observers are ommited.You can bypass this default with <code>--no-timestamp=0</code> to get them back.</p>
+
+				<p>
+					If you wish changing title, tree_id, left_id, right_id field name. Use one of <code>--title</code>, <code>--tre-id</code>, <code>--left-id</code>, <code>--right-id</code> options to set your own field name.
+				</p>
+
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --nestedset --title=mytitle --tree-id=mytreeid --left-id=myleftid --right-id=myrightid</code></pre>
+
+				<h3 id="presenters">Presenters</h3>
+
+				<p>
+					Optionally you have have oil to generate a Presenter class to accompany the view.
+				</p>
+
+				<pre class="cli"><code>$ php oil g controller posts action1 action2 action3 --with-presenter</code></pre>
 
 				<h3 id="running_migrations">Running Migrations</h3>
 
@@ -733,13 +864,36 @@ class Newtask
 	Creating file: PKGPATH/sample/config/sample.php
 	Creating file: PKGPATH/sample/bootstrap.php</code></pre>
 
+				<h3 id="modules">Modules</h3>
+
+				<p>
+					To generate a <a href="../../general/modules.html">Module</a>, use the following command:
+				</p>
+
+				<pre class="cli"><code>$ php oil g module blog</code></pre>
+
+				<p>
+					This command will create a folder called <code>blog</code> in you app's module path defined in <code>config.module_paths</code>. If you have multiple module paths defined, you will get a list of paths that you can choose from, e.g.:
+				</p>
+
+				<pre class="cli"><code>$ php oil g module blog
+Your app has multiple module paths defined. Please choose the appropriate path from the list below
+[1] /var/www/fuel/shared/modules/
+[2] /var/www/fuel/app/modules/</code></pre>
+
+				<p>
+					To provide for even easier module generation, you can supply the <code>--folders</code> option with a list of comma-separated folders to be created. These can be nested almost indefinitely and you don't need to provide every parent folder. A short yet useful example can be:
+				</p>
+
+				<pre class="cli"><code>$ php oil g module blog --folders=classes/model,classes/controller,config,lang</code></pre>
+
 			</section>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

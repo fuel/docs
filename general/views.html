@@ -54,7 +54,6 @@
 
 			<p>In FuelPHP, Views are located in the <kbd>APPPATH/views</kbd> directory. Views can be located in subdirectories. Views are named by their directory path from the fuel/app/views and the file name, so a view file located <em>fuel/app/views/user/join.php</em> would be named <kbd>user/join</kbd>.</p>
 
-			<p class="note"><strong>Note:</strong> Views are located in <kbd>APPPATH/views</kbd>. Viewmodels are located in <kbd>APPPATH/classes/view</kbd></p>
 			<p>Example:</p>
 
 	<pre class="html"><code>&lt;html&gt;
@@ -152,11 +151,11 @@
 			configuration value <kbd>security.auto_filter_output</kbd> to <kbd>false</kbd>. For security reasons it is highly recommended
 			that you don't do this!</p>
 
-			<p class="note"><strong>Note on objects:</strong> Unless the passed object is of the type View, ViewModel or Closure, it is
+			<p class="note"><strong>Note on objects:</strong> Unless the passed object is of the type View, Presenter or Closure, it is
 			expected to have a <kbd>__toString()</kbd> method and forced to be a string when output filtering is enabled. If you want
 			to pass it anyway, you need to use <kbd>set($name, $value, false)</kbd>, but don't forget to filter what you
 			use!<br />
-			View &amp; ViewModels are expected to contain HTML and take care of their own filtering which is why they're
+			View &amp; Presenters are expected to contain HTML and take care of their own filtering which is why they're
 			not sanitized. Closures cannot be sanitized, and you should take care to ensure this is done within them if
 			necessary.</p>
 
@@ -287,7 +286,7 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

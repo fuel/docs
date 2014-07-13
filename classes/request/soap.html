@@ -354,7 +354,7 @@ $headers = $soap->get_headers();
 
 			<article>
 				<h4 class="method" id="method_set_auto_format">set_auto_format($auto_format)</h4>
-				<p>The <strong>set_auto_format</strong> method allows you to switch auto formatting on or off.</p>
+				<p>The <strong>set_auto_format</strong> method allows you to switch auto formatting on or off. Since 1.7.2, this is switched of by default, and when switched off, you will have to parse the cURL response yourself.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -395,6 +395,25 @@ $soap->set_auto_format(true);
 					</tr>
 					</tbody>
 				</table>
+				<p>
+					Auto formatting has support for the following mime types:
+					<ul>
+						<li>application/xml</li>
+						<li>text/xml</li>
+						<li>application/json</li>
+						<li>text/json</li>
+						<li>text/csv</li>
+						<li>application/csv</li>
+						<li>application/vnd.php.serialized</li>
+					</ul>
+					so when enabled and the response is in one of these types, it will be processed automatically, and returned to your controller
+					in the form of a PHP array.
+				</p>
+				<p class="note">
+					Only enable this is the source of the data is trustworthy, and/or if you have validated the received input. JSON and serialized
+					arrays could contain objects. Since their constructor will execute upon instantiation during auto formatting, it may lead to
+					unintended code execution, possibly compromizing your server!
+				</p>
 			</article>
 
 			<article>
@@ -542,7 +561,7 @@ $result = $soap->response();
 
 			<article>
 				<h4 class="method" id="method_response_info">response_info($key = null, $default = null)</h4>
-				<p>The <strong>response_info</strong> method allows you to retrieve a cURL response value, or all response values.</p>
+				<p>The <strong>response_info</strong> method allows you to retrieve a SOAP response value, or all response values.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -824,7 +843,7 @@ $response = $soap->get_response_headers();
 
 			<article>
 				<h4 class="method" id="method_get_types">get_types()</h4>
-				<p>The <strong>get_types</strong> method returns the list of supported get types.</p>
+				<p>The <strong>get_types</strong> method returns the list of supported types.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -948,7 +967,7 @@ $soap->set_location('http://moresoap.example.org/api/v2/other/info');
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

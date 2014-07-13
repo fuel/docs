@@ -60,6 +60,59 @@
 			</section>
 
 			<article>
+				<h4 class="method" id="method_exists">exists($path, $area = null)</h4>
+				<p>Checks if a file exists. If $path points to a symlink, the symlinks are resolved to make sure whatever it points to is a file.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$path</kbd></th>
+									<td><em>required</em></td>
+									<td>Location of the file to check</td>
+								</tr>
+								<tr>
+									<th><kbd>$area</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
+									usage</a> for more information)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><kbd>boolean</kbd> true if the file in $path exists, false if not</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>
+							<kbd>OutsideAreaException</kbd> when a path not inside the file area.
+							<kbd>FileAccessException</kbd> when an area is used and there is an extension violation.
+						</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$exists = File::exists(DOCROOT.'/test.txt');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_create">create($basepath, $name, $contents = null, $area = null)</h4>
 				<p>Create a file.</p>
 				<table class="method">
@@ -1296,8 +1349,8 @@ File::close_file($resource);</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_download">download($path, $name = null, $mime = null, $area = null)</h4>
-				<p>Outputs a file as download.</p>
+				<h4 class="method" id="method_download">download($path, $name = null, $mime = null, $area = null, $delete = false, $disposition = 'attachment')</h4>
+				<p>Outputs a file, inline or as a downloaded attachment.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1334,6 +1387,16 @@ File::close_file($resource);</code></pre>
 									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
 									usage</a> for more information)</td>
 								</tr>
+								<tr>
+									<th><kbd>$delete</kbd></th>
+									<td><kbd>false</kbd></td>
+									<td>Whether or not to delete the file after download</td>
+								</tr>
+								<tr>
+									<th><kbd>$disposition</kbd></th>
+									<td><kbd>'attachment'</kbd></td>
+									<td>whether to download or output inline. Accepts 'attachment' or 'inline', and defaults to 'attachment'.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -1344,24 +1407,36 @@ File::close_file($resource);</code></pre>
 					<tr>
 						<th>Throws</th>
 						<td>
+							<kbd>InvalidPathException</kbd> when the file does not exist.
+							<kbd>InvalidArgumentException</kbd> if no file info could be retrieved for the file.
 							<kbd>FileAccessException</kbd> when the file could not be opened for read.
 						</td>
 					</tr>
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>File::download(DOCROOT.'/my_dir/text.txt', 'newfile.txt');</code></pre>
+							<pre class="php"><code>// download file
+File::download(DOCROOT.'/my_dir/text.txt', 'newfile.txt');
+
+// output an inline image, for use as an &lt;img&gt; tag source
+File::download(DOCROOT.'/img/image.jpg', null, 'image/jpeg', null, false, 'inline');
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
+				<p class="note">
+					Note that when you call this method, it doesn't immediately download the file. It will schedule a shutdown event
+					in which the file is downloaded, and then terminates the script. This ensures that all Fuel shutdown functions,
+					like updating sessions, will execute as normal.
+				</p>
 			</article>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

@@ -153,7 +153,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'mail'</code></pre></td>
 							<td>
-								The driver to use. Can be mail, smtp, sendmail or noop (only logs writes to log). Must be lowercase.
+								The driver to use. Can be mail, smtp, sendmail, mailgun, mandrill or noop (only logs writes to log). Must be lowercase.
 							</td>
 						</tr>
 						<tr>
@@ -294,10 +294,18 @@
 						</tr>
 						<tr>
 							<th>smtp.timeout</th>
-							<td>string</td>
-							<td><pre class="php"><code>''</code></pre></td>
+							<td>int</td>
+							<td><pre class="php"><code>5</code></pre></td>
 							<td>
-								SMTP timeout. Increase this when a SMTP servers times out during the sending proccess.
+								SMTP timeout. Increase this when a SMTP server times out during the sending proccess.
+							</td>
+						</tr>
+						<tr>
+							<th>smtp.starttls</th>
+							<td>bool</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								Whether a SMTP server needs STARTTLS command.
 							</td>
 						</tr>
 						<tr>
@@ -319,23 +327,114 @@
 							</td>
 						</tr>
 						<tr>
-							<th>return-path</th>
+							<th>return_path</th>
 							<td>string|false</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
 								Use this to set a default return-path email address.
 							</td>
 						</tr>
+						<tr>
+							<th>remove_html_comments</th>
+							<td>bool</td>
+							<td><pre class="php"><code>true</code></pre></td>
+							<td>
+								When true, all comments inside the HTML body will be stripped.
+							</td>
+						</tr>
+						<tr>
+							<th>relative_protocol_replacement</th>
+							<td>string|false</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								When set to a string, all relative protocol URI's (those starting with // instead of http://)
+								will be replaced by the value you specify here. This allows you to convert them to http:// or
+								https://, since some Email clients (Outlook!) do not support relative protocol URI's.
+							</td>
+						</tr>
+						<tr>
+							<th>mandrill.key</th>
+							<td>string</td>
+							<td><pre class="php"><code>'api_key'</code></pre></td>
+							<td>
+								Your Mandrill API Key.
+							</td>
+						</tr>
+						<tr>
+							<th>mandrill.message_options</th>
+							<td>array</td>
+							<td><pre class="php"><code>array()</code></pre></td>
+							<td>
+								Check Mandrill <a href="https://mandrillapp.com/api/docs/messages.JSON.html#method=send">docs</a>. (Look for message struct)
+							</td>
+						</tr>
+						<tr>
+							<th>mandrill.send_options.async</th>
+							<td>bool</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								Enable a background sending mode
+							</td>
+						</tr>
+						<tr>
+							<th>mandrill.send_options.ip_pool</th>
+							<td>string</td>
+							<td><pre class="php"><code>null</code></pre></td>
+							<td>
+								The name of the dedicated ip pool that should be used to send the message
+							</td>
+						</tr>
+						<tr>
+							<th>mandrill.send_options.send_at</th>
+							<td>string</td>
+							<td><pre class="php"><code>null</code></pre></td>
+							<td>
+								When this message should be sent as a UTC timestamp in YYYY-MM-DD HH:MM:SS format.
+							</td>
+						</tr>
 					</tbody>
 				</table>
+				
+				<p class="note">
+					Make sure to install <strong>mandrill/mandrill</strong> composer package if you want to use the mandrill driver.
+				</p>
 
+
+                <h4 id="mailgun">Mailgun configuration</h4>
+
+                <table class="config">
+                    <tbody>
+                    <tr class="header">
+                        <th>Param</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <th>key</th>
+                        <td>string</td>
+                        <td><pre class="php"><code>'YOUR KEY'</code></pre></td>
+                        <td>
+                            The key of your mailgun account.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>domain</th>
+                        <td>string</td>
+                        <td><pre class="php"><code>'YOUR DOMAIN'</code></pre></td>
+                        <td>
+                            The domain of your website
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 			</section>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

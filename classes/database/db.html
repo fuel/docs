@@ -140,7 +140,7 @@ $query = DB::query('SELECT * FROM `users`');
 							<th>Example</th>
 							<td>
 								<pre class="php"><code>// execute a query
-$user = DB::select()->from('users')->where('id', 1);
+$user = DB::select()->from('users')->where('id', 1)->execute();
 
 echo DB::last_query();
 // SELECT * FROM `users` WHERE `id` = 1
@@ -1192,7 +1192,7 @@ DB::count_last_query();
 			</article>
 
 			<article>
-				<h4 class="method" id="method_rollback_transaction">rollback_transaction($db = null)</h4>
+				<h4 class="method" id="method_rollback_transaction">rollback_transaction($db = null, $rollback_all = true)</h4>
 				<p>The <strong>rollback_transaction</strong> method rolls back all pending transactional queries.</p>
 				<table class="method">
 					<tbody>
@@ -1213,6 +1213,11 @@ DB::count_last_query();
 										<th><kbd>$db</kbd></th>
 										<td><strong>null</strong></td>
 										<td class="description">The database connection.</td>
+									</tr>
+									<tr>
+										<th><kbd>$rollback_all</kbd></th>
+										<td><strong>true</strong></td>
+										<td class="description">The rollback mode:<br>true - rollback everything and close transaction;<br>false - rollback only current level.</td>
 									</tr>
 								</table>
 							</td>
@@ -1258,7 +1263,7 @@ catch (Exception $e)
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

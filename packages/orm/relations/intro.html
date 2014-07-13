@@ -117,8 +117,9 @@
 							<td>Calculated from alias</td>
 							<td>If specified, must the the full class name of the target model (ex. <kbd>Model_Comment</kbd>).<br />
 								By default, this value is formed by prepending 'Model_' to the singular form of the alias
-								(ex. 'comments' becomes 'Model_Comment'), it is also expected to be in the same namespace as
-								the current model.</td>
+								(ex. 'comments' becomes 'Model_Comment'). If your model is in another namespace, you must specify
+								the full namespace, excluding the leading backslash (ex. 'Admin\Model_User'), PHP doesn't support
+								relative namespaces in strings.</td>
 						</tr>
 						<tr>
 							<th>key_from</th>
@@ -328,7 +329,7 @@ $post = Model_Post::query()
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

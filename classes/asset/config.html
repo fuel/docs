@@ -161,6 +161,17 @@
 								The asset will then be ignored.
 							</td>
 						</tr>
+						<tr>
+							<th>always_resolve</th>
+							<td>bool</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								When set to true the Asset class will always try to resolve assets locally. When set to false,
+								it will only resolve it the asset URL is relative (i.e. pointing to the local host itself). This
+								is useful if you have a copy of your assets on a separate asset server, or behind an asset cache
+								like Varnish.
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</section>
@@ -221,7 +232,7 @@ echo Asset::img('icons/myicon.png');
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2013 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>
