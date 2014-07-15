@@ -292,7 +292,7 @@
 				// use a view file to generate the email message
 				$email->html_body(
 					\Theme::instance()->view('login/lostpassword')
-						->set('url', \Uri::create('login/lostpassword/'.$hash), false)
+						->set('url', \Uri::create('login/lostpassword/' . base64_encode($hash) . '/'), false)
 						->set('user', $user, false)
 						->render()
 				);
@@ -346,6 +346,10 @@
 	// no form posted, do we have a hash passed in the URL?
 	elseif ($hash !== null)
 	{
+	
+		// decode the hash
+		$hash = base64_decode($hash);
+	
 		// get the userid from the hash
 		$user = substr($hash, 44);
 
