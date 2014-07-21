@@ -292,7 +292,7 @@
 				// 電子メールメッセージを生成するためにビューファイルを使用
 				$email->html_body(
 					\Theme::instance()->view('login/lostpassword')
-						->set('url', \Uri::create('login/lostpassword/'.$hash), false)
+						->set('url', \Uri::create('login/lostpassword/' . base64_encode($hash) . '/'), false)
 						->set('user', $user, false)
 						->render()
 				);
@@ -346,7 +346,11 @@
 	// フォームの投稿が無く、 URL で渡されたハッシュを持っていますか？
 	elseif ($hash !== null)
 	{
-		// ユーザー ID をハッシュから取得
+	
+		// decode the hash
+		$hash = base64_decode($hash);
+	
+		// get the userid from the hash
 		$user = substr($hash, 44);
 
 		// そして、この ID を持つユーザーを見つける

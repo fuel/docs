@@ -73,23 +73,34 @@
 
 			<h3 id="manual">手動でインストール</h3>
 
-			<p>この方法は、あなたの Web サーバに Fuel フレームワークのデフォルトインストール構成を生成します。</p>
+			<p>This will create the default installation of the Fuel framework on your virtual host root directory.</p>
 
-			<h4 id="from_github">GiHub からクローンする</h4>
+			<h4 id="from_github">Clone the latest release from github</h4>
 
-<pre class="cli"><code>$ cd /where/ever/your/webserver/root/is
-$ git clone --recursive git://github.com/fuel/fuel.git
+<pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
+$ git clone git://github.com/fuel/fuel.git .
+$ ./composer.phar update
 </code></pre>
 
-			<p>これは、あなたの Web サーバのルートに、FuelPHP のすべての Core パッケージを含む
-			<strong>fuel</strong> フォルダを作成します。</p>
+			<h4 id="from_github">Clone the latest development branch from github</h4>
 
-			<h4 id="from_zip">Zip ファイルをダウンロードする</h4>
+<pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
+$ git clone git://github.com/fuel/fuel.git -b 1.8/develop .
+$ ./composer.phar update --prefer-source
+</code></pre>
+
+			<p>Alternatively, you can use composer to install everthing in one go:</p>
+<pre class="cli"><code>$ composer create-project fuel/fuel:dev-1.8/develop --prefer-source
+</code></pre>
+			<p>Don't forget the single dot, otherwise this will create a folder called <strong>fuel</strong> in your virtual host root directory!</p>
+
+			<h4 id="from_zip">Download the zip file</h4>
 
 			<ol>
-				<li><a href="download.html">Fuel フレームワークをダウンロードする</a></li>
-				<li>ダウンロードしたファイルを解凍し、展開する</li>
-				<li>ファイルをサーバへ移動する
+				<li><a href="download.html">Download the Fuel Framework</a></li>
+				<li>Unzip/Extract the download</li>
+				<li>Run <code class="cli">$ php composer.phar update</code> to install all dependencies</li>
+				<li>Move the files to your server
 					<ul>
 						<li>ソース内の public ディレクトリは Web サーバの公開用ディレクトリ、例えば、
 						public_html, public, htdocs など)になります。
@@ -99,6 +110,7 @@ $ git clone --recursive git://github.com/fuel/fuel.git
 						<li>index.php 内のパスを編集し、あなたの app, core, packages ディレクトリに合わせます。</li>
 					</ul>
 <pre class="plain"><code>/
+  docs/
   fuel/
     app/
     core/
@@ -125,10 +137,11 @@ $ git clone --recursive git://github.com/fuel/fuel.git
 			<h2 id="composer">Composer</h2>
 
 			<p>
-				バージョン 1.6 から、FuelPHP は <a href="http://getcomposer.org">Composer</a> パッケージマネージャを使い、 <a href="http://packagist.org">Packagist</a>、Github、または、独自に定義された場所から、
-				依存ライブラリを動的に取得します。
-				Composer は、FuelPHP をインストールしたルートにある composer.json ファイルによりコントロールされます。
-				便利なように、FuelPHP に composer.phar ライブラリを含めていますので、composer を直接実行することができます:
+				As of version 1.6, FuelPHP uses the <a href="http://getcomposer.org">Composer</a> package manager to dynamically pull dependencies it,
+				either from <a href="http://packagist.org">Packagist</a>, from Github, or from a custom defined location. As of version 1.7.2, all
+				FuelPHP framework components are also installed through composer. Composer is controlled via the composer.json file, which you will
+				find in the root of your FuelPHP installation. For your convienience, we have included the composer.phar library so you can run composer
+				directly:
 			</p>
 
 <pre class="cli"><code>$ php composer.phar self-update
@@ -230,7 +243,7 @@ php composer.phar update
 		include /etc/nginx/fastcgi_params;
 		fastcgi_pass 127.0.0.1:9000;
 		fastcgi_index index.php;
-		fastcgi_param FUEL_ENV "development";
+		fastcgi_param FUEL_ENV "production";
 		fastcgi_param SCRIPT_FILENAME /var/www/fuelphp/public$fastcgi_script_name;
 	}
 }
@@ -246,7 +259,7 @@ php composer.phar update
 			</p>
 			<pre class="plain"><code>SetEnv FUEL_ENV production</code></pre>
 			<p>
-				有効なオプションは Fuel クラスの <a href="../classes/fuel.html#class_constants">クラス定数</a> 内で定義されています。
+				For Nginx, you use the "fastcgi_param" statement as shown in the example above. Available options are detailed in the <a href="../classes/fuel.html#class_constants">Class constants</a> of the Fuel Class.
 			</p>
 
 		</div>
