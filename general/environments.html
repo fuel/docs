@@ -45,20 +45,21 @@
 		<div id="main">
 
 			<h2>環境</h2>
-			
+
 			<p>
 				環境のサポートは、FuelPHP やあなたのアプリケーションが、環境設定に基づいて意思決定することを助けます。
-				FuelPHP 自体は環境設定を使用して、現在有効な環境に基づいて追加の設定をロードしたり上書きしたりします。
+				FuelPHP 自体は環境設定を使用して、現在有効な環境に基づいて追加の設定をロードしたり
+				上書きしたりします。
 			</p>
 
-			<h3 id="env_config">Environments and Config</h3>
+			<h3 id="env_config">環境と設定</h3>
 
 			<p>
-				Based on the environment the app is set to, the Config class looks for environment-specific config files.
-				The config class looks for config files in the directory that matches the current environment. This can be helpful if you are working with multiple developers that each use their own database connection configurations. Another helpful use case is when you have a server for testing that should display all PHP errors and warnings and you have a production server that should not display any errors or warning but simply log them to be reviewed by a developer later.
+				アプリに設定された環境に基づき、Config クラスは環境独自の設定ファイルを探します。
+				Config クラスは現在の環境にマッチするディレクトリの中の設定ファイルを探します。これは複数の開発者が各々のデータベース接続設定を使う場合に便利です。別の便利なユースケースとしては、テストサーバではすべての PHP エラーや警告を表示させ、本番サーバではエラーや警告は非表示にし、後で開発者がレビューできるようにログにのみ記録します。
 			</p>
 
-			<p>Here is an example to illustrate this:</p>
+			<p>これを示した例:</p>
 
 			<pre class="plain"><code>app/
   config/
@@ -75,19 +76,19 @@
         db.php</code></pre>
 
 			<p>
-				When your environment is set to <kbd>\Fuel::DEVELOPMENT</kbd>, the settings from <em>db.php</em> are merged with <em>development/db.php</em>.
-				If the environment setting is set to any other than <kbd>\Fuel::DEVELOPMENT</kbd>, the extra config file is not loaded. The same goes
-				for any other environment setting you might use.
+				環境設定が <kbd>\Fuel::DEVELOPMENT</kbd> の場合、<em>db.php</em> の設定に <em>development/db.php</em> がマージされます。
+				環境設定が <kbd>\Fuel::DEVELOPMENT</kbd> 以外の場合、追加の設定ファイルはロードされません (@TODO この記述は原文がおかしい？)。同じことが
+				使用する他のすべての環境設定に当てはまります。
 			</p>
 
 			<p>
-				A real-life example for this is the database configuration. There are no default configuration settings (this is possibly very dangerous).  There are only environment-specific config settings.
+				この実際の例として、データベース設定があります。デフォルトの設定はありません (あるととても危険です)。環境固有の設定だけがあります。
 			</p>
 
-			<h3 id="possible_envs">Predefined Environments</h3>
+			<h3 id="possible_envs">定義済みの環境</h3>
 
 			<p>
-				FuelPHP has four predefined environments. You can also <a href="#create_env">create your own custom environment. </a>
+				FuelPHP には 4つの定義済みの環境があります。<a href="#create_env">独自の環境を作成する</a> こともできます。
 			</p>
 
 			<ul>
@@ -109,70 +110,70 @@
 				</li>
 			</ul>
 
-			<h3 id="create_env">Create Custom Environment</h3>
+			<h3 id="create_env">独自の環境を作成する</h3>
 			<p>
-				To create a custom environment, just use a custom string such as <em>mike_dev</em> and create a matching folder in /fuel/app/config/.
+				独自の環境を作成するには、<em>mike_dev</em> のような独自の文字列を使い、/fuel/app/config/ に同じ名前のフォルダを作成します。
 			</p>
 			<p>
-				For example:
+				例えば:
 				</br>
-				If you have a developer named Mike, you can create a custom environment called <i>mike_dev</i>.
+				もし、Mike という名前の開発者がいれば、<i>mike_dev</i> という独自の環境を作成します。
 				<ol>
-					<li>Create a folder in /fuel/app/config/ called <i>mike_dev</i></li>
-					<li>Place any config files that pertain to Mike in the new config folder, for example, place db.php in /fuel/app/config/mike_dev/ to a load custom database configuration when the <em>mike_dev</em> environment is set.</li>
-					<li>Follow the instructions on <a href="#setting_env">setting your environment</a> below. When setting the environment, instead of using a predefined FuelPHP Environment such as PRODUCTION, use the custom string <em>mike_dev</em></li>
+					<li>/fuel/app/config/ の中に <i>mike_dev</i> というフォルダを作成します</li>
+					<li>Mike の設定ファイルをその新しいフォルダに配置します。例えば、/fuel/app/config/mike_dev/ に <em>mike_dev</em> 環境の場合に独自のデータベース設定をロードするために db.php を配置します。</li>
+					<li>次の <a href="#setting_env">環境を設定する</a> の手順に従います。PRODUCTION のような FuelPHP で定義済みの環境を使う代わりに、独自の文字列 <em>mike_dev</em> を使います。</li>
 				</ol>
 			</p>
 
-			<h3 id="setting_env">Set Your Environment</h3>
+			<h3 id="setting_env">環境を設定する</h3>
 
 			<p>
-				There are three ways to set your environment. The first two allow you to set the environment that FuelPHP will use when loading web pages. The third option shows you how to set your environment when using FuelPHP's Oil. Oil does not use the environment you set in the first two options below, it has to be set separately, every time you use Oil.
+				環境を設定するには 3つの方法があります。最初の 2つは、FuelPHP が Web ページをロードするときに使います。3つ目の方法は、FuelPHP の oil を使う場合に環境を設定する方法です。oil は最初の 2つの方法を使いませんので、oil を実行するたびに別途設定する必要があります。
 			</p>
 			<ul>
-				<li><a href="#env_server">Set Environment with server environment variables (Recommended)</a></li>
-				<li><a href="#env_manual">Set Environment with <em>/fuel/app/bootstrap.php</em></a></li>
-				<li><a href="#env_oil">Set Environment when using Oil (Does not replace the above methods, this has its own separate use)</a></li>
+				<li><a href="#env_server">サーバの環境変数で環境を設定する (推奨)</a></li>
+				<li><a href="#env_manual"><em>/fuel/app/bootstrap.php</em> で環境を設定する</a></li>
+				<li><a href="#env_oil">oil 使用時の環境を設定する (上の方法を置き換えません。別途指定する必要があります)</a></li>
 			</ul>
 
-			<h4 id="env_server">Set Environment with server environment variables (Recommended)</h4>
+			<h4 id="env_server">サーバの環境変数で環境を設定する (推奨)</h4>
 
 			<p>
-				You can use the server environment variable <strong>SetEnv</strong> to set the environment your application should run in. Every server has its own envrionment variables. Below includes instructions for known configurations. If your server is not included below, <a href="http://en.wikipedia.org/wiki/Environment_variable">read more about environment variables here</a>.
+				サーバ環境変数 <strong>SetEnv</strong> を使い、アプリケーションの環境を設定できます。すべてのサーバはそれぞれ環境変数を持っています。以下は既知の設定の手順です。あなたのサーバの設定がない場合、<a href="http://en.wikipedia.org/wiki/Environment_variable">環境変数についてここを読んでください</a>。
 			</p>
-			<p class="note">The variable name <strong>FUEL_ENV</strong> should be specified in UPPERCASE, the environment name in lowercase.</p>
+			<p class="note">環境変数 <strong>FUEL_ENV</strong> は大文字で、環境名は小文字で記述します。</p>
 
-			<h5>Apache - Server Configuration</h5>
+			<h5>Apache - サーバ設定</h5>
 			<ol>
-				<li>Make sure your apache server configuration loads the extension mod_env</li>
+				<li>Apache サーバの設定が mod_env をロードすることを確認してください</li>
 				<li>
-					Edit the <pre>httpd.conf</pre> file (or if you include virtual host configurations the desired virtual host config file)
-					and add the following code.
+					<pre>httpd.conf</pre> ファイル (またはインクルードされるバーチャルホストの設定ファイル) を編集し
+					以下のコードを追加します。
 					</br>
-					<pre class="php"><code>// run this application in production mode
+					<pre class="php"><code>// このアプリケーションを production モードで実行する
 SetEnv FUEL_ENV production</code></pre>
 				</li>
 			</ol>
 
-			<h5>Apache - User Configuration</h5>
+			<h5>Apache - ユーザ設定</h5>
 			<ol>
-				<li>Make sure your apache server configuration loads the extension mod_env</li>
-				<li>Create an <pre>.htaccess</pre> file in the <pre>/public</pre> directory of your application</li>
+				<li>Apache サーバの設定が mod_env をロードすることを確認してください</li>
+				<li><pre>.htaccess</pre> ファイルをアプリケーションの <pre>/public</pre> ディレクトリに作成します</li>
 				<li>
-					Edit the <pre>.htaccess</pre> file and add the following code.
+					<pre>.htaccess</pre> ファイルを編集し次のコードを追加します。
 					</br>
-					<pre class="php"><code>// run this application in production mode
+					<pre class="php"><code>// このアプリケーションを production モードで実行する
 SetEnv FUEL_ENV production</code></pre>
 				</li>
 			</ol>
-			<p class="note">Note that enabling .htaccess will slow Apache down considerably. If possible, use a server configuration and disable the use of .htaccess!</p>
+			<p class="note">.htaccess を有効にすることは、Apache をかなり遅くすることに注意して下さい。可能なら、サーバ設定を使い、.htaccess を無効にしてください!</p>
 
 			<h5>Nginx</h5>
 			<ol>
 				<li>
-					Edit the desired file in <pre>/etc/nginx/sites-available</pre> and add the following code.
+					<pre>/etc/nginx/sites-available</pre> の中の設定ファイルを編集し、次のコードを追加します。
 					</br>
-					<pre class="php"><code># run this application in production mode
+					<pre class="php"><code># このアプリケーションを production モードで実行する
   location ~ \.php$ {
     fastcgi_param FUEL_ENV production;
   }</code></pre>
@@ -180,12 +181,12 @@ SetEnv FUEL_ENV production</code></pre>
 			</ol>
 
 
-			<h4 id="env_manual">Set Environment with /fuel/app/bootstrap.php</h4>
+			<h4 id="env_manual">/fuel/app/bootstrap.php で環境を設定する</h4>
 			<p>
-				If you are unable to set the environment using <a href="#env_server">the FUEL_ENV server variable</a>, you can manually change the setting in <em>fuel/app/bootstrap.php</em>.
+				<a href="#env_server">FUEL_ENV サーバ変数</a> で環境を設定できない場合、<em>fuel/app/bootstrap.php</em> の中の設定を手動で変更することができます。
 			</p>
 
-			<pre class="php"><code>// Inside fuel/app/bootstrap.php
+			<pre class="php"><code>// fuel/app/bootstrap.php の中
 
 /**
  * Your environment.  Can be set to any of the following:
@@ -198,15 +199,15 @@ SetEnv FUEL_ENV production</code></pre>
  *
  */
 Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::PRODUCTION);</code></pre>
-			<p class="note">Note that when using this code, the environment variable has precedence when set!</p>
+			<p class="note">このコードを使った場合、環境変数が設定されていればそれが優先されます!</p>
 
-			<h3 id="env_oil">Set Environment when using Oil</h3>
+			<h3 id="env_oil">oil 使用時の環境を設定する</h3>
 
 			<p>
-				FuelPHP's Oil does not use the same environment that is set for your application. The environment Oil runs in must be set separately, each time you run an Oil instance. The following instructions tell you how to do so. If you are looking to set the environment for your application, see <a href="#env_server">Set Environment with server environment variables (Recommended)</a> or <a href="#env_manual">Set Environment with <em>/fuel/app/bootstrap.php</em></a>
+				FuelPHP の oil はアプリケーション用に設定された環境を使いません。oil が実行されるときの環境は、oil が実行される度に個別に設定されなければなりません。次の手順に設定方法が示されています。もし、アプリケーションの環境を設定する場合は、<a href="#env_server">サーバ環境変数で環境を設定する (推奨)</a> または <a href="#env_manual"><em>/fuel/app/bootstrap.php</em> で環境を設定する</a> を参照して下さい。
 			</p>
 			<p>
-				When using a *unix operating system, you can use the <kbd>env</kbd> command to define the variable before starting oil.
+				*unix オペレーティングシステムの場合、 <kbd>env</kbd> コマンドを使い oil を実行する前に変数を定義できます。
 			</p>
 
 			<pre class="cli"><code><strong>$</strong> env FUEL_ENV=production php oil -v</code></pre>
