@@ -396,14 +396,14 @@ panes.main = {
 		"Model-View-Controller":	"general/mvc.html",
 		"モデル":			"general/models.html",
 		"ビュー":			"general/views.html",
-		"Presenters":		"general/presenters.html",
+		"プレゼンタ":		"general/presenters.html",
 		"コントローラ": {
 			"ベース" :		"general/controllers/base.html",
 			"Template":		"general/controllers/template.html",
 			"Rest":			"general/controllers/rest.html",
 			"Hybrid":		"general/controllers/hybrid.html"
 		},
-		"Namespacing":		"general/namespacing.html",
+		"名前空間":		"general/namespacing.html",
 		"ルーティング":			"general/routing.html",
 		"セキュリティ":			"general/security.html",
 		"モジュール":			"general/modules.html",
