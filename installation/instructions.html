@@ -47,8 +47,8 @@
 			<h5>いずれかを選択してください: <a href="#command">コマンドラインからインストール</a> | <a href="#manual">手動でインストール</a></h5>
 			<br />
 			<h3 id="command">コマンドラインからインストール</h3>
-		    <p class="note">この方法は現在 *nix systems (Linux, OS X, Unix など) でのみ動作します。</p>
-            <p>我々のクイックインストーラは Oil パッケージ用に書き下ろされたインターフェースです。これを使用すると１つのコマンドで新しいプロジェクトを生成することができます。oil コマンドで 'php' を使用する必要もありません。</p>
+		    <p class="note">この方法は現在 *nix システム (Linux, OS X, Unix など) でのみ動作します。</p>
+            <p>我々のクイックインストーラは Oil パッケージ用に書き下ろされたインターフェースです。これを使用すると１つのコマンドで新しいプロジェクトを生成することができます。oil コマンドで <code class="cli">php</code> を使用する必要もありません。</p>
 
             <p>クイックインストーラをインストールするためには、シェルを開き次のコマンドを実行するだけです：</p>
 
@@ -56,7 +56,7 @@
 
 			<p class="note">この場合、スクリプトを /usr/bin にインストールするためパスワードを尋ねてくるでしょう。</p>
 
-			<p>これであなたのプロジェクトでは 'php oil' の代わりに 'oil' だけを使用することができます。</p>
+			<p>これであなたのプロジェクトでは <code class="cli">php oil</code> の代わりに <code class="cli">oil</code> だけを使用することができます。</p>
 
 			<p class="note">バージョン 1.6 以前の oil スクリプトをインストール済みの場合は、composer を実行させるために再度、インストールし直す必要があります!</p>
 
@@ -67,43 +67,46 @@
 			<p>これで、カレントディレクトリにあなたが指定したプロジェクト名のフォルダが作成されます。そしてリポジトリとすべてのサブモジュールをそのフォルダに複製します。</p>
 
 			<p>
-				Note: これは、必要なディレクトリを書き込み可能にするための <code class="cli">$ oil refine install</code> も実行します。
-				そして、Composer により定義された依存ライブラリを取得する <code class="cli">$ php composer.phar update</code> も実行します。
+				Note: これは、必要なディレクトリを書き込み可能にするための <code class="cli">oil refine install</code> も実行します。
+				そして、Composer により定義された依存ライブラリを取得する <code class="cli">php composer.phar update</code> も実行します。
 			</p>
 
 			<h3 id="manual">手動でインストール</h3>
 
-			<p>This will create the default installation of the Fuel framework on your virtual host root directory.</p>
+			<p>これはバーチャルホストのルートディレクトリに FuelPHP フレームワークをデフォルトインストールします。</p>
 
-			<h4 id="from_github">Clone the latest release from github</h4>
+			<h4 id="from_github">GitHub から最新のリリースを clone する</h4>
 
 <pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
 $ git clone git://github.com/fuel/fuel.git .
 $ ./composer.phar update
 </code></pre>
 
-			<h4 id="from_github">Clone the latest development branch from github</h4>
+			<p>最後のドットを忘れないでください。さもないと、バーチャルホストのルートディレクトリに <strong>fuel</strong> というフォルダが作成されます!</p>
+
+			<h4 id="from_github">GitHub から最新の開発ブランチを clone する</h4>
 
 <pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
 $ git clone git://github.com/fuel/fuel.git -b 1.8/develop .
 $ ./composer.phar update --prefer-source
 </code></pre>
 
-			<p>Alternatively, you can use composer to install everthing in one go:</p>
-<pre class="cli"><code>$ composer create-project fuel/fuel:dev-1.8/develop --prefer-source
-</code></pre>
-			<p>Don't forget the single dot, otherwise this will create a folder called <strong>fuel</strong> in your virtual host root directory!</p>
+			<p>最後のドットを忘れないでください。さもないと、バーチャルホストのルートディレクトリに <strong>fuel</strong> というフォルダが作成されます!</p>
 
-			<h4 id="from_zip">Download the zip file</h4>
+			<p>別の方法として、Composer を使いすべてをインストールすることもできます:</p>
+<pre class="cli"><code>$ composer create-project fuel/fuel:dev-1.8/develop --prefer-source .
+</code></pre>
+
+			<h4 id="from_zip">Zip ファイルをダウンロードする</h4>
 
 			<ol>
-				<li><a href="download.html">Download the Fuel Framework</a></li>
-				<li>Unzip/Extract the download</li>
-				<li>Run <code class="cli">$ php composer.phar update</code> to install all dependencies</li>
-				<li>Move the files to your server
+				<li><a href="download.html">Fuel フレームワークをダウンロードします</a></li>
+				<li>ダウンロードしたファイルを解凍します</li>
+				<li><code class="cli">$ php composer.phar update</code> を実行し依存コンポーネントをインストールします</li>
+				<li>ファイルをサーバに移動します
 					<ul>
 						<li>ソース内の public ディレクトリは Web サーバの公開用ディレクトリ、例えば、
-						public_html, public, htdocs など)になります。
+						public_html, public, htdocs などになります。
 						その内容をそこへ移動するか 
 						Fuel を使用したい webroot のサブディレクトリへ移動します。</li>
 						<li>fuel ディレクトリを公開ディレクトリの外に置くことをセキュリティの観点から推奨します。</li>
@@ -137,18 +140,18 @@ $ ./composer.phar update --prefer-source
 			<h2 id="composer">Composer</h2>
 
 			<p>
-				As of version 1.6, FuelPHP uses the <a href="http://getcomposer.org">Composer</a> package manager to dynamically pull dependencies it,
-				either from <a href="http://packagist.org">Packagist</a>, from Github, or from a custom defined location. As of version 1.7.2, all
-				FuelPHP framework components are also installed through composer. Composer is controlled via the composer.json file, which you will
-				find in the root of your FuelPHP installation. For your convienience, we have included the composer.phar library so you can run composer
-				directly:
+				バージョン 1.6 から、FuelPHP は <a href="http://getcomposer.org">Composer</a> パッケージマネージャを使い、動的に依存コンポーネントを、
+				<a href="http://packagist.org">Packagist</a>、Github または独自に定義された場所からプルします。バージョン 1.7.2 からは、
+				FuelPHP フレームワークのすべてのコンポーネントを Composer 経由でインストールします。Composer は composer.json ファイルにより制御されます。そのファイルはインストールした FuelPHP のルートにあります。
+				composer コマンドをすぐに簡単に実行できるように、
+				FuelPHP に composer.phar ライブラリを含んでいます:
 			</p>
 
 <pre class="cli"><code>$ php composer.phar self-update
-php composer.phar update
+$ php composer.phar update
 </code>
 </pre>
-			<p class="note">重要なフレームワークのコンポーネントが composer 経由でロードされるため、このステップを実行しないと、FuelPHP は起動しません！</p>
+			<p class="note">重要なフレームワークのコンポーネントが Composer 経由でロードされるため、このステップを実行しないと、FuelPHP は起動しません！</p>
 
 			<h2 id="configuration">設定</h2>
 
@@ -166,7 +169,7 @@ php composer.phar update
 				すべてのファイルを 1つ上の階層に移動し、public フォルダを削除します。public フォルダの唯一の目的は、Web サーバのドキュメントルートのためのアンカーポイントを提供することです。
 				FuelPHP をドキュメントルートフォルダにインストールしたら、もはや必要ありません。
 			</p>
-			<p>After the move, change the location of the application, the packages and the framework core in your index.php to:</p>
+			<p>移動した後、index.php の中のアプリケーション、パッケージ、フレームワークコアの場所を変更します:</p>
             <pre class="php"><code>define('APPPATH', realpath(__DIR__.'/fuel/app/').DIRECTORY_SEPARATOR);<br>define('PKGPATH', realpath(__DIR__.'/fuel/packages/').DIRECTORY_SEPARATOR);<br>define('COREPATH', realpath(__DIR__.'/fuel/core/').DIRECTORY_SEPARATOR);</code></pre>
 
 			<h3 id="install_inside_root2">いくつかのフォルダをより深くするのはどうでしょう？</h3>
@@ -215,21 +218,21 @@ php composer.phar update
 			<p>もちろん、もし "sub" フォルダに配置した場合は、URL から "sub/folder" を隠せますが、"deep" は隠せません...</p>
 
 			<p class="note">
-				Note that having a .htaccess enabled will slow your Apache server down considerably. If you have access to the server configuration,
-				consider disabling this functionality, and add the rewrite rules to the virtualhost definition.
+				.htaccess を有効にすると Apache はかなりスローダウンすることに注意してください。サーバ設定へのアクセス権を持っている場合は、
+				これを無効にし、バーチャルホストの定義に rewrite のルールを追加することを検討してください。
 			</p>
 
 			<h4>Nginx</h4>
 
 			<p>
-				Nginx doesn't support client configurated files, you so need to add the rewrite to the Nginx configuration file for the virtual host.
-				You can use this as a guideline:
+				Nginx はクライアントの設定ファイルをサポートしていませんので、Nginx の設定ファイルにバーチャルホストのための rewrite ルールを追加する必要があります。
+				ガイドラインとして以下を使用できます:
 			</p>
 
 <pre class="plain"><code>server {
 	server_name fuelphp.local;
 
-	# make sure Nginx can write to these files
+	# これらのファイルに Nginx が書き込めることを確認する
 	access_log /var/www/fuelphp/nginxlogs/access.log;
 	error_log /var/www/fuelphp/nginxlogs/error.log;
 	root /var/www/fuelphp/public;
@@ -259,7 +262,7 @@ php composer.phar update
 			</p>
 			<pre class="plain"><code>SetEnv FUEL_ENV production</code></pre>
 			<p>
-				For Nginx, you use the "fastcgi_param" statement as shown in the example above. Available options are detailed in the <a href="../classes/fuel.html#class_constants">Class constants</a> of the Fuel Class.
+				Nginx では、上の例にあるように "fastcgi_param" 文を使います。使用できるオプションの詳細は Fuel クラスの <a href="../classes/fuel.html#class_constants">クラス定数</a> にあります。
 			</p>
 
 		</div>
