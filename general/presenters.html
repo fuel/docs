@@ -47,26 +47,26 @@
 			<article>
 				<h2>プレゼンタ</h2>
 
-				<h3 id="what_is_a_presenter">What is a Presenter?</h3>
+				<h3 id="what_is_a_presenter">プレゼンタとは?</h3>
 
-				<p>A Presenter is a class that contains the logic that is needed to generate your view (or views). When the controller
-				is done with your user input and is done with whatever actions it needed to take, it turns execution over to
-				the Presenter to retrieve and process whatever data is needed for the view. A Presenter shouldn't do any data manipulation
-				but can contain database calls and any other retrieval or preparation operations needed to generate the View's
-				data.</p>
+				<p>プレゼンタはビューの生成に必要なロジックを含むクラスです。
+				コントローラがユーザ入力を処理し、必要なアクションを処理すると、
+				ビューモデルにビューに必要なデータを取得するように処理を引き継ぎます。
+				プレゼンタはデータの操作を一切すべきではありませんが、データベースの呼び出しや他のデータの取得、
+				ビューの生成に必要な準備の操作を含めます。</p>
 
-				<p class="note">Presenters are optional. If you don't need them, you can use <a href="views.html">Views</a> directly, and keep the pre-processing logic in your controller.</p>
+				<p class="note">プレゼンタはオプションです。必要ない場合は、<a href="views.html">ビュー</a> を直接使用し、表示の前処理のロジックをコントローラに含めることができます。</p>
 
 
-				<h3 id="creating_presenters">Creating a Presenter</h3>
+				<h3 id="creating_presenters">プレゼンタの作成</h3>
 
-				<p>First we'll create an empty Presenter class in <code>APPPATH/classes/presenter/index.php</code>:</p>
+				<p>F最初は <code>APPPATH/classes/presenter/index.php</code> で、空のプレゼンタを作成します:</p>
 
 				<pre><code>class Presenter_Index extends Presenter
 {
 }</code></pre>
 
-				<p>Then you create the view that is associated with the presenter in <code>app/views/index.php</code>:</p>
+				<p>そして、<code>app/views/index.php</code> に対応するビューを作成します:</p>
 
 				<pre><code>&lt;h1&gt;&lt;?php echo $title; ?&gt;&lt;/h1&gt;
 
@@ -79,21 +79,21 @@
 ?&gt;
 &lt;/ul&gt;</code></pre>
 
-				<p class="note"><strong>On view names</strong><br />
-				A Presenter and its view are by default expected to share the same name. Thus a
-				Presenter <code>Presenter_Index</code> expects the view to be in <code>app/views/index.php</code>. And underscores
-				work here the same as with classes, which means that the view for <code>Presenter_Some_Thing</code> is expected
-				to be in <code>app/views/some/thing.php</code>.<br />
-				This default can be overwritten by setting a non-static <code>$_view</code> property in your Presenter with the
-				View name (without it's suffix), or passing a custom View name when forging the Presenter.</p>
+				<p class="note"><strong>ビューの名前</strong><br />
+				プレゼンタとそのビューはデフォルトでは同じ名前を共有します。
+				プレゼンタ <code>Presenter_Index</code> のビューは <code>app/views/index.php</code> になります。
+				アンダースコアはクラスと同じように、つまり、ビュー <code>Presenter_Some_Thing</code> は、
+				<code>app/views/some/thing.php</code> になります。<br />
+				このデフォルトの動作は、そのビューを使うビューモデルの中で、静的でない <code>$_view</code> プロパティにプレゼンタの中でビュー名 (サフィックスなしで) 設定するか、プレゼンタの生成時に独自のビュー名を渡すことで
+				オーバーライトできます。</p>
 
-				<p>And last we'll create the Presenter from the controller:</p>
+				<p>最後に、プレゼンタをコントローラから生成します:</p>
 
 				<pre class="php"><code>$presenter = Presenter::forge('index');</code></pre>
 
-				<p>Now we have everything setup; however, there is still no data passed to the view. It still needs to get a
-				<code>$title</code> string and <code>$articles</code> array passed to it. We do this by adding a <code>view()</code> method
-				to the Presenter which will assign this data:</p>
+				<p>これですべてを設定しました; しかし、まだデータがビューに渡されていません。
+				<code>$title</code> の文字列と <code>$articles</code> の配列を渡す必要があります。
+				プレゼンタにこのデータを与える <code>view()</code> メソッドを追加します:</p>
 
 				<pre><code>class Presenter_Index extends Presenter
 {
@@ -106,20 +106,20 @@
 	}
 }</code></pre>
 
-				<p>And you're done.</p>
+				<p>これで完了です。</p>
 
 				<p class="note">
-					In your code, Views and Presenters are interchangeable. You can return Presenters from your controller actions,
-					you can set a Presenter as a Theme partial, or assign it to a section of your page template. The basic API of the
-					Presenter is compatible with the View. This makes it easy to swap a View for a Presenter in your code without having
-					to do a major code overhaul.
+					コードの中でビューとプレゼンタは交換可能です。コントローラのアクションからプレゼンタを返すことも、
+					テーマのパーシャルとしてプレゼンタをセットし、ページテンプレートのセクションにアサインすることもできます。プレゼンタの基本的な API は
+					ビューと互換性があります。これは、大きなコードのオーバーホールなしに、
+					ビューとプレゼンタを簡単に交換することを可能にします。.
 				</p>
 
-				<h3 id="functions">Passing functions to views</h3>
+				<h3 id="functions">関数をビューに渡す</h3>
 
-				<p>To pass a View specific function from your Presenter to your View, you use <a href="http://www.php.net/manual/functions.anonymous.php">Closures</a>:</p>
+				<p>プレゼンタから、特定の関数をビューに渡すには、<a href="http://www.php.net/manual/functions.anonymous.php">クロージャ</a> を使用します:</p>
 
-				<pre class="php"><code>// In the Presenter
+				<pre class="php"><code>// プレゼンタの中
 class Presenter_Index extends Presenter
 {
 
@@ -129,66 +129,66 @@ class Presenter_Index extends Presenter
 	}
 }
 
-// Which you can then use in your view:
-$echo_upper('this string'); // Outputs: "THIS STRING"</code></pre>
+// ビューの中で使える:
+$echo_upper('this string'); // 出力: "THIS STRING"</code></pre>
 			</article>
 
 			<article>
-				<h3 id="security">Security</h3>
+				<h3 id="security">セキュリティ</h3>
 
-				<p>It works the same as with View. This means that anything set on the Presenter will be output encoded as
-					long as you don't switch that off. You can use the same <code>set($name, $value, $encode)</code> method
-					on the Presenter as you'd use on the View directly. More on this in the
-					<a href="views.html#security">Security section of View</a>.</p>
+				<p>ビューと同じように動作します。プレゼンタでセットされたものはすべて、オフにしない限り、出力エンコードされます。
+					ビューで使うのと同じようにプレゼンタでも <code>set($name, $value, $encode)</code> メソッドが使えます。
+					詳細は、
+					<a href="views.html#security">ビューのセキュリティのセクション</a> にあります。</p>
 			</article>
 
 			<article>
-				<h3 id="advanced">Advanced usage</h3>
+				<h3 id="advanced">高度な使い方</h3>
 
-				<h4 id="more_methods">More methods</h4>
+				<h4 id="more_methods">他のメソッド</h4>
 
-				<p>If there are different ways of parsing the same View, you can add multiple methods to the Presenter other
-				than the default <code>view()</code> method. To use those, you need to add the method's name as the second parameter to the
-				<code>Presenter::forge()</code> method:</p>
+				<p>同じビューを解析する別の方法がある場合は、デフォルトの <code>view()</code> メソッド以外に複数のメソッドをプレゼンタに追加することができます。
+				そうするためには、第 2 パラメータにメソッド名を指定した
+				<code>Presenter::forge()</code> メソッドを追加します:</p>
 
-				<pre class="php"><code>// will call other_method() upon the Presenter from the above example
+				<pre class="php"><code>// 上記の例からプレゼンタ上の other_method() メソッドを呼ぶ
 $presenter = Presenter::forge('index', 'other_method');</code></pre>
 
-				<h4 id="before_after">Before and after methods</h4>
+				<h4 id="before_after">before と after メソッド</h4>
 
-				<p>If you need to have some data added for all the methods in the Presenter, you can add a <code>before()</code>
-				or <code>after()</code> method. just like you can with Controllers.</p>
+				<p>いくつかのデータをプレゼンタのすべてのメソッドで使う必要がある場合、<code>before()</code>
+				または <code>after()</code> メソッドをコントローラと同様に追加します。</p>
 
-				<h4 id="changing_view">Changing the view</h4>
+				<h4 id="changing_view">ビューの変更</h4>
 
-				<p>By default, the <code>$this->_view</code> gets a View object assigned to it. You can replace this object by
-				making your own <code>set_view()</code> method in the Presenter and setting the <code>$this->_view</code> to
-				an object of your choosing.<br />
-				However, this object must allow you to set properties on it (which are used as the template data) and must have
-				a <code>__toString()</code> magic method that will render and return the parsed contents. In other works, it must be
-				compatible with the behaviour of the View class.<br />
-				The name of the expected view is available in the <code>$this->_view</code> property.</p>
+				<p>デフォルトでは <code>$this->_view</code> にビューオブジェクトがアサインされます。
+				プレゼンタに独自の <code>set_view()</code> メソッドを作成し、
+				<code>$this->_view</code> にオブジェクトをセットすることで置き換えることができます。<br />
+				しかし、そのオブジェクトはプロパティを設定でき (テンプレートのデータとして使われます)、解析されたコンテンツをレンダリングし返す
+				<code>__toString()</code> マジックメソッドを持たなくてはなりません。
+				In other works, it must be compatible with the behaviour of the View class.(@TODO 原文確認中)<br />
+				ビューの名前は <code>$this->_view</code> プロパティから取得できます。</p>
 
-				<h4 id="alternative_view">Using a different view file, or an existing View object</h4>
+				<h4 id="alternative_view">別のビューファイル、または既存のビューオブジェクトを使う</h4>
 
-				<p>You can also tell the Presenter instance to use a different view, and not use the automatic mechanism
-				for determining the view to load, by using the forth parameter of the forge() method:</p>
+				<p>forge() メソッドの第 4 引数を指定すると、プレゼンタのインスタンスに対して別のビューを使い、
+					どのビューを読み込むかを決定する自動機構を使わないように指示することもできます:</p>
 
-				<pre class="php"><code>// use the 'other/index' view instead of the 'index' view
+				<pre class="php"><code>// 'index' ビューの代わりに 'other/index' ビューを使う
 $presenter = Presenter::forge('index', 'other_method', null, 'other/index');
 
-// you can also pass a View object directly
+// ビューオブジェクトを直接渡すこともできる
 $view = View::forge('other/index');
 $presenter = Presenter::forge('index', 'other_method', null, $view);</code></pre>
 
-				<h4 id="access_to_view">Accessing the view</h4>
-				<p>You can use the <code>get_view()</code> method to get access to the View object from outside the Presenter.</p>
+				<h4 id="access_to_view">ビューへのアクセス</h4>
+				<p>プレゼンタの外部からビューオブジェクトにアクセスするには、 <code>get_view()</code> メソッドを使用します。</p>
 
-				<h4>Using Presenters from other namespaces or not Presenter_ prefixed</h4>
+				<h4>他の名前空間から、または Presenter_ 接頭辞のつかないプレゼンタを使う</h4>
 
-				<p>If you want to use these, you have to use the full classname with the <code>forge()</code>, including the namespace.
-				In these cases, the default naming will often not work as expected so setting the <code>$_view</code>
-				property, or passing a custom view name, is encouraged.</p>
+				<p>これらを使用する場合、名前空間を含む、完全なクラス名で <code>forge()</code> を使う必要があります。
+				その場合、デフォルトの命名規則はしばしば期待したように動作しませんので、
+				<code>$_view</code> プロパティまたはまたはカスタムビュー名を渡すことが推奨されます。</p>
 			</article>
 
 		</div>
