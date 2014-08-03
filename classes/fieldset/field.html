@@ -48,52 +48,52 @@
 			<h2>Fieldset_Field Class</h2>
 
 			<p>
-				The Fieldset_Field class defines a single field inside a fieldset. It defines the type of field, how the field
-				should be rendered, and which validation rules should be used when validating field input.
+				Fieldset_Field クラスは、フィールドセットの単一のフィールドを定義します。フィールドの種類、
+				フィールドのレンダリング方式、フィールド入力をバリデーションするときに使用されるルール、を定義します。
 			</p>
 
 			<p class="note">
-				Although it is technically possible to create stand-alone Fieldset_Field instances, normally they will be created
-				as part of a Fieldset, using the Fieldsets <kbd>add_field()</kbd> method.
+				技術的にはスタンドアロンの Fieldset_Field インスタンスを作成することが可能ですが、通常は
+				Fieldsets <kbd>add_field()</kbd> メソッドを使用してFieldset の一部として作成されます。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_set_fieldset">set_fieldset(Fieldset $fieldset)</h4>
 				<p>
-					If you have created a standalone Fieldset_Field object (i.e. not via the Fieldset class), you can use the
-					<strong>set_fieldset</strong> method to assign the field object to a fieldset object.
+					スタンドアロンの Fieldset_Field オブジェクトを (Fieldset クラス経由ではなく) を作成した場合、
+					<strong>set_fieldset</strong> メソッドを使用してフィールドセットオブジェクトにフィールドオブジェクトを割り当てできます。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tbody>
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$fieldset</kbd></th>
-										<td><pre class="php">required</pre></td>
-										<td>Instance of Fieldset you want to assign this Field object to.</td>
+										<td><pre class="php">必須</pre></td>
+										<td>このフィールドオブジェクトに割り当てたい Fieldset のインスタンス</td>
 									</tr>
 								</tbody>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Fieldset_Field Object, for chaining</td>
+						<th>返り値</th>
+						<td>Fieldset_Field Object (メソッドチェーン可能)</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$fieldset = \Fieldset::forge('myfieldset');
 $field = new \Fieldset_Field('client', 'Name of the client');
@@ -108,39 +108,39 @@ $field-&gt;set_fieldset($fieldset);
 			<article>
 				<h4 class="method" id="method_set_label">set_label($label)</h4>
 				<p>
-					Set or change the label of a field.
+					フィールドのラベルを設定／変更します。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tbody>
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$label</kbd></th>
-										<td><pre class="php">required</pre></td>
-										<td>Label to be displayed for the field when generating the HTML for this field.</td>
+										<td><pre class="php">必須</pre></td>
+										<td>このフィールドのHTMLを生成するときに表示されるラベル。</td>
 									</tr>
 								</tbody>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>Fieldset_Field Object, for chaining</td>
+						<th>返り値</th>
+						<td>Fieldset_Field Object (メソッドチェーン可能)</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$fieldset-&gt;field('fieldname')-&gt;set_label('New Label');</code></pre>
 						</td>
