@@ -50,16 +50,16 @@
 			<section>
 				<h2 id="intro">はじめに</h2>
 
-				<p>The Parser package changes nothing about the way you work with Views, but it will allow you to
-					use any template parser you want instead of PHP. The package comes with many drivers for parsers like
-					Dwoo, Haml, Jade, Lex, Markdown, Mustache, PHPTal, Smarty and Twig.</p>
+				<p>パーサパッケージは、ビューを操作する方法を変えずに、
+					生PHPの代わりに任意のテンプレートパーサを使用可能にします。対応しているパッケージには、
+					Dwoo, Haml, Jade, Lex, Markdown, Mustache, PHPTal, Smarty そして Twig があります。</p>
 
-				<p>Which parser is used is determined by the file extension of your view file. Normal views, parsed by PHP
-					use the file extension <kbd>.php</kbd>. This is also the default, if no extension is specified, it is
-					assumed to have the <kbd>.php</kbd> extension.</p>
-				<p>All others have their own specific extension, for example <kbd>foo.mustache</kbd> will use the Mustache
-				    driver, <kbd>foo.tpl</kbd> will use the Dwoo driver, <kbd>foo.lex</kbd> will use the Lex driver, and
-				    so on. The default extension can be changed in config).</p>
+				<p>どのパーサが使用されるかは、ビューファイルのファイル拡張子によって決められます。PHP がパースする標準のビューは
+					ファイル拡張子 <kbd>.php</kbd> を使用します。<kbd>.php</kbd> はデフォルトの拡張子で、もし拡張子が指定されない場合、
+					<kbd>.php</kbd> 拡張子を使用します。</p>
+				<p>他のテンプレートパーサは、それぞれの拡張子を持っています。たとえば Mustache は <kbd>foo.mustache</kbd> を使用し、
+				    Dwoo は <kbd>foo.tpl</kbd> を使用し、Lex は <kbd>foo.lex</kbd> を使用し、などです。
+				    デフォルトの拡張子は config で設定できます。</p>
 
 				<section>
 					<h3 id="install">インストール</h3>
@@ -71,8 +71,8 @@
 		'parser',
 	),
 ),</code></pre>
-					<p>To be able to use one of the supported parsers, you need to install them via composer.
-					    Simply add the libraries to your project's <kbd>composer.json</kbd> then run <kbd>php composer.phar install</kbd>:</p>
+					<p>サポートされるパーサのいずれかを使用可能にするには、composerでインストールする必要があります。
+					    ライブラリを、自分のプロジェクトの <kbd>composer.json</kbd> に追加し、<kbd>php composer.phar install</kbd> を実行してください。</p>
 
 					<pre class="javascript"><code>{
     "require": {
@@ -86,12 +86,12 @@
 }
 </code></pre>
 
-					<p class="note">Note that the  Markdown parser is installed by default, as it is also used by the FuelPHP core class </kbd>Markdown</kbd>.</p>
+					<p class="note">Markdown パーサはデフォルトでインストールされています。Markdown は FuelPHP のコアクラス </kbd>Markdown</kbd> で使用されています。</p>
 
-					<p>Libraries that can not be installed through composer are expected to be installed in in <kbd>APPPATH/vendor/lib_name</kbd>
-					    (capitalize lib_name), and you'll have to download them yourself. Don't change the casing or anything, keep it as
-					    much original as possible within the </kbd>vendor/lib_name</kbd> dir to keep updating easy (also because some come with
-					    their own autoloader).</p>
+					<p>composer でインストールできないライブラリは、<kbd>APPPATH/vendor/lib_name</kbd>
+					    (lib_name は大文字) にインストールすることを想定しています。ライブラリは自分でダウンロードしてください。大文字小文字を変更しないでください。
+					    </kbd>vendor/lib_name</kbd> ディレクトリ内を可能な限りオリジナルと同じにして、更新しやすいようにしてください。
+					    (オートローダにも関係することがあります)</p>
 				</section>
 
 				<section>
@@ -118,10 +118,10 @@
 							</tr>
 						</tbody>
 					</table>
-					<p>For every View driver supported, the configuration file contains a array entry with
-					    the same name as the driver, which lists the driver specific configuration (limited
-					    to the configuration items supported by the driver. This may be a subset of all
-					    configuration the parser supports).</p>
+					<p>サポートされているビュードライバにはすべて、設定ファイル内に、ドライバ名と同じ名前の配列があり、
+					    ドライバ固有の設定がリストアップされています。
+					    (そのドライバにサポートされているアイテムのみです。
+					    パーサがサポートする設定のうち、一部かもしれません)</p>
 				</section>
 
 				<section>
@@ -138,7 +138,7 @@ $view->parser()->clearCache('example.smarty');
 // 静的な使い方の例
 View_Smarty::parser()->clearCache('example.smarty');</code></pre>
 
-					<p>This can also be used when you need to pass custom configuration to the driver.</p>
+					<p>ドライバにカスタム設定を行いたい場合にも、役立つかもしれません。</p>
 				</section>
 
 			</section>
