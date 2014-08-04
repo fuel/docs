@@ -234,11 +234,11 @@ $entry->delete();</code></pre>
 								<th>select</th>
 								<td>string <kbd>$column</kbd>, [string <kbd>$more_columns</kbd>,] | array <kbd>$filter</kbd></td>
 								<td>
-									<pre class="php"><code>// Find only some columns
+									<pre class="php"><code>// いくつかのカラムだけを取得します。
 Model_Article::query()-&gt;select('id', 'name');
 Model_Article::find('all', array('select' =&gt; array('id', 'name')));
 
-// Find all columns except 'name'
+// 'name' を除く全てのカラムを取得します。
 Model_Article::query()-&gt;select(array('name' =&gt; false));
 Model_Article::find('all', array('select' =&gt; array(array('name' =&gt; false))));
 </code></pre>
@@ -248,32 +248,32 @@ Model_Article::find('all', array('select' =&gt; array(array('name' =&gt; false))
 								<th>related</th>
 								<td>string|array <kbd>$relation</kbd>, [array <kbd>$conditions</kbd>]</td>
 								<td>
-									<pre class="php"><code>// include related models in the find
+									<pre class="php"><code>// find に 関連すしたモデルを含めます。
 Model_Article::query()-&gt;related(array('author', 'comments'));
 Model_Article::find('all', array('related' =&gt; array('author', 'comments')));
 
 //=============================
-// Include one or more conditions on a relation (only supported when chaining)
+// リレーションにおいて、1つ、または、複数の条件を含みます。(メソッドチェーンでのみサーポートされています。)
 //=============================
 
-// First method - using an array
+// 1つ目の方法 - array を使用
 //----------------------------
-// one condition
+// 条件が1つの場合
 Model_Article::query()
     -&gt;related('author', array('where' =&gt; array(array('active', '=', 1))));
 
-// multiple conditions
+// 条件が複数の場合
 Model_Article::query()
     -&gt;related('author', array('where' =&gt; array(array('active', '=', 1), array('status', '=', 'X'))));
 
-// Second method - use dot notation
+// 2つ目の方法 - ドット表記を使用
 //----------------------------
-// one condition
+// 条件が1つの場合
 Model_Article::query()
 	-&gt;related('author')
 	-&gt;where('author.active', 1);
 
-// multiple conditions
+// 条件が複数の場合
 Model_Article::query()
 	-&gt;related('author')
 	-&gt;where('author.active', 1);
@@ -295,16 +295,16 @@ Model_Article::find('all', array('use_view' =&gt; 'with_comments'));
 								<th>where</th>
 								<td>string <kbd>$column</kbd>, [string <kbd>$operator</kbd>,] mixed <kbd>$value</kbd></td>
 								<td>
-									<pre class="php"><code>// Single where
+									<pre class="php"><code>// 1つの where 
 Model_Article::query()-&gt;where('id', 4);
 Model_Article::find('all', array('where' =&gt; array('category_id' =&gt; 5)));
 
-// Multiple where usage examples
+// 複数の where の使用例
 Model_Article::query()-&gt;where('id', 4)->where('category_id', '&gt;', 1);
 Model_Article::query()-&gt;where(array('id' =&gt; 4, 'category_id' =&gt; 6));
 Model_Article::find('all', array('where' =&gt; array(array('category_id', '=', 5), array('publish', '&lt;', time()))));
 
-// Using or where
+// or where を使用する。
 Model_Article::query()-&gt;where('id', 4)-&gt;or_where('id', 5);
 </code></pre>
 								</td>
@@ -312,11 +312,11 @@ Model_Article::query()-&gt;where('id', 4)-&gt;or_where('id', 5);
 								<th>order_by</th>
 								<td>string <kbd>$column</kbd>, [string <kbd>$direction</kbd>]</td>
 								<td>
-									<pre class="php"><code>// Single order_by
+									<pre class="php"><code>// 1つの order_by
 Model_Article::query()-&gt;order_by('name', 'desc');
 Model_Article::find('all', array('order_by' =&gt; array('name' =&gt; 'desc')));
 
-// Multiple order_by usage examples
+// 複数の order_by の使用例
 Model_Article::query()-&gt;order_by('name', 'desc')->order_by('category_id', 'asc');
 Model_Article::query()-&gt;order_by(array('name' => 'desc', 'category_id' =&gt; 'asc'));
 Model_Article::find('all', array('order_by' => array(array('name' =&gt; 'desc', 'category_id' =&gt; 'asc'))));
@@ -400,7 +400,7 @@ Model_Article::query()
       -&gt;or_where('draft', '=', 1)
   -&gt;and_where_close();
 
-// creates WHERE `author` = 16 AND (`date` &lt; 1348404127 OR `draft` = 1)
+// WHERE `author` = 16 AND (`date` &lt; 1348404127 OR `draft` = 1) が生成されます。
 </code></pre>
 					<p class="note">
 						ネストされた OR を作るには or_where_open() と or_where_close() を使ってください。
@@ -426,7 +426,7 @@ Model_Article::query()
                                     <h3 id="custom_sql"><a class="internal_link" href="#/custom_sql">カスタム SQL</a></h3>
                                     <p>カスタム SQL 文を実行し、 ORM モデル (または、モデルのリスト) として結果を得ることも可能です。これはORM自体の一部ではありませんが、知っておくと便利です。 詳細は <a href="../../classes/database/db.html#/method_query">DB::query()</a> 関数を見てください。</a></p>
                                     <pre class="php"><code>DB::query('SELECT * FROM `articles` WHERE `id` = 1')-&gt;as_object('Model_Article')-&gt;execute();</code></pre>
-                                    <p class="note">It is recommended that you use the <kbd>query()</kbd> function where ever possible though</p>
+                                    <p class="note">可能であれば、 <kbd>query()</kbd> 関数を使うことが推奨されています。 </p>
                                </article>
 			</section>
 
