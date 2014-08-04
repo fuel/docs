@@ -48,7 +48,7 @@
 
 			<h3 id="intro">はじめに</h3>
 			<p>
-				全ての人々が知っている （べきだ）と思いますが、<a href="http://en.wikipedia.org/wiki/Exception_handling">エラー処理</a>
+				全ての人々が知っている (べきだ) と思いますが、<a href="http://en.wikipedia.org/wiki/Exception_handling">エラー処理</a>
 				は、開発過程において非常に重要な部分をなしています。リクエストされたページがアクセス不能であることを示すだけではなく、
 				HTTP エラーステータスを返すことで（ブラウザやそれに類する）マシンに対して、
 				今何が起きているのかを知らせる方法でもあります。
@@ -57,24 +57,24 @@
 			<h3 id="code_errors">コード エラー</h3>
 
 			<p>
-				FuelPHP の内部的なエラー処理は、例外（Exception）に基づいています。あなたはコード中で例外を捕えることにより、
+				FuelPHP の内部的なエラー処理は、例外 (Exception) に基づいています。あなたはコード中で例外を捕えることにより、
 				アプリケーションに適切に例外を処理させることができ、ユーザーは継続的にアプリケーションを使い続けることができます。
 			</p>
 			<p>
-				FuelPHPは、古い手続き型の関数からの（例外でなない）PHPエラーに遭遇した場合、デフォルトの PHP の振る舞いを変更します。
-				FuelPHPは、致命的でないPHPエラーに遭遇した場合、処理を継続せず、<strong>これらのすべてのエラーに対しPhpErrorException
+				FuelPHP は、古い手続き型の関数からの（例外でなない）PHP エラーに遭遇した場合、デフォルトの PHP の振る舞いを変更します。
+				FuelPHP は、致命的でない PHP エラーに遭遇した場合、処理を継続せず、<strong>これらのすべてのエラーに対し PhpErrorException
 				をスローします。</strong> すると、以前は無視していたようなE_NOTICEといったエラーもすべて解決することを求められます。
 				非プログラマが作成したビューファイル中の構文エラーといった、PHP のエラーを捕らえることも同時に可能になります。
 			</p>
 			<p>
-				アプリケーションの config/config.php ファイルにある<a href="./configuration.html#config">errors.continue_on</a> というキーに、
-				E_NOTICE や E_STRICTといったPHPエラータイプを追加することでエラー処理の振る舞いを変更することができます。
+				アプリケーションの config/config.php ファイルにある <a href="./configuration.html#config">errors.continue_on</a> というキーに、
+				E_NOTICE や E_STRICT といった PHP エラータイプを追加することでエラー処理の振る舞いを変更することができます。
 				ここにエラーを定義することで、あなたのスクリプトの処理を継続させることができます。
 				これらのエラーに対する例外はスローされず、よってあなたはこれらのエラーをキャッチすることもできなくなります。
 			 </p>
 			 <p class="note">
-			 	エラー時に処理を継続しないことを強く推奨します。コードにバグを発生させる原因となり、一度プロダクションとしてリリースされると
-			 	発見が大変困難になるかもしれません。
+			 エラー時に処理を継続しないことを強く推奨します。コードにバグを発生させる原因となり、一度プロダクションとしてリリースされると
+			発見が大変困難になるかもしれません。
 			 </p>
 
 			<h3 id="application_errors">アプリケーションロジックエラー</h3>
@@ -117,7 +117,7 @@ catch (HttpNotFoundException $e)
 	$route = array_key_exists('_404_', Router::$routes) ? Router::$routes['_404_']->translation : Config::get('routes._404_');
 	if ($route)
 	{
-		// forge リクエストに 'false' を設定することで、ルーティングエンジンを無効にする
+		// forge に 'false' を設定することで、リクエストはルーティングエンジンを無効にする
 		$response = Request::forge($route, false)->execute()->response();
 	}
 	else
@@ -195,7 +195,7 @@ public function action_my404()
 			<p>
 				アプリケーションを単純に停止し、サーバの不適切な動作エラーを表示することが必要な場合があります。
 				通常それは
-				<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error">500 Internal
+				<a href="http://ja.wikipedia.org/wiki/HTTP%E3%82%B9%E3%83%86%E3%83%BC%E3%82%BF%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89#5xx_Server_Error_.E3.82.B5.E3.83.BC.E3.83.90.E3.82.A8.E3.83.A9.E3.83.BC">500 Internal
 				Server Error</a> です。
 			</p>
 
@@ -205,15 +205,15 @@ public function action_my404()
 
 			<pre class="php"><code>throw new HttpServerErrorException;</code></pre>
 
-			<h3 id="cli">Errors in CLI mode</h3>
+			<h3 id="cli">CLI モードでのエラー</h3>
 
 			<p>
-				When an error happens in CLI mode, either interactively through the oil console, or when running a task,
-				the error is simply displayed, and depending on the type of error, the current action may be aborted.
+				CLI モードでエラーが起こると、oil console によるインタラクティブな場合でも、タスクを実行した場合でも、
+				単にエラーが表示され、エラーの種類により、現在の処理が中段されるかもしれません。
 			</p>
 			<p>
-				You can enable dumping a backtrace when a fatal error occurs by setting the <code>cli_backtrace</code> configuration
-				key in the <kbd>config.php</kbd> config file to <code>true</code>.
+				設定ファイル <kbd>config.php</kbd> の中の <code>cli_backtrace</code> 設定を <code>true</code> にすることで Fatal エラーの場合、
+				バックトレースをダンプするようにできます。
 			</p>
 
 		</div>
