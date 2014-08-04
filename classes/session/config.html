@@ -308,7 +308,7 @@
 
 					<p>The cookie driver doesn't use any server based storage. Instead, all session variables will be stored in the cookie that is sent to the browser after each request. Use this only if you don't have to store much data, as the maximum payload size of a cookie is 4Kb, which you will reach quite quickly, due to the overhead of array serialization and encryption.</p>
 
-					<p>Specific driver configuration:</p>
+					<p>ドライバ固有の設定:</p>
 					<table class="config">
 						<tbody>
 							<tr class="header">
@@ -330,7 +330,7 @@
 				<section>
 					<h5 id="file_driver_config">ファイルドライバの設定</h5>
 
-					<p>Specific driver configuration:</p>
+					<p>ドライバ固有の設定:</p>
 					<table class="config">
 						<tbody>
 							<tr class="header">
@@ -343,7 +343,7 @@
 								<th>cookie_name</th>
 								<td>string</td>
 								<td><pre class="php"><code>'fuelfid'</code></pre></td>
-								<td>Name of the cookie used to store the session. If not set, it defaults to 'fuelfid'. If you use multiple session drivers in your application, make sure the cookie name for each of the drivers is unique!</td>
+								<td>セッションを保存するために使われる cookie 名。設定されていない場合、'fuelfid' にデフォルト設定されます。もしアプリケーション内で複数のセッションドライバを使用しているなら、cookie 名がそれぞれのドライバでユニークになるようにしてください！</td>
 							</tr>
 							<tr>
 								<th>path</th>
@@ -363,7 +363,7 @@
 
 				<section>
 					<h5 id="db_driver_config">データベースセッションの設定</h5>
-					<p>Specific driver configuration:</p>
+					<p>ドライバ固有の設定:</p>
 					<table class="config">
 						<tbody>
 							<tr class="header">
@@ -376,7 +376,7 @@
 								<th>cookie_name</th>
 								<td>string</td>
 								<td><pre class="php"><code>'fueldid'</code></pre></td>
-								<td>Name of the cookie used to store the session. If not set, it defaults to 'fueldid'. If you use multiple session drivers in your application, make sure the cookie name for each of the drivers is unique!</td>
+								<td>セッションを保存するために使われる cookie 名。設定されていない場合、'fuelfid' にデフォルト設定されます。もしアプリケーション内で複数のセッションドライバを使用しているなら、cookie 名がそれぞれのドライバでユニークになるようにしてください！</td>
 							</tr>
 							<tr>
 								<th>database</th>
@@ -395,7 +395,7 @@
 								<td>string</td>
 								<td><pre class="php"><code>'sessions'</code></pre></td>
 								<td>
-									Name of the table that will be used to store the session data. You should make sure this table exists, and has these fields (MySQL syntax):
+									セッションデータを保存するために使われるテーブル名。テーブルが存在し、以下のフィールド (MySQL 構文) を持つようにしてください: 
 								<br /><br /><pre>
 CREATE TABLE IF NOT EXISTS `sessions` (
   `session_id` varchar(40) NOT NULL,
@@ -409,7 +409,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   UNIQUE KEY `PREVIOUS` (`previous_id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 </pre><br />
-									Note that the sessions table has a unique index on both the session_id and the previous_id columns. This is both to speed up the query (which is always by id), and to make sure no duplicate id's are inserted.
+									sessions テーブルが session_id カラムと previous_id カラムの両方にユニークキーを持つことに注意してください。 This is both to speed up the query (which is always by id), and to make sure no duplicate id's are inserted.
 								</td>
 							</tr>
 							<tr>
@@ -425,7 +425,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 				<section>
 					<h5 id="memcache_driver_config">Memcached セッションの設定</h5>
 
-					<p>Specific driver configuration:</p>
+					<p>ドライバ固有の設定:</p>
 					<table class="config">
 						<tbody>
 							<tr class="header">
@@ -465,7 +465,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 				<section>
 					<h5 id="redis_driver_config">Redis セッションの設定</h5>
 
-					<p>Specific driver configuration:</p>
+					<p>ドライバ固有の設定:</p>
 					<table class="config">
 						<tbody>
 							<tr class="header">
@@ -492,19 +492,19 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 
 				<h3 id="oil_session_setup">Oil コマンドを使い、セッションテーブルを作成/制御する</h3>
 					<p>
-						An oil task has been provided to allow you to create, remove and clear your sessions table using
-						the oil command line utility.
+						oil コマンドラインユーティリティを使って、 sessions テーブルを作成、削除、クリアできるように、
+						oil タスクが提供されています。
 					</p>
-					<pre class="cli"><code># display menu
+					<pre class="cli"><code># メニューを表示する
 $ php oil r session
 
-# create the sessions table
+# sessions テーブルを作成する
 $ php oil r session:create
 
-# remove the sessions table
+# sessions テーブルを削除する
 $ php oil r session:remove
 
-# clear (truncate) the sessions table
+# sessions テーブルをクリア (truncate) する
 $ php oil r session:clear</code></pre>
 
 				<h3 id="native_emulation">PHP ネイティブセッションのエミュレーション</h3>
