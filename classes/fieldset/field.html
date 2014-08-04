@@ -197,8 +197,8 @@ $fieldset-&gt;field('fieldname')-&gt;set_type('hidden');</code></pre>
 			<article>
 				<h4 class="method" id="method_set_value">set_value($value, $repopulate = false)</h4>
 				<p>
-					Set or changes the value of the field. For radio buttons and checkboxes, you can choose to repopulate, which
-					will recalculate the "checked" value of the field based on the current and the passed value.
+					フィールドの値を設定／変更します。ラジオボタン、チェックボックスの場合、repopulate を選択すると、
+					現在の値と渡された値に応じて "checked" を再計算します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -219,12 +219,12 @@ $fieldset-&gt;field('fieldname')-&gt;set_type('hidden');</code></pre>
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><pre class="php">必須</pre></td>
-										<td>Input field type used when generating the HTML for this field.</td>
+										<td>このフィールドのHTMLを生成するときに使用する入力フィールドタイプ</td>
 									</tr>
 									<tr>
 										<th><kbd>$repopulate</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If true, the field will be repopulated based on the value (only for radio buttons and checkboxes).</td>
+										<td>true にすると、値に応じてフィールドを再計算する (ラジオボタンとチェックボックスの場合のみ)</td>
 									</tr>
 								</tbody>
 							</table>
@@ -247,8 +247,8 @@ $fieldset-&gt;field('fieldname')-&gt;set_type('hidden');</code></pre>
 			<article>
 				<h4 class="method" id="method_set_description">set_description($description)</h4>
 				<p>
-					Set or changes the fields description. The description is mapped to the <strong>{description}</strong>  ta
-					in the form field template, and can for example be used to display a help text.
+					フィールドの説明を設定／変更します。説明は、フィールドテンプレートの<strong>{description}</strong> タグに
+					マッピングされます。たとえばヘルプテキストを表示する、などに使用できます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -269,7 +269,7 @@ $fieldset-&gt;field('fieldname')-&gt;set_type('hidden');</code></pre>
 									<tr>
 										<th><kbd>$description</kbd></th>
 										<td><pre class="php">必須</pre></td>
-										<td>Field description.</td>
+										<td>フィールドの説明</td>
 									</tr>
 								</tbody>
 							</table>
@@ -284,7 +284,7 @@ $fieldset-&gt;field('fieldname')-&gt;set_type('hidden');</code></pre>
 						<td>
 							<pre class="php"><code>$fieldset
 	-&gt;field('fieldname')
-	-&gt;set_description('We would like you to enter something here');</code></pre>
+	-&gt;set_description('ここに何か入力してください。');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -294,7 +294,7 @@ $fieldset-&gt;field('fieldname')-&gt;set_type('hidden');</code></pre>
 			<article>
 				<h4 class="method" id="method_set_template">set_template($template = null)</h4>
 				<p>
-					Sets or resets a custom form field template for this field.
+					このフィールドのカスタムフィールドテンプレートを設定またはリセットします。
 				</p>
 				<table class="method">
 					<tbody>
@@ -315,7 +315,7 @@ $fieldset-&gt;field('fieldname')-&gt;set_type('hidden');</code></pre>
 									<tr>
 										<th><kbd>$template</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The template to be used to render the HTML for this field.</td>
+										<td>このフィールドをHTMLレンダリングするのに使用するテンプレート</td>
 									</tr>
 								</tbody>
 							</table>
@@ -335,13 +335,13 @@ $fieldset-&gt;field('fieldname')-&gt;set_type('hidden');</code></pre>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">If you don't pass anything, or pass <kbd>null</kbd>, the default field template as defined in the <strong>form.php</strong> config file will be used.</p>
+				<p class="note">値を渡さないか、<kbd>null</kbd> を渡した場合、<strong>form.php</strong> 設定ファイルに定義されているデフォルトテンプレートを使用します。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_set_error_message">set_error_message($rule, $msg)</h4>
 				<p>
-					Set a custom error message for a specific validation rule.
+					指定したバリデーションルールのカスタムエラーメッセージを設定します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -362,14 +362,14 @@ $fieldset-&gt;field('fieldname')-&gt;set_type('hidden');</code></pre>
 									<tr>
 										<th><kbd>$rule</kbd></th>
 										<td><pre class="php">必須</pre></td>
-										<td>Validation rule for which you want to override the default error message.</td>
+										<td>デフォルトのエラーメッセージを上書きしたいバリデーションルール</td>
 									</tr>
 									<tr>
 										<th><kbd>$msg</kbd></th>
 										<td><pre class="php">必須</pre></td>
 										<td>
-											The message to display. You can use <strong>:label</strong> as a placeholder for the field label, and
-											<strong>:param:&lt;number&gt;</strong> for the parameters passed to the rule.
+											表示するメッセージ。フィールドラベルは <strong>:label</strong> を、
+											ルールに渡すパラメータは <strong>:param:&lt;number&gt;</strong> をプレースホルダに使用できます。
 										</td>
 									</tr>
 								</tbody>
@@ -402,7 +402,7 @@ $fieldset
 			<article>
 				<h4 class="method" id="method_get_error_message">get_error_message($rule)</h4>
 				<p>
-					Checks if a custom message for a validation rule is defined, and if so, the message is returned.
+					バリデーションルールにカスタムメッセージがあるかどうかをチェックします。存在する場合、そのメッセージを返します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -423,7 +423,7 @@ $fieldset
 									<tr>
 										<th><kbd>$rule</kbd></th>
 										<td><pre class="php">必須</pre></td>
-										<td>The name of the validation rule who's message should be fetched.</td>
+										<td>メッセージを取得したいバリデーションルール名。</td>
 									</tr>
 								</tbody>
 							</table>
@@ -431,7 +431,7 @@ $fieldset
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Mixed, string if there is a custom message, or <kbd>null</kbd> if not</td>
+						<td>Mixed, カスタムメッセージがある場合は文字列、そうでなければ <kbd>null</kbd></td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -452,8 +452,8 @@ $message = $fieldset-&gt;field('fieldname')-&gt;get_error_message('valid_string'
 			<article>
 				<h4 class="method" id="method_add_rule">add_rule($callback)</h4>
 				<p>
-					Add a validation rule to a field, either an internal validation rule identified by name, or a valid callback that
-					validates the field.
+					フィールドにバリデーションルールを追加します。規定のバリデーションルール名か、あるいは
+					このフィールドをバリデーションするコールバックを指定します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -474,7 +474,7 @@ $message = $fieldset-&gt;field('fieldname')-&gt;get_error_message('valid_string'
 									<tr>
 										<th><kbd>$callback</kbd></th>
 										<td><pre class="php">必須</pre></td>
-										<td>Either a string with a valid validation rule name, or full callback.</td>
+										<td>バリデーションルール名、または完全なコールバックのいずれか。</td>
 									</tr>
 								</tbody>
 							</table>
@@ -496,14 +496,14 @@ $message = $fieldset->field('fieldname')->add_rule('required');</code></pre>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">When you set the required rule, the "required" attribute of the form input tag will be set.</p>
+				<p class="note">required ルールを設定すると、フォームの input タグに "required" 属性がセットされます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_delete_rule">delete_rule($callback, $set_attr = true)</h4>
 				<p>
-					Removes a validation rule to a field, identified by either an internal validation rule identified by name, or a valid callback that
-					validates the field.
+					フィールドのバリデーションルールを取り除きます。規定のバリデーションルール名か、あるいは
+					このフィールドをバリデーションするコールバックを指定します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -524,12 +524,12 @@ $message = $fieldset->field('fieldname')->add_rule('required');</code></pre>
 									<tr>
 										<th><kbd>$callback</kbd></th>
 										<td><pre class="php">必須</pre></td>
-										<td>Either a string with a valid validation rule name, or full callback.</td>
+										<td>バリデーションルール名、または完全なコールバックのいずれか。</td>
 									</tr>
 									<tr>
 										<th><kbd>$set_attr</kbd></th>
 										<td><pre class="php"><code>true</code></pre></td>
-										<td>If true, attributes related to the rule are updated too.</td>
+										<td>true に設定すると、ルールに関連する属性も更新します。</td>
 									</tr>
 								</tbody>
 							</table>
@@ -551,7 +551,7 @@ $message = $fieldset->field('fieldname')->delete_rule('required', true);</code><
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">When you remove the required rule, the "required" attribute of the form input tag will be removed if <kbd>$set_attr</kbd> is set to <kbd>true</kbd>.</p>
+				<p class="note">required ルールを取り除くとき、<kbd>$set_attr</kbd> が <kbd>true</kbd> に設定されているとフォームの input タグの "required" 属性も取り除きます。</p>
 			</article>
 
 			<article>
