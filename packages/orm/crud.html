@@ -409,8 +409,8 @@ Model_Article::query()
 				</article>
 
                                 <article>
-                                    <h3 id="subqueries"><a class="internal_link" href="#/custom_sql">Subqueries</a></h3>
-                                    <p>Subqueries can be created by constructing a seperate query object and using get_query() to parse it.</p>
+                                    <h3 id="subqueries"><a class="internal_link" href="#/custom_sql">サブクエリ</a></h3>
+                                    <p>別々のクエリオブジェクトを構築し、パースするために get_query() を使うことによって、サブクエリを作ることができます。</p>
                                     <pre id="php"><code>$subQuery = Model_Article::query()
         -&gt;select('author')
         -&gt;where('date', '&lt;', time())
@@ -423,8 +423,8 @@ Model_Article::query()
                                 </article>
 
                                 <article>
-                                    <h3 id="custom_sql"><a class="internal_link" href="#/custom_sql">Custom SQL</a></h3>
-                                    <p>It is also possible to perform custom SQL statements and have the result returned as an Orm model (or list of models). Although this is not part of the Orm itself it is useful to know. Take a look at the <a href="../../classes/database/db.html#/method_query">DB::query()</a> function for more information.</a></p>
+                                    <h3 id="custom_sql"><a class="internal_link" href="#/custom_sql">カスタム SQL</a></h3>
+                                    <p>カスタム SQL 文を実行し、 ORM モデル (または、モデルのリスト) として結果を得ることも可能です。これはORM自体の一部ではありませんが、知っておくと便利です。 詳細は <a href="../../classes/database/db.html#/method_query">DB::query()</a> 関数を見てください。</a></p>
                                     <pre class="php"><code>DB::query('SELECT * FROM `articles` WHERE `id` = 1')-&gt;as_object('Model_Article')-&gt;execute();</code></pre>
                                     <p class="note">It is recommended that you use the <kbd>query()</kbd> function where ever possible though</p>
                                </article>
