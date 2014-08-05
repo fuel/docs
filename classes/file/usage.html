@@ -48,7 +48,7 @@
 			<h2>File クラス</h2>
 
 			<p>
-				file クラスは、ファイルとディレクトリを扱う様々なメソッドを提供します。いくつかのヘルパーメソッドを通して、
+				File クラスは、ファイルとディレクトリを扱う様々なメソッドを提供します。いくつかのヘルパーメソッドを通して、
 				あるいは、すべてのファイルとディレクトリがオブジェクトでラップされている高度なオブジェクト指向メソッドを通して
 				提供されます。
 			</p>
@@ -56,7 +56,7 @@
 			<section>
 				<h2 id="usage">使用方法</h2>
 
-				<p>file クラスの基本的な使い方は、以下のようにヘルパーメソッド経由で利用します。</p>
+				<p>File クラスの基本的な使い方は、以下のようにヘルパーメソッド経由で利用します。</p>
 			</section>
 
 			<article>
@@ -85,7 +85,7 @@
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -148,7 +148,7 @@
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -211,7 +211,7 @@
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -269,7 +269,7 @@
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -290,7 +290,7 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Returns 'Contents for file.' if you created the file in the example for File::create()
+							<pre class="php"><code>// File::create() の例でのファイルを作成済みの場合、'Contents for file.' を返す。
 $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 						</td>
 					</tr>
@@ -336,7 +336,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -345,7 +345,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					<tr>
 						<th>返り値</th>
 						<td>array - サブディレクトリを上にし、自然順、大文字小文字を区別してソートし亜mす。ディレクトリは
-						キーが文字列、値が配列 ($depth 制限で読み込みできない場合は false)となり、ファイルはファイル名を値とする添字配列です。
+						キーが文字列、値が配列 ($depth 制限で読み込みできない場合は false) となり、ファイルはファイル名を値とする添字配列です。
 						すべてのディレクトリには、末尾にディレクトリ区切りが付加されます。</td>
 					</tr>
 					<tr>
@@ -366,18 +366,18 @@ $contents = File::read_dir(DOCROOT, 2);
 
 // カスタムルールを使った読み込み
 $contents = File::read_dir(DOCROOT, 0, array(
-	'!^\.', // no hidden files/dirs
-	'!^private' => 'dir', // no private dirs
-	'\.png$' => 'file', // only get png's
-	'\.css$' => 'file', // or css files
-	'!^_', // exclude everything that starts with an underscore.
+	'!^\.', // 隠しファイル/ディレクトリを除く
+	'!^private' => 'dir', // private ディレクトリを除く
+	'\.png$' => 'file', // png ファイルのみ
+	'\.css$' => 'file', // または css ファイル
+	'!^_', // アンダースコアで始まるすべてを除外。
 ));
 
 /**
- * As you can see above, you can make
- * rules directory or file specific by
- * adding "=> 'file'" or "=> 'dir'"
- * behind the rule.
+ * 上で見たように、
+ * "=> 'file'" や "=> 'dir'" を追加することで
+ * ディレクトリやファイルを特定したルールを
+ * 作成することができます。
  */</code></pre>
 						</td>
 					</tr>
@@ -421,7 +421,7 @@ $contents = File::read_dir(DOCROOT, 0, array(
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -484,7 +484,7 @@ $contents = File::read_dir(DOCROOT, 0, array(
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -542,14 +542,14 @@ $contents = File::read_dir(DOCROOT, 0, array(
 								<tr>
 									<th><kbd>$source_area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 								<tr>
 									<th><kbd>$target_area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Optional Area object to use if $source_area does not contain $new_path, defaults to main config (see <a href="advanced.html">advanced
-									usage</a> for more information)</td>
+									<td>$source_area が $new_path を含まないときに使うオプションのエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方</a> 
+									を参照)</td>
 								</tr>
 							</table>
 						</td>
@@ -568,13 +568,13 @@ $contents = File::read_dir(DOCROOT, 0, array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// rename 'test.txt' to 'newname.txt', and move it to a sub-directory
+							<pre class="php"><code>// 'test.txt' を 'newname.txt' にリネームし、サブディレクトリに移動する
 File::rename(DOCROOT.'test.txt', DOCROOT.'folder/newname.txt');
 
-// rename using a single area
+// 1つのエリアを使いリネームする
 File::rename(DOCROOT.'one.jpg', DOCROOT.'final.jpg', 'docroot');
 
-// move and rename between two restrictive areas
+// 2つの制限エリアの間で移動しリネームする
 File::rename(APPPATH.'tmp/file.jpg', DOCROOT.'folder/image.jpg', 'tmp', 'public');</code></pre>
 						</td>
 					</tr>
@@ -613,14 +613,14 @@ File::rename(APPPATH.'tmp/file.jpg', DOCROOT.'folder/image.jpg', 'tmp', 'public'
 								<tr>
 									<th><kbd>$source_area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 								<tr>
 									<th><kbd>$target_area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Optional Area object to use if $source_area does not contain $new_path, defaults to main config (see <a href="advanced.html">advanced
-									usage</a> for more information)</td>
+									<td>$source_area が $new_path を含まないときに使うオプションのエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方</a> 
+									を参照)</td>
 								</tr>
 							</table>
 						</td>
@@ -677,14 +677,14 @@ File::rename(APPPATH.'tmp/file.jpg', DOCROOT.'folder/image.jpg', 'tmp', 'public'
 								<tr>
 									<th><kbd>$source_area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 								<tr>
 									<th><kbd>$target_area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Optional Area object to use if $source_area does not contain $new_path, defaults to main config (see <a href="advanced.html">advanced
-									usage</a> for more information)</td>
+									<td>$source_area が $new_path を含まないときに使うオプションのエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方</a> 
+									を参照)</td>
 								</tr>
 							</table>
 						</td>
@@ -705,13 +705,13 @@ File::rename(APPPATH.'tmp/file.jpg', DOCROOT.'folder/image.jpg', 'tmp', 'public'
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// copy the file 'test.txt' from the docroot to a sub directory
+							<pre class="php"><code>// ファイル 'test.txt' を docroot からサブディレクトリにコピー
 File::copy(DOCROOT.'test.txt', DOCROOT.'folder/test.txt');
 
-// copy using a single area
+// 1つのエリアを使ったコピー
 File::copy(DOCROOT.'one.jpg', DOCROOT.'img/one.jpg', 'public');
 
-// copy between two restrictive areas
+// 2つの制限エリア間でのコピー
 File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 </code></pre>
 						</td>
@@ -751,14 +751,14 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 								<tr>
 									<th><kbd>$source_area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 								<tr>
 									<th><kbd>$target_area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>Optional Area object to use if $source_area does not contain $new_path, defaults to main config (see <a href="advanced.html">advanced
-									usage</a> for more information)</td>
+									<td>$source_area が $new_path を含まないときに使うオプションのエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方</a> 
+									を参照)</td>
 								</tr>
 							</table>
 						</td>
@@ -811,7 +811,7 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -874,7 +874,7 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -888,7 +888,7 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 						<th>例外</th>
 						<td>
 							<kbd>OutsideAreaException</kbd> パスがエリア内になかった場合。
-							<kbd>InvalidPathException</kbd> source path がディレクトリではない場合。
+							<kbd>InvalidPathException</kbd> ソースパスがディレクトリではない場合。
 							<kbd>FileAccessException</kbd> 削除中に異常が発生した場合。
 						</td>
 					</tr>
@@ -933,7 +933,7 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -986,7 +986,7 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -1000,7 +1000,7 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 						<th>例</th>
 						<td>
 							<pre class="php"><code>$resource = File::open_file(DOCROOT.'/my_dir/text.txt');
-// Do something with the resource
+// リソースに何かする
 File::close_file($resource);</code></pre>
 						</td>
 					</tr>
@@ -1039,7 +1039,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -1097,7 +1097,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -1118,7 +1118,7 @@ File::close_file($resource);</code></pre>
 						<th>例</th>
 						<td>
 							<pre class="php"><code>$url = File::get_url(DOCROOT.'/my_dir/text.txt');
-// Returns something like: http://mydomain.com/mydir/text.txt</code></pre>
+// http://mydomain.com/mydir/text.txt のようなものを返す</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -1151,7 +1151,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -1172,7 +1172,7 @@ File::close_file($resource);</code></pre>
 						<th>例</th>
 						<td>
 							<pre class="php"><code>$permissions = File::get_permissions(DOCROOT.'/my_dir/text.txt');
-// Returns "0755"</code></pre>
+// "0755" を返す</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -1210,7 +1210,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -1263,7 +1263,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -1317,7 +1317,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 							</table>
@@ -1350,7 +1350,7 @@ File::close_file($resource);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_download">download($path, $name = null, $mime = null, $area = null, $delete = false, $disposition = 'attachment')</h4>
-				<p>Outputs a file, inline or as a downloaded attachment.</p>
+				<p>インラインまたはダウンロード添付としてファイルを出力する</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1384,7 +1384,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$area</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>使用するエリアオブジェクト、デフォルトはメインコンフィグ (詳しい情報は <a href="advanced.html">高度な使い方
+									<td>使用するエリアオブジェクト、デフォルトはメインの設定 (詳しい情報は <a href="advanced.html">高度な使い方
 									</a> を参照)</td>
 								</tr>
 								<tr>
@@ -1395,7 +1395,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$disposition</kbd></th>
 									<td><kbd>'attachment'</kbd></td>
-									<td>whether to download or output inline. Accepts 'attachment' or 'inline', and defaults to 'attachment'.</td>
+									<td>ダウンロードかインライン出力か。'attachment' か 'inline' が許可され、デフォルトは 'attachment'。</td>
 								</tr>
 							</table>
 						</td>
@@ -1415,10 +1415,10 @@ File::close_file($resource);</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// download file
+							<pre class="php"><code>// ファイルのダウンロード
 File::download(DOCROOT.'/my_dir/text.txt', 'newfile.txt');
 
-// output an inline image, for use as an &lt;img&gt; tag source
+// &lt;img&gt; タグソースのためのインラインイメージの出力
 File::download(DOCROOT.'/img/image.jpg', null, 'image/jpeg', null, false, 'inline');
 </code></pre>
 						</td>
