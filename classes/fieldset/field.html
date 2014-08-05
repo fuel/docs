@@ -557,7 +557,7 @@ $message = $fieldset->field('fieldname')->delete_rule('required', true);</code><
 			<article>
 				<h4 class="method" id="method_set_attribute">set_attribute($attr, $value = null)</h4>
 				<p>
-					Set one or more HTML field attributes for the field.
+					このフィールドに、一つ以上の HTML 属性を設定します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -578,12 +578,12 @@ $message = $fieldset->field('fieldname')->delete_rule('required', true);</code><
 									<tr>
 										<th><kbd>$attr</kbd></th>
 										<td><pre class="php">必須</pre></td>
-										<td>Either a string with the name of the attribute, or an assoc array of attributes and values.</td>
+										<td>属性名(文字列)、または属性と値からなる連想配列</td>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The attributes value. Ignored if $attr is an array.</td>
+										<td>属性値。$attr が配列の場合は無効</td>
 									</tr>
 								</tbody>
 							</table>
@@ -609,13 +609,13 @@ $fieldset-&gt;field('fieldname')-&gt;set_attribute(array(
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">If you pass <kbd>null</kbd> as a value, the attribute will be removed from the field attribute list.</p>
+				<p class="note"><kbd>null</kbd> を値として渡した場合、属性リストから属性を取り除きます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_attribute">get_attribute($key = null, $default = null)</h4>
 				<p>
-					Get one or all HTML field attributes of the field.
+					このフィールドの、一つ以上の HTML 属性を取得します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -636,12 +636,12 @@ $fieldset-&gt;field('fieldname')-&gt;set_attribute(array(
 									<tr>
 										<th><kbd>$key</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Name or array of names of attribute(s) to get. If null, all attributes set are returned.</td>
+										<td>属性名または属性名の配列。null の場合はすべての属性を返す。</td>
 									</tr>
 									<tr>
 										<th><kbd>$default</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Value to return if the requested attribute has not been set.</td>
+										<td>属性が設定されていない場合に返す値。</td>
 									</tr>
 								</tbody>
 							</table>
@@ -649,7 +649,7 @@ $fieldset-&gt;field('fieldname')-&gt;set_attribute(array(
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Mixed, a single attribute value, or multiple values in an array if $key was an array of attributes</td>
+						<td>Mixed 単一の属性値、あるいは $key が属性の配列の場合は、配列</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -666,7 +666,7 @@ $style = $fieldset-&gt;field('fieldname')
 			<article>
 				<h4 class="method" id="method_set_options">set_options($value, $label = null, $replace_options = false)</h4>
 				<p>
-					Set one or more options. Only valid for radio buttons, checkboxes and selects.
+					オプションを設定します。ラジオボタン、チェックボックス、セレクトボックスのみ有効。
 				</p>
 				<table class="method">
 					<tbody>
@@ -687,17 +687,17 @@ $style = $fieldset-&gt;field('fieldname')
 									<tr>
 										<th><kbd>$value</kbd></th>
 										<td><pre class="php">必須</pre></td>
-										<td>Value of the option, or an assoc array of values and labels.</td>
+										<td>オプションの値。Value of the option, or an assoc array of values and labels.</td>
 									</tr>
 									<tr>
 										<th><kbd>$label</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Label to be set on the value. Only used if $value is not an array.</td>
+										<td>値に設定するラベル。$value が配列でない場合のみ使用する。</td>
 									</tr>
 									<tr>
 										<th><kbd>$replace_options</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>If true, existing options will be deleted before setting the new one(s).</td>
+										<td>true の場合は既存のオプションを削除して新しいオプションを設定する。</td>
 									</tr>
 								</tbody>
 							</table>
@@ -722,7 +722,7 @@ $style = $fieldset-&gt;field('fieldname')-&gt;set_options('1', 'Label');</code><
 			<article>
 				<h4 class="method" id="method_fieldset">fieldset()</h4>
 				<p>
-					Get the Fieldset object this Field is associated with.
+					このフィールドが関連付けられたフィールドセットオブジェクトを取得します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -752,28 +752,28 @@ $same = ($fieldset === $fieldset-&gt;field('fieldname')-&gt;fieldset());</code><
 			<article>
 				<h4 class="method" id="method_add">add($name, $label = '', array $attributes = array(), array $rules = array())</h4>
 				<p>
-					Alias for the <a href="fieldset.html#method_add">Fieldset add()</a> method.
+					<a href="fieldset.html#method_add">Fieldset add()</a> メソッドのエイリアス。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_add_before">add_before($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
 				<p>
-					Alias for the <a href="fieldset.html#method_add_before">Fieldset add_before()</a> method.
+					<a href="fieldset.html#method_add_before">Fieldset add_before()</a> メソッドのエイリアス。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_add_after">add_after($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
 				<p>
-					Alias for the <a href="fieldset.html#method_add_after">Fieldset add_after()</a> method.
+					<a href="fieldset.html#method_add_after">Fieldset add_after()</a> メソッドのエイリアス。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_build">build()</h4>
 				<p>
-					Generates the form HTML for the field.
+					このフィールドのフォーム HTML を生成します。
 				</p>
 				<table class="method">
 					<tbody>
@@ -787,7 +787,7 @@ $same = ($fieldset === $fieldset-&gt;field('fieldname')-&gt;fieldset());</code><
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>string, the generated HTML</td>
+						<td>文字列、生成される HTML</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -804,27 +804,27 @@ $style = $fieldset-&gt;field('fieldname')-&gt;set_options('1', 'Label');</code><
 			<article>
 				<h4 class="method" id="method_input">input()</h4>
 				<p>
-					Alias for the <a href="../validation/methods.html#method_input">Validation input()</a> method,
-					and returning the input value for the current field. Returns <kbd>null</kbd> if no input value
-					is present.
+					<a href="../validation/methods.html#method_input">Validation input()</a> メソッドのエイリアス。
+					現在のフィールドの入力値を返す。入力値が無い場合は <kbd>null</kbd>
+					を返す。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_validated">validated()</h4>
 				<p>
-					Alias for the <a href="../validation/methods.html#method_validated">Validation validated()</a> method,
-					and returning the validated input value for the current field. Returns <kbd>null</kbd> if no validated
-					input value is present.
+					<a href="../validation/methods.html#method_validated">Validation validated()</a> メソッドのエイリアス。
+					現在のフィールドのバリデーションされた入力値を返す。バリデーションされた入力値が無い場合は <kbd>null</kbd>
+					を返す。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_error">error()</h4>
 				<p>
-					Alias for the <a href="../validation/methods.html#method_error">Validation error()</a> method,
-					and any error messages present after the validation of this field has run. Returns <kbd>false</kbd>
-					if no errors were detected.
+					<a href="../validation/methods.html#method_error">Validation error()</a> メソッドのエイリアス。
+					このフィールドのバリデーション実行後のエラーメッセージを返す。エラーが検出されない場合は <kbd>false</kbd>
+					を返す。
 				</p>
 			</article>
 		</div>
