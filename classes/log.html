@@ -66,7 +66,7 @@
 						<td>constant</td>
 						<td><pre class="php"><code>Fuel::L_WARNING</code></pre></td>
 						<td>
-							次のいずれかを指定できます : <code>Fuel::L_NONE, Fuel::L_ERROR, Fuel::L_WARNING, Fuel::L_DEBUG, Fuel::L_INFO or Fuel::L_ALL</code>
+							次のいずれかを指定できます: <code>Fuel::L_NONE, Fuel::L_ERROR, Fuel::L_WARNING, Fuel::L_DEBUG, Fuel::L_INFO or Fuel::L_ALL</code>
 						</td>
 					</tr>
 					<tr>
@@ -74,7 +74,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>null</code></pre></td>
 						<td>
-							Name of the log file. If not given, it will be generated in the form "./YYYY/MM/DD.log", with one logfile per day.
+							ログファイルの名前。指定がない場合、"./YYYY/MM/DD.log" という形式で 1日 1つのログファイルが生成されます。
 						</td>
 					</tr>
 					<tr>
@@ -90,7 +90,7 @@
 						<td>string</td>
 						<td><pre class="php"><code>'Y-m-d H:i:s'</code></pre></td>
 						<td>
-							ログエントリ日付の形式。PHP の date 形式に準拠。詳細は<a href="http://www.php.net/date">http://www.php.net/date</a>を参照して下さい。
+							ログエントリ日付の形式。PHP の date 形式に準拠。詳細は <a href="http://www.php.net/date">http://www.php.net/date</a> を参照して下さい。
 						</td>
 					</tr>
 				</tbody>
@@ -124,15 +124,15 @@ if($var !== 1) Log::error('We cannot keep going, $var has been changed! :o');
 // 最後に、独自の $level のログエントリを作成します
 Log::write('Link', 'More info on http://fuelphp.jp/');</code></pre>
 
-			<h5 id="output">Output</h5>
+			<h5 id="output">出力</h5>
 
 			<p>
-				All log files are being placed in the defined folder (see above).<br />
-				If you have configured a filename, all logs will be written to this file. You need to setup your own log rotation mechanism
-				(for example Linux logrotate) to avoid the file from becoming very large. If you have not configured a filename, log files
-				are composed in folders named by the current <strong>year</strong> followed by the <strong>month</strong> (<em>"2013/06"</em> for example)
-				with the day of the month as the filename (<em>"15.php"</em> for example).<br/>
-				The complete path to our example log file would be: <strong>APPPATH.'logs/2011/06/15.php'</strong>
+				すべてのログファイルは定義されたフォルダ (上を参照) に保存されます。<br />
+				ファイル名を設定した場合、すべてのログがそのファイルに書き込まれます。ログファイルが非常に大きくなるのを避けるためには、ログローテーションのメカニズム (例えば、Linux の logrotate) をあなたがセットアップする必要があります。 
+				ファイル名を設定しなかった場合、ログファイルは、
+				現在の <strong>年</strong> のフォルダの中に <strong>月</strong> のフォルダの中 (例えば、<em>"2013/06"</em>) に
+ 				日をファイル名として (例えば、<em>"15.php"</em>) 作成されます。<br/>
+				この例でのログファイルの完全なパスは次になります: <strong>APPPATH.'logs/2013/06/15.php'</strong>
 			</p>
 
 			<p><strong>上記の例はログファイルに次のコードを記述します:</strong></p>
