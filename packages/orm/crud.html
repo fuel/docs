@@ -221,7 +221,7 @@ $entry->delete();</code></pre>
 				</article>
 
 				<article id="functions">
-					<h2>All selection methods when using find</h2>
+					<h2>find を使用するときの全ての選択メソッド</h2>
 
 					<table class="config">
 						<tbody>
@@ -248,7 +248,7 @@ Model_Article::find('all', array('select' =&gt; array(array('name' =&gt; false))
 								<th>related</th>
 								<td>string|array <kbd>$relation</kbd>, [array <kbd>$conditions</kbd>]</td>
 								<td>
-									<pre class="php"><code>// find に 関連すしたモデルを含めます。
+									<pre class="php"><code>// find に 関係するモデルを含めます。
 Model_Article::query()-&gt;related(array('author', 'comments'));
 Model_Article::find('all', array('related' =&gt; array('author', 'comments')));
 
@@ -327,7 +327,7 @@ Model_Article::find('all', array('order_by' => array(array('name' =&gt; 'desc', 
 								<th>from_cache</th>
 								<td>bool<kbd>$cache</kbd></td>
 								<td>
-									<pre class="php"><code>// disable the ORM object cache on this query
+									<pre class="php"><code>// このクエリではORM オブジェクトのキャッシュを行わなくする
 Model_Article::query()-&gt;from_cache(false);
 Model_Article::find('all', array('from_cache' =&gt; false));
 </code></pre>
@@ -337,7 +337,7 @@ Model_Article::find('all', array('from_cache' =&gt; false));
 								<th>limit</th>
 								<td>int <kbd>$limit</kbd></td>
 								<td>
-									<pre class="php"><code>// limit with relation consistence
+									<pre class="php"><code>// 関係一貫性のある件数制限
 Model_Article::query()-&gt;limit(10);
 Model_Article::find('all', array('limit' =&gt; 10));
 </code></pre>
@@ -347,7 +347,7 @@ Model_Article::find('all', array('limit' =&gt; 10));
 								<th>rows_limit</th>
 								<td>int <kbd>$limit</kbd></td>
 								<td>
-									<pre class="php"><code>// limit without relation consistence
+									<pre class="php"><code>// 関係一貫性ののない件数制限
 Model_Article::query()-&gt;rows_limit(10);
 Model_Article::find('all', array('rows_limit' =&gt; 10));
 </code></pre>
@@ -357,7 +357,7 @@ Model_Article::find('all', array('rows_limit' =&gt; 10));
 								<th>offset</th>
 								<td>int <kbd>$offset</kbd></td>
 								<td>
-									<pre class="php"><code>// offset with relation consistence
+									<pre class="php"><code>// 関係一貫性のあるオフセット
 Model_Article::query()-&gt;offset(10);
 Model_Article::find('all', array('offset' =&gt; 10));
 </code></pre>
@@ -367,7 +367,7 @@ Model_Article::find('all', array('offset' =&gt; 10));
 								<th>rows_offset</th>
 								<td>int <kbd>$offset</kbd></td>
 								<td>
-									<pre class="php"><code>// offset without relation consistence
+									<pre class="php"><code>// 関係一貫性のないオフセット
 Model_Article::query()-&gt;rows_offset(10);
 Model_Article::find('all', array('rows_offset' =&gt; 10));
 </code></pre>
@@ -376,16 +376,16 @@ Model_Article::find('all', array('rows_offset' =&gt; 10));
 						</tbody>
 					</table>
 					<p class="note">
-						Do not mix the two limit/offset types! A combination of <kbd>limit</kbd> and <kbd>rows_offset</kbd> (or the other way around) will
-						lead to unexpected results!
+						2つの limit/offset タイプを混在させないでください！ <kbd>limit</kbd> と <kbd>rows_offset</kbd> (もしくはその逆) の組み合わせは
+						予期せぬ結果につながるでしょう！
 					</p>
 					<p class="note">
-						In this context, <kbd>relation consistence</kbd> means that by default when you query including related models,
-						the ORM will make sure the related results are consistent. This means that your results aren't always exactly
-						limited. For example, if the first parent in the result has 12 children, your resultset will contain 12 records
-						even if you have used <kbd>limit(10)</kbd>. When you use <kbd>rows_limit(10)</kbd>, the resultset will only contain
-						10 records, but 2 related records will be missing, and can not be retrieved later because the results will be cached
-						and the cache handler doesn't know the results were incomplete!
+						この文脈において、関係モデルを含んだクエリを実行するとき、デフォルトでは、
+						ORMは関係する結果が一致することを確認する、ということを<kbd>関係一貫性</kbd>は意味しています。 これは検索結果がいつも正確に
+						件数制限されているわけではないことを意味します。例えば、検索結果において最初の親が12件の子を持っている場合、たとえ <kbd>limit(10)</kbd> を使ったとしても
+						結果セットは12レコード含みます。<kbd>rows_limit(10)</kbd> を使うと、結果セットは
+						10レコードだけ含みますが、関係のある2レコードは失われ、後に取得することはできません。
+						この理由は、結果がキャッシュされ、キャッシュハンドラは結果が不完全であることを知らないためです！
 					</p>
 
 					<h3 id="complex_wheres">複雑な where 句</h3>
