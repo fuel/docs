@@ -398,40 +398,41 @@ Cli::wait(5, true);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_stdout">stdout($resource = null)</h4>
-				<p>Changes or retrieves the current stdout stream. This is STDOUT by default.<br/>
-                    <br/>
-                    Note the public property <code>$nocolor</code> can be set to true to force all output
-                    to plaintext.
-                </p>
+				<p>
+					現在の標準出力ストリームを変更または取得します。デフォルトは STDOUT です。<br/>
+					<br/>
+					public なプロパティ <code>$nocolor</code> に true を設定すると
+					すべての出力を強制的にプレーンテキストにできます。
+				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$resource</kbd></th>
 									<td><i>null</i></td>
-									<td>Any writable filehandle, or null to retrieve the current filehandle.</td>
+									<td>書き込み可能なファイルハンドル。null の場合は現在のファイルハンドルを取得。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>The previous value of the filehandle (or current value if you are not changing it)</td>
+						<th>返り値</th>
+						<td>前のファイルハンドルの値 (または、変更しなかった場合は現在の値)</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$buffer = fopen('php://temp', 'w+');
 $stdout = Cli::stdout($buffer);
@@ -454,40 +455,41 @@ file_put_contents('out.log', stream_get_contents($buffer));
 
 			<article>
 				<h4 class="method" id="method_stderr">stderr($resource = null)</h4>
-				<p>Changes or retrieves the current stderr stream. This is STDERR by default.<br/>
-                    <br/>
-                    Note the public property <code>$nocolor</code> can be set to true to force all output
-                    to plaintext.
-                </p>
+				<p>
+					現在の標準エラー出力ストリームを変更または取得します。デフォルトは STDERR です。<br/>
+					<br/>
+					public なプロパティ <code>$nocolor</code> に true を設定すると
+					すべての出力を強制的にプレーンテキストにできます。
+				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$resource</kbd></th>
 									<td><i>null</i></td>
-									<td>Any writable filehandle, or null to retrieve the current filehandle.</td>
+									<td>書き込み可能なファイルハンドル。null の場合は現在のファイルハンドルを取得。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>The previous value of the filehandle (or current value if you are not changing it)</td>
+						<th>返り値</th>
+						<td>前のファイルハンドルの値 (または、変更しなかった場合は現在の値)</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$errors = fopen('php://temp', 'w+');
 $stderr = Cli::stderr($errors);
