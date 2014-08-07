@@ -53,11 +53,10 @@
 				実際には、Form と Validation の 2 つのクラスが仕事をすることになります。
 			</p>
 			<p>
-				Every field in a fieldset is defined by a <a href="field.html">Fieldset_Field</a> object, which you can access
-				and manipulate directly using the <kbd>field()</kbd> method of the Fieldset.
+				Fieldset のフィールドはすべて <a href="field.html">Fieldset_Field</a> オブジェクトで定義され、それらのフィールドは Fieldset の <kbd>field()</kbd> メソッドを使用して直接操作することができます。
 			</p>
 			<p>
-				The resulting form markup is generated when passing the Fieldset instance to a View or by calling <kbd>build()</kbd>.
+				フォームのマークアップは、Fieldset インスタンスをビューに渡すとき、あるいは <kbd>build()</kbd> を呼び出すときに生成されます。
 			</p>
 
 			<article>
@@ -194,7 +193,7 @@
 					<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
@@ -217,7 +216,7 @@
 					<tbody>
 						<tr>
 							<th class="legend">静的</th>
-							<td>No</td>
+							<td>いいえ</td>
 						</tr>
 						<tr>
 							<th>返り値</th>
@@ -240,7 +239,7 @@
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -320,38 +319,38 @@ $form->add(
 
 			<article>
 				<h4 class="method" id="method_delete">delete($name)</h4>
-				<p>Removed a named <a href="field.html">Fieldset_Field</a> instance from the Fieldset.</p>
+				<p>Fieldsetから <a href="field.html">Fieldset_Field</a> インスタンスを取り除く。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tbody>
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$name</kbd></th>
-										<td><i>required</i></td>
-										<td>name of the field within the Fieldset</td>
+										<td><i>必須</i></td>
+										<td>Fieldset のフィールド名</td>
 									</tr>
 								</tbody>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
-						<td>The current Fieldset instance</td>
+						<th>返り値</th>
+						<td>現在の Fieldset インスタンス</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$fieldset->delete('article_title');</code></pre>
 						</td>
@@ -362,12 +361,12 @@ $form->add(
 
 			<article>
 				<h4 class="method" id="method_add_before">add_before($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
-				<p>Creates a <a href="field.html">Fieldset_Field</a> instance and adds it to the current Fieldset, just before an already defined field identified by <strong>$fieldname</strong>.</p>
+				<p><a href="field.html">Fieldset_Field</a> インスタンスを作成し、<strong>$fieldname</strong> で定義済みのフィールドを指定し、そのフィールドの直前に現在の Fieldset に追加します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -431,7 +430,7 @@ $form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'val
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -495,7 +494,7 @@ $form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'valu
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -534,13 +533,13 @@ $title_field = $article_form->field('article_title');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_add_model">add_model($class, $instance = null, $method = 'set_form_fields')</h4>
-				<p>Add a model's fields. The model must have a method <kbd>set_form_fields()</kbd> that takes this Fieldset instance and adds fields to it.<br />
-					<kbd>Orm\Model</kbd> have support this build in.</p>
+				<p>モデルフィールドを追加する。 モデルは <kbd>set_form_fields()</kbd> メソッドを必ずもち、そのメソッドはこの Fieldset インスタンスにフィールドを追加します。<br />
+					<kbd>Orm\Model</kbd> はビルトインでこれをサポートしています。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -555,17 +554,17 @@ $title_field = $article_form->field('article_title');</code></pre>
 									<tr>
 										<th><kbd>$class</kbd></th>
 										<td><i>必須</i></td>
-										<td>Either a full classname (including full namespace) or object instance of the model to get fields from.</td>
+										<td>(名前空間を含む)完全なクラス名、あるいはモデルのオブジェクトインスタンスを指定し、フィールドを取得する</td>
 									</tr>
 									<tr>
 										<th><kbd>$instance</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Array or object that has the exactly same named properties to populate the fields. (Takes the field names from the model and fetches the remaining parameters from this array/object.</td>
+										<td>フィールドに入れるプロパティと同名の配列／オブジェクト。(モデルからフィールド名を取得し、この配列／オブジェクトから残りのパラメータを取得します)</td>
 									</tr>
 									<tr>
 										<th><kbd>$method</kbd></th>
 										<td><pre class="php"><code>'set_form_fields'</code></pre></td>
-										<td>The name of the method name to call on the model for field fetching.</td>
+										<td>フィールド取得時に呼び出すメソッド名</td>
 									</tr>
 								</tbody>
 							</table>
@@ -588,12 +587,12 @@ $article_form->add_model('Model_Article');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set_config">set_config($config, $value = null)</h4>
-				<p>Sets a config value on the fieldset.</p>
+				<p>fieldset の設定値をセットする</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -639,12 +638,12 @@ $article_form->set_config('key', 'value');</code></pre>
 
 			<article id="method_get_config">
 				<h4 class="method" id="method_get_config">get_config($key = null, $default = null)</h4>
-				<p>Get the configuration array or one or more config values by key.</p>
+				<p>設定の配列を取得する、またはキーを指定して設定値を取得する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -659,12 +658,12 @@ $article_form->set_config('key', 'value');</code></pre>
 									<tr>
 										<th><kbd>$key</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A single key or multiple in an array, empty to fetch all.</td>
+										<td>配列のキー(一つまたは複数)。空の場合はすべて取得する。</td>
 									</tr>
 									<tr>
 										<th><kbd>$default</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A single config value or multiple in an array if $key input is an array to be returned if the items aren't found.</td>
+										<td>$key 入力がある場合は、単一または複数の値。入力が無い場合は配列。</td>
 									</tr>
 								</tbody>
 							</table>
@@ -672,7 +671,7 @@ $article_form->set_config('key', 'value');</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>array() or mixed</td>
+						<td>array() または mixed</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -686,23 +685,23 @@ $article_form->set_config('key', 'value');</code></pre>
 
 			<article id="method_get_name">
 				<h4 class="method" id="method_get_name">get_name()</h4>
-				<p>Get the identifier of the fieldset instance.</p>
+				<p>fieldset インスタンスの識別子を取得する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>(none)</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>string</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
                             <pre class="php"><code>$article_form = Fieldset::forge('article');
 $name = $article_form->get_name();  // 'article'</code></pre>
@@ -714,12 +713,12 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 
 			<article>
 				<h4 class="method" id="method_populate">populate($input, $repopulate = false)</h4>
-				<p>Set initial field values to the given input, optionally set it to repopulate after that as well.</p>
+				<p>指定した input に初期値を設定する。オプションで再設定するように設定可能。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -734,13 +733,13 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 									<tr>
 										<th><kbd>$input</kbd></th>
 										<td><i>必須</i></td>
-										<td>An object or associative array of values to assign to their respective Fields,
-											or a Model instance to take the values from.</td>
+										<td>それぞれのフィールドに割り当てる値のオブジェクトまたは連想配列、
+											あるいは値を取得するモデルインスタンス。</td>
 									</tr>
 									<tr>
 										<th><kbd>$repopulate</kbd></th>
 										<td><code>false</code></td>
-										<td>Use the repopulate() method after initial populating</td>
+										<td>初期設定のあとに repopulate() メソッドを使用するかどうか</td>
 									</tr>
 								</tbody>
 							</table>
@@ -762,13 +761,13 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 
 			<article>
 				<h4 class="method" id="method_repopulate">repopulate()</h4>
-				<p>Set all field values to the input send by a form submission (uses the form <kbd>method</kbd> attribute
-					to decide whether to check POST or GET).</p>
+				<p>フォーム送信からの入力値をフィールドに設定する。(<kbd>method</kbd> 属性を使用して
+					POST か GET かをチェックするかを決定する)</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -792,12 +791,12 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 
 			<article>
 				<h4 class="method" id="method_build">build($action = null)</h4>
-				<p>Alias for $this->form()->build() for this fieldset. Generates the HTML form markup. See <a href="form.html">Form</a>.</p>
+				<p>$this->form()->build() のエイリアス。HTML フォームマークアップを生成する。<a href="form.html">Form</a> を参照。</p>
 				<table class="method">
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -812,7 +811,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 									<tr>
 										<th><kbd>$action</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A URL for the <kbd>action</kbd> attribute of the form.</td>
+										<td>フォームの <kbd>action</kbd> 属性に指定する URL</td>
 									</tr>
 								</tbody>
 							</table>
@@ -820,7 +819,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>string HTML markup</td>
+						<td>string HTML マークアップ</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -842,17 +841,17 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tbody>
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$field</kbd></th>
@@ -864,7 +863,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>\Fieldset Object</td>
 					</tr>
 					<tr>
@@ -872,7 +871,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 						<td>RuntimeException, if the field given is not defined</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$fieldset->disable('name');</code></pre>
 						</td>
@@ -889,17 +888,17 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tbody>
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$field</kbd></th>
@@ -911,7 +910,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>\Fieldset Object</td>
 					</tr>
 					<tr>
@@ -919,7 +918,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 						<td>RuntimeException, if the field given is not defined</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$fieldset->enable('name');</code></pre>
 						</td>
@@ -935,7 +934,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -977,7 +976,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1019,7 +1018,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1061,7 +1060,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -1103,17 +1102,17 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tbody>
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$model</kbd></th>
@@ -1140,7 +1139,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Fieldset, for chaining</td>
 					</tr>
 					<tr>
@@ -1148,7 +1147,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 						<td>RuntimeException, if incorrect parameters are passed</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							See <a href="#one_to_many_forms">below</a>...
 						</td>
@@ -1170,20 +1169,20 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							None
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>mixed, the name of the form, or <kbd>false</kbd> if the fieldset is not a tabular form</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>if ($name = $form->get_tabular_form())
 {
@@ -1320,10 +1319,10 @@ if (\Input::post())
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
+							<th>パラメータ</th>
 							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
+							<th>デフォルト</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>prep_value</th>
@@ -1368,7 +1367,7 @@ if (\Input::post())
 						<tr>
 							<th>field_template</th>
 							<td>string</td>
-							<td><pre class="php"><code>'\t\t&lt;tr&gt;<br />\n\t\t\t&lt;td class=\"{error_class}\"&gt;<br />{label}{required}&lt;/td&gt;<br />\n\t\t\t&lt;td class=\"{error_class}\"&gt;{field}<br />&lt;span&gt;{description}&lt;/span&gt; {error_msg}<br />&lt;/td&gt;\n\t\t&lt;/tr&gt;\n'</code></pre></td>
+							<td><pre class="php"><code>'\t\t&lt;tr&gt;<br />\n\t\t\t&lt;td class=\"{error_class}\"&gt;<br />{label}{required}&lt;/td&gt;<br />\n\t\t\t&lt;td class=\"{error_class}\"&gt;{field}<br />&lt;span&gt;{説明}&lt;/span&gt; {error_msg}<br />&lt;/td&gt;\n\t\t&lt;/tr&gt;\n'</code></pre></td>
 							<td>
 								String containing the placeholders for generating a single input field.
 							</td>
@@ -1376,7 +1375,7 @@ if (\Input::post())
 						<tr>
 							<th>multi_field_template</th>
 							<td>string</td>
-							<td><pre class="php"><code>'\t\t&lt;tr&gt;<br />\n\t\t\t&lt;td class=\"{error_class}\"&gt;<br />{group_label}{required}&lt;/td&gt;<br />\n\t\t\t&lt;td class=\"{error_class}\"&gt;{fields}<br />\n\t\t\t\t{field} {label}<br />\n{fields}&lt;span&gt;{description}&lt;/span&gt;<br />\t\t\t{error_msg}\n\t\t\t&lt;/td&gt;\n\t\t&lt;/tr&gt;\n'</code></pre></td>
+							<td><pre class="php"><code>'\t\t&lt;tr&gt;<br />\n\t\t\t&lt;td class=\"{error_class}\"&gt;<br />{group_label}{required}&lt;/td&gt;<br />\n\t\t\t&lt;td class=\"{error_class}\"&gt;{fields}<br />\n\t\t\t\t{field} {label}<br />\n{fields}&lt;span&gt;{説明}&lt;/span&gt;<br />\t\t\t{error_msg}\n\t\t\t&lt;/td&gt;\n\t\t&lt;/tr&gt;\n'</code></pre></td>
 							<td>
 								String containing the placeholders for generating a single input field with multiple inputs, like a group of radio buttons or checkboxes.
 							</td>
@@ -1479,8 +1478,8 @@ if (\Input::post())
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Param</th>
-							<th>Description</th>
+							<th>パラメータ</th>
+							<th>説明</th>
 						</tr>
 						<tr>
 							<th>{open}</th>
@@ -1512,7 +1511,7 @@ if (\Input::post())
 						</tr>
 						<tr>
 							<th>{description}</th>
-							<td>String the field description or a help text to be displayed.</td>
+							<td>String the field 説明 or a help text to be displayed.</td>
 						</tr>
 						<tr>
 							<th>{error_msg}</th>
