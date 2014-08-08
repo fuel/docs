@@ -835,8 +835,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 			<article>
 				<h4 class="method" id="method_disable">disable($field)</h4>
 				<p>
-					The <kbd>disable</kbd> method allows you to disable a field from being build. You can use this if you want to alter the sequence of fields
-					on the form, or to create more complex layouts without having to build individual fields.
+					<kbd>disable</kbd> メソッドは、ビルドされるフィールドを無効にします。フォームのフィールドの順序を変更したり、複雑なレイアウトのフィールドを作成したり、といったことができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -857,7 +856,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 									<tr>
 										<th><kbd>$field</kbd></th>
 										<td>required</td>
-										<td>The specific field you want to disable.</td>
+										<td>無効にしたいフィールド</td>
 									</tr>
 								</tbody>
 							</table>
@@ -869,7 +868,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					<tr>
 						<th>Throws</th>
-						<td>RuntimeException, if the field given is not defined</td>
+						<td>RuntimeException, フィールドが定義されていない場合</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -879,12 +878,12 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">The field is not removed from the fieldset, so it will still be validated.</p>
+				<p class="note">フィールドはフィールドセットから取り除かれませんので、バリデーションは行われます。</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_enable">enable($field)</h4>
-				<p>The <kbd>enable</kbd> method allows you to re-enable a field that has been <kbd>disable</kbd>d before.</p>
+				<p><kbd>enable</kbd> メソッドは、<kbd>disable</kbd>メソッドで無効化されたフィールドを再び有効にします。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -904,7 +903,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 									<tr>
 										<th><kbd>$field</kbd></th>
 										<td>required</td>
-										<td>The specific field you want to enable.</td>
+										<td>有効にしたいフィールド</td>
 									</tr>
 								</tbody>
 							</table>
@@ -916,7 +915,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					<tr>
 						<th>Throws</th>
-						<td>RuntimeException, if the field given is not defined</td>
+						<td>RuntimeException, フィールドが定義されていない場合</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -930,7 +929,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 
 			<article>
 				<h4 class="method" id="method_input">input($field = null)</h4>
-				<p>Alias for $this->validation()->input(). Gets an array of validated input value(s) from either POST data or given input. See <a href="validation/validation.html#usage">Validation</a>.</p>
+				<p>$this->validation()->input() のエイリアス。POST データまたは入力をバリデーションした値を配列で取得します。<a href="validation/validation.html#usage">Validation</a> を参照。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -950,7 +949,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 									<tr>
 										<th><kbd>$field</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A specific field for which to get the input.</td>
+										<td>値を取得するフィールド</td>
 									</tr>
 								</tbody>
 							</table>
@@ -958,7 +957,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Array of input or string value of specified field</td>
+						<td>配列、または指定したフィールドの値</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -972,7 +971,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 
 			<article>
 				<h4 class="method" id="method_validated">validated($field = null)</h4>
-				<p>Alias for $this->validation()->validated(). Gets an array of input value(s) that passed validation. See <a href="validation/validation.html#usage">Validation</a>.</p>
+				<p>$this->validation()->validated() のエイリアス。バリデーションされた値を配列で取得します。<a href="validation/validation.html#usage">Validation</a> を参照。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -992,7 +991,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 									<tr>
 										<th><kbd>$field</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A specific field for which to get the input.</td>
+										<td>値を取得するフィールド</td>
 									</tr>
 								</tbody>
 							</table>
@@ -1000,7 +999,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Array of input or string value of specified field, or <kbd>false</kbd> if the field isn't found</td>
+						<td>配列、または指定したフィールドの値。フィールドが見つからない場合は<kbd>false</kbd></td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -1014,7 +1013,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 
 			<article>
 				<h4 class="method" id="method_error">error($field = null)</h4>
-				<p>Alias for $this->validation()->error(). Gets an array of input value(s) that did not pass validation. See <a href="validation/validation.html#usage">Validation</a>.</p>
+				<p>$this->validation()->error() のエイリアス。バリデーションされなかった値を配列で取得します。<a href="validation/validation.html#usage">Validation</a> を参照。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1034,7 +1033,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 									<tr>
 										<th><kbd>$field</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>A specific field for which to get the input.</td>
+										<td>値を取得するフィールド</td>
 									</tr>
 								</tbody>
 							</table>
@@ -1042,7 +1041,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Array of input or string value of specified field, or <kbd>false</kbd> if the field isn't found</td>
+						<td>配列、または指定したフィールドの値。フィールドが見つからない場合は <kbd>false</kbd></td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -1056,7 +1055,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 
 			<article>
 				<h4 class="method" id="method_show_errors">show_errors(Array $config = array())</h4>
-				<p>Alias for $this->validation()->show_errors(). Returns all errors in a list or with set markup from the $config parameter. See <a href="validation/validation.html#usage">Validation</a>.</p>
+				<p>$this->validation()->show_errors() のエイリアス。全てのエラーリストを $config パラメータで設定したマークアップで返します。<a href="validation/validation.html#usage">Validation</a> を参照。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1076,7 +1075,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 									<tr>
 										<th><kbd>$config</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
-										<td>Uses keys open_list, close_list, open_error, close_error &amp; no_errors. Overrides the values </td>
+										<td>open_list, close_list, open_error, close_error &amp; no_errors を使用。値を上書きする。</td>
 									</tr>
 								</tbody>
 							</table>
@@ -1084,7 +1083,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Array of input or string value of specified field, or <kbd>false</kbd> if the field isn't found</td>
+						<td>配列、または指定したフィールドの値。フィールドが見つからない場合は <kbd>false</kbd></td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -1098,7 +1097,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set_tabular_form">set_tabular_form($model, $relation, $parent, $blanks = 1)</h4>
-				<p>Define an embedded fieldset on a related ORM model to create a One-to-Many form.</p>
+				<p>関連付けられる ORM モデルの埋め込みフィールドセットを定義し、一対多フォームを作成する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1118,22 +1117,22 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 									<tr>
 										<th><kbd>$model</kbd></th>
 										<td><i>required</i></td>
-										<td>Fully namespaced name of the related model on which the form must be generated</td>
+										<td>関連付けられるモデルの名前空間付きの名前。</td>
 									</tr>
 									<tr>
 										<th><kbd>$relation</kbd></th>
 										<td><i>required</i></td>
-										<td>Name of the relation of the parent object that relates to $model</td>
+										<td>$model に関連付けられる親オブジェクトのリレーション名</td>
 									</tr>
 									<tr>
 										<th><kbd>$parent</kbd></th>
 										<td><i>required</i></td>
-										<td>Parent object that is used to generate the main form, and contains the related records to be displayed in the tabular form</td>
+										<td>フォームを生成するのに使用する親オブジェクト。テーブルに表示されるレコードを含むオブジェクト。</td>
 									</tr>
 									<tr>
 										<th><kbd>$blanks</kbd></th>
 										<td><pre class="php"><code>1</code></pre></td>
-										<td>Number of empty rows to be displayed in the tabular form</td>
+										<td>テーブルに表示される空の行の数。</td>
 									</tr>
 								</tbody>
 							</table>
@@ -1141,31 +1140,31 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Fieldset, for chaining</td>
+						<td>Fieldset, メソッドチェーン可能</td>
 					</tr>
 					<tr>
 						<th>Throws</th>
-						<td>RuntimeException, if incorrect parameters are passed</td>
+						<td>RuntimeException, パラメータが適切でない場合</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							See <a href="#one_to_many_forms">below</a>...
+							<a href="#one_to_many_forms">以下</a>を参照
 						</td>
 					</tr>
 					</tbody>
 				</table>
 				<p class="note">
-					The tabular form is displayed in a table, controlled by template definitions in the <kbd>config/form.php</kbd>
-					configuration file. You are free to modify these templates, but you should leave the table structure, as the
-					fieldset class will add the table headers based on the fields present in each row. This will generate invalid HTML
-					if you remove the table and row definition from the template.
+					テーブルは <kbd>config/form.php</kbd> 設定ファイルのテンプレート定義に従って表示されます。
+					これらのテンプレートを自由に変更することができますが、表構造は維持する必要があります。
+					というのも、fieldset クラスが各行のフィールドに基づいてテーブルヘッダを追加するからです。
+					もしテンプレートの行定義からテーブルを取り除いた場合、妥当でない HTML を生成してしまいます。
 				</p>
 			</article>
 
 			<article>
 				<h4 class="method" id="method_get_tabular_form">get_tabular_form()</h4>
-				<p>Return the name of the defined tabular form.</p>
+				<p>テーブル名を返す。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1180,7 +1179,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed, the name of the form, or <kbd>false</kbd> if the fieldset is not a tabular form</td>
+						<td>mixed, フォームの名前、テーブル形式でない場合は <kbd>false</kbd></td>
 					</tr>
 					<tr>
 						<th>例</th>
