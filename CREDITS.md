@@ -8,6 +8,7 @@
 * Fumito Mizuno <https://github.com/ounziw>
 * Kenji Suzuki <https://github.com/kenjis>
 * Yoshiyuki Ieyama <https://github.com/yukku0423>
+* toru81 <https://github.com/toru81>
 
 ## Version 1.7
 
