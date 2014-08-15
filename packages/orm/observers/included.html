@@ -102,21 +102,21 @@ protected static $_observers = array(
 		'overwrite' => true,
 	),
 );</code></pre>
-				<p>If you want to be able to set the created_at timestamp in your code, set the 'overwrite' property to false.
-				This will cause the observer to keep the value you have set manually.</p>
+				<p>もしコード中で created_at のタイムスタンプを設定できるようにしたければ、 'overwrite' プロパティを false に設定してください。
+				これによって、オブザーバは手動で設定した値を保持するようになります。</p>
 
 				<h4 id="os_updated">Observer_UpdatedAt</h4>
 
-				<p>This observer acts only upon <kbd>before_save</kbd> or <kbd>before_update</kbd> and expects your model to have a
-					<kbd>updated_at</kbd> property which will be set to the Unix timestamp when saving (also during the
-					first time).</p>
+				<p>このオブザーバは <kbd>before_save</kbd> または <kbd>before_update</kbd> だけに作用し、モデルが <kbd>updated_at</kbd> プロパティを持っていることを期待しています。
+					このプロパティは (初回も含め、) 保存するときに
+					Unix タイムスタンプが設定されます。</p>
 
                 <p>
-                    When you use <kbd>before_save</kbd>, the updatedAt column will be updated on both an insert and an update.
-                    When you use <kbd>before_update</kbd>, the updatedAt column will be updated only on updates.
+                    <kbd>before_save</kbd> を使うと、updatedAt カラムは insert と update の両方で更新されます。
+                    <kbd>before_update</kbd> を使うと、 updateAt カラムは update のときだけ更新されます。
                 </p>
 
-                <pre class="php"><code>// Don't use this, it will make it run twice!
+                <pre class="php"><code>// 2回実行されてしまうため、これは使用しないでください！
 protected static $_observers = array('Orm\\Observer_UpdatedAt');
 
 // 設定追加:
@@ -134,8 +134,8 @@ protected static $_observers = array(
     ),
 );</code></pre>
 
-				<p>By default the timestamp will not be updated if a child object has changed. This behaviour can be changed
-                    by adding the names of the relations to the optional <kbd>relations</kbd> property.</p>
+				<p>デフォルトでは、もし子オブジェクトが変更されたとしても、親のタイムスタンプは更新されません。この振る舞いは、 
+                    オプションの <kbd>relations</kbd> プロパティにリレーションの名前を追加することによって変更できます。
 
                 <p>For example, if you have a <kbd>Model_Blog</kbd> that has many <kbd>Model_Post</kbd>s, with the slug observer applied to the blog,
                     then update a post through the blog's relations the blog's updated_at will not be triggered.</p>
@@ -157,7 +157,7 @@ $blog->save();
 					It is used to prevent the model from saving if validation rules fail. It uses the <a href="../../../classes/fieldset/fieldset.html">Fieldset</a> class
 					and can also generate the form for you.</p>
 
-				<p class="note">主要なキーは編集できませんし、検証にも、フォームにも追加されません。
+				<p class="note">主キーは編集できませんし、検証にも、フォームにも追加されません。
                                  そしてほとんどの場合自動インクリメントとなります。それを創造の上に置いて、確認を必要とする場合、
                                  あなたは手動でフィールドを加える必要があります。</p>
 
