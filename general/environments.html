@@ -218,6 +218,35 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::PRODUCT
 
 			<pre class="cli"><code><strong>C:\> </strong>set FUEL_ENV=production &amp;&amp; php oil -v</code></pre>
 
+			<h3 id="setting_env">Get Your Current Environment</h3>
+
+			<p>
+				There are two ways to retrieve the current environment programmatically, <strong>\Fuel::$env</strong> or <strong>$_SERVER['FUEL_ENV']</strong>
+			</p>
+
+			<pre class="php"><code>// Option 1 (recommended)
+// \Fuel::$env 
+
+if(\Fuel::$env == \Fuel::PRODUCTION)
+{
+	//do something
+}
+
+// Option 2 (only works if you set the environment. FuelPHP defaults to \Fuel::DEVELOPMENT)
+// $_SERVER['FUEL_ENV']
+
+if($_SERVER['FUEL_ENV'] == \Fuel::PRODUCTION)
+{
+	//do something
+}
+
+// Option 1 with a custom environment
+if(\Fuel::$env == "mike_dev")
+{
+	//do something
+}
+</code></pre>
+
 		</div>
 
 		<footer>
