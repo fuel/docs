@@ -27,6 +27,7 @@
 
 バージョン | URL
 ---------|------------------------------------------
+1.8-dev　| http://fuelphp.jp/docs/1.8/
 1.7      | http://fuelphp.jp/docs/1.7/
 1.6      | http://fuelphp.jp/docs/1.6/
 1.5      | http://fuelphp.jp/docs/1.5/
