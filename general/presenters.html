@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +51,7 @@
 
 				<p>プレゼンタはビューの生成に必要なロジックを含むクラスです。
 				コントローラがユーザ入力を処理し、必要なアクションを処理すると、
-				ビューモデルにビューに必要なデータを取得するように処理を引き継ぎます。
+				プレゼンタにビューに必要なデータを取得するように処理を引き継ぎます。
 				プレゼンタはデータの操作を一切すべきではありませんが、データベースの呼び出しや他のデータの取得、
 				ビューの生成に必要な準備の操作を含めます。</p>
 
@@ -60,7 +60,7 @@
 
 				<h3 id="creating_presenters">プレゼンタの作成</h3>
 
-				<p>F最初は <code>APPPATH/classes/presenter/index.php</code> で、空のプレゼンタを作成します:</p>
+				<p>最初は <code>APPPATH/classes/presenter/index.php</code> で、空のプレゼンタを作成します:</p>
 
 				<pre><code>class Presenter_Index extends Presenter
 {
@@ -84,7 +84,7 @@
 				プレゼンタ <code>Presenter_Index</code> のビューは <code>app/views/index.php</code> になります。
 				アンダースコアはクラスと同じように、つまり、ビュー <code>Presenter_Some_Thing</code> は、
 				<code>app/views/some/thing.php</code> になります。<br />
-				このデフォルトの動作は、そのビューを使うビューモデルの中で、静的でない <code>$_view</code> プロパティにプレゼンタの中でビュー名 (サフィックスなしで) 設定するか、プレゼンタの生成時に独自のビュー名を渡すことで
+				このデフォルトの動作は、そのビューを使うプレゼンタの中で、静的でない <code>$_view</code> プロパティにプレゼンタの中でビュー名 (サフィックスなしで) 設定するか、プレゼンタの生成時に独自のビュー名を渡すことで
 				オーバーライトできます。</p>
 
 				<p>最後に、プレゼンタをコントローラから生成します:</p>
@@ -166,7 +166,7 @@ $presenter = Presenter::forge('index', 'other_method');</code></pre>
 				<code>$this->_view</code> にオブジェクトをセットすることで置き換えることができます。<br />
 				しかし、そのオブジェクトはプロパティを設定でき (テンプレートのデータとして使われます)、解析されたコンテンツをレンダリングし返す
 				<code>__toString()</code> マジックメソッドを持たなくてはなりません。
-				In other works, it must be compatible with the behaviour of the View class.(@TODO 原文確認中)<br />
+				言い換えると、View クラスの振る舞いとの互換性が必要です。<br />
 				ビューの名前は <code>$this->_view</code> プロパティから取得できます。</p>
 
 				<h4 id="alternative_view">別のビューファイル、または既存のビューオブジェクトを使う</h4>
