@@ -136,6 +136,7 @@ protected static $_observers = array(
 
 				<p>デフォルトでは、もし子オブジェクトが変更されたとしても、親のタイムスタンプは更新されません。この振る舞いは、 
                     オプションの <kbd>relations</kbd> プロパティにリレーションの名前を追加することによって変更できます。
+
                 <p>例えば <kbd>Model_Blog</kbd> が多くの <kbd>Model_Post</kbd> を持っていて、のろまなオブザーバが blog に割り当てられている場合に、
 		blog のリレーションを通して post が変更されたとしても blog の updated_at は更新されません。</p>
 
@@ -173,8 +174,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 				 <a href="../creating_models.html#propperties">モデルの作成</a>のページに例があります。
 				 バリデーションオブザーバを登録した後では、モデルのデータを保存する際の事前のバリデーションで何か失敗が起きた場合は、
 				 \Orm\ValidationFailed 例外が投げられることになります。
-				 そのため、モデルの <kbd>save</kbd> メソッドを呼ぶ際には
-				 try/catch で括らないといけません。</p>
+				 そのため、モデルの <kbd>save</kbd> メソッドを呼ぶ際には try/catch で括らないといけません。</p>
 
 				<p>より広範な機能例/scaffolding を以下に示します:</p>
 
