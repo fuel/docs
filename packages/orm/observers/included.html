@@ -68,11 +68,11 @@
 
 				<h4 id="os_self">Observer_Self</h4>
 
-				<p>良い習慣ではありませんが、場合によっては、あなたのモデルとイベントメソッドだけを持っているのはおそらく最も
-					クリーンです。 もしモデルがイベントにちなんで命名され、<kbd>_event_</kbd> で始まるメソッドを持っている場合は、
-					Observer_Self の出番です。たとえば <kbd>after_save</kbd> イベントの場合、 あなたは
-					public メソッドの <kbd>_event_after_save()</kbd> を 使っているモデルに追加する必要があり、それは 
-					モデル自体のオブザーバの呼び出しを持つことができます。</p>
+				<p>良い習慣ではありませんが、場合によっては、イベントメソッドだけを持つモデルはおそらく最も
+					クリーンな方法です。 もしモデルが <kbd>_event_</kbd> が前についたイベント名のメソッドを持っている場合は、
+					Observer_Self の出番です。たとえば <kbd>after_save</kbd> イベントの場合、
+					<kbd>_event_after_save()</kbd> という public メソッドをモデルに追加する必要があり、そうすることでそのモデル自身のオブザーバ呼び出しを
+					受け取ることができます。</p>
 
 				<pre class="php"><code>// オブザーバを追加します
 protected static $_observers = array('Orm\\Observer_Self');
@@ -85,15 +85,15 @@ protected static $_observers = array('Orm\\Observer_Self' => array(
 				<h4 id="os_created">Observer_CreatedAt</h4>
 
 				<p>このオブザーバは<kbd>before_insert</kbd>だけに作用します。<kbd>created_at</kbd>プロパティを持っている
-					モデルが初めて保存するとき、Unixタイムスタンプがセットされます。</p>
+					モデルが初めて保存されるとき、Unixタイムスタンプがセットされます。</p>
 
-				<pre class="php"><code>// オブザーバを追加します。
+				<pre class="php"><code>// 単にオブザーバを追加します
 protected static $_observers = array('Orm\\Observer_CreatedAt');
 
-// 設定追加:
-// - before_insertのみで実行する必要
-// - mysqlのタイムスタンプを使用（デフォルトではUNIXタイムスタンプを使用しています）
-// - "created_at"の代わりに"created"を使用
+// 以下の設定をつけて追加します:
+// - before_insert 時のみ実行される
+// - mysql のタイムスタンプを使います（デフォルトではUNIXタイムスタンプを使用しています）
+// - "created_at" の代わりに "created" を使用します
 protected static $_observers = array(
 	'Orm\\Observer_CreatedAt' => array(
 		'events' => array('before_insert'),
@@ -102,13 +102,13 @@ protected static $_observers = array(
 		'overwrite' => true,
 	),
 );</code></pre>
-				<p>もしコード中で created_at のタイムスタンプを設定できるようにしたければ、 'overwrite' プロパティを false に設定してください。
+				<p>もしあなた自身のコード中で created_at のタイムスタンプを設定できるようにしたければ、 'overwrite' プロパティを false に設定してください。
 				これによって、オブザーバは手動で設定した値を保持するようになります。</p>
 
 				<h4 id="os_updated">Observer_UpdatedAt</h4>
 
 				<p>このオブザーバは <kbd>before_save</kbd> または <kbd>before_update</kbd> だけに作用し、モデルが <kbd>updated_at</kbd> プロパティを持っていることを期待しています。
-					このプロパティは (初回も含め、) 保存するときに
+					このプロパティは (初回も含め) 保存される際に
 					Unix タイムスタンプが設定されます。</p>
 
                 <p>
@@ -119,10 +119,10 @@ protected static $_observers = array(
                 <pre class="php"><code>// 2回実行されてしまうため、これは使用しないでください！
 protected static $_observers = array('Orm\\Observer_UpdatedAt');
 
-// 設定追加:
-// - before_saveのみで実行する必要あり
-// - mysqlのタイムスタンプを使用（デフォルトではUNIXタイムスタンプを使用しています）
-// - "updated_at"の代わりに、"updated"を使用
+// 以下の設定をつけて追加します:
+// - before_save 時のみで実行される
+// - mysql のタイムスタンプを使います（デフォルトではUNIXタイムスタンプを使用しています）
+// - "updated_at" の代わりに、 "updated" を使用します
 protected static $_observers = array(
     'Orm\\Observer_UpdatedAt' => array(
         'events' => array('before_save'),
@@ -137,44 +137,44 @@ protected static $_observers = array(
 				<p>デフォルトでは、もし子オブジェクトが変更されたとしても、親のタイムスタンプは更新されません。この振る舞いは、 
                     オプションの <kbd>relations</kbd> プロパティにリレーションの名前を追加することによって変更できます。
 
-                <p>For example, if you have a <kbd>Model_Blog</kbd> that has many <kbd>Model_Post</kbd>s, with the slug observer applied to the blog,
-                    then update a post through the blog's relations the blog's updated_at will not be triggered.</p>
+                <p>例えば <kbd>Model_Blog</kbd> が多くの <kbd>Model_Post</kbd> を持っていて、のろまなオブザーバが blog に割り当てられている場合に、
+		blog のリレーションを通して post が変更されたとしても blog の updated_at は更新されません。</p>
 
                 <pre class="php"><code>
 $blog->post[0]->title = 'foobar';
 $blog->save();
                 </code></pre>
 
-                <p>With the post relation specified in the <kbd>relations</kbd> property
-                the updated at observer will update the timestamp in the blog if the post is edited.</p>
+		<p>post のリレーションを <kbd>relationos</kbd> プロパティに指定しておけば、
+		  post が更新された際にオブザーバによって blog のタイムスタンプも更新されることになります。</p>
 
-                <p class="note">If a relation is not loaded then it will be ignored by the updated at observer.</p>
+                <p class="note">もしリレーションが読み込まれていなければ、オブザーバは単にそれを蟲師ます。</p>
 
 				<h4 id="os_validation">Observer_Validation</h4>
 
-				<p>This observer can act on <kbd>before_insert</kbd> and/or <kbd>before_update</kbd>, or on <kbd>before_save</kbd>.
-					Do not use both <kbd>before_save</kbd> and one of the others, that would cause your rules to be called twice.
-					It is used to prevent the model from saving if validation rules fail. It uses the <a href="../../../classes/fieldset/fieldset.html">Fieldset</a> class
-					and can also generate the form for you.</p>
+				<p>このオブザーバは <kbd>before_insert</kbd> および/または <kbd>before_update</kbd> に、または <kbd>before_save</kbd> に作用することができます。
+				ルールが 2 回呼ばれる原因となるので、 <kbd>before_save</kbd> と他の2つのどちらかを同時に指定しないで下さい。
+				  これはバリデーションルールが失敗した場合に、モデルが間違って保存されることを防ぐためのものです。
+				  <a href="../../../classes/fieldset/fieldset.html">Fieldset</a> クラスを使用しますし、フォームを生成することもできます。</p>
 
-				<p class="note">主キーは編集できませんし、検証にも、フォームにも追加されません。
-                                 そしてほとんどの場合自動インクリメントとなります。それを創造の上に置いて、確認を必要とする場合、
-                                 あなたは手動でフィールドを加える必要があります。</p>
+				<p class="note">通常、主キーは編集できませんし、バリデーションにも、フォームにも追加されません。
+                                 そしてほとんどの場合自動インクリメントとなります。
+				  独自に作成したりバリデーションが必要なときには手動でフィールドを追加する必要があります。</p>
 
 				<p>オブザーバーは、以下のようにロードすることができます:</p>
 
-				<pre class="php"><code>// Just add the Observer, and define the required event
+				<pre class="php"><code>// オブザーバを追加し、必要なイベントを定義するだけです
 protected static $_observers = array('Orm\\Observer_Validation' => array(
 	'events' => array('before_save')
 ));</code></pre>
 
-				<p class="note">Do not define this observer without event types, as that will cause it to be called twice!</p>
+				<p class="note">2回呼び出される原因となるので、このオブザーバをイベントの指定なしに定義しないで下さい。</p>
 
-				<p>Validation rules should be defined in your model in <kbd>$_properties</kbd>. This is demonstrated
-					in <a href="../creating_models.html#propperties">Creating Models</a>. After you have added the
-					Validation Observer, the Orm\ValidationFailed exception will be thrown when the model's data fails
-					to validate before save. As such, you must try/catch your calls to the <kbd>save</kbd> function of
-					a model.</p>
+				<p>バリデーションルールは、モデルの <kdb>$_properties</kbd> に定義されなければなりません。
+				 <a href="../creating_models.html#propperties">モデルの作成</a>のページに例があります。
+				 バリデーションオブザーバを登録した後では、モデルのデータを保存する際の事前のバリデーションで何か失敗が起きた場合は、
+				 \Orm\ValidationFailed 例外が投げられることになります。
+				 そのため、モデルの <kbd>save</kbd> メソッドを呼ぶ際には try/catch で括らないといけません。</p>
 
 				<p>より広範な機能例/scaffolding を以下に示します:</p>
 
