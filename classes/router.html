@@ -290,7 +290,7 @@ echo Router::get('user', array('name' => 'john', 'article'));
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><i>required</i></td>
-									<td>The URI path to be matched. This is the left side of your routes.php route definition.</td>
+									<td>The URI path, or an array of paths, to be matched. This is the left side of your routes.php route definition.</td>
 								</tr>
 								<tr>
 									<th><kbd>$case_sensitive</kbd></th>
@@ -309,6 +309,9 @@ echo Router::get('user', array('name' => 'john', 'article'));
 						<td>
 							<pre class="php"><code>// delete the route for 'this/that'
 Router::delete('this/that');
+
+// delete the routes for 'this/that' and 'some/other'
+Router::delete(array('this/that', 'some/other'));
 
 // force it to be case sensitive
 Router::delete('this/that', true);
