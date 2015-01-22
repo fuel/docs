@@ -114,7 +114,6 @@
 	// define the EAV container like so
 	protected static $_eav = array(
 		'statistics' => array(			// we use the statistics relation to store the EAV data
-			'model_to' => 'Model_Statistic',      // related model
 			'attribute' => 'key',		// the key column in the related table contains the attribute
 			'value' => 'value',			// the value column in the related table contains the value
 		)
@@ -130,7 +129,7 @@ class Model_Statistic extend \Orm\Model
 		'key',					// attribute column
 		'value',				// value column
 	);
-	
+
 	// set up the patient relation the usual way
 	protected static $_belongs_to = array(
 	    'patient' => array(
@@ -140,7 +139,7 @@ class Model_Statistic extend \Orm\Model
 	        'cascade_save' => true,
 	        'cascade_delete' => true,
 	    )
-	);	
+	);
 }</code></pre>
 
 			<p>
