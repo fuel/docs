@@ -246,9 +246,9 @@ $view = $theme->view('template/homepage');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_presenter">presenter($view, $method = 'view', $auto_filter = null)</h4>
+				<h4 class="method" id="method_presenter">presenter($presenter, $method = 'view', $auto_filter = null, $view = null)</h4>
 				<p>
-					The <strong>presenter</strong> method loads and return a Presenter object based on the $view string passed. It
+					The <strong>presenter</strong> method loads and return a Presenter object based on the $presenter string passed. It
 					will use the <strong>view</strong> method documented above to pass the theme view to the Presenter.
 				</p>
 
@@ -269,7 +269,7 @@ $view = $theme->view('template/homepage');
 									<th class="description">Description</th>
 								</tr>
 								<tr>
-									<th><kbd>$view</kbd></th>
+									<th><kbd>$presenter</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td class="description">The presenter name. See the <a href="../../general/presenters.html">Presenter</a> for more information.</td>
@@ -286,6 +286,11 @@ $view = $theme->view('template/homepage');
 									<td><pre class="php"><code>null</code></pre></td>
 									<td class="description">set to <em>true</em> or <em>false</em> to set auto encoding, defaults to main config setting (app/config/config.php)</td>
 								</tr>
+									<tr>
+										<th><kbd>$view</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">Custom view name, used if the view to be loaded can not be determined from the presenter name</td>
+									</tr>
 							</table>
 						</td>
 					</tr>
