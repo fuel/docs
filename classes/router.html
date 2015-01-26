@@ -290,7 +290,7 @@ echo Router::get('user', array('name' => 'john', 'article'));
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><i>必須</i></td>
-									<td>マッチさせたい URI パス。これは、routes.php にあるルート定義の左側です。</td>
+									<td>The URI path, or an array of paths, to be matched. This is the left side of your routes.php route definition.</td>
 								</tr>
 								<tr>
 									<th><kbd>$case_sensitive</kbd></th>
@@ -310,6 +310,9 @@ echo Router::get('user', array('name' => 'john', 'article'));
 							<pre class="php"><code>// 'this/that' に対するルーティングを削除する
 Router::delete('this/that');
 
+// delete the routes for 'this/that' and 'some/other'
+Router::delete(array('this/that', 'some/other'));
+
 // 大文字小文字を区別する
 Router::delete('this/that', true);
 
@@ -326,7 +329,7 @@ Router::delete('module/controller(:any)');
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/router.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/router.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/router.html">GitHubで修正</a> ]
 			</p>
 		</footer>

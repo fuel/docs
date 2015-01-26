@@ -114,8 +114,7 @@
 	// EAV コンテナはこのように定義します
 	protected static $_eav = array(
 		'statistics' => array(			// EAV データを格納する statistics の関係を利用
-			'model_to' => 'Model_Statistic',      // 関連するモデル
-			'attribute' => 'key',		// 関連するテーブル内のキー列は属性を含む
+			'attribute' => 'key',		//関連するテーブル内のキー列は属性を含む
 			'value' => 'value',			// 関連するテーブル内の値列は値を含む
 		)
 	);
@@ -130,7 +129,7 @@ class Model_Statistic extend \Orm\Model
 		'key',					// 属性カラム
 		'value',				// 値カラム
 	);
-	
+
 	// patient の関係は通常通りの方法で設定
 	protected static $_belongs_to = array(
 	    'patient' => array(
@@ -140,7 +139,7 @@ class Model_Statistic extend \Orm\Model
 	        'cascade_save' => true,
 	        'cascade_delete' => true,
 	    )
-	);	
+	);
 }</code></pre>
 
 			<p>
@@ -206,7 +205,7 @@ foreach ($mr->statistics as $statistic)
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.8/develop/packages/orm/eav.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/packages/orm/eav.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/packages/orm/eav.html">GitHubで修正</a> ]
 			</p>
 		</footer>
