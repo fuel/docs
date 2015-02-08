@@ -3,15 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
-	<link rel="shortcut icon" href="./../favicon.ico" />
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
-		var path = './../';
+		var path = './../../';
 		var class_prefix = "Crypt::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Crypt - クラス - FuelPHP ドキュメント</title>
+	<title>Crypt Configuration - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -100,98 +100,6 @@
 					もしキーを手入力で指定する場合、キーは base64 エンコードした文字列で、デコードするために長さは 4 の倍数でなければなりません。必ず正しい長さになるよう指定してください！
 				</p>
 			</section>
-
-			<article>
-				<h4 class="method" id="method_encode">encode($value, $key = false)</h4>
-				<p><strong>encode</strong> メソッドは文字列を暗号化します。オプションとして暗号キーが設定できます。</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">静的</th>
-						<td>いいえ</td>
-					</tr>
-					<tr>
-						<th>パラメータ</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>パラメータ</th>
-									<th>デフォルト</th>
-									<th class="description">説明</th>
-								</tr>
-								<tr>
-									<th><kbd>$value</kbd></th>
-									<td><i>必須</i></td>
-									<td>エンコードする文字列。</td>
-								</tr>
-								<tr>
-									<th><kbd>$key</kbd></th>
-									<td><pre class="php"><code>false</code></pre></td>
-									<td>エンコードに使われる任意のキー。false の場合、設定値である '<strong>crypto_key</strong>' が適用されます。</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>返り値</th>
-						<td>string</td>
-					</tr>
-					<tr>
-						<th>例</th>
-						<td>
-							<pre class="php"><code>// カスタムキーにより変数をエンコードする
-$value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_decode">decode($value, $key = false)</h4>
-				<p><strong>decode</strong> メソッドは文字列を複号します。オプションとして暗号キーが設定できます。</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">静的</th>
-						<td>いいえ</td>
-					</tr>
-					<tr>
-						<th>パラメータ</th>
-						<td>
-							<table class="parameters">
-								<tr>
-									<th>パラメータ</th>
-									<th>デフォルト</th>
-									<th class="description">説明</th>
-								</tr>
-								<tr>
-									<th><kbd>$value</kbd></th>
-									<td><i>必須</i></td>
-									<td>デコードされる文字列。</td>
-								</tr>
-								<tr>
-									<th><kbd>$key</kbd></th>
-									<td><pre class="php"><code>false</code></pre></td>
-									<td>デコードに使われる任意のキー。false の場合、設定値である '<strong>crypto_key</strong>' が適用される。</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<th>返り値</th>
-						<td>mixed - デコードされた文字列か、デコードできなかった場合は <kbd>false</kbd> を返します。</td>
-					</tr>
-					<tr>
-						<th>例</th>
-						<td>
-							<pre class="php"><code>// カスタムキーにより変数をデコードする
-$value = Crypt::decode($value, 'R@nd0mK~Y');</code></pre>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
 
 		</div>
 

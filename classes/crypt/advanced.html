@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+		var class_prefix = "Crypt::";
+	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Crypt Advanced - Classes - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>Crypt Class</h2>
+
+			<p>
+				The Crypt class allows encrypt or decrypt a string. The Crypt class is also used internally by for example the Fuel Sessions class.
+			</p>
+			<p>It uses the encryption and hashing methods provided by PHPSecLib, so it's not dependent on external modules being available, such as mcrypt.</p>
+
+			<section>
+				<h3>Advanced usage</h3>
+
+				<p>
+					The Crypt class supports the use of multiple instances. This might prove useful if you require multiple encryption
+					key sets.
+				</p>
+				<p>
+					You can use the same methods on an crypt instance as you would when you the static methods. For the method
+					definition see the <a href="./usage.html">class usage</a> page.
+				</p>
+
+				<article>
+					<h4 class="method" id="method_forge">forge($config = array())</h4>
+					<p>
+						The <strong>forge</strong> method allows you to manually instantiate a crypt instance.
+					</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$name</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>
+											Name of the instance requested. If it doesn't exist, it will be forged. If no name is
+											given, the default instance is returned.
+										</td>
+									</tr>
+									<tr>
+										<th><kbd>$config</kbd></th>
+										<td><pre class="php"><code>array()</code></pre></td>
+										<td>
+											You can pass a custom configuration when forging a new crypt instance. The configuration array
+											has the same structure as the crypt configuration file. The custom config will be merged with
+											a default configuration as documented <a href="./config.html">here</a> and with the
+											configuration in your crypt config file, so you only have to pass values you want changed.
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>object - The instantiated crypt object.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// instantiate a crypt object with a custom key value
+$crypt = \Crypt::forge(array(
+	'crypto_key' => 'kj$Huhliuh7p*UHHhdas6%#@',
+));
+
+// and encode some data with it
+$encoded = $crypt->encode('This is a very secure piece of data!');</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 class="method" id="method_instance">instance($name = null)</h4>
+					<p>
+						The <strong>instance</strong> method allows you load a named instance of the crypt class.
+					</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$name</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>
+											Name of the instance requested. If it doesn't exist, false is returned. If no name is
+											given, the default instance is returned.
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>mixed - The named crypt instance or false if the instance does not exist.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// instantiate a named crypt object with a custom key
+$crypt = \Crypt::instance('custom', array('crypto_key' => 'kj$Huhliuh7p*UHHhdas6%#@'));
+
+// and encode some data with it
+$encoded = $crypt->encode('This is a very secure piece of data!');</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<p class="note">
+					 The static methods of the Crypt class will also use the default instance. Remember this if you
+					 alter the configuration of the default instance!
+				</p>
+
+			</section>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

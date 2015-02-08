@@ -446,7 +446,11 @@ panes.core = {
 		"Cli":			"classes/cli.html",
 		"Config":		"classes/config.html",
 		"Cookie":		"classes/cookie.html",
-		"Crypt":		"classes/crypt.html",
+		"Crypt": {
+			"Configuration":	"classes/crypt/config.html",
+			"Usage":			"classes/crypt/usage.html",
+			"Advanced":			"classes/crypt/advanced.html"
+		},
 		"Database": {
 			"はじめに":   	  "classes/database/introduction.html",
 			"使用法":          	  "classes/database/usage.html",
