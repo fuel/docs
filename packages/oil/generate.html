@@ -383,15 +383,15 @@ class Create_posts
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --soft-delete --deleted-at=mydeleted</code></pre>
 
-				<h4 id="model_temporal">Generating Model using Model_Temporal</h4>
+				<h4 id="model_temporal">Model_Temporal を使うモデルの生成</h4>
 
 				<p>
-					Add <code>--temporal</code> to use Model_Temporal.
+					Model_Temporal を使用するには、 <code>--temporal</code> を追加します。
 				</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --temporal</code></pre>
 
-				<p>Which will give you:</p>
+				<p>このようなコードになります:</p>
 
 				<pre class="php"><code>&lt;?php
 
@@ -442,25 +442,25 @@ class Create_posts
 	}
 }</code></pre>
 
-				<p class="note">Please note that <b>temporal_start</b> and <b>temporal_end</b> are not added to the migration's primary_key array. You have to add them manually.</p>
+				<p class="note"><b>temporal_start</b> と <b>temporal_end</b> は、マイグレーションの primary_key 配列に追加されませんのでご注意ください。それらを手動で追加する必要があります。</p>
 
-				<p class="note"><code>--no-timestamp</code> is set to true by default which means both <b>created_at</b> and <b>updated_at</b> fields and the related observers are ommited. You can bypass this default with <code>--no-timestamp=0</code> to get them back.</p>
+				<p class="note"><code>--no-timestamp</code> は <b>created_at</b> と <b>updated_at</b> フィールドの両方を意味しデフォルトでtrueに設定されており、関連オブザーバーは省略されている。それらを戻すために <code>--no-timestamp=0</code> とすると、このデフォルトを回避することができます。</p>
 
 				<p>
-					If you wish changing temporal_start or temporal_end field name. Use <code>--temporal-start</code> or <code>--temporal-end</code> option to set your own field name.
+					temporal_start もしくは temporal_end フィールドの名前を変更したい場合、独自のフィールド名を設定するために <code>--temporal-start</code> もしくは <code>--temporal-end</code> を利用してください。
 				</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --temporal --temporal-start=mystart --temporal-end=myend</code></pre>
 
-				<h4 id="model_nestedset">Generating Model using Model_Nestedset</h4>
+				<h4 id="model_nestedset">Model_Nestedset を使うモデルの生成</h4>
 
 				<p>
-					Add <code>--nestedset</code> to use Model_Nestedset.
+					Model_Nestedset を使用するには、 <code>--nestedset</code> を追加します。
 				</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --nestedset</code></pre>
 
-				<p>Which will give you:</p>
+				<p>このようなコードになります:</p>
 
 				<pre class="php"><code>&lt;?php
 
@@ -505,18 +505,18 @@ class Create_posts
 	}
 }</code></pre>
 
-				<p class="note"><code>--no-timestamp</code> is set to true by default which means both <b>created_at</b> and <b>updated_at</b> fields and the related observers are ommited.You can bypass this default with <code>--no-timestamp=0</code> to get them back.</p>
+				<p class="note"><code>--no-timestamp</code> は <b>created_at</b> と <b>updated_at</b> フィールドの両方を意味しデフォルトでtrueに設定されており、関連オブザーバーは省略されている。それらを戻すために <code>--no-timestamp=0</code> とすると、このデフォルトを回避することができます。</p>
 
 				<p>
-					If you wish changing title, tree_id, left_id, right_id field name. Use one of <code>--title</code>, <code>--tre-id</code>, <code>--left-id</code>, <code>--right-id</code> options to set your own field name.
+					title, tree_id, left_id, right_id フィールドの名前を変更したい場合、独自のフィールド名を設定し <code>--title</code>, <code>--tre-id</code>, <code>--left-id</code>, <code>--right-id</code> のひとつを利用してください。
 				</p>
 
 				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --nestedset --title=mytitle --tree-id=mytreeid --left-id=myleftid --right-id=myrightid</code></pre>
 
-				<h3 id="presenters">Presenters</h3>3>
+				<h3 id="presenters">Presenters</h3>
 
 				<p>
-					任意でビューを伴うPresenterクラスを oil で生成することができます。
+					任意でビューを伴う Presenter クラスを oil で生成することができます。
 				</p>
 
 				<pre class="cli"><code>$ php oil g controller posts action1 action2 action3 --with-presenter</code></pre>
