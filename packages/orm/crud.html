@@ -91,12 +91,12 @@ $new->save();</code></pre>
 					<h2>読み取り</h2>
 
 					<p>使うのは <kbd>find()</kbd> メソッドです。指定した ID (主キー)、最初／最後、条件を満たすもの全部、の 3 通りの方法があります。
-						可能な選択方法(where, or_where, order_by 等
+						可能な選択方法 (where, or_where, order_by 等)
 						はこのページの下で説明します。</p>
 
 					<h3 id="find_by_id">IDから検索する</h3>
 
-					<pre class="php"><code>// ID=2の記事を検索する
+					<pre class="php"><code>// ID=2 の記事を検索する
 $entry = Model_Article::find(2);
 
 // 複合主キーを使用している場合
@@ -112,7 +112,7 @@ $entry = Model_Article::find('first');
 // date カラムで並び替えて最新のエントリーを検索する
 $entry = Model_Article::find('last', array('order_by' =&gt; 'date'));</code></pre>
 
-					<p>この例では、ID が見つからなかったときは Model_Article のインスタンスまたはnullを返します。</p>
+					<p>この例では、ID が見つからなかったときは Model_Article のインスタンスまたは null を返します。</p>
 
 					<h3 id="find_all">すべてを検索する</h3>
 
@@ -214,7 +214,7 @@ $entry->delete();</code></pre>
 
 					<p>ここもこれだけです。検索して、削除すれば良いのです。</p>
 
-					<p class="note">直前の例では、<kbd>$entry</kbd> 変数とそのオブジェクトは存在しています。
+					<p class="note">直前の例では、 <kbd>$entry</kbd> 変数とそのオブジェクトは存在しています。
 						主キーは <kbd>null</kbd> にセットされており、オブジェクト自身はあたらしいインスタンスとみなされます。
 						削除した後に保存した場合、データベースに再挿入され、
 						<kbd>auto_increment</kbd> が on の場合は新しい主キーが割り当てられます。</p>
@@ -253,12 +253,12 @@ Model_Article::query()-&gt;related(array('author', 'comments'));
 Model_Article::find('all', array('related' =&gt; array('author', 'comments')));
 
 //=============================
-// リレーションにおいて、1つ、または、複数の条件を含みます。(メソッドチェーンでのみサーポートされています。)
+// リレーションにおいて、1 つ、または、複数の条件を含みます。 (メソッドチェーンでのみサーポートされています)
 //=============================
 
-// 1つ目の方法 - array を使用
+// 1 つ目の方法 - array を使用
 //----------------------------
-// 条件が1つの場合
+// 条件が 1 つの場合
 Model_Article::query()
     -&gt;related('author', array('where' =&gt; array(array('active', '=', 1))));
 
@@ -266,9 +266,9 @@ Model_Article::query()
 Model_Article::query()
     -&gt;related('author', array('where' =&gt; array(array('active', '=', 1), array('status', '=', 'X'))));
 
-// 2つ目の方法 - ドット表記を使用
+// 2 つ目の方法 - ドット表記を使用
 //----------------------------
-// 条件が1つの場合
+// 条件が 1 つの場合
 Model_Article::query()
 	-&gt;related('author')
 	-&gt;where('author.active', 1);
@@ -295,7 +295,7 @@ Model_Article::find('all', array('use_view' =&gt; 'with_comments'));
 								<th>where</th>
 								<td>string <kbd>$column</kbd>, [string <kbd>$operator</kbd>,] mixed <kbd>$value</kbd></td>
 								<td>
-									<pre class="php"><code>// 1つの where 
+									<pre class="php"><code>// 1 つの where 
 Model_Article::query()-&gt;where('id', 4);
 Model_Article::find('all', array('where' =&gt; array('category_id' =&gt; 5)));
 
@@ -312,7 +312,7 @@ Model_Article::query()-&gt;where('id', 4)-&gt;or_where('id', 5);
 								<th>order_by</th>
 								<td>string <kbd>$column</kbd>, [string <kbd>$direction</kbd>]</td>
 								<td>
-									<pre class="php"><code>// 1つの order_by
+									<pre class="php"><code>// 1 つの order_by
 Model_Article::query()-&gt;order_by('name', 'desc');
 Model_Article::find('all', array('order_by' =&gt; array('name' =&gt; 'desc')));
 
@@ -327,7 +327,7 @@ Model_Article::find('all', array('order_by' => array(array('name' =&gt; 'desc', 
 								<th>from_cache</th>
 								<td>bool<kbd>$cache</kbd></td>
 								<td>
-									<pre class="php"><code>// このクエリではORM オブジェクトのキャッシュを行わなくする
+									<pre class="php"><code>// このクエリでは ORM オブジェクトのキャッシュを行わなくする
 Model_Article::query()-&gt;from_cache(false);
 Model_Article::find('all', array('from_cache' =&gt; false));
 </code></pre>
@@ -381,10 +381,10 @@ Model_Article::find('all', array('rows_offset' =&gt; 10));
 					</p>
 					<p class="note">
 						この文脈において、関係モデルを含んだクエリを実行するとき、デフォルトでは、
-						ORMは関係する結果が一致することを確認する、ということを<kbd>関係一貫性</kbd>は意味しています。 これは検索結果がいつも正確に
-						件数制限されているわけではないことを意味します。例えば、検索結果において最初の親が12件の子を持っている場合、たとえ <kbd>limit(10)</kbd> を使ったとしても
-						結果セットは12レコード含みます。<kbd>rows_limit(10)</kbd> を使うと、結果セットは
-						10レコードだけ含みますが、関係のある2レコードは失われ、後に取得することはできません。
+						ORM は関係する結果が一致することを確認する、ということを<kbd>関係一貫性</kbd>は意味しています。 これは検索結果がいつも正確に
+						件数制限されているわけではないことを意味します。例えば、検索結果において最初の親が 12 件の子を持っている場合、たとえ <kbd>limit(10)</kbd> を使ったとしても
+						結果セットは 12 レコード含みます。 <kbd>rows_limit(10)</kbd> を使うと、結果セットは
+						10 レコードだけ含みますが、関係のある 2 レコードは失われ、後に取得することはできません。
 						この理由は、結果がキャッシュされ、キャッシュハンドラは結果が不完全であることを知らないためです！
 					</p>
 
@@ -424,7 +424,7 @@ Model_Article::query()
 
                                 <article>
                                     <h3 id="custom_sql"><a class="internal_link" href="#/custom_sql">カスタム SQL</a></h3>
-                                    <p>カスタム SQL 文を実行し、 ORM モデル (または、モデルのリスト) として結果を得ることも可能です。これはORM自体の一部ではありませんが、知っておくと便利です。 詳細は <a href="../../classes/database/db.html#/method_query">DB::query()</a> 関数を見てください。</a></p>
+                                    <p>カスタム SQL 文を実行し、 ORM モデル (または、モデルのリスト) として結果を得ることも可能です。これは ORM 自体の一部ではありませんが、知っておくと便利です。 詳細は <a href="../../classes/database/db.html#/method_query">DB::query()</a> 関数を見てください。</a></p>
                                     <pre class="php"><code>DB::query('SELECT * FROM `articles` WHERE `id` = 1')-&gt;as_object('Model_Article')-&gt;execute();</code></pre>
                                     <p class="note">可能であれば、 <kbd>query()</kbd> 関数を使うことが推奨されています。 </p>
                                </article>
