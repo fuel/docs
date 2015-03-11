@@ -45,7 +45,7 @@
 
             <div id="main">
                 <section>
-                    <h2 id="introduction">Introduction</h2>
+                    <h2 id="introduction">はじめに</h2>
 
 					<p>
 						<i>This introduction is based on <a href="http://www.codeproject.com/Articles/4155/Improve-hierarchy-performance-using-nested-sets">this article</a>, (c) James Simpson.</i>
@@ -91,7 +91,7 @@
 						handy when we need to access the tree.
                     </p>
 
-					<h3>Storing multiple tree structures in a single table</h3>
+					<h3>単一のテーブルで複数のツリー構造を保存する</h3>
 
 					<p>
 						You can store multiple tree structures into a single database table. To make this possible, you can add a tree-id
@@ -103,7 +103,7 @@
 						in the database is faster. It's strongly suggested you don't use a string value as a tree-id.
 					</p>
 
-					<h3>Table structure</h3>
+					<h3>テーブル構造</h3>
 
 					<p>
 						You can add as many columns to the table as you want, but to be able to work, the Nestedset Model requires certain
@@ -138,7 +138,7 @@
                 </section>
 
                 <section>
-                    <h2 id="configuration">Configuration</h2>
+                    <h2 id="configuration">設定</h2>
 
                     <p>The Nestedset Model adds an additional property, <kbd>$_tree</kbd>, to the model, with which you can configure the model:</p>
                     <ul>
@@ -155,7 +155,7 @@
                 </section>
 
                 <section>
-                    <h2 id="model">Defining the model</h2>
+                    <h2 id="model">モデルの定義</h2>
 
                     <p>
 						Using the nested sets model is as easy as extending <kbd>\Orm\Model_Nestedset</kbd> instead of <kbd>\Orm\Model</kbd>.
@@ -203,7 +203,7 @@ class Model_Tree extends \Orm\Model_Nestedset
                 </section>
 
                 <section>
-                    <h2 id="usage">Using the model</h2>
+                    <h2 id="usage">モデルの使用法</h2>
 
 					<p>
 						Based on the example in the introduction and the model defined above, let's start by creating this tree.
@@ -254,7 +254,7 @@ $tim->child($kerry)->save();
                 </section>
 
                 <section>
-					<h2 id="behavioral_changes">Behavioral changes</h2>
+					<h2 id="behavioral_changes">行動変化</h2>
 
 					<p>
 						In addition to the primary key, which is read-only in every ORM model object once set, a Nestedset model doesn't allow
@@ -303,7 +303,7 @@ $tim->child($kerry)->save();
                 </section>
 
                 <section>
-					<h2 id="collection_methods">Collection methods</h2>
+					<h2 id="collection_methods">コレクションメソッド</h2>
 
 					<p>
 						Collection methods are methods that allow you to perform an operation, either a <strong>get()</strong> or a <strong>save()</strong>,
@@ -1112,7 +1112,7 @@ $james->next_sibling($tim)->save();
                 </section>
 
                 <section>
-					<h2 id="test_methods">Test methods</h2>
+					<h2 id="test_methods">テストメソッド</h2>
 
 					<p>
 						Test methods are used to query a particular state of the object with regards to their position in the tree.
@@ -1529,7 +1529,7 @@ echo $ben->has_next_sibling() ? 'true' : 'false';
                 </section>
 
                 <section>
-					<h2 id="miscellaneous_methods">Miscellaneous methods</h2>
+					<h2 id="miscellaneous_methods">その他のメソッド</h2>
 
 					<article>
 						<h4 id="method_delete_tree" class="method">delete_tree($cascade = null, $use_transaction = false)</h4>
