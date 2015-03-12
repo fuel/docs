@@ -45,8 +45,8 @@
 		<div id="main">
 			<h2>Orm</h2>
 
-			<p>ORMは<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
-				関係マッピング</a>の略です。 これは、2つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
+			<p>ORM は<a href="http://ja.wikipedia.org/wiki/オブジェクト関係マッピング" target="_blank">オブジェクト
+				関係マッピング</a>の略です。 これは、2 つのことを行います: オブジェクトにデータベースのテーブルの行をマップし、
 				それはあなたがそれらのオブジェクト間の関係を確立することができます。<br />
 				それは <a href="http://ja.wikipedia.org/wiki/Active_Record" target="_blank">
 				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
@@ -55,14 +55,14 @@
 				<h2 id="creation">モデルの作成</h2>
 
 				<p>モデルは少しの時間で作る事ができます, 規則では <kbd>Model_</kbd>
-					プレフィックスをクラス名につけます。 (ファイル名が、article.phpなら、Model_Articleとします。) 
-					そして、 <kbd>app/classes/model/</kbd>に従って設置をしますが、あなたが選択した任意の名前を
+					プレフィックスをクラス名につけます。 (ファイル名が、article.phpなら、 Model_Article とします。) 
+					そして、 <kbd>app/classes/model/</kbd> に従って設置をしますが、あなたが選択した任意の名前を
 					自由に使用することができます。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model {}</code></pre>
 
 				<p class="note">この方式はデータベースからモデルのプロパティを取得する必要があるため、
-				mysqlドライバとmysqliドライバでのみ動作します。しかし、カラムの名前を取得するために常に一つのモデル毎に
+				mysql ドライバと mysqli ドライバでのみ動作します。しかし、カラムの名前を取得するために常に一つのモデル毎に
 				余分なクエリが一つ実行されるため、大変非効率であり、この方式を使うことは<strong>推奨されません</strong>。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
@@ -73,16 +73,16 @@
 				<h2 id="config">設定</h2>
 
 				<p>あなたはモデルを設定するために静的なプロパティを追加することができます。<br />
-					先ほど示したように、<kbd>$_properties</kbd>を設定することは必須ではありませんが、設定を行う事を推奨します。
-					これらのプロパティは <kbd>public</kbd>もしくは<kbd>protected</kbd>で宣言します。
-					<kbd>private</kbd>で宣言すべきではありません。<br />
-					すべての設定プロパティーは、カラム名との衝突を避けるために先頭に&quot;_&quot;(一つのアンダースコア)がつけられていることに注意して下さい。</p>
+					先ほど示したように、 <kbd>$_properties</kbd> を設定することは必須ではありませんが、設定を行う事を推奨します。
+					これらのプロパティは <kbd>public</kbd> もしくは <kbd>protected</kbd> で宣言します。
+					<kbd>private</kbd> で宣言すべきではありません。<br />
+					すべての設定プロパティーは、カラム名との衝突を避けるために先頭に &quot;_&quot; (一つのアンダースコア) がつけられていることに注意して下さい。</p>
 
 				<h3 id="table_name">protected static $_table_name</h3>
 
-				<p>このプロパティが設定されていないとき、クラス名から<kbd>Model_</kbd>プリフィクスを削除し、英単語が複数形にされたものがテーブル名として期待されます。
-				"Model_Article"クラスはテーブル名として"articles"を期待します。
-				もしこの規約に従わない場合は、<kbd>$_table_name</kbd>プロパティを設定することでテーブル名を変更することができます。</p>
+				<p>このプロパティが設定されていないとき、クラス名から <kbd>Model_</kbd> プリフィクスを削除し、英単語が複数形にされたものがテーブル名として期待されます。
+				"Model_Article" クラスはテーブル名として "articles" を期待します。
+				もしこの規約に従わない場合は、 <kbd>$_table_name</kbd> プロパティを設定することでテーブル名を変更することができます。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -91,7 +91,7 @@
 
 				<h3 id="primary_key">protected static $_primary_key</h3>
 
-				<p>デフォルトでは<kbd>array('id')</kbd>がセットされています。別の列名または複数の主キーを使用する場合は、
+				<p>デフォルトでは <kbd>array('id')</kbd> がセットされています。別の列名または複数の主キーを使用する場合は、
 					このプロパティを設定する必要があります。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
@@ -100,7 +100,7 @@
 }</code></pre>
 
 				<p class="note">主キーは、一意で不変な本当の主キーでなければなりません。
-					PKの値は変えられないため、
+					PK の値は変えられないため、
 					他の目的（一対一の外部キーなど）に使ってはいけません。
 					ORM はこのチェックを行わないため、一見してうまくいっていても後で問題になります。<br />
 					PK は auto_increment にすることが望ましいですが、絶対ではありません。
@@ -114,7 +114,7 @@
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
 	protected static $_properties = array(
-		'id', // PKではバリデーション、型、オブザーバは無視されます
+		'id', // PK ではバリデーション、型、オブザーバは無視されます
 		'name' => array(
 			'data_type' => 'varchar',
 			'label' => 'Article Name',
@@ -132,7 +132,7 @@
 			'data_type' => 'int',
 			'label' => 'Created At',
 			'form' => array(
-				'type' => false, // このフィールドは、formが表示される際に、レンダリングされません。
+				'type' => false, // このフィールドは、 form が表示される際に、レンダリングされません。
 			),
 		),
 		'updated_at' => array('data_type' => 'int', 'label' => 'Updated At')
@@ -141,19 +141,19 @@
 
 				<p>この例に示すように、フォームの属性を配列の形で渡すことができます。</p>
 
-				<p>例のように、バリデーションのルールは<kbd>array('required')</kbd>のような単純なルールでも、
-					<kbd>array('min_length' => array(3))</kbd>のようにパラメータつきのもののどちらでも渡すことができます。
-					バリデーションクラスの規約の完全な説明は<a href="../../classes/validation/validation.html">Core</a>を
-					参照してください。 You need to set
-					<a href="observers/included.html#os_validation">Observer_Validation</a> to run validations.
+				<p>例のように、バリデーションのルールは <kbd>array('required')</kbd> のような単純なルールでも、
+					<kbd>array('min_length' => array(3))</kbd> のようにパラメータつきのもののどちらでも渡すことができます。
+					バリデーションクラスの規約の完全な説明は <a href="../../classes/validation/validation.html">Core</a> を
+					参照してください。 バリデーションを実行するように
+					<a href="observers/included.html#os_validation">Observer_Validation</a> を設定する必要があります。
 				</p>
 
 				<h3 id="conditions">protected static $_conditions</h3>
 
 				<p>既定ではこのプロパティはセットされておらず、
-					<kbd>Model::condition()</kbd>は<kbd>array()</kbd>を返します。
+					<kbd>Model::condition()</kbd> は <kbd>array()</kbd> を返します。
 					もし、それぞれのクエリが実行される時に何かの条件を指定したければ、モデル上で設定することが可能です。
-					現時点では'order_by'条件と'where'条件が指定可能です。</p>
+					現時点では 'order_by' 条件と 'where' 条件が指定可能です。</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -166,26 +166,26 @@
 	);
 }</code></pre>
 				<p class="note">
-					<kbd>order_by</kbd>条件は他のorder_by節が定義されていないときのみ有効です。
-					<kbd>where</kbd>条件は他のwhere節が定義されている場合、<kbd>and</kbd>で追加されます。
+					<kbd>order_by</kbd> 条件は他のorder_by節が定義されていないときのみ有効です。
+					<kbd>where</kbd> 条件は他のwhere節が定義されている場合、 <kbd>and</kbd> で追加されます。
 				</p>
 
 				<h3 id="relations">protected static $_has_one, $_belongs_to, $_has_many, $_many_many</h3>
 
-				<p>お互いのモデルを関連することは、 <a href="relations/intro.html">Relating Models</a>で説明しています。</p>
+				<p>お互いのモデルを関連することは、 <a href="relations/intro.html">Relating Models</a> で説明しています。</p>
 
 				<h3 id="connection">protected static $_connection</h3>
 
-				<p>既定ではこのプロパティはセットされておらず、<kbd>Model::connection()</kbd>は<kbd>null</kbd>を返します。
-				もし、<kbd>app/config/db.php</kbd>で設定された他のデータベースを設定することも可能です。</p>
+				<p>既定ではこのプロパティはセットされておらず、 <kbd>Model::connection()</kbd> は <kbd>null</kbd> を返します。
+				もし、 <kbd>app/config/db.php</kbd> で設定された他のデータベースを設定することも可能です。</p>
 
 				<h3 id="write_connection">protected static $_write_connection</h3>
 
-				<p>もし、データベースがmaster/slave環境で構成されている場合、masterに対するwriteに使用するconnectionを指定することができます。
-				もしこのプロパティが設定されている場合、<kbd>$_connection</kbd>はslaveに対するreadに利用されます。</p>
-				<p>既定ではこのプロパティはセットされておらず、Model::connection(true)は設定された<kbd>$_connection</kbd>、
+				<p>もし、データベースが master/slave 環境で構成されている場合、 master に対する write に使用する connection を指定することができます。
+				もしこのプロパティが設定されている場合、 <kbd>$_connection</kbd> は slave に対する read に利用されます。</p>
+				<p>既定ではこのプロパティはセットされておらず、 Model::connection(true) は設定された <kbd>$_connection</kbd> 、
 				もしくはnullを返します。
-				<kbd>app/config/db.php</kbd>で設定された他のデータベースを設定することも可能です。</p>
+				<kbd>app/config/db.php</kbd> で設定された他のデータベースを設定することも可能です。</p>
 
 				<pre class="php"><code>// シングル構成のデータベースを利用する場合の設定
 class Model_Article extends Orm\Model
@@ -194,7 +194,7 @@ class Model_Article extends Orm\Model
 	protected static $_connection = 'articles_db';
 }
 
-// master/slave構成のデータベースを利用する場合の設定
+// master/slave 構成のデータベースを利用する場合の設定
 class Model_Article extends Orm\Model
 {
 	// 'articles_master_db' と 'articles_slave_db' は db.php で設定されている必要がある
@@ -203,18 +203,18 @@ class Model_Article extends Orm\Model
 }</code></pre>
 
 				<p class="note">リレーションは同じコネクション上でしか利用できません。
-				このため、もし、モデル内でコネクションを設定する場合は、リレーションを設定するモデルがread、writeの両方で同じコネクションを使うように十分注意してください。</p>
+				このため、もし、モデル内でコネクションを設定する場合は、リレーションを設定するモデルが read 、 write の両方で同じコネクションを使うように十分注意してください。</p>
 
 				<h3 id="to_array_exclude">protected static $_to_array_exclude</h3>
 
 				<p>
-					APIドリブンなアプリケーションを作成する場合、しばしばAPIに公開するカラムを制限したくなる場合があります。
-					たとえば、userを管理するレコードをAPIから参照する場合、
-					パスワードやログインハッシュ、saltを公開する必要はありません。
+					API ドリブンなアプリケーションを作成する場合、しばしば API に公開するカラムを制限したくなる場合があります。
+					たとえば、 user を管理するレコードを API から参照する場合、
+					パスワードやログインハッシュ、salt を公開する必要はありません。
 				</p>
 				<p>
-					モデルの定義において、<strong>to_array_exclude</strong>にカラム名を追加することで、
-					to_array()の結果から除外することができます。
+					モデルの定義において、 <strong>to_array_exclude</strong> にカラム名を追加することで、
+					to_array() の結果から除外することができます。
 				</p>
 				<pre class="php"><code>class Model_User extends Orm\Model
 {
@@ -223,14 +223,14 @@ class Model_Article extends Orm\Model
 	);
 }</code></pre>
 				<p class="note">
-					既定ではto_array()メソッドは現在のモデルのカラムとリレーションにより読み出されたデータの両方を出力します。
+					既定では to_array() メソッドは現在のモデルのカラムとリレーションにより読み出されたデータの両方を出力します。
 					必要に応じてカスタムプロパティも出力することが可能です。
 					配列による除外は、カラム、カスタムプロパティ、リレーションのすべてを除外することができます。
 				</p>
 
 				<h3 id="observers">protected static $_observers</h3>
 
-				<p>オブザーバーの追加については <a href="observers/intro.html">Observers</a>で説明されています。</p>
+				<p>オブザーバーの追加については <a href="observers/intro.html">Observers</a> で説明されています。</p>
 			</section>
 
 		</div>
