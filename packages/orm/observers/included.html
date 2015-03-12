@@ -53,9 +53,9 @@
 				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
 
 			<article>
-				<h3 id="included_observers">Observers: Included observers</h3>
+				<h3 id="included_observers">オブザーバ：含まれるオブザーバ</h3>
 
-				<p>付属のオブザーバーは以下に記載されています:</p>
+				<p>付属のオブザーバは以下に記載されています:</p>
 
 				<ul>
 					<li><a href="#os_self">Observer_Self</a></li>
@@ -161,7 +161,7 @@ $blog->save();
                                  そしてほとんどの場合自動インクリメントとなります。
 				  独自に作成したりバリデーションが必要なときには手動でフィールドを追加する必要があります。</p>
 
-				<p>オブザーバーは、以下のようにロードすることができます:</p>
+				<p>オブザーバは、以下のようにロードすることができます:</p>
 
 				<pre class="php"><code>// オブザーバを追加し、必要なイベントを定義するだけです
 protected static $_observers = array('Orm\\Observer_Validation' => array(
@@ -305,7 +305,7 @@ echo $fieldset;</code></pre>
                                         通常、それはすべての文字列になります (偶数整数および浮動小数点数) が、タイピングオブザーバでそれらはそれらのスカラ型にキャストされます。
 				</p>
 
-				<p>タイピングオブザーバーは上記のほかに、シリアル＆JSONフィールドのサポートを追加します。どちらも
+				<p>タイピングオブザーバは上記のほかに、シリアル＆JSONフィールドのサポートを追加します。どちらも
 					文字列型のフィールドである必要があります ("テキスト"が望ましい) 。  しかし保存用に (<kbd>serialize()</kbd> 
 					もしくは <kbd>json_encode()</kbd> を使って) エンコードされたの値を持つことになり、そして
 					DB から取得する際には (<kbd>unserialize()</kbd> もしくは <kbd>json_decode()</kbd> を使って) デコードをします。</p>
@@ -317,13 +317,13 @@ echo $fieldset;</code></pre>
 				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Typing');
 
-// 特定のイベントだけのためのオブザーバーを追加します。
+// 特定のイベントだけのためのオブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Typing' => array(
 	'events' => array('before_save', 'after_save', 'after_load')
 ));</code></pre>
 
 				<p>
-					このオブザーバーはあなたがそのモデルにセットした <kbd>$_properties</kbd> 静的変数を必要としますが、
+					このオブザーバはあなたがそのモデルにセットした <kbd>$_properties</kbd> 静的変数を必要としますが、
 					もしセットされていない場合は <kbd>DB::list_columns()</kbd> (MySQL のみ) による検出を利用します。
 					もし自分で設定を行いたい場合、以下の設定が利用可能です。
 				</p>
