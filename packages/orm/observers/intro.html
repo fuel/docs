@@ -56,11 +56,11 @@
 				<h3 id="intro">オブザーバー：はじめに</h3>
 
 				<p>イベントベースのシステムは、特定のイベントに動作を追加できるようにします。 イベントが観測されると
-					ORMは自動的にそれらを行うためには何があるのかどうかを確認するために追加されたすべてのオブザーバーを呼び出します</p>
+					ORM は自動的にそれらを行うためには何があるのかどうかを確認するために追加されたすべてのオブザーバーを呼び出します</p>
 
 				<ul>
 					<li><a href="intro.html#add_observers">モデルにオブザーバを追加</a></li>
-					<li><a href="included.html">includeされたオブザーバー</a></li>
+					<li><a href="included.html">include されたオブザーバー</a></li>
 					<li><a href="creating.html">あなた自身のオブザーバーを作成</a></li>
 				</ul>
 			</article>
@@ -68,15 +68,15 @@
 			<article id="add_observers">
 				<h3 id="adding">モデルにオブザーバを追加</h3>
 
-				<p>あなたは2つの方法でオブザーバを追加することができます: オブザーバをすべてのイベントのために、
+				<p>あなたは 2 つの方法でオブザーバを追加することができます: オブザーバをすべてのイベントのために、
 					またはオブザーバが呼び出す名前と多数の特定のイベントとしてのオブザーバを呼び出させる場合に、名前を加えてください。<br />
-					オブザーバーがモデルと同じ名前空間にあって、<kbd>Observer_</kbd>で前に置かれるとき、
-					あなたは"Observer_"プレフィックスを無視することができます。他の全てのケースでは、あなたは完全なclassnameを提供しなければなりません。</p>
+					オブザーバーがモデルと同じ名前空間にあって、 <kbd>Observer_</kbd> で前に置かれるとき、
+					あなたは "Observer_" プレフィックスを無視することができます。他の全てのケースでは、あなたは完全な classname を提供しなければなりません。</p>
 
 				<pre class="php"><code>class Model_Article
 {
 	protected static $_observers = array(
-		'example', // 全てのイベントで、Observer_Example クラスを呼び出します
+		'example', // 全てのイベントで、 Observer_Example クラスを呼び出します
 		'Orm\\Observer_CreatedOn' => array(
 			'events' => array('before_insert'), // before_insert イベントのときだけ Orm\Observer_CreatedOn クラスを呼び出します
 		)
