@@ -53,9 +53,9 @@
 				Active Record パターン</a>に従いますが、 他のシステムに影響も受けます。</p>
 
 			<article>
-				<h3 id="included_observers">Observers: Included observers</h3>
+				<h3 id="included_observers">オブザーバ：含まれるオブザーバ</h3>
 
-				<p>付属のオブザーバーは以下に記載されています:</p>
+				<p>付属のオブザーバは以下に記載されています:</p>
 
 				<ul>
 					<li><a href="#os_self">Observer_Self</a></li>
@@ -84,15 +84,15 @@ protected static $_observers = array('Orm\\Observer_Self' => array(
 
 				<h4 id="os_created">Observer_CreatedAt</h4>
 
-				<p>このオブザーバは<kbd>before_insert</kbd>だけに作用します。<kbd>created_at</kbd>プロパティを持っている
-					モデルが初めて保存されるとき、Unixタイムスタンプがセットされます。</p>
+				<p>このオブザーバは <kbd>before_insert</kbd> だけに作用します。 <kbd>created_at</kbd> プロパティを持っている
+					モデルが初めて保存されるとき、 Unix タイムスタンプがセットされます。</p>
 
 				<pre class="php"><code>// 単にオブザーバを追加します
 protected static $_observers = array('Orm\\Observer_CreatedAt');
 
 // 以下の設定をつけて追加します:
 // - before_insert 時のみ実行される
-// - mysql のタイムスタンプを使います（デフォルトではUNIXタイムスタンプを使用しています）
+// - mysql のタイムスタンプを使います (デフォルトでは UNIX タイムスタンプを使用しています)
 // - "created_at" の代わりに "created" を使用します
 protected static $_observers = array(
 	'Orm\\Observer_CreatedAt' => array(
@@ -121,7 +121,7 @@ protected static $_observers = array('Orm\\Observer_UpdatedAt');
 
 // 以下の設定をつけて追加します:
 // - before_save 時のみで実行される
-// - mysql のタイムスタンプを使います（デフォルトではUNIXタイムスタンプを使用しています）
+// - mysql のタイムスタンプを使います (デフォルトでは UNIX タイムスタンプを使用しています)
 // - "updated_at" の代わりに、 "updated" を使用します
 protected static $_observers = array(
     'Orm\\Observer_UpdatedAt' => array(
@@ -153,7 +153,7 @@ $blog->save();
 				<h4 id="os_validation">Observer_Validation</h4>
 
 				<p>このオブザーバは <kbd>before_insert</kbd> および/または <kbd>before_update</kbd> に、または <kbd>before_save</kbd> に作用することができます。
-				ルールが 2 回呼ばれる原因となるので、 <kbd>before_save</kbd> と他の2つのどちらかを同時に指定しないで下さい。
+				ルールが 2 回呼ばれる原因となるので、 <kbd>before_save</kbd> と他の 2 つのどちらかを同時に指定しないで下さい。
 				  これはバリデーションルールが失敗した場合に、モデルが間違って保存されることを防ぐためのものです。
 				  <a href="../../../classes/fieldset/fieldset.html">Fieldset</a> クラスを使用しますし、フォームを生成することもできます。</p>
 
@@ -161,14 +161,14 @@ $blog->save();
                                  そしてほとんどの場合自動インクリメントとなります。
 				  独自に作成したりバリデーションが必要なときには手動でフィールドを追加する必要があります。</p>
 
-				<p>オブザーバーは、以下のようにロードすることができます:</p>
+				<p>オブザーバは、以下のようにロードすることができます:</p>
 
 				<pre class="php"><code>// オブザーバを追加し、必要なイベントを定義するだけです
 protected static $_observers = array('Orm\\Observer_Validation' => array(
 	'events' => array('before_save')
 ));</code></pre>
 
-				<p class="note">2回呼び出される原因となるので、このオブザーバをイベントの指定なしに定義しないで下さい。</p>
+				<p class="note">2 回呼び出される原因となるので、このオブザーバをイベントの指定なしに定義しないで下さい。</p>
 
 				<p>バリデーションルールは、モデルの <kdb>$_properties</kbd> に定義されなければなりません。
 				 <a href="../creating_models.html#propperties">モデルの作成</a>のページに例があります。
@@ -284,13 +284,13 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 				<p>これは、<a href="../../../classes/fieldset/fieldset.html">Fieldset</a> クラスを使用しているので、検証を実行し、
 					また、モデル用のフォームを作成することができます。次の例では、作成と編集フォームが一般的なビューで定義されています。
 					しかし、同じように簡単にモデルにそれを定義し、<code>Fieldset::instance()</code> を使用することで、
-					viewでそれのインスタンスを取得することができます。</p>
+					view でそれのインスタンスを取得することができます。</p>
 
 				<pre class="php"><code>// フォームを作成する Model_Article のインスタンスを使用して、あなたはまた、クラス名を渡すことができます。
 $fieldset = Fieldset::forge()->add_model($article);
 
 // モデルのインスタンスからの値を使用してフォームを移入します。
-// trueを渡しても、セーブ失敗した後に再設定するために POST/PUT を使用します。
+// true を渡しても、セーブ失敗した後に再設定するために POST/PUT を使用します。
 $fieldset->populate($article, true);
 
 // フィールドセットは、文字列へのキャスト時に HTML としてビルドされます。
@@ -302,11 +302,11 @@ echo $fieldset;</code></pre>
 					これは 2 つのもののためのものです: 入力のための型強制とDBからの出力のための型キャストです。 つまり、
                                         あなたがタイピングオブザーバを保存しているときにすることは予想される型に入力値をキャストしようとすることで、
                                         それができないは例外をスローします。そして、あなたが DB のデータを取得しているとき、
-                                        通常、それはすべての文字列になります（偶数整数および浮動小数点数）が、タイピングオブザーバでそれらはそれらのスカラ型にキャストされます。
+                                        通常、それはすべての文字列になります (偶数整数および浮動小数点数) が、タイピングオブザーバでそれらはそれらのスカラ型にキャストされます。
 				</p>
 
-				<p>タイピングオブザーバーは上記のほかに、シリアル＆JSONフィールドのサポートを追加します。どちらも
-					文字列型のフィールドである必要があります（"テキスト"が望ましい）。  しかし保存用に (<kbd>serialize()</kbd> 
+				<p>タイピングオブザーバは上記のほかに、シリアル＆JSONフィールドのサポートを追加します。どちらも
+					文字列型のフィールドである必要があります ("テキスト"が望ましい) 。  しかし保存用に (<kbd>serialize()</kbd> 
 					もしくは <kbd>json_encode()</kbd> を使って) エンコードされたの値を持つことになり、そして
 					DB から取得する際には (<kbd>unserialize()</kbd> もしくは <kbd>json_decode()</kbd> を使って) デコードをします。</p>
 
@@ -317,13 +317,13 @@ echo $fieldset;</code></pre>
 				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Typing');
 
-// 特定のイベントだけのためのオブザーバーを追加します。
+// 特定のイベントだけのためのオブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Typing' => array(
 	'events' => array('before_save', 'after_save', 'after_load')
 ));</code></pre>
 
 				<p>
-					このオブザーバーはあなたがそのモデルにセットした <kbd>$_properties</kbd> 静的変数を必要としますが、
+					このオブザーバはあなたがそのモデルにセットした <kbd>$_properties</kbd> 静的変数を必要としますが、
 					もしセットされていない場合は <kbd>DB::list_columns()</kbd> (MySQL のみ) による検出を利用します。
 					もし自分で設定を行いたい場合、以下の設定が利用可能です。
 				</p>
@@ -341,7 +341,7 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 								text, tinytext, mediumtext, longtext, enum, set, bool, boolean, serialize, json,
 								time_unix, time_mysql</td>
 							<td>
-								フィールド上で使用されるタイピングオブザーバを持っているために<strong>必要な</strong>SQLデータ型。
+								フィールド上で使用されるタイピングオブザーバを持っているために<strong>必要な</strong> SQL データ型。
 							</td>
 						</tr>
 						<tr>
@@ -395,7 +395,7 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 					and expects your model to have a <kbd>title</kbd> (to create the slug) and a <kbd>slug</kbd> (to save it) property.
 				</p>
 
-				<pre class="php"><code>//オブザーバを追加します。
+				<pre class="php"><code>// オブザーバを追加します。
 protected static $_observers = array('Orm\\Observer_Slug');
 
 // 設定
