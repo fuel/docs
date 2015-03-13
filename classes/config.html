@@ -77,10 +77,10 @@ key=value</code></pre>
 }</code></pre>
 				</li>
 				<li>
-					MEMCACHED. Stores or retrieves the config from a Memcached or Memcachedb store.
+					MEMCACHED 。 Memcached もしくは Memcachedb のストアから設定を格納または取得します。
 					<br /><br />
-					It will use the <strong>config.memcached</strong> section of the <code>app/config/config.php</code> configuration
-					file to configure the memcached class used to connect to the store.
+					memcached クラスはストアに接続するための設定に <code>app/config/config.php</code> 設定ファイルの
+					<strong>config.memcached</strong> セクションをを使用します。
 					<br /><br />
 				</li>
 				<li>
@@ -91,9 +91,9 @@ key=value</code></pre>
   `hash` char(13) NOT NULL,
   PRIMARY KEY (`identifier`)
 )</code></pre>
-					By default it will use the table name 'config', in the default database. You can override this by defining your
-					database and table name in <code>app/config/config.php</code>, using the <strong>config.database</strong>
-					and <strong>config.table_name</strong> key.
+					デフォルトのデータベースで、デフォルトではテーブル名 'config' を使用します。 あなたは
+					<strong>config.database</strong> と <strong>config.table_name</strong> キーを使用し <code>app/config/config.php</code>
+					でデータベースとテーブル名を定義することでこれを上書きすることができます。
 				</li>
 			</ul>
 
@@ -365,7 +365,7 @@ Config::load('foo::custom', 'bar');</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><kbd>true</kbd> なら保存されています。<kbd>false</kbd> ならエラーが起こっています。</td>
+						<td><kbd>true</kbd> なら保存されています。 <kbd>false</kbd> ならエラーが起こっています。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -376,13 +376,13 @@ Config::load('custom', 'foo');
 // 幾つかの設定項目を更新
 Config::set('foo.key', $value);
 
-// 'foo' グループに更新設定を保存 (注意: これはそのグループのすべてを保存することに注意!)
+// 更新された設定グループ 'foo' を保存 (注意: これはそのグループのすべてを保存することに注意!)
 Config::save('custom', 'foo');
 
-// save the updated config group 'bar' to config file 'custom' in the module 'foo'
+// 更新された設定グループ 'bar' をモジュール 'foo' の設定ファイル 'custom' に保存
 Config::save('foo::custom', 'bar');
 
-// save the updated config group 'bar' to memcached using the identifier 'custom'
+// 更新された設定グループ 'bar' を識別子 'custom' を使い memcached に保存
 Config::save('custom.memcached', 'bar');</code></pre>
 						</td>
 					</tr>
