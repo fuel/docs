@@ -103,15 +103,15 @@ var customSearchControl;
 
 if(typeof google != 'undefined')
 {
-    google.load('search', '1', {language : 'en'});
-    google.setOnLoadCallback(function() {
-        customSearchControl = new google.search.CustomSearchControl(GoogleCSE);
-        customSearchControl.setResultSetSize(4);
-        var options = new google.search.DrawOptions();
-        options.setSearchFormRoot('cse-search-form');
-        options.enableSearchResultsOnly();
-        customSearchControl.draw('cse_content', options);
-    }, true);
+google.load('search', '1', {language : 'en'});
+google.setOnLoadCallback(function() {
+    customSearchControl = new google.search.CustomSearchControl(GoogleCSE);
+    customSearchControl.setResultSetSize(4);
+    var options = new google.search.DrawOptions();
+    options.setSearchFormRoot('cse-search-form');
+    options.enableSearchResultsOnly();
+    customSearchControl.draw('cse_content', options);
+}, true);
 }
 
 
@@ -447,9 +447,9 @@ panes.core = {
 		"Config":		"classes/config.html",
 		"Cookie":		"classes/cookie.html",
 		"Crypt": {
-			"Configuration":	"classes/crypt/config.html",
-			"Usage":			"classes/crypt/usage.html",
-			"Advanced":			"classes/crypt/advanced.html"
+			"設定":	"classes/crypt/config.html",
+			"使用法":			"classes/crypt/usage.html",
+			"高度な使用法":			"classes/crypt/advanced.html"
 		},
 		"Database": {
 			"はじめに":   	  "classes/database/introduction.html",

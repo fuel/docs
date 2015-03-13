@@ -11,7 +11,7 @@
 		var class_prefix = "Crypt::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Crypt Usage - Classes - FuelPHP Documentation</title>
+	<title>Crypt 使用法 - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
@@ -25,7 +25,7 @@
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="submit" name="search_submit" id="search_submit" value="検索" />
 						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,15 +45,15 @@
 
 		<div id="main">
 
-			<h2>Crypt Class</h2>
+			<h2>Crypt クラス</h2>
 
 			<p>
-				The Crypt class allows encrypt or decrypt a string. The Crypt class is also used internally by for example the Fuel Sessions class.
+				Crypt クラスにより文字列を暗号化や複号が可能になります。例えば、Sessions クラスにおいても Crypt クラスが内部で使用されています。
 			</p>
-			<p>It uses the encryption and hashing methods provided by PHPSecLib, so it's not dependent on external modules being available, such as mcrypt.</p>
+			<p>PHPSecLib により提供される暗号化とハッシング関数が使われているため、mcrypt のような外部モジュールに依存していません。</p>
 
 			<section>
-				<h3 id="usage">Usage</h3>
+				<h3 id="usage">使用法</h3>
 
 				<p>
 					Using crypt can be done in 2 ways: through static usage of the Crypt class and through crypt objects
@@ -67,44 +67,44 @@
 
 				<article>
 					<h4 class="method" id="method_encode">encode($value, $key = false)</h4>
-					<p>The <strong>encode</strong> method encrypts a string value, optionally with a custom encryption key.</p>
+					<p><strong>encode</strong> メソッドは文字列を暗号化します。オプションとして暗号キーが設定できます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
+							<th class="legend">静的</th>
+							<td>いいえ</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
-										<td><i>Required</i></td>
-										<td>String value to encode.</td>
+										<td><i>必須</i></td>
+										<td>エンコードする文字列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$key</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>Optional custom key value to be used to encode the value passed. If false, the config value '<strong>crypto_key</strong>' is used.</td>
+										<td>エンコードに使われる任意のキー。false の場合、設定値である '<strong>crypto_key</strong>' が適用されます。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
+							<th>返り値</th>
 							<td>string</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// encode a variable with a custom key
-$value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
+								<pre class="php"><code>// カスタムキーにより変数をエンコードする
+		$value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 							</td>
 						</tr>
 						</tbody>
@@ -113,43 +113,43 @@ $value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 
 				<article>
 					<h4 class="method" id="method_decode">decode($value, $key = false)</h4>
-					<p>The <strong>decode</strong> method decrypts a string value, optionally with a custom key.</p>
+					<p><strong>decode</strong> メソッドは文字列を複号します。オプションとして暗号キーが設定できます。</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th class="legend">Static</th>
-							<td>No</td>
+							<th class="legend">静的</th>
+							<td>いいえ</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
+										<th>パラメータ</th>
+										<th>デフォルト</th>
+										<th class="description">説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
-										<td><i>Required</i></td>
-										<td>String value to decode.</td>
+										<td><i>必須</i></td>
+										<td>デコードされる文字列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$key</kbd></th>
 										<td><pre class="php"><code>false</code></pre></td>
-										<td>Optional custom key value to be used to decode the value passed. If false, the config value '<strong>crypto_key</strong>' is used.</td>
+										<td>デコードに使われる任意のキー。false の場合、設定値である '<strong>crypto_key</strong>' が適用される。</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>mixed - String value with the decoded value, or <kbd>false</kbd> if the value could not be decoded.</td>
+							<th>返り値</th>
+							<td>mixed - デコードされた文字列か、デコードできなかった場合は <kbd>false</kbd> を返します。</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// decode a variable with a custom key
+								<pre class="php"><code>// カスタムキーにより変数をデコードする
 $value = Crypt::decode($value, 'R@nd0mK~Y');</code></pre>
 							</td>
 						</tr>
