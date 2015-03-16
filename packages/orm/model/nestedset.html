@@ -140,27 +140,27 @@
                 <section>
                     <h2 id="configuration">設定</h2>
 
-                    <p>The Nestedset Model adds an additional property, <kbd>$_tree</kbd>, to the model, with which you can configure the model:</p>
+                    <p>Nestedsetモデルでは追加のプロパティとして<kbd>$_tree</kbd>が加わり、これによってそのモデルの設定をすることができます。</p>
                     <ul>
-						<li><kbd>left_field</kbd> defines the name of the table column that is used to store the tree's <strong>left pointer</strong>. The column name defaults to "left_id".</li>
-						<li><kbd>right_field</kbd> defines the name of the table column that is used to store the tree's <strong>right pointer</strong>. The column name defaults to "right_id".</li>
-						<li><kbd>tree_field</kbd> defines the name of the table column that is used to store the tree's <strong>id</strong>, a value that uniquely identifies a tree in case you
-							want to store multiple trees in a single table. If you use a numeric value as tree-id, the model can automatically assign it when you
-							create new tree root nodes. If it is not numeric, you have to supply the value before you call <kbd>save()</kbd>.  There is no default value.</li>
-						<li><kbd>title_field</kbd> defines the name of the table column that is used to store the tree node's <strong>title</strong> or <strong>name</strong>. It is optional, the
-							Model works well without it, but it is required for some of the models methods. Where applicable this is mentioned in the documentation
-							of the method. There is no default value.</li>
+						<li><kbd>left_field</kbd> はテーブルのカラム名を定義するもので、ツリーの<strong>左ポインター</strong>を格納するのに使われます。デフォルトのカラム名は「left_id」です。</li>
+						<li><kbd>right_field</kbd> はテーブルのカラム名を定義するもので、ツリーの<strong>右ポインター</strong>を格納するのに使われます。デフォルトのカラム名は「right_id」です。</li>
+						<li><kbd>tree_field</kbd> はテーブルのカラム名を定義するもので、ツリーの<strong>ID</strong>、つまり複数のツリー構造を単一のテーブルへ格納するときに
+							各ツリーを一意に識別する値を格納するのに使われます。ツリーIDに数値を使う場合は、新たなツリーのルートノードを作る際に、モデルへ自動的にこの値を
+							割り当てさせることができます。数値でない場合は、<kbd>save()</kbd>を呼ぶ前に自分でその値を与えてやる必要があります。デフォルトの値はありません。</li>
+						<li><kbd>title_field</kbd>はテーブルのカラム名を定義するもので、ツリーのノードの<strong>タイトル</strong>や<strong>名前</strong>を格納するのに使われます。これは任意のもので、
+							なくても入れ子集合モデルは十分機能するのですが、このモデルの幾つかのメソッドにおいては要求されます。どこで適用されるのかについては、当該メソッドについてのドキュメントで
+							言及しています。デフォルトの値はありません。</li>
                     </ul>
-                    <p>The next section show you what a basic Nestedset model looks like, and how you configure it.</p>
+                    <p>次の節では基本的なNestedsetモデルがどのようなものなのか、またどのように設定するのかを示します。</p>
                 </section>
 
                 <section>
                     <h2 id="model">モデルの定義</h2>
 
                     <p>
-						Using the nested sets model is as easy as extending <kbd>\Orm\Model_Nestedset</kbd> instead of <kbd>\Orm\Model</kbd>.
-						This marks your model as being a nested sets model, adds a lot of methods to manipulate trees and nodes, and changes
-						the default behaviour of the <kbd>delete()</kbd> and <kbd>save()</kbd> methods to make sure the tree stays consistent.
+						入れ子集合モデルの利用は簡単で、<kbd>\Orm\Model</kbd>のかわりに<kbd>\Orm\Model_Nestedset</kbd>を継承するだけです。
+						これによってあなたのモデルは入れ子集合モデルとなり、ツリーやノードを扱うための沢山のメソッドが追加され、また
+						また <kbd>delete()</kbd> や <kbd>save()</kbd> メソッドのデフォルトの挙動が変わることで、ツリー構造がきちんと一貫性を保てるようになります。
 					</p>
 
                     <pre class="php"><code>&lt;?php
@@ -195,9 +195,9 @@ class Model_Tree extends \Orm\Model_Nestedset
 }
 ?&gt;</code></pre>
                     <p>
-						As you can see, a pretty standard ORM model configuration. The only additional class property is <strong>$_tree</strong>, which defines
-						the tree configuration. The model is then set up like a normal <a href="../creating_models.html">ORM model</a>, including any relations
-						or other properties that you wish to use.
+						見ての通り、まったく標準的な ORM モデルの設定です。 唯一追加されたクラスプロパティが <strong>$_tree</strong> で、これは
+						ツリーの設定を定義するものとなります。このモデルはこの設定から通常の<a href="../creating_models.html">ORM モデル</a>と同様に構築され、いかなるリレーションや
+						他のプロパティも思うままに使うことができます。
 					</p>
 
                 </section>
