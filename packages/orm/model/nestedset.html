@@ -48,35 +48,35 @@
                     <h2 id="introduction">はじめに</h2>
 
 					<p>
-						<i>This introduction is based on <a href="http://www.codeproject.com/Articles/4155/Improve-hierarchy-performance-using-nested-sets">this article</a>, (c) James Simpson.</i>
+						<i>以下の解説は <a href="http://www.codeproject.com/Articles/4155/Improve-hierarchy-performance-using-nested-sets">この記事</a>（(c) James Simpson）にもとづいています。</i>
 					</p>
                     <p>
-						The nested set model is a particular technique for representing nested sets (also known as trees or hierarchies) in
-						relational databases. The term was apparently introduced by Joe Celko; others describe the same technique without naming
-						it or using different terms. (<a href="http://en.wikipedia.org/wiki/Nested_set_model">Source: Wikipedia</a>)
+						入れ子集合モデルは、リレーショナルデータベースにおける入れ子集合 (ツリーや階層構造と言ってもいいです)を実現する方法の1つです。
+						この用語はJoe Celkoによって紹介されたものだと言われていますが、同じテクニックが特に名前を付けられることもないまま、あるいは別の名前によって
+						語られることもあります。(<a href="http://en.wikipedia.org/wiki/Nested_set_model">Source: Wikipedia</a>)
 					</p>
 					<p>
-						A typical example of a tree structure is an organigram of an organisation. We'll be using this to explain how nested sets work.
+						よくあるツリー構造の例は、組織の構造図です。この例を使って、入れ子集合がどのような働きをするかを説明していきます。
                     </p>
 
                     <div class="image">
-						<img src="./../../../assets/img/nestedset.gif" alt="nested set visual" />
+						<img src="./../../../assets/img/nestedset.gif" alt="入れ子集合の視覚化" />
                     </div>
 
 					<p>
-						The above diagram is indicating that each node is aware of all its descendants, and vice versa. For example, we can see easily
-						enough from the diagram that Ben and Angela are "children" of Bill. We can also see that Tim and James are "children" of Ben.
-						This ultimately gives us a link between each member of the hierarchy.
+						上図は各ノードがそれぞれの子孫全てについて把握していて、その逆もまた真であることを示しています。例えば、この図からは
+						BenとAngelaがBillの「子」であることが容易に見てとれます。 また、TimとJamesがBenの「子」であることも分かります。
+						これは詰まるところ、階層構造の中の各要素間のつながりを示しているものです。
 					</p>
 					<p>
-						For us to represent this we need to store two more values per node, that define the relationship between the nodes of the
-						tree structure. These are shown on the diagram in blue and red. We call these Left (<span style="color:red;">red</span> values)
-						and Right (<span style="color:blue;">blue</span> values) pointers.
-						These values are stored on the table, this is all we need to fully represent a nested sets hierarchy.
+						この構造を表現するためには、各ノードにおいて2つの値を余分に保存する必要があり、これによってツリー構造内の
+						ノード間のつながりを定めます。図の中では青と赤で示しています。これら左側の値(<span style="color:red;">赤</span>の値)と
+						右側の値(<span style="color:blue;">青</span>の値)を、ポインターと呼びます。
+						ポインターをテーブル上に保存するだけで、入れ子集合による階層構造を完全に表現することができます。
 					</p>
 
 					<p>
-						Those who are into Mathematics know that you can use a different diagram to represent tree structures:
+						数学の好きな人なら、ツリー構造は別の形で図示することもできるということを知っている筈です。
 					</p>
 
                     <div class="image">
@@ -84,44 +84,44 @@
                     </div>
 
                     <p>
-						Although this might look confusing at first, and certainly more difficult to read, it is immediately clear why this is called
-						nested sets, and why this way of storing hierarchical data in a flat table is efficient: you can directly see the relation
-						between parent and children (all children are contained within their parent), and every node is aware of its parent, and all
-						its descendants. Using this representation you can clearly see that all pointers line up beautifully. This will come in very
-						handy when we need to access the tree.
+						一見するとよく分からないかもしれませんが、というかおそらく余計に読み難く感じるとは思うのですが、このように表せば何故これが
+						入れ子集合と呼ばれるのか、また何故この形で階層的なデータを平面的なテーブル上へ格納するのが効率的なのかは、一目瞭然となります。
+						親子間の関連性はパッと見で分かり（全ての子が親の中に含まれています）、またそれぞれのノードは自身の親や、そして自身の全ての
+						子孫について把握しています。この形で構造を表すことによって、全てのポインタが美しく並んでいることがはっきり分かるようになります。このことは
+						ツリー構造へアクセスする必要がある際に、非常に便利なものとなります
                     </p>
 
 					<h3>単一のテーブルで複数のツリー構造を保存する</h3>
 
 					<p>
-						You can store multiple tree structures into a single database table. To make this possible, you can add a tree-id
-						column to the table. The tree-id identifies the tree the node belongs to.
+						単一のテーブルで複数のツリー構造を保存することもできます。これを可能とするために、ツリーのIDを
+						テーブルのカラムに追加することもできます。ツリーIDがあれば、ノードがどのツリーのものかを識別することができます。
 					</p>
 					<p>
-						A tree-id may either be an integer or a string, and it can be auto-generated for you when you create a new tree, in case integers
-						are used. Integers also make it easier to use the tree-id as a foreign key in a one-to-many relation, and their index lookup
-						in the database is faster. It's strongly suggested you don't use a string value as a tree-id.
+						ツリーIDには整数値でも文字列でも使えるのですが、整数値であれば、ツリーを新しく作る際に自動生成させることもできます。
+						整数値ならツリーIDを1対他のリレーションでの外部キーとして使うことも容易となり、DB内でのインデックスのルックアップも
+						より高速になります。なるべく文字列をツリーIDに使うことはしない方がよいです。
 					</p>
 
 					<h3>テーブル構造</h3>
 
 					<p>
-						You can add as many columns to the table as you want, but to be able to work, the Nestedset Model requires certain
-						columns to be present:
+						テーブルには必要とするだけ幾つでもカラムを追加できますが、ちゃんと動かすためには、入れ子集合モデルには最低限必要な
+						カラムが幾つかあります。
 					</p>
 
 					<ul>
-						<li>Left node pointer, default column name is 'left_id'</li>
-						<li>Right node pointer, default column name is 'right_id'</li>
-						<li>Tree id, a required column only if the table contains multiple trees (no default)</li>
+						<li>左ノードポインター、デフォルトのカラム名は「left_id」</li>
+						<li>右ノードポインター、デフォルトのカラム名は「right_id」</li>
+						<li>ツリーID、テーブル内に複数のツリーを含む場合のみ必須（デフォルトでは必要ありません）</li>
 					</ul>
 					<p>
-						The actual names of the columns used for these functions can be configured in the model. Altough not strictly needed,
-						several methods require a "title" or "name" field. The name of this column can be configured in the model as well.
-						If you use a method that requires it to be present, but you haven't defined it, an exception will be thrown.
+						実際のカラム名は、モデル内で設定することができます。厳密に言うと必要というわけではないのですが、
+						幾つかのメソッドは「title」や「name」というフィールドを使います。これらのカラム名もまたモデル内で設定することができます。
+						もしこれらのフィールドを要求するメソッドを使う際、フィールドが定義されていなければ、例外が投げられます。
 					</p>
 					<p>
-						This is a minumal stucture for a nested sets table:
+						以下は入れ子集合テーブルの最小構成です。
 					</p>
 
                     <pre class="php"><code>CREATE TABLE `tree` (
