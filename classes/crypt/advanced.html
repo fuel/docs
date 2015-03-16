@@ -48,26 +48,26 @@
 			<h2>Crypt クラス</h2>
 
 			<p>
-				Crypt クラスにより文字列を暗号化や複号が可能になります。例えば、Sessions クラスにおいても Crypt クラスが内部で使用されています。
+				Crypt クラスにより文字列を暗号化や複号が可能になります。例えば、 Sessions クラスにおいても Crypt クラスが内部で使用されています。
 			</p>
-			<p>PHPSecLib により提供される暗号化とハッシング関数が使われているため、mcrypt のような外部モジュールに依存していません。</p>
+			<p>PHPSecLib により提供される暗号化とハッシング関数が使われているため、 mcrypt のような外部モジュールに依存していません。</p>
 
 			<section>
 				<h3>高度な使用法</h3>
 
 				<p>
-					The Crypt class supports the use of multiple instances. This might prove useful if you require multiple encryption
-					key sets.
+					Crypt クラスは複数のインスタンスの利用をサポートしています。
+					複数の暗号化キーセットが必要な場合にこれが有用であることが分かるかもしれません。
 				</p>
 				<p>
-					You can use the same methods on an crypt instance as you would when you the static methods. For the method
-					definition see the <a href="./usage.html">class usage</a> page.
+					静的なメソッドと同じメソッド名を、 Crypt のインスタンスに対しても使用することができます。
+					それぞれのメソッドの定義については<a href="./usage.html">クラスの使用法</a>ページを見て下さい。
 				</p>
 
 				<article>
 					<h4 class="method" id="method_forge">forge($config = array())</h4>
 					<p>
-						The <strong>forge</strong> method allows you to manually instantiate a crypt instance.
+						<strong>forge</strong> メソッドは、Crypt クラスのインスタンスを手動で生成します。
 					</p>
 					<table class="method">
 						<tbody>
@@ -88,18 +88,18 @@
 										<th><kbd>$name</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-											Name of the instance requested. If it doesn't exist, it will be forged. If no name is
-											given, the default instance is returned.
+											インスタンスの名前。もしその名前のインスタンスが存在しなければ、新たにフォージ(生成)されます。
+											名前が渡されなかったときは、デフォルトインスタンスが返されます。
 										</td>
 									</tr>
 									<tr>
 										<th><kbd>$config</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
 										<td>
-											You can pass a custom configuration when forging a new crypt instance. The configuration array
-											has the same structure as the crypt configuration file. The custom config will be merged with
-											a default configuration as documented <a href="./config.html">here</a> and with the
-											configuration in your crypt config file, so you only have to pass values you want changed.
+											新しく Crypt インスタンスを生成する際に、カスタム設定を渡すことができます。
+											設定を意味する配列は、crypt 設定ファイルと同様の構造を持っています。
+											渡された設定内容は、<a href="./config.html">ここ</a>で解説されているデフォルトの設定と crypt 設定ファイルにマージされますので、
+											変更したい設定値だけを渡せばよいです。
 										</td>
 									</tr>
 								</table>
@@ -107,17 +107,17 @@
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>object - The instantiated crypt object.</td>
+							<td>object - 生成された crypt オブジェクト。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// instantiate a crypt object with a custom key value
+								<pre class="php"><code>// カスタムキー値でクリプトオブジェクトをインスタンス化
 $crypt = \Crypt::forge(array(
 	'crypto_key' => 'kj$Huhliuh7p*UHHhdas6%#@',
 ));
 
-// and encode some data with it
+// これでいくつかのデータを符号化
 $encoded = $crypt->encode('This is a very secure piece of data!');</code></pre>
 							</td>
 						</tr>
@@ -128,7 +128,7 @@ $encoded = $crypt->encode('This is a very secure piece of data!');</code></pre>
 				<article>
 					<h4 class="method" id="method_instance">instance($name = null)</h4>
 					<p>
-						The <strong>instance</strong> method allows you load a named instance of the crypt class.
+						<strong>instance</strong> メソッドは、名前のついた Crypt クラスのインスタンスを返します。
 					</p>
 					<table class="method">
 						<tbody>
@@ -149,8 +149,8 @@ $encoded = $crypt->encode('This is a very secure piece of data!');</code></pre>
 										<th><kbd>$name</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-											Name of the instance requested. If it doesn't exist, false is returned. If no name is
-											given, the default instance is returned.
+											インスタンスの名前を渡します。もしその名前のインスタンスがなかった場合は false が返されます。
+											名前が指定されなかったときはデフォルトのインスタンスが返されます
 										</td>
 									</tr>
 								</table>
@@ -158,15 +158,15 @@ $encoded = $crypt->encode('This is a very secure piece of data!');</code></pre>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed - The named crypt instance or false if the instance does not exist.</td>
+							<td>mixed - その名前の Crypt インスタンス。存在しなければ false が返ります。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// instantiate a named crypt object with a custom key
+								<pre class="php"><code>// カスタムキー値でクリプトオブジェクトをインスタンス化
 $crypt = \Crypt::instance('custom', array('crypto_key' => 'kj$Huhliuh7p*UHHhdas6%#@'));
 
-// and encode some data with it
+// これでいくつかのデータを符号化
 $encoded = $crypt->encode('This is a very secure piece of data!');</code></pre>
 							</td>
 						</tr>
@@ -175,8 +175,8 @@ $encoded = $crypt->encode('This is a very secure piece of data!');</code></pre>
 				</article>
 
 				<p class="note">
-					 The static methods of the Crypt class will also use the default instance. Remember this if you
-					 alter the configuration of the default instance!
+					 Crypt クラスの静的メソッドは、デフォルトインスタンスを使用します。
+					 既定のインスタンスの設定を変更した場合はこのことを忘れないで下さい！
 				</p>
 
 			</section>
