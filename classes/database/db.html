@@ -99,10 +99,10 @@ $query = DB::query('SELECT * FROM `users`');
 					</tbody>
 				</table>
 				<p class="note">
-					Note that it is important to pass the correct type. The database driver
-					will treat them differently.
-					If you have a query that must return a resultset, but is not a SELECT, use
-					DB::SELECT to make sure the result is returned correctly.
+					それが正しい型を渡すことが重要であることに注意してください。
+					データベースドライバは異なるそれらを扱います。
+					結果セットを返す必要があるクエリを持っており、しかし SELECT
+					ではない場合は、必ず結果が正しく返されるように DB::SELECT を使用しています。
 				</p>
 			</article>
 
@@ -580,7 +580,7 @@ print_r(DB::quote_identifier(array('users')));
 			<article>
 				<h4 class="method" id="method_table_prefix">table_prefix($table, $db = null)</h4>
 				<p><strong>table_prefix</strong> メソッドは、設定されたプレフィックスを付加したテーブル名を返します。
-				If not, then just the prefix is returned.</p>
+				そうでなければ、単に接頭辞が返されます。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -805,7 +805,7 @@ print_r(DB::list_columns('users','%name%'));
 									<tr>
 										<th><kbd>$like</kbd></th>
 										<td><strong>null</strong></td>
-										<td class="description">The table to search for.</td>
+										<td class="description">検索する表</td>
 									</tr>
 									<tr>
 										<th><kbd>$db</kbd></th>
@@ -1050,7 +1050,7 @@ DB::count_last_query();
 						<tr>
 							<th>パラメータ</th>
 							<td>
-								None
+								なし
 							</td>
 						</tr>
 						<tr>
@@ -1217,7 +1217,7 @@ DB::count_last_query();
 									<tr>
 										<th><kbd>$rollback_all</kbd></th>
 										<td><strong>true</strong></td>
-										<td class="description">The rollback mode:<br>true - rollback everything and close transaction;<br>false - rollback only current level.</td>
+										<td class="description">ロールバックモード：<br>true - すべてのものをロールバックしトランザクションもクローズ；<br>false - 現在のレベルのみをロールバック。</td>
 									</tr>
 								</table>
 							</td>
