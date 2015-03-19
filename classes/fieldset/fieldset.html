@@ -49,15 +49,15 @@
 
 			<p>
 				Fieldset クラスは、オブジェクト指向風に、フォームを作ったりそのバリデーションを扱ったりするのに利用されます。
-				Fieldset クラスは、Form クラスと Validation クラスを利用します。Fieldset クラスそのものは、フィールドセットとそれぞれのフィールドを組み合わせるだけで、
-				実際には、Form と Validation の 2 つのクラスが仕事をすることになります。
+				Fieldset クラスは、 Form クラスと Validation クラスを利用します。Fieldset クラスそのものは、フィールドセットとそれぞれのフィールドを組み合わせるだけで、
+				実際には、 Form と Validation の 2 つのクラスが仕事をすることになります。
 			</p>
 			<p>
 				Fieldset のフィールドはすべて <a href="field.html">Fieldset_Field</a> オブジェクトで定義され、
 				それらのフィールドは Fieldset の <kbd>field()</kbd> メソッドを使用して直接操作することができます。
 			</p>
 			<p>
-				フォームのマークアップは、Fieldset インスタンスをビューに渡すとき、あるいは <kbd>build()</kbd> を呼び出すときに生成されます。
+				フォームのマークアップは、 Fieldset インスタンスをビューに渡すとき、あるいは <kbd>build()</kbd> を呼び出すときに生成されます。
 			</p>
 
 			<article>
@@ -82,12 +82,12 @@
 									<tr>
 										<th><kbd>$name</kbd></th>
 										<td><pre class="php"><code>'default'</code></pre></td>
-										<td>このFieldsetの一意識別子</td>
+										<td>この Fieldset の一意識別子</td>
 									</tr>
 									<tr>
 										<th><kbd>$config</kbd></th>
 										<td><code>array()</code></td>
-										<td>設定を記述する配列</td>
+										<td>設定の配列</td>
 									</tr>
 								</tbody>
 							</table>
@@ -95,7 +95,7 @@
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>\Fieldset Object</td>
+						<td>\Fieldset オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -107,7 +107,7 @@
 				</table>
 
 				<p>
-					Fieldsetオブジェクトを構築するとき、カスタム設定されたオブジェクトをセットアップするための設定を記述する配列を渡すことができます。
+					Fieldset オブジェクトを構築するとき、カスタム設定されたオブジェクトをセットアップするための設定を記述する配列を渡すことができます。
 					以下のアイテムがサポートされています。
 				</p>
 				<table class="config">
@@ -120,26 +120,26 @@
 						</tr>
 						<tr>
 							<th>validation_instance</th>
-							<td>Validation object</td>
+							<td>Validation オブジェクト</td>
 							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								Fieldsetを検証するために使用する既存の Validation クラスオブジェクト。
+								Fieldset を検証するために使用する既存の Validation クラスオブジェクト。
 								指定しない場合、このFieldsetに Validation オブジェクトを新規作成します。
 							</td>
 						</tr>
 						<tr>
 							<th>form_instance</th>
-							<td>Form object</td>
+							<td>Form オブジェクト</td>
 							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								Fieldsetを検証するために使用する既存の Form クラスオブジェクト。
+								Fieldset を検証するために使用する既存の Form クラスオブジェクト。
 								指定しない場合、このFieldsetに Form オブジェクトを新規作成します。
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				<p>
-					これらのフィールドの他に、カスタムフォーム設定を渡すことで、Fieldsetがフォームを生成する方法を変更できます。
+					これらのフィールドの他に、カスタムフォーム設定を渡すことで、 Fieldset がフォームを生成する方法を変更できます。
 					有効な設定値は、<kbd>form.php</kbd> 設定ファイルをご覧ください。
 				</p>
 			</article>
@@ -174,7 +174,7 @@
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>\Fieldset Object<br />
+						<td>\Fieldset オブジェクト<br />
 						または、指定したインスタンスが存在しなければ <kbd>false</kbd></td>
 					</tr>
 					<tr>
@@ -189,7 +189,7 @@
 
 			<article>
 				<h4 class="method" id="method_validation">validation()</h4>
-				<p>現在のFieldsetの Validation インスタンスを取得する。存在しなければ、Validation インスタンスを作成する。</p>
+				<p>現在の Fieldset の Validation インスタンスを取得する。存在しなければ、Validation インスタンスを作成する。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -198,7 +198,7 @@
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>\Validation Object</td>
+							<td>\Validation オブジェクト</td>
 						</tr>
 						<tr>
 							<th>例</th>
@@ -212,7 +212,7 @@
 
 			<article>
 				<h4 class="method" id="method_form">form()</h4>
-				<p>現在のFieldsetの Form インスタンスを取得する。存在しなければ、Form インスタンスを作成する。</p>
+				<p>現在の Fieldset の Form インスタンスを取得する。存在しなければ、 Form インスタンスを作成する。</p>
 				<table class="method">
 					<tbody>
 						<tr>
@@ -235,7 +235,7 @@
 
 			<article>
 				<h4 class="method" id="method_add">add($name, $label = '', array $attributes = array(), array $rules = array())</h4>
-				<p><a href="field.html">Fieldset_Field</a>インスタンスを作成し、現在のFieldsetに追加する。</p>
+				<p><a href="field.html">Fieldset_Field</a> インスタンスを作成し、現在の Fieldset に追加する。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -255,7 +255,7 @@
 									<tr>
 										<th><kbd>$name</kbd></th>
 										<td><i>必須</i></td>
-										<td>HTML name 属性、Fieldset でフィールドを参照するのにも使用する</td>
+										<td>HTML name 属性、 Fieldset でフィールドを参照するのにも使用する</td>
 									</tr>
 									<tr>
 										<th><kbd>$label</kbd></th>
@@ -278,7 +278,7 @@
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><a href="field.html">Fieldset_Field</a> instance</td>
+						<td><a href="field.html">Fieldset_Field</a> インスタンス</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -320,7 +320,7 @@ $form->add(
 
 			<article>
 				<h4 class="method" id="method_delete">delete($name)</h4>
-				<p>Fieldsetから <a href="field.html">Fieldset_Field</a> インスタンスを取り除く。</p>
+				<p>Fieldset から <a href="field.html">Fieldset_Field</a> インスタンスを取り除く。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -362,7 +362,7 @@ $form->add(
 
 			<article>
 				<h4 class="method" id="method_add_before">add_before($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
-				<p><a href="field.html">Fieldset_Field</a> インスタンスを作成し、<strong>$fieldname</strong> で定義済みのフィールドを指定し、そのフィールドの直前に現在の Fieldset に追加します。</p>
+				<p><a href="field.html">Fieldset_Field</a> インスタンスを作成し、 <strong>$fieldname</strong> で定義済みのフィールドを指定し、そのフィールドの直前に現在の Fieldset に追加します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -410,7 +410,7 @@ $form->add(
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><a href="field.html">Fieldset_Field</a> Object</td>
+						<td><a href="field.html">Fieldset_Field</a> オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -446,7 +446,7 @@ $form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'val
 									<tr>
 										<th><kbd>$name</kbd></th>
 										<td><i>必須</i></td>
-										<td>HTML name 属性、Fieldset でフィールドを参照するのにも使用する</td>
+										<td>HTML name 属性、 Fieldset でフィールドを参照するのにも使用する</td>
 									</tr>
 									<tr>
 										<th><kbd>$label</kbd></th>
@@ -474,7 +474,7 @@ $form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'val
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><a href="field.html">Fieldset_Field</a> Object</td>
+						<td><a href="field.html">Fieldset_Field</a> オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -510,7 +510,7 @@ $form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'valu
 									<tr>
 										<th><kbd>$name</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>Fieldsetに存在しているフィールドの名前 または 全てのフィールドを取得するためのnull。</td>
+										<td>Fieldset に存在しているフィールドの名前 または 全てのフィールドを取得するための null 。</td>
 									</tr>
 								</tbody>
 							</table>
@@ -518,8 +518,8 @@ $form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'valu
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>\Fieldset_Field Object<br />
-						または <a href="field.html">Fieldset_Field</a>  の<kbd>array()</kbd></td>
+						<td><a href="field.html">Fieldset_Field</a> インスタンス<br />
+						または <a href="field.html">Fieldset_Field</a> インスタンスの <kbd>array()</kbd></td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -573,7 +573,7 @@ $title_field = $article_form->field('article_title');</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>\Fieldset Object</td>
+						<td>\Fieldset オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -608,12 +608,12 @@ $article_form->add_model('Model_Article');</code></pre>
 									<tr>
 										<th><kbd>$config</kbd></th>
 										<td><em>必須</em></td>
-										<td>Configuration array.</td>
+										<td>設定の配列。</td>
 									</tr>
 									<tr>
 										<th><kbd>$value</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>If specified, sets the item to set from the passed Configuration array.</td>
+										<td>指定された場合は、渡された設定の配列から設定する項目を設定します。</td>
 									</tr>
 								</tbody>
 							</table>
@@ -621,7 +621,7 @@ $article_form->add_model('Model_Article');</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>\Fieldset Object</td>
+						<td>\Fieldset オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -695,7 +695,7 @@ $article_form->set_config('key', 'value');</code></pre>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
-						<td>(none)</td>
+						<td>(なし)</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
@@ -748,7 +748,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>\Fieldset Object</td>
+						<td>\Fieldset オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -773,7 +773,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							<i>None</i>
+							<i>なし</i>
 						</td>
 					</tr>
 					<tr>
@@ -865,7 +865,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>\Fieldset Object</td>
+						<td>\Fieldset オブジェクト</td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -1117,17 +1117,17 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 									</tr>
 									<tr>
 										<th><kbd>$model</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>関連付けられるモデルの名前空間付きの名前。</td>
 									</tr>
 									<tr>
 										<th><kbd>$relation</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>$model に関連付けられる親オブジェクトのリレーション名</td>
 									</tr>
 									<tr>
 										<th><kbd>$parent</kbd></th>
-										<td><i>required</i></td>
+										<td><i>必須</i></td>
 										<td>フォームを生成するのに使用する親オブジェクト。テーブルに表示されるレコードを含むオブジェクト。</td>
 									</tr>
 									<tr>
@@ -1175,7 +1175,7 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							None
+							なし
 						</td>
 					</tr>
 					<tr>
@@ -1198,17 +1198,17 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 			<article>
 				<h2 id="create_forms_orm">ORM モデルからフォームを作成する</h2>
 
-				<p>The Fieldset class can be used to create forms from ORM models. The following example will build a
-					form based on the fields specified in <kbd>$_properties</kbd> of your model. In the example, $article
-					is an instance of Model_Article.</p>
+				<p>Fieldset クラスは、 ORM モデルからフォームを作成するために使用することができます。
+					次の例ではモデルの <kbd>$_properties</kbd> で指定されたフィールドに基づきフォームを構築します。
+					例では、 $article は Model_Article のインスタンスです。</p>
 
 				<pre class="php"><code>echo Fieldset::forge('article')->add_model($article)->populate($article, true)->build();</code></pre>
 
-				<p>If you do not wish every property of the model to be on your form, you can set the form type of
-					those to <code>false</code> and they will not be generated.<br />
-					This actually uses the <a href="../packages/orm/observers/included.html#os_validation">
-					Observer_Validation</a> behind the scenes, but you do not need to add it as an observer for this to
-					work.</p>
+				<p>モデルのすべてのプロパティをフォーム上に望まない場合、フォームの種類を
+					<code>false</code> に設定することでそれらは生成されなくなります。<br />
+					これは実際には裏で <a href="../packages/orm/observers/included.html#os_validation">Observer_Validation</a>
+					を使用しますが、これが機能するためのオブザーバーとしてそれを追加する必要はありません。
+					</p>
 			</article>
 
 			<article>
