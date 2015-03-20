@@ -74,7 +74,7 @@
 					<kbd>_event_after_save()</kbd> という public メソッドをモデルに追加する必要があり、そうすることでそのモデル自身のオブザーバ呼び出しを
 					受け取ることができます。</p>
 
-				<pre class="php"><code>// オブザーバを追加します
+				<pre class="php"><code>// 単にオブザーバを追加
 protected static $_observers = array('Orm\\Observer_Self');
 
 // But if you only observe some events you can optimize by only adding those
@@ -87,7 +87,7 @@ protected static $_observers = array('Orm\\Observer_Self' => array(
 				<p>このオブザーバは <kbd>before_insert</kbd> だけに作用します。 <kbd>created_at</kbd> プロパティを持っている
 					モデルが初めて保存されるとき、 Unix タイムスタンプがセットされます。</p>
 
-				<pre class="php"><code>// 単にオブザーバを追加します
+				<pre class="php"><code>// 単にオブザーバを追加
 protected static $_observers = array('Orm\\Observer_CreatedAt');
 
 // 以下の設定をつけて追加します:
@@ -241,9 +241,9 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 
 }</code></pre>
 				<p>
-					By default, the HTML representation is passed as message to the ValidationFailed exception object, ready for
-					display in your view. There are however cases where you would like to have access to the individual error
-					messages, for example because you're in a RESTful API call, and you want to return the messages as JSON:</p>
+					デフォルトでは、ビューに表示するための準備で ValidationFailed 例外オブジェクトへのメッセージとして HTML
+					表現は渡されます。 しかしながら、たとえば RESTful API の呼び出しの最中で JSON
+					としてメッセージを返すようにしたいなど個々のエラーメッセージにアクセスしたいと思うケースがあるでしょう：</p>
 
 				<pre class="php"><code>class Controller_Articles extends Controller_Rest
 {
@@ -266,11 +266,11 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 				foreach ($e->get_fieldset()->validation()->error() as $error)
 				{
 					$errors = array(
-						'field' => $error->field,					// the field that caused the error
-						'value' => $error->value,					// the value that is in error
-						'message' => trim($error->get_message(false, '\t', '\t')),	// the error message
-						'rule' => $error->rule,						// the rule that failed
-						'params' => $error->params,					// any parameters passed to the rule
+						'field' => $error->field,					// エラーの原因となったフィールド
+						'value' => $error->value,					// 誤りがある値
+						'message' => trim($error->get_message(false, '\t', '\t')),	// エラーメッセージ
+						'rule' => $error->rule,						// 失敗したルール
+						'params' => $error->params,					// ルールに渡されたパラメータ
 					);
 				}
 				return $errors;
@@ -348,7 +348,7 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 							<th>null</th>
 							<td>bool</td>
 							<td>
-								Whether <kbd>null</kbd> is allowed as a value, default <kbd>true</kbd>
+								<kbd>null</kbd> が値として許可されているかどうか、デフォルトは <kbd>true</kbd>
 							</td>
 						</tr>
 						<tr>
