@@ -402,8 +402,8 @@ protected static $_observers = array('Orm\\Observer_Slug');
 protected static $_observers = array(
 	'Orm\\Observer_Slug' => array(
 		'events' => array('before_insert'),
-		'source' => 'title',  // property used to base the slug on, may also be array of properties
-		'property' => 'slug', // property to set the slug on when empty
+		'source' => 'title',  // プロパティはスラグのベースとして使われ、またプロパティの配列でも構い
+		'property' => 'slug', // 空の時にスラグに設定するプロパティ
 		'separator' => '-',   // 区切り文字を設定するプロパティ
 		'unique' => true,     // 一意性を必要とするか否かのプロパティ
 	),
@@ -414,7 +414,7 @@ protected static $_observers = array('Orm\\Observer_Slug' => array('before_inser
 					オブザーバは <a href="../../../classes/inflector.html#method_friendly_title">Inflector::friendly_title()</a> を使用して <kbd>title</kbd> から <kbd>slug</kbd> を作成し、スラグが既に存在する場合は、インデックスを追加します。
 				</p>
 				<p class="note">
-					In case of the overwrite property is false, you can assign a slug manually, which won't be overwritten by the Observer. Upon <kbd>before_update</kbd> the slug gets overwritten with the generated one from the <kbd>title</kbd> field (no matter overwrite property is false or not), but only in case the slug itself is not changed.
+					overwrite プロパティが false の場合には、手動でスラグを割り当てることができ、それはオブザーバによって上書きされることはありません。 <kbd>before_update</kbd> の際にスラグは、 (overwrite プロパティが false か否かに関わらず) <kbd>title</kbd> フィールドから生成されたものに上書きされますが、スラグがそれ自体の場合には変更されません。
 				</p>
 			</article>
 
