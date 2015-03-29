@@ -184,7 +184,7 @@ function method_list($methods)
 		}
 		list.push('<a href="#/'+$(this).attr('id')+'">'+prefix+$(this).text().split('(')[0]+"()</a>");
 	});
-	$('footer').append('<div id="methods"><a href="#" id="methods_handle">method list</a><div id="method_list">'+list.join('')+'</div></div>');
+	$('footer').append('<div id="methods"><a href="#" id="methods_handle">メソッド一覧</a><div id="method_list">'+list.join('')+'</div></div>');
 	$('#methods_handle').click(function(e){
 		e.preventDefault();
 		$('#method_list').slideToggle(300);
