@@ -177,13 +177,13 @@ $theme = \Theme::forge(array(
 			<article>
 				<h4 class="method" id="method_view">view($view, $data = array(), $auto_filter = null)</h4>
 				<p>
-					The <strong>view</strong> method loads a view from the currently loaded theme.
-					It will try to load it from the active theme first. If it doesn't exist in the active theme, and a fallback
-					theme is defined, it will load it from the fallback theme instead. If it can't be found there either, the
-					request is passed to the View class where it follows the normal flow of locating the view file.
+					<strong>view</strong> メソッドは、現在のテーマからビューをロードします。
+					まずアクティブなテーマからロードを試みます。もしアクティブ・テーマにビューが存在せず、
+					フォールバック・テーマが定義されている場合、フォールバック・テーマからビューをロードしようとします。
+					どちらにもビューがない場合、通常のビューの探し方で見つけたビュークラスにリクエストが渡されます。
 				</p>
 
-				<p class="note">This uses <a href="../view.html#method_forge">View::forge() </a>to return the view. This means that the Parser package is supported for views defined in themes too.</p>
+				<p class="note">このメソッドはビューを返すために <a href="../view.html#method_forge">View::forge() </a> を使います。このため、 Parser パッケージは、テーマで定義したビューにも対応しています。</p>
 
 				<table class="method">
 					<tbody>
@@ -205,38 +205,38 @@ $theme = \Theme::forge(array(
 									<th><kbd>$view</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td class="description">The view filename. View file names should be given relative to the theme path.</td>
+									<td class="description">ビューのファイル名。ファイル名はテーマ・パスからの相対パスでないといけません。</td>
 								</tr>
 								<tr>
 									<th><kbd>$data</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
-									<td class="description">array of values</td>
+									<td class="description">値の配列</td>
 								</tr>
 								<tr>
 									<th><kbd>$auto_filter</kbd></th>
 									<td><em>boolean</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td class="description">set to <em>true</em> or <em>false</em> to set auto encoding, defaults to main config setting (app/config/config.php)</td>
+									<td class="description">自動エンコーディングをするかどうか、 <em>true</em> または <em>false</em> をセットします。デフォルトはメインの設定ファイル (app/config/config.php) で指定します。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>A new <em>View</em> object</td>
+						<td>新しい <em>View</em> オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例外</th>
-						<td>\ThemeException, when the requested view file could not be found.</td>
+						<td>\ThemeException, リクエストされたビューファイルが見つからない場合</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// Get the default instance
+							<pre class="php"><code>// デフォルト・インスタンスを取得
 $theme = \Theme::instance();
 
-// will load THEMEDIR.'/template/homepage.php' with the default settings
+// デフォルト設定で THEMEDIR.'/template/homepage.php' をロード
 $view = $theme->view('template/homepage');
 </code></pre>
 						</td>
