@@ -9,6 +9,7 @@
 * Kenji Suzuki <https://github.com/kenjis>
 * Yoshiyuki Ieyama <https://github.com/yukku0423>
 * toru81 <https://github.com/toru81>
+* Naoki Morita <https://github.com/morita21>
 
 ## Version 1.7
 
