@@ -6,6 +6,8 @@
 
 翻訳は、[FuelPHP Documentation 日本語版執筆基準](https://github.com/NEKOGET/FuelPHP_docs_jp/wiki/FuelPHP-Documentation-%E6%97%A5%E6%9C%AC%E8%AA%9E%E7%89%88%E5%9F%B7%E7%AD%86%E5%9F%BA%E6%BA%96) に準拠するようにお願いします。
 
+Pull Request がマージされたら、[CREDITS.md](https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/CREDITS.md) にご自分の名前を追加してください。
+
 現在、以下のブランチがありますが、1.8/develop の翻訳を進めています。
 
 - 1.8/develop_japanese ブランチ (本家 1.8/develop ブランチに対応)
