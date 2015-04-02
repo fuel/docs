@@ -383,7 +383,7 @@ $fieldset-&gt;field('fieldname')-&gt;set_type('hidden');</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// "valid_string" 検証ルールのカスタムエラーメッセージを設定
+							<pre class="php"><code>// "valid_string" バリデーションルールのカスタムエラーメッセージを設定
 $fieldset
 	-&gt;field('fieldname')
 	-&gt;set_error_message('valid_string', ':label は大文字と小文字の両方が含まれている必要があります！');
@@ -436,12 +436,12 @@ $fieldset
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// "valid_string" 検証ルールのカスタムエラーメッセージを設定
+							<pre class="php"><code>// "valid_string" バリデーションルールのカスタムエラーメッセージを設定
 $fieldset
 	-&gt;field('fieldname')
 	-&gt;set_error_message('valid_string', ':label は大文字と小文字の両方が含まれている必要があります！');
 
-// 返答： :label は大文字と小文字の両方が含まれている必要があります！
+// 返り値： :label は大文字と小文字の両方が含まれている必要があります！
 $message = $fieldset-&gt;field('fieldname')-&gt;get_error_message('valid_string');</code></pre>
 						</td>
 					</tr>
@@ -542,16 +542,16 @@ $message = $fieldset->field('fieldname')->add_rule('required');</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// フィールドから valid_string ルールを削除
+							<pre class="php"><code>// フィールドから valid_string ルールを取り除く
 $fieldset-&gt;field('fieldname')-&gt;delete_rule('valid_string');
 
-// そしてもはや必須なフィールドも作成しない
+// そして、必須項目の指定を取り除く
 $message = $fieldset->field('fieldname')->delete_rule('required', true);</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note">required ルールを取り除くとき、 <kbd>$set_attr</kbd> が <kbd>true</kbd> に設定されているとフォームの input タグの "required" 属性も取り除きます。</p>
+				<p class="note">required ルールを取り除くとき、 <kbd>$set_attr</kbd> が <kbd>true</kbd> に設定されているとフォームの input タグの "required" 属性も取り除かれます。</p>
 			</article>
 
 			<article>
@@ -654,7 +654,7 @@ $fieldset-&gt;field('fieldname')-&gt;set_attribute(array(
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// 定義された任意のカスタムスタイルを取得、もしくは false の場合は全くスタイルが設定されていない
+							<pre class="php"><code>// カスタムスタイルが定義されていたら取得、スタイルが未定義なら false
 $style = $fieldset-&gt;field('fieldname')
 	-&gt;get_attribute('style', false);</code></pre>
 						</td>
