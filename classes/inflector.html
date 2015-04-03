@@ -48,14 +48,14 @@
 			<h2>Inflector クラス</h2>
 
 			<p>
-				The Inflector class allows you to transforms words from singular to plural,
-				class names to table names, modularized class names to ones without,
-				and class names to foreign keys.
+				Inflector クラスでは単数形から複数形、クラス名からテーブル名、
+				モジュール化されたクラス名をなしに、そして、クラス名から外部キーに
+				単語を変換することができます。
 			</p>
 			<p>
-				Inflector rulesets can be defined as language files, to be able to localize them.
-				The framework comes with a default set of rules for the English language, which
-				can act as a template for localisation.
+				ローカライズできるようにするために、インフレクタのルールセットを言語ファイルとして定義することが可能です。
+				フレームワークは英語のためのルールのデフォルトセットが付属しており、
+				それをローカライズのためのテンプレートとすることができます。
 			</p>
 
 
@@ -238,7 +238,7 @@ echo Inflector::words_to_upper('module::method', '::'); // Module::Method と返
 
 			<article>
 				<h4 class="method" id="method_demodulize">demodulize($class_name_in_module)</h4>
-				<p><strong>demodulize</strong> メソッドはモジュール文字列からクラス名を取り除くことができます。</p>
+				<p><strong>demodulize</strong> メソッドはモジュール化された文字列からクラス名を取り除くことができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -257,7 +257,7 @@ echo Inflector::words_to_upper('module::method', '::'); // Module::Method と返
 								<tr>
 									<th><kbd>$class_name_in_module</kbd></th>
 									<td><i>必須</i></td>
-									<td>モジュールクラス名</td>
+									<td>モジュール化されたクラス名</td>
 								</tr>
 							</table>
 						</td>
@@ -748,32 +748,32 @@ echo Inflector::pluralize('apple', 1); // apple と返す</code></pre>
 			<article>
 				<h4 class="method" id="method_load_rules">load_rules()</h4>
 				<p>
-					The <strong>load_rules</strong> method loads the inflector rules based on the current
-					language configuration. If no rulesset can be found (i.e. no inflector lang file exists),
-					the class will default to a ruleset for the English language. If you have loaded a ruleset,
-					you change your language configuration, reload again, but the new configuration doesn't have
-					a ruleset defined, Inflector will continue to use the current one.
+					<strong>load_rules</strong>  メソッドは現在の言語設定に基づいてインフレクタルールをロードします。
+					ルールセットが見つからない (すなわち全くインフレクタ言語ファイルが存在しない)
+					場合、クラスは英語のためのルールセットをデフォルトとします。 ルールセットを読み込み済みの場合は、
+					お使いの言語の設定を変更し、再読み込みします。しかし新しい設定がルールセットの定義を持っていない時は、
+					インフレクタは現在のものを利用し続けます。
 				</p>
 				<p class="note">
-					Upon first use the Inflector class will autoload the the ruleset based on the language
-					configuration. Normally you do not have to use this method.
+					最初の Inflector クラス使用時には言語設定に基づいてルールセットが自動で読み込まれます。
+					通常はこのメソッドを使用する必要はありません。
 				</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
+						<th class="legend">静的</th>
+						<td>はい</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
-							None
+							なし
 						</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
-							<pre class="php"><code>Inflector::load_rules(); // (re)loads the Inflector ruleset</code></pre>
+							<pre class="php"><code>Inflector::load_rules(); // インフレクタルールセットを (再) 読み込み</code></pre>
 						</td>
 					</tr>
 					</tbody>
