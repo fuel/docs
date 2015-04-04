@@ -254,49 +254,49 @@ $tim->child($kerry)->save();
                 </section>
 
                 <section>
-					<h2 id="behavioral_changes">行動変化</h2>
+					<h2 id="behavioral_changes">挙動の変更点</h2>
 
 					<p>
-						In addition to the primary key, which is read-only in every ORM model object once set, a Nestedset model doesn't allow
-						you to make	changes to the left- and right pointers of the node, and to the tree-id if defined. Attempting to do so, either
-						via assigment, using a call to <kbd>set()</kbd> or by using <kbd>unset()</kbd>, will result in a <strong>InvalidArgumentException</strong>.
+						ORM モデルにおいてプライマリーキーは、オブジェクトが一度構築されたあとは読み込み専用のデータとなるのですが、これに加えて入れ子集合モデルでは
+						ノードの左右ポインタを変更することができません。定義されている場合はツリー ID についても同様です。変更しようとした場合、
+						代入や <kbd>set()</kbd> の呼び出し、また<kbd>unset()</kbd> のいずれも <strong>InvalidArgumentException</strong> となります。
 					</p>
 
 					<article>
 						<h4 id="method_save" class="method">save($cascade = null, $use_transaction = false)</h4>
 						<p>
-							The <kbd>save</kbd> method works exactly the same as the regular model's implementation.
+							<kbd>save</kbd> メソッドは通常モデルの実装とまったく同じように機能します。
 						</p>
 						<p>
-							However, when you use this method on new tree node objects, additional functionality is added to make sure the tree structure
-							stays consistent. When you call it on an object and you have used one of the collection methods documented below, the
-							new object is inserted in the tree relative to the object passed to the collection method.
+							しかし、このメソッドを新しいツリーノードのオブジェクトにおいて使う場合は、ツリー構造の一貫性を保つための追加機能が
+							付与されます。あるオブジェクトにおいて呼び出した際に、それがあとで述べるコレクションメソッドのいずれかを使ってからのことであれば、
+							新規作成されたオブジェクトはそのコレクションメソッドへ渡されていたオブジェクトと紐付いたツリーに挿入されます。
 						</p>
 						<p>
-							If you haven't used a collection method, <kbd>save</kbd> will assume you want to insert a new root node. If the model is
-							a multi-tree model, it will create a new root with the next available tree-id (if the id is numeric. If not, assign a new
-							tree-id to the node object yourself).
+							事前にコレクションメソッドを使っていなかった場合、その <kbd>save</kbd> は新たなルートノードを挿入しようとしているものと見なされます。モデルが
+							複数ツリーモデルの場合、新たなルートが次に使えるツリー ID とともに作成されます（これはツリー ID が数値型の場合の話で、そうでない場合は
+							自分でツリー ID をノードのオブジェクトに割り当てる必要があります）。
 						</p>
 						<p class="note">
-							 If a root node can not be created because one already exists, an <strong>OutOfBoundsException</strong> will be thrown. If
-							 the tree-id is not numeric, and you haven't supplied one manually, the result is <strong><u>unpredicable</u></strong>!
+							 ルートノードが既に存在しているため作れなかった場合、 <strong>OutOfBoundsException</strong> が投げられます。もし
+							 ツリー ID が数値型でなく、また手動で ID を指定してもいない場合、その結果は <strong><u>予測不可能</u></strong> です！
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_delete" class="method">delete($cascade = null, $use_transaction = false)</h4>
 						<p>
-							The <kbd>delete</kbd> method works exactly the same as the regular model's implementation.
+							<kbd>delete</kbd> メソッドは通常モデルの実装とまったく同じように機能します。
 						</p>
 						<p>
-							If the node you delete is not a leaf node (i.e. is has children), all descendants of the node will move one level up in the
-							tree, they will become descendants of the nodes parent. If you want to delete an entire (subsection of the) tree, use the
-							<a href="#method_delete_tree">delete_tree()</a> method instead.
+							削除するノードがリーフノードではなかった場合（つまり子を持つ場合）、そのノードの全ての子孫はツリー上で1階層上に移動し、
+							削除するノードの親の子孫となります。ツリーの全体（または部分木）を削除したい場合は、かわりに
+							<a href="#method_delete_tree">delete_tree()</a> メソッドを使います。
 						</p>
 						<p class="note">
-							You can not use the <strong>delete()</strong> method on a root node if the root node has more then one child node.
-							Doing so would create an inconsistent tree, as you can't have multiple nodes at the highest level. Trying do to so
-							will throw a <strong>DomainException</strong>!
+							<strong>delete()</strong> メソッドを1つより多くの子を持つルートノードに対して使うことはできません。
+							もしそれできると、整合性のないツリー構造を作る事になります。複数のノードを一番上の階層に持つことはできないからです。使おうとした場合は
+							<strong>DomainException</strong> が投げられます。
 						</p>
 					</article>
 
