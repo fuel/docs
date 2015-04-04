@@ -165,19 +165,19 @@
 					一部 (またはすべて) のリレーションは、元の照会でフェッチされていることを意味します。 遅延読み込みは、
 					あなたがそれらを要求するまでリレーションがフェッチされないことを意味します。</p>
 
-				<pre class="php"><code>// 一括読み込みを使用して結合：
+				<pre class="php"><code>// 一括読み込み。join が使われます：
 $post = Model_Post::find('all', array('related' => array('comments')));
 // もしくは
 $post = Model_Post::query()->related('comments')->get();
-// $post->comments は、この後にさらに問い合わせることなく使用可能
+// これで $post->comments が使用可能です。これ以上のクエリは発生しません。
 
-// もしくは、遅延読み込みを使ってください。それはリレーションを使用しますが、一度要求されたリレーションは照会しません。
-// 最初の "post" は、結合せずに 1 クエリを取得します。
+// もしくは、遅延読み込みを使用。joinは使われず、一度でも要求したときに改めてクエリが発生します。
+// まず "post" を取得。join 無しの 1 クエリ。
 $post = Model_Post::find('first');
-// 自動的に join することなく、別のクエリを実行される、 (まだロードされていない) コメントを要求します。
+// ここで (まだロードされていない) コメントを要求すると、 join 無しの別のクエリが自動的に実行されます。
 $comments = $post->comments;
 
-// あるいは、get() が利用でき、これは、追加の条件が可能:
+// あるいは、get() を使用すれば条件を追加できます：
 $comments = $post->get('comments', array('where' => array(array('field', '=', $value))));</code></pre>
 
 				<h3 id="usage_rel_conditions">where/order_by 条件と使い方</h3>
