@@ -295,7 +295,7 @@ $tim->child($kerry)->save();
 						</p>
 						<p class="note">
 							<strong>delete()</strong> メソッドを1つより多くの子を持つルートノードに対して使うことはできません。
-							もしそれできると、整合性のないツリー構造を作る事になります。複数のノードを一番上の階層に持つことはできないからです。使おうとした場合は
+							もしそれができると、整合性のないツリー構造を作る事になります。複数のノードを一番上の階層に持つことはできないからです。使おうとした場合は
 							<strong>DomainException</strong> が投げられます。
 						</p>
 					</article>
@@ -306,27 +306,27 @@ $tim->child($kerry)->save();
 					<h2 id="collection_methods">コレクションメソッド</h2>
 
 					<p>
-						Collection methods are methods that allow you to perform an operation, either a <strong>get()</strong> or a <strong>save()</strong>,
-						on a part of a nestedset tree. Some methods are available for both, some are only relevant for one. For clarity, they are documented
-						seperately. Using a collection method on an operation that doesn't support it will cause an <strong>OutOfBoundsException</strong> to
-						be thrown.
+						コレクションメソッドとは <strong>get()</strong> か <strong>save()</strong> 、いずれかの操作を入れ子集合ツリーの一部分に対して
+						行えるようにするメソッド群のことです。幾つかのメソッドは両方で利用でき、また幾つかは片方にのみ関係しています。明確性のため、これらを別々に
+						説明します。コレクションメソッドをサポートされていない操作について使う場合、 <strong>OutOfBoundsException</strong> が
+						投げられます。
 					</p>
 
-					<h3 id="collection_methods_get">Collection methods for getting nodes</h3>
+					<h3 id="collection_methods_get">ノードを得るためのコレクションメソッド</h3>
 
 					<p>
-						Like with standard ORM models, you can use the <strong>get()</strong> method to return an array of objects, and the
-						<strong>get_one()</strong> method to return a single object. If a collection method is supposed to return a single result,
-						like for example <strong>root()</strong>, <strong>get()</strong> will return an array with that single object. If
-						a collection method returns multiple objects, like for example <strong>children()</strong>, <strong>get_one()</strong>
-						will return the first object from the result set. It is undetermined which one that will be.<br />
-						<strong>get()</strong> and <strong>get_one()</strong> return <strong>null</strong> if no result was found.
+						通常の ORM モデルと同様に、 <strong>get()</strong> メソッドをオブジェクトの配列を得るために使うことができ、また
+						<strong>get_one()</strong> メソッドを単一のオブジェクトを得るために使えます。 ありコレクションメソッドが単一の結果を得るよう想定されたものの場合、
+						たとえば <strong>root()</strong> のような場合、 <strong>get()</strong> はその単一のオブジェクトを持つ配列を返します。もし
+						あるコレクションメソッドが複数のオブジェクトを返すものの場合、たとえば <strong>children()</strong> の場合、 <strong>get_one()</strong> は
+						その結果セットから最初のオブジェクトを返します。どの1つが返されるかは不定です。<br />
+						<strong>get()</strong> と <strong>get_one()</strong> は結果が見つからなかった場合、 <strong>null</strong> を返します。
 					</p>
 
 					<article>
 						<h4 id="method_get_root" class="method">root()</h4>
 						<p>
-							The <strong>root</strong> method allows you to get the root of the tree of the object you call this method on.
+							<strong>root</strong> メソッドで、呼び出したオブジェクトの属するツリー構造のルート（根）を取得できます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -365,8 +365,8 @@ $root = Model_Tree::forge()->set_tree_id($mytreeid)->root()->get_one();
 					<article>
 						<h4 id="method_get_roots" class="method">roots()</h4>
 						<p>
-							The <strong>roots</strong> method allows you to get all the root nodes. If the model is not a multi-tree model,
-							only the one root node is returned.
+							<strong>roots</strong> メソッドで、全てのルートノードを取得できます。モデルが複数ツリーのモデルではない場合、
+							1つのルートノードだけが返されます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -405,7 +405,7 @@ $roots = Model_Tree::forge()->roots()->get();
 					<article>
 						<h4 id="method_get_parent" class="method">parent()</h4>
 						<p>
-							The <strong>parent</strong> method allows you to get the parent node of the object you call this method on.
+							<strong>parent</strong> メソッドで、呼び出したオブジェクトの親ノードを取得することができます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -444,9 +444,9 @@ $parent = Model_Tree::forge()->parent()->get_one();
 					<article>
 						<h4 id="method_get_children" class="method">children()</h4>
 						<p>
-							The <strong>children</strong> method allows you to get all child nodes of the object you call this method on.
-							Note that this returns only children, no grandchildren. If you are interested in the entire sub-tree, use
-							the <a href="#method_get_descendants">descendants</a> method instead.
+							<strong>children</strong> メソッドで、呼び出したオブジェクトの全ての子ノードを取得することができます。
+							注意してほしいのは、このメソッドは子のみを返し、孫は返さないということです。部分木の全てを取得したい場合は、
+							<a href="#method_get_descendants">descendants</a> メソッドをかわりに使って下さい。
 						</p>
 						<table class="method">
 							<tbody>
@@ -485,7 +485,7 @@ $parent = Model_Tree::forge()->children()->get();
 					<article>
 						<h4 id="method_get_ancestors" class="method">ancestors()</h4>
 						<p>
-							The <strong>ancestors</strong> method allows you to get all ancestor nodes of the object you call this method on.
+							<strong>ancestors</strong> メソッドで、呼び出したオブジェクトの全ての先祖ノードを取得することができます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -520,15 +520,15 @@ $parent = Model_Tree::forge()->ancestors()->get();
 							</tbody>
 						</table>
 						<p class="note">
-							Ancestors are returned in order of their position in the tree, with the root node first.
+							先祖ノードはツリー構造内での位置の順で返され、ルートノードが最初のものとなります。
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_get_descendants" class="method">descendants()</h4>
 						<p>
-							The <strong>descendants</strong> method allows you to get all descendant nodes of the object you call this method on.
-							This allows you to fetch an entire sub-tree.The result will NOT include the start node itself.
+							<strong>descendants</strong> メソッドで、呼び出したオブジェクトの全ての子孫を得ることができます。
+							これによって部分木の全てを取得できます。結果には開始ノード自身は含まれ「ません」。
 						</p>
 						<table class="method">
 							<tbody>
@@ -563,16 +563,16 @@ $parent = Model_Tree::forge()->descendants()->get();
 							</tbody>
 						</table>
 						<p class="note">
-							Descendants are returned in order of their position in the tree.
+							子孫ノードはツリー構造内での位置の順で返されます。
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_get_leaf_descendants" class="method">leaf_descendants()</h4>
 						<p>
-							The <strong>leaf_descendants</strong> method allows you to get leaf descendant nodes of the object you call this method on.
-							Unlike the <a href="#method_get_descendants">descendants</a> method, this method only returns nodes that do not have
-							children (the leafs of the tree).
+							<strong>leaf_descendants</strong> メソッドで、呼び出したオブジェクトの末端の子孫ノード（リーフノード）を取得することができます。
+							<a href="#method_get_descendants">descendants</a> メソッドとは違い、このメソッドは子を持たないノードのみを返します
+							（ツリー構造の葉）。
 						</p>
 						<table class="method">
 							<tbody>
@@ -607,14 +607,14 @@ $parent = Model_Tree::forge()->leaf_descendants()->get();
 							</tbody>
 						</table>
 						<p class="note">
-							Leaf descendants are returned in order of their position in the tree.
+							末端の子孫ノードはツリー構造内での位置の順で返されます。
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_get_siblings" class="method">siblings()</h4>
 						<p>
-							The <strong>siblings</strong> method allows you to get all sibling nodes of the object you call this method on.
+							<strong>siblings</strong> メソッドで、呼び出したオブジェクトの全ての姉妹ノードを取得することができます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -649,21 +649,21 @@ $parent = Model_Tree::forge()->siblings()->get();
 							</tbody>
 						</table>
 						<p class="note">
-							Siblings are returned in order of their position in the tree. Note that the result set will include the current node!
+							姉妹ノードはツリー構造内での位置の順で返されます。注意してほしいのは、結果セットには現在のノードが含まれるということです！
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_get_child" class="method">child()</h4>
 						<p>
-							The <strong>child</strong> method is an alias for the <a href="#method_get_last_child">last_child</a> method.
+							<strong>child</strong> メソッドは、 <a href="#method_get_last_child">last_child</a> メソッドの別名です。
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_get_first_child" class="method">first_child()</h4>
 						<p>
-							The <strong>first_child</strong> method allows you to get the first child node of the object you call this method on.
+							<strong>first_child</strong> メソッドで、呼び出したオブジェクトの最初の子ノードを得ることができます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -702,7 +702,7 @@ $parent = Model_Tree::forge()->first_child()->get_one();
 					<article>
 						<h4 id="method_get_last_child" class="method">last_child()</h4>
 						<p>
-							The <strong>last_child</strong> method allows you to get the last child node of the object you call this method on.
+							<strong>last_child</strong> メソッドで、呼び出したオブジェクトの最後の子ノードを得ることができます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -741,14 +741,14 @@ $parent = Model_Tree::forge()->last_child()->get_one();
 					<article>
 						<h4 id="method_get_sibling" class="method">sibling()</h4>
 						<p>
-							The <strong>sibling</strong> method is an alias for the <a href="#method_get_next_sibling">next_sibling</a> method.
+							<strong>sibling</strong> メソッドは <a href="#method_get_next_sibling">next_sibling</a> メソッドの別名です。
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_get_previous_sibling" class="method">previous_sibling()</h4>
 						<p>
-							The <strong>previous_sibling</strong> method allows you to get the previous_sibling node of the object you call this method on.
+							<strong>previous_sibling</strong> メソッドで、呼び出したオブジェクトの1つ前の姉妹ノードを得ることができます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -790,7 +790,7 @@ $sibling = $henry->previous_silbing()->get_one();
 					<article>
 						<h4 id="method_get_next_sibling" class="method">next_sibling()</h4>
 						<p>
-							The <strong>next_sibling</strong> method allows you to get the next sibling node of the object you call this method on.
+							<strong>next_sibling</strong> メソッドで、呼び出したオブジェクトの次の姉妹ノードを得ることができます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -832,8 +832,8 @@ $sibling = $nicola->next_silbing()->get_one();
 					<article>
 						<h4 id="method_get_path" class="method">path($addroot = true)</h4>
 						<p>
-							The <strong>path</strong> method returns the path to the current node as a string, using the column identified
-							by the "title_field" in the models tree configuration.
+							<strong>path</strong> メソッドは現在のノードまでのパスを文字列として返し、この際に使われるカラムは
+							モデルのツリー設定の「title_field」で指定されたものとなります。
 						</p>
 						<table class="method">
 							<tbody>
@@ -884,32 +884,32 @@ $path = $kerry->path(false)->get();
 						</table>
 					</article>
 
-					<h3 id="collection_methods_save">Collection methods for saving nodes</h3>
+					<h3 id="collection_methods_save">ノードを保存するためのコレクションメソッド</h3>
 
 					<p>
-						Like with a standard ORM model, <strong>save()</strong> will either insert the object as a new record in the table,
-						or it updates an existing record in case the object was retrieved from the database.
+						通常の ORM モデルと同様に、 <strong>save()</strong> はオブジェクトをテーブル内の新たなレコードとして挿入するか、
+						またはオブジェクトがデータベースから取得されたものの場合は既存のレコードを更新します。
 					</p>
 					<p>
-						However, unlike a standard ORM model in a nestedset tree is is very relevant <u>where</u> exactly in the tree an object
-						is saved. If you don't specify a collection method before save, saving an existing object will just do that, identical to
-						normal ORM model behaviour. If you did specify a collection method, the object will be relocated in the tree when you save.
-						If your saving a new object, not specifing a collection method will create a new root node. If you did specify one, it will
-						determine where in the tree the new node will be inserted.
+						しかし、通常の ORM モデルの場合とは異なり、入れ子集合ツリー内のものの場合は実際にツリー内の<u>どこに</u>オブジェクトが保存されいてるかが
+						非常に密接に関係しています。保存の前にコレクションメソッドが指定されていない場合、既存のオブジェクトの保存については単にそのまま行われ、通常の
+						ORM モデルの挙動と全く同じです。コレクションメソッドを指定した場合、そのオブジェクトは保存時にツリー構造内で再配置されます。
+						新規のオブジェクトを保存する場合は、コレクションメソッドを指定しなければ新たなルートノードが作られます。また指定した場合、それによって
+						ツリー構造のどこに新たなノードが挿入されるかが決まります。
 					</p>
 
 					<article>
 						<h4 id="method_save_child" class="method">child($to = null)</h4>
 						<p>
-							The <strong>child</strong> method is an alias for the <a href="#method_save_last_child">last_child</a> method.
+							<strong>child</strong> メソッドは <a href="#method_save_last_child">last_child</a> メソッドの別名です。
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_save_first_child" class="method">first_child($to = null)</h4>
 						<p>
-							The <strong>first_child</strong> method tells the model you want to save the object you call this method on
-							as the first child of the (primary key of the) node object passed.
+							<strong>first_child</strong> メソッドは、呼び出したオブジェクトを渡されたオブジェクトの（またはプライマリーキーの）ノードの
+							最初の子として保存するメソッドです。
 						</p>
 						<table class="method">
 							<tbody>
@@ -956,8 +956,8 @@ $kerry->first_child($bill)->save();
 					<article>
 						<h4 id="method_save_last_child" class="method">last_child($to = null)</h4>
 						<p>
-							The <strong>last_child</strong> method tells the model you want to save the object you call this method on
-							as the last child of the (primary key of the) node object passed.
+							<strong>last_child</strong> メソッドは、呼び出したオブジェクトを渡されたオブジェクトの（またはプライマリーキーの）ノードの
+							最後の子として保存するメソッドです。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1002,22 +1002,22 @@ $kerry->last_child($bill)->save();
 					</article>
 
 					<p class="note">
-						From a hierarchy perspective, <strong>first_child</strong> and <strong>last_child</strong> do the same. Only the
-						exact position in the tree, the relation to its siblings after the insert or relocation of the node, is different.
+						階層についてでは、<strong>first_child</strong> も <strong>last_child</strong> も同じことをします。ただ
+						ツリー構造内での正確な位置、挿入後の兄弟との関係やノードの再配置のみが異なります。
 					</p>
 
 					<article>
 						<h4 id="method_save_sibling" class="method">sibling($to = null)</h4>
 						<p>
-							The <strong>sibling</strong> method is an alias for the <a href="#method_save_next_sibling">next_sibling</a> method.
+							<strong>sibling</strong> メソッドは <a href="#method_save_next_sibling">next_sibling</a> メソッドの別名です。
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_save_previous_sibling" class="method">previous_sibling($to = null)</h4>
 						<p>
-							The <strong>previous_sibling</strong> method tells the model you want to save the object you call this method on
-							as the previous sibling of the (primary key of the) node object passed (just before the passed object, on the same level in the tree).
+							<strong>previous_sibling</strong> メソッドは、呼び出したオブジェクトを渡されたオブジェクトの（またはプライマリーキーの）ノードの
+							前の兄弟（渡されたオブジェクトの直前、ツリー構造内で同じ階層のもの）として保存するメソッドです。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1064,8 +1064,8 @@ $james->previous_sibling($tim)->save();
 					<article>
 						<h4 id="method_save_next_sibling" class="method">next_sibling($to = null)</h4>
 						<p>
-							The <strong>next_sibling</strong> method tells the model you want to save the object you call this method on
-							as the next sibling of the (primary key of the) node object passed (just after the passed object, on the same level in the tree).
+							<strong>next_sibling</strong> メソッドは、呼び出したオブジェクトを渡されたオブジェクトの（またはプライマリーキーの）ノードの
+							次の兄弟（渡されたオブジェクトの直後、ツリー構造内で同じ階層のもの）として保存するメソッドです。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1112,16 +1112,16 @@ $james->next_sibling($tim)->save();
                 </section>
 
                 <section>
-					<h2 id="test_methods">テストメソッド</h2>
+					<h2 id="test_methods">検査メソッド</h2>
 
 					<p>
-						Test methods are used to query a particular state of the object with regards to their position in the tree.
+						検査メソッドはオブジェクトのツリー構造内での位置に関する特定の状態を問い合わせるものです。
 					</p>
 
 					<article>
 						<h4 id="method_is_root" class="method">is_root()</h4>
 						<p>
-							The <strong>is_root</strong> method tells you if the object you're calling it on is a root node or not.
+							<strong>is_root</strong> メソッドは呼び出したオブジェクトがルートノードかどうか示します。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1157,7 +1157,7 @@ echo $tim->is_root() ? 'true' : 'false';
 					<article>
 						<h4 id="method_is_leaf" class="method">is_leaf()</h4>
 						<p>
-							The <strong>is_leaf</strong> method tells you if the object you're calling it on is a leaf, i.e. that is doesn't have child nodes.
+							<strong>is_leaf</strong> メソッドは呼び出したオブジェクトが末端であるか、つまり子ノードを持たないかどうかを示します。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1193,8 +1193,8 @@ echo $angela->is_leaf() ? 'true' : 'false';
 					<article>
 						<h4 id="method_is_child" class="method">is_child()</h4>
 						<p>
-							The <strong>is_child</strong> method tells you if the object you're calling it on is a child node, i.e. that is has
-							a parent node. This is the reverse of <strong>is_root()</strong>, as all non-root nodes have a parent.
+							<strong>is_child</strong> メソッドは呼び出したオブジェクトが子ノードであるか、つまり
+							親ノードを持つかどうかを示します。これは <strong>is_root()</strong> の逆のものです。全ての非ルートノードは親を持つからです。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1230,8 +1230,8 @@ echo $bill->is_child() ? 'true' : 'false';
 					<article>
 						<h4 id="method_is_child_of" class="method">is_child_of(Model_Nestedset $to = null)</h4>
 						<p>
-							The <strong>is_child_of</strong> method allows you to check if the object you call this method on
-							is a child node (a direct descendant) of the node object passed.
+							<strong>is_child_of</strong> メソッドで、呼び出したオブジェクトが渡されたオブジェクトのノードの子ノード（直接の子孫）であるかを
+							確認することができます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1281,8 +1281,8 @@ echo $nicola->is_child_of($ben) ? 'true' : 'false';
 					<article>
 						<h4 id="method_is_descendant_of" class="method">is_descendant_of(Model_Nestedset $to = null)</h4>
 						<p>
-							The <strong>is_descendant_of</strong> method allows you to check if the object you call this method on
-							is a descendant node of the node object passed.
+							<strong>is_descendant_of</strong> メソッドで、呼び出したオブジェクトが渡されたオブジェクトのノードの子孫ノードであるかを
+							確認することができます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1333,8 +1333,8 @@ echo $nicola->is_descendant_of($ben) ? 'true' : 'false';
 					<article>
 						<h4 id="method_is_parent_of" class="method">is_parent_of(Model_Nestedset $to = null)</h4>
 						<p>
-							The <strong>is_parent_of</strong> method allows you to check if the object you call this method on
-							is the parent node of the node object passed.
+							<strong>is_parent_of</strong> メソッドで、呼び出したオブジェクトが渡されたオブジェクトのノードの親ノードであるかを
+							確認することができます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1381,8 +1381,8 @@ echo $bill->is_parent_of($james) ? 'true' : 'false';
 					<article>
 						<h4 id="method_is_ancestor_of" class="method">is_ancestor_of(Model_Nestedset $to = null)</h4>
 						<p>
-							The <strong>is_ancestor_of</strong> method allows you to check if the object you call this method on
-							is a ancestor of the node object passed.
+							<strong>is_ancestor_of</strong> メソッドで、呼び出したオブジェクトが渡されたオブジェクトのノードの先祖ノードであるかを
+							確認することができます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1428,37 +1428,37 @@ echo $bill->is_ancestor_of($james) ? 'true' : 'false';
 
 					<article>
 						<h4 id="method_is_same_model_as" class="method">is_same_model_as(Model_Nestedset $to = null)</h4>
-						<p>This method is mainly used internally to avoid operations across two different Nestedset models.</p>
+						<p>このメソッドは主として内部的に、2つの異なるNestedsetモデルをまたがる操作を避けるために使われます。</p>
 					</article>
 
 					<article>
 						<h4 id="method_is_same_tree_as" class="method">is_same_tree_as(Model_Nestedset $to = null)</h4>
 						<p>
-							This method is mainly used internally to avoid operations across two different Nestedset models.
-							It not only checks if both objects are instances of the same model, but also if both instances belong
-							to the same tree in a multi-tree model.
+							このメソッドは主として内部的に、2つの異なるNestedsetモデルをまたがる操作を避けるために使われます。
+							両方のオブジェクトが同じモデルのインスタンスかをチェックするだけではなく、 両方のインスタンスが
+							複数ツリーモデルで同じツリーに属するかもチェックします。
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_has_parent" class="method">has_parent()</h4>
 						<p>
-							The <strong>has_parent</strong> method is an alias for the <a href="#method_is_child">is_child</a> method.
+							<strong>has_parent</strong> メソッドは <a href="#method_is_child">is_child</a> メソッドの別名です。
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_has_children" class="method">has_children()</h4>
 						<p>
-							The <strong>has_children</strong> method is the reverse of the <a href="#method_is_leaf">is_leaf</a> method.
-							If an object is not a leaf, it implies it has child nodes.
+							<strong>has_children</strong> メソッドは <a href="#method_is_leaf">is_leaf</a> メソッドの逆です。
+							あるオブジェクトが末端でないなら、それは子ノードを持っているということです。
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_has_previous_sibling" class="method">has_previous_sibling()</h4>
 						<p>
-							The <strong>has_previous_sibling</strong> method tells you if the object you're calling it on has a previous sibling.
+							<strong>has_previous_sibling</strong> メソッドは呼び出したオブジェクトが前の兄弟を持つかどうかを示します。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1494,7 +1494,7 @@ echo $tim->has_previous_sibling() ? 'true' : 'false';
 					<article>
 						<h4 id="method_has_next_sibling" class="method">has_next_sibling()</h4>
 						<p>
-							The <strong>has_next_sibling</strong> method tells you if the object you're calling it on has a next sibling.
+							<strong>has_next_sibling</strong> メソッドは呼び出したオブジェクトが次の兄弟を持つかどうかを示します。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1534,19 +1534,19 @@ echo $ben->has_next_sibling() ? 'true' : 'false';
 					<article>
 						<h4 id="method_delete_tree" class="method">delete_tree($cascade = null, $use_transaction = false)</h4>
 						<p>
-							The <kbd>delete_tree</kbd> works identical to the <a href="#method_delete">delete()</a> method, which the difference that
-							this method DOES delete all children as well.
+							<kbd>delete_tree</kbd> は <a href="#method_delete">delete()</a> メソッドと同じように動作しますが、違うのは
+							このメソッドが全ての子についても削除「する」という点です。
 						</p>
 						<p class="note">
-							If you use the <strong>delete_tree()</strong> method on a root node, the entire tree will be deleted!
+							<strong>delete_tree()</strong> メソッドをルートノードに対して使った場合、そのツリー全体が削除されます！
 						</p>
 					</article>
 
 					<article>
 						<h4 id="method_tree_config" class="method">tree_config($name = null)</h4>
 						<p>
-							You use this method to get one or all tree configuration options of the model. It is mainly used internally
-							to construct queries that operate on parts of the tree, or on a specific tree in a multi-tree model.
+							このメソッドはモデルの1つ、または全てのツリー設定値を取得するのに使います。主として内部的に、
+							ツリーの一部分や、複数ツリーモデルでの特定のツリーを操作するクエリを構築するのに使われます。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1589,10 +1589,10 @@ $tree_id = Model_Tree::tree_config('tree_id');</code></pre>
 					<article>
 						<h4 id="method_get_tree_id" class="method">get_tree_id()</h4>
 						<p>
-							You use this method to get the tree-id in a multi-tree environment. If there is a valid node to operate on, the
-							tree-id of that node is returned. If not, the value set using <strong>set_tree_id()</strong> is returned.
-							If no tree-id has been set, an exception is thrown. This method is mainly used internally to make sure queries
-							run in the context of the current tree in a multi-tree environment.
+							このメソッドは複数ツリー環境においてツリー ID を取得するのに使います。もし有効な操作対象ノードがある場合、
+							そのノードのツリー ID が返されます。そうでない場合、 <strong>set_tree_id()</strong> で設定された値が返されます。
+							ツリー ID がまだ設定されていない場合は、例外が投げられます。このメソッドは主として内部的に使われ、クエリが複数ツリー環境でも
+							確実に現在のツリーのコンテキストにおいて実行されるようにします。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1624,8 +1624,8 @@ $current_tree = $bill->get_tree_id();</code></pre>
 					<article>
 						<h4 id="method_set_tree_id" class="method">set_tree_id($tree = null)</h4>
 						<p>
-							You use this method to set the tree-id in a multi-tree environment. You mainly use this when you want to
-							run	a <strong>get()</strong> or <strong>get_one()</strong> but you don't have an existing node to work on.
+							このメソッドは複数ツリー環境でツリー ID を設定するのに使います。主な使い道としては、
+							<strong>get()</strong> を <strong>get_one()</strong> 実行したいものの、既存の操作対象ノードがない場合があります。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1668,10 +1668,10 @@ $root = Model_Tree::forge()->set_tree_id($mytreeid)->get_one();</code></pre>
 					<article>
 						<h4 id="method_build_query" class="method">build_query()</h4>
 						<p>
-							The <strong>build_query</strong> method returns an ORM query object, like <strong>Model_Nestedset::query()</strong>
-							but with an added <strong>where</strong> clause in case of a multi-tree model, to make sure the query runs in the context of the
-							current tree. It requires a tree-id to be available, so if you call this on a new object, use <strong>set_tree_id</strong> to make
-							sure a valid id is defined.
+							<strong>build_query</strong> メソッドはORM のクエリオブジェクトを返します。 <strong>Model_Nestedset::query()</strong> と同様のものですが、
+							追加的な <strong>where</strong> 句が複数ツリーモデルの場合に付与され、これはクエリの実行が現在のツリーについて行われることを
+							保証するためのものです。これにはツリー ID が利用可能なことが必要なので、新規のオブジェクトにおいて呼び出す場合、<strong>set_tree_id</strong> を
+							有効な ID が定義されているのを保証するのに使ってください。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1713,9 +1713,9 @@ $enabled = $bill
 					<article>
 						<h4 id="method_get_query" class="method">get_query()</h4>
 						<p>
-							The <strong>get_query</strong> method returns an ORM query object, but unlike <strong>build_query()</strong>
-							this method requires a collection methods to be used. It allows you to use the standard Model methods to
-							constuct a first selection of nodes, and use the returned Query object to fine-tune the query.
+							<strong>get_query</strong> メソッドは ORM のクエリオブジェクトを返しますが、 <strong>build_query()</strong> とは違い、
+							コレクションメソッドが事前に使われていることを必要とします。このメソッドによりモデルの標準的なメソッドを最初のノードの絞込に使い、
+							返されたクエリオブジェクトによってクエリの細かい調整を行うことができるようになります。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1752,7 +1752,7 @@ $enabled = $bill
 					<article>
 						<h4 id="method_count_children" class="method">count_children()</h4>
 						<p>
-							The <strong>count_children</strong> method returns the number of children (direct descendants) of the object you're calling it on.
+							<strong>count_children</strong> メソッドは呼び出したオブジェクトの子（直接の子孫）の数を返します。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1794,7 +1794,7 @@ echo Model_Tree::forge()->count_children();
 					<article>
 						<h4 id="method_count_descendants" class="method">count_descendants()</h4>
 						<p>
-							The <strong>count_descendants</strong> method returns the number of descendants of the object you're calling it on.
+							<strong>count_descendants</strong> メソッドは呼び出したオブジェクトの子孫の数を返します。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1833,8 +1833,8 @@ echo Model_Tree::forge()->count_descendants();
 					<article>
 						<h4 id="method_depth" class="method">depth()</h4>
 						<p>
-							The <strong>depth</strong> method returns the depth or level the current node is in the tree, where
-							the level of the root node is 0.
+							<strong>depth</strong> メソッドは現在のノードがツリー内のどの深さ、階層にあるかを返し、この際
+							ルートノードの階層は0となります。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1876,8 +1876,8 @@ $result = Model_Tree::forge()->depth();
 					<article>
 						<h4 id="method_dump_tree" class="method">dump_tree($as_object = false, $children = 'children', $path = 'path')</h4>
 						<p>
-							The <strong>dump_tree</strong> method returns the entire tree, using the current object as root node
-							into a multi-dimensional array.
+							<strong>dump_tree</strong> メソッドはツリー全体を返し、これは現在のオブジェクトをルートノードとして
+							多次元配列として返します。
 						</p>
 						<table class="method">
 							<tbody>
@@ -1945,15 +1945,15 @@ $children = $bill->children;
 							</tbody>
 						</table>
 						<p class="note">
-							As with all ORM array's, the table's primary key is used as array index. Note that because the ORM uses objects by
-							reference from a single cache, if you choose to use 'as_object', children will be added to existing objects too.</p>
+							全ての ORM 配列がそうであるように、テーブルのプライマリーキーが配列の添字として使われます。注意してほしいのは、 ORM ではオブジェクトを
+							単一のキャッシュからの参照として利用するため、「as_object」を true にして使う場合、子（children）が他の場所で取得済みのオブジェクトにも追加されるということです。</p>
 					</article>
 
 					<article>
 						<h4 id="method_related" class="method">related($relation, $conditions = array())</h4>
 						<p>
-							The <strong>related</strong> method allows you to fetch related objects when executing a nested set command, indentical
-							to a normal Orm model query.
+							<strong>related</strong> メソッドで、入れ子集合用の命令を実行する際、リレーションのオブジェクトを取得することができます。これは
+							通常の Orm モデルのクエリのものと同じものです。
 						</p>
 						<table class="method">
 							<tbody>
@@ -2004,8 +2004,8 @@ $descendants = $ben->related('child')->descendants()->get();
 							</tbody>
 						</table>
 						<p class="note">
-							If you want to use this method on any nested set operation (like for example decendants()), make sure to setup that
-							operation first. If you don't, your included relations will be reset my the nested set operation method call!</p>
+							このメソッドをあらゆる入れ子集合用の操作（たとえば decendants() のような）とともに使いたい場合、先にその操作を
+							行うようにしてください。さもなければ、含めた筈のリレーションが入れ子集合用操作の呼び出しで取り消されてしまうことになります！</p>
 					</article>
                 </section>
 			</div>
