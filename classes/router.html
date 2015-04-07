@@ -125,7 +125,7 @@
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><i>必須</i></td>
-									<td>マッチさせたい URI パス。これは、routes.php にあるルート定義の左側です。</td>
+									<td>一致させたい URI パス。これは、routes.php にあるルート定義の左側です。</td>
 								</tr>
 								<tr>
 									<th><kbd>$options</kbd></th>
@@ -290,7 +290,7 @@ echo Router::get('user', array('name' => 'john', 'article'));
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><i>必須</i></td>
-									<td>The URI path, or an array of paths, to be matched. This is the left side of your routes.php route definition.</td>
+									<td>一致させたい URI パス、またはパスの配列。これは、routes.php にあるルート定義の左側です。</td>
 								</tr>
 								<tr>
 									<th><kbd>$case_sensitive</kbd></th>
@@ -307,16 +307,16 @@ echo Router::get('user', array('name' => 'john', 'article'));
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// 'this/that' に対するルーティングを削除する
+							<pre class="php"><code>// 'this/that' に対するルートを削除
 Router::delete('this/that');
 
-// delete the routes for 'this/that' and 'some/other'
+// 'this/that' と 'some/other' に対するルートを削除
 Router::delete(array('this/that', 'some/other'));
 
-// 大文字小文字を区別する
+// 大文字小文字を区別することを強制
 Router::delete('this/that', true);
 
-// module controller への全てのルーティングを削除する
+// module controller への全てのルートを削除する
 Router::delete('module/controller(:any)');
 </code></pre>
 						</td>
