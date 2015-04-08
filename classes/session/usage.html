@@ -70,21 +70,21 @@
 				自動で不要なキャッシュエントリーを期限切れとしてます。
 			</p>
 			<p>
-				データベースやファイルシステムのようにそれを行わないストレージの場合、gc_probabilityの設定によりガベージコレクションが必要か判断します。
+				データベースやファイルシステムのようにそれを行わないストレージの場合、 gc_probability の設定によりガベージコレクションが必要か判断します。
 				必要な場合、ユーザーにページが送られた後、シャットダウンイベントにて実行されます。
-				この方法のよくない点は、処理に時間がかかる場合、GCが完了するまでページが"loading…"となることです。
+				この方法のよくない点は、処理に時間がかかる場合、GCが完了するまでページが "loading…" となることです。
 			</p>
 
 			<p class="note">
 				セッションを使用する際は、 <strong>必ず</strong> <em>app/config/config.php</em> のタイムゾーン設定およびまたは
-				<em>php.ini</em>の設定をあなたのサーバーのタイムゾーン設定と合わせてください。
+				<em>php.ini</em> の設定をあなたのサーバーのタイムゾーン設定と合わせてください。
 				クッキーの有効期限タイムスタンプがGMTとなり、タイムゾーンのミスマッチが有効期限の計算を狂わせると、期限切れでない適切なセッションクッキーがブラウザ到達時に期限切れとして扱われ
 				まったくセットされなくなります。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_instance">instance($instance = null)</h4>
-				<p><strong>instance</strong> メソッドはデフォルトのセッションインスタンス、またはnameにより区別された特定のインタンスを返します。</p>
+				<p><strong>instance</strong> メソッドはデフォルトのセッションインスタンス、または name により区別された特定のインタンスを返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -110,7 +110,7 @@
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed - セッションオブジェクト、または要求されたインスタンスが存在しない場合<kbd>false</kbd>。</td>
+						<td>mixed - セッションオブジェクト、または要求されたインスタンスが存在しない場合 <kbd>false</kbd> 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -166,12 +166,12 @@ $session = Session::instance('myappcookie');
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>FuelCoreSession_Driver - is chainable</td>
+						<td>FuelCoreSession_Driver - メソッドチェーン可能</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// useridをセッションに格納
+							<pre class="php"><code>// userid をセッションに格納
 Session::set('userid', $userid);
 
 // より複雑な値を格納することも出来ます
@@ -221,7 +221,7 @@ Session::set('userid', $userid)->set('foo', 'bar');
 								<tr>
 									<th><kbd>$default</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>要求された変数が存在しなかった場合のデフォルト値。 デフォルト値が指定されなかった場合<kbd>null</kbd>が返されます。</td>
+									<td>要求された変数が存在しなかった場合のデフォルト値。 デフォルト値が指定されなかった場合 <kbd>null</kbd> が返されます。</td>
 								</tr>
 							</table>
 						</td>
@@ -282,7 +282,7 @@ $vars = Session::get();</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>FuelCoreSession_Driver - is chainable</td>
+						<td>FuelCoreSession_Driver - メソッドチェーン可能</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -335,7 +335,7 @@ Session::delete('array.varC');
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>FuelCoreSession_Driver - is chainable</td>
+						<td>FuelCoreSession_Driver - メソッドチェーン可能</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -377,7 +377,7 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 								<tr>
 									<th><kbd>$variable</kbd></th>
 									<td><em>必須</em></td>
-									<td>Name of the session variable to get.取得するフラッシュ変数の名前</td>
+									<td>取得するセッション変数の名前</td>
 								</tr>
 								<tr>
 									<th><kbd>$default</kbd></th>
@@ -394,7 +394,7 @@ Session::set_flash('array', array('varA', 'varB', 'varC' => array('val1', 'val2'
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed - 格納された <var>$variable</var>の型によります。 このメソッドは要求した変数が存在しない場合 null を返します。</td>
+						<td>mixed - 格納された <var>$variable</var> の型によります。 このメソッドは要求した変数が存在しない場合 null を返します。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -437,7 +437,7 @@ $step = Session::get_flash('step');
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>FuelCoreSession_Driver - is chainable</td>
+						<td>FuelCoreSession_Driver - メソッドチェーン可能</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -479,7 +479,7 @@ Session::keep_flash('step');
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>FuelCoreSession_Driver - is chainable</td>
+						<td>FuelCoreSession_Driver - メソッドチェーン可能</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -504,11 +504,11 @@ Session::delete_flash('userid');
 					</tr>
 					<tr>
 						<th>パラメータ</th>
-						<td>None</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>FuelCoreSession_Driver - is chainable</td>
+						<td>FuelCoreSession_Driver - メソッドチェーン可能</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -533,11 +533,11 @@ Session::create();
 					</tr>
 					<tr>
 						<th>パラメータ</th>
-						<td>None</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>FuelCoreSession_Driver - is chainable</td>
+						<td>FuelCoreSession_Driver - メソッドチェーン可能</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -562,11 +562,11 @@ Session::destroy();
 					</tr>
 					<tr>
 						<th>パラメータ</th>
-						<td>None</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>FuelCoreSession_Driver - is chainable</td>
+						<td>FuelCoreSession_Driver - メソッドチェーン可能</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -591,11 +591,11 @@ Session::read();
 					</tr>
 					<tr>
 						<th>パラメータ</th>
-						<td>None</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>FuelCoreSession_Driver - is chainable</td>
+						<td>FuelCoreSession_Driver - メソッドチェーン可能</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -625,11 +625,11 @@ Session::write();
 					</tr>
 					<tr>
 						<th>パラメータ</th>
-						<td>None</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>FuelCoreSession_Driver - is chainable</td>
+						<td>FuelCoreSession_Driver - メソッドチェーン可能</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -666,7 +666,7 @@ Session::rotate();
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><em>optional</em></td>
+									<td><em>任意</em></td>
 									<td>
 										キー要素の名前。デフォルトでは 'session_id' が設定されています。
 										'ip_hash'、 'created'、 'updated'、
