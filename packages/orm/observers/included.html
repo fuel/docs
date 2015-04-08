@@ -77,7 +77,7 @@
 				<pre class="php"><code>// 単にオブザーバを追加
 protected static $_observers = array('Orm\\Observer_Self');
 
-// But if you only observe some events you can optimize by only adding those
+// しかし、いくつかのイベントを観察するだけの場合にそれらのみを追加することによって最適化することが可能
 protected static $_observers = array('Orm\\Observer_Self' => array(
 	'events' => array('after_save', 'before_insert')
 ));</code></pre>
@@ -116,7 +116,7 @@ protected static $_observers = array(
                     <kbd>before_update</kbd> を使うと、 updateAt カラムは update のときだけ更新されます。
                 </p>
 
-                <pre class="php"><code>// 2回実行されてしまうため、これは使用しないでください！
+                <pre class="php"><code>// 2 回実行されてしまうため、これは使用しないでください！
 protected static $_observers = array('Orm\\Observer_UpdatedAt');
 
 // 以下の設定をつけて追加します:
