@@ -10,6 +10,7 @@
 * Yoshiyuki Ieyama <https://github.com/yukku0423>
 * toru81 <https://github.com/toru81>
 * Naoki Morita <https://github.com/morita21>
+* sj-i <https://github.com/sj-i>
 
 ## Version 1.7
 
