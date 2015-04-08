@@ -47,10 +47,10 @@
 
 			<h2>Session クラス</h2>
 
-			<p>The session class allows you to maintain state for your application in the stateless environment of the web.
-				It allows you to store variables on the server using a variety of storage solutions, and recall these variables on the next page request.</p>
+			<p>セッションクラスを使用することでステートレスな Web 環境において、アプリケーションの状態を管理出来るようになります。
+				サーバー上の様々なストレージに変数を格納し、それらを次のページリクエストに再度呼び出すことが出来ます。</p>
 
-			<h3 id="manual_loading">Manual loading</h3>
+			<h3 id="manual_loading">手動読み込み</h3>
 
 			<p>
 				For most cases, it is sufficient to configure the desired driver, and use the methods documented on the <a href="./usage.html">usage</a> page.
@@ -85,7 +85,7 @@
 								</tr>
 								<tr>
 									<th><kbd>$config</kbd></th>
-									<td><i>optional</i></td>
+									<td><i>任意</i></td>
 									<td>
 										You can select the driver of your choice by simply passing the name of the driver to the forge method.
 										If you require more custom configuration, define a $config array, using the parameters documented on the <a href="./config.html">configuration</a> page.
@@ -97,7 +97,7 @@
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>object - The instantiated session object.</td>
+						<td>オブジェクト - セッションオブジェクトのインスタンス</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -144,17 +144,17 @@ $session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3
 					<tbody>
 					<tr>
 						<th>静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
 						<td>
-							None
+							なし
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>void</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -181,7 +181,7 @@ $session->rotate();
 					<tbody>
 					<tr>
 						<th>静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -196,7 +196,7 @@ $session->rotate();
 									<th><kbd>$name</kbd></th>
 									<td><i>必須</i></td>
 									<td>
-										Name of the session configuration variable.
+										セッション設定の変数の名前。
 									</td>
 								</tr>
 							</table>
@@ -231,7 +231,7 @@ $cookiename = $session->get_config('cookie_name');
 					<tbody>
 					<tr>
 						<th>静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -246,7 +246,7 @@ $cookiename = $session->get_config('cookie_name');
 									<th><kbd>$name</kbd></th>
 									<td><i>必須</i></td>
 									<td>
-										Name of the session configuration variable.
+										セッション設定の変数の名前。
 									</td>
 								</tr>
 							</table>
@@ -254,7 +254,7 @@ $cookiename = $session->get_config('cookie_name');
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>void</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -272,7 +272,7 @@ $session->set_config('expiration_time', 7200);
 
 			</article>
 
-			<h2>Using sessions with Flash</h2>
+			<h2>フラッシュとセッションの使い方</h2>
 
 			<p>
 				One of the problems with using Flash objects in websites, is that when they interact with your web application, they don't send the cookies
@@ -349,7 +349,7 @@ $(function()
 }
 </code></pre>
 
-			<h3 id="concurrency">Concurrency</h3>
+			<h3 id="concurrency">並行性</h3>
 
 			<p>
 				When talking about sessions, session cookies, and their behaviour, it is important to understand how they work
@@ -391,7 +391,7 @@ $(function()
 				The result is that you lose the session data of that request, but you don't lose the session itself.
 			</p>
 
-			<h3 id="no-cookies">Sessions without cookies</h3>
+			<h3 id="no-cookies">クッキーなしのセッション</h3>
 
 			<p>
 				After a change to the session data, the Session class will always generate a session cookie, and send it to the client in the HTTP
