@@ -68,8 +68,8 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								If true, the default driver defined in the configuration will be automatically loaded and initialized.
-								Set it to false if you want to load a specific session configuration manually.
+								true の場合、設定で定義されたデフォルトのドライバが自動的に読み込まれ初期化されます。
+								手動で特定のセッション設定を読み込みたい場合は、 false に設定します。
 							</td>
 						</tr>
 						<tr>
@@ -77,9 +77,9 @@
 							<td>string</td>
 							<td><pre class="php"><code>'cookie'</code></pre></td>
 							<td>
-								Name of the session driver to load. Currently, you can use 'cookie', 'db', 'memcached', 'redis' and 'file'.
-								Other values will generate an error.
-								Check the advanced section on how you can load a session driver manually, or how to use multiple drivers concurrently.
+								読み込むセッションドライバの名前。 現在、 'cookie', 'db', 'memcached', 'redis' そして 'file' を利用することができます。
+								その他の値はエラーを生成します。
+								手動でセッションドライバを読み込む方法、またはどのように同時に複数のドライバを使用するかについては高度なセクションを確認してください。
 							</td>
 						</tr>
 						<tr>
@@ -87,9 +87,9 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								If true, the IP address stored in the session cookie will be compared with the client IP address as reported by the webserver.
-								In case of a mismatch, the session is discarded. This function uses both the clients real IP address and the public IP address,
-								so that users behind proxy servers can be uniquely identified (if the proxy reveils this information).
+								true の場合、セッションクッキーに格納されている IP アドレスは、ウェブサーバによって報告されたクライアントの IP アドレスと比較されます。
+								不一致の場合には、セッションは破棄されます。(プロキシがこの情報を明らかにしている場合) プロキシサーバーの背後にいるユーザを一意に識別できるように、
+								この機能はクライアントの実際の IP アドレスとパブリック IP アドレスの両方を利用します。
 							</td>
 						</tr>
 						<tr>
@@ -97,8 +97,8 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								If true, the User Agent string stored in the session cookie will be compared with the User Agent string as reported by the webserver.
-								In case of a mismatch, the session is discarded.
+								true の場合、セッションクッキーに格納されているユーザーエージェント文字列は、ウェブサーバによって報告されたユーザーエージェント文字列と比較されます。
+								不一致の場合には、セッションは破棄されます。
 							</td>
 						</tr>
 						<tr>
@@ -106,8 +106,8 @@
 							<td>string</td>
 							<td><pre class="php"><code>''</code></pre></td>
 							<td>
-								The domain for which the session cookie is valid. If you leave it blank, it will default to the hostname as specified in the URL.
-								<br />Make sure you follow the rules for cookie domain names, as defined in http://www.faqs.org/rfcs/rfc2109.html!
+								そのセッションクッキーが有効なドメイン。 空白にした場合、それは URL で指定されたホスト名にデフォルトで設定されます。
+								<br />必ず http://www.faqs.org/rfcs/rfc2109.html で定義されている Cookie ドメイン名の規則に従ってください！
 							</td>
 						</tr>
 						<tr>
@@ -115,8 +115,8 @@
 							<td>string</td>
 							<td><pre class="php"><code>'/'</code></pre></td>
 							<td>
-								If you want the cookie to be only valid for a certain path, enter the path here.
-								You use this mainly if you have installed your application in a folder instead of in the webservers DOCROOT.
+								クッキーを特定のパスに対してのみ有効にする場合は、ここにパスを入力します。
+								フォルダ内の代わりに ウェブサーバの DOCROOT でアプリケーションをインストールしている場合は主にこれを利用します。
 							</td>
 						</tr>
 						<tr>
@@ -124,7 +124,7 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								if true, allow only transmit of cookies over HTTP, disabling Javascript access.
+								true の場合、 Javascript でのアクセスを無効にし、 HTTP 経由でクッキーの送信のみ可能とする。
 							</td>
 						</tr>
 						<tr>
@@ -132,8 +132,8 @@
 							<td>integer</td>
 							<td><pre class="php"><code>7200</code></pre></td>
 							<td>
-								Number of seconds of idle time after which the session will expire. This value must be greater than zero.
-								If an invalid value is defined, it will be set to 7200 seconds.
+								セッションが期限切れになるまでのアイドル時間の秒数。 この値はゼロより大きくなければなりません。
+								無効な値が定義されている場合、 7200 秒に設定されます。
 							</td>
 						</tr>
 						<tr>
@@ -141,8 +141,8 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								When set to true, the session will expire when the browser (not the current window!) is closed.
-								If set, it has precedence over the expiration_time defined.
+								true に設定した場合、 (現在のウィンドウではなく！) ブラウザが閉じられたときにセッションが期限切れとなります。
+								設定した場合は、それは expiration_time の定義よりも優先されます。
 							</td>
 						</tr>
 						<tr>
@@ -150,9 +150,9 @@
 							<td>integer</td>
 							<td><pre class="php"><code>300</code></pre></td>
 							<td>
-								To prevent session hijacking due to session fixation, Fuel automatically encrypts the session cookie data.
-								It also changes the session IDs at the interval specified here.
-								If not given, or an invalid value is defined, the rotation time defaults to 300 seconds.
+								セッション固定によるセッションハイジャックを防ぐために、 Fuel は自動的にセッションの Cookie データを暗号化します。
+								また、ここで指定した間隔でセッション ID を変更します。
+								指定しない、または無効な値が定義されている場合、 300 秒がローテーション時間のデフォルト値。
 							</td>
 						</tr>
 						<tr>
@@ -160,7 +160,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'flash'</code></pre></td>
 							<td>
-								Flash variables are identified in the session by the flash id and the session variable name.
+								Flash 変数は、フラッシュ ID とセッション変数名によるセッションで識別されます。
 								You can use this flash id as a session variable namespace, to avoid variable name collisions,
 								or to make sure session variables from a module don't interfere with variables used in the application.
 							</td>
@@ -222,7 +222,7 @@
 	'write_on_set'   => true
  )</code></pre>
 							</td>
-							<td>Specific configuration for cookie based sessions.</td>
+							<td>クッキーに基づいたセッションのための具体的な設定。</td>
 						</tr>
 						<tr>
 							<th>file</th>
@@ -234,7 +234,7 @@
 	'gc_probability' => 5
  )</code></pre>
 							</td>
-							<td>Specific configuration for file based sessions.</td>
+							<td>ファイルに基づいたセッションのための具体的な設定。</td>
 						</tr>
 						<tr>
 							<th>db</th>
@@ -247,7 +247,7 @@
 	'gc_probability' => 5
  )</code></pre>
 							</td>
-							<td>Specific configuration for database based sessions.</td>
+							<td>データベースに基づいたセッションのための具体的な設定。</td>
 						</tr>
 						<tr>
 							<th>memcached</th>
@@ -264,7 +264,7 @@
 						)
  )</code></pre>
 							</td>
-							<td>Specific configuration for memcached based sessions.</td>
+							<td>memcached に基づいたセッションのための具体的な設定。</td>
 						</tr>
 						<tr>
 							<th>redis</th>
@@ -275,7 +275,7 @@
 	'database'       => 'default'
  )</code></pre>
 							</td>
-							<td>Specific configuration for redis based sessions.</td>
+							<td>redis に基づいたセッションのための具体的な設定。</td>
 						</tr>
 					</tbody>
 				</table>
