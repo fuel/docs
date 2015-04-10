@@ -161,8 +161,8 @@
 							<td><pre class="php"><code>'flash'</code></pre></td>
 							<td>
 								Flash 変数は、フラッシュ ID とセッション変数名によるセッションで識別されます。
-								You can use this flash id as a session variable namespace, to avoid variable name collisions,
-								or to make sure session variables from a module don't interfere with variables used in the application.
+								変数名の衝突を避けるために、セッション変数の名前空間として、このフラッシュ ID
+								を利用でき、また、アプリケーションで使用される変数を妨害しないセッション変数を確実にモジュールから作ることができます。
 							</td>
 						</tr>
 						<tr>
@@ -170,9 +170,9 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								Flash variables are intended to be used only once. If you set this parameter to true, flash variables will auto expire
-								after the next page request, whether or not there are read back.
-								If you set this to false, flash variables will remain stored in the session until you retrieve them.
+								フラッシュ変数は一度だけ使用されることを意図しています。 このパラメータを true に設定した場合、フラッシュ変数は、
+								読み直すにしろしないにしろ、次のページ要求後に自動で期限切れとなります。
+								これを false に設定すると、それらを取得するまで、フラッシュ変数はセッションに保存されたままになります。
 							</td>
 						</tr>
 						<tr>
@@ -180,9 +180,9 @@
 							<td>string</td>
 							<td><pre class="php"><code>''</code></pre></td>
 							<td>
-								For situations where no cookies are sent to the server (for example, when you use Flash objects), you can use client side code to copy the contents of the session cookie into a variable that will be send to the server as part of a POST request.
-								You can use this variable to define the name of the POST variable.
-								<br />Note that this variable will only be checked when no session cookie can be found.
+								全くクッキーがサーバーに送信されない状況 (たとえば、 Flash オブジェクトを使用している場合) 、 POST 要求の一部としてサーバーに送信される変数にセッションクッキーの内容をコピーするにはクライアント側のコードを利用することができます。
+								この変数を POST 変数の名前を定義する場合に利用することができます。
+								<br />全くセッションクッキーが見つからない場合この変数は確認のみされることに注意してください。
 							</td>
 						</tr>
 						<tr>
@@ -190,9 +190,9 @@
 							<td>string</td>
 							<td><pre class="php"><code>'Session-Id'</code></pre></td>
 							<td>
-								For situations where no cookies are sent to the server, you can also use client side code to set a custom HTTP header
-								to pass the session cookie to the server.
-								<br />Note that this variable will only be checked when no session cookie can be found.
+								全くクッキーがサーバーに送信されない状況では、サーバにセッションクッキーを渡すためにカスタム
+								HTTP ヘッダーを設定するためにクライアント側のコードを利用することができます。
+								<br />全くセッションクッキーが見つからない場合この変数は確認のみされることに注意してください。
 							</td>
 						</tr>
 						<tr>
@@ -200,9 +200,9 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>true</code></pre></td>
 							<td>
-								When set to false, no session cookie will be created and added to the response send back to the client. This means
-								you have to use other means (GET, POST or HTTP-HEADER) to pass the session-id back from the client to the server
-								on the next request.
+								false に設定すると、全くセッションクッキーは作成されず、クライアントに送り返される応答に追加されます。
+								これは、次のリクエストに応じてクライアントからサーバへ戻るときにセッション ID を渡すため他の手段 (GET, POST や HTTP-HEADER)
+								を使用しなければならないことを意味します。
 							</td>
 						</tr>
 						<tr>
@@ -210,7 +210,7 @@
 							<td>boolean</td>
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
-								When set to true, the session class will add support for PHP native sessions through <a href="#native_emulation">emulation</a>.
+								true に設定すると、セッションクラスは、<a href="#native_emulation">エミュレーション</a>を通じて PHP のネイティブのセッションのサポートを追加します。
 							</td>
 						</tr>
 						<tr>
@@ -281,14 +281,14 @@
 				</table>
 
 				<p>
-					For each of the session storage drivers, a separate configuration section exists.
-					This section contains the driver specific parameters, and you can use it to override
-					global parameters for that specific storage driver.
+					それぞれのセッションストレージドライバについて、個別の設定のセクションが存在します。
+					このセクションでは、ドライバ固有のパラメータが含まれており、そして、
+					その特定のストレージドライバのためのグローバルなパラメータを上書きするために利用することができます。
 				</p>
 
 				<p>
-					The Session class checks the following locations for a session id, in this order. It doesn't validate at this point, the
-					first value found is used, and if that turns out not to be valid, a new session is created:
+					セッションクラスは、セッション ID の以下のような場所をこの順番で確認します。 この時点では検証されまず、
+					それは最初に見つかった値が使用され、それが有効ではないと判明した場合に新しいセッションが作成されます：
 				</p>
 				<ul>
 					<li>Posted data, it will check <code class="php">Input::post</code> for the variable defined in "post_cookie_name".</li>
