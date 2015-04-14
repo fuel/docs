@@ -383,10 +383,10 @@
 								<td>string</td>
 								<td><pre class="php"><code>null</code></pre></td>
 								<td>
-									Name of the database which is going to be used to store the session data. This is the name defined in the application database configuration file, app/config/db.php. If not defined, or set to null, the current active database will be selected.
+									セッションデータを格納するために利用しようとしているデータベースの名前。 これは、アプリケーションのデータベース設定ファイル app/config/db.php で定義された名前です。 定義されていない、または null に設定されている場合は、現在アクティブなデータベースが選択されます。
 									<p class="note">
-										Note that if you use multiple databases, it is not wise to use null here, as your application flow determines what the active database is at any given time.
-										Either use <strong>Config::get('environment')</strong> to use the configured current environment, or use a named database configuration.
+										複数のデータベースを使用する場合は、ここに null を使用するのは賢明ではなく、アクティブなデータベースが任意の時点で何であるかをアプリケーションフローで決定するように注意してください。
+										<strong>Config::get('environment')</strong> を利用して設定された現在の環境を利用するか、または、名前の付いたデータベースの設定を利用するかのどちらか一方。
 									</p>
 								</td>
 							</tr>
@@ -409,14 +409,14 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   UNIQUE KEY `PREVIOUS` (`previous_id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 </pre><br />
-									sessions テーブルが session_id カラムと previous_id カラムの両方にユニークキーを持つことに注意してください。 This is both to speed up the query (which is always by id), and to make sure no duplicate id's are inserted.
+									sessions テーブルが session_id カラムと previous_id カラムの両方にユニークキーを持つことに注意してください。 これは、 (id によって常に) クエリをスピードアップするため、そして重複した id が挿入されていないことを確認するためです。
 								</td>
 							</tr>
 							<tr>
 								<th>gc_probability</th>
 								<td>integer</td>
 								<td><pre class="php"><code>5</code></pre></td>
-								<td>To keep the number of expired session files under control, regular garbage collection is performed. The gc_probability is an integer between 0 and 100, indicating the chance that this process will start, where 0 = never, and 100 = always. The session driver executes this task as a shutdown event, to minimize the impact on the application.</td>
+								<td>管理下の有効期限が切れたセッションファイルの数を保つために、定期的なガベージコレクションが実行されます。 gc_probability は、このプロセスが開始する可能性、 0 = 決して行わない、および 100 = 常に行う を示す、 0 から 100 までの整数です。 セッションドライバはアプリケーションへの影響を最小限に抑えるため、シャットダウンイベントとしてこのタスクを実行します。</td>
 							</tr>
 						</tbody>
 					</table>
@@ -454,7 +454,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 )
 </code></pre>
 								</td>
-								<td>Array containing a list of available memcached servers, as defined by <a href="http://php.net/manual/en/memcached.addservers.php">http://php.net/manual/en/memcached.addservers.php</a>. If you don't specify this parameter, it will default to a single memcached server, running on the local machine, and the listening to default port.
+								<td><a href="http://php.net/manual/en/memcached.addservers.php">http://php.net/manual/en/memcached.addservers.php</a> によって定義される、利用可能な memcached サーバのリストを含む配列。 このパラメータを指定しない場合、ローカルマシン上で実行され、デフォルトのポートでリスニングしている、単一の memcached サーバがデフォルトとして設定されます。
 
 								</td>
 							</tr>
@@ -484,7 +484,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 								<th>database</th>
 								<td>string</td>
 								<td><pre class="php"><code>'default'</code></pre></td>
-								<td>Name of the redis database which is going to be used to store the session data. This is the name defined in the redis section of the application database configuration file, app/config/db.php. If not defined or not found, the 'default' database configuration will be selected.</td>
+								<td>セッションデータを格納するために利用しようとしている redis データベースの名前。 これは、アプリケーションのデータベース設定ファイル app/config/db.php の redis セクションで定義された名前です。 定義されていない、または見つからない場合は、 'default' データベース構成が選択されます。</td>
 							</tr>
 						</tbody>
 					</table>
@@ -510,24 +510,24 @@ $ php oil r session:clear</code></pre>
 				<h3 id="native_emulation">PHP ネイティブセッションのエミュレーション</h3>
 
 				<p>
-					When activated via the configuration, the Session class will enable some basic emulation of PHP's native session mechanism that
-					can be accessed via the <kbd>$_SESSION</kbd> global variable. This only works on the default session instance, the one accessable via the
-					static interface.
+					設定をアクティブにして起動すると、セッションクラスは、 <kbd>$_SESSION</kbd> グローバル変数を介してアクセスすることができ、
+					PHP のネイティブなセッション機構のいくつかの基本的なエミュレーションが可能になります。
+					これは、デフォルトのセッションインスタンス上で静的インタフェースを介してアクセス可能なもの限定で動作します。
 				</p>
 				<p>
-					When enabled, the Session class will setup a custom session handler, that will capture the calls to the PHP functions
-					<kbd>session_start()</kbd>, <kbd>session_close()</kbd> and <kbd>session_write_close()</kbd>. If will force a close at shutdown when an open native session
-					is detected.
+					有効にすると、セッションクラスは PHP の関数 <kbd>session_start()</kbd> 、 <kbd>session_close()</kbd> および <kbd>session_write_close()</kbd> への呼び出しをキャプチャするように、
+					カスタムセッションハンドラをセットアップします。 もしネイティブセッションが開かれているのを検出したときはシャットダウン時に強制的に
+					閉じられます。
 				</p>
 				<ul>
-					<li>When <kbd>session_start()</kbd> is called, all session data stored in the Fuel session store you have configured will be copied into the <kbd>$_SESSION</kbd> array, so it can be accessed by non-Fuel code requiring sessions.</li>
-					<li>When the session is closed, a diff is made and changes in $_SESSION are copied back into the Fuel session store.</li>
+					<li><kbd>session_start()</kbd> が呼び出された場合、設定した Fuel セッションストアに格納されているすべてのセッションデータは <kbd>$_SESSION</kbd> 配列にコピーされるため、セッションを必要とする Fuel ではないコードからアクセスできます。</li>
+					<li>セッションが閉じられると、 $_SESSION の変化の差分が作られ Fuel セッションストアにコピーされます。</li>
 				</ul>
 
 				<p class="note">
-					This mechanism means that if you have a session variable that is modified both inside- and outside Fuel, it is undetermined which of
-					the changes will be saved. This depends on the position of the last <kbd>session_close()</kbd> call in the code. If the session is
-					not closed, Fuel's shutdown event will close it, and it will overwrite any data set via standard Session calls!
+					このメカニズムでは、 Fuel の内側と Fuel の外側の両方に変更されたセッション変数を持っている場合、どちらの変更が保存されるか未確定であることを意味します。
+					それはコードの最後の <kbd>session_close()</kbd> の呼び出し位置に依存します。 セッションが閉じられていない場合、
+					Fuel のシャットダウンイベントはそれを閉じ、そしてそれは、標準的なセッションの呼び出しを経由した任意のデータセットを上書きしてしまいます！
 				</p>
 
 			</section>
