@@ -53,20 +53,20 @@
 			<h3 id="manual_loading">手動読み込み</h3>
 
 			<p>
-				For most cases, it is sufficient to configure the desired driver, and use the methods documented on the <a href="./usage.html">usage</a> page.
-				However, there are situations where you would like more control over the way sessions behave.
-				You might want to use a different session driver than is configured in the session configuration file.
-				Or you have a need for multiple drivers concurrently. This is where the <kbd>forge</kbd> method comes in.
+				ほとんどの場合、<a href="./usage.html">使用法</a>ページの記載で十分目的のドライバを設定し、メソッドを利用することができます。
+				しかしながら、セッションが振る舞う方法をより詳細に制御したい状況があるでしょう。
+				セッション設定ファイルで設定されている別のセッションドライバを利用する場合があります。
+				もしくは、同時に複数のドライバを必要としています。 それは <kbd>forge</kbd> メソッドの出番です。
 			</p>
 			<p>
-				The <kbd>forge</kbd> method returns an instance of the session class, using the driver defined in the configuration file or via the parameter.
-				You can use the methods documented on the <a href="./usage.html">usage</a> page on the object returned, using dynamic calls.
+				<kbd>forge</kbd> メソッドは設定ファイルまたはパラメータで定義されたドライバを利用し、セッションクラスのインスタンスを返します。
+				動的呼び出しを利用し、<a href="./usage.html">使用法</a>ページの記載されたメソッドで返されたオブジェクトで利用することができます。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($config = array())</h4>
 				<p>
-					The <strong>forge</strong> method allows you to manually instantiate a session driver.
+					<strong>forge</strong> メソッドは、セッションドライバを手動でインスタンス化することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -87,9 +87,9 @@
 									<th><kbd>$config</kbd></th>
 									<td><i>任意</i></td>
 									<td>
-										You can select the driver of your choice by simply passing the name of the driver to the forge method.
-										If you require more custom configuration, define a $config array, using the parameters documented on the <a href="./config.html">configuration</a> page.
-										Configuration settings you pass here will override the ones defined in the configuration file.
+										forge メソッドに単にドライバの名前を渡すことで希望のドライバを選択することができます。
+										より多くのカスタム設定が必要な場合は、<a href="./config.html">設定</a>ページに記載されたパラメータを利用し、 $config 配列を定義します。
+										ここに渡す設定は設定ファイルで定義された内容を上書きします。
 									</td>
 								</tr>
 							</table>
@@ -102,24 +102,24 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// instantiate a database session
+							<pre class="php"><code>// データベースセッションをインスタンス化
 $session = Session::forge('db');
 
-// get the counter from the session
+// セッションからカウンターを取得
 $counter = $session->get('counter');
 
-// if not present, set a default
+// 存在しない場合、デフォルトを設定
 if ($counter === false)
 {
 	$counter = 0;
 }
 
-// write the counter back
+// カウンターを書き込む
 $session->set('counter', $counter);
 
-// no need to explicitly write, Fuel will take care of that...
+// Fuel はその処理をするので、明示的に記述する必要はありません...
 
-// you can also load a driver with settings that will override the defaults in the config file
+// また、設定ファイル内のデフォルト値を上書きする設定でドライバをロードすることが可能
 $session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3600, 'memcached' = array('cookie_name' => 'appcookie')) );
 </code></pre>
 						</td>
