@@ -128,9 +128,9 @@ $session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3
 				</table>
 
 				<p class="note">
-					<kbd>Please note:</kbd> when you want to use multiple session drivers at the same time, the <kbd>cookie_name</kbd> for each of these driver instances must be unique.
-					If you attempt to load a driver using a <kbd>cookie_name</kbd> that is already in use, and the instance using it uses the same driver as you are trying to load, that instance is reused.
-					If the instance is using a different driver, an exception is thrown.
+					<kbd>ご注意：</kbd> あなたは、同時に複数のセッションドライバを利用する場合、これらのドライバの各インスタンスの <kbd>cookie_name</kbd> は一意である必要があります。
+					既に利用している <kbd>cookie_name</kbd> を利用しドライバを読み込もうとして、それを利用してインスタンスをロードしようとしているのと同じドライバを利用している場合、そのインスタンスが再利用されます。
+					インスタンスが別のドライバを使用している場合、例外がスローされます。
 				</p>
 
 			</article>
@@ -138,7 +138,7 @@ $session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3
 			<article>
 				<h4 class="method" id="method_rotate">rotate()</h4>
 				<p>
-					The <strong>rotate</strong> method allows you to manually force a rotation of the session id. You can use this as an extra security measure, for example when the security level of the current user is modified.
+					<strong>rotate</strong> メソッドは手動でのセッション id のローテーションをユーザが強制することができます。 例えば、現在のユーザーのセキュリティレベルが変更されたとき、などに追加のセキュリティ対策としてこれを使用することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -159,10 +159,10 @@ $session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// instantiate a database session
+							<pre class="php"><code>// データベースセッションをインスタンス化
 $session = Session::forge('db');
 
-// force a rotation of the session id
+// 強制的にセッション id のローテーション
 $session->rotate();
 </code></pre>
 						</td>
@@ -175,7 +175,7 @@ $session->rotate();
 			<article>
 				<h4 class="method" id="method_get_config">get_config()</h4>
 				<p>
-					The <strong>get_config</strong> method allows retrieve a session driver configuration item.
+					<strong>get_config</strong> メソッドはセッションドライバ設定項目を取得することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -204,15 +204,15 @@ $session->rotate();
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed, the value requested, or null of the requested variable does not exist.</td>
+						<td>mixed 、要求された値、または、要求された変数が存在しないことを示す null</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// instantiate a database session
+							<pre class="php"><code>// データベースセッションをインスタンス化
 $session = Session::forge('db');
 
-// get the defined session cookie name
+// 定義されたセッションクッキー名を取得
 $cookiename = $session->get_config('cookie_name');
 </code></pre>
 						</td>
@@ -225,7 +225,7 @@ $cookiename = $session->get_config('cookie_name');
 			<article>
 				<h4 class="method" id="method_set_config">set_config()</h4>
 				<p>
-					The <strong>set_config</strong> method allows alter a session driver configuration item at runtime.
+					<strong>set_config</strong> メソッドは実行時にセッションドライバの設定項目を変更することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -259,10 +259,10 @@ $cookiename = $session->get_config('cookie_name');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// instantiate a database session
+							<pre class="php"><code>// データベースセッションをインスタンス化
 $session = Session::forge('db');
 
-// set the expiration time for this session  to 2 hours
+// このセッションの有効期限を 2 時間後に設定
 $session->set_config('expiration_time', 7200);
 </code></pre>
 						</td>
@@ -272,24 +272,24 @@ $session->set_config('expiration_time', 7200);
 
 			</article>
 
-			<h2>フラッシュとセッションの使い方</h2>
+			<h2>Flash とセッションの使い方</h2>
 
 			<p>
-				One of the problems with using Flash objects in websites, is that when they interact with your web application, they don't send the cookies
-				back that have been stored in the browser. Due to this problem, it is difficult to make them aware of the session state of the application.
+				ウェブサイトで Flash オブジェクトを利用する問題点の一つは、彼らがあなたのウェブアプリケーションと対話するとき、ブラウザに保存されているクッキーを送信しないことです。
+				この問題が原因で、アプリケーションのセッション状態を認識させることは困難となります。
 			</p>
 
 			<p>
-				To solve this problem, the Session class allows you to pass the cookie to the application using a POST variable.
-				You can set the name of the variable using the configuration setting 'post_cookie_name'. If the Session class finds a $_POST variable with this name,
-				it will assume it contains the session cookie, and will not use the session cookie. This allows you to copy the contents of the session cookie
-				client-side into the POST variable using a bit of javascript.
+				この問題を解決するために、セッションクラスは、 POST 変数を利用しアプリケーションにクッキーを渡すことができます。
+				'post_cookie_name' 設定を利用し変数の名前を設定することができます。 Session クラスは、 $_POST
+				変数にこの名前を見つけた場合、それにセッションクッキーが含まれていると仮定し、セッションクッキーを使用しません。
+				これは少しの JavaScript を利用してセッションクッキーのクライアントサイドの内容を POST 変数にコピーすることができます。
 			</p>
 
 			<p class="note">
-				When you use a Flash based uploader. you will have to set the <kbd>match_ua</kbd> setting to <kbd>false</kbd>.
-				You have to do this because Flash uses a different User Agent which will prevent the Session class to correctly
-				identify the users session.
+				Flash ベースのアップローダ利用時。 <kbd>match_ua</kbd> 設定を <kbd>false</kbd> に設定する必要があります。
+				Flash が異なるユーザーエージェントを使用しているためこれを行う必要があり、これはユーザセッションを正しく識別するために
+				Session クラスの (訳注：動きを) 防ぐことができます。
 			</p>
 
 							<pre class="javascript"><code>// function to get the session cookie
