@@ -292,8 +292,8 @@ $session->set_config('expiration_time', 7200);
 				Session クラスの (訳注：動きを) 防ぐことができます。
 			</p>
 
-							<pre class="javascript"><code>// function to get the session cookie
-// you can use or own, or use the one your favorite javascript framework provides
+							<pre class="javascript"><code>// セッションクッキーを取得する関数
+// あなたが利用したり、所有している、または用意した好きな javascript のフレームワークを利用できます。
 function getCookie(c_name)
 {
 	if (document.cookie.length > 0)
@@ -312,16 +312,16 @@ function getCookie(c_name)
 	return "";
 }
 
-// we're using jquery and uploadify in this example, and we're passing
-// the fuel cookie (called 'fuelcid' here) in the formData as 'fuelcid'
+// この例では jquery と uploadify を使用しており、 'fuelcid' として formData で
+// Fuel のクッキー (ここでは 'fuelcid' と呼ぶ) を渡している。
 
-// Note: when generating this code, don't hardcode the cookie name, but
-// instead get the cookie name from the session configuration file.
+// 注意：このコードを生成するとき、クッキー名をハードコードせず、その代わりに、
+// セッション設定ファイルからクッキー名を取得してください。
 
-// Note:: check the "sessions without cookies" section below if you
-// don't have a cookie available to pass the session id back
+// 注意:: あなたが戻ってセッションIDを渡すために利用可能なクッキーを持っていない場合は
+// 下記のセクション "クッキーなしのセッション" をチェックしてください。
 
-// ( parameters are related to Uploadify Version 3.2 )
+// ( パラメータは Uploadify Version 3.2 に関連している )
 
 $(function()
 {
@@ -352,13 +352,13 @@ $(function()
 			<h3 id="concurrency">並行性</h3>
 
 			<p>
-				When talking about sessions, session cookies, and their behaviour, it is important to understand how they work
-				and what the possibilities and limitations are.
+				セッション、セッションクッキー、およびそれらの挙動について話したとき、それは彼らはどのように動作するか
+				そして可能性と制限があることを理解することが重要です。
 			</p>
 			<p>
-				This is especially true when it comes to concurrency.
-				For web-based application, you will have concurrency if you use multiple asynchronous ajax calls on your webpages,
-				or if you allow a browser to have multiple windows open to the same application (which, lets face it, is something you can't prevent).
+				これは同時に実行される場合に特にあてはまります。
+				ウェブベースのアプリケーションでは、ウェブページ上で複数の非同期 ajax 呼び出しを利用している場合、または同じアプリケーションの複数のウィンドウを開くこと
+				(これは、受け入れましょう、あなたが防ぐことができないものです) をブラウザが許可した場合に、並行性を持つことになります。
 			</p>
 			<p>
 				Something else you need to know is that by default, the session class will rotate (or regenerate) the session id on a regular basis,
