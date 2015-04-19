@@ -53,20 +53,20 @@
 			<h3 id="manual_loading">手動読み込み</h3>
 
 			<p>
-				For most cases, it is sufficient to configure the desired driver, and use the methods documented on the <a href="./usage.html">usage</a> page.
-				However, there are situations where you would like more control over the way sessions behave.
-				You might want to use a different session driver than is configured in the session configuration file.
-				Or you have a need for multiple drivers concurrently. This is where the <kbd>forge</kbd> method comes in.
+				ほとんどの場合、<a href="./usage.html">使用法</a>ページの記載で十分目的のドライバを設定し、メソッドを利用することができます。
+				しかしながら、セッションが振る舞う方法をより詳細に制御したい状況があるでしょう。
+				セッション設定ファイルで設定されている別のセッションドライバを利用する場合があります。
+				もしくは、同時に複数のドライバを必要としています。 それは <kbd>forge</kbd> メソッドの出番です。
 			</p>
 			<p>
-				The <kbd>forge</kbd> method returns an instance of the session class, using the driver defined in the configuration file or via the parameter.
-				You can use the methods documented on the <a href="./usage.html">usage</a> page on the object returned, using dynamic calls.
+				<kbd>forge</kbd> メソッドは設定ファイルまたはパラメータで定義されたドライバを利用し、セッションクラスのインスタンスを返します。
+				動的呼び出しを利用し、<a href="./usage.html">使用法</a>ページの記載されたメソッドで返されたオブジェクトで利用することができます。
 			</p>
 
 			<article>
 				<h4 class="method" id="method_forge">forge($config = array())</h4>
 				<p>
-					The <strong>forge</strong> method allows you to manually instantiate a session driver.
+					<strong>forge</strong> メソッドは、セッションドライバを手動でインスタンス化することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -87,9 +87,9 @@
 									<th><kbd>$config</kbd></th>
 									<td><i>任意</i></td>
 									<td>
-										You can select the driver of your choice by simply passing the name of the driver to the forge method.
-										If you require more custom configuration, define a $config array, using the parameters documented on the <a href="./config.html">configuration</a> page.
-										Configuration settings you pass here will override the ones defined in the configuration file.
+										forge メソッドに単にドライバの名前を渡すことで希望のドライバを選択することができます。
+										より多くのカスタム設定が必要な場合は、<a href="./config.html">設定</a>ページに記載されたパラメータを利用し、 $config 配列を定義します。
+										ここに渡す設定は設定ファイルで定義された内容を上書きします。
 									</td>
 								</tr>
 							</table>
@@ -102,24 +102,24 @@
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// instantiate a database session
+							<pre class="php"><code>// データベースセッションをインスタンス化
 $session = Session::forge('db');
 
-// get the counter from the session
+// セッションからカウンターを取得
 $counter = $session->get('counter');
 
-// if not present, set a default
+// 存在しない場合、デフォルトを設定
 if ($counter === false)
 {
 	$counter = 0;
 }
 
-// write the counter back
+// カウンターを書き込む
 $session->set('counter', $counter);
 
-// no need to explicitly write, Fuel will take care of that...
+// Fuel はその処理をするので、明示的に記述する必要はありません...
 
-// you can also load a driver with settings that will override the defaults in the config file
+// また、設定ファイル内のデフォルト値を上書きする設定でドライバをロードすることが可能
 $session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3600, 'memcached' = array('cookie_name' => 'appcookie')) );
 </code></pre>
 						</td>
@@ -128,9 +128,9 @@ $session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3
 				</table>
 
 				<p class="note">
-					<kbd>Please note:</kbd> when you want to use multiple session drivers at the same time, the <kbd>cookie_name</kbd> for each of these driver instances must be unique.
-					If you attempt to load a driver using a <kbd>cookie_name</kbd> that is already in use, and the instance using it uses the same driver as you are trying to load, that instance is reused.
-					If the instance is using a different driver, an exception is thrown.
+					<kbd>ご注意：</kbd> あなたは、同時に複数のセッションドライバを利用する場合、これらのドライバの各インスタンスの <kbd>cookie_name</kbd> は一意である必要があります。
+					既に利用している <kbd>cookie_name</kbd> を利用しドライバを読み込もうとして、それを利用してインスタンスをロードしようとしているのと同じドライバを利用している場合、そのインスタンスが再利用されます。
+					インスタンスが別のドライバを使用している場合、例外がスローされます。
 				</p>
 
 			</article>
@@ -138,7 +138,7 @@ $session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3
 			<article>
 				<h4 class="method" id="method_rotate">rotate()</h4>
 				<p>
-					The <strong>rotate</strong> method allows you to manually force a rotation of the session id. You can use this as an extra security measure, for example when the security level of the current user is modified.
+					<strong>rotate</strong> メソッドは手動でのセッション id のローテーションをユーザが強制することができます。 例えば、現在のユーザーのセキュリティレベルが変更されたとき、などに追加のセキュリティ対策としてこれを使用することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -159,10 +159,10 @@ $session = Session::forge( array('driver' => 'memcached', 'expiration_time' => 3
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// instantiate a database session
+							<pre class="php"><code>// データベースセッションをインスタンス化
 $session = Session::forge('db');
 
-// force a rotation of the session id
+// 強制的にセッション id のローテーション
 $session->rotate();
 </code></pre>
 						</td>
@@ -175,7 +175,7 @@ $session->rotate();
 			<article>
 				<h4 class="method" id="method_get_config">get_config()</h4>
 				<p>
-					The <strong>get_config</strong> method allows retrieve a session driver configuration item.
+					<strong>get_config</strong> メソッドはセッションドライバ設定項目を取得することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -204,15 +204,15 @@ $session->rotate();
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed, the value requested, or null of the requested variable does not exist.</td>
+						<td>mixed 、要求された値、または、要求された変数が存在しないことを示す null</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// instantiate a database session
+							<pre class="php"><code>// データベースセッションをインスタンス化
 $session = Session::forge('db');
 
-// get the defined session cookie name
+// 定義されたセッションクッキー名を取得
 $cookiename = $session->get_config('cookie_name');
 </code></pre>
 						</td>
@@ -225,7 +225,7 @@ $cookiename = $session->get_config('cookie_name');
 			<article>
 				<h4 class="method" id="method_set_config">set_config()</h4>
 				<p>
-					The <strong>set_config</strong> method allows alter a session driver configuration item at runtime.
+					<strong>set_config</strong> メソッドは実行時にセッションドライバの設定項目を変更することができます。
 				</p>
 				<table class="method">
 					<tbody>
@@ -259,10 +259,10 @@ $cookiename = $session->get_config('cookie_name');
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// instantiate a database session
+							<pre class="php"><code>// データベースセッションをインスタンス化
 $session = Session::forge('db');
 
-// set the expiration time for this session  to 2 hours
+// このセッションの有効期限を 2 時間後に設定
 $session->set_config('expiration_time', 7200);
 </code></pre>
 						</td>
@@ -272,28 +272,28 @@ $session->set_config('expiration_time', 7200);
 
 			</article>
 
-			<h2>フラッシュとセッションの使い方</h2>
+			<h2>Flash とセッションの使い方</h2>
 
 			<p>
-				One of the problems with using Flash objects in websites, is that when they interact with your web application, they don't send the cookies
-				back that have been stored in the browser. Due to this problem, it is difficult to make them aware of the session state of the application.
+				ウェブサイトで Flash オブジェクトを利用する問題点の一つは、彼らがあなたのウェブアプリケーションと対話するとき、ブラウザに保存されているクッキーを送信しないことです。
+				この問題が原因で、アプリケーションのセッション状態を認識させることは困難となります。
 			</p>
 
 			<p>
-				To solve this problem, the Session class allows you to pass the cookie to the application using a POST variable.
-				You can set the name of the variable using the configuration setting 'post_cookie_name'. If the Session class finds a $_POST variable with this name,
-				it will assume it contains the session cookie, and will not use the session cookie. This allows you to copy the contents of the session cookie
-				client-side into the POST variable using a bit of javascript.
+				この問題を解決するために、セッションクラスは、 POST 変数を利用しアプリケーションにクッキーを渡すことができます。
+				'post_cookie_name' 設定を利用し変数の名前を設定することができます。 Session クラスは、 $_POST
+				変数にこの名前を見つけた場合、それにセッションクッキーが含まれていると仮定し、セッションクッキーを使用しません。
+				これは少しの JavaScript を利用してセッションクッキーのクライアントサイドの内容を POST 変数にコピーすることができます。
 			</p>
 
 			<p class="note">
-				When you use a Flash based uploader. you will have to set the <kbd>match_ua</kbd> setting to <kbd>false</kbd>.
-				You have to do this because Flash uses a different User Agent which will prevent the Session class to correctly
-				identify the users session.
+				Flash ベースのアップローダ利用時。 <kbd>match_ua</kbd> 設定を <kbd>false</kbd> に設定する必要があります。
+				Flash が異なるユーザーエージェントを使用しているためこれを行う必要があり、これはユーザセッションを正しく識別するために
+				Session クラスの (訳注：動きを) 防ぐことができます。
 			</p>
 
-							<pre class="javascript"><code>// function to get the session cookie
-// you can use or own, or use the one your favorite javascript framework provides
+							<pre class="javascript"><code>// セッションクッキーを取得する関数
+// あなたが利用したり、所有している、または用意した好きな javascript のフレームワークを利用できます。
 function getCookie(c_name)
 {
 	if (document.cookie.length > 0)
@@ -312,16 +312,16 @@ function getCookie(c_name)
 	return "";
 }
 
-// we're using jquery and uploadify in this example, and we're passing
-// the fuel cookie (called 'fuelcid' here) in the formData as 'fuelcid'
+// この例では jquery と uploadify を使用しており、 'fuelcid' として formData で
+// Fuel のクッキー (ここでは 'fuelcid' と呼ぶ) を渡している。
 
-// Note: when generating this code, don't hardcode the cookie name, but
-// instead get the cookie name from the session configuration file.
+// 注意：このコードを生成するとき、クッキー名をハードコードせず、その代わりに、
+// セッション設定ファイルからクッキー名を取得してください。
 
-// Note:: check the "sessions without cookies" section below if you
-// don't have a cookie available to pass the session id back
+// 注意:: あなたが戻ってセッションIDを渡すために利用可能なクッキーを持っていない場合は
+// 下記のセクション "クッキーなしのセッション" をチェックしてください。
 
-// ( parameters are related to Uploadify Version 3.2 )
+// ( パラメータは Uploadify Version 3.2 に関連している )
 
 $(function()
 {
@@ -339,11 +339,11 @@ $(function()
 		'formData'       : {'fuelcid': getCookie('fuelcid')},
 		'onSelect'       : function(file)
 		{
-			alert('The file ' + file.name + ' was added to the queue.');
+			alert('ファイル ' + file.name + ' はキューに追加されました。');
 		},
 		'onQueueComplete' : function(queueData)
 		{
-			alert(queueData.uploadsSuccessful + ' files were successfully uploaded.');
+			alert(queueData.uploadsSuccessful + ' ファイルが正常にアップロードされました。');
 		}
 	});
 }
@@ -352,68 +352,68 @@ $(function()
 			<h3 id="concurrency">並行性</h3>
 
 			<p>
-				When talking about sessions, session cookies, and their behaviour, it is important to understand how they work
-				and what the possibilities and limitations are.
+				セッション、セッションクッキー、およびそれらの挙動について話したとき、それは彼らはどのように動作するか
+				そして可能性と制限があることを理解することが重要です。
 			</p>
 			<p>
-				This is especially true when it comes to concurrency.
-				For web-based application, you will have concurrency if you use multiple asynchronous ajax calls on your webpages,
-				or if you allow a browser to have multiple windows open to the same application (which, lets face it, is something you can't prevent).
+				これは同時に実行される場合に特にあてはまります。
+				ウェブベースのアプリケーションでは、ウェブページ上で複数の非同期 ajax 呼び出しを利用している場合、または同じアプリケーションの複数のウィンドウを開くこと
+				(これは、受け入れましょう、あなたが防ぐことができないものです) をブラウザが許可した場合に、並行性を持つことになります。
 			</p>
 			<p>
-				Something else you need to know is that by default, the session class will rotate (or regenerate) the session id on a regular basis,
-				to prevent session hijacking due to session id fixation (someone stealing your session cookie and use it to take over your session).
-				You can control the rotation time using a configuration setting, or even disable it, but from a security point of view that is a bad idea.
-				Take these two together, and you have a potential disaster on your hands!
+				あなたが知っている必要がある何か別のこととしてはそれがデフォルトで、セッションクラスは定期的にセッション id をローテート（または再生成）し、セッション id
+				が固定されていることが原因でのセッションハイジャック (誰かあなたのセッションクッキーを盗みセッションを引き継ぐためにそれを使用) を防止します。
+				設定を使用しローテーション時間を制御するか、あるいは、それを無効にできますが、しかし、セキュリティの観点からすると悪い考えです。
+				これら 2 つを一緒に行うことは、あなたの手で起こりうる災害を持つということです！
 			</p>
 			<p>
-				An illustration:<br />
-				- you request a page, the session cookie containing ID-A is sent to the server.<br />
-				- your page sends two ajax requests. the session cookie containing ID-A is again sent to the server with each request.<br />
-				- ajax request 1 finishes, and rotates the ID. A cookie with ID-B is sent to the browser.<br />
-				- now ajax request 2 finishes. Because it sent the same cookie, it also decides to rotate, this time to ID-C.<br />
-				(you will get a different ID, because session IDs are generated using a randomized algorithm)<br />
+				実例：<br />
+				- ページをリクエストすると、 ID-A を含むセッションクッキーがサーバーに送信されます。<br />
+				- ページは 2 つの ajax リクエストを送信します。 ID-A を含むセッションクッキーは、再び各リクエストでサーバーに送信されます。<br />
+				- ajax リクエスト 1 が完了し、 ID をローテートさせる。 ID-B のクッキーがブラウザに送信されます。<br />
+				- 今 ajax リクエスト 2 が完了。 それは同じクッキーを送ったため、それはまたローテートさせ、 この時間には ID-C 。<br />
+				(セッション ID は、ランダム化アルゴリズムを使用して生成されるため、別の ID を取得します)<br />
 			</p>
 			<p>
-				Now we have a problem. The session class tries to update the stored session with key ID-A to ID-C, but it can't find that session.
-				Remember, it had been updated from ID-A to ID-B by the first ajax call! So it decides the session is invalid, create a new and empty
-				session, and return that cookie to the browser. Now your valid cookie is overwritten by the new and empty session cookie.
-				Result: you have lost the session.
+				今や問題を抱えている。 セッションクラスは ID-C にキー ID-A と保存されたセッションを更新しようとしますが、セッションクラスは保存されたセッションを更新するとともにキーを ID-A から ID-C へと変更しようとしますが、そのセッションを見つけることができません。
+				思い出してください、それは最初の ajax 呼び出しによって ID-A から ID-B へと更新されていました！ そのためセッションが無効であると判断し、新しい空のセッションを作成し、
+				そしてブラウザにそのクッキーを返します。 今や有効なクッキーは新しい空のセッションクッキーによって上書きされます。
+				結果：あなたはセッションを失いました。
 			</p>
 			<p>
-				This is an issue that most frameworks have not solved. Enter Fuel!
+				これはほとんどのフレームワークが解決していない問題です。 Fuel に参加してください！
 			</p>
 			<p>
-				Fuel's session class contains two mechanisms to detect and mitigate this problem.
-				Every session key store contains two session IDs: the current ID and the previous ID.
-				If a request comes in just after the session id has been rotated, the correct session can be located using the previous session id stored in the key store.
-				And it case of a session id mismatch which could not be recovered using the previous id, no updated cookie will be sent back to the browser.
-				The result is that you lose the session data of that request, but you don't lose the session itself.
+				Fuel のセッションクラスはこの問題を検出し軽減するための 2 つのメカニズムを含んでいます。
+				すべてのセッションキーストアは 2 つのセッション ID を含みます：現在の ID と、以前の ID 。
+				リクエストがセッション ID がローテートされた直後に来た場合は、正しいセッションはキーストアに格納され以前のセッション ID を利用して特定することができます。
+				そしてセッション ID が一致しない場合、それ以前の ID を利用して回復することができなかったか、更新されなかったクッキーはブラウザに送信されません。
+				結果はその要求のセッションデータが失われますが、セッション自体を失うことはありません。
 			</p>
 
 			<h3 id="no-cookies">クッキーなしのセッション</h3>
 
 			<p>
-				After a change to the session data, the Session class will always generate a session cookie, and send it to the client in the HTTP
-				response header. However, there are situations where is it undesireable, of even impossible, to use cookies. For example simply
-				because the client does not support them.
+				セッションデータの変更後、 Session クラスは常にセッションクッキーを生成し、そして HTTP レスポンスヘッダでそれをクライアントへ送信します。
+				しかしながら、それが望ましくない、クッキーを使用するのでさえ不可能な状況があります。
+				例えば、単にクライアントがそれらをサポートしていないため。
 			</p>
 			<p>
-				In these cases, there are alternative ways to pass a Session ID back to the application on a request from the client:
+				これらのケースでは、クライアントからのリクエストからアプリケーションへセッション ID を渡すための代替方法があります：
 			</p>
 
 			<ul>
-				<li>via a <strong>GET</strong> variable. The name of the variable in the URL must be equal to the name of the cookie defined in the configuration.</li>
-				<li>via a <strong>POST</strong> variable. You can define the form field name (post_cookie_name) that contains the session-id in the configuration.</li>
-				<li>via the <strong>HTTP header</strong>. When constructing the HTTP request client side, you can add a "Session-Id" HTTP header with the session id.</li>
+				<li><strong>GET</strong> 変数を経由。 URL 内の変数の名前は 設定で定義されているクッキーの名前と等しくなければなりません。</li>
+				<li><strong>POST</strong> 変数を経由。 設定で session-id を含むフォームのフィールド名 (post_cookie_name) を定義することができます。</li>
+				<li><strong>HTTP ヘッダ</strong>経由。 HTTP リクエストのクライアント側を構築する場合には、セッション ID とともに "Session-Id" HTTP ヘッダを追加することができます。</li>
 			</ul>
 
 			<p>
-				You can use <code>Session::key()</code> to retrieve the current session id, so you can pass it to the client in the response, instead
-				of using a cookie. If you have configured encryption in your session configuration, you need to encrypt the id:
+				現在のセッション ID を取得するために <code>Session::key()</code> を使用することができ、そのためクッキーの代わりに利用し、
+				クライアントへレスポンスで渡すことができます。 セッションの設定で暗号化を設定している場合、 id を暗号化する必要があります：
 			</p>
 
-			<pre class="php"><code>// fetch the session ID and encrypt it
+			<pre class="php"><code>// セッション ID を取得し暗号化
 $session_id = \Crypt::encode(\Session::key());
 </code></pre>
 
