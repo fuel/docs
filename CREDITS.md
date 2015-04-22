@@ -18,6 +18,7 @@
 * Fumito Mizuno <https://github.com/ounziw>
 * Kenji Suzuki <https://github.com/kenjis>
 * Shintaro Inagaki <https://github.com/shinagaki>
+* pandamachine715 <https://github.com/pandamachine715>
 
 ## Version 1.6
 
@@ -45,3 +46,4 @@
 * Taiji Inoue <https://github.com/inouet>
 * Sohei Iwahori <https://github.com/egmc>
 * Toru Tamura <https://github.com/torut>
+* pandamachine715 <https://github.com/pandamachine715>
