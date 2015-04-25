@@ -405,7 +405,7 @@ $img = \Html::img($theme->asset_path('img/test.png'));
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>void</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -454,7 +454,7 @@ $theme->add_path(DOCROOT.'mythemes');
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>void</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -590,11 +590,11 @@ $fallback = $theme->fallback('basic');
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
-						<td>None</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
@@ -721,10 +721,10 @@ $theme->get_partial('sidebar', 'partials/menu')->set('class', 'menu green');
 					</tbody>
 				</table>
 				<p class="note">
-					When you get a partial, use the name of the view you used to set it. If you assign the same view to the same
-					section multiple times, the first one will be returned. If you have passed a View instance to set_partial(),
-					you can get it using the number of the partial, prefixed with 'partial_'.
-					Example: you retrieve the second partial using the view name 'partial_2'.
+					パーシャルを取得するとき、それを設定するために使用するビューの名前を使用します。 同じビューへ同じセクションを複数回にわたり割り当てた場合、
+					最初のものが返されるでしょう。 set_partial() へ View インスタンスを渡している場合、
+					'partial_' をプレフィックスとした、パーシャルの番号を使用してそれを取得することができます。
+					例： ビュー名 'partial_2' を使用して、 2 番目のパーシャルを取得。
 				</p>
 			</article>
 
@@ -784,7 +784,7 @@ $theme = \Theme::instance();
  * 現在読み込まれているページテンプレートの 'sidebar' セクションに
  * 'partials/menu' ビューを割り当てます。
  *
- * テンプレートでは、このパーシャルは echo で $partials['sidebar'] を出力する。
+ * テンプレート内で、このパーシャルは $partials['sidebar'] として echo されます。
  */
 $theme->set_partial('sidebar', 'partials/menu');
 </code></pre>
@@ -939,7 +939,7 @@ $theme = \Theme::instance();
  * テンプレートの 'sidebar' に割り当てられたクロームのための
  * View インスタンスを取得し、そこに変数を割り当てる。
  */
-$theme->get_chrome('sidebar')->set('title', 'This is a sidebar');
+$theme->get_chrome('sidebar')->set('title', 'これはサイドバーです');
 </code></pre>
 						</td>
 					</tr>
@@ -1000,11 +1000,11 @@ $theme->get_chrome('sidebar')->set('title', 'This is a sidebar');
 $theme = \Theme::instance();
 
 /**
- * Assign the 'chrome/roundedcorners' view to the 'sidebar' section of the
- * currently loaded page template to give the partial section a border with
- * rounded corners.
+ * パーシャルセクションに丸みを帯びた角を持つ枠を与えるために現在読み込まれている
+ * ページテンプレートの 'sidebar' セクションに 'chrome/roundedcorners'
+ * ビューを割り当てます。
  *
- * In the chrome view, the partial output is echo'd out as $body;
+ * クロムビュー内で、パーシャルの出力は $body として echo されます；
  */
 $theme->set_chrome('sidebar', 'chrome/roundedcorners', 'body');
 </code></pre>
@@ -1139,11 +1139,11 @@ else
 					<tbody>
 					<tr>
 						<th class="legend">静的</th>
-						<td>No</td>
+						<td>いいえ</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
-						<td>None</td>
+						<td>なし</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
