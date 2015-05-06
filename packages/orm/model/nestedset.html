@@ -53,7 +53,7 @@
                     <p>
 						入れ子集合モデルは、リレーショナルデータベースにおける入れ子集合 (ツリーや階層構造と言ってもいいです)を実現する方法の 1 つです。
 						この用語は Joe Celko によって紹介されたものだと言われていますが、同じテクニックが特に名前を付けられることもないまま、あるいは別の名前によって
-						語られることもあります。(<a href="http://en.wikipedia.org/wiki/Nested_set_model">Source: Wikipedia</a>)
+						語られることもあります。(<a href="http://en.wikipedia.org/wiki/Nested_set_model">出典: ウィキペディア(英語)</a>)
 					</p>
 					<p>
 						よくあるツリー構造の例は、組織の構造図です。この例を使って、入れ子集合がどのような働きをするかを説明していきます。
@@ -131,8 +131,8 @@
   `tree_id` int(11) unsigned NOT NULL,
   `name` varchar(50),
   PRIMARY KEY (`id`),
-  KEY `left_id` (`left_id`),        // optional, might speed up certain lookups
-  KEY `right_id` (`right_id`),      // optional, might speed up certain lookups
+  KEY `left_id` (`left_id`),        // 任意、一部の参照が高速化されるはず
+  KEY `right_id` (`right_id`),      // 任意、一部の参照が高速化されるはず
 )
 </code></pre>
                 </section>
@@ -167,12 +167,12 @@
 class Model_Tree extends \Orm\Model_Nestedset
 {
 	/**
-	* @var  string  name of the table to be used by this model
+	* @var  string  このモデルで使用されるテーブルの名前
 	*/
     protected static $_table_name = 'tree';
 
 	/**
-	 * @var  array  array of object properties
+	 * @var  array  オブジェクトがもつプロパティの配列
 	 */
     protected static $_properties = array(
 		'id',
@@ -183,13 +183,13 @@ class Model_Tree extends \Orm\Model_Nestedset
     );
 
 	/**
-	 * @var  array  array with the tree configuration
+	 * @var  array  ツリーの設定値をもつ配列
 	 */
     protected static $_tree = array(
-		'left_field'     =&gt; 'left_id',		// name of the tree node left index field
-		'right_field'    =&gt; 'right_id',		// name of the tree node right index field
-		'tree_field'     =&gt; 'tree_id',		// name of the tree node tree index field
-		'title_field'    =&gt; 'name',		//  name of the tree node title field
+		'left_field'     =&gt; 'left_id',		// ツリーノードの左ポインター用のフィールド名
+		'right_field'    =&gt; 'right_id',		// ツリーノードの右ポインター用のフィールド名
+		'tree_field'     =&gt; 'tree_id',		// ツリーノードのツリーid用のフィールド名
+		'title_field'    =&gt; 'name',		//  ツリーノードのタイトル用フィールド名
     );
 
 }
@@ -209,34 +209,34 @@ class Model_Tree extends \Orm\Model_Nestedset
 						最初に挙げた組織構成図の例と先ほど定義したモデルを使って、そのツリー構造を作ることからやってみましょう。
 					</p>
                     <pre class="php"><code>&lt;?php
-// Bill, our MD, is the root of the tree
+// Bill 社長、つまりこのツリーのルート
 $bill = Model_Tree::forge(array('name' => 'Bill'));
 
-// if you save a new node, it will automatically become a tree root node
+// 新しくノードを保存する際、自動的にツリーのルートノードとなる
 $bill->save();
 
-// give our MD some subordinates
+// 社長に部下を与える
 $angela = Model_Tree::forge(array('name' => 'Angela'));
 $ben = Model_Tree::forge(array('name' => 'Ben'));
 
-// they are children of Bill in the tree
+// 彼らはツリー上で Bill の子となる
 $angela->child($bill)->save();
 $ben->child($bill)->save();
 
-// add the rest of Customer service
+// その他カスタマーサービスを追加
 $henry = Model_Tree::forge(array('name' => 'Henry'));
 $henry->child($angela)->save();
 $nicola = Model_Tree::forge(array('name' => 'Nicola'));
 $nicola->child($angela)->save();
 
-// and the development team
+// そして開発チームを追加
 $kerry = Model_Tree::forge(array('name' => 'Kerry'));
 $kerry->child($ben)->save();
-// a sibling of Kerry is a child of Ben too...
+// Kerry の兄弟は Ben の子でもある
 $james = Model_Tree::forge(array('name' => 'James'));
 $james->sibling($kerry)->save();
 
-// assign the teams benjamin to Kerry
+// チームの若いのを Kerry のところに割り当てる
 $tim = Model_Tree::forge(array('name' => 'Tim'));
 $tim->child($kerry)->save();
 ?&gt;</code></pre>
@@ -316,7 +316,7 @@ $tim->child($kerry)->save();
 
 					<p>
 						通常の ORM モデルと同様に、 <strong>get()</strong> メソッドをオブジェクトの配列を得るために使うことができ、また
-						<strong>get_one()</strong> メソッドを単一のオブジェクトを得るために使えます。 ありコレクションメソッドが単一の結果を得るよう想定されたものの場合、
+						<strong>get_one()</strong> メソッドを単一のオブジェクトを得るために使えます。 あるコレクションメソッドが単一の結果を得るよう想定されたものの場合、
 						たとえば <strong>root()</strong> のような場合、 <strong>get()</strong> はその単一のオブジェクトを持つ配列を返します。もし
 						あるコレクションメソッドが複数のオブジェクトを返すものの場合、たとえば <strong>children()</strong> の場合、 <strong>get_one()</strong> は
 						その結果セットから最初のオブジェクトを返します。どの 1 つが返されるかは不定です。<br />
@@ -347,13 +347,13 @@ $tim->child($kerry)->save();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the root of the tree $henry belongs to
+										<pre class="php"><code>// $henry が属するツリーのルートを取得
 $root = $henry->root()->get_one();
 
-// echos 'true'
+// 'true' を echo
 echo $root == $bill ? 'true' : 'false';
 
-// get the root of a specific tree
+// 特定のツリーのルートを取得
 $root = Model_Tree::forge()->set_tree_id($mytreeid)->root()->get_one();
 </code></pre>
 									</td>
@@ -387,13 +387,13 @@ $root = Model_Tree::forge()->set_tree_id($mytreeid)->root()->get_one();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get all roots in the tree
+										<pre class="php"><code>// ツリー内のすべてのルートを取得
 $roots = $henry->roots()->get();
 
-// echos 'true' (there's only one root in the tree)
+// 'true' を echo （このツリー内には 1 つのルートだけがある）
 echo reset($roots) == $bill ? 'true' : 'false';
 
-// get alls root without having an existing object
+// 既存のオブジェクトを起点とせずにすべてのルートを取得
 $roots = Model_Tree::forge()->roots()->get();
 </code></pre>
 									</td>
@@ -426,13 +426,13 @@ $roots = Model_Tree::forge()->roots()->get();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the parent of $nicola
+										<pre class="php"><code>// $nicola の親を取得
 $parent = $nicola->parent()->get_one();
 
-// echos 'true'
+// 'true' を echo
 echo $parent == $angela ? 'true' : 'false';
 
-// returns null, it won't work without a node tree context
+// null が返る。ノードのツリーコンテキストがなければうまくいかない
 $parent = Model_Tree::forge()->parent()->get_one();
 </code></pre>
 									</td>
@@ -467,13 +467,13 @@ $parent = Model_Tree::forge()->parent()->get_one();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the children of $angela
+										<pre class="php"><code>// $angela の子を取得
 $children = $angela->children()->get();
 
-// echos 'true'
+// 'true' を echo
 echo $children == array($henry->id => $henry, $nicola->id => $nicola) ? 'true' : 'false';
 
-// returns null, it won't work without a current node context
+// null が 返る。現在のノードのコンテキストがなければうまくいかない
 $parent = Model_Tree::forge()->children()->get();
 </code></pre>
 									</td>
@@ -506,13 +506,13 @@ $parent = Model_Tree::forge()->children()->get();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the ancestors of $henry
+										<pre class="php"><code>// $henry の先祖を取得
 $ancestors = $henry->children()->get();
 
-// echos 'true'
+// 'true' を echo
 echo $ancestors == array($bill->id => $bill, $angela->id => $angela) ? 'true' : 'false';
 
-// returns null, it won't work without a current node context
+// null が返る。現在のノードのコンテキストがなければうまくいかない
 $parent = Model_Tree::forge()->ancestors()->get();
 </code></pre>
 									</td>
@@ -549,13 +549,13 @@ $parent = Model_Tree::forge()->ancestors()->get();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the descendants of $ben
+										<pre class="php"><code>// $ben の子孫を取得
 $descendants = $ben->descendants()->get();
 
-// echos 'true'
+// 'true' を echo
 echo $descendants == array($kerry->id => $kerry, $tim->id => $tim, $james->id => $james) ? 'true' : 'false';
 
-// returns null, it won't work without a current node context
+// null が返る。現在のノードのコンテキストがなければうまくいかない
 $parent = Model_Tree::forge()->descendants()->get();
 </code></pre>
 									</td>
@@ -593,13 +593,13 @@ $parent = Model_Tree::forge()->descendants()->get();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the leaf descendants of $ben
+										<pre class="php"><code>// $ben の末端の子孫を取得
 $descendants = $ben->leaf_descendants()->get();
 
-// echos 'true'. Note that $kerry is not returned now, as that has a child object
+// 'true' を echo。$kerry は子のオブジェクトを持つため、ここでは返されないことに注意
 echo $descendants == array($tim->id => $tim, $james->id => $james) ? 'true' : 'false';
 
-// returns null, it won't work without a current node context
+// null が返る。現在のノードのコンテキストがなければうまくいかない
 $parent = Model_Tree::forge()->leaf_descendants()->get();
 </code></pre>
 									</td>
@@ -635,13 +635,13 @@ $parent = Model_Tree::forge()->leaf_descendants()->get();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the siblings of $kerry
+										<pre class="php"><code>// $kerry の兄弟を取得
 $siblings = $kerry->siblings()->get();
 
-// echos 'true'
+// 'true' を echo
 echo $siblings == array($kerry->id => $kerry, $james->id => $james) ? 'true' : 'false';
 
-// returns null, it won't work without a current node context
+// null が返る。現在のノードのコンテキストがなければうまくいかない
 $parent = Model_Tree::forge()->siblings()->get();
 </code></pre>
 									</td>
@@ -684,13 +684,13 @@ $parent = Model_Tree::forge()->siblings()->get();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the first child of $bill
+										<pre class="php"><code>// $bill の最初の子を取得
 $child = $bill->first_child()->get_one();
 
-// echos 'true'
+// 'true' を echo
 echo $child == $angela ? 'true' : 'false';
 
-// returns null, it won't work without a current node context
+// null が 返る。現在のノードのコンテキストがなければうまくいかない
 $parent = Model_Tree::forge()->first_child()->get_one();
 </code></pre>
 									</td>
@@ -723,13 +723,13 @@ $parent = Model_Tree::forge()->first_child()->get_one();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the last child of $bill
+										<pre class="php"><code>// $bill の最後の子を取得
 $child = $bill->last_child()->get_one();
 
-// echos 'true'
+// 'true' を echo
 echo $child == $ben ? 'true' : 'false';
 
-// returns null, it won't work without a current node context
+// null が返る。現在のノードのコンテキストがなければうまくいかない
 $parent = Model_Tree::forge()->last_child()->get_one();
 </code></pre>
 									</td>
@@ -769,16 +769,16 @@ $parent = Model_Tree::forge()->last_child()->get_one();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the previous sibling of $nicola
+										<pre class="php"><code>// $nicola の前の兄弟を取得
 $sibling = $nicola->previous_silbing()->get_one();
 
-// echos 'true'
+// 'true' を echo
 echo $sibling == $henry ? 'true' : 'false';
 
-// returns null, it won't work without a current node context
+// null が返る。現在のノードのコンテキストがなければうまくいかない
 $parent = Model_Tree::forge()->previous_sibling()->get_one();
 
-// will return null too, $henry has no previous sibling
+// こちらも null が返る。$henry には前の兄弟がない
 $sibling = $henry->previous_silbing()->get_one();
 </code></pre>
 									</td>
@@ -811,16 +811,16 @@ $sibling = $henry->previous_silbing()->get_one();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the next sibling of $henry
+										<pre class="php"><code>// $henry の次の兄弟を取得
 $sibling = $henry->next_silbing()->get_one();
 
-// echos 'true'
+// 'true' を echo
 echo $sibling == $nicola ? 'true' : 'false';
 
-// returns null, it won't work without a current node context
+// null が返る。現在のノードのコンテキストがなければうまくいかない
 $parent = Model_Tree::forge()->previous_sibling()->get_one();
 
-// will return null too, $nicola has no previous sibling
+// こちらも null が返る。$nicola には次の兄弟がない
 $sibling = $nicola->next_silbing()->get_one();
 </code></pre>
 									</td>
@@ -853,7 +853,7 @@ $sibling = $nicola->next_silbing()->get_one();
 											<tr>
 												<th><kbd>$addpath</kbd></th>
 												<td><pre class="php"><span class="keyword">true</span></pre></td>
-												<td>If false, the root node will be excluded from the result.</td>
+												<td>偽の場合、ルートノードは結果から除外されます。</td>
 											</tr>
 										</table>
 									</td>
@@ -864,18 +864,18 @@ $sibling = $nicola->next_silbing()->get_one();
 								</tr>
 								<tr>
 									<th>例外</th>
-									<td>OutOfBoundsException, if the model doesn't define a "title_field" column.</td>
+									<td>OutOfBoundsException が、モデルで "title_field" 列を定義していない場合に投げられます。</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the path to Tim, returns "Bill/Ben/Kerry/Tim"
+										<pre class="php"><code>// Tim までのパスを取得。"Bill/Ben/Kerry/Tim" を返す
 $path = $tim->path()->get();
 
-// get the path to Nicola, returns "Bill/Angela/Nicola"
+// Nicola までのパスを取得。"Bill/Angela/Nicola" を返す
 $path = $nicola->path()->get();
 
-// get the path to Kerry, and exclude the boss. returns "Ben/Kerry"
+// Kerry までのパスを取得。ボスについては除外。"Ben/Kerry" を返す
 $path = $kerry->path(false)->get();
 </code></pre>
 									</td>
@@ -929,7 +929,7 @@ $path = $kerry->path(false)->get();
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node object or the primary key of the node which has to become the parent of the object on which this method is called.</td>
+												<td>呼び出しに使われたオブジェクトの親となるノードのオブジェクトかプライマリキー</td>
 											</tr>
 										</table>
 									</td>
@@ -941,10 +941,10 @@ $path = $kerry->path(false)->get();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// give bill a new subordinate, before Angela in the tree
+										<pre class="php"><code>// Bill に部下を与える。ツリー上では Angela の前
 $john = Model_Tree::forge(array('name' => 'John'))->first_child($bill)->save();
 
-// promote Kerry to a subordinate of Bill
+// Kerry を Bill の部下に昇進させる
 $kerry->first_child($bill)->save();
 </code></pre>
 									</td>
@@ -977,7 +977,7 @@ $kerry->first_child($bill)->save();
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node object or the primary key of the node which has to become the parent of the object on which this method is called.</td>
+												<td>呼び出しに使われたオブジェクトの親となるノードのオブジェクトかプライマリキー</td>
 											</tr>
 										</table>
 									</td>
@@ -989,10 +989,10 @@ $kerry->first_child($bill)->save();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// give bill a new subordinate, after Ben in the tree
+										<pre class="php"><code>// Bill に新たな部下を与える。ツリー上では Ben の後
 $john = Model_Tree::forge(array('name' => 'John'))->last_child($bill)->save();
 
-// promote Kerry to a subordinate of Bill
+// Kerry を Bill の部下に昇進させる
 $kerry->last_child($bill)->save();
 </code></pre>
 									</td>
@@ -1037,7 +1037,7 @@ $kerry->last_child($bill)->save();
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node object or the primary key of the node which has to become the next sibling of the object on which this method is called.</td>
+												<td>呼び出しに使われたオブジェクトの次の兄弟オブジェクトとなるノードのオブジェクトかプライマリキー</td>
 											</tr>
 										</table>
 									</td>
@@ -1049,10 +1049,10 @@ $kerry->last_child($bill)->save();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// give bill a new subordinate, before Angela in the tree
+										<pre class="php"><code>// Bill に新たな部下を与える。ツリー上では Angela の前
 $john = Model_Tree::forge(array('name' => 'John'))->previous_sibling($angela)->save();
 
-// demote James to be a subordinate of Ben, besides Tim
+// James を Ben の部下、Tim の隣へ降格させる
 $james->previous_sibling($tim)->save();
 </code></pre>
 									</td>
@@ -1085,7 +1085,7 @@ $james->previous_sibling($tim)->save();
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node object or the primary key of the node which has to become the previous sibling of the object on which this method is called.</td>
+												<td>呼び出しに使われたオブジェクトの前の兄弟オブジェクトとなるノードのオブジェクトかプライマリキー</td>
 											</tr>
 										</table>
 									</td>
@@ -1097,10 +1097,10 @@ $james->previous_sibling($tim)->save();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// give bill a new subordinate, after Angela in the tree
+										<pre class="php"><code>// Bill に新たな部下を与える。ツリー上では Angela の後
 $john = Model_Tree::forge(array('name' => 'John'))->next_sibling($angela)->save();
 
-// demote James to be a subordinate of Ben, besides Tim
+// James を Ben の部下、Tim の隣へ降格させる
 $james->next_sibling($tim)->save();
 </code></pre>
 									</td>
@@ -1137,15 +1137,15 @@ $james->next_sibling($tim)->save();
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>Bool, true if the object is a root node, false if not</td>
+									<td>Bool。オブジェクトがルートノードであれば真、そうでなければ偽</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// is Bill a root node? echo's 'true'
+										<pre class="php"><code>// Bill がルートノードか？ 'true' を echo
 echo $bill->is_root() ? 'true' : 'false';
 
-// is Tim a root node? echo's 'false'
+// Tim がルートノードか？ 'false' を echo
 echo $tim->is_root() ? 'true' : 'false';
 </code></pre>
 									</td>
@@ -1173,15 +1173,15 @@ echo $tim->is_root() ? 'true' : 'false';
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>Bool, true if the object is a leaf node, false if not</td>
+									<td>Bool。オブジェクトが末端ノードなら真、そうでなければ偽</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// is Tim a leaf node? echo's 'true'
+										<pre class="php"><code>// Tim が末端ノードか？ 'true' を echo
 echo $tim->is_leaf() ? 'true' : 'false';
 
-// is Angela a leaf node? echo's 'false'
+// Angela が末端ノードか？ 'false' を echo
 echo $angela->is_leaf() ? 'true' : 'false';
 </code></pre>
 									</td>
@@ -1210,15 +1210,15 @@ echo $angela->is_leaf() ? 'true' : 'false';
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>Bool, true if the object is a child node, false if not</td>
+									<td>Bool。オブジェクトが子ノードなら真、そうでなければ偽</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// is Henry a root node? echo's 'true'
+										<pre class="php"><code>// Henry がルートノードか？ 'true' を echo
 echo $henry->is_child() ? 'true' : 'false';
 
-// is Bill a root node? echo's 'false'
+// Bill がルートノードか？ 'false' を echo
 echo $bill->is_child() ? 'true' : 'false';
 </code></pre>
 									</td>
@@ -1251,25 +1251,25 @@ echo $bill->is_child() ? 'true' : 'false';
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node which you want to check against.</td>
+												<td>検査したいノード</td>
 											</tr>
 										</table>
 									</td>
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>Bool, true if the object is a child node of the node passed, false if not</td>
+									<td>Bool。オブジェクトが与えられたノードの子ノードなら真、そうでなければ偽</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// is Ben a child node of Bill? echo's 'true'
+										<pre class="php"><code>// Ben が Bill の子ノードか？ 'true' を echo
 echo $ben->is_child_of($bill) ? 'true' : 'false';
 
-// is James a child node of Bill? echo's 'false', as it's a grandchild
+// James が Bill の子ノードか？ 孫なので 'false' を echo
 echo $james->is_child_of($bill) ? 'true' : 'false';
 
-// is Nicola a child node of Ben? echo's 'false', different part of the tree
+// Nicola が Ben の子ノードか？ ツリーの違う部分なので 'false' を echo
 echo $nicola->is_child_of($ben) ? 'true' : 'false';
 </code></pre>
 									</td>
@@ -1302,25 +1302,25 @@ echo $nicola->is_child_of($ben) ? 'true' : 'false';
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node which you want to check against.</td>
+												<td>検査したいノード</td>
 											</tr>
 										</table>
 									</td>
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>Bool, true if the object is a descendant node of the node passed, false if not</td>
+									<td>Bool。オブジェクトが与えられたノードの子孫なら真、そうでなければ偽</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// is Ben a descendant node of Bill? echo's 'true'
+										<pre class="php"><code>// Ben が Bill の子孫ノードか？ 'true' を echo
 echo $ben->is_descendant_of($bill) ? 'true' : 'false';
 
-// is James a descendant node of Bill? echo's 'true', as it's a grandchild
+// James が Bill の子孫ノードか？ 孫なので 'true' を echo
 echo $james->is_descendant_of($bill) ? 'true' : 'false';
 
-// is Nicola a descendant node of Ben? echo's 'false', different part of the tree
+// Nicola が Ben の子孫ノードか？ ツリーの別の部分なので 'false' を echo
 echo $nicola->is_descendant_of($ben) ? 'true' : 'false';
 </code></pre>
 									</td>
@@ -1354,22 +1354,22 @@ echo $nicola->is_descendant_of($ben) ? 'true' : 'false';
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node which you want to check against.</td>
+												<td>検査したいノード</td>
 											</tr>
 										</table>
 									</td>
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>Bool, true if the object is the parent node of the node passed, false if not</td>
+									<td>Bool。オブジェクトが渡されたノードの親ノードなら真、そうでなければ偽</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// is Bill the parent of Ben? echo's 'true'
+										<pre class="php"><code>// Bill が Ben の親か？ 'true' を echo
 echo $bill->is_parent_of($ben) ? 'true' : 'false';
 
-// is Bill the parent of James? echo's 'false', as it's a grandparent
+// Bill が James の親か？ 祖父なので 'false' を echo
 echo $bill->is_parent_of($james) ? 'true' : 'false';
 </code></pre>
 									</td>
@@ -1402,22 +1402,22 @@ echo $bill->is_parent_of($james) ? 'true' : 'false';
 											<tr>
 												<th><kbd>$to</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The node which you want to check against.</td>
+												<td>検査したいノード</td>
 											</tr>
 										</table>
 									</td>
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>Bool, true if the object is an ancestor of the node passed, false if not</td>
+									<td>Bool。オブジェクトが与えられたノードの祖先なら真、そうでなければ偽</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// is Bill an ancestor of Ben? echo's 'true'
+										<pre class="php"><code>// Bill が Ben の祖先か？ 'true' を echo
 echo $bill->is_ancestor_of($ben) ? 'true' : 'false';
 
-// is Bill an ancestor of James? echo's 'true', as it's a grandparent
+// Bill が James の祖先か？ 祖父なので 'true' を echo
 echo $bill->is_ancestor_of($james) ? 'true' : 'false';
 </code></pre>
 									</td>
@@ -1474,15 +1474,15 @@ echo $bill->is_ancestor_of($james) ? 'true' : 'false';
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>Bool, true if the object has a previous sibling, false if not</td>
+									<td>Bool。オブジェクトが前の兄弟を持つなら真、そうでなければ偽</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// Does James have a previous sibling? echo's 'true'
+										<pre class="php"><code>// James が前の兄弟を持つか？ 'true' を echo
 echo $james->has_previous_sibling() ? 'true' : 'false';
 
-// Does Tim have a previous sibling? echo's 'false'
+// Tim が前の兄弟を持つか？ 'false' を echo
 echo $tim->has_previous_sibling() ? 'true' : 'false';
 </code></pre>
 									</td>
@@ -1510,15 +1510,15 @@ echo $tim->has_previous_sibling() ? 'true' : 'false';
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>Bool, true if the object has a next sibling, false if not</td>
+									<td>Bool。オブジェクトが次の兄弟を持つなら真、そうでなければ偽</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// Does Henry have a next sibling? echo's 'true'
+										<pre class="php"><code>// Henry が次の兄弟を持つか？ 'true' を echo
 echo $henry->has_next_sibling() ? 'true' : 'false';
 
-// Does Ben have a next sibling? echo's 'false'
+// Ben が次の兄弟を持つか？ 'false' を echo
 echo $ben->has_next_sibling() ? 'true' : 'false';
 </code></pre>
 									</td>
@@ -1566,19 +1566,19 @@ echo $ben->has_next_sibling() ? 'true' : 'false';
 											<tr>
 												<th><kbd>$name</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The name of the configuration property to return.</td>
+												<td>取得する設定値の項目名</td>
 											</tr>
 										</table>
 									</td>
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>A configuration value, an array of values, or null if the requested value does not exist.</td>
+									<td>設定項目の値か値の配列、 要求された値が存在しなかった場合は null</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the name of the tree-id column
+										<pre class="php"><code>// ツリー ID のカラム名を取得
 $tree_id = Model_Tree::tree_config('tree_id');</code></pre>
 									</td>
 								</tr>
@@ -1608,12 +1608,12 @@ $tree_id = Model_Tree::tree_config('tree_id');</code></pre>
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>mixed, the tree-id of the current tree, or the default tree-id set.</td>
+									<td>mixed。現在のツリーのツリー ID、またはデフォルトのツリー ID のセット</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the tree_id (returns 1)
+										<pre class="php"><code>// tree_id を取得する（1 を返す）
 $current_tree = $bill->get_tree_id();</code></pre>
 									</td>
 								</tr>
@@ -1645,7 +1645,7 @@ $current_tree = $bill->get_tree_id();</code></pre>
 											<tr>
 												<th><kbd>$tree</kbd></th>
 												<td><pre class="php"><span class="keyword">null</span></pre></td>
-												<td>The tree-id of the tree to select. If no value, or null, is passed, the stored tree-id is reset.</td>
+												<td>選択するツリーのツリー ID。引数がなしか null の場合、ツリー ID の設定がリセットされる</td>
 											</tr>
 										</table>
 									</td>
@@ -1657,7 +1657,7 @@ $current_tree = $bill->get_tree_id();</code></pre>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get the root of a tree without having a previous node to work with
+										<pre class="php"><code>// あるツリーのルートを既存のノードを起点とせずに取得する
 $root = Model_Tree::forge()->set_tree_id($mytreeid)->get_one();</code></pre>
 									</td>
 								</tr>
@@ -1687,19 +1687,19 @@ $root = Model_Tree::forge()->set_tree_id($mytreeid)->get_one();</code></pre>
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>an ORM Query object.</td>
+									<td>ORM Query オブジェクト</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get all nodes in the current tree with an enabled status set
+										<pre class="php"><code>// 現在のツリー内で enabled がセットされたすべてのノードを取得する
 $enabled = Model_Tree::forge()
 	->set_tree_id($mytreeid)
 	->build_query()
 	->where('enabled', '=', 1)
 	->get();
 
-// using an existing object, this will use the tree-id of the $bill object
+// 既存のオブジェクトを使う場合。$bill のオブジェクトのツリー ID が使われる
 $enabled = $bill
 	->build_query()
 	->where('enabled', '=', 1)
@@ -1731,12 +1731,12 @@ $enabled = $bill
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>an ORM Query object.</td>
+									<td>ORM Query オブジェクト</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// get all child nodes of Bill with an enabled status set
+										<pre class="php"><code>// Bill の enabled がセットされたすべての子ノードを取得する
 $enabled = $bill
 	->children()
 	->get_query()
@@ -1773,16 +1773,16 @@ $enabled = $bill
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// Get the number of Bill's children, echo's 2
+										<pre class="php"><code>// Bill の子の数を取得。2 を echo
 echo $bill->count_children();
 
-// Get the number of Kerry's children, echo's 1
+// Kerry の子の数を取得。1 を echo
 echo $kerry->count_children();
 
-// Get the number of Tim's children, echo's 0
+// Tim の子の数を取得。0 を echo
 echo $tim->count_children();
 
-// echo's 0 too, a new object can't have children
+// これも 0 を echo。新たなオブジェクトは子を持たない
 echo Model_Tree::forge()->count_children();
 </code></pre>
 									</td>
@@ -1815,13 +1815,13 @@ echo Model_Tree::forge()->count_children();
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// Get the number of Bill's descendants, echo's 7
+										<pre class="php"><code>// Bill の子孫の数を取得。7 を echo
 echo $bill->count_descendants();
 
-// Get the number of Ben's children, echo's 3
+// Ben の子の数を取得。3 を echo
 echo $ben->count_descendants();
 
-// echo's 0, a new object can't have descendants
+// 0 を echo。新たなオブジェクトは子孫を持たない
 echo Model_Tree::forge()->count_descendants();
 </code></pre>
 									</td>
@@ -1850,21 +1850,21 @@ echo Model_Tree::forge()->count_descendants();
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>Mixed, integer or false if the current object is not valid</td>
+									<td>Mixed。整数か、現在のオブジェクトが有効でない場合は偽</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// Get the level of Bill in the organisation
-echo $bill->depth(); // echo's 0, he's top dog!
+										<pre class="php"><code>// 組織内での Bill の階級を取得
+echo $bill->depth(); // 0 を echo。彼が親分だ！
 
-// Get the level of Angela in the organisation
-echo $angela->depth(); // echo's 1, as she's an N+1
+// 組織内での Angela の階級を取得
+echo $angela->depth(); // 1 を echo。彼女は N+1 のため
 
-// Get the level of Tim in the organisation
-echo $tim->depth(); // echo's 3, as low as you can go...
+// 組織内での Tim の階級を取得
+echo $tim->depth(); // 3 を echo。いちばんの下っ端だ……
 
-// returns false, you can't get the depth of a new node
+// 偽を返す。新たなノードの階層を取得することはできない
 $result = Model_Tree::forge()->depth();
 </code></pre>
 									</td>
@@ -1897,19 +1897,19 @@ $result = Model_Tree::forge()->depth();
 											<tr>
 												<th><kbd>$as_object</kbd></th>
 												<td><pre class="php"><span class="keyword">false</span></pre></td>
-												<td>If true, it will return a hierarchical tree of objects instead of a multi-dimensional array.</td>
+												<td>真なら、多次元配列ではなくオブジェクトの階層的なツリー構造を返します</td>
 											</tr>
 											<tr>
 												<th><kbd>$children</kbd></th>
 												<td><pre class="php">'children'</pre></td>
-												<td>data for child nodes will be added to a property or array key with this name.</td>
+												<td>子ノードのデータはこの名前のプロパティ、もしくは配列のキー名で付与されます</td>
 											</tr>
 											<tr>
 												<th><kbd>$path</kbd></th>
 												<td><pre class="php">'path'</pre></td>
 												<td>
-													a property by this name is created and will contain the path to the node, starting at the root.
-													This requires the 'title_field' to be configured!
+													この名前でルートからそのノードへのパスを持つプロパティが作られます。
+													これには 'title_field' が設定されている必要があります！
 												</td>
 											</tr>
 										</table>
@@ -1917,27 +1917,27 @@ $result = Model_Tree::forge()->depth();
 								</tr>
 								<tr>
 									<th>戻り値</th>
-									<td>Mixed, multi-dimensional array, or the current object, with added children.</td>
+									<td>Mixed。多次元配列か、または現在のオブジェクトに子が追加されたもの</td>
 								</tr>
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// returns a multi-dimensional array. $tree['children'] will contain the children of Bill
+										<pre class="php"><code>// 多次元配列を返す。$tree['children'] が Bill の子を持つ
 $tree = $bill->dump_tree();
 
-// returns the 'bill' object with a property 'children' containing the children of Bill
+// 'children' プロパティとして Bill の子を持つ 'bill' オブジェクトを返す
 $tree = $bill->dump_tree(true);
 
-// using $tree, this returns array($angela, $ben)
+// $tree を使うと、array($angela, $ben) を返す
 $children = $tree->children;
 
-// and this returns array($henry, $nicola), the children of $angela
+// そしてこちらは array($henry, $nicola)、つまり $angela の子を返す
 $grandchildren = reset($children)->children;
 
-// ORM objects are always used by reference!
+// ORM オブジェクトは常に参照として扱われる！
 $bill->dump_tree(true);
 
-// so this works fine too...
+// ので、こっちでもいける
 $children = $bill->children;
 </code></pre>
 									</td>
@@ -1973,12 +1973,12 @@ $children = $bill->children;
 											<tr>
 												<th><kbd>$related</kbd></th>
 												<td><pre class="php">必須</pre></td>
-												<td>The name of the relation to include.</td>
+												<td>含めるリレーションの名前</td>
 											</tr>
 											<tr>
 												<th><kbd>$conditions</kbd></th>
 												<td><pre class="php">array()</pre></td>
-												<td>Any conditions you want to pass on when fetching the related objects.</td>
+												<td>リレーションのオブジェクトを取得する際に渡したい何らかの条件</td>
 											</tr>
 										</table>
 									</td>
@@ -1990,13 +1990,13 @@ $children = $bill->children;
 								<tr>
 									<th>例</th>
 									<td>
-										<pre class="php"><code>// include related 'child' objects in the result
+										<pre class="php"><code>// リレーション 'child' のオブジェクトを結果に含める
 $tree = $bill->related('child')->dump_tree();
 
-// get the descendants of $ben
+// $ben の子孫を取得
 $descendants = $ben->descendants()->related('child')->get();
 
-// This will NOT include the child relation!
+// これには child のリレーションは含まれ「ない」！
 $descendants = $ben->related('child')->descendants()->get();
 </code></pre>
 									</td>
@@ -2004,7 +2004,7 @@ $descendants = $ben->related('child')->descendants()->get();
 							</tbody>
 						</table>
 						<p class="note">
-							このメソッドをあらゆる入れ子集合用の操作 (たとえば decendants() のような) とともに使いたい場合、先にその操作を
+							このメソッドを入れ子集合用の操作 (たとえば decendants() のような) とともに使いたい場合は常に、先にその操作を
 							行うようにしてください。さもなければ、含めた筈のリレーションが入れ子集合用操作の呼び出しで取り消されてしまうことになります！</p>
 					</article>
                 </section>
