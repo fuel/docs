@@ -82,6 +82,8 @@ $ git clone git://github.com/fuel/fuel.git .
 $ ./composer.phar update
 </code></pre>
 
+			<p>Don't forget the single dot, otherwise this will create a folder called <strong>fuel</strong> in your virtual host root directory!</p>
+
 			<h4 id="from_github">Clone the latest development branch from github</h4>
 
 <pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
@@ -89,10 +91,11 @@ $ git clone git://github.com/fuel/fuel.git -b 1.8/develop .
 $ ./composer.phar update --prefer-source
 </code></pre>
 
-			<p>Alternatively, you can use composer to install everthing in one go:</p>
-<pre class="cli"><code>$ composer create-project fuel/fuel:dev-1.8/develop --prefer-source
-</code></pre>
 			<p>Don't forget the single dot, otherwise this will create a folder called <strong>fuel</strong> in your virtual host root directory!</p>
+
+			<p>Alternatively, you can use composer to install everything in one go:</p>
+<pre class="cli"><code>$ composer create-project fuel/fuel:dev-1.8/develop --prefer-source .
+</code></pre>
 
 			<h4 id="from_zip">Download the zip file</h4>
 
@@ -189,7 +192,7 @@ $ php composer.phar update
 <pre class="plain"><code>&lt;IfModule mod_rewrite.c>
 	RewriteEngine on
 
-	# Send request to the subfolder, if its not a real file, folder or it's a root request
+	# Send request to the subfolder, if it's not a real file, folder or it's a root request
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d [OR]
 	RewriteCond $1 ^$
@@ -203,7 +206,7 @@ $ php composer.phar update
 <pre class="plain"><code>&lt;IfModule mod_rewrite.c>
 	RewriteEngine on
 
-	# Send request to the subfolder, if its not a real file, folder or it's a root request
+	# Send request to the subfolder, if it's not a real file, folder or it's a root request
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d [OR]
 	RewriteCond $1 ^$
@@ -236,7 +239,7 @@ $ php composer.phar update
 
 	location / {
 		index index.php;
-		try_files $uri $uri/ /deep/sub/folder/index.php$is_args$args;
+		try_files $uri $uri/ /index.php$is_args$args;
 	}
 
 	location ~ \.php$ {
@@ -244,7 +247,7 @@ $ php composer.phar update
 		fastcgi_pass 127.0.0.1:9000;
 		fastcgi_index index.php;
 		fastcgi_param FUEL_ENV "production";
-		fastcgi_param SCRIPT_FILENAME /var/www/fuelphp/public$fastcgi_script_name;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 	}
 }
 </code></pre>
@@ -266,7 +269,7 @@ $ php composer.phar update
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

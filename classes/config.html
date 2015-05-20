@@ -77,6 +77,13 @@ key=value</code></pre>
 }</code></pre>
 				</li>
 				<li>
+					MEMCACHED. Stores or retrieves the config from a Memcached or Memcachedb store.
+					<br /><br />
+					It will use the <strong>config.memcached</strong> section of the <code>app/config/config.php</code> configuration
+					file to configure the memcached class used to connect to the store.
+					<br /><br />
+				</li>
+				<li>
 					DB. Use the following table structure:
 					<pre class="php"><code>  CREATE TABLE IF NOT EXISTS `config` (
   `identifier` char(100) NOT NULL,
@@ -84,8 +91,9 @@ key=value</code></pre>
   `hash` char(13) NOT NULL,
   PRIMARY KEY (`identifier`)
 )</code></pre>
-					By default it will use the table name 'config'. You can override this by defining your table name in
-					<code>app/config/config.php</code>, using the <strong>config.table_name</strong> key.
+					By default it will use the table name 'config', in the default database. You can override this by defining your
+					database and table name in <code>app/config/config.php</code>, using the <strong>config.database</strong>
+					and <strong>config.table_name</strong> key.
 				</li>
 			</ul>
 
@@ -310,6 +318,9 @@ Config::load('custom');
 // This loads the "custom" config file in a group named "custom".
 Config::load('custom', true);
 
+// This loads the "custom.ini" config file in a group named "custom".
+Config::load('custom.ini', true);
+
 // This loads the "custom" config file in a group named "foo".
 Config::load('custom', 'foo');
 
@@ -369,7 +380,10 @@ Config::set('foo.key', $value);
 Config::save('custom', 'foo');
 
 // save the updated config group 'bar' to config file 'custom' in the module 'foo'
-Config::save('foo::custom', 'bar');</code></pre>
+Config::save('foo::custom', 'bar');
+
+// save the updated config group 'bar' to memcached using the identifier 'custom'
+Config::save('custom.memcached', 'bar');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -380,7 +394,7 @@ Config::save('foo::custom', 'bar');</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

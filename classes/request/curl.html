@@ -182,14 +182,34 @@ $curl = Request::forge('http://rest.example.org/api/v1/this/info', 'curl');
 
 // set some parameters
 $curl->set_params(array('userid' => 12, 'data' => $payload));
+
+// multipart/form-data
+$params = array('userid' => 12, 'data' => $payload));
+$curl->set_params(array('form-data' => $params));
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
+				Your param array will automatically convert to the respective format when you set the Content-Type header to one of the
+				followng values:
+					<ul>
+						<li>application/xml</li>
+						<li>application/soap+xml</li>
+						<li>text/xml</li>
+						<li>application/json</li>
+						<li>text/json</li>
+						<li>text/csv</li>
+						<li>application/csv</li>
+						<li>application/vnd.php.serialized</li>
+					</ul>
 				<p class="note">
 					The way these parameters are used depends on the request generated. For GET requests, these will be converted
-					to a query string. For POST requests, they will become the POST body.
+					to a query string. For POST requests, they will become the POST body.<br>
+					<br>
+					If you do not set the Content-Type header while sending a request body, your body will be of the type
+					application/x-www-form-urlencoded. If you prefer to send your request as multipart/form-data, see the
+					above example.
 				</p>
 			</article>
 
@@ -810,7 +830,7 @@ $curl->http_login('username', 'mypass', 'NTLM');
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

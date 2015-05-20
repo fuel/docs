@@ -76,7 +76,7 @@
 						<th>hostname</th>
 						<td>string</td>
 						<td>yes</td>
-						<td>the hostname</td>
+						<td>the TCP hostname, OR a UNIX socket filepath</td>
 					</tr>
 					<tr>
 						<th>database</th>
@@ -88,7 +88,7 @@
 						<th>port</th>
 						<td>number</td>
 						<td>no</td>
-						<td>the port to use in the connection</td>
+						<td>the port to use in the connection, OR <em>0</em> if the <strong>hostname</strong> is a UNIX socket</td>
 					</tr>
 					<tr>
 						<th>replicaset</th>
@@ -122,6 +122,7 @@
 				'database'   => 'mongo_fuel',
 			),
 
+
 			// List your own groups below.
 			'my_mongo_connection' => array(
 				'hostname'   => 'localhost',
@@ -130,6 +131,14 @@
 				'username'   => 'user',
 				'password'   => 'p@s$w0rD',
 			),
+
+			// An alternative group example using a UNIX socket connection, instead of the TCP localhost
+			'my_mongo_sock' => array(
+				'hostname'   => '/tmp/mongodb-27017.sock',
+				'port'   => 0,
+				'database'   => 'mongo_fuel',
+			),
+
 		),
 	</code></pre>
 
@@ -144,7 +153,7 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

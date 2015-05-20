@@ -768,6 +768,45 @@ fe80::/10      // link local unicast (rfc4291)
 				</table>
 			</article>
 			<article>
+				<h4 class="method" id="method_query_string">query_string($default = '')</h4>
+				<p>The <strong>query_string</strong> method allows you to read the query string from the $_SERVER array.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><i>optional</i></td>
+									<td>What value should be returned if the array item is not found?</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$q = Input::query_string();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+			<article>
 				<h4 class="method" id="method_all">all()</h4>
 				<p>The <strong>all</strong> returns all of the GET, POST, PUT and DELETE variables.</p>
 				<table class="method">
@@ -967,7 +1006,7 @@ if ($header = \Input::headers('Content-Length', false))
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

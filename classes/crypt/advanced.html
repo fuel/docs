@@ -8,10 +8,10 @@
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
-		var class_prefix = "Asset::";
+		var class_prefix = "Crypt::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Asset Advanced - Classes - FuelPHP Documentation</title>
+	<title>Crypt Advanced - Classes - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
@@ -45,31 +45,29 @@
 
 		<div id="main">
 
-			<h2>Asset Class</h2>
+			<h2>Crypt Class</h2>
 
-			<p>The asset class is a set of methods to help with the collection, grouping and displaying of assets (js, css, img).</p>
+			<p>
+				The Crypt class allows encrypt or decrypt a string. The Crypt class is also used internally by for example the Fuel Sessions class.
+			</p>
+			<p>It uses the encryption and hashing methods provided by PHPSecLib, so it's not dependent on external modules being available, such as mcrypt.</p>
 
 			<section>
 				<h3>Advanced usage</h3>
 
 				<p>
-					The Asset class supports the use of multiple instances. This might prove useful if you are using themes, where
-					every theme has its own set of assets, or you are developing a modular application where each module provides
-					its own set of assets.
+					The Crypt class supports the use of multiple instances. This might prove useful if you require multiple encryption
+					key sets.
 				</p>
 				<p>
-					In these cases, it would not be handy to have only a single instance and use search paths, since the chances of
-					a duplicate asset name are quite high, causing your application to load the wrong asset.
-				</p>
-				<p>
-					You can use the same methods on an asset instance as you would when you the static methods. For the method
+					You can use the same methods on an crypt instance as you would when you the static methods. For the method
 					definition see the <a href="./usage.html">class usage</a> page.
 				</p>
 
 				<article>
 					<h4 class="method" id="method_forge">forge($config = array())</h4>
 					<p>
-						The <strong>forge</strong> method allows you to manually instantiate an asset instance.
+						The <strong>forge</strong> method allows you to manually instantiate a crypt instance.
 					</p>
 					<table class="method">
 						<tbody>
@@ -98,10 +96,10 @@
 										<th><kbd>$config</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
 										<td>
-											You can pass a custom configuration when forging a new asset instance. The configuration array
-											has the same structure as the asset configuration file. The custom config will be merged with
+											You can pass a custom configuration when forging a new crypt instance. The configuration array
+											has the same structure as the crypt configuration file. The custom config will be merged with
 											a default configuration as documented <a href="./config.html">here</a> and with the
-											configuration in your asset config file, so you only have to pass values you want changed.
+											configuration in your crypt config file, so you only have to pass values you want changed.
 										</td>
 									</tr>
 								</table>
@@ -109,16 +107,18 @@
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>object - The instantiated asset object.</td>
+							<td>object - The instantiated crypt object.</td>
 						</tr>
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>// instantiate a asset object with a custom search path
-$asset = Asset::forge('custom', array('paths' => array('custom/assets/'));
+								<pre class="php"><code>// instantiate a crypt object with a custom key value
+$crypt = \Crypt::forge(array(
+	'crypto_key' => 'kj$Huhliuh7p*UHHhdas6%#@',
+));
 
-// define some css files
-$asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code></pre>
+// and encode some data with it
+$encoded = $crypt->encode('This is a very secure piece of data!');</code></pre>
 							</td>
 						</tr>
 						</tbody>
@@ -128,7 +128,7 @@ $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code>
 				<article>
 					<h4 class="method" id="method_instance">instance($name = null)</h4>
 					<p>
-						The <strong>instance</strong> method allows you load a named instance of the asset class.
+						The <strong>instance</strong> method allows you load a named instance of the crypt class.
 					</p>
 					<table class="method">
 						<tbody>
@@ -158,16 +158,16 @@ $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code>
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>mixed - The named asset instance or false if the instance does not exist.</td>
+							<td>mixed - The named crypt instance or false if the instance does not exist.</td>
 						</tr>
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre class="php"><code>// instantiate a named asset object with a custom search path
-Asset::forge('custom', array('paths' => array('custom/assets/')));
+								<pre class="php"><code>// instantiate a named crypt object with a custom key
+$crypt = \Crypt::instance('custom', array('crypto_key' => 'kj$Huhliuh7p*UHHhdas6%#@'));
 
-// define some css files using the defined instance
-Asset::instance('custom')->css(array('header.css', 'footer.css'), array(), 'layout', false);</code></pre>
+// and encode some data with it
+$encoded = $crypt->encode('This is a very secure piece of data!');</code></pre>
 							</td>
 						</tr>
 						</tbody>
@@ -175,8 +175,8 @@ Asset::instance('custom')->css(array('header.css', 'footer.css'), array(), 'layo
 				</article>
 
 				<p class="note">
-					 The static methods of the Asset class will also use the default instance. Remember this if you
-					 alter the configuration (for example search paths) of the default instance!
+					 The static methods of the Crypt class will also use the default instance. Remember this if you
+					 alter the configuration of the default instance!
 				</p>
 
 			</section>

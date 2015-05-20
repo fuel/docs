@@ -265,7 +265,7 @@ protected static $_observers = array('Orm\\Observer_Validation' => array(
 				$errors = array();
 				foreach ($e->get_fieldset()->validation()->error() as $error)
 				{
-					$errors = array(
+					$errors[] = array(
 						'field' => $error->field,					// the field that caused the error
 						'value' => $error->value,					// the value that is in error
 						'message' => trim($error->get_message(false, '\t', '\t')),	// the error message
@@ -422,7 +422,7 @@ protected static $_observers = array('Orm\\Observer_Slug' => array('before_inser
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

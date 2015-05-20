@@ -59,7 +59,7 @@
 
 				<p>
 					You will typically use an EAV container when you have an entity (a record in ORM terms) that has a number of
-					related attributes as it's children. But for every record, these attibutes can be different. This makes it
+					related attributes as its children. But for every record, these attibutes can be different. This makes it
 					impossible to define these attributes as column in the entity's table, because there would be too many, most
 					of them will not have data, and you can't deal with dynamic attributes at all (because columns need to be
 					pre-defined).
@@ -114,7 +114,10 @@
 	// define the EAV container like so
 	protected static $_eav = array(
 		'statistics' => array(			// we use the statistics relation to store the EAV data
+<<<<<<< HEAD
 			'model_to' => 'Model_Statistic',      // related model
+=======
+>>>>>>> 1.8/develop
 			'attribute' => 'key',		// the key column in the related table contains the attribute
 			'value' => 'value',			// the value column in the related table contains the value
 		)
@@ -130,7 +133,7 @@ class Model_Statistic extend \Orm\Model
 		'key',					// attribute column
 		'value',				// value column
 	);
-	
+
 	// set up the patient relation the usual way
 	protected static $_belongs_to = array(
 	    'patient' => array(
@@ -206,7 +209,7 @@ foreach ($mr->statistics as $statistic)
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

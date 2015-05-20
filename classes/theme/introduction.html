@@ -123,7 +123,7 @@
 			</p>
 			<p>
 				The contents of a partials section can be accessed through a view variable $partials, an array with an entry for each of the partial
-				sections defined. You access a section using it's name. So for a partial section called 'sidebar', you would use <strong>echo $partials['sidebar'];</strong> in your page template.
+				sections defined. You access a section using its name. So for a partial section called 'sidebar', you would use <strong>echo $partials['sidebar'];</strong> in your page template.
 			</p>
 
 			<h3 id="chrome">Partial chrome</h3>
@@ -259,20 +259,14 @@ class Homepage extends \Controller
 					<tr>
 						<th>info_file_name</th>
 						<td>string</td>
-						<td><pre class="php"><code>'theme.info'</code></pre></td>
-						<td>The theme info file name.</td>
+						<td><pre class="php"><code>'themeinfo.php'</code></pre></td>
+						<td>The theme info file name. The Config class is used to manipulate this file, so you can use the extension to specify the file type.</td>
 					</tr>
 					<tr>
 						<th>require_info_file</th>
 						<td>boolean</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>Whether to require a theme info file.</td>
-					</tr>
-					<tr>
-						<th>info_file_type</th>
-						<td>string</td>
-						<td><pre class="php"><code>'php'</code></pre></td>
-						<td>File type of the theme info file.  Possible values: php, ini, json and yaml.</td>
 					</tr>
 					<tr>
 						<th>use_modules</th>
@@ -299,9 +293,8 @@ return array(
 	),
 	'assets_folder' => 'themes',	// so this implies &lt;localpath&gt;/public/themes/&lt;themename&gt;...
 	'view_ext' => '.html',
-	'info_file_name' => 'theme.info',
+	'info_file_name' => 'themeinfo.ini',
 	'require_info_file' => false,
-	'info_file_type' => 'php',
 	'use_modules' => true,
 );
 	</code></pre>
@@ -312,7 +305,7 @@ return array(
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

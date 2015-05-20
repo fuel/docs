@@ -246,9 +246,9 @@ $view = $theme->view('template/homepage');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_presenter">presenter($view, $method = 'view', $auto_filter = null)</h4>
+				<h4 class="method" id="method_presenter">presenter($presenter, $method = 'view', $auto_filter = null, $view = null)</h4>
 				<p>
-					The <strong>presenter</strong> method loads and return a Presenter object based on the $view string passed. It
+					The <strong>presenter</strong> method loads and return a Presenter object based on the $presenter string passed. It
 					will use the <strong>view</strong> method documented above to pass the theme view to the Presenter.
 				</p>
 
@@ -269,7 +269,7 @@ $view = $theme->view('template/homepage');
 									<th class="description">Description</th>
 								</tr>
 								<tr>
-									<th><kbd>$view</kbd></th>
+									<th><kbd>$presenter</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td class="description">The presenter name. See the <a href="../../general/presenters.html">Presenter</a> for more information.</td>
@@ -286,6 +286,11 @@ $view = $theme->view('template/homepage');
 									<td><pre class="php"><code>null</code></pre></td>
 									<td class="description">set to <em>true</em> or <em>false</em> to set auto encoding, defaults to main config setting (app/config/config.php)</td>
 								</tr>
+									<tr>
+										<th><kbd>$view</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">Custom view name, used if the view to be loaded can not be determined from the presenter name</td>
+									</tr>
 							</table>
 						</td>
 					</tr>
@@ -613,7 +618,7 @@ $theme->get_template()->set('title', 'This is the page title');
 			<article>
 				<h4 class="method" id="method_set_template">set_template($template)</h4>
 				<p>
-					The <strong>set_template</strong> method allow you to set the theme template for the page.
+					The <strong>set_template</strong> method allows you to set the theme template for the page.
 				</p>
 				<table class="method">
 					<tbody>
@@ -662,7 +667,7 @@ $theme->set_template('layouts/subpage')->set('title', 'Subpage title');
 			<article>
 				<h4 class="method" id="method_get_partial">get_partial($section, $view)</h4>
 				<p>
-					The <strong>get_partial</strong> method allow you to get the view instance of a previously set partial in a named section of your page template.
+					The <strong>get_partial</strong> method allows you to get the view instance of a previously set partial in a named section of your page template.
 				</p>
 				<table class="method">
 					<tbody>
@@ -726,7 +731,7 @@ $theme->get_partial('sidebar', 'partials/menu')->set('class', 'menu green');
 			<article>
 				<h4 class="method" id="method_set_partial">set_partial($section, $view, $overwrite = false)</h4>
 				<p>
-					The <strong>set_partial</strong> method allow you to set a view partial for a named section of your page template.
+					The <strong>set_partial</strong> method allows you to set a view partial for a named section of your page template.
 				</p>
 				<table class="method">
 					<tbody>
@@ -893,7 +898,7 @@ if ( ! $theme->has_partials('sidebar'))
 			<article>
 				<h4 class="method" id="method_get_chrome">get_chrome($section)</h4>
 				<p>
-					The <strong>get_chrome</strong> method allow you to get the view instance of a previously set partial chrome.
+					The <strong>get_chrome</strong> method allows you to get the view instance of a previously set partial chrome.
 				</p>
 				<table class="method">
 					<tbody>
@@ -945,7 +950,7 @@ $theme->get_chrome('sidebar')->set('title', 'This is a sidebar');
 			<article>
 				<h4 class="method" id="method_set_chrome">set_chrome($section, $view, $var = 'content')</h4>
 				<p>
-					The <strong>set_chrome</strong> method allow you to define chrome for a partial section of your page template.
+					The <strong>set_chrome</strong> method allows you to define chrome for a partial section of your page template.
 				</p>
 				<table class="method">
 					<tbody>
@@ -1002,6 +1007,66 @@ $theme = \Theme::instance();
  * In the chrome view, the partial output is echo'd out as $body;
  */
 $theme->set_chrome('sidebar', 'chrome/roundedcorners', 'body');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_order">set_order($section, $order)</h4>
+				<p>
+					The <strong>set_order</strong> method allows you to define a custom ordering in which your partial
+					sections will be rendered.
+				</p>
+				<p>
+					This can be useful if some partials depend on what happens in others, for example if your partials
+					can generate messages, and you have a messages partial which will display them. In this case, you
+					would want to render the messages partial after all others.
+					Sections without a defined order are rendered before all others.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$section</kbd></th>
+									<td><em>string</em></td>
+									<td><strong>required</strong></td>
+									<td>The name of page template section you want to define the order on.</td>
+								</tr>
+								<tr>
+									<th><kbd>$order</kbd></th>
+									<td><em>integer</em></td>
+									<td><strong>required</strong></td>
+									<td>The relative order of the partial section. Must be between 1 and 9.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get the default instance
+$theme = \Theme::instance();
+
+/**
+ * Make sure the messages partial is rendered after all others
+ */
+$theme->set_chrome('messages', 9);
 </code></pre>
 						</td>
 					</tr>
@@ -1416,7 +1481,7 @@ $theme->set_info('color', 'blue', 'fallback');
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

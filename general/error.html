@@ -196,7 +196,9 @@ public function action_my404()
 				There may be moments where your applications simply need to stop and show an error to
 				indicate that something has gone wrong on the server. Normally this is a
 				<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error">500 Internal
-				Server Error</a>.
+				Server Error</a>. This exception can be caught in the front controller by defining a
+				<kbd>_500_</kbd> route. It allows you to show a proper error message, do additional
+				error logging, or send a notification to an administrator to get the issue fixed.
 			</p>
 
 			<p>
@@ -204,6 +206,21 @@ public function action_my404()
 			</p>
 
 			<pre class="php"><code>throw new HttpServerErrorException;</code></pre>
+
+			<h4 id="throw_403">Throwing a 403</h4>
+
+			<p>
+				If you want centralized handling of access violations, you can choose to signal an
+				access violation by throwing an HttpNoAccessException. This exception can be caught
+				in the front controller by defining a <kbd>_403_</kbd> route. The handler could for
+				example store the current URI, ask for a login, and if a success, return to the stored
+				URI so the user can return to where the violation occured.
+			</p>
+			<p>
+				Similar to throwing a 404, one can throw a 403 error.
+			</p>
+
+			<pre class="php"><code>throw new HttpNoAccessException;</code></pre>
 
 			<h3 id="cli">Errors in CLI mode</h3>
 
@@ -220,7 +237,7 @@ public function action_my404()
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

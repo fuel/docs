@@ -47,7 +47,17 @@
 
 			<h2>Inflector Class</h2>
 
-			<p>The Inflector class allows you to transforms words from singular to plural, class names to table names, modularized class names to ones without, and class names to foreign keys.</p>
+			<p>
+				The Inflector class allows you to transforms words from singular to plural,
+				class names to table names, modularized class names to ones without,
+				and class names to foreign keys.
+			</p>
+			<p>
+				Inflector rulesets can be defined as language files, to be able to localize them.
+				The framework comes with a default set of rules for the English language, which
+				can act as a template for localisation.
+			</p>
+
 
 			<article>
 				<h4 class="method" id="method_ascii">ascii($str, $allow_non_ascii = false)</h4>
@@ -735,11 +745,46 @@ echo Inflector::pluralize('apple', 1); // returns apple</code></pre>
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_load_rules">load_rules()</h4>
+				<p>
+					The <strong>load_rules</strong> method loads the inflector rules based on the current
+					language configuration. If no rulesset can be found (i.e. no inflector lang file exists),
+					the class will default to a ruleset for the English language. If you have loaded a ruleset,
+					you change your language configuration, reload again, but the new configuration doesn't have
+					a ruleset defined, Inflector will continue to use the current one.
+				</p>
+				<p class="note">
+					Upon first use the Inflector class will autoload the the ruleset based on the language
+					configuration. Normally you do not have to use this method.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							None
+						</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Inflector::load_rules(); // (re)loads the Inflector ruleset</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2014 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>
