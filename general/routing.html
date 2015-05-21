@@ -52,13 +52,24 @@
 
 			<h3 id="reserved">予約済みルート</h3>
 
-			<p>Fuel には 2 つの予約済みルートがあります。<kbd>_root_</kbd> および <kbd>_404_</kbd> です。</p>
+			<p>In Fuel there are 4 reserved routes.	 They are <kbd>_root_</kbd>, <kbd>_403_</kbd>, <kbd>_404_</kbd> and <kbd>_500_</kbd>.</p>
 
 			<ul>
-				<li><kbd>_root_</kbd> - URI が指定されていないときのデフォルトルート。</li>
-				<li><kbd>_404_</kbd> - コントローラ、あるいはアクションが見つからないときのルート。
-					キャッチオールのルートとしても使えます。</li>
+				<li><kbd>_root_</kbd> - The default route when no URI is specified.</li>
+				<li><kbd>_403_</kbd> - The route used when the application throws an HttpNoAccessException that isn't caught.</li>
+				<li><kbd>_404_</kbd> - The route used when the application throws an HttpNotFoundException that isn't caught.</li>
+				<li><kbd>_500_</kbd> - The route used when the application throws an HttpServerErrorException that isn't caught.</li>
 			</ul>
+
+			<p class="note">
+				The request class throws an HttpNotFoundException when you request a URI (a route) that your application
+				can't resolve.
+			</p>
+			<p class="note">
+				If no <kbd>_404_</kbd> route is defined, the framework uses it's own error handler to display
+				a "page not found" message. If no <kbd>_403_</kbd> or <kbd>_500_</kbd> route is defined, these
+				exceptions remain uncaught, and are handled like any other exception your application might throw.
+			</p>
 
 			<pre class="php"><code>return array(
     '_root_'  => 'welcome/index',
