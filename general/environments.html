@@ -111,37 +111,6 @@
 			</ul>
 
 			<h3 id="create_env">Create Custom Environment</h3>
-<<<<<<< HEAD
-			<p>
-				To create a custom environment, just use a custom string such as <em>mike_dev</em> and create a matching folder in /fuel/app/config/.
-			</p>
-			<p>
-				For example:
-				</br>
-				If you have a developer named Mike, you can create a custom environment called <i>mike_dev</i>.
-				<ol>
-					<li>Create a folder in /fuel/app/config/ called <i>mike_dev</i></li>
-					<li>Place any config files that pertain to Mike in the new config folder, for example, place db.php in /fuel/app/config/mike_dev/ to a load custom database configuration when the <em>mike_dev</em> environment is set.</li>
-					<li>Follow the instructions on <a href="#setting_env">setting your environment</a> below. When setting the environment, instead of using a predefined FuelPHP Environment such as PRODUCTION, use the custom string <em>mike_dev</em></li>
-				</ol>
-			</p>
-
-			<h3 id="setting_env">Set Your Environment</h3>
-
-			<p>
-				There are three ways to set your environment. The first two allow you to set the environment that FuelPHP will use when loading web pages. The third option shows you how to set your environment when using FuelPHP's Oil. Oil does not use the environment you set in the first two options below, it has to be set separately, every time you use Oil.
-			</p>
-			<ul>
-				<li><a href="#env_server">Set Environment with server environment variables (Recommended)</a></li>
-				<li><a href="#env_manual">Set Environment with <em>/fuel/app/bootstrap.php</em></a></li>
-				<li><a href="#env_oil">Set Environment when using Oil (Does not replace the above methods, this has its own separate use)</a></li>
-			</ul>
-
-			<h4 id="env_server">Set Environment with server environment variables (Recommended)</h4>
-
-			<p>
-				You can use the server environment variable <strong>SetEnv</strong> to set the environment your application should run in. Every server has its own envrionment variables. Below includes instructions for known configurations. If your server is not included below, <a href="http://en.wikipedia.org/wiki/Environment_variable">read more about environment variables here</a>.
-=======
 			<p>
 				To create a custom environment, just use a custom string such as <em>mike_dev</em> and create a matching folder in /fuel/app/config/.
 			</p>
@@ -239,25 +208,9 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::PRODUCT
 			</p>
 			<p>
 				When using a *unix operating system, you can use the <kbd>env</kbd> command to define the variable before starting oil.
->>>>>>> 1.8/develop
 			</p>
-			<p class="note">The variable name <strong>FUEL_ENV</strong> should be specified in UPPERCASE, the environment name in lowercase.</p>
 
-<<<<<<< HEAD
-			<h5>Apache - Server Configuration</h5>
-			<ol>
-				<li>Make sure your apache server configuration loads the extension mod_env</li>
-				<li>
-					Edit the <pre>httpd.conf</pre> file (or if you include virtual host configurations the desired virtual host config file)
-					and add the following code.
-					</br>
-					<pre class="php"><code>// run this application in production mode
-SetEnv FUEL_ENV production</code></pre>
-				</li>
-			</ol>
-=======
 			<pre class="cli"><code><strong>$</strong> env FUEL_ENV=production php oil -v</code></pre>
->>>>>>> 1.8/develop
 
 			<p>
 				When using Windows, this has been reported to work:
