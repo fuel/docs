@@ -79,16 +79,22 @@
 
 <pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
 $ git clone git://github.com/fuel/fuel.git .
-$ ./composer.phar update
+$ ./composer.phar self-update
+$ ./composer.phar update --prefer-dist
 </code></pre>
 
 			<p>Don't forget the single dot, otherwise this will create a folder called <strong>fuel</strong> in your virtual host root directory!</p>
+
+			<p>Alternatively, you can use composer to install everything in one go:</p>
+<pre class="cli"><code>$ composer create-project fuel/fuel:dev-1.7/master --prefer-dist .
+</code></pre>
 
 			<h4 id="from_github">Clone the latest development branch from github</h4>
 
 <pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
 $ git clone git://github.com/fuel/fuel.git -b 1.8/develop .
-$ ./composer.phar update --prefer-source
+$ ./composer.phar self-update
+$ ./composer.phar update
 </code></pre>
 
 			<p>Don't forget the single dot, otherwise this will create a folder called <strong>fuel</strong> in your virtual host root directory!</p>
@@ -102,7 +108,6 @@ $ ./composer.phar update --prefer-source
 			<ol>
 				<li><a href="download.html">Download the Fuel Framework</a></li>
 				<li>Unzip/Extract the download</li>
-				<li>Run <code class="cli">$ php composer.phar update</code> to install all dependencies</li>
 				<li>Move the files to your server
 					<ul>
 						<li>Note the public directory in the source equals your web server's public document directory i.e.
