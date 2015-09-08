@@ -1874,7 +1874,7 @@ $result = Model_Tree::forge()->depth();
 					</article>
 
 					<article>
-						<h4 id="method_dump_tree" class="method">dump_tree($as_object = false, $children = 'children', $path = 'path')</h4>
+						<h4 id="method_dump_tree" class="method">dump_tree($as_object = false, $children = 'children', $path = 'path', $pathuri = null)</h4>
 						<p>
 							<strong>dump_tree</strong> メソッドはツリー全体を返し、これは現在のオブジェクトをルートノードとして
 							多次元配列として返します。
@@ -1910,6 +1910,16 @@ $result = Model_Tree::forge()->depth();
 												<td>
 													この名前でルートからそのノードへのパスを持つプロパティが作られます。
 													これには 'title_field' が設定されている必要があります！
+												</td>
+											</tr>
+											<tr>
+												<th><kbd>$pathuri</kbd></th>
+												<td><pre class="php">null</pre></td>
+												<td>
+													This argument requires an existing table column as input. If defined, it will create a property
+													by the name of this argument, prefixed with "path_", which will contain the path definition pointing
+													to the node, starting at the root, using the column name provided. This is mainly used when the model
+													contains a URL or URI column, so you have both the breadcrumb path (in 'path') and the uri path.
 												</td>
 											</tr>
 										</table>

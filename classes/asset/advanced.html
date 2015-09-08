@@ -47,10 +47,10 @@
 
 			<h2>Asset クラス</h2>
 
-			<p>asset クラスは、アセット (js、css、img) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
+			<p>asset クラスは、アセット (js、css、img, custom types) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
 
 			<section>
-				<h3>より進んだ使い方</h3>
+				<h3>Multiple asset instances</h3>
 
 				<p>
 				  Asset クラスは複数インスタンスでの利用をサポートしています。
@@ -178,7 +178,96 @@ Asset::instance('custom')->css(array('header.css', 'footer.css'), array(), 'layo
 				  Asset クラスの静的メソッドは、デフォルトインスタンスを使用します。
 				  デフォルトインスタンスに対して、例えば検索パスの変更などを行った場合はこのことを忘れないで下さい!
 				</p>
+				<br />
 
+			</section>
+
+			<section>
+				<h3>Adding custom asset types</h3>
+
+				<p>
+					The asset instance allows you to add custom types, so you can have it render other files
+					or tags than only CSS, JS or IMG tags.
+				</p>
+
+				<article>
+					<h4 class="method" id="method_add_type">add_type($type, $path = null, $renderer = null)</h4>
+					<p>
+						The <strong>add_type</strong> method allows to add custom types to be rendered by the Asset
+						class at runtime.
+					</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th>Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$type</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>
+											Name of the type you want to be able to render as part of your View output.
+											You could for example define the type 'youtube' to have Asset render the
+											HTML needed to embed a youtube video on your page.
+										</td>
+									</tr>
+									<tr>
+										<th><kbd>$path</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>
+											If relevant for your type, the path from which the assets have to be loaded.
+											In the example of 'youtube', you won't need a path, as the assets will be
+											loaded from an internet URL.
+										</td>
+									</tr>
+									<tr>
+										<th><kbd>$renderer</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>
+											A closure that will render your type.  The closure will get three parameters
+											passed: the name of the file to render, an array of attributes, and a boolean
+											whether or not there is inline display required. Note that not all of this
+											could be relevant for your type. For example, javascript can be loaded from file
+											or rendered inline between script tags. An image however can only be rendered as
+											an "img" tag, you can not include it inline in the HTML.
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>string - The rendered HTML.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// create a youtube renderer on the default asset instance
+Asset::instance()->add_type(
+    'youtube',
+    null,
+    function ($file, $attr, $inline) {
+		// simple example, just renders an iframe
+		return '&lt;iframe width="420" height="315" src="http://www.youtube.com/embed/'.$file.'?autoplay=1"&gt;&lt;/iframe&gt;';
+	}
+);
+
+// render a youtube movie
+echo Asset::instance()->youtube('XGSy3_Czz8k');</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
 			</section>
 
 		</div>

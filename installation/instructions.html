@@ -79,16 +79,22 @@
 
 <pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
 $ git clone git://github.com/fuel/fuel.git .
-$ ./composer.phar update
+$ ./composer.phar self-update
+$ ./composer.phar update --prefer-dist
 </code></pre>
 
 			<p>最後のドットを忘れないでください。さもないと、バーチャルホストのルートディレクトリに <strong>fuel</strong> というフォルダが作成されます!</p>
+
+			<p>Alternatively, you can use composer to install everything in one go:</p>
+<pre class="cli"><code>$ composer create-project fuel/fuel:dev-1.7/master --prefer-dist .
+</code></pre>
 
 			<h4 id="from_github">GitHub から最新の開発ブランチを clone する</h4>
 
 <pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
 $ git clone git://github.com/fuel/fuel.git -b 1.8/develop .
-$ ./composer.phar update --prefer-source
+$ ./composer.phar self-update
+$ ./composer.phar update
 </code></pre>
 
 			<p>最後のドットを忘れないでください。さもないと、バーチャルホストのルートディレクトリに <strong>fuel</strong> というフォルダが作成されます!</p>
@@ -102,7 +108,6 @@ $ ./composer.phar update --prefer-source
 			<ol>
 				<li><a href="download.html">Fuel フレームワークをダウンロードします</a></li>
 				<li>ダウンロードしたファイルを解凍します</li>
-				<li><code class="cli">$ php composer.phar update</code> を実行し依存コンポーネントをインストールします</li>
 				<li>ファイルをサーバに移動します
 					<ul>
 						<li>ソース内の public ディレクトリは Web サーバの公開用ディレクトリ、例えば、

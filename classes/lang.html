@@ -464,6 +464,58 @@ Lang::get_lang();
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_set_lang">set_lang($language, $reload = false)</h4>
+				<p>
+					The <strong>set_lang</strong> method allows you to set the new active language, and optionally
+					it attempts to reload all language file already loaded for that language.
+					This will call <a href="../classes/config.html#method_set">Config::set('language')</a> to set
+					the new language globally. Typically it will be used to set or switch to a user configurable language.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$language</kbd></th>
+									<td><i>required</i></td>
+									<td>Language code to set.</td>
+								</tr>
+								<tr>
+									<th><kbd>$reload</kbd></th>
+									<td><kbd>false</kbd></td>
+									<td>(Optional) If set to <kbd>true</kbd> all already loaded language files will be reloaded for the new language set.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><kbd>Bool</kbd> indicating success or failure.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// switch to French, and reload all loaded language files
+Lang::set_lang('fr', true);
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<h3 id="procedural_helpers">手続き型ヘルパー</h3>
 
 			<article>

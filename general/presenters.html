@@ -117,7 +117,7 @@
 
 				<h3 id="functions">関数をビューに渡す</h3>
 
-				<p>プレゼンタから、特定の関数をビューに渡すには、<a href="http://www.php.net/manual/functions.anonymous.php">クロージャ</a> を使用します:</p>
+				<p>To pass a View specific function from your Presenter to your View, you use an anonymous function or <a href="http://www.php.net/manual/functions.anonymous.php">Closures</a>:</p>
 
 				<pre class="php"><code>// プレゼンタの中
 class Presenter_Index extends Presenter
@@ -125,12 +125,39 @@ class Presenter_Index extends Presenter
 
 	public function view()
 	{
-		$this->echo_upper = function($string) { echo strtoupper($string); };
+		// set a closure that returns a value
+		$this->somevar = function() { return "somevalue"; };
+
+		// this works the same
+		$this->set('othervar', function() { return "othervalue"; });
+
+		// for closures with arguments, use set_safe to prevent encoding
+		$this->set_safe('echo_upper', function($string) { echo strtoupper($string); });
 	}
 }
 
-// ビューの中で使える:
-$echo_upper('this string'); // 出力: "THIS STRING"</code></pre>
+// presenter viewの中で使える:
+echo $somevar, $othervar;   // Outputs: "somevalue" "othervalue"
+$echo_upper('this string'); // Outputs: "THIS STRING"</code></pre>
+
+			<p class="note">
+				Closures are also treated like variables when it comes to filtering.
+				If you have a closure that returns a value, use the <code>set()</code> method, so the
+				value will be encoded according to your filtering setting. If you have a closure that
+				will be used as a modifier, like in the example above, or you have a closure that returns
+				a value that should not be encoded, use the <code>set_safe()</code> method, or pass <code>false</code>
+				as the third parameter of <code>set()</code>.
+			</p>
+
+			<p>
+				For legacy applications that expect a closure to never be filtered, edit your applications
+				<strong>config.php</strong> configuration file, add the following key:
+			</p>
+
+			<pre class="php"><code>/**
+ * Whether to filter closures as well
+ */
+'filter_closures'  => false,</code></pre>
 			</article>
 
 			<article>
