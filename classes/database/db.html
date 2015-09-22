@@ -52,9 +52,13 @@
 			<article>
 				<h4 class="method" id="method_query">query($sql, $type = null)</h4>
 				<p>
-					The <strong>query</strong> method returns a new Database_Query_Builder object. The exact
-					object depends on the type passed. If no type was passed, Fuel chooses DB::SELECT if the SQL query begins with 'SELECT', and it will return a
-					<a href="qb_select.html">Database_Query_Builder_Select</a> object.
+					The <strong>query</strong> method returns a new Database_Query object. A Database_Query object can be used to execute a SQL query, or to bind variables to the query.
+				</p>
+				<p>
+					The first parameter is a SQL string which can contain placeholders. See <a href="usage.html#binding">Query binding</a>.
+				</p>
+				<p>
+					The result of the execution depends on the second parameter.  If no type was passed, Fuel tries to detect the type automatically. For example, Fuel chooses DB::SELECT if the SQL query begins with 'SELECT', and the result of the execution will be fetched rows. Same is true for the SQL query begins with 'INSERT', 'UPDATE' or 'DELETE'. In each case, the result will be the same as when the query was done by <a href="qb.html">Query Builder</a>. See <a href="usage.html#inserting">Inserting</a>, <a href="usage.html#updating">Updating</a>, and <a href="usage.html#deleting">Deleting</a>.
 				</p>
 				<table class="method">
 					<tbody>
@@ -86,7 +90,7 @@
 						</tr>
 						<tr>
 							<th>Returns</th>
-							<td>Returns a Database_Query_Builder</a> object of the requested type.</td>
+							<td>Returns a Database_Query object of the requested type.</td>
 						</tr>
 						<tr>
 							<th>Example</th>
