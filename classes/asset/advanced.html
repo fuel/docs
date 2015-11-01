@@ -47,29 +47,29 @@
 
 			<h2>Asset クラス</h2>
 
-			<p>asset クラスは、アセット (js、css、img, custom types) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
+			<p>Asset クラスは、アセット (js、css、img, カスタムタイプ) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
 
 			<section>
-				<h3>Multiple asset instances</h3>
+				<h3>複数のアセットインスタンス</h3>
 
 				<p>
-				  Asset クラスは複数インスタンスでの利用をサポートしています。
-				  あなたが独自のアセット群を持つテーマを使っている場合や、
-				  モジュール型のアプリケーションを開発していて、そのモジュールがそれぞれアセットを持っているような場合に、これは役に立つかもしれません。
+					Asset クラスは複数インスタンスでの利用をサポートしています。
+					あなたが独自のアセット群を持つテーマを使っている場合や、
+					モジュール型のアプリケーションを開発していて、そのモジュールがそれぞれアセットを持っているような場合に、これは役に立つかもしれません。
 				</p>
 				<p>
-				  このようなケースでは、ただ一つのインスタンスが検索パスを持つことにより、
-				  同じ名前を持つアセットをアプリケーションが間違って読み込むことになる危険性が高くなるのは、ちょっと利口とはいえません。
+					このようなケースでは、ただ一つのインスタンスが検索パスを持つことにより、
+					同じ名前を持つアセットをアプリケーションが間違って読み込むことになる危険性が高くなるのは、ちょっと利口とはいえません。
 				</p>
 				<p>
-				  静的なメソッドと同じメソッド名を、Asset のインスタンスに対しても使用することができます。
-				  それぞれのメソッドの定義については<a href="./usage.html">使用法</a>ページを見て下さい。
+					静的なメソッドと同じメソッド名を、Asset のインスタンスに対しても使用することができます。
+					それぞれのメソッドの定義については <a href="./usage.html">使用法</a> ページを見て下さい。
 				</p>
 
 				<article>
 					<h4 class="method" id="method_forge">forge($config = array())</h4>
 					<p>
-					  <strong>forge</strong> メソッドは、Asset クラスのインスタンスを手動で生成します。
+						<strong>forge</strong> メソッドは、Asset クラスのインスタンスを手動で生成します。
 					</p>
 					<table class="method">
 						<tbody>
@@ -90,18 +90,18 @@
 										<th><kbd>$name</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-										  インスタンスの名前。もしその名前のインスタンスが存在しなければ、新たにフォージ(生成)されます。
-										  名前が渡されなかったときは、デフォルトインスタンスが返されます。
+											インスタンスの名前。もしその名前のインスタンスが存在しなければ、新たにフォージ(生成)されます。
+											名前が渡されなかったときは、デフォルトインスタンスが返されます。
 										</td>
 									</tr>
 									<tr>
 										<th><kbd>$config</kbd></th>
 										<td><pre class="php"><code>array()</code></pre></td>
 										<td>
-										  新しく Asset インスタンスを生成する際に、カスタム設定を渡すことができます。
-										  設定を意味する配列は、asset 設定ファイルと同様の構造を持っています。
-										  渡された設定内容は、<a href="./config.html">ここ</a>で解説されているデフォルトの設定と asset 設定ファイルにマージされますので、
-										  変更したい設定値だけを渡せばよいです。
+											新しく Asset インスタンスを生成する際に、カスタム設定を渡すことができます。
+											設定を意味する配列は、asset 設定ファイルと同様の構造を持っています。
+											渡された設定内容は、<a href="./config.html">ここ</a>で解説されているデフォルトの設定と asset 設定ファイルにマージされますので、
+											変更したい設定値だけを渡せばよいです。
 										</td>
 									</tr>
 								</table>
@@ -109,12 +109,12 @@
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>object - 生成された asset オブジェクト。</td>
+							<td>object - 生成された Asset オブジェクト。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// 独自の検索パスを使って asset オブジェクトを生成します
+								<pre class="php"><code>// 独自の検索パスを使って Asset オブジェクトを生成します
 $asset = Asset::forge('custom', array('paths' => array('custom/assets/'));
 
 // css ファイルをいくつか定義します
@@ -128,7 +128,7 @@ $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code>
 				<article>
 					<h4 class="method" id="method_instance">instance($name = null)</h4>
 					<p>
-					  <strong>instance</strong> メソッドは、名前のついた asset クラスのインスタンスを返します。
+					  <strong>instance</strong> メソッドは、名前のついた Asset クラスのインスタンスを返します。
 					</p>
 					<table class="method">
 						<tbody>
@@ -149,8 +149,8 @@ $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code>
 										<th><kbd>$name</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-										  インスタンスの名前を渡します。もしその名前のインスタンスがなかった場合はfalseが返されます。
-										  名前が指定されなかったときはデフォルトのインスタンスが返されます
+											インスタンスの名前を渡します。もしその名前のインスタンスがなかった場合は false が返されます。
+											名前が指定されなかったときはデフォルトのインスタンスが返されます
 										</td>
 									</tr>
 								</table>
@@ -158,15 +158,15 @@ $asset->css(array('header.css', 'footer.css'), array(), 'layout', false);</code>
 						</tr>
 						<tr>
 							<th>返り値</th>
-							<td>mixed - その名前の asset インスタンス。存在しなければ false が返ります。</td>
+							<td>mixed - その名前の Asset インスタンス。存在しなければ false が返ります。</td>
 						</tr>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>// 独自の検索パスを使った名前がついた asset インスタンスを生成します
+								<pre class="php"><code>// 独自の検索パスを使った名前がついた Asset インスタンスを生成します
 Asset::forge('custom', array('paths' => array('custom/assets/')));
 
-// その asset インスタンスを用いて css ファイルをいくつか定義します
+// その Asset インスタンスを用いて css ファイルをいくつか定義します
 Asset::instance('custom')->css(array('header.css', 'footer.css'), array(), 'layout', false);</code></pre>
 							</td>
 						</tr>
@@ -175,93 +175,93 @@ Asset::instance('custom')->css(array('header.css', 'footer.css'), array(), 'layo
 				</article>
 
 				<p class="note">
-				  Asset クラスの静的メソッドは、デフォルトインスタンスを使用します。
-				  デフォルトインスタンスに対して、例えば検索パスの変更などを行った場合はこのことを忘れないで下さい!
+					Asset クラスの静的メソッドは、デフォルトインスタンスを使用します。
+					デフォルトインスタンスに対して、例えば検索パスの変更などを行った場合はこのことを忘れないで下さい!
 				</p>
 				<br />
 
 			</section>
 
 			<section>
-				<h3>Adding custom asset types</h3>
+				<h3>カスタムアセットタイプの追加</h3>
 
 				<p>
-					The asset instance allows you to add custom types, so you can have it render other files
-					or tags than only CSS, JS or IMG tags.
+					Asset インスタンスには、カスタムタイプを追加でき、
+					CSS、JS、IMG タグ以外のレンダラを使うことができます。
 				</p>
 
 				<article>
 					<h4 class="method" id="method_add_type">add_type($type, $path = null, $renderer = null)</h4>
 					<p>
-						The <strong>add_type</strong> method allows to add custom types to be rendered by the Asset
-						class at runtime.
+						<strong>add_type</strong> メソッドは Asset クラスにランタイムで
+						カスタムタイプを追加します。
 					</p>
 					<table class="method">
 						<tbody>
 						<tr>
-							<th>Static</th>
-							<td>No</td>
+							<th>静的</th>
+							<td>いいえ</td>
 						</tr>
 						<tr>
-							<th>Parameters</th>
+							<th>パラメータ</th>
 							<td>
 								<table class="parameters">
 									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th>Description</th>
+										<th>パラメータ</th>
+										<th>デフォルト</th>
+										<th>説明</th>
 									</tr>
 									<tr>
 										<th><kbd>$type</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-											Name of the type you want to be able to render as part of your View output.
-											You could for example define the type 'youtube' to have Asset render the
-											HTML needed to embed a youtube video on your page.
+											ビュー出力の一部としてレンダリングできるようにするタイプの名前。
+											例えば、'youtube' タイプを定義し、Asset に YouTube の動画を埋め込むための
+											HTML をレンダリングさせることができます。
 										</td>
 									</tr>
 									<tr>
 										<th><kbd>$path</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-											If relevant for your type, the path from which the assets have to be loaded.
-											In the example of 'youtube', you won't need a path, as the assets will be
-											loaded from an internet URL.
+											タイプに関連した、アセットがロードされるパス。
+											'youtube' の例では、アセットはインターネットの URL からロードされるため、
+											必要ありません。
 										</td>
 									</tr>
 									<tr>
 										<th><kbd>$renderer</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-											A closure that will render your type.  The closure will get three parameters
-											passed: the name of the file to render, an array of attributes, and a boolean
-											whether or not there is inline display required. Note that not all of this
-											could be relevant for your type. For example, javascript can be loaded from file
-											or rendered inline between script tags. An image however can only be rendered as
-											an "img" tag, you can not include it inline in the HTML.
+											タイプをレンダリングするクロージャ。
+											クロージャは 3つのパラメータを受けとります: レンダリングするファイルの名前、属性の配列、インラインでの表示が必要かどうかのブール値。
+											これらすべてがそのタイプに関連するわけではないことに注意して下さい。
+											例えば、JavaScript はファイルからロードすることもインラインで script タグの中に
+											レンダリングすることもできますが、画像は "img" タグを使って
+											レンダリングすることはできますが、インラインで HTML に含めることはできません。
 										</td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<th>Returns</th>
-							<td>string - The rendered HTML.</td>
+							<th>返り値</th>
+							<td>string - レンダリングされた HTML。</td>
 						</tr>
 						<tr>
-							<th>Example</th>
+							<th>例</th>
 							<td>
-								<pre class="php"><code>// create a youtube renderer on the default asset instance
+								<pre class="php"><code>// デフォルトの Asset インスタンスに YouTube のレンダラを作成する
 Asset::instance()->add_type(
     'youtube',
     null,
     function ($file, $attr, $inline) {
-		// simple example, just renders an iframe
+		// シンプルな例、iframe をレンダリング
 		return '&lt;iframe width="420" height="315" src="http://www.youtube.com/embed/'.$file.'?autoplay=1"&gt;&lt;/iframe&gt;';
 	}
 );
 
-// render a youtube movie
+// YouTube の動画をレンダリング
 echo Asset::instance()->youtube('XGSy3_Czz8k');</code></pre>
 							</td>
 						</tr>
