@@ -168,7 +168,7 @@
 			<p>
 				これは <code>render()</code> メソッドを明示的に呼び出す場合、あるいは
 				ビューオブジェクトを文字列にキャストする(echo すると自動的にそうなります)ときのみ起きます。つまり、ビューは完全に必要になるまで処理されません。
-				FuelPHP はブラウザに出力する時が来るまで、レンダリングしたビューをメモリに保存しない、 
+				FuelPHP はブラウザに出力する時が来るまで、レンダリングしたビューをメモリに保存しない、
 				ということでもあります。
 			</p>
 
@@ -282,46 +282,46 @@
 
 			<p>View の関数についての説明は、<a href="../classes/view.html">「クラス」の項の View クラス</a>を参照して下さい。</p>
 
-				<h3 id="functions">Passing functions to views</h3>
+				<h3 id="functions">ビューに関数を渡す</h3>
 
-				<p>To pass a View specific function from your code to your View, you use an anonymous function or <a href="http://www.php.net/manual/functions.anonymous.php">Closures</a>:</p>
+				<p>ビューにコードからビュー特定の関数を渡すには、匿名関数や <a href="http://www.php.net/manual/functions.anonymous.php">クロージャ</a> を使用します：</p>
 
-				<pre class="php"><code>// Controller action
+				<pre class="php"><code>// コントローラアクション
 public function action_index()
 {
-	// construct a view object
+	// view オブジェクトを作成
 	$view = \View::forge('page/index');
 
-	// set a closure that returns a value
+	// 値を返すクロージャを設定
 	$view->somevar = function() { return "somevalue"; };
 
-	// this works the same
+	// これは同じ動作
 	$view->set('othervar', function() { return "othervalue"; });
 
-	// for closures with arguments, use set_safe to prevent encoding
+	// 引数を持つクロージャのために、set_safe を利用しエンコーディングを防ぐ
 	$view->set_safe('echo_upper', function($string) { echo strtoupper($string); });
 }
 
-// Which you can then use in your view:
-echo $somevar, $othervar;   // Outputs: "somevalue" "othervalue"
-$echo_upper('this string'); // Outputs: "THIS STRING"</code></pre>
+// その後、ビューで使用できます:
+echo $somevar, $othervar;   // 出力: "somevalue" "othervalue"
+$echo_upper('this string'); // 出力: "THIS STRING"</code></pre>
 
 			<p class="note">
-				Closures are also treated like variables when it comes to filtering.
-				If you have a closure that returns a value, use the <code>set()</code> method, so the
-				value will be encoded according to your filtering setting. If you have a closure that
-				will be used as a modifier, like in the example above, or you have a closure that returns
-				a value that should not be encoded, use the <code>set_safe()</code> method, or pass <code>false</code>
-				as the third parameter of <code>set()</code>.
+				クロージャはフィルタリングに関して値と同様に扱われます。
+				値を返すクロージャの場合、<code>set()</code> メソッドを使えば、
+				その値はフィルタリングの設定に従ってエンコードされます。
+				もし、上記の例のような修飾子の場合や、
+				返される値がエンコードされるべきでないクロージャの場合は、 <code>set_safe()</code> メソッドを使うか、
+				<code>set()</code> メソッドの第 3 引数に <code>false</code> を指定して下さい。
 			</p>
 
 			<p>
-				For legacy applications that expect a closure to never be filtered, edit your applications
-				<strong>config.php</strong> configuration file, add the following key:
+				クロージャがフィルタされないことを期待しているレガシーアプリケーションでは、
+				アプリケーションの設定ファイル <strong>config.php</strong> を編集し、次のキーを追加します:
 			</p>
 
 			<pre class="php"><code>/**
- * Whether to filter closures as well
+ * クロージャをフィルタするかどうか
  */
 'filter_closures'  => false,</code></pre>
 		</div>
