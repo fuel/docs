@@ -136,23 +136,22 @@ class Presenter_Index extends Presenter
 	}
 }
 
-// presenter viewの中で使える:
+// presenter view の中で使える:
 echo $somevar, $othervar;   // 出力: "somevalue" "othervalue"
 $echo_upper('this string'); // 出力: "THIS STRING"</code></pre>
 
 			<p class="note">
-				クロージャはフィルタリングに関して値と同様に扱われます。	
+				クロージャはフィルタリングに関して値と同様に扱われます。
 				値を返すクロージャの場合、<code>set()</code> メソッドを使えば、
 				その値はフィルタリングの設定に従ってエンコードされます。
 				もし、上記の例のような修飾子の場合や、
-				返される値がエンコードされるべきでないクロージャの場合は、
-				<code>set_safe()</code> メソッドを使うか、<code>set()</code> メソッドの第3引数に <code>false</code>
-				を指定して下さい。
+				返される値がエンコードされるべきでないクロージャの場合は、 <code>set_safe()</code> メソッドを使うか、
+				<code>set()</code> メソッドの第 3 引数に <code>false</code> を指定して下さい。
 			</p>
 
 			<p>
 				クロージャがフィルタされないことを期待しているレガシーアプリケーションでは、
-				アプリケーションの設定ファイル <strong>config.php</strong> を編集せい、次のキーを追加します:
+				アプリケーションの設定ファイル <strong>config.php</strong> を編集し、次のキーを追加します:
 			</p>
 
 			<pre class="php"><code>/**
