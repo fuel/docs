@@ -117,7 +117,7 @@
 
 				<h3 id="functions">関数をビューに渡す</h3>
 
-				<p>To pass a View specific function from your Presenter to your View, you use an anonymous function or <a href="http://www.php.net/manual/functions.anonymous.php">Closures</a>:</p>
+				<p>プレゼンタからビューに特定の関数を渡すには、匿名関数または <a href="http://www.php.net/manual/functions.anonymous.php">クロージャ</a> を使います:</p>
 
 				<pre class="php"><code>// プレゼンタの中
 class Presenter_Index extends Presenter
@@ -125,37 +125,38 @@ class Presenter_Index extends Presenter
 
 	public function view()
 	{
-		// set a closure that returns a value
+		// 値を返すクロージャをセット
 		$this->somevar = function() { return "somevalue"; };
 
-		// this works the same
+		// これも同様に機能します
 		$this->set('othervar', function() { return "othervalue"; });
 
-		// for closures with arguments, use set_safe to prevent encoding
+		// 引数付きのクロージャには、エンコーディングを避けるために set_safe を使います
 		$this->set_safe('echo_upper', function($string) { echo strtoupper($string); });
 	}
 }
 
 // presenter viewの中で使える:
-echo $somevar, $othervar;   // Outputs: "somevalue" "othervalue"
-$echo_upper('this string'); // Outputs: "THIS STRING"</code></pre>
+echo $somevar, $othervar;   // 出力: "somevalue" "othervalue"
+$echo_upper('this string'); // 出力: "THIS STRING"</code></pre>
 
 			<p class="note">
-				Closures are also treated like variables when it comes to filtering.
-				If you have a closure that returns a value, use the <code>set()</code> method, so the
-				value will be encoded according to your filtering setting. If you have a closure that
-				will be used as a modifier, like in the example above, or you have a closure that returns
-				a value that should not be encoded, use the <code>set_safe()</code> method, or pass <code>false</code>
-				as the third parameter of <code>set()</code>.
+				クロージャはフィルタリングに関して値と同様に扱われます。	
+				値を返すクロージャの場合、<code>set()</code> メソッドを使えば、
+				その値はフィルタリングの設定に従ってエンコードされます。
+				もし、上記の例のような修飾子の場合や、
+				返される値がエンコードされるべきでないクロージャの場合は、
+				<code>set_safe()</code> メソッドを使うか、<code>set()</code> メソッドの第3引数に <code>false</code>
+				を指定して下さい。
 			</p>
 
 			<p>
-				For legacy applications that expect a closure to never be filtered, edit your applications
-				<strong>config.php</strong> configuration file, add the following key:
+				クロージャがフィルタされないことを期待しているレガシーアプリケーションでは、
+				アプリケーションの設定ファイル <strong>config.php</strong> を編集せい、次のキーを追加します:
 			</p>
 
 			<pre class="php"><code>/**
- * Whether to filter closures as well
+ * クロージャをフィルタするかどうか
  */
 'filter_closures'  => false,</code></pre>
 			</article>
