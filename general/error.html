@@ -193,12 +193,12 @@ public function action_my404()
 			<h4 id="throw_500">500 をスローする</h4>
 
 			<p>
-				There may be moments where your applications simply need to stop and show an error to
-				indicate that something has gone wrong on the server. Normally this is a
+				アプリケーションはサーバーで何かの問題が発生したことを示すために、
+				単に停止しエラーを表示することが必要な瞬間があるかもしれません。 通常、これは
 				<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error">500 Internal
-				Server Error</a>. This exception can be caught in the front controller by defining a
-				<kbd>_500_</kbd> route. It allows you to show a proper error message, do additional
-				error logging, or send a notification to an administrator to get the issue fixed.
+				Server Error</a> です。 この例外は、<kbd>_500_</kbd> ルートを定義することにより、
+				フロントコントローラでキャッチすることができます。 それは適切なエラーメッセージを表示し追加のエラーログを行う、
+				または問題の解決を得るために管理者に通知を送信することができます。
 			</p>
 
 			<p>
@@ -207,22 +207,22 @@ public function action_my404()
 
 			<pre class="php"><code>throw new HttpServerErrorException;</code></pre>
 
-			<h4 id="throw_403">Throwing a 403</h4>
+			<h4 id="throw_403">403 をスローする</h4>
 
 			<p>
-				If you want centralized handling of access violations, you can choose to signal an
-				access violation by throwing an HttpNoAccessException. This exception can be caught
-				in the front controller by defining a <kbd>_403_</kbd> route. The handler could for
-				example store the current URI, ask for a login, and if a success, return to the stored
-				URI so the user can return to where the violation occured.
+				アクセス違反を集中処理をしたい場合は、 HttpNoAccessException をスローすることによって、
+				アクセス違反を通知するために選択することができます。 この例外は <kbd>_403_</kbd>
+				ルートを定義することにより、フロントコントローラでキャッチすることができます。 例えば、
+				ハンドラは現在の URI を記憶することができ、ログインをお願いし、成功の場合、
+				ユーザは違反が発生した場所に戻ることができ、保存された URI に戻ります。
 			</p>
 			<p>
-				Similar to throwing a 404, one can throw a 403 error.
+				404 をスローすると同様に、403 エラーをスローすることができます。
 			</p>
 
 			<pre class="php"><code>throw new HttpNoAccessException;</code></pre>
 
-			<h3 id="cli">Errors in CLI mode</h3>
+			<h3 id="cli">CLI モードでのエラー</h3>
 
 			<p>
 				CLI モードでエラーが起こると、oil console によるインタラクティブな場合でも、タスクを実行した場合でも、
