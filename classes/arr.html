@@ -1018,13 +1018,13 @@ Array
 	"user_surname" => "Lastname",
 	"info" => array(
 		0 => array(
-			"data" = "a value",
+			"data" => "a value",
 		),
 		1 => array(
-			"data" = "",
+			"data" => "",
 		),
 		2 => array(
-			"data" = 0,
+			"data" => 0,
 		),
 	),
 );
@@ -1034,8 +1034,8 @@ print_r(Arr::filter_recursive($arr));
 // 実行結果:
 Array
 (
-	[project_name] => Fuel
 	[user_name] => John
+	[user_surname] => Lastname
 	[info] => Array
 	(
 		[0] => Array
@@ -1051,8 +1051,8 @@ print_r(Arr::filter_recursive($arr, function($item){ return $item !== ""; });
 // 実行結果:
 Array
 (
-	[project_name] => Fuel
 	[user_name] => John
+	[user_surname] => Lastname
 	[info] => Array
 	(
 		[0] => Array
@@ -1181,7 +1181,7 @@ Array
 
 			<article>
 				<h4 id="method_get" class="method">get($array, $key, $default = false)</h4>
-				<p><strong>get</strong> メソッドは指定された配列の要素を返します。多次元配列には、階層をドット (.) で区切ることでアクセスできます。また、初期値はセットされていません。</p>
+				<p><strong>get</strong> メソッドは指定された配列の要素を返します。多次元配列には、階層をドット (.) で区切ることでアクセスできます。また、値がセットされていない場合、初期値を返します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -2395,7 +2395,7 @@ echo Arr::search($arr, 'deep', null, true);
 				<h4 id="method_unique" class="method">unique($array)</h4>
 				<p>
 					<strong>unique</strong> メソッドは、与えられた配列に含まれるすべての一意な値を返します。
-					最初に見つかった値は保持され、重複したものは破棄されます。その場合のキーはそのまま残りす。
+					最初に見つかった値は保持され、重複したものは破棄されます。その場合のキーはそのまま残ります。
 					このメソッドは <kbd>array_unique()</kbd> のように動作しますが、まず第一に配列をソートすることはしませんし、
 					配列中のオブジェクトやクロージャを取り除くこともしません。
 				</p>
@@ -2908,7 +2908,7 @@ $result = Arr::next_by_value($arr, '2', false);
 									<td>検索する値</td>
 								</tr>
 								<tr>
-									<th><kbd>$haystrack</kbd></th>
+									<th><kbd>$haystack</kbd></th>
 									<td><em>array</em></td>
 									<td><em>必須</em></td>
 									<td>検索対象の配列</td>
