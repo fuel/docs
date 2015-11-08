@@ -47,15 +47,15 @@
 
 			<h2>Asset クラス</h2>
 
-			<p>asset クラスは、アセット (js, css, img) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
+			<p>Asset クラスは、アセット (js, css, img) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
 
 			<section>
 				<h3 id="usage">使用方法</h3>
 
 				<p>
 					アセットは 2 通りの方法で使用できます。Asset クラスの静的な使用と、
-					Asset::forge() or Asset::instance() が返す asset オブジェクトです。このセクションでは、静的な使用を紹介します。
-					静的な使用は、 <a href="config.html">configuration</a> で指定した設定を使用したデフォルトインスタンスなら、必ず動作します。
+					Asset::forge() または Asset::instance() が返す Asset オブジェクトです。このセクションでは、静的な使用を紹介します。
+					静的な使用は、 <a href="config.html">設定</a> で指定した設定を使用したデフォルトインスタンスなら、必ず動作します。
 				</p>
 
 				<p class="note">
@@ -65,7 +65,7 @@
 				</p>
 
 				<p>
-					asset オブジェクトの使い方や、Asset::instance() 、 Asset::forge() は <a href="advanced.html">advanced</a> セクションで解説します。
+					Asset オブジェクトの使い方や、Asset::instance() 、 Asset::forge() は <a href="advanced.html">高度な使用法</a> セクションで解説します。
 				</p>
 
 				<article>
@@ -98,9 +98,9 @@
 										<th><kbd>$type</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
 										<td>
-										  フォルダを追加する場合は、追加先のタイプを渡します。Asset クラスはプリセットのタイプとして 'img', 'css', 'js' を持っています。
-										  もしプリセットされていないタイプが渡された場合、そのタイプ用に検索パス配列が新たに作成されます。
-										  同じパスを複数のタイプに追加したい場合は、それらのタイプを一つの配列にして渡します。
+											フォルダを追加する場合は、追加先のタイプを渡します。Asset クラスはプリセットのタイプとして 'img', 'css', 'js' を持っています。
+											もしプリセットされていないタイプが渡された場合、そのタイプ用に検索パス配列が新たに作成されます。
+											同じパスを複数のタイプに追加したい場合は、それらのタイプを一つの配列にして渡します。
 										</td>
 									</tr>
 								</table>
@@ -122,7 +122,7 @@ Asset::add_path('resources/template_2/');
 
 /*
  * 全ての asset タイプに対してグローバルなパスを追加します。
- * 次に img, css の各タイプに個々のパスを追加します。
+ * 次に img、css の各タイプに個々のパスを追加します。
  */
 Asset::add_path('assets/global/', array('css', 'js', 'img'));
 Asset::add_path('assets/icons/', 'img');
@@ -198,14 +198,14 @@ Asset::add_path('resources/templates/dark/')
 								<pre class="php"><code>// グループが null でない場合は、ファイルをグループに追加して '' を返す
 Asset::css(array('header.css', 'footer.css'), array(), 'layout', false);
 
-/* 返り値：
+/* 返り値
  * &lt;link href="../assets/css/inline.css" rel="stylesheet" /&gt;
  * 設定ファイルの auto_render が true の場合。
  * それ以外は、アセットは後でレンダリングするためにデフォルトグループに追加されます。
  */
 echo Asset::css('inline.css');
 
-/* 返り値：
+/* 以下を返します
  * &lt;style&gt;
  * .bold_class { font-weight: bold }
  * #header {height: 50px}
@@ -213,7 +213,7 @@ echo Asset::css('inline.css');
  */
 echo Asset::css('inline.css', array(), null, true);
 
-/* 返り値：
+/* 以下を返します
  * &lt;style&gt;
  * .bold_class { font-weight: bold }
  * #header {height: 50px}
@@ -328,7 +328,7 @@ $path = Asset::find_file('icon.png', 'img','icons/');</code></pre>
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>/* 返り値:
+								<pre class="php"><code>/* 以下を返します
  * &lt;img src="../assets/img/logo.png" id="logo"&gt;
  * 設定ファイルの auto_render が true の場合。
  * それ以外は、アセットは後でレンダリングするためにデフォルトグループに追加されます。
@@ -393,7 +393,7 @@ Asset::img(array('bob.jpg', 'joe.jpg', 'sally.jpg'), array('class' => 'thumbnail
 								<pre class="php"><code>// $raw が false の場合は '' が返る
 Asset::js(array('jquery.js', 'jqueryui.js'), array(), 'jquery', false);
 
-/* 返り値:
+/* 以下を返します
  * &lt;script type="text/javascript"&gt;
  * var menu = getElementById('menu');
  * menu.initialize_menu();
@@ -401,14 +401,14 @@ Asset::js(array('jquery.js', 'jqueryui.js'), array(), 'jquery', false);
  */
 echo Asset::js('menu_init.js', array(), null, true);
 
-/* 返り値:
+/* 以下を返します
  * &lt;script type="text/javascript" src="../assets/js/jquery.js"&gt;&lt;/script&gt;
  * 設定ファイルの auto_render が true の場合。
  * それ以外は、アセットは後でレンダリングするためにデフォルトグループに追加されます。									
  */
 echo Asset::js('jquery.js');
 
-/* 返り値:
+/* 以下を返します
  * &lt;script type="text/javascript"&gt;
  * var menu = getElementById('menu');
  * menu.initialize_menu();
@@ -481,7 +481,7 @@ echo Asset::get_file('jquery.js', 'js');</code></pre>
 					<h4 id="method_remove_path" class="method">remove_path($path, $type = null)</h4>
 					<p>
 						<strong>remove_path</strong> メソッドは、渡されたパスをグローバルアセット検索パス配列から削除します。
-						$type が指定されていたら、そのタイプの検索パスより削除が行われます。
+						$type が指定されていたら、そのタイプの検索パスより削除します。
 					</p>
 					<table class="method">
 						<tbody>
@@ -589,7 +589,7 @@ Asset::remove_path('resources/templates/dark/')
 						<tr>
 							<th>例</th>
 							<td>
-								<pre class="php"><code>/* 返り値:
+								<pre class="php"><code>/* 以下を返します
  * &lt;link href="../assets/css/header.css" rel="stylesheet" /&gt;
  * &lt;link href="../assets/css/footer.css" rel="stylesheet" /&gt;
  */
