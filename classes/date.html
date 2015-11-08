@@ -83,7 +83,7 @@
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Fuel\Core\Date Object</td>
+						<td>Fuel\Core\Date オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -131,7 +131,7 @@ Fuel\Core\Date Object
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Fuel\Core\Date Object</td>
+						<td>Fuel\Core\Date オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -168,19 +168,19 @@ Fuel\Core\Date Object
 								<tr>
 									<th><kbd>$timezone</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>非システムタイムゾーンにおいて、タイムスタンプを変換するのに使われるディスプレイタイムゾーン。</td>
+									<td>システムのタイムゾーンを使わずに、タイムスタンプを変換するのに使われる表示用タイムゾーン。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>mixed, null か、引数が渡されない場合は現在のディスプレイタイムゾーン。</td>
+						<td>mixed, null か、引数が渡されない場合は現在の表示用タイムゾーン。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// set the display timezone to 'America/Lima'
+							<pre class="php"><code>// 表示用のタイムゾーンに 'America/Lima' をセット
 Date::display_timezone('America/Lima');</code></pre>
 						</td>
 					</tr>
@@ -226,7 +226,7 @@ Date::display_timezone('America/Lima');</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>Fuel\Core\Date Object</td>
+						<td>Fuel\Core\Date オブジェクト</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -404,7 +404,7 @@ echo Date::days_in_month(2, 2000); // 29
 								<tr>
 									<th><kbd>$period</kbd></th>
 									<td><i>任意</i></td>
-									<td>返される結果の時間単位。'econd', 'minute', 'hour', 'day', 'week', 'month', 'year', 'decade' (10年) が指定可能。なにも指定されない場合、可能な限り大きい単位で結果が返される。</td>
+									<td>返される結果の時間単位。'second', 'minute', 'hour', 'day', 'week', 'month', 'year', 'decade' (10年) が指定可能。なにも指定されない場合、可能な限り大きい単位で結果が返される。</td>
 								</tr>
 							</table>
 						</td>
@@ -572,12 +572,12 @@ echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M", true);</code></pre>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>echo Date::forge(1294176140, "Europe/London")->get_timezone_abbr(); // returns "GMT"
-echo Date::forge(1294176140, "Europe/Amsterdam")->get_timezone_abbr(); // returns "CET"
+							<pre class="php"><code>echo Date::forge(1294176140, "Europe/London")->get_timezone_abbr(); // "GMT" を返す
+echo Date::forge(1294176140, "Europe/Amsterdam")->get_timezone_abbr(); // "CET" を返す
 
 // グローバルにタイムゾーンの表示を "Europe/Amsterdam" に設定する
 Date::display_timezone('Europe/Amsterdam');
-echo Date::forge(1294176140)->get_timezone_abbr(true); // returns "CET" too</code></pre>
+echo Date::forge(1294176140)->get_timezone_abbr(true); // これも "CET" を返す</code></pre>
 						</td>
 					</tr>
 					</tbody>
