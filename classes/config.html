@@ -300,7 +300,7 @@ Config::delete('blog.items_to_display');</code></pre>
 								<tr>
 									<th><kbd>$overwrite</kbd></th>
 									<td><kbd>false</kbd></td>
-									<td>(オプション) <kbd>true</kbd> の場合、読み込まれる設定項目は、既に読み込まれている項目と非再帰的にマージされます。多次元配列の場合は、マージではなくて配列値がオーバーライトされます。[訳注: すみません。ここの部分、英文が全く持ってわかりかねます]</td>
+									<td>(オプション) <kbd>true</kbd> の場合、読み込まれる設定項目と既に読み込まれている項目とのマージが、非再帰的になります。つまり、項目が多次元配列の場合に、その中の配列値はマージではなく上書きされます。</td>
 								</tr>
 							</table>
 						</td>
@@ -318,7 +318,7 @@ Config::load('custom');
 // "custom" 設定ファイルをグループ名 "custom" で読み込む。
 Config::load('custom', true);
 
-// This loads the "custom.ini" config file in a group named "custom".
+// "custom.ini" 設定ファイルをグループ名 "custom" で読み込む。
 Config::load('custom.ini', true);
 
 // "custom" 設定ファイルをグループ名 "foo" で読み込む。
