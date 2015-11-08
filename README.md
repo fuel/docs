@@ -8,7 +8,7 @@
 
 Pull Request がマージされたら、[CREDITS.md](https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/CREDITS.md) にご自分の名前を追加してください。
 
-現在、以下のブランチがありますが、1.8/develop の翻訳を進めています。
+現在、以下のブランチがありますが、**1.8/develop** の翻訳を進めています。
 
 - 1.8/develop_japanese ブランチ (本家 1.8/develop ブランチに対応)
 - 1.7/develop_japanese ブランチ (本家 1.7/develop ブランチに対応)
@@ -29,7 +29,7 @@ Pull Request がマージされたら、[CREDITS.md](https://github.com/NEKOGET/
 
 バージョン | URL
 ---------|------------------------------------------
-1.8-dev　| http://fuelphp.jp/docs/1.8/
+1.8-dev  | http://fuelphp.jp/docs/1.8/
 1.7      | http://fuelphp.jp/docs/1.7/
 1.6      | http://fuelphp.jp/docs/1.6/
 1.5      | http://fuelphp.jp/docs/1.5/
@@ -47,6 +47,9 @@ Pull Request がマージされたら、[CREDITS.md](https://github.com/NEKOGET/
 
 ## 参考
 
+- FuelPHP ドキュメント翻訳のためのツール https://github.com/kenjis/fuel-docs-tools/blob/master/README.ja.md
+- FuelPHP ドキュメント翻訳のための git メモ http://www.sharkpp.net/blog/2015/11/03/git-memo-for-fuel-docs-trans.html
+- FuelPHP ドキュメント日本語翻訳のおおまかな流れ http://code.ttsoft.jp/2013/12/fuelphp-docs-japanese.html
 - FuelPHP の日本語ドキュメントを 5分で修正する http://d.hatena.ne.jp/Kenji_s/20130117/edit_fuel_docs
 - FuelPHP ドキュメント翻訳へのお誘い http://pneskin2.nekoget.com/press/?p=1044
 - FuelPHP のドキュメント和訳に参加しよう! http://www.slideshare.net/akagisho/lets-translate-fuelphp-docs
