@@ -59,11 +59,11 @@
 			<h5 id="indentation">インデント</h5>
 
 			<p>すべてのインデントはスペースではなくタブを使用すべきです。<br/>
-				しかし、インデントをした後はタブではなくスペースを使用して整形します。</p>
+				しかし、インデント後の整形はタブではなくスペースを使用します。</p>
 
 			<pre class="php"><code>		// 2 つのタブでインデント
-		$var       = 'something';  // タブと整形された値とコメントでインデント
-		$variable  = 'else';       // スペースを使用して上下をインデント</code></pre>
+		$var       = 'something';  // インデントはタブを使用、値とコメントの
+		$variable  = 'else';       // 縦並びの整形はスペースを使用</code></pre>
 
 			<h5 id="line_endings">行の末尾</h5>
 
@@ -88,7 +88,7 @@
 			<h5 id="classes">クラス</h5>
 
 			<p>クラス名は単語の境界にアンダースコアを使用し、クラス名の各単語は大文字で始めます。
-				しかし、アンダースコアはオートロードの際にディレクトリの境界に使用されていいます。
+				しかし、アンダースコアはオートロードの際にディレクトリの区切り記号に変換されます。
 				キャメルケースの使用は避けてください。しかし、サブディレクトリにクラスを置くことが意味がない場合には
 				避けることができません。</p>
 
@@ -115,8 +115,8 @@ core/classes/session/cookie.php</code></pre>
 
 			<p>クラス名同様、メソッド名は単語の境界でキャメルケースではなくアンダースコアを使用します。
 				メソッド名はすべて小文字です。スコープ (public, protected, private) は常に含めます。<br/>
-				名前の１文字目にアンダースコアをを使用できます。これはメソッドが protected/private であることを明記したり、
-				public にする必要があると考えられることを示すためです。</p>
+				名前の１文字目にアンダースコアを使用できます。これはメソッドが protected/private であることを明記したり、
+				必要に迫られて public にしたメソッドを protected/private とみなして欲しいことを表明するためです。</p>
 
 			<pre class="php"><code>class Session
 {
@@ -131,7 +131,7 @@ core/classes/session/cookie.php</code></pre>
 			<pre class="php"><code>class View
 {
 
-	// グローバルに見せる配列データ
+	// ビューに関するグローバルデータの配列
 	protected static $_global_data = array();
 
 	protected static function capture($view_filename, array $view_data)
@@ -173,8 +173,8 @@ function my_function($arg = null)</code></pre>
 
 			<h3 id="control_structures">制御構造</h3>
 
-			<p><kbd>if</kbd>, <kbd>for</kbd>, <kbd>foreach</kbd>, <kbd>while</kbd>, <kbd>switch</kbd> のような制御に関するキーワードは、
-				パラメータや引数のリストまたは値にスペースを続けます。ブレースは新しい行にします。
+			<p><kbd>if</kbd>, <kbd>for</kbd>, <kbd>foreach</kbd>, <kbd>while</kbd>, <kbd>switch</kbd> のような制御に関するキーワードのあとにはスペースを入れ、
+				パラメータや引数のリストまたは値を続けます。ブレースは新しい行にします。
 				<kbd>break</kbd> は case と同じインデントにします。</p>
 
 			<pre class="php"><code>if ($arg === true)
@@ -227,7 +227,7 @@ switch ($var)
 				このような場合、 より短い論理演算子構文を使用することで、PHP の実行ロジックを使用できます。
 				<kbd>and</kbd> を使用すると、最初の部分が true である場合のみ２番目の部分が実行されます。
 				<kbd>or</kbd> を使用すると、最初の部分が false である場合のみ２番目の部分が実行されます。<br/>
-				<kbd>if</kbd> や <kbd>else</kbd> が必要な場合は使用しないでください。単一の条件文のような場合にのみしようしてください。</p>
+				<kbd>if</kbd> や <kbd>else</kbd> が必要な場合は使用しないでください。単一の条件文のような場合にのみ使用してください。</p>
 
 			<pre class="php"><code>// if (isset($var)) { Config::set('var', $var); } の代替
 isset($var) and Config::set('var', $var);
@@ -336,7 +336,7 @@ $var++; // 加算演算子の前にスペースをいれない
 			<h5 id="dot-notation">配列のドット表記</h5>
 
 			<p>
-				厳密に言えば、コーディング標準ではありませんが、このフレームワークのクラス内やこのドキュメントで多用されていますが、
+				厳密に言えばコーディング標準ではありませんが、このフレームワークのクラス内やこのドキュメントで多用されていますし、
 				PHPでの表記として一般的でないため、このフレームワークに不慣れな人を混乱させるかも知れません。
 			</p>
 			<pre class="php"><code>// "always_load.packages = array()" は次のコードの省略表現です:
