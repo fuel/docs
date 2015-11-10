@@ -301,6 +301,12 @@ $user = $mongodb->get_one('users');
 									<td><pre class="php"><code>array()</code></pre></td>
 									<td>where ステートメントの配列。</td>
 								</tr>
+								<tr>
+									<th><kbd>$limit</kbd></th>
+									<td><em>number</em></td>
+									<td><pre class="php"><code>99999</code></pre></td>
+									<td>The number of items to fetch.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -361,7 +367,7 @@ foreach($result as $user)
 									<td>取得したいフィールドの配列</td>
 								</tr>
 								<tr>
-									<th><kbd>$where</kbd></th>
+									<th><kbd>$excludes</kbd></th>
 									<td><em>array</em></td>
 									<td><pre class="php"><code>array()</code></pre></td>
 									<td>除外したいフィールドの配列</td>
@@ -893,7 +899,7 @@ $users = $mongodb->get('users');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_where_between">where_between($field = "", $x)</h4>
+				<h4 class="method" id="method_where_between">where_between($field = "", $x, $y)</h4>
 				<p>
 					<strong>where_between</strong> メソッドは、 'where between' ステートメントをセットします。
 				</p>
@@ -953,7 +959,7 @@ $users = $mongodb->get('users');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_where_between_ne">where_between_ne($field = "", $x)</h4>
+				<h4 class="method" id="method_where_between_ne">where_between_ne($field = "", $x, $y)</h4>
 				<p>
 					<strong>where_between_ne</strong> メソッドは、 'where between and not equal to' ステートメントをセットします。
 				</p>
