@@ -170,9 +170,30 @@ $ php oil refine migrate --version=10</code></pre>
 				<kbd>false</kbd>. This can be useful if your migration has external dependencies, for example the existence of a table created in a different
 				migration.
 			</p>
+
 			<p class="note">
 				This will only abort the migration stack currently being processed, either the application migrations, or the migrations in a single module or package.
 				All migrations in other stacks will be processed as normal.
+			</p>
+
+			<h3 id="prep_migration">Prepping a migration</h3>
+
+			<p>
+				Optionally, a migration class can contain <kbd>before()</kbd> and/or <kbd>after()</kbd> methods, that can be used for prepping, validation
+				or cleanup functionality. If you have generic functionality, you could create a migration base class for your migrations containing these
+				methods, so you don't have to duplicate code in every migration.
+			</p>
+
+			<p>
+				Like with the <kbd>up()</kbd> method, the <kbd>before()</kbd> and <kbd>after()</kbd> methods can return <kbd>false</kbd> to signal a failure.
+				This can be useful if your migration has generic external dependencies, or perhaps additional validation steps. When it does, the migration will
+				be skipped, and ultimately aborted if a retry fails too. In the case of the <kbd>after()</kbd> method returning <kbd>false</kbd>, the migration
+				will be reverted by calling the reverse migration method (i.e. calling down() when on an up() migration, and vice-versa).
+			</p>
+
+			<p class="note">
+				The <kbd>after()</kbd> method will only be called if the migration itself was succesful. If the migration method returns <kbd>false</kbd>, it
+				will not be called.
 			</p>
 		</div>
 
