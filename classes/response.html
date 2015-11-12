@@ -316,7 +316,7 @@ $response->set_status(404);</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>void</td>
+						<td>Response</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -344,6 +344,64 @@ return $response;</code></pre>
 					</tbody>
 				</table>
 				<p class="note">名前はユニークであることに注意してください。同じ名前が使用された場合、上書きされます。</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_headers">set_header($headers, $replace)</h4>
+				<p>The <strong>set_header</strong> method allows set multiple custom HTTP headers at once.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$headers</kbd></th>
+									<td><i>Required</i></td>
+									<td>Assoc array of header name/value combinations.</td>
+								</tr>
+								<tr>
+									<th><kbd>$replace</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>All headers will replace any previous value for the same name by default. If you set
+										this parameter to <kbd>false</kbd> the header won't overwrite and can't be overwritten.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Response</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$response = new Response();
+
+// We'll be outputting a PDF called called downloaded.pdf with no caching
+$response->set_headers(array
+	'Content-Type' => 'application/pdf',
+	'Content-Disposition' => 'attachment; filename="downloaded.pdf"',
+	'Cache-Control' => 'no-cache, no-store, max-age=0, must-revalidate',
+	'Expires' => 'Mon, 26 Jul 1997 05:00:00 GMT');
+	'Pragma' => 'no-cache',
+));
+
+return $response;</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note"> Note that names are unique, and will overwrite each other if an existing name is used.</p>
 			</article>
 
 			<article>
