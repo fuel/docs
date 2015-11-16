@@ -149,7 +149,7 @@ $query->select(
 	'birthdate'
 );
 
-// SELECT `surname`, `email`, `is_active` as active, `birthdate` FROM `users`
+// SELECT `name`, `surname`, `email`, `is_active` AS `active`, `birthdate` FROM `users`
 </code></pre>
 							</td>
 						</tr>
@@ -210,7 +210,7 @@ $query->select_array(array(
 	'birthdate'
 ));
 
-// produces SELECT `surname`, `email`, `is_active` as active, `birthdate` FROM `users ...
+// produces SELECT `name`, `surname`, `email`, `is_active` AS `active`, `birthdate` FROM `users` ...
 
 // カラムの別名を使用し、前回の SELECT で使用したカラムをリセット (上書き) します。
 $query->select_array(array(
@@ -218,7 +218,7 @@ $query->select_array(array(
 	'birthdate'
 ), true);
 
-// produces SELECT `surname` as name, `birthdate` FROM `users ...
+// produces SELECT `surname` AS `name`, `birthdate` FROM `users` ...
 
 </code></pre>
 							</td>
