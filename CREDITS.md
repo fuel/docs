@@ -11,6 +11,7 @@
 * toru81 <https://github.com/toru81>
 * Naoki Morita <https://github.com/morita21>
 * sj-i <https://github.com/sj-i>
+* Kazuma Watanabe <https://github.com/wata727>
 
 ## Version 1.7
 
