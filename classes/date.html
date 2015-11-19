@@ -219,7 +219,7 @@ Date::display_timezone('America/Lima');</code></pre>
 								<tr>
 									<th><kbd>$pattern_key</kbd></th>
 									<td>"local"</td>
-									<td>使用するパターン (config/date.php を参照 または直接のstrptime（）パターン)</td>
+									<td>使用するパターン (config/date.php を参照 または直接の strptime（）パターン)</td>
 								</tr>
 							</table>
 						</td>
@@ -290,7 +290,7 @@ Fuel\Core\Date Object
 						<th>例</th>
 						<td>
 							<pre class="php"><code>$start = time();
-$end = $start + 604800; // 1週間後
+$end = $start + 604800; // 1 週間後
 print_r(Date::range_to_array($start, $end, "+2 days"));
 
 // 結果
@@ -399,12 +399,12 @@ echo Date::days_in_month(2, 2000); // 29
 								<tr>
 									<th><kbd>$now</kbd></th>
 									<td><i>任意</i></td>
-									<td>比較対象とするUNIX タイムスタンプ。指定されない、もしくは null の場合、現在時刻が適用される。</td>
+									<td>比較対象とする UNIX タイムスタンプ。指定されない、もしくは null の場合、現在時刻が適用される。</td>
 								</tr>
 								<tr>
 									<th><kbd>$period</kbd></th>
 									<td><i>任意</i></td>
-									<td>返される結果の時間単位。'second', 'minute', 'hour', 'day', 'week', 'month', 'year', 'decade' (10年) が指定可能。なにも指定されない場合、可能な限り大きい単位で結果が返される。</td>
+									<td>返される結果の時間単位。'second' 、'minute' 、'hour' 、'day' 、'week' 、'month' 、'year' 、'decade' (10 年) が指定可能。なにも指定されない場合、可能な限り大きい単位で結果が返される。</td>
 								</tr>
 							</table>
 						</td>
@@ -416,7 +416,7 @@ echo Date::days_in_month(2, 2000); // 29
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>echo Date::time_ago(strtotime("01 January 2012")); // 1 months ago (2012年2月に実行した場合)
+							<pre class="php"><code>echo Date::time_ago(strtotime("01 January 2012")); // 1 months ago (2012 年 2 月に実行した場合)
 echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012")); // 5 decades ago
 echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'year'); // 48 years ago
 </code></pre>
@@ -478,10 +478,10 @@ echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'yea
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// システムの時間がUTCの場合、"01/04/2011 21:22" を返す
+							<pre class="php"><code>// システムの時間が UTC の場合、"01/04/2011 21:22" を返す
 echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M");
 
-// タイムゾーンに"Europe/Amsterdam"（1月でGMT+1）をセットすると、"01/04/2011 22:22" を返す
+// タイムゾーンに "Europe/Amsterdam" (1 月で GMT+1) をセットすると、"01/04/2011 22:22" を返す
 echo Date::forge(1294176140)->set_timezone('Europe/Amsterdam')->format("%m/%d/%Y %H:%M");
 
 // ディスプレイタイムゾーンを "Europe/Amsterdam" にグローバルに設定する
