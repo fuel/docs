@@ -47,7 +47,7 @@
 
 			<h2>Agent クラス</h2>
 
-			<p>Agent クラスは、ブラウザ種別、バージョン、プラットフォーム、OSなど、クライアントのユーザーエージェント文字列に関する情報を取得可能にします。</p>
+			<p>Agent クラスは、ブラウザ種別、バージョン、プラットフォーム、 OS など、クライアントのユーザーエージェント文字列に関する情報を取得可能にします。</p>
 
 			<section>
 				<h3 id="config">設定</h3>
@@ -107,7 +107,7 @@
 					<h5 id="browsercap_config">Browscap.ini の設定</h5>
 
 					<p>
-						もし PHP に browscap.ini ファイルを使用する設定がなされていない場合, Agent クラスは 設定ファイル <strong>config/agent.php</strong> に定義された
+						もし PHP に browscap.ini ファイルを使用する設定がなされていない場合、Agent クラスは 設定ファイル <strong>config/agent.php</strong> に定義された
 						ファイルのパスから取得し、再利用のためにローカルにキャッシュします。
 						このキャッシュは、設定ファイルに定義されたキャッシュ期限により、定期的に更新されます。
 					</p>
@@ -124,7 +124,7 @@
 								<th>enabled</th>
 								<td>boolean</td>
 								<td><pre class="php"><code>true</code></pre></td>
-								<td>browscap.ini ファイルをダウンロードすることを可能にします。 無効に設定され、かつ PHP が get_browser() 関数からbrowscap 機能が使えるように設定されていない場合, ブラウザ判定は無効になり、Agent クラスは 'unknown' を返します。</td>
+								<td>browscap.ini ファイルをダウンロードすることを可能にします。 無効に設定され、かつ PHP が get_browser() 関数から browscap 機能が使えるように設定されていない場合、ブラウザ判定は無効になり、Agent クラスは 'unknown' を返します。</td>
 							</tr>
 							<tr>
 								<th>method</th>
@@ -134,7 +134,7 @@
 									browscap.ini ファイルを取得するための方法。サポートされる方法は次のとおりです。<ul style="margin:0;">
 										<li>'wrapper': この方法は、 <strong>file_get_contents()</strong>を使用します。 これは推奨される設定ですが、ホスティングプロバイダーにより無効にされているかもしれません。</li>
 										<li>'curl': この方法は <strong>curl</strong> 拡張モジュールを使用します。  'wrapper' が使用できない場合、この設定を行います。</li>
-										<li>'local': 外部的な方法（例えばcronジョブ)により、 browscap.ini ファイルをダウンロードする際に設定します。</li>
+										<li>'local': 外部的な方法（例えば cron ジョブ) により、 browscap.ini ファイルをダウンロードする際に設定します。</li>
 										<li>'sockets': <em><strong>将来的な使用のために予約されています。</strong></em></li>
 									</ul>
 								</td>
@@ -143,7 +143,7 @@
 								<th>url</th>
 								<td>string</td>
 								<td><pre class="php"><code>'http://browsers.garykeith.com/stream.asp?BrowsCapINI'</code></pre></td>
-								<td>取得方法に、'wrapper', 'curl' そして 'sockets' が設定された場合の browscap.ini ファイルのアップデートをダウンロードする URL。</td>
+								<td>取得方法に、'wrapper', 'curl' そして 'sockets' が設定された場合の browscap.ini ファイルのアップデートをダウンロードする URL 。</td>
 							</tr>
 							<tr>
 								<th>proxy</th>
@@ -189,7 +189,7 @@
 								<td>integer</td>
 								<td><pre class="php"><code>null</code></pre></td>
 								<td>
-									プロキシの TCP ポート番号。一般的なポート番号は 3128 (Squid) と 8080 (商用プロキシ、ISA-2006+) または 80 (ISA-2004).
+									プロキシの TCP ポート番号。一般的なポート番号は 3128 (Squid) と 8080 (商用プロキシ、 ISA-2006+) または 80 (ISA-2004) 。
 								</td>
 							</tr>
 							<tr>
@@ -199,8 +199,8 @@
 								<td>
 									プロキシの認証方法。サポートされている方法:<ul style="margin:0;">
 										<li>'none': プロキシは認証を必要賭しない。</li>
-										<li>'basic': Basic 認証。'curl' と 'wrapper' の両方でサポートされています。</li>
-										<li>'ntlm': NTLM/Windows 認証。'curl' でのみサポートされています。</li>
+										<li>'basic': Basic 認証。 'curl' と 'wrapper' の両方でサポートされています。</li>
+										<li>'ntlm': NTLM/Windows 認証。 'curl' でのみサポートされています。</li>
 									</ul>
 								</td>
 							</tr>
@@ -250,8 +250,8 @@
 								<th>expiry</th>
 								<td>integer</td>
 								<td><pre class="php"><code>604800</code></pre></td>
-								<td>キャッシュ有効期限（秒）。 デフォルトでは、7 日。 browscap.ini ファイルは さほど頻繁に更新されないので、 １日１回以上の頻度での更新は推奨しません。
-									<br />最小の設定は 7200 秒 (2時間)。それ以上の頻度でダウンロードした場合、あなたのサーバは browscap の Web サイトからアクセス禁止にされるでしょう!</td>
+								<td>キャッシュ有効期限（秒）。 デフォルトでは、7 日。 browscap.ini ファイルは さほど頻繁に更新されないので、 1 日 1 回以上の頻度での更新は推奨しません。
+									<br />最小の設定は 7200 秒 (2 時間)。それ以上の頻度でダウンロードした場合、あなたのサーバは browscap の Web サイトからアクセス禁止にされるでしょう!</td>
 							</tr>
 							<tr>
 								<th>identifier</th>

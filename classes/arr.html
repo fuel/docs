@@ -153,7 +153,7 @@ echo Arr::is_assoc($arr);
 // 実行結果: true
 
 /*
- * たとえもし '2' が string で定義されていたとしても、PHPは内部的に integer として保管するため、
+ * たとえもし '2' が string で定義されていたとしても、PHP は内部的に integer として保管するため、
  * 連想配列とは認識されません!
  */
 $arr = array(0 => 'foo', 1 => 'bar', '2' => 'baz', 3 => 'yay');
@@ -266,7 +266,7 @@ echo Arr::to_assoc($arr);
 					</tr>
 					<tr>
 						<th>例外</th>
-						<td><kbd>InvalidArgumentException</kbd> 1番目の引数が配列でないか、
+						<td><kbd>InvalidArgumentException</kbd> 1 番目の引数が配列でないか、
 							Iterator インターフェイスを実装していないとき。</td>
 					</tr>
 					<tr>
@@ -340,7 +340,7 @@ Array
 					</tr>
 					<tr>
 						<th>例外</th>
-						<td><kbd>InvalidArgumentException</kbd> 1番目の引数が配列でないか、
+						<td><kbd>InvalidArgumentException</kbd> 1 番目の引数が配列でないか、
 							Iterator インターフェイスを実装していないとき。</td>
 					</tr>
 					<tr>
@@ -481,7 +481,7 @@ Array
 
 			<article>
 				<h4 id="method_flatten_assoc" class="method">flatten_assoc($array, $glue = ':', $reset = true)</h4>
-				<p><strong>flatten_assoc</strong> メソッドは、多次元連想配列を1次元の連想配列に落とし込みます。</p>
+				<p><strong>flatten_assoc</strong> メソッドは、多次元連想配列を 1 次元の連想配列に落とし込みます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -564,7 +564,7 @@ Array
 
 			<article>
 				<h4 id="method_reverse_flatten" class="method">reverse_flatten($array, $glue = ':')</h4>
-				<p><strong>reverse_flatten</strong></p>メソッドは、flattenによってまとめられた1次元配列を元の多次元配列(連想配列含む)に戻します。</p>
+				<p><strong>reverse_flatten</strong></p> メソッドは、flatten によってまとめられた 1 次元配列を元の多次元配列 (連想配列含む) に戻します。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -583,7 +583,7 @@ Array
 								<tr>
 									<th><kbd>$array</kbd></th>
 									<td><em>必須</em></td>
-									<td>戻す1次元配列。</td>
+									<td>戻す 1 次元配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$glue</kbd></th>
@@ -731,7 +731,7 @@ Array
 								<tr>
 									<th><kbd>$prefix</kbd></th>
                                     <td><em>必須</em></td>
-									<td>フィルターに使うプレフィックスr文字列。</td>
+									<td>フィルターに使うプレフィックス文字列。</td>
 								</tr>
 							</table>
 						</td>
@@ -977,7 +977,7 @@ Array
 
 			<article>
 				<h4 id="method_filter_recursive" class="method">filter_recursive($array, $callback = null)</h4>
-				<p><strong>filter_recursive</strong> メソッドは、PHP の array_filter() 関数の再帰バージョンです。array_filter() と同様に、フィルターするかどうかを決めるコールバック関数を渡すことができます。</p>
+				<p><strong>filter_recursive</strong> メソッドは、PHP の array_filter() 関数の再帰バージョンです。 array_filter() と同様に、フィルターするかどうかを決めるコールバック関数を渡すことができます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1594,7 +1594,7 @@ Array
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>boolean。成功の場合は true、$pos が無効な位置の場合は false</td>
+						<td>boolean。成功の場合は true 、$pos が無効な位置の場合は false</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -1620,7 +1620,7 @@ Array
 
 			<article>
 				<h4 id="method_insert_before_key" class="method">insert_before_key(Array &amp;$original, $value, $key)</h4>
-				<p><strong>insert_before_key</strong> メソッドは与えられたキーの手前に要素を１つ追加します。<br />
+				<p><strong>insert_before_key</strong> メソッドは与えられたキーの手前に要素を 1 つ追加します。<br />
 				<u>警告</u>: 元の配列は参照渡しされるので直接書き換えられます。成功かどうかを表すブール値のみが返ります。</p>
 				<table class="method">
 					<tbody>
@@ -1848,7 +1848,7 @@ Array
 								<tr>
 									<th><kbd>$order</kbd></th>
 									<td><pre class="php"><code>'asc'</code></pre></td>
-									<td>ソート順 (asc か desc)。</td>
+									<td>ソート順 (asc か desc) 。</td>
 								</tr>
 								<tr>
 									<th><kbd>$sort_flags</kbd></th>
@@ -2190,7 +2190,7 @@ Array
 			</article>
 			<article>
 				<h4 id="method_merge_assoc" class="method">merge_assoc($array, ...)</h4>
-				<p><strong>merge_assoc</strong> メソッドは2個以上の配列を再帰的にマージします。ただし array_merge_recursive() とは2つの重要な点が異なります。<br/>
+				<p><strong>merge_assoc</strong> メソッドは 2 個以上の配列を再帰的にマージします。ただし array_merge_recursive() とは 2 つの重要な点が異なります。<br/>
 				- それぞれの配列に同じキーで異なる値が含まれていた場合は、
 				  新たな配列を作ってマージすることはせずに、単純に後者が前者を上書きします。<br />
 				- 数字のキーは変更されません</p>
@@ -2338,8 +2338,8 @@ Array
 					<tr>
 						<th>例外</th>
 						<td>
-							<kbd>InvalidArgumentException</kbd> 第1引数が配列ではない。<br />
-							<kbd>InvalidArgumentException</kbd> $default 引数が文字、int、nullのいずれでもない。<br />
+							<kbd>InvalidArgumentException</kbd> 第 1 引数が配列ではない。<br />
+							<kbd>InvalidArgumentException</kbd> $default 引数が文字、 int 、 null のいずれでもない。<br />
 							<kbd>InvalidArgumentException</kbd> $delimiter 引数が文字列ではない。
 						</td>
 					</tr>
@@ -2634,7 +2634,7 @@ Array
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>目的のキーまたは値、配列に目的の要素が存在しない場合は null、渡されたキーが配列内に存在しない場合は false。</td>
+						<td>目的のキーまたは値、配列に目的の要素が存在しない場合は null 、渡されたキーが配列内に存在しない場合は false 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -2642,19 +2642,19 @@ Array
 							<pre class="php"><code>// 検索対象の配列
 $arr = array(2 => 'A', 4 => '2', 6 => 'C');
 
-// 返り値は false, 配列内に 1 のキーは存在しない
+// 返り値は false 、配列内に 1 のキーは存在しない
 $result = Arr::previous_by_key($arr, 1);
 
-// 返り値は null, 手前の要素が存在しない
+// 返り値は null 、手前の要素が存在しない
 $result = Arr::previous_by_key($arr, 2);
 
-// 返り値は false, 配列内に '2' (文字列)のキーは存在しない
+// 返り値は false 、配列内に '2' (文字列) のキーは存在しない
 $result = Arr::previous_by_key($arr, '2', false, true);
 
-// 返り値は 2, 配列内のキー 4 の手前の要素のキー
+// 返り値は 2 、配列内のキー 4 の手前の要素のキー
 $result = Arr::previous_by_key($arr, 4);
 
-// 返り値は 'A', 指定された手前の要素の値
+// 返り値は 'A' 、指定された手前の要素の値
 $result = Arr::previous_by_key($arr, 4, true);
 </code></pre>
 						</td>
@@ -2690,7 +2690,7 @@ $result = Arr::previous_by_key($arr, 4, true);
 								<tr>
 									<th><kbd>$key</kbd></th>
 									<td><em>必須</em></td>
-									<td>一つ次を調べる対象となるキー</td>
+									<td>1 つ次を調べる対象となるキー</td>
 								</tr>
 								<tr>
 									<th><kbd>$get_value</kbd></th>
@@ -2707,7 +2707,7 @@ $result = Arr::previous_by_key($arr, 4, true);
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>目的のキーまたは値、配列に目的の要素が存在しない場合は null、渡されたキーが配列内に存在しない場合は false。</td>
+						<td>目的のキーまたは値、配列に目的の要素が存在しない場合は null 、渡されたキーが配列内に存在しない場合は false 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -2715,19 +2715,19 @@ $result = Arr::previous_by_key($arr, 4, true);
 							<pre class="php"><code>// 検索対象の配列
 $arr = array(2 => 'A', 4 => '2', 6 => 'C');
 
-// 返り値は false, 配列内に 1 のキーは存在しない
+// 返り値は false 、配列内に 1 のキーは存在しない
 $result = Arr::next_by_key($arr, 1);
 
-// 返り値は null, 次の要素は存在しない
+// 返り値は null 、次の要素は存在しない
 $result = Arr::next_by_key($arr, 6);
 
-// 返り値は false, 配列内に '2' (文字列)のキーは存在しない
+// 返り値は false 、配列内に '2' (文字列) のキーは存在しない
 $result = Arr::next_by_key($arr, '2', false, true);
 
-// 返り値は 6, 配列内の 4 のキーの次の要素のキー
+// 返り値は 6 、配列内の 4 のキーの次の要素のキー
 $result = Arr::next_by_key($arr, 4);
 
-// 返り値は 'C', 指定された次の要素の値
+// 返り値は 'C' 、指定された次の要素の値
 $result = Arr::next_by_key($arr, 4, true);
 </code></pre>
 						</td>
@@ -2780,7 +2780,7 @@ $result = Arr::next_by_key($arr, 4, true);
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>目的のキーまたは値、配列に目的の要素が存在しない場合は null、渡された値が配列内に存在しない場合は false。</td>
+						<td>目的のキーまたは値、配列に目的の要素が存在しない場合は null 、渡された値が配列内に存在しない場合は false 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -2788,19 +2788,19 @@ $result = Arr::next_by_key($arr, 4, true);
 							<pre class="php"><code>// 検索対象の配列
 $arr = array(2 => 'A', 4 => '2', 6 => 'C');
 
-// 返り値は false, 配列内に 'Z' の値は存在しない
+// 返り値は false 、配列内に 'Z' の値は存在しない
 $result = Arr::previous_by_value($arr, 'Z');
 
-// 返り値は null, 手前の要素が存在しない
+// 返り値は null 、手前の要素が存在しない
 $result = Arr::previous_by_value($arr, 'A');
 
-// 返り値は false, 配列内には 2 の値を持つ要素は存在しない、あるのは '2' (文字列) のみ
+// 返り値は false 、配列内には 2 の値を持つ要素は存在しない、あるのは '2' (文字列) のみ
 $result = Arr::previous_by_value($arr, 2, false, true);
 
-// 返り値は 'A', 指定された要素の手前の値
+// 返り値は 'A' 、指定された要素の手前の値
 $result = Arr::previous_by_value($arr, '2');
 
-// 返り値は 2, 指定された要素の手前の要素のキー
+// 返り値は 2 、指定された要素の手前の要素のキー
 $result = Arr::previous_by_value($arr, '2', false);
 </code></pre>
 						</td>
@@ -2846,14 +2846,14 @@ $result = Arr::previous_by_value($arr, '2', false);
 								<tr>
 									<th><kbd>$strict</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>値にに厳密な比較を用いるかどうか</td>
+									<td>値に厳密な比較を用いるかどうか</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td>目的のキーまたは値、配列に目的の要素が存在しない場合は null、渡された値が配列内に存在しない場合は false。</td>
+						<td>目的のキーまたは値、配列に目的の要素が存在しない場合は null 、渡された値が配列内に存在しない場合は false 。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -2861,19 +2861,19 @@ $result = Arr::previous_by_value($arr, '2', false);
 							<pre class="php"><code>// 検索対象の配列
 $arr = array(2 => 'A', 4 => '2', 6 => 'C');
 
-// 返り値は false, 配列内に 'Z' の値は存在しない
+// 返り値は false 、配列内に 'Z' の値は存在しない
 $result = Arr::next_by_value($arr, 'Z');
 
-// 返り値は null, 次の要素は存在しない
+// 返り値は null 、次の要素は存在しない
 $result = Arr::next_by_value($arr, 'C');
 
-// 返り値は false, 配列内に 2 の値を持つ要素は存在しない、あるのは '2' (文字列)のみ
+// 返り値は false 、配列内に 2 の値を持つ要素は存在しない、あるのは '2' (文字列)のみ
 $result = Arr::next_by_value($arr, 2, false, true);
 
-// 返り値は 'C', 指定された要素の次の要素の値
+// 返り値は 'C' 、指定された要素の次の要素の値
 $result = Arr::next_by_value($arr, '2');
 
-// 返り値は 6, 指定された要素の次の要素のキー
+// 返り値は 6 、指定された要素の次の要素のキー
 $result = Arr::next_by_value($arr, '2', false);
 </code></pre>
 						</td>
