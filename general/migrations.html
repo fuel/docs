@@ -166,7 +166,7 @@ $ php oil refine migrate --version=10</code></pre>
 			<h3 id="skip_migrations">マイグレーションのスキップ</h3>
 
 			<p>
-				<kbd>up()</kbd> or <kbd>down()</kbd> メソッドで <kbd>false</kbd> を返すことで、マイグレーションプロセスを中断することができます。
+				<kbd>up()</kbd> または <kbd>down()</kbd> メソッドで <kbd>false</kbd> を返すことで、マイグレーションプロセスを中断することができます。
 				これは、マイグレーションが外部に依存している、例えば、別のマイグレーションによって作成されたテーブルがある場合などに
 				便利です。
 			</p>
@@ -176,24 +176,24 @@ $ php oil refine migrate --version=10</code></pre>
 				他のスタックのマイグレーションはすべて通常どおり処理されます。
 			</p>
 
-			<h3 id="prep_migration">Prepping a migration</h3>
+			<h3 id="prep_migration">マイグレーションの準備</h3>
 
 			<p>
-				Optionally, a migration class can contain <kbd>before()</kbd> and/or <kbd>after()</kbd> methods, that can be used for prepping, validation
-				or cleanup functionality. If you have generic functionality, you could create a migration base class for your migrations containing these
-				methods, so you don't have to duplicate code in every migration.
+				必要に応じて、マイグレーションクラスは <kbd>before()</kbd> および/または <kbd>after()</kbd> メソッドを含むことができ、それは、検証またはクリーンアップ機能の準備に使用することができます。
+				一般的な機能を持っている場合は、これらのメソッドを含む移行のためのマイグレーションベースクラスを作成することができるため、
+				すべてのマイグレーションコードを複製する必要はありません。
 			</p>
 
 			<p>
-				Like with the <kbd>up()</kbd> method, the <kbd>before()</kbd> and <kbd>after()</kbd> methods can return <kbd>false</kbd> to signal a failure.
-				This can be useful if your migration has generic external dependencies, or perhaps additional validation steps. When it does, the migration will
-				be skipped, and ultimately aborted if a retry fails too. In the case of the <kbd>after()</kbd> method returning <kbd>false</kbd>, the migration
-				will be reverted by calling the reverse migration method (i.e. calling down() when on an up() migration, and vice-versa).
+				<kbd>up()</kbd> メソッドと同様に、 <kbd>before()</kbd> と <kbd>after()</kbd> メソッドは、失敗を通知するために <kbd>false</kbd> を返すことができます。
+				マイグレーションが一般的な外部依存関係、もしくは追加の検証ステップを持っている場合に役立ちます。 それがない場合には、マイグレーションが省略され、再試行でも障害が発生した場合は最終的に中断されます。
+				<kbd>false</kbd> を返す <kbd>after()</kbd> メソッドの場合、マイグレーションはマイグレーションメソッドを逆に呼び出すことによって
+				(すなわち、 up() のマイグレーション時、そして、その逆も同様に down() を呼び出し) 元に戻されます。
 			</p>
 
 			<p class="note">
-				The <kbd>after()</kbd> method will only be called if the migration itself was succesful. If the migration method returns <kbd>false</kbd>, it
-				will not be called.
+				マイグレーション自体は成功した場合 <kbd>after()</kbd> メソッドのみが呼び出されます。
+				マイグレーションメソッドが <kbd>false</kbd> を返した場合、それは呼び出されません。
 			</p>
 		</div>
 
