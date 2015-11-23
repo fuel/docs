@@ -210,8 +210,8 @@ print_r(Arr::to_assoc($arr));
 // Result:
 Array
 (
-    ["foo"] => 'bar'
-    ["baz"] => 'yay'
+	["foo"] => 'bar'
+	["baz"] => 'yay'
 )
 
 $arr = array('foo', 'bar', 'baz');
@@ -655,7 +655,7 @@ Array
 								</tr>
 								<tr>
 									<th><kbd>$prefix</kbd></th>
-                                    <td><em>required</em></td>
+									<td><em>required</em></td>
 									<td>The string used to filter on</td>
 								</tr>
 								<tr>
@@ -730,7 +730,7 @@ Array
 								</tr>
 								<tr>
 									<th><kbd>$prefix</kbd></th>
-                                    <td><em>required</em></td>
+									<td><em>required</em></td>
 									<td>The string used to filter on</td>
 								</tr>
 							</table>
@@ -765,140 +765,140 @@ Array
 				</table>
 			</article>
 
-            <article>
-                <h4 id="method_filter_suffixed" class="method">filter_suffixed($array, $suffix, $remove_suffix = true)</h4>
-                <p>The <strong>filter_suffixed</strong> method filters the array on a suffix. It returns an array where the key ends with the specified suffix.</p>
-                <table class="method">
-                    <tbody>
-                    <tr>
-                        <th class="legend">Static</th>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <th>Parameters</th>
-                        <td>
-                            <table class="parameters">
-                                <tr>
-                                    <th>Param</th>
-                                    <th>Default</th>
-                                    <th class="description">Description</th>
-                                </tr>
-                                <tr>
-                                    <th><kbd>$array</kbd></th>
-                                    <td><em>required</em></td>
-                                    <td>The array to filter.</td>
-                                </tr>
-                                <tr>
-                                    <th><kbd>$suffix</kbd></th>
-                                    <td><em>required</em></td>
-                                    <td>The string used to filter on</td>
-                                </tr>
-                                <tr>
-                                    <th><kbd>$remove_suffix</kbd></th>
-                                    <td><pre class="php"><code>true</code></pre></td>
-                                    <td>Remove or keep the suffix in the array key?</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Returns</th>
-                        <td>array</td>
-                    </tr>
-                    <tr>
-                        <th>Example</th>
-                        <td>
+			<article>
+				<h4 id="method_filter_suffixed" class="method">filter_suffixed($array, $suffix, $remove_suffix = true)</h4>
+				<p>The <strong>filter_suffixed</strong> method filters the array on a suffix. It returns an array where the key ends with the specified suffix.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to filter.</td>
+								</tr>
+								<tr>
+									<th><kbd>$suffix</kbd></th>
+									<td><em>required</em></td>
+									<td>The string used to filter on</td>
+								</tr>
+								<tr>
+									<th><kbd>$remove_suffix</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>Remove or keep the suffix in the array key?</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
 							<pre class="php"><code>$arr = array(
-                                "name_1" => "John",
-                                "surname_1" => "Lastname",
-                                "name_2" => "Ted",
-                                "surname_2" => "Surname",
-                                );
+								"name_1" => "John",
+								"surname_1" => "Lastname",
+								"name_2" => "Ted",
+								"surname_2" => "Surname",
+								);
 
-                                print_r(Arr::filter_suffixed($arr, "_1"));
+								print_r(Arr::filter_suffixed($arr, "_1"));
 
-                                // Result:
-                                Array
-                                (
-                                [name] => John
-                                [surname] => Lastname
-                                )
+								// Result:
+								Array
+								(
+								[name] => John
+								[surname] => Lastname
+								)
 
-                                // Let's keep the suffix
-                                print_r(Arr::filter_suffixed($arr, "_1", false);
+								// Let's keep the suffix
+								print_r(Arr::filter_suffixed($arr, "_1", false);
 
-                                // Result:
-                                Array
-                                (
-                                [name_1] => John
-                                [surname_1] => Lastname
-                                )
-                            </code></pre>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
+								// Result:
+								Array
+								(
+								[name_1] => John
+								[surname_1] => Lastname
+								)
+							</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 
-            <article>
-                <h4 id="method_remove_suffixed" class="method">remove_suffixed($array, $suffix)</h4>
-                <p>The <strong>remove_suffixed</strong> method removes values from an array if they match a given suffix.</p>
-                <table class="method">
-                    <tbody>
-                    <tr>
-                        <th class="legend">Static</th>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <th>Parameters</th>
-                        <td>
-                            <table class="parameters">
-                                <tr>
-                                    <th>Param</th>
-                                    <th>Default</th>
-                                    <th class="description">Description</th>
-                                </tr>
-                                <tr>
-                                    <th><kbd>$array</kbd></th>
-                                    <td><em>required</em></td>
-                                    <td>The array to remove from.</td>
-                                </tr>
-                                <tr>
-                                    <th><kbd>$suffix</kbd></th>
-                                    <td><em>required</em></td>
-                                    <td>The string used to filter on</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Returns</th>
-                        <td>array</td>
-                    </tr>
-                    <tr>
-                        <th>Example</th>
-                        <td>
+			<article>
+				<h4 id="method_remove_suffixed" class="method">remove_suffixed($array, $suffix)</h4>
+				<p>The <strong>remove_suffixed</strong> method removes values from an array if they match a given suffix.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to remove from.</td>
+								</tr>
+								<tr>
+									<th><kbd>$suffix</kbd></th>
+									<td><em>required</em></td>
+									<td>The string used to filter on</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
 							<pre class="php"><code>$arr = array(
-                                "name_1" => "John",
-                                "surname_1" => "Lastname",
-                                "name_2" => "Ted",
-                                "surname_2" => "Bear",
-                                );
+								"name_1" => "John",
+								"surname_1" => "Lastname",
+								"name_2" => "Ted",
+								"surname_2" => "Bear",
+								);
 
-                                print_r(Arr::remove_suffixed($arr, "_1"));
+								print_r(Arr::remove_suffixed($arr, "_1"));
 
-                                // Result:
-                                Array
-                                (
-                                [name_2] => Ted
-                                [surname_2] => Surname
-                                )
-                            </code></pre>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </article>
+								// Result:
+								Array
+								(
+								[name_2] => Ted
+								[surname_2] => Surname
+								)
+							</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 
 			<article>
 				<h4 id="method_filter_keys" class="method">filter_keys($array, $keys, $remove = false)</h4>
@@ -1046,7 +1046,7 @@ Array
 )
 
 // Let's use a callback
-print_r(Arr::filter_recursive($arr, function($item){ return $item !== ""; });
+print_r(Arr::filter_recursive($arr, function($item){ return $item !== ""; }));
 
 // Result:
 Array
@@ -1054,16 +1054,19 @@ Array
 	[user_name] => John
 	[user_surname] => Lastname
 	[info] => Array
-	(
-		[0] => Array
 		(
-			[data] => a value
+			[0] => Array
+				(
+					[data] => a value
+				)
+			[1] => Array
+				(
+				)
+			[2] => Array
+				(
+					[data] => 0
+				)
 		)
-		[2] => Array
-		(
-			[data] => 0
-		)
-	)
 )
 </code></pre>
 						</td>
@@ -1134,11 +1137,11 @@ print_r(Arr::subset($arr, array('project.name', 'user.name')));
 Array
 (
  	[project] => Array
-         (
+		 (
 			 [name] => Fuel
 		 )
 	[user] => Array
-         (
+		 (
 			 [name] => John
 		 )
 )
@@ -1149,7 +1152,7 @@ print_r(Arr::subset($arr, array('project.name', 'project.manager')));
 Array
 (
  	[project] => Array
-         (
+		 (
 			 [name] => Fuel
 			 [manager] =>
 		 )
@@ -1161,12 +1164,12 @@ print_r(Arr::subset($arr, array('project.name', 'project.manager', 'user', 'not_
 Array
 (
  	[project] => Array
-         (
+		 (
 			 [name] => Fuel
 			 [manager] => Not Provided
 		 )
  	[user] => Array
-         (
+		 (
 			 [name] => John
 			 [surname] => Lastname
 		 )
@@ -2000,41 +2003,41 @@ print_r($collection);
 // Result
 Array
 (
-    [i2] => Array
-        (
-            [name] => Bert
-            [age] => 20
-            [points] => 30
-            [arr] => Array
-                (
-                    [key] => 10
-                )
+	[i2] => Array
+		(
+			[name] => Bert
+			[age] => 20
+			[points] => 30
+			[arr] => Array
+				(
+					[key] => 10
+				)
 
-        )
+		)
 
-    [i7] => Array
-        (
-            [name] => carl
-            [age] => 17
-            [points] => 20
-            [arr] => Array
-                (
-                    [key] => 10
-                )
+	[i7] => Array
+		(
+			[name] => carl
+			[age] => 17
+			[points] => 20
+			[arr] => Array
+				(
+					[key] => 10
+				)
 
-        )
+		)
 
-    [i5] => Array
-        (
-            [name] => Carl
-            [age] => 17
-            [points] => 30
-            [arr] => Array
-                (
-                    [key] => 10
-                )
+	[i5] => Array
+		(
+			[name] => Carl
+			[age] => 17
+			[points] => 30
+			[arr] => Array
+				(
+					[key] => 10
+				)
 
-        )
+		)
 )</code></pre>
 						</td>
 					</tr>
@@ -2572,16 +2575,16 @@ print_r( Arr::reindex($array) );
 // Result:
 Array
 (
-    [0] => 2
-    [three] => 3
-    [1] => Array
-        (
-            [0] => 2
-            [three] => 3
-            [1] => 5
-        )
+	[0] => 2
+	[three] => 3
+	[1] => Array
+		(
+			[0] => 2
+			[three] => 3
+			[1] => 5
+		)
 
-    [2] => 7
+	[2] => 7
 )
 </code></pre>
 						</td>
