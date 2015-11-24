@@ -348,46 +348,46 @@ return $response;</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set_headers">set_headers($headers, $replace)</h4>
-				<p>The <strong>set_headers</strong> method allows set multiple custom HTTP headers at once.</p>
+				<p>The <strong>set_headers</strong> メソッドは複数のカスタム HTTP ヘッダを一度に設定できます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">Static</th>
-						<td>No</td>
+						<th class="legend">静的</th>
+						<td>いいえ</td>
 					</tr>
 					<tr>
-						<th>Parameters</th>
+						<th>パラメータ</th>
 						<td>
 							<table class="parameters">
 								<tr>
-									<th>Param</th>
-									<th>Default</th>
-									<th class="description">Description</th>
+									<th>パラメータ</th>
+									<th>デフォルト</th>
+									<th class="description">説明</th>
 								</tr>
 								<tr>
 									<th><kbd>$headers</kbd></th>
-									<td><i>Required</i></td>
-									<td>Assoc array of header name/value combinations.</td>
+									<td><i>必須</i></td>
+									<td>ヘッダ名/値の連想配列。</td>
 								</tr>
 								<tr>
 									<th><kbd>$replace</kbd></th>
 									<td><pre class="php"><code>true</code></pre></td>
-									<td>All headers will replace any previous value for the same name by default. If you set
-										this parameter to <kbd>false</kbd> the header won't overwrite and can't be overwritten.</td>
+									<td>デフォルトではすべてのヘッダで同じ名前の以前の値は置き換えられます。
+										<kbd>false</kbd> に設定すると、ヘッダは上書きされず、また、上書きできません。</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
-						<th>Returns</th>
+						<th>返り値</th>
 						<td>Response</td>
 					</tr>
 					<tr>
-						<th>Example</th>
+						<th>例</th>
 						<td>
 							<pre class="php"><code>$response = new Response();
 
-// We'll be outputting a PDF called downloaded.pdf with no caching
+// downloaded.php と呼ばれる PDF をキャッシュなしで出力します
 $response->set_headers(array
 	'Content-Type' => 'application/pdf',
 	'Content-Disposition' => 'attachment; filename="downloaded.pdf"',
@@ -401,7 +401,7 @@ return $response;</code></pre>
 					</tr>
 					</tbody>
 				</table>
-				<p class="note"> Note that names are unique, and will overwrite each other if an existing name is used.</p>
+				<p class="note"> ヘッダ名はユニークであり、既存の名前が使われた場合は上書きされることに注意して下さい。</p>
 			</article>
 
 			<article>
