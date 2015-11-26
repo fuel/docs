@@ -30,12 +30,12 @@ Pull Request がマージされたら、[CREDITS.md](https://github.com/NEKOGET/
 バージョン | URL
 ---------|------------------------------------------
 1.8-dev  | http://fuelphp.jp/docs/1.8/
-1.7      | http://fuelphp.jp/docs/1.7/
-1.6      | http://fuelphp.jp/docs/1.6/
-1.5      | http://fuelphp.jp/docs/1.5/
-1.4      | http://fuelphp.jp/docs/1.4/
-1.3      | http://press.nekoget.com/fuelphp_doc/
-1.2      | http://press.nekoget.com/fuelphp_doc_1.2/
+1.7-dev  | http://fuelphp.jp/docs/1.7/
+1.6-dev  | http://fuelphp.jp/docs/1.6/
+1.5-dev  | http://fuelphp.jp/docs/1.5/
+1.4-dev  | http://fuelphp.jp/docs/1.4/
+1.3-dev  | http://press.nekoget.com/fuelphp_doc/
+1.2-dev  | http://press.nekoget.com/fuelphp_doc_1.2/
 
 ## コミュニケーション
 
