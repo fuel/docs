@@ -301,7 +301,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 						</tr>
 						<tr>
 							<th>valid_emails</th>
-							<td><kbd>$separator</kbd> (optional)</td>
+							<td><kbd>$separator</kbd> (オプション)</td>
 							<td>
 								カンマ (または <kbd>$separator</kbd>) で区切られた、有効な email アドレスかどうか。
 							</td>
@@ -343,7 +343,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td>
 								数値が <kbd>$min_val</kbd> から <kbd>$max_val</kbd> の範囲内かどうか。
 								入力値が数値で無い場合については、 <kbd>numeric_min</kbd> ルールを参照してください。
-								<p class="note"><strong>重要:</strong> 端の数値は含む。</p>
+								<p class="note"><strong>重要:</strong> 指定された数値自体も範囲に含まれます。</p>
 							</td>
 						</tr>
 						<tr>
@@ -358,96 +358,96 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 
 				<h4 id="valid_string_rule">Valid string ルール</h4>
 				<p>$flags パラメータで与えられた条件を満たすかどうか検証します。
-				使用できる flag は次の通りです:</p>
+				使用できるフラグは次の通りです:</p>
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Flag</th>
+							<th>フラグ</th>
 							<th>説明</th>
 						</tr>
 						<tr>
 							<th>alpha</th>
-							<td>アルファベットの文字列</td>
+							<td>アルファベットの文字を許可。</td>
 						</tr>
 						<tr>
 							<th>uppercase</th>
-							<td>アルファベット大文字の文字列</td>
+							<td>alpha と組み合わせ使用することでアルファベット大文字だけを許可。</td>
 						</tr>
 						<tr>
 							<th>lowercase</th>
-							<td>アルファベット小文字の文字列</td>
+							<td>alpha と組み合わせ使用することでアルファベット小文字だけを許可。</td>
 						</tr>
 						<tr>
 							<th>specials</th>
-							<td>Allow alphabetical and special language characters.</td>
+							<td>アルファベットと特殊な言語の文字を許可。</td>
 						</tr>
 						<tr>
 							<th>numeric</th>
-							<td>数字の文字列</td>
+							<td>数字の文字を許可。</td>
 						</tr>
 						<tr>
 							<th>spaces</th>
-							<td>(一文字または複数の) スペース</td>
+							<td>通常のスペースを許可。</td>
 						</tr>
 						<tr>
 							<th>newlines</th>
-							<td>(一文字または複数の) 改行文字</td>
+							<td>改行文字を許可。</td>
 						</tr>
 						<tr>
 							<th>tabs</th>
-							<td>(一文字または複数の) タブ</td>
+							<td>タブ文字を許可。</td>
 						</tr>
 						<tr>
 							<th>dots</th>
-							<td>(一文字または複数の) ドット</td>
+							<td>ドットを許可。</td>
 						</tr>
 						<tr>
 							<th>commas</th>
-							<td>(一文字または複数の) カンマ</td>
+							<td>カンマを許可。</td>
 						</tr>
 						<tr>
 							<th>punctuation</th>
-							<td>(一文字または複数の) ドット、カンマ、エクスクラメーションマーク、クエスチョンマーク、コロン、セミコロン</td>
+							<td>ドット、カンマ、エクスクラメーションマーク (訳注：ビックリマークのこと)、クエスチョンマーク、コロン、セミコロンを許可。</td>
 						</tr>
 						<tr>
 							<th>dashes</th>
-							<td>(一文字または複数の) ハイフンとアンダーバー</td>
+							<td>ハイフンおよびアンダーライン (訳注：アンダーバー、アンダースコアとも) を許可。</td>
 						</tr>
 						<tr>
 							<th>singlequotes</th>
-							<td>シングルクォート</td>
+							<td>シングルクォートを許可。</td>
 						</tr>
 						<tr>
 							<th>doublequotes</th>
-							<td>ダブルクォート</td>
+							<td>ダブルクォートを許可。</td>
 						</tr>
 						<tr>
 							<th>quotes</th>
-							<td>シングルクォートとダブルクォート</td>
+							<td>シングルクォートおよびダブルクォートを許可。</td>
 						</tr>
 						<tr>
 							<th>forwardslashes</th>
-							<td>スラッシュ</td>
+							<td>スラッシュを許可。</td>
 						</tr>
 						<tr>
 							<th>backwardslashes</th>
-							<td>バックスラッシュ</td>
+							<td>バックスラッシュを許可。</td>
 						</tr>
 						<tr>
 							<th>slashes</th>
-							<td>スラッシュとバックスラッシュ</td>
+							<td>スラッシュおよびバックスラッシュを許可。</td>
 						</tr>
 						<tr>
 							<th>brackets</th>
-							<td>角括弧 (左と右)</td>
+							<td>開き "[" と閉じ "]" の角括弧を許可。</td>
 						</tr>
 						<tr>
 							<th>braces</th>
-							<td>波括弧 (左と右)</td>
+							<td>開き "{" と閉じ "}" の波括弧を許可。</td>
 						</tr>
 						<tr>
 							<th>utf8</th>
-							<td>UTF8 修飾子 (正規表現)</td>
+							<td>正規表現に UTF-8 修飾子を追加。</td>
 						</tr>
 					</tbody>
 				</table>
