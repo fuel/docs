@@ -147,9 +147,9 @@ $val->add('password', 'Your password')->add_rule('required')
 $val->add('gender', 'Your gender')->add_rule('required')
     ->add_rule('match_collection', array('M', 'F'));</code></pre>
 
-				<p>add_rule() メソッドの第1パラメータには、本機能で提供するルールに加え、任意の PHP のネイティブ関数やコールバック関数、無名関数を指定することもできます。
-				コールバック関数は、バリデーションされる値を第一パラメータに取ります。
-				また add_rule() メソッドにパラメータを渡すと、第二パラメータ以降に取ることもできます。</p>
+				<p>add_rule() メソッドの第 1 パラメータには、本機能で提供するルールに加え、任意の PHP のネイティブ関数やコールバック関数、無名関数を指定することもできます。
+				コールバック関数は、バリデーションされる値を第 1 パラメータに取ります。
+				また add_rule() メソッドにパラメータを渡すと、第 2 パラメータ以降に取ることもできます。</p>
 
 				<p>短縮構文を提供しています。記述が非常に短くなります。
 				配列コールバック、クロージャ、パラメータ(文字列を除く)は受け付けません。match_pattern ルールを使用するとき、パイプ記号は使用できません。
@@ -190,7 +190,7 @@ $input = $val->input();
 $var = $val->validated('username');</code></pre>
 
 				<p>バリデーションは部分的に実行することができます。必須フィールドでさえ、POST やrun() の入力に含まれていないときに無視することができます。
-				run の第二パラメータを true にしてください。</p>
+				run の第 2 パラメータを true にしてください。</p>
 
 				<pre class="php"><code>// username が POST に無い場合に、password のみをバリデートする。
 $val->run(array('password' => 'whatever'), true);</code></pre>
@@ -235,7 +235,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td><kbd>$compare</kbd>, <kbd>$strict</kbd> = false</td>
 							<td>
 								入力値が <kbd>$compare</kbd> と一致するかどうか。
-								比較には == が使用され、第2パラメータが true の場合は === が使用される。
+								比較には == が使用され、第 2 パラメータが true の場合は === が使用される。
 							</td>
 						</tr>
 						<tr>
@@ -260,7 +260,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td><kbd>$collection</kbd> = array(), <kbd>$strict</kbd> = false</td>
 							<td>
 								入力値が、妥当な値で構成されたコレクションにマッチするかどうか。 
-                                比較には == が使用され、第2パラメータが true の場合は === が使用される。
+                                比較には == が使用され、第 2 パラメータが true の場合は === が使用される。
 							</td>
 						</tr>
 						<tr>
@@ -289,7 +289,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td><kbd>$format</kbd>, <kbd>$strict</kbd> = true</td>
 							<td>
 								有効な日付形式かどうか。もし、 <kbd>$format</kbd> が指定された場合は、指定されたフォーマットに基づいて比較されます。
-								第2パラメータが false でない限り、厳密な比較が行われます。(たとえば閏年など)
+								第 2 パラメータが false でない限り、厳密な比較が行われます。(たとえば閏年など)
 							</td>
 						</tr>
 						<tr>
