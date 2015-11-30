@@ -147,9 +147,9 @@ $val->add('password', 'Your password')->add_rule('required')
 $val->add('gender', 'Your gender')->add_rule('required')
     ->add_rule('match_collection', array('M', 'F'));</code></pre>
 
-				<p>add_rule() メソッドの第1パラメータには、本機能で提供するルールに加え、任意の PHP のネイティブ関数やコールバック関数、無名関数を指定することもできます。
-				コールバック関数は、バリデーションされる値を第一パラメータに取ります。
-				また add_rule() メソッドにパラメータを渡すと、第二パラメータ以降に取ることもできます。</p>
+				<p>add_rule() メソッドの第 1 パラメータには、本機能で提供するルールに加え、任意の PHP のネイティブ関数やコールバック関数、無名関数を指定することもできます。
+				コールバック関数は、バリデーションされる値を第 1 パラメータに取ります。
+				また add_rule() メソッドにパラメータを渡すと、第 2 パラメータ以降に取ることもできます。</p>
 
 				<p>短縮構文を提供しています。記述が非常に短くなります。
 				配列コールバック、クロージャ、パラメータ(文字列を除く)は受け付けません。match_pattern ルールを使用するとき、パイプ記号は使用できません。
@@ -190,7 +190,7 @@ $input = $val->input();
 $var = $val->validated('username');</code></pre>
 
 				<p>バリデーションは部分的に実行することができます。必須フィールドでさえ、POST やrun() の入力に含まれていないときに無視することができます。
-				run の第二パラメータを true にしてください。</p>
+				run の第 2 パラメータを true にしてください。</p>
 
 				<pre class="php"><code>// username が POST に無い場合に、password のみをバリデートする。
 $val->run(array('password' => 'whatever'), true);</code></pre>
@@ -235,7 +235,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td><kbd>$compare</kbd>, <kbd>$strict</kbd> = false</td>
 							<td>
 								入力値が <kbd>$compare</kbd> と一致するかどうか。
-								比較には == が使用され、第2パラメータが true の場合は === が使用される。
+								比較には == が使用され、第 2 パラメータが true の場合は === が使用される。
 							</td>
 						</tr>
 						<tr>
@@ -260,7 +260,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td><kbd>$collection</kbd> = array(), <kbd>$strict</kbd> = false</td>
 							<td>
 								入力値が、妥当な値で構成されたコレクションにマッチするかどうか。 
-                                比較には == が使用され、第2パラメータが true の場合は === が使用される。
+                                比較には == が使用され、第 2 パラメータが true の場合は === が使用される。
 							</td>
 						</tr>
 						<tr>
@@ -289,7 +289,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td><kbd>$format</kbd>, <kbd>$strict</kbd> = true</td>
 							<td>
 								有効な日付形式かどうか。もし、 <kbd>$format</kbd> が指定された場合は、指定されたフォーマットに基づいて比較されます。
-								第2パラメータが false でない限り、厳密な比較が行われます。(たとえば閏年など)
+								第 2 パラメータが false でない限り、厳密な比較が行われます。(たとえば閏年など)
 							</td>
 						</tr>
 						<tr>
@@ -301,7 +301,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 						</tr>
 						<tr>
 							<th>valid_emails</th>
-							<td><kbd>$separator</kbd> (optional)</td>
+							<td><kbd>$separator</kbd> (オプション)</td>
 							<td>
 								カンマ (または <kbd>$separator</kbd>) で区切られた、有効な email アドレスかどうか。
 							</td>
@@ -343,7 +343,7 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 							<td>
 								数値が <kbd>$min_val</kbd> から <kbd>$max_val</kbd> の範囲内かどうか。
 								入力値が数値で無い場合については、 <kbd>numeric_min</kbd> ルールを参照してください。
-								<p class="note"><strong>重要:</strong> 端の数値は含む。</p>
+								<p class="note"><strong>重要:</strong> 指定された数値自体も範囲に含まれます。</p>
 							</td>
 						</tr>
 						<tr>
@@ -358,96 +358,96 @@ $val->add_field('email', 'Email address', 'match_value[me@mydomain.com,1]|valid_
 
 				<h4 id="valid_string_rule">Valid string ルール</h4>
 				<p>$flags パラメータで与えられた条件を満たすかどうか検証します。
-				使用できる flag は次の通りです:</p>
+				使用できるフラグは次の通りです:</p>
 				<table class="config">
 					<tbody>
 						<tr class="header">
-							<th>Flag</th>
+							<th>フラグ</th>
 							<th>説明</th>
 						</tr>
 						<tr>
 							<th>alpha</th>
-							<td>アルファベットの文字列</td>
+							<td>アルファベットの文字を許可。</td>
 						</tr>
 						<tr>
 							<th>uppercase</th>
-							<td>アルファベット大文字の文字列</td>
+							<td>alpha と組み合わせ使用することでアルファベット大文字だけを許可。</td>
 						</tr>
 						<tr>
 							<th>lowercase</th>
-							<td>アルファベット小文字の文字列</td>
+							<td>alpha と組み合わせ使用することでアルファベット小文字だけを許可。</td>
 						</tr>
 						<tr>
 							<th>specials</th>
-							<td>Allow alphabetical and special language characters.</td>
+							<td>アルファベットと特殊な言語の文字を許可。</td>
 						</tr>
 						<tr>
 							<th>numeric</th>
-							<td>数字の文字列</td>
+							<td>数字の文字を許可。</td>
 						</tr>
 						<tr>
 							<th>spaces</th>
-							<td>(一文字または複数の) スペース</td>
+							<td>通常のスペースを許可。</td>
 						</tr>
 						<tr>
 							<th>newlines</th>
-							<td>(一文字または複数の) 改行文字</td>
+							<td>改行文字を許可。</td>
 						</tr>
 						<tr>
 							<th>tabs</th>
-							<td>(一文字または複数の) タブ</td>
+							<td>タブ文字を許可。</td>
 						</tr>
 						<tr>
 							<th>dots</th>
-							<td>(一文字または複数の) ドット</td>
+							<td>ドットを許可。</td>
 						</tr>
 						<tr>
 							<th>commas</th>
-							<td>(一文字または複数の) カンマ</td>
+							<td>カンマを許可。</td>
 						</tr>
 						<tr>
 							<th>punctuation</th>
-							<td>(一文字または複数の) ドット、カンマ、エクスクラメーションマーク、クエスチョンマーク、コロン、セミコロン</td>
+							<td>ドット、カンマ、エクスクラメーションマーク (訳注：ビックリマークのこと)、クエスチョンマーク、コロン、セミコロンを許可。</td>
 						</tr>
 						<tr>
 							<th>dashes</th>
-							<td>(一文字または複数の) ハイフンとアンダーバー</td>
+							<td>ハイフンおよびアンダーライン (訳注：アンダーバー、アンダースコアとも) を許可。</td>
 						</tr>
 						<tr>
 							<th>singlequotes</th>
-							<td>シングルクォート</td>
+							<td>シングルクォートを許可。</td>
 						</tr>
 						<tr>
 							<th>doublequotes</th>
-							<td>ダブルクォート</td>
+							<td>ダブルクォートを許可。</td>
 						</tr>
 						<tr>
 							<th>quotes</th>
-							<td>シングルクォートとダブルクォート</td>
+							<td>シングルクォートおよびダブルクォートを許可。</td>
 						</tr>
 						<tr>
 							<th>forwardslashes</th>
-							<td>スラッシュ</td>
+							<td>スラッシュを許可。</td>
 						</tr>
 						<tr>
 							<th>backwardslashes</th>
-							<td>バックスラッシュ</td>
+							<td>バックスラッシュを許可。</td>
 						</tr>
 						<tr>
 							<th>slashes</th>
-							<td>スラッシュとバックスラッシュ</td>
+							<td>スラッシュおよびバックスラッシュを許可。</td>
 						</tr>
 						<tr>
 							<th>brackets</th>
-							<td>角括弧 (左と右)</td>
+							<td>開き "[" と閉じ "]" の角括弧を許可。</td>
 						</tr>
 						<tr>
 							<th>braces</th>
-							<td>波括弧 (左と右)</td>
+							<td>開き "{" と閉じ "}" の波括弧を許可。</td>
 						</tr>
 						<tr>
 							<th>utf8</th>
-							<td>UTF8 修飾子 (正規表現)</td>
+							<td>正規表現に UTF-8 修飾子を追加。</td>
 						</tr>
 					</tbody>
 				</table>
