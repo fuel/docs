@@ -97,19 +97,25 @@
 			special statements that allow you match anything or just a segment:</p>
 
 			<ul>
-				<li><kbd>:any</kbd> - This matches anything from that point on in the URI</li>
+				<li><kbd>:any</kbd> - This matches anything from that point on in the URI, does not match "nothing"</li>
+				<li><kbd>:everything</kbd> - Like <kbd>:any</kbd>, but also matches "nothing"</li>
 				<li><kbd>:segment</kbd> - This matches only 1 segment in the URI, but that segment can be anything</li>
 				<li><kbd>:num</kbd> - This matches any numbers</li>
 				<li><kbd>:alpha</kbd> - This matches any alpha characters, including UTF-8</li>
 				<li><kbd>:alnum</kbd> - This matches any alphanumeric characters, including UTF-8</li>
 			</ul>
 
-			<p>Here are some examples:</p>
+			<p>Here are some examples. Notice the subtle differences between <kbd>:any</kbd> and <kbd>:everything</kbd>:</p>
 
 			<pre class="php"><code>return array(
-    'blog/(:any)'      => 'blog/entry/$1', // Routes /blog/entry_name to /blog/entry/entry_name
-    '(:segment)/about' => 'site/about/$1', // Routes /en/about to /site/about/en
-    '(\d{2})/about'    => 'site/about/$1', // Routes /12/about to /site/about/12
+    'blog/(:any)'       => 'blog/entry/$1', // Routes /blog/entry_name to /blog/entry/entry_name
+                                            //   matches /blog/, does not match /blogging and /blog
+    'blog(:any)'        => 'blog/entry$1',  // Routes /blog/entry_name to /blog/entry/entry_name
+                                            //   matches /blog/ and /blogging, does not match /blog
+    'blog(:everything)' => 'blog/entry$1',  // Routes /blog/entry_name to /blog/entry/entry_name
+                                            //   matches /blog/, /blogging and /blog
+    '(:segment)/about'  => 'site/about/$1', // Routes /en/about to /site/about/en
+    '(\d{2})/about'     => 'site/about/$1', // Routes /12/about to /site/about/12
 );</code></pre>
 
 
