@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+		var class_prefix = 'Query_Builder::';
+	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>Query Builder - Classes - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					Documentation
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2 id="introduction">Query_Builder class</h2>
+
+			<p>
+				The <strong>Query_Builder</strong> class is the parent class for all Query_Builder classes. It contains the main code for compiling and executing a query.
+				It also handles queries that are handcrafted, and constructed using <kbd>DB::query</kbd>.
+			</p>
+
+			<article>
+				<h4 class="method" id="method_type">type()</h4>
+				<p>
+					The <strong>type</strong> method returns the type of query defined by the instance, as defined by the DB class
+					constants SELECT, INSERT, UPDATE or DELETE.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None.
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Integer. The type of query this object defines.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// check if this is a DELETE
+$query = \DB::query('DELETE * FROM table', \DB::DELETE);
+if ($query->type() == \DB::DELETE)
+{
+	// do something
+}
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					If no type is given when constructing a query, or if the query is generated, this method will return <kbd>null</kbd>.
+					In that case, the type will be determined at execution time.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_cached">cached($lifetime = null, $cache_key = null, $cache_all = true)</h4>
+				<p>
+					The <strong>cached</strong> method enables the result of the query to be cached for a specified amount of time.
+					If the exact same query is executed again within the lifetime defined, the cached result is returned instead.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$lifetime</kbd></th>
+										<td><em>integer</em></td>
+										<td><em>null</em></td>
+										<td>number of seconds to cache or null for the default cache timeout.</td>
+									</tr>
+									<tr>
+										<th><kbd>$cache_key</kbd></th>
+										<td><em>string</em></td>
+										<td><em>null</em></td>
+										<td>name of the cache key to be used or null for an automatically generated cache key.</td>
+									</tr>
+									<tr>
+										<th><kbd>$cache_all</kbd></th>
+										<td><em>boolean</em></td>
+										<td><em>true</em></td>
+										<td>if true, all results will be cached, if false, only non-empty results will be cached.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>
+								Database_Query
+							</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// Cache the result from this query for 60 seconds
+$table = 'table';
+$query = DB::query('SELECT * FROM :tablename', DB::SELECT);
+$result = $query->as_object()->cached(60, 'AllFromTable', false)->execute();
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_as_assoc">as_assoc()</h4>
+				<p>
+					When called, the result is return as an associative array, instead of as objects. This is the default.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								None
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>
+								Indexed array of assoc arrays
+							</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// return StdClass objects
+$table = 'table';
+$query = DB::query('SELECT * FROM :tablename', DB::SELECT);
+$result = $query->as_assoc()->execute();
+foreach ($result as $row)
+{
+	echo $row['id'];
+}
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_as_object">as_object($class = true)</h4>
+				<p>
+					When called, the result is return as an array of objects. If no argument is passed, of if the default value
+					<kbd>true</kbd> is passed, the rows in the result will be returned as instances of <strong>StdClass</strong>.
+					If you pass a class name, instances of that class will be returned instead.
+				</p>
+				<p class="note">
+					This is particularly useful if you want a custom query to return instances of Model_Crud or an Orm Model. Note
+					that is these cases, the result <strong>MUST</strong> contain the complete primary key!
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$class</kbd></th>
+										<td><em>string</em></td>
+										<td><em>true</em></td>
+										<td>The name of the class to be used for result objects.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>
+								Indexed array of objects
+							</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// return StdClass objects
+$table = 'table';
+$query = DB::query('SELECT * FROM :tablename', DB::SELECT);
+$result = $query->as_object()->execute();
+foreach ($result as $row)
+{
+	echo $row->id;
+}
+
+// have ORM model objects return instead
+$result = $query->as_object('Model_Tablename')->execute();
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_connection">set_connection($db)</h4>
+				<p>
+					The <strong>set_connection</strong> method allows you to execute the query against a specific database connection.
+					If not specified, the query runs against the connection defined as "default" in your database configuration. It is
+					mainly used to be able to dynamically swap the database used to run the query, independent of the code that actually
+					executes the query.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><em>string</em></td>
+										<td><em>null</em></td>
+										<td>The database connection name.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>
+								Database_Query
+							</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// assign a value to a query parameter
+$table = 'table';
+$query = DB::query('DELETE * FROM :tablename', DB::DELETE);
+$query->param('tablename', $table);
+
+// set the query to run on an alternate connection
+$query->set_connection('2nd-db');
+$result = $query->execute();
+
+// equivalent to
+$result = $query->execute('2nd-db');
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_compile">compile($db = null)</h4>
+				<p>
+					The <strong>compile</strong> method will compile the SQL defined within the Query object, and return it. It will
+					return the SQL in the dialect defined by the database connection passed, the database connection set, or the default
+					connection. The SQL dialect used will depend of the driver the connection defines.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><em>string</em></td>
+										<td><em>null</em></td>
+										<td>The database connection name.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>
+								string, the compiled SQL statement
+							</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// assign a value to a query parameter
+$table = 'table';
+$query = DB::query('DELETE * FROM :tablename', DB::DELETE);
+$query->param('tablename', $table);
+
+// compile the query, returns: DELETE * FROM table
+$sql = $query->compile();
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_execute">execute($db = null)</h4>
+				<p>
+					The <strong>execute</strong> method will executed the compiled SQL as defined within the Query object, and return its
+					results. It will use the connection passed, the connection set, or the default connection to find the driver to
+					execute it, in this order.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><em>string</em></td>
+										<td><em>null</em></td>
+										<td>The database connection name.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>
+								Database_Query_Result for SELECT type queries<br />
+								Database_Query_Cached for SELECT type query results that are returned from cache<br />
+								The insert id for INSERT type queries (if an auto_increment key is used)<br />
+								The number of affected rows for UPDATE type queries<br />
+							</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// assign a value to a query parameter
+$table = 'table';
+$query = DB::query('DELETE * FROM :tablename', DB::DELETE);
+$query->param('tablename', $table);
+
+// execute the query
+$query->execute();
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<h3 id="parameters">Query parameters and parameter binding</h3>
+
+			<p>
+				When you want to code SQL queries by hand, it is strongly advised not to work with string concatenations, but use parameters
+				and parameter replacement instead. It will keep your code much cleaner and more secure, your queries easier to update, and
+				the values in your query easier to change or update.
+			</p>
+
+								<pre class="php"><code>// set some variables
+$table = 'table';
+$id = 123;
+$name = 'John';
+
+// don't use
+$query = DB::query('SELECT * FROM '.$table.'. WHERE id = '.$id.' AND name = "'.$name.'"');
+
+// but use
+$query = DB::query('SELECT * FROM :tablename WHERE id = :id AND name = :name');
+$query->parameters(array(
+	'tablename' => $table,
+	'id' => $id,
+	'name' => $name
+});
+</code></pre>
+
+			<p>
+				Using parameter replacement makes sure your variables are properly quoted, preventing SQL injection.
+			</p>
+
+			<article>
+				<h4 class="method" id="method_param">param($param, $value)</h4>
+				<p>
+					The <strong>param</strong> method allows you to set the value of a parameter in the query.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$param</kbd></th>
+										<td><em>string</em></td>
+										<td><em>required</em></td>
+										<td>the parameter name</td>
+									</tr>
+									<tr>
+										<th><kbd>$value</kbd></th>
+										<td><em>string</em></td>
+										<td><em>required</em></td>
+										<td>the value to assign to the parameter</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Database_Query</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// assign a value to a query parameter
+$table = 'table';
+$query = DB::query('DELETE * FROM :tablename', DB::DELETE);
+$query->param('tablename', $table);
+
+// update the variable
+$table = 'newtable';
+
+// DELETE * FROM `table`;
+$sql = $query->compile();
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_parameters">parameters(array $params)</h4>
+				<p>
+					The <strong>parameters</strong> method allows you to set multiple parameter values in the query.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$params</kbd></th>
+										<td><em>array</em></td>
+										<td><em>required</em></td>
+										<td>assoc array of parameter/value combinations</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Database_Query</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// assign values to query parameters
+$table = 'table';
+$query = DB::query('DELETE * FROM :tablename WHERE `id` = :id', DB::DELETE);
+$query->parameters(array('tablename' => $table, 'id' => 1));
+
+// DELETE * FROM `table` WHERE `id` = 1;
+$sql = $query->compile();
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_bind">bind($param, &amp; $var)</h4>
+				<p>
+					The <strong>bind</strong> method allows you to bind a parameter to a variable in your code.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$param</kbd></th>
+										<td><em>string</em></td>
+										<td><em>required</em></td>
+										<td>the parameter name</td>
+									</tr>
+									<tr>
+										<th><kbd>$var</kbd></th>
+										<td><em>string</em></td>
+										<td><em>required</em></td>
+										<td>the variable to bind the parameter to</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Database_Query</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// bind a query parameter
+$table = 'tablename';
+$query = DB::query('DELETE * FROM :tablename', DB::DELETE);
+$query->bind('tablename', $table);
+
+// update the variable
+$table = 'newtable';
+
+// DELETE * FROM `newtable`;
+$sql = $query->compile();
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>
