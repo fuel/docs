@@ -1009,10 +1009,12 @@ $user_array = $user->to_array();
 							<pre class="php"><code>// Inside your model
 protected function pre_save(&$query)
 {
-	// change the query
-	$query->set(array('field' => 'value'));
-}
-</code></pre>
+	// conditionally add a where clause
+	if ($something)
+	{
+		$query->where('field', '=', $something);
+	}
+}</code></pre>
 						</td>
 					</tr>
 					</tbody>
