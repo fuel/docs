@@ -97,19 +97,25 @@
 			あるいは特定セグメントにマッチさせたりすることが出来ます。</p>
 
 			<ul>
-				<li><kbd>:any</kbd> - URI の任意の部分にマッチする</li>
+				<li><kbd>:any</kbd> - URI の任意の部分にマッチする, does not match "nothing"</li>
+				<li><kbd>:everything</kbd> - Like <kbd>:any</kbd>, but also matches "nothing"</li>
 				<li><kbd>:segment</kbd> - URI の 1 つのセグメントのみにマッチする。しかしそのセグメントは任意のものであっていい。</li>
 				<li><kbd>:num</kbd> - 何らかの数値にマッチする。</li>
 				<li><kbd>:alpha</kbd> - 何らかのアルファベットにマッチする。UTF-8 を含みます。</li>
 				<li><kbd>:alnum</kbd> - 何らかのアルファベットと数字にマッチする。 UTF-8 を含みます。</li>
 			</ul>
 
-			<p>いくつかの例:</p>
+			<p>いくつかの例。 Notice the subtle differences between <kbd>:any</kbd> and <kbd>:everything</kbd>:</p>
 
 			<pre class="php"><code>return array(
-    'blog/(:any)'      => 'blog/entry/$1', // /blog/entry_name が /blog/entry/entry_name に経路付けられる
-    '(:segment)/about' => 'site/about/$1', // /en/about が /site/about/en に経路付けられる
-    '(\d{2})/about'    => 'site/about/$1', // /12/about が /site/about/12 に経路付けられる
+    'blog/(:any)'       => 'blog/entry/$1', // Routes /blog/entry_name to /blog/entry/entry_name
+                                            //   matches /blog/, does not match /blogging and /blog
+    'blog(:any)'        => 'blog/entry$1',  // Routes /blog/entry_name to /blog/entry/entry_name
+                                            //   matches /blog/ and /blogging, does not match /blog
+    'blog(:everything)' => 'blog/entry$1',  // Routes /blog/entry_name to /blog/entry/entry_name
+                                            //   matches /blog/, /blogging and /blog
+    '(:segment)/about'  => 'site/about/$1', // Routes /en/about to /site/about/en
+    '(\d{2})/about'     => 'site/about/$1', // Routes /12/about to /site/about/12
 );</code></pre>
 
 
@@ -219,7 +225,7 @@ echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.8/develop/general/routing.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/general/routing.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/general/routing.html">GitHubで修正</a> ]
 			</p>
 		</footer>

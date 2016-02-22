@@ -162,6 +162,21 @@ $ php composer.phar update
 
 			<p>メインの設定は app/config/config.php にあります。好きに編集してください。</p>
 
+			<h2 id="url_rewriting">URL rewriting</h2>
+
+			<p>
+				Fuel comes with default rewrite rules for Apache (.htaccess) and IIS (web.config). You can find
+				these files in the web application DOCROOT, by default this is the "public folder". If you use Nginx,
+				please find an <a href="#nginx">example</a> here.
+			</p>
+			<p class="note">
+				Please note that in some default webserver configuration, URL rewriting is disabled by default. To
+				quickly check if this is the case, make a typo in your rewrite config (for example, in your .htaccess
+				file). If your webserver can read and process the file, a typo should give you a 500 Server error. If
+				the typo you introduced doesn't make a change, changes are rewriting or htaccess processing is disabled
+				in the global config.
+			</p>
+
 			<h2 id="install_inside_root">ドキュメントルート内にインストールする</h2>
 
 			<p>ポイント 3 で説明したように、セキュリティの観点から Web サーバのドキュメントルート内に Fuel をインストール <strong>しない</strong> ことを強く推奨します。</p>
@@ -227,7 +242,7 @@ $ php composer.phar update
 				これを無効にし、バーチャルホストの定義に rewrite のルールを追加することを検討してください。
 			</p>
 
-			<h4>Nginx</h4>
+			<h4 id="nginx">Nginx</h4>
 
 			<p>
 				Nginx はクライアントの設定ファイルをサポートしていませんので、Nginx の設定ファイルにバーチャルホストのための rewrite ルールを追加する必要があります。
@@ -274,7 +289,7 @@ $ php composer.phar update
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.8/develop/installation/instructions.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/installation/instructions.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/installation/instructions.html">GitHubで修正</a> ]
 			</p>
 		</footer>

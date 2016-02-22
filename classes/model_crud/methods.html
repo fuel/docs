@@ -1009,10 +1009,12 @@ $user_array = $user->to_array();
 							<pre class="php"><code>// モデルの中で
 protected function pre_save(&$query)
 {
-	// クエリを変更
-	$query->set(array('field' => 'value'));
-}
-</code></pre>
+	// conditionally add a where clause
+	if ($something)
+	{
+		$query->where('field', '=', $something);
+	}
+}</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -1406,7 +1408,7 @@ protected function prep_values($data)
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/model_crud/methods.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/model_crud/methods.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/model_crud/methods.html">GitHubで修正</a> ]
 			</p>
 		</footer>

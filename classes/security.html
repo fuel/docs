@@ -158,7 +158,7 @@
 						<tr>
 							<th>csrf_autoload</th>
 							<td>boolean</td>
-							<td><pre class="php"><code>true</code></pre></td>
+							<td><pre class="php"><code>false</code></pre></td>
 							<td>
 								true にすると、check_token() を使用して CSRF トークンを自動的にチェックする。チェックに失敗すると SecurityException 例外が投げられる。
 							</td>
@@ -169,6 +169,14 @@
 							<td><pre class="php"><code>array('post', 'put', 'delete')</code></pre></td>
 							<td>
 								csrf_autoload を true にすると、この配列にある http メソッドすべてで CSRF トークンが検証される。
+							</td>
+						</tr>
+						<tr>
+							<th>csrf_auto_token</th>
+							<td>boolean</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								When true, Form::open() adds CSRF token hidden field automatically.
 							</td>
 						</tr>
 					</tbody>
@@ -596,7 +604,7 @@ $text = e($text);</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/security.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/security.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/security.html">GitHubで修正</a> ]
 			</p>
 		</footer>

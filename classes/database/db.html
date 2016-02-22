@@ -111,6 +111,63 @@ $query = DB::query('SELECT * FROM `users`');
 			</article>
 
 			<article>
+				<h4 class="method" id="method_instance">instance()</h4>
+				<p>
+					The <strong>instance</strong> method returns an instance of Database_Connection. It allows you to directly access a database instance, for example
+					when you have a need to use multiple database connections at the same time.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><em>null</em></td>
+										<td>The database connection name.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>an instance of Database_Connection.</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>FuelException, if the connection name passed is not defined in your database configuration.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// get the default connection
+$db = DB::instance();
+
+// get a named connection
+$db = DB::instance('backup');</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+
+
+
+
+
+
+			<article>
 				<h4 class="method" id="method_last_query">last_query()</h4>
 				<p><strong>last_query</strong> メソッドは、最後に実行した SQL クエリを返します。</p>
 				<table class="method">
@@ -1267,7 +1324,7 @@ catch (Exception $e)
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2015 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 [ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/database/db.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/database/db.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/database/db.html">GitHubで修正</a> ]
 			</p>
 		</footer>
