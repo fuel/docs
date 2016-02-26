@@ -100,22 +100,22 @@ key=value</code></pre>
 			<p>ファイルの種類を指定しなかった場合は、Config::load() はデフォルトの 'php' を使用します。</p>
 
 			<p class="note">
-				If you have more complex configuration values, you can opt to define them as a closure. By default, the closure is returned when you <kbd>get()</kbd> the config
-				key, and evaluated at runtime, either by you calling it as a function, or wrapping it into <kbd>Fuel::value()</kbd> to get the closures result.
-				If you don't want this behavior, but cache and re-use the result (for example because your closure always returns the same result), you have to wrap the
-				closure into <kbd>Fuel::value()</kbd> in your config file where you define the closure.
+				より複雑な設定値を持っている場合は、それらをクロージャとして定義することを選ぶことができます。 デフォルトでは、設定キーを <kbd>get()</kbd> した時にクロージャを返し、
+				実行時に評価され、関数として、または <kbd>Fuel::value()</kbd> にくるむ、いずれかの方法で、それを呼び出しクロージャの結果を取得します。
+				この振る舞いを必要とせず、しかし (例えば、クロージャが常に同じ結果を返すため) 結果をキャッシュし再利用する場合、
+				クロージャを定義し設定ファイル内でクロージャを <kbd>Fuel::value()</kbd> にくるむ必要があります。
 				<br /><br />
-				The same is true if you want to pass a closure to the <kbd>set()</kbd> method. If you want to store the closures result and not the closure itself, you have
-				to wrap the closure into <kbd>Fuel::value()</kbd> when passing it to the <kbd>set()</kbd> method.
+				<kbd>set()</kbd> メソッドにクロージャを渡したい場合も同様です。 もしクロージャの結果ではなく、クロージャ自体を格納する場合には、
+				<kbd>set()</kbd> メソッドに渡すときにクロージャを <kbd>Fuel::value()</kbd> にくるむ必要があります。
 				<br /><br />
-				Note that you can only define closures in config files of type "php".
+				"PHP" タイプの設定ファイル内でのみクロージャが定義できることに注意してください。
 			</p>
 
 			<h3 id="config_groups">Config グループ</h3>
 
 			<p>config グループは、設定オプションの範囲を決めるための簡単な方法です。名前の衝突を、グループによって回避します。全ての config ファイル (db.php や routes.php 、その他) は、メインの <kbd>config.php</kbd> を除いて、その config ファイル名と同名称のグループとして読み込まれます。</p>
 
-			<h3 id="config_methods">Methods</h3>
+			<h3 id="config_methods">メソッド</h3>
 
 			<article>
 				<h4 class="method" id="method_get">get($item, $default = null)</h4>
