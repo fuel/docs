@@ -150,7 +150,7 @@ key=value</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><kbd>$item</kbd> か、もし <kbd>$item</kbd> が存在しない時は <kbd>$default</kbd>。<kbd>$item</kbd> がグループの時は、グループ全体を含む配列。</td>
+						<td><kbd>$item</kbd> か、もし <kbd>$item</kbd> が存在しない時は <kbd>$default</kbd>。 <kbd>$item</kbd> がグループの時は、グループ全体を含む配列。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -184,7 +184,7 @@ $dev_host = Config::get('db.dev.connection.hostname');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set">set($item, $value)</h4>
-				<p><strong>set</strong> メソッドは指定した <kbd>$item</kbd> に <kbd>$value</kbd> をセットします。<kbd>$item</kbd> は、<kbd>get()</kbd> メソッドと同様にドット (<kbd>.</kbd>) で区切ることが出来ます。</p>
+				<p><strong>set</strong> メソッドは指定した <kbd>$item</kbd> に <kbd>$value</kbd> をセットします。 <kbd>$item</kbd> は、<kbd>get()</kbd> メソッドと同様にドット (<kbd>.</kbd>) で区切ることが出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -239,7 +239,7 @@ Config::set('blog.items_to_display', 5);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_delete">delete($item)</h4>
-				<p><strong>delete</strong> メソッドは指定した <kbd>$item</kbd> を削除します。<kbd>$item</kbd> は、<kbd>set()</kbd> メソッドや <kbd>get()</kbd> メソッドと同様、ドットで区切ることが出来ます。</p>
+				<p><strong>delete</strong> メソッドは指定した <kbd>$item</kbd> を削除します。 <kbd>$item</kbd> は、<kbd>set()</kbd> メソッドや <kbd>get()</kbd> メソッドと同様、ドットで区切ることが出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -280,7 +280,7 @@ Config::delete('blog.items_to_display');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_load">load($file, $group = null, $reload = false, $overwrite = false)</h4>
-				<p><strong>load</strong> メソッドは設定ファイルをシステムに読み込みます。要求されたファイルについて、config ディレクトリを検索します。オプションとして、名前の衝突を回避するために設定ファイルをグループ化できます。</p>
+				<p><strong>load</strong> メソッドは設定ファイルをシステムに読み込みます。要求されたファイルについて、 config ディレクトリを検索します。オプションとして、名前の衝突を回避するために設定ファイルをグループ化できます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -299,12 +299,12 @@ Config::delete('blog.items_to_display');</code></pre>
 								<tr>
 									<th><kbd>$file</kbd></th>
 									<td><i>必須</i></td>
-									<td>設定ファイルのパスは、config ディレクトリに対する相対パスです。ファイル拡張子を含まないでください (拡張子として ".php" であることが決め打ちされています) 。読み込まれたモジュールの設定ファイルを強制的に読み込むために、モジュール名のプレフィックスを付けることが出来ます。</td>
+									<td>設定ファイルのパスは、 config ディレクトリに対する相対パスです。ファイル拡張子を含まないでください (拡張子として ".php" であることが決め打ちされています) 。読み込まれたモジュールの設定ファイルを強制的に読み込むために、モジュール名のプレフィックスを付けることが出来ます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$group</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>(オプション) 利用するグループ名。<kbd>true</kbd> の場合、グループ名は <kbd>$file</kbd> で作られる名前と同じになります。<kbd>null</kbd> の場合、読み込まれる設定はルートの設定とマージされます。</td>
+									<td>(オプション) 利用するグループ名。 <kbd>true</kbd> の場合、グループ名は <kbd>$file</kbd> で作られる名前と同じになります。 <kbd>null</kbd> の場合、読み込まれる設定はルートの設定とマージされます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$reload</kbd></th>
@@ -321,12 +321,12 @@ Config::delete('blog.items_to_display');</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><kbd>配列</kbd> には、読み込まれた設定が入っています。もし設定ファイルが既に読み込まれている場合は、<kbd>false</kbd> が返ります。</td>
+						<td><kbd>配列</kbd> には、読み込まれた設定が入っています。もし設定ファイルが既に読み込まれている場合は、 <kbd>false</kbd> が返ります。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// ルートの設定と "custom" 設定ファイル がマージされる。
+							<pre class="php"><code>// ルートの設定と "custom" 設定ファイルがマージされる。
 Config::load('custom');
 
 // "custom" 設定ファイルをグループ名 "custom" で読み込む。
