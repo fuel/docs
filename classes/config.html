@@ -47,7 +47,7 @@
 
 			<h2>Config クラス</h2>
 
-			<p>Config クラスは、Fuel の設定オプションの殆どすべてを処理することが出来ます。config ファイルの読み込み、値の取得、設定を行う場合、本クラスが常用されます。</p>
+			<p>Config クラスは、Fuel の設定オプションの殆どすべてを処理することが出来ます。設定ファイルの読み込み、値の取得、設定を行う場合、本クラスが常用されます。</p>
 
 			<h3 id="config_groups">設定ファイルの種類</h3>
 
@@ -100,22 +100,22 @@ key=value</code></pre>
 			<p>ファイルの種類を指定しなかった場合は、Config::load() はデフォルトの 'php' を使用します。</p>
 
 			<p class="note">
-				If you have more complex configuration values, you can opt to define them as a closure. By default, the closure is returned when you <kbd>get()</kbd> the config
-				key, and evaluated at runtime, either by you calling it as a function, or wrapping it into <kbd>Fuel::value()</kbd> to get the closures result.
-				If you don't want this behavior, but cache and re-use the result (for example because your closure always returns the same result), you have to wrap the
-				closure into <kbd>Fuel::value()</kbd> in your config file where you define the closure.
+				より複雑な設定値を持っている場合は、それらをクロージャとして定義することを選ぶことができます。 デフォルトでは、設定キーを <kbd>get()</kbd> した時にクロージャを返し、
+				実行時に評価され、関数として、または <kbd>Fuel::value()</kbd> にくるむ、いずれかの方法で、それを呼び出しクロージャの結果を取得します。
+				この振る舞いを必要とせず、しかし (例えば、クロージャが常に同じ結果を返すため) 結果をキャッシュし再利用する場合、
+				クロージャを定義し設定ファイル内でクロージャを <kbd>Fuel::value()</kbd> にくるむ必要があります。
 				<br /><br />
-				The same is true if you want to pass a closure to the <kbd>set()</kbd> method. If you want to store the closures result and not the closure itself, you have
-				to wrap the closure into <kbd>Fuel::value()</kbd> when passing it to the <kbd>set()</kbd> method.
+				<kbd>set()</kbd> メソッドにクロージャを渡したい場合も同様です。 もしクロージャの結果ではなく、クロージャ自体を格納する場合には、
+				<kbd>set()</kbd> メソッドに渡すときにクロージャを <kbd>Fuel::value()</kbd> にくるむ必要があります。
 				<br /><br />
-				Note that you can only define closures in config files of type "php".
+				"PHP" タイプの設定ファイル内でのみクロージャが定義できることに注意してください。
 			</p>
 
 			<h3 id="config_groups">Config グループ</h3>
 
-			<p>config グループは、設定オプションの範囲を決めるための簡単な方法です。名前の衝突を、グループによって回避します。全ての config ファイル (db.php や routes.php 、その他) は、メインの <kbd>config.php</kbd> を除いて、その config ファイル名と同名称のグループとして読み込まれます。</p>
+			<p>config グループは、設定オプションの範囲を決めるための簡単な方法です。名前の衝突を、グループによって回避します。全ての設定ファイル (db.php や routes.php 、その他) は、メインの <kbd>config.php</kbd> を除いて、その設定ファイル名と同名称のグループとして読み込まれます。</p>
 
-			<h3 id="config_methods">Methods</h3>
+			<h3 id="config_methods">メソッド</h3>
 
 			<article>
 				<h4 class="method" id="method_get">get($item, $default = null)</h4>
@@ -150,7 +150,7 @@ key=value</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><kbd>$item</kbd> か、もし <kbd>$item</kbd> が存在しない時は <kbd>$default</kbd>。<kbd>$item</kbd> がグループの時は、グループ全体を含む配列。</td>
+						<td><kbd>$item</kbd> か、もし <kbd>$item</kbd> が存在しない時は <kbd>$default</kbd>。 <kbd>$item</kbd> がグループの時は、グループ全体を含む配列。</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -184,7 +184,7 @@ $dev_host = Config::get('db.dev.connection.hostname');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_set">set($item, $value)</h4>
-				<p><strong>set</strong> メソッドは指定した <kbd>$item</kbd> に <kbd>$value</kbd> をセットします。<kbd>$item</kbd> は、<kbd>get()</kbd> メソッドと同様にドット (<kbd>.</kbd>) で区切ることが出来ます。</p>
+				<p><strong>set</strong> メソッドは指定した <kbd>$item</kbd> に <kbd>$value</kbd> をセットします。 <kbd>$item</kbd> は、<kbd>get()</kbd> メソッドと同様にドット (<kbd>.</kbd>) で区切ることが出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -239,7 +239,7 @@ Config::set('blog.items_to_display', 5);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_delete">delete($item)</h4>
-				<p><strong>delete</strong> メソッドは指定した <kbd>$item</kbd> を削除します。<kbd>$item</kbd> は、<kbd>set()</kbd> メソッドや <kbd>get()</kbd> メソッドと同様、ドットで区切ることが出来ます。</p>
+				<p><strong>delete</strong> メソッドは指定した <kbd>$item</kbd> を削除します。 <kbd>$item</kbd> は、<kbd>set()</kbd> メソッドや <kbd>get()</kbd> メソッドと同様、ドットで区切ることが出来ます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -280,7 +280,7 @@ Config::delete('blog.items_to_display');</code></pre>
 
 			<article>
 				<h4 class="method" id="method_load">load($file, $group = null, $reload = false, $overwrite = false)</h4>
-				<p><strong>load</strong> メソッドは設定ファイルをシステムに読み込みます。要求されたファイルについて、config ディレクトリを検索します。オプションとして、名前の衝突を回避するために設定ファイルをグループ化できます。</p>
+				<p><strong>load</strong> メソッドは設定ファイルをシステムに読み込みます。要求されたファイルについて、 config ディレクトリを検索します。オプションとして、名前の衝突を回避するために設定ファイルをグループ化できます。</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -299,12 +299,12 @@ Config::delete('blog.items_to_display');</code></pre>
 								<tr>
 									<th><kbd>$file</kbd></th>
 									<td><i>必須</i></td>
-									<td>設定ファイルのパスは、config ディレクトリに対する相対パスです。ファイル拡張子を含まないでください (拡張子として ".php" であることが決め打ちされています) 。読み込まれたモジュールの設定ファイルを強制的に読み込むために、モジュール名のプレフィックスを付けることが出来ます。</td>
+									<td>設定ファイルのパスは、 config ディレクトリに対する相対パスです。ファイル拡張子を含まないでください (拡張子として ".php" であることが決め打ちされています) 。読み込まれたモジュールの設定ファイルを強制的に読み込むために、モジュール名のプレフィックスを付けることが出来ます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$group</kbd></th>
 									<td><kbd>null</kbd></td>
-									<td>(オプション) 利用するグループ名。<kbd>true</kbd> の場合、グループ名は <kbd>$file</kbd> で作られる名前と同じになります。<kbd>null</kbd> の場合、読み込まれる設定はルートの設定とマージされます。</td>
+									<td>(オプション) 利用するグループ名。 <kbd>true</kbd> の場合、グループ名は <kbd>$file</kbd> で作られる名前と同じになります。 <kbd>null</kbd> の場合、読み込まれる設定はルートの設定とマージされます。</td>
 								</tr>
 								<tr>
 									<th><kbd>$reload</kbd></th>
@@ -321,12 +321,12 @@ Config::delete('blog.items_to_display');</code></pre>
 					</tr>
 					<tr>
 						<th>返り値</th>
-						<td><kbd>配列</kbd> には、読み込まれた設定が入っています。もし設定ファイルが既に読み込まれている場合は、<kbd>false</kbd> が返ります。</td>
+						<td><kbd>配列</kbd> には、読み込まれた設定が入っています。もし設定ファイルが既に読み込まれている場合は、 <kbd>false</kbd> が返ります。</td>
 					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// ルートの設定と "custom" 設定ファイル がマージされる。
+							<pre class="php"><code>// ルートの設定と "custom" 設定ファイルがマージされる。
 Config::load('custom');
 
 // "custom" 設定ファイルをグループ名 "custom" で読み込む。
