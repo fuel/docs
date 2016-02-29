@@ -350,7 +350,7 @@ function setup() {
 	}
 
 	var title = $('#header div h1').html();
-	$('#header div h1').html(title.replace('</strong>', '</strong><span>'+DocVersion+'</span>'));
+	$('#header div h1').html(title.replace('<strong>', '<span>'+DocVersion+'</span><strong>'));
 
 	if(Cookie.read('menu') === 'true') {
 		$('#toc_handle').trigger('snapopen');
