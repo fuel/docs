@@ -403,7 +403,7 @@ Model_Article::query()
 // creates WHERE `author` = 16 AND (`date` &lt; 1348404127 OR `draft` = 1)
 </code></pre>
 					<p class="note">
-						To create a nested OR, use <kbd>or_where_open()</kbd> and <kbd>or_where_close()</kbd>. Allways make sure
+						To create a nested OR, use <kbd>or_where_open()</kbd> and <kbd>or_where_close()</kbd>. Always make sure
 						your open and close methods match!
 					</p>
 				</article>
@@ -424,7 +424,7 @@ Model_Article::query()
 
                                 <article>
                                     <h3 id="custom_sql"><a class="internal_link" href="#/custom_sql">Custom SQL</a></h3>
-                                    <p>It is also possible to perform custom SQL statements and have the result returned as an Orm model (or list of models). Although this is not part of the Orm itself it is useful to know. Take a look at the <a href="../../classes/database/db.html#/method_query">DB::query()</a> function for more information.</a></p>
+                                    <p>It is also possible to perform custom SQL statements and have the result returned as an Orm model (or list of models). Although this is not part of the Orm itself it is useful to know. Take a look at the <a href="../../classes/database/db.html#/method_query">DB::query()</a> function for more information.</p>
                                     <pre class="php"><code>DB::query('SELECT * FROM `articles` WHERE `id` = 1')-&gt;as_object('Model_Article')-&gt;execute();</code></pre>
                                     <p class="note">It is recommended that you use the <kbd>query()</kbd> function where ever possible though</p>
                                </article>
