@@ -370,18 +370,18 @@ var pane_names = {
 
 panes.main = {
 	"Basic": {
-		"Home":			"index.html",
-		"Table of Contents": "toc.html",
-		"Requirements":	"requirements.html",
-		"License":		"license.html",
-		"Contribute":	"contribute.html",
-		"Credits":		"credits.html"
+		"Home":					"index.html",
+		"Table of Contents":	"toc.html",
+		"Requirements":			"requirements.html",
+		"License":				"license.html",
+		"Contribute":			"contribute.html",
+		"Credits":				"credits.html",
+		"External info":		"installation/external.html"
 	},
 	"Installation": {
 		"Instructions":			"installation/instructions.html",
 		"Download":				"installation/download.html",
 		"Upgrade":				"installation/upgrade.html",
-		"Tutorials":			"installation/tutorials.html",
 		"Troubleshooting":		"installation/troubleshooting.html"
 	},
 	"General": {
