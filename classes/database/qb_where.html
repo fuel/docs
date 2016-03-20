@@ -133,6 +133,14 @@ $query->where(function($query){
 // Resulting in:
 // SELECT * FROM `users` WHERE `name` != "John" AND `surname` = "Doe"
 // AND (`email` = "jim@jim.com" OR `email` = "haha@joke.com")
+
+
+// Example using a logic operator
+$query = DB::delete('users')->where('id', 'IN', array(1,2,3));
+
+//Resulting in:
+// DELETE FROM `users` WHERE `id` IN (1, 2, 3)
+
 </code></pre>
 							</td>
 						</tr>
