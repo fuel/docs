@@ -78,7 +78,7 @@
 
 			<h3 id="basics">基本的なルーティング</h3>
 
-			<p>左辺に記述されたルートは、リクエストされた URI と比較されます。もしマッチしていれば、そのリクエストは右辺の URI に経路づけられます。</p>
+			<p>左辺に記述されたルートは、リクエストされた URI と比較されます。もし一致していれば、そのリクエストは右辺の URI に経路づけられます。</p>
 
 			<p>このルーティングによって、次のようなことが可能になります。:</p>
 
@@ -92,30 +92,30 @@
 			<h3 id="slightly_advanced">やや高度なルーティング</h3>
 
 			<p>ルート設定には正規表現を含めることが出来ます。
-			左辺とリクエストされた URI がマッチしたら、そのマッチした部分を右辺に代入するといったような、
-			左辺の正規表現による右辺の後方参照が利用可能です。また、次のようないくつかの特別な宣言があり、それを用いて何かにマッチさせたり、
-			あるいは特定セグメントにマッチさせたりすることが出来ます。</p>
+			左辺とリクエストされた URI が一致したら、その一致した部分を右辺に代入するといったような、
+			左辺の正規表現による右辺の後方参照が利用可能です。また、次のようないくつかの特別な宣言があり、それを用いて何かに一致させたり、
+			あるいは特定セグメントに一致させたりすることが出来ます。</p>
 
 			<ul>
-				<li><kbd>:any</kbd> - URI の任意の部分にマッチする, does not match "nothing"</li>
-				<li><kbd>:everything</kbd> - Like <kbd>:any</kbd>, but also matches "nothing"</li>
-				<li><kbd>:segment</kbd> - URI の 1 つのセグメントのみにマッチする。しかしそのセグメントは任意のものであっていい。</li>
-				<li><kbd>:num</kbd> - 何らかの数値にマッチする。</li>
-				<li><kbd>:alpha</kbd> - 何らかのアルファベットにマッチする。UTF-8 を含みます。</li>
-				<li><kbd>:alnum</kbd> - 何らかのアルファベットと数字にマッチする。 UTF-8 を含みます。</li>
+				<li><kbd>:any</kbd> - URI の任意の部分と一致、"何もない" には一致しない</li>
+				<li><kbd>:everything</kbd> - <kbd>:any</kbd> と同様、しかし "何もない" にも一致</li>
+				<li><kbd>:segment</kbd> - URI の 1 つのセグメントのみに一致、しかしそのセグメントは任意のものであっていい</li>
+				<li><kbd>:num</kbd> - 任意の数値と一致</li>
+				<li><kbd>:alpha</kbd> - UTF-8 を含む、任意のアルファベットと一致</li>
+				<li><kbd>:alnum</kbd> - UTF-8 を含む、任意のアルファベットや数字と一致</li>
 			</ul>
 
-			<p>いくつかの例。 Notice the subtle differences between <kbd>:any</kbd> and <kbd>:everything</kbd>:</p>
+			<p>ここにいくつかの例があります。 <kbd>:any</kbd> と <kbd>:everything</kbd> の間の微妙な違いに注意:</p>
 
 			<pre class="php"><code>return array(
-    'blog/(:any)'       => 'blog/entry/$1', // Routes /blog/entry_name to /blog/entry/entry_name
-                                            //   matches /blog/, does not match /blogging and /blog
-    'blog(:any)'        => 'blog/entry$1',  // Routes /blog/entry_name to /blog/entry/entry_name
-                                            //   matches /blog/ and /blogging, does not match /blog
-    'blog(:everything)' => 'blog/entry$1',  // Routes /blog/entry_name to /blog/entry/entry_name
-                                            //   matches /blog/, /blogging and /blog
-    '(:segment)/about'  => 'site/about/$1', // Routes /en/about to /site/about/en
-    '(\d{2})/about'     => 'site/about/$1', // Routes /12/about to /site/about/12
+    'blog/(:any)'       => 'blog/entry/$1', // /blog/entry_name が /blog/entry/entry_name に経路付けられ、
+                                            //   /blog/ と一致します。 /blogging や /blog とは一致しません。
+    'blog(:any)'        => 'blog/entry$1',  // /blog/entry_name が /blog/entry/entry_name に経路付けられ、
+                                            //   /blog/ や /blogging と一致します。 /blog とは一致しません。
+    'blog(:everything)' => 'blog/entry$1',  // /blog/entry_name が /blog/entry/entry_name に経路付けられ、
+                                            //   /blog/ 、 /blogging や /blog と一致します。
+    '(:segment)/about'  => 'site/about/$1', // /en/about が /site/about/en に経路付けられる
+    '(\d{2})/about'     => 'site/about/$1', // /12/about が /site/about/12 に経路付けられる
 );</code></pre>
 
 
