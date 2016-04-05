@@ -18,8 +18,8 @@
 		<header id="header">
 			<div class="table">
 				<h1>
-					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<strong>Documentation</strong>
 				</h1>
 
 				<form id="google_search">
@@ -2023,6 +2023,68 @@ $collections = $mongodb->list_collections();
 					</tbody>
 				</table>
 			</article>
+
+			<article>
+				<h4 class="method" id="dump">dump($collection_name = null, $path = null)</h4>
+				<p>
+					The <strong>dump</strong> method allows you to dump one or more collections to a file, in json format.</a>
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>collection_name</kbd></th>
+									<td><em>mixed</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>A single string to specify a collection, an array of strings to specify multiple collections, or <kbd>null</kbd> for all collections.</td>
+								</tr>
+								<tr>
+									<th><kbd>path</kbd></th>
+									<td><em>string</em></td>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Path to write the dump to. If not given, the dump will be made to APPPATH."tmp/mongo-YYYYMMDD".</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Bool, true.</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>
+							InvalidPathException, if the file can not be written to the path given<br/>
+							FileAccessException, if there is no permission to write the file
+						</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Get a mongo instance
+$mongodb = \Mongo_Db::instance();
+
+// dump all collections to APPPATH.'tmp'
+$mongodb->dump();
+</code></pre>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 		</div>
 
 		<footer>

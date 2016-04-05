@@ -350,7 +350,7 @@ function setup() {
 	}
 
 	var title = $('#header div h1').html();
-	$('#header div h1').html(title.replace('</strong>', '</strong><span>'+DocVersion+'</span>'));
+	$('#header div h1').html(title.replace('<strong>', '<span>'+DocVersion+'</span><strong>'));
 
 	if(Cookie.read('menu') === 'true') {
 		$('#toc_handle').trigger('snapopen');
@@ -369,13 +369,14 @@ var pane_names = {
 };
 
 panes.main = {
-    "基本": {
-        "ホーム":			"index.html",
-        "目次": "toc.html",
-        "要件":	"requirements.html",
-        "ライセンス":		"license.html",
-        "貢献":	"contribute.html",
-        "クレジット表示":		"credits.html"
+	"基本": {
+		"ホーム":					"index.html",
+		"目次":	"toc.html",
+		"要件":			"requirements.html",
+		"ライセンス":				"license.html",
+		"貢献":			"contribute.html",
+		"クレジット表示":				"credits.html",
+		"External info":		"installation/external.html"
 	},
 	"インストール": {
 		"インストール方法":	"installation/instructions.html",
