@@ -1,5 +1,5 @@
 /* set the page title, including the version of these docs */
-var DocVersion = "1.8-dev";
+var DocVersion = "1.8";
 
 // set the google CSE key based on the docversion
 if (DocVersion.indexOf('-dev') == -1) {
