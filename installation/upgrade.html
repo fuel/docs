@@ -55,9 +55,26 @@
 			</p>
 			<h4 id="plain">I just downloaded and installed the zip file</h4>
 			<p>
-				If you have taken this route, you can take it again. Download the zipfile of the new version,
-				and replace fuel/core, and all fuel/packages you have installed. Once you have done that, take
-				the changelog and check for each item if that change has impact on your application.
+				If you have taken this route, it depends from which version you are upgrading.
+			</p>
+			<p>
+				If you are upgrading from 1.7.1 or newer, chances are you can upgrade using composer by
+				manually updating the <code>oil</code> and <code>public/index.php</code> files, and the <code>composer.json</code> file,
+				either from the fuel/fuel repository or from the latest zipfile. After that, you can run
+<pre class="cli"><code>$ php composer.phar self-update
+$ php composer.phar update --prefer-dist
+</code></pre>
+				from the root of your application folder structure.
+			</p>
+			<p>
+				If have to upgrade from an earlier version, you have to manually remove the following folders:
+<pre class="cli"><code>$ rm -rf fuel/core/ docs/
+$ rm -rf fuel/packages/auth/ fuel/packages/email/ fuel/packages/oil/
+$ rm -rf fuel/packages/orm/ fuel/packages/parser/ fuel/vendor/
+</code></pre>
+				before executing the composer update command as described above. If you are on a recent version but get
+				composer errors when you attempt to directly update using composer, removing these folders will also
+				allow you to upgrade again.
 			</p>
 
 			<h4 id="own_git">My project is in its own repository, including the framework files</h4>
@@ -74,6 +91,7 @@
 				of the fuel/fuel repository, add it as an upstream repository, and pull the master branch of the new version. Deal with
 				any merge issues that may pop up, and run a `git submodule update` to update the submodules to the release version.
 			</p>
+			<p class="note"><strong>Note</strong> that it is strongly recommended to remove the submodules, and use composer to update the framework components!</p>
 
 			<h4 id="git_with_git">My project is in its own repository, I use separate repositories for the FuelPHP components</h4>
 			<p>
