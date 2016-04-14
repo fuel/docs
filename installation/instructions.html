@@ -44,10 +44,16 @@
 
 		<div id="main">
 
-			<h5>Choose One: <a href="#command">Command Line Installation</a> | <a href="#manual">Manual Installation</a></h5>
-			<br />
-			<h3 id="command">Command Line Installation</h3>
-		    <p class="note">This currently only works on *nix systems (Linux, OS X, Unix, etc).</p>
+			<h2 id="prerequisites">Prerequisites</h2>
+			<p>
+				FuelPHP uses Composer, both for installation and for package dependencies. Make sure you installed composer locally before
+				you continue, because the installation methods described below depend on it being present. See the
+				<a href="https://getcomposer.org/download/">Download Composer</a> page on how to install composer on your machine.
+			</p>
+
+			<h2 id="command">Command Line Installation</h3>
+			<h3 id="command-oil">using Oil</h3>
+
 			<p>Our quick installer is a stripped down interface for the Oil package.  It allows you to create a new project with one command.  You will also no longer need to use 'php' in your oil commands.</p>
 
 			<p>To install the quick installer, simply open up a shell and run the following command:</p>
@@ -68,10 +74,11 @@
 
 			<p>
 				Note: This will also run <code class="cli">$ oil refine install</code> which makes the necessary directories writable,
-				and <code class="cli">$ php composer.phar update</code> to pull in the defined composer dependencies.
+				and <code class="cli">$ composer update</code> to pull in the defined composer dependencies.
 			</p>
+		    <p class="note">This currently only works on *nix systems (Linux, OS X, Unix, etc).</p>
 
-			<h3 id="manual">Manual Installation Instructions</h3>
+			<h3 id="command-composer">using Composer</h3>
 
 			<p>This will create the default installation of the Fuel framework on your virtual host root directory.</p>
 
@@ -79,22 +86,30 @@
 
 <pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
 $ git clone git://github.com/fuel/fuel.git .
-$ ./composer.phar self-update
-$ ./composer.phar update --prefer-dist
+$ composer install --prefer-dist
 </code></pre>
 
 			<p>Don't forget the single dot, otherwise this will create a folder called <strong>fuel</strong> in your virtual host root directory!</p>
 
 			<p>Alternatively, you can use composer to install everything in one go:</p>
-<pre class="cli"><code>$ composer create-project fuel/fuel:dev-1.8/master --prefer-dist .
+<pre class="cli"><code>$ composer create-project fuel/fuel --prefer-dist .
 </code></pre>
+
+			<p>
+				The first method has the advantage that you install the part that will contain your application installed as a git repository. You can change
+				the origin of that repository to your own git server, so your application development is under version control.
+			</p>
+			<p>
+				The second method creates a complete package with all dependencies. If you want to add that to a git repository, you will also add all
+				dependencies to it. You would like to take this route if your target server on which you run production doesn't have the option to run
+				composer locally to download application dependencies.
+			</p>
 
 			<h4 id="from_github">Clone the latest development branch from github</h4>
 
 <pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
 $ git clone git://github.com/fuel/fuel.git -b 1.9/develop .
-$ ./composer.phar self-update
-$ ./composer.phar update
+$ composer install
 </code></pre>
 
 			<p>Don't forget the single dot, otherwise this will create a folder called <strong>fuel</strong> in your virtual host root directory!</p>
@@ -103,20 +118,20 @@ $ ./composer.phar update
 <pre class="cli"><code>$ composer create-project fuel/fuel:dev-1.9/develop --prefer-source .
 </code></pre>
 
-			<h4 id="from_zip">Download the zip file</h4>
+			<p>Both will do exactlt the same, and install the latest development version as local git repository clones.</p>
 
-			<ol>
-				<li><a href="download.html">Download the Fuel Framework</a></li>
-				<li>Unzip/Extract the download</li>
-				<li>Move the files to your server
-					<ul>
-						<li>Note the public directory in the source equals your web server's public document directory i.e.
-						public_html, public, htdocs, etc. Move its contents to there or a subdirectory of the webroot
-						where you want to use Fuel.</li>
-						<li>Placing the fuel directory outside of the public document directory is encouraged for security
-						reasons.</li>
-						<li>Edit the paths in index.php to point to your app, core &amp; packages directories.</li>
-					</ul>
+			<h3 id="from_zip">Download the zip file</h3>
+
+			<p>
+				If for some reason you can't have access to composer, you can also <a href="download.html">Download the Fuel Framework</a> in a single ZIP file.
+				It contains exactly the same as the command composer <code class="cli">create-project fuel/fuel --prefer-dist .</code> would produce.
+			</p>
+
+			<h2 id="structure">Altering the default installation</h2>
+
+			<p>
+				After installation, you will find a folder structure in your installation directory that looks like this:
+			</p>
 <pre class="plain"><code>/
   docs/
   fuel/
@@ -129,34 +144,37 @@ $ ./composer.phar update
     index.php
   oil
 </code></pre>
-				</li>
-			</ol>
+
+			<p>
+				In this structure, the public directory in the source equals your web server's public document directory. If you can't define
+				your own public folder (or DocumentRoot) in your webserver configuration, Move its contents of the public directory to the folder
+				your provider dictates, i.e. public_html, public, htdocs, etc.
+			</p>
+
+			<p>
+				If you want to re-locate the fuel directory, or any directory inside the fuel directory, you need to modify the constants defined
+				in the web frontloader (public/index.php) and the commandline frontloader (oil) so that they point to the correct app, core and
+				packages directories.
+			</p>
 
 			<p>After installation, make sure the permissions are correct on folders that the framework needs access to. There is an oil task
 			available to set the default folders writable:</p>
-<pre class="cli"><code>$ php oil refine install
+<pre class="cli"><code>$ oil refine install
+	Made writable: APPPATH/cache
+	Made writable: APPPATH/logs
+	Made writable: APPPATH/tmp
+	Made writable: APPPATH/config</code></pre>
+			<p>
+				If you haven't installed oil like documented at the top of this page, you can also run oil from the installation root directory using:
+			</p>
+<pre class="cli"><code>$ cd /where/ever/your/virtualhost/root/is
+$ php oil refine install
 	Made writable: APPPATH/cache
 	Made writable: APPPATH/logs
 	Made writable: APPPATH/tmp
 	Made writable: APPPATH/config
 </code>
 </pre>
-
-			<h2 id="composer">Composer</h2>
-
-			<p>
-				As of version 1.6, FuelPHP uses the <a href="http://getcomposer.org">Composer</a> package manager to dynamically pull dependencies it,
-				either from <a href="http://packagist.org">Packagist</a>, from Github, or from a custom defined location. As of version 1.7.2, all
-				FuelPHP framework components are also installed through composer. Composer is controlled via the composer.json file, which you will
-				find in the root of your FuelPHP installation. For your convienience, we have included the composer.phar library so you can run composer
-				directly:
-			</p>
-
-<pre class="cli"><code>$ php composer.phar self-update
-$ php composer.phar update
-</code>
-</pre>
-			<p class="note">If you don't execute this step, FuelPHP will not start, as vital framework components are being loaded through composer!</p>
 
 			<h2 id="configuration">Configuration</h2>
 
@@ -177,17 +195,18 @@ $ php composer.phar update
 				in the global config.
 			</p>
 
+
 			<h2 id="install_inside_root">Install inside the document root</h2>
 
-			<p>As explained in point 3, for security reasons it is strongly advised <strong>NOT</strong> to install Fuel inside your webserver's document root.</p>
+			<p>For security reasons, it is strongly advised <strong>NOT</strong> to install Fuel inside your webserver's document root.</p>
 			<p>
 				However, there are cases where you would like to do that, for example for a (local) development environment where Apache's dynamic mass virtual hosting module
 				is used to quickly setup new development environments without the need to restart the webserver.
 			</p>
 			<p>
 				If you need this, install FuelPHP in the folder you have designated to be the installation root. After you have done that, go into the public folder,
-				move everything in the public folder one level up, and remove the public folder. The only purpose of that folder is to provide an anchor point for
-				your webservers DocumentRoot. You don't need that anymore, since you have installed FuelPHP in the folder that is the DocumentRoot.
+				move everything in the public folder one level up, and remove the then empty public folder. The only purpose of that folder is to provide an anchor point for
+				your webservers DocumentRoot. You don't need that anymore, since you have installed FuelPHP in the folder that <u>is</u> the DocumentRoot.
 			</p>
 			<p>After the move, change the location of the application, the packages and the framework core in your index.php to:</p>
             <pre class="php"><code>define('APPPATH', realpath(__DIR__.'/fuel/app/').DIRECTORY_SEPARATOR);<br>define('PKGPATH', realpath(__DIR__.'/fuel/packages/').DIRECTORY_SEPARATOR);<br>define('COREPATH', realpath(__DIR__.'/fuel/core/').DIRECTORY_SEPARATOR);</code></pre>
