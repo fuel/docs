@@ -166,6 +166,22 @@ $all_articles = $query->limit(15)->get();</code></pre>
 					<p>All these methods are equally valid, the four other methods of find actually use the Query object as
 						well but don't return it.</p>
 
+					<h3 id="partial_selects">Converting to an array</h3>
+					<p>You can convert a single query result to an array using the to_array() method
+					</p>
+					
+					<pre class="php"><code>
+// using the chaining method. select one row and convert it to an array
+$entry = Model_Article::query()->where('id', '=', 8)->get_one()->to_array();
+
+// select one row, convert it to an array, include custom data and also run recursivly
+$entry = Model_Article::query()->where('id', '=', 8)->get_one()->to_array(true, true);
+
+// select one row and convert it to an array, include custom data, run recursivly and get eav relations
+$entry = Model_Article::query()->where('id', '=', 8)->get_one()->to_array(true, true, true);
+</code></pre>
+
+
 					<h3 id="partial_selects">Partial column selects</h3>
 					<p>By default all ORM find methods will select all table columns. You can use the <kbd>select</kbd> array
 						entry or the <kbd>select()</kbd> method to alter this behavior.
