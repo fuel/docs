@@ -47,7 +47,38 @@
 
 			<h2>Profiler Class</h2>
 
-			<p>The profiler class allows you to add your own profiling information to the profiler.</p>
+			<p>The profiler class allows you to add your own profiling information to the profiler. It implements a customized version of PHPQuickProfiler (PQP).</p>
+
+			<h3>Configure runtime behaviour</h3>
+
+			<p>
+				The profiler contains a collection of javascript global variables through which you can control the initial state of the profiler.
+				<ul>
+					<li>
+						<strong>PQP_SHOWONLOAD</strong>: boolean, if true, the profiler is opened on page load, if false. The default is false.
+					</li>
+					<li>
+						<strong>PQP_HEIGHT</strong>: string, "tall" shows double the info from "short". The default is "tall".
+					</li>
+					<li>
+						<strong>PQP_DETAILS</strong>: boolean, if false, no details will be shown, only the tab information. The default is true.
+					</li>
+					<li>
+						<strong>PQP_BOTTOM</strong>: boolean, if true, the profiler is attached to the bottom of the viewport. If false, it is displayed below the output. The default is true.
+					</li>
+				</ul>
+				<strong>Example:</strong>
+			</p/>
+				<pre class="php"><code>	&lt;script type="text/javascript"&gt;
+		var PQP_SHOWONLOAD = true;
+		var PQP_HEIGHT = 'short';
+		var PQP_DETAILS = true;
+		var PQP_BOTTOM = true;
+	&lt;/script&gt;
+</code></pre>
+
+
+			<h3>Class methods</h3>
 
 			<article>
 				<h4 class="method" id="method_mark">mark($label)</h4>
