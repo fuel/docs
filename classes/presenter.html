@@ -192,6 +192,53 @@ $view = $presenter->get_view();</code></pre>
 				</p>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_set_view">set_view($view = null)</h4>
+				<p>The <strong>set_view</strong> method can be used to change the View associated with the presenter.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$view</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">Name of the view file, or a valid View object.</td>
+									</tr>
+								</table>
+							</td>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// create a presenter instance
+$presenter = Presenter::Forge('admin/public');
+
+// some code here that changes the associated view
+if ($something)
+{
+	$presenter->set_view('admin/member');
+}</code></pre>
+							</td>
+						</tr>
+						</tr>
+					</tbody>
+				</table>
+
+				<p class="note">
+					When you use this method, any variables set on or bound to the original View object will be transferred to the new View.
+				</p>
+			</article>
+
 			<h3 id="view">View object compatibility</h3>
 
 			<p>
