@@ -428,6 +428,31 @@ Model_Article::query()
                                     <pre class="php"><code>DB::query('SELECT * FROM `articles` WHERE `id` = 1')-&gt;as_object('Model_Article')-&gt;execute();</code></pre>
                                     <p class="note">It is recommended that you use the <kbd>query()</kbd> function where ever possible though</p>
                                </article>
+
+
+				<article id="refresh">
+					<h2>Refresh</h2>
+
+					<p>The method <kbd>refresh()</kbd> will grab the information from the database
+					again to refresh your object before transactionally critical updates. This is
+					used to insure that the current change will reflect the change in database.
+					Or when that the data you process at the moment is the most resent one.</p>
+
+
+					<pre class="php"><code>// Creating a model
+$example = new Model_Example();
+$example->property = 'something';
+$example->save();
+
+// Then data in the database changes or state is changed somewhere else.
+
+$example->refresh();
+$example->property = 'something else';
+$example->save();</code></pre>
+
+				</article>
+
+
 			</section>
 
 		</div>
