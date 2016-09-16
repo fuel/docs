@@ -107,12 +107,18 @@
 				<pre class="php"><code>protected static $_many_many = array(
 	'users' => array(
 		'table_through' => 'posts_users', 	// both models plural without prefix in alphabetical order
-		'order_by' => array(
-			'posts_users.status' => 'ASC'	// define custom through table ordering
+		'conditions' => array(
+		   'order_by' => array(
+				'posts_users.status' => 'ASC'	// define custom through table ordering
+			),
 		),
 	)
 );
 // other fields that may be required have been ommitted for this example</code></pre>
+
+				<p>
+					The conditions array can also contain where clauses, which will act as a permanent filter on the related table results.
+				</p>
 
 				<h3>Example</h3>
 
