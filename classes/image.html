@@ -645,7 +645,7 @@ Image::load('filename')
 			</article>
 
 			<article>
-				<h4 class="method" id="method_watermark">watermark($filename, $position, $padding = 5)</h4>
+				<h4 class="method" id="method_watermark">watermark($filename, $position, $padding = array(5,5))</h4>
 				<p>Adds a watermark to the image.</p>
 				<table class="method">
 					<tbody>
@@ -672,13 +672,16 @@ Image::load('filename')
 								<tr>
 									<th><kbd>$position</kbd></th>
 									<td><i>Required</i></td>
-									<td>The position of the watermark, accepts "(top|center|middle|bottom) (left|center|middle|bottom)".</td>
+									<td>The position of the watermark, accepts "(top|center|middle|bottom|&lt;int&gt;) (left|center|middle|bottom|&lt;int&gt;)".</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$padding</kbd></th>
-									<td><pre class="php"><code>5</code></pre></td>
-									<td>The amount of padding from the edge, in pixels.</td>
+									<td><pre class="php"><code>array(5,5)</code></pre></td>
+									<td>
+										The amount of padding from the edges, in pixels. The first value defines the vertical padding,
+										the second value the horizontal padding. You can also pass an integer if both have the same value.
+									</td>
 								</tr>
 							</table>
 						</td>
@@ -694,6 +697,10 @@ Image::load('filename')
 Image::load('filename.gif')
 	->watermark('watermark.ext', "top left", 15);
 
+// Watermarks the image in the top left corner with top-padding of 5px and a left-padding of 10px
+Image::load('filename.gif')
+	->watermark('watermark.ext', "top left", array(5, 10));
+
 // Watermarks the image in the bottom right corner
 Image::load('filename.gif')
 	->watermark('watermark.ext', "bottom right");
@@ -701,7 +708,11 @@ Image::load('filename.gif')
 // Watermarks the image in the center
 Image::load('filename.gif')
 	->watermark('watermark.ext', "center middle");
-// "center middle" is identical to "center center", "middle middle", or "middle center"</code></pre>
+// "center middle" is identical to "center center", "middle middle", or "middle center"
+
+// Watermarks the image in a fixed location, upper left at [10,40], with the default 5px padding
+Image::load('filename.gif')
+	->watermark('watermark.ext', "10 40");</code></pre>
 						</td>
 					</tr>
 					</tbody>

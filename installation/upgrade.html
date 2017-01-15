@@ -67,7 +67,7 @@ $ php composer.phar update --prefer-dist
 				from the root of your application folder structure.
 			</p>
 			<p>
-				If have to upgrade from an earlier version, you have to manually remove the following folders:
+				If you have to upgrade from an earlier version, you must manually remove the following folders:
 <pre class="cli"><code>$ rm -rf fuel/core/ docs/
 $ rm -rf fuel/packages/auth/ fuel/packages/email/ fuel/packages/oil/
 $ rm -rf fuel/packages/orm/ fuel/packages/parser/ fuel/vendor/
@@ -80,10 +80,10 @@ $ rm -rf fuel/packages/orm/ fuel/packages/parser/ fuel/vendor/
 			<h4 id="own_git">My project is in its own repository, including the framework files</h4>
 			<p>
 				Use the same procedure. Download the zip, and replace the files. Having them in a repository
-				gives you the benefit though to see the diff's, which makes it easier to work with the changelog
+				gives you the benefit though to see the diffs, which makes it easier to work with the changelog
 				to make the required modifications your application (if needed).
 			</p>
-			<p class="note"><strong>Note</strong> that if you (still) use SubVersion, pay attention to the hidden svn directories in each folder. Don't delete them when replacing the files!</p>
+			<p class="note"><strong>Note</strong> that if you (still) use SubVersion, pay attention to the hidden `.svn` directories in each folder. Don't delete them when replacing the files!</p>
 
 			<h4 id="git_with_subs">My project is in its own repository, I use submodules for the FuelPHP repositories</h4>
 			<p>
@@ -130,10 +130,14 @@ $ rm -rf fuel/packages/orm/ fuel/packages/parser/ fuel/vendor/
 
 			<h4 id="app_others">Other included files</h4>
 			<p>
-				Other files that might need upgrading are the 'Oil' bootstrap script and the .htaccess file, and the files needed
-				by PHPUnit. If you haven't changed them, just replace them by the new version, to make sure you don't run into
-				issues when using them.
-			</p>
+                Other files may need upgrading. If you haven't changed them, just replace them with the new version, to make sure 
+                you don't run into issues.</p>
+
+                <p><code>oil</code> - the 'Oil' bootstrap script, <code>.htaccess</code> and files needed by PHPUnit.</p>
+                <p> <code>app/config/config.php</code> - you may see an <em>"There is no security.output_filter defined"</em> error.<br/>
+                Keep your current config file, but copy over the "security" array from the latest version.</p>
+                <p> <code>app/bootstrap.php</code> - if you still have "Load in the Autoloader" (lines 3-6) these should be removed.<br/>
+                This is the cause of the <em>"Cannot declare class Fuel\Core\Autoloader, because the name is already in use"</em> error.</p>
 
 			<h3 id="tips">Using upstream repositories</h3>
 

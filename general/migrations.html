@@ -58,15 +58,13 @@
 						<th>Key</th>
 						<th>Type</th>
 						<th>Default</th>
-						<th>Description</th>
+						<th style="width:50%;">Description</th>
 					</tr>
 					<tr>
 						<th>folder</th>
 						<td>string</td>
 						<td>
-							<pre class="php">
-								<code>'migrations/'</code>
-							</pre>
+							<pre class="php"><code>'migrations/'</code></pre>
 						</td>
 						<td>
 							The folder in which migration files will be found.
@@ -76,9 +74,7 @@
 						<th>connection</th>
 						<td>string</td>
 						<td>
-							<pre class="php">
-								<code>null</code>
-							</pre>
+							<pre class="php"><code>null</code></pre>
 						</td>
 						<td>
 							Configuration name of a database connection to use to write migrations.
@@ -88,12 +84,20 @@
 						<th>table</th>
 						<td>string</td>
 						<td>
-							<pre class="php">
-								<code>'migration'</code>
-							</pre>
+							<pre class="php"><code>'migration'</code></pre>
 						</td>
 						<td>
 							The database table used to store migration data.
+						</td>
+					</tr>
+					<tr>
+						<th>flush_cache</th>
+						<td>boolean</td>
+						<td>
+							<pre class="php"><code>false</code></pre>
+						</td>
+						<td>
+							If true, all cached data will be erased after all migrations have run, via a call to <strong>Cache::delete_all()</strong>.
 						</td>
 					</tr>
 				</tbody>

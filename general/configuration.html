@@ -116,21 +116,24 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>controller_prefix</th>
-						<td>string</td>
-						<td><pre class="php"><code>'Controller_'</code></pre></td>
-						<td>
-							The class prefix used to find controllers when mapping the URI to the controller class name.
-							You have to change this if you want your controllers namespaced or in a different folder then
-							app/classes/controller.
-						</td>
-					</tr>
-					<tr>
 						<th>profiling</th>
 						<td>bool</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
 							Whether to enable the profiler.
+						</td>
+					</tr>
+					<tr>
+						<th>profiling_paths</th>
+						<td>mixed</td>
+						<td><pre class="php"><code>array(
+	    'APPPATH' => APPPATH,
+	    'COREPATH' => COREPATH,
+	    'PKGPATH' => PKGPATH,
+),</code></pre></td>
+						<td>
+							Array of path-to-string translations, to hide the absolute path, and to shorten
+							the path being displayed (for layout purposes).
 						</td>
 					</tr>
 					<tr>
@@ -165,19 +168,18 @@ array("always_load" => array("packages" => array(...) ) );
 							Callback given to ob_start(), set to ob_gzhandler to enable gzip encoding of output.
 						</td>
 					</tr>
+
 					<tr>
-						<td colspan="4">
-						</td>
+						<td colspan="4"></td>
 					</tr>
 					<tr>
 						<th>errors</th>
-						<td>array</td>
-						<td colspan="2">
+						<td colspan="3">
 							<strong>Array, containing the configuration keys to control behaviour when detecting errors:</strong>
 						</td>
 					</tr>
 					<tr>
-						<th>errors.continue_on</th>
+						<th style="padding-left:20px;">.continue_on</th>
 						<td>array</td>
 						<td><pre class="php"><code>array(
 )</code></pre></td>
@@ -186,7 +188,7 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>errors.throttle</th>
+						<th style="padding-left:20px;">.throttle</th>
 						<td>int</td>
 						<td><pre class="php"><code>10</code></pre></td>
 						<td>
@@ -194,7 +196,7 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>errors.notices</th>
+						<th style="padding-left:20px;">.notices</th>
 						<td>bool</td>
 						<td><pre class="php"><code>true</code></pre></td>
 						<td>
@@ -202,11 +204,24 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
+						<td colspan="4">&nbsp;</td>
+					</tr>
+
+					<tr>
 						<th>language</th>
 						<td>string</td>
 						<td><pre class="php"><code>'en'</code></pre></td>
 						<td>
 							The default application language, used by the <a href="../classes/lang.html">Lang class</a>.
+						</td>
+					</tr>
+					<tr>
+						<th>language_fallback</th>
+						<td>string</td>
+						<td><pre class="php"><code>'en'</code></pre></td>
+						<td>
+							This language code will be used when the requested language file doesn't exist in the active language.
+							This should be your main application language.
 						</td>
 					</tr>
 					<tr>
@@ -241,9 +256,9 @@ array("always_load" => array("packages" => array(...) ) );
 					<tr>
 						<th>default_timezone</th>
 						<td>string</td>
-						<td><pre class="php"><code>'UTC'</code></pre></td>
+						<td><pre class="php"><code>null</code></pre></td>
 						<td>
-							The server timezone.
+							The server timezone. If set to null, the timezone configured in your php.ini file will be used.
 						</td>
 					</tr>
 					<tr>
@@ -264,6 +279,14 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
+						<th>log_file</th>
+						<td>string</td>
+						<td><pre class="php"><code>null</code></pre></td>
+						<td>
+							The file the log needs to be written to. If not given, a filename will be generated.
+						</td>
+					</tr>
+					<tr>
 						<th>log_path</th>
 						<td>string</td>
 						<td><pre class="php"><code>APPPATH.'logs/'</code></pre></td>
@@ -280,19 +303,22 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<td colspan="4">
-							&nbsp;
+						<th>cli_backtrace</th>
+						<td>bool</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>
+							If true, a backtrace will be printed when a PHP fatal error is encountered in CLI mode (similar to the html error pages).
 						</td>
 					</tr>
+
 					<tr>
 						<th>security</th>
-						<td>array</td>
-						<td colspan="2">
+						<td colspan="3">
 							<strong>Array, containing the configuration keys to control your application security:</strong>
 						</td>
 					</tr>
 					<tr>
-						<th>security.csrf_autoload</th>
+						<th style="padding-left:20px;">.csrf_autoload</th>
 						<td>bool</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
@@ -300,7 +326,34 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>security.csrf_token_key</th>
+						<th style="padding-left:20px;">.csrf_autoload_methods</th>
+						<td>array</td>
+						<td><pre class="php"><code>array(
+	'post', 'put', 'delete'
+)</code></pre></td>
+						<td>
+							List of HTTP methods for which csrf token auto-checking will happen.
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.csrf_bad_request_on_fail</th>
+						<td>bool</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>
+							If true, an HttpBadRequestException will be thrown. If false, a SecurityException will be thrown.
+							It is false by default for backward compatibility reasons.
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.csrf_auto_token</th>
+						<td>bool</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>
+							If true, a hidden csrf token input field will be automatically added to each form created using Form::open().
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.csrf_token_key</th>
 						<td>string</td>
 						<td><pre class="php"><code>'fuel_csrf_token'</code></pre></td>
 						<td>
@@ -308,7 +361,7 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>security.csrf_expiration</th>
+						<th style="padding-left:20px;">.csrf_expiration</th>
 						<td>int</td>
 						<td><pre class="php"><code>0</code></pre></td>
 						<td>
@@ -317,15 +370,15 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>security.token_salt</th>
+						<th style="padding-left:20px;">.token_salt</th>
 						<td>string</td>
-						<td><pre class="php"><code>'put your salt value here to make the token more secure'</code></pre></td>
+						<td><pre class="php"><code>'put your salt value here...'</code></pre></td>
 						<td>
 							A salt to make sure the generated security tokens are not predictable.
 						</td>
 					</tr>
 					<tr>
-						<th>security.allow_x_headers</th>
+						<th style="padding-left:20px;">.allow_x_headers</th>
 						<td>bool</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
@@ -333,33 +386,51 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>security.uri_filter</th>
+						<th style="padding-left:20px;">.uri_filter</th>
 						<td>array</td>
 						<td><pre class="php"><code>array('htmlentities')</code></pre></td>
 						<td>
-							What php functions to use to filter the URI.
+							What <a href="http://php.net/manual/en/language.types.callable.php">php callable</a>s to use to filter the URI.
 						</td>
 					</tr>
 					<tr>
-						<th>security.input_filter</th>
+						<th style="padding-left:20px;">.input_filter</th>
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
-							What php functions filter the input arrays ($_GET, $_POST and $_COOKIE). Can be set to <em>xss_clean</em>,
-							this may cause a performance hit based on the size of the input.
+							What <a href="http://php.net/manual/en/language.types.callable.php">php callable</a>s to use to filter
+							the input arrays ($_GET, $_POST and $_COOKIE). Can be set to <em>xss_clean</em>,
+							but this may cause a performance hit based on the size of the input.
 						</td>
 					</tr>
 					<tr>
-						<th>security.output_filter</th>
+						<th style="padding-left:20px;">.output_filter</th>
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
-							What php functions filter the variables set to a view. Can be set to <em>xss_clean</em>,
-							this may cause a performance hit based on the size of the variables.
+							What <a href="http://php.net/manual/en/language.types.callable.php">php callable</a>s to use to filter
+							the variables set onto a view. Can be set to <em>xss_clean</em>,
+							but this may cause a performance hit based on the size of the variables.
 						</td>
 					</tr>
 					<tr>
-						<th>security.auto_filter_output</th>
+						<th style="padding-left:20px;">.htmlentities_flags</th>
+						<td>integer</td>
+						<td><pre class="php"><code>ENT_QUOTES</code></pre></td>
+						<td>
+							Whether to automatically encode (htmlentities) view data.
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.htmlentities_double_encode</th>
+						<td>bool</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>
+							Whether or not to encode HTML entities as well.
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.auto_filter_output</th>
 						<td>bool</td>
 						<td><pre class="php"><code>true</code></pre></td>
 						<td>
@@ -367,13 +438,22 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>security.whitelisted_classes</th>
-						<td>array()</td>
+						<th style="padding-left:20px;">.filter_closures</th>
+						<td>bool</td>
+						<td><pre class="php"><code>true</code></pre></td>
+						<td>
+							If true, closures passed onto Views will be executed, and their return value will be filtered
+							and passed on to the View. If false, the closure itself will be passed to the view.
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.whitelisted_classes</th>
+						<td>array</td>
 						<td><pre class="php"><code>array(
-'stdClass',
-'Fuel\\Core\\View',
-'Fuel\\Core\\Presenter',
-'Closure'
+	'stdClass',
+	'Fuel\\Core\\View',
+	'Fuel\\Core\\Presenter',
+	'Closure'
 )</code></pre></td>
 						<td>
 							With output encoding switched on all objects passed will be converted to strings or throw exceptions
@@ -381,19 +461,39 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<td colspan="4">
-							&nbsp;
+						<th style="padding-left:20px;">.form-double-urlencoded</th>
+						<td>bool</td>
+						<td><pre class="php"><code>false</code></pre></td>
+						<td>
+							 Set this to true of your client sends data using the HTTP PUT, DELETE or PATCH methods
+							 using the www-form-urlencoded content-type, and it's contents is urlencoded locally
+							 before submitting.
 						</td>
 					</tr>
+					<tr>
+						<th style="padding-left:20px;">.clean_paths</th>
+						<td>mixed</td>
+						<td><pre class="php"><code>array(
+),</code></pre></td>
+						<td>
+							Array of path-to-string translations, to hide the absolute path, and to shorten
+							the path being displayed in any output. Note that for security reasons,  APPPATH,
+							COREPATH, PKGPATH, and DOCROOT will always be translated.
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">&nbsp;</td>
+					</tr>
+
+
 					<tr>
 						<th>cookie</th>
-						<td>array</td>
-						<td colspan="2">
-							<strong>Array, containing the configuration keys define the global cookie settings:</strong>
+						<td colspan="3">
+							<strong>Array, containing the configuration keys to define the global cookie settings:</strong>
 						</td>
 					</tr>
 					<tr>
-						<th>cookie.expiration</th>
+						<th style="padding-left:20px;">.expiration</th>
 						<td>int</td>
 						<td><pre class="php"><code>0</code></pre></td>
 						<td>
@@ -401,7 +501,7 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>cookie.path</th>
+						<th style="padding-left:20px;">.path</th>
 						<td>string</td>
 						<td><pre class="php"><code>'/'</code></pre></td>
 						<td>
@@ -409,7 +509,7 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>cookie.domain</th>
+						<th style="padding-left:20px;">.domain</th>
 						<td>string</td>
 						<td><pre class="php"><code>null</code></pre></td>
 						<td>
@@ -417,7 +517,7 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>cookie.secure</th>
+						<th style="padding-left:20px;">.secure</th>
 						<td>bool</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
@@ -425,7 +525,7 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>cookie.http_only</th>
+						<th style="padding-left:20px;">.http_only</th>
 						<td>bool</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
@@ -433,27 +533,183 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
+						<td colspan="4">&nbsp;</td>
+					</tr>
+
+					<tr>
+						<th>validation</th>
+						<td colspan="3">
+							<strong>Array, containing the configuration keys to control validation behaviour :</strong>
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.global_input_fallback</th>
+						<td>bool</td>
+						<td><pre class="php"><code>true</code></pre></td>
+						<td>
+							Whether to fallback to global inout data when a value is not found in the input array
+							passed to validation.
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">&nbsp;</td>
+					</tr>
+
+					<tr>
+						<th>controller_prefix</th>
+						<td>string</td>
+						<td><pre class="php"><code>'Controller_'</code></pre></td>
+						<td>
+							The class prefix used to find controllers when mapping the URI to the controller class name.
+							You have to change this if you want your controllers namespaced or in a different folder then
+							app/classes/controller.
+						</td>
+					</tr>
+
+
+					<tr>
+						<th>routing</th>
+						<td colspan="3">
+							<strong>Array, containing the configuration keys to control routing behaviour :</strong>
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.case_sensitive</th>
+						<td>bool</td>
+						<td><pre class="php"><code>true</code></pre></td>
+						<td>
+							Whether URI routing is case-sensitive or not. If true, "/THIS" and "/this" are different routes.
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.strip_extension</th>
+						<td>mixed</td>
+						<td><pre class="php"><code>true</code></pre></td>
+						<td>
+							If false, nothing will be stripped. If true, all extensions will be stripped. If an array,
+							it should contain a list of extensions (including the leading DOT!) that needs to be stripped.
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">&nbsp;</td>
+					</tr>
+
+					<tr>
+						<th>response</th>
+						<td colspan="3">
+							<strong>Array, containing the configuration keys to control response behaviour :</strong>
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.redirect_with_wildcards</th>
+						<td>bool</td>
+						<td><pre class="php"><code>true</code></pre></td>
+						<td>
+							If true, you can use the "*" as a segement wildcard when redirecting. These segments will then
+							be filled in from the original request URI. So a redirect on "admin/user/edit" to "*/*/view"
+							will redirect to "admin/user/view".
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">&nbsp;</td>
+					</tr>
+
+					<tr>
+						<th>config</th>
+						<td colspan="3">
+							<strong>Array, containing the configuration keys to control the configuration environment :</strong>
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.database</th>
+						<td>string</td>
+						<td><pre class="php"><code>null</code></pre></td>
+						<td>
+							The database that stores your configuration data table, if you have opted to use the database as you
+							configuration data backend.
+						</td>
+					</tr>
+						<th style="padding-left:20px;">.table_name</th>
+						<td>string</td>
+						<td><pre class="php"><code>'config'</code></pre></td>
+						<td>
+							The table that stores your configuration data, if you have opted to use the database as you
+							configuration data backend.
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.memcached</th>
+						<td>array</td>
+						<td><pre class="php"><code>array('identifier' => 'config',
+	'servers' => array(
+		array(
+			'host' => '127.0.0.1',
+			'port' => 11211,
+			'weight' => 100),
+	),
+)</code></pre></td>
+						<td>
+							Memcached configuration, if you have opted to use a memcached store as you
+							configuration data backend.
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">&nbsp;</td>
+					</tr>
+
+					<tr>
+						<th>lang</th>
+						<td colspan="3">
+							<strong>Array, containing the configuration keys to control the language environment :</strong>
+						</td>
+					</tr>
+					<tr>
+						<th style="padding-left:20px;">.database</th>
+						<td>string</td>
+						<td><pre class="php"><code>null</code></pre></td>
+						<td>
+							The database that stores your translation data table, if you have opted to use the database as you
+							translation data backend.
+						</td>
+					</tr>
+						<th style="padding-left:20px;">.table_name</th>
+						<td>string</td>
+						<td><pre class="php"><code>'config'</code></pre></td>
+						<td>
+							The table that stores your translation data, if you have opted to use the database as you
+							translation data backend.
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">&nbsp;</td>
+					</tr>
+
+					<tr>
 						<th>module_paths</th>
 						<td>array</td>
-						<td><pre class="php"><code>array()</code></pre></td>
+						<td><pre class="php"><code>array(APPPATH.'modules'.DS)</code></pre></td>
 						<td>
 							Paths to module directories. Used when adding a module without specifying the location.
 						</td>
 					</tr>
+
 					<tr>
-						<td colspan="4">
-							&nbsp;
+						<th>package_paths</th>
+						<td>array</td>
+						<td><pre class="php"><code>array(PKGPATH)</code></pre></td>
+						<td>
+							Paths to package directories. Used when adding a package without specifying the location.
 						</td>
 					</tr>
+
 					<tr>
 						<th>always_load</th>
-						<td>array</td>
-						<td colspan="2">
+						<td colspan="3">
 							<strong>Array, containing the items the framework has to load when it initializes:</strong>
 						</td>
 					</tr>
 					<tr>
-						<th>always_load.packages</th>
+						<th style="padding-left:20px;">.packages</th>
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
@@ -461,7 +717,7 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>always_load.modules</th>
+						<th style="padding-left:20px;">.modules</th>
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
@@ -470,7 +726,7 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>always_load.classes</th>
+						<th style="padding-left:20px;">.classes</th>
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
@@ -479,7 +735,7 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>always_load.config</th>
+						<th style="padding-left:20px;">.config</th>
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
@@ -489,7 +745,7 @@ array("always_load" => array("packages" => array(...) ) );
 						</td>
 					</tr>
 					<tr>
-						<th>always_load.language</th>
+						<th style="padding-left:20px;">.language</th>
 						<td>array</td>
 						<td><pre class="php"><code>array()</code></pre></td>
 						<td>
@@ -498,6 +754,10 @@ array("always_load" => array("packages" => array(...) ) );
 							<em>null</em>: <strong>array('filename' => null)</strong>.
 						</td>
 					</tr>
+					<tr>
+						<td colspan="4">&nbsp;</td>
+					</tr>
+
 				</tbody>
 			</table>
 
