@@ -164,7 +164,7 @@ return \View::forge('posts/index', $data);</code></pre>
 							<td>integer</td>
 							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								The page to load if no page number is present in the URI. If not given, it defaults to 1.
+								The page to load if no page number is present in the URI. If not given, it defaults to 'default_page'.
 							</td>
 						</tr>
 						<tr>
@@ -189,6 +189,14 @@ return \View::forge('posts/index', $data);</code></pre>
 							<td><pre class="php"><code>0.50</code></pre></td>
 							<td>
 								Offset of the active link in the pagination block, either in a decimal between 0 and 1, or in an integer (precentage) between 0 and 100.
+							</td>
+						</tr>
+						<tr>
+							<th>default_page</th>
+							<td>mixed</td>
+							<td><pre class="php"><code>'first'</code></pre></td>
+							<td>
+								The page to load if no page number is present in the URI. Valid are 'first', 'last' or a page number. If not given, it defaults to 'first'.
 							</td>
 						</tr>
 					</tbody>
