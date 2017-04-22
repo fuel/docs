@@ -198,14 +198,14 @@ Auth::has_access('site.access'); // should return true
 <h3 id="permissions">Delete User Permissions</h3>
 
 			<p>
-			Deleting User permissions is as easy as setting the array User->permissions[] to Null
+			Deleting User permissions is as easy as unsetting the array User->permissions
 			</p>
 <pre class="php"><code>
 
 $user = \Model\Auth_User::find($id); //get the user we created 
 
 // remove permissions
-$user->permissions[] = NULL; // unset($user->permissions); should also work, but doesn't on PHP 7.1 maybe a bug ?
+unset($user->permissions);
 $user->save();
 
 // check that our user has the permission we assigned to:
