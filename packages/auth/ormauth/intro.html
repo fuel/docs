@@ -175,7 +175,7 @@ $role->save();</code></pre>
 			<h3 id="permissions">Add Permissions to Users</h3>
 
 			<p>
-			To add Permissions to Users, you need to create a User and a Permission, then a User_Permission that relates both
+			To add Permissions to Users, you need to create a User and a Permission, then relate the two:
 			</p>
 <pre class="php"><code>
 // create user
@@ -187,18 +187,31 @@ $perm->area = 'site';
 $perm->permission = 'access';
 $perm->description = 'example permission'; 
 $perm->save(); // save the permission
-// create UserPermission
-$user_perm = \Model\Auth_Userpermission::forge();
-$user_perm->user = $user;
-$user_perm->permission = $perm;
-$user_perm->save();
-
+// related the two
+$user->permissions[] = $perm; (or an array of $perms)
+$user->save();
 
 // check that our user has the permission we assigned to:
 Auth::force_login($id);
 Auth::has_access('site.access'); // should return true
 </code></pre>
+<h3 id="permissions">Delete User Permissions</h3>
 
+			<p>
+			Deleting User permissions is as easy as setting the array User->permissions[] to Null
+			</p>
+<pre class="php"><code>
+
+$user = \Model\Auth_User::find($id); //get the user we created 
+
+// remove permissions
+$user->permissions[] = NULL; // unset($user->permissions); should also work, but doesn't on PHP 7.1 maybe a bug ?
+$user->save();
+
+// check that our user has the permission we assigned to:
+Auth::force_login($id);
+Auth::has_access('site.access'); // should return false (permission from previous example)
+</code></pre>
 
 
 			<h3 id="caching">Caching</h3>
