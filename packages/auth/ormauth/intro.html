@@ -172,6 +172,47 @@ $role->save();</code></pre>
 			</p>
 
 
+			<h3 id="permissions">Add Permissions to Users</h3>
+
+			<p>
+			To add Permissions to Users, you need to create a User and a Permission, then relate the two:
+			</p>
+<pre class="php"><code>
+// create user
+$id = Auth::create_user('name','pass','email@example.com',5); // 6 group has all access so we use 5 to demonstrate
+$user = \Model\Auth_User::find($id); //get the user we created 
+// create permission
+$perm = \Model_Auth_Permission::forge();
+$perm->area = 'site';
+$perm->permission = 'access';
+$perm->description = 'example permission'; 
+$perm->save(); // save the permission
+// related the two
+$user->permissions[] = $perm; (or an array of $perms)
+$user->save();
+
+// check that our user has the permission we assigned to:
+Auth::force_login($id);
+Auth::has_access('site.access'); // should return true
+</code></pre>
+<h3 id="permissions">Delete User Permissions</h3>
+
+			<p>
+			Deleting User permissions is as easy as unsetting the array User->permissions
+			</p>
+<pre class="php"><code>
+
+$user = \Model\Auth_User::find($id); //get the user we created 
+
+// remove permissions
+unset($user->permissions);
+$user->save();
+
+// check that our user has the permission we assigned to:
+Auth::force_login($id);
+Auth::has_access('site.access'); // should return false (permission from previous example)
+</code></pre>
+
 
 			<h3 id="caching">Caching</h3>
 
