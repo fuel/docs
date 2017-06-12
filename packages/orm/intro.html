@@ -135,6 +135,20 @@ return array(
     'caching' => true,
 );
 </code></pre>
+				<p>
+					Under specific circumstances, you may need to flush the complete ORM cache, or part of it. For example it you run a batch processor
+					or queue worker, to run background tasks. Since it always runs, it will always re-use it's cache, which can lead to cached values
+					being reused while the database has been altered in the meantime. To flush, use:
+				</p>
+					<pre class="php"><code>// flush the complete ORM cache
+\Orm\Model::flush_cache(null);
+
+// flush the cache for a specific model
+\Some\Model\Name::flush::cache();
+
+// or by class name
+\Orm\Model::flush_cache('Some\Model\Name');
+</code></pre>
 
 			</section>
 
