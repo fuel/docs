@@ -97,46 +97,14 @@ Array.max = function( array ){
 	}
 })(jQuery);
 
-
-
-var customSearchControl;
-
-if(typeof google != 'undefined')
-{
-google.load('search', '1', {language : 'en'});
-google.setOnLoadCallback(function() {
-	customSearchControl = new google.search.CustomSearchControl(GoogleCSE);
-	customSearchControl.setResultSetSize(4);
-	var options = new google.search.DrawOptions();
-	options.setSearchFormRoot('cse-search-form');
-	options.enableSearchResultsOnly();
-	customSearchControl.draw('cse_content', options);
-}, true);
-}
-
-
-function execute_query() {
-	var textNode = document.getElementById('search_input');
-	if (textNode.value == '') {
-		clear_search();
-	} else {
-		$('#cse').show();
-		customSearchControl.execute(textNode.value);
-		$('body').delegate('#main', 'click', function(){
-			clear_search();
-		});
-	}
-}
-
-function clear_search()
-{
-	$('body').undelegate('#content', 'click');
-	$('#cse').hide();
-	if(typeof customSearchControl != 'undefined')
-	{
-		customSearchControl.clearAllResults();
-	}
-}
+(function() {
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = 'https://cse.google.com/cse.js?cx=' + GoogleCSE;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+})();
 
 function set_key_controls()
 {
@@ -209,14 +177,13 @@ var max_navtable_height = 0;
 			'overflow': 'hidden'
 		});
 		var $handle = $('#toc_handle');
-		var $google = $('#google_search');
 		var opened = false;
 		var $active;
 
 		function update_height()
 		{
 			$active = $all.filter('.active');
-			height = heights[$active.data('i')] + 30;
+			height = heights[$active.data('i')] + 130;
 		}
 
 		$handle.on('snapopen', function(){
@@ -289,10 +256,6 @@ var max_navtable_height = 0;
 })(jQuery);
 
 function setup() {
-	if(typeof google == 'undefined') {
-		$('#google_search').addClass('force_hide');
-	}
-
 	var highlight_class = 0;
 	$('ul.column > li').menu_highlight();
 
@@ -302,23 +265,6 @@ function setup() {
 		$(window).unbind('keyup');
 	}).delegate('input', 'blur', function(){
 		set_key_controls();
-	});
-
-	$('#google_search').submit(function(e){
-		e.preventDefault();
-		execute_query();
-		return false;
-	});
-
-	$('#search_clear').click(function(){
-		$('#search_input').val('');
-		clear_search();
-	});
-
-	$('#search_input').keyup(function(e){
-		if(e.which == 27) {
-			$('#search_clear').click();
-		}
 	});
 
 	$('#main h2, #main h3, #main h4').anchorify();
