@@ -77,9 +77,9 @@
 			<h5 id="classes">Classes</h5>
 
 			<p>Class names should use underscores to separate words, and each word in the class name should begin with a
-				capital letter. An underscore will, however, be converted to a directory separator during autoloading. The
-				use of camelcase is discouraged but cannot be prevented in some cases when putting the class in a
-				subdirectory makes no sense.</p>
+				capital letter. The use of camelcase is discouraged but cannot be prevented in some cases when putting
+				the class in a subdirectory makes absolutely no sense. If possible, this should be avoided.
+			</p>
 
 			<pre class="php"><code>namespace Fuel\Core;
 
@@ -95,10 +95,14 @@ class Session_Cookie extends Session_Driver
 
 }</code></pre>
 
-			<p>This would result in the following file path:</p>
+			<p>
+				Every class should be defined into its own file. Any underscores in the class name will be converted to a directory
+				separator during autoloading, so this must be reflected in the name and location of the class file. For the classes
+				above, their names wouldresult in the following file path:
+			</p>
 
-			<pre class="php"><code>core/classes/session.php
-core/classes/session/cookie.php</code></pre>
+			<pre class="php"><code>COREPATH/classes/session.php
+COREPATH/classes/session/cookie.php</code></pre>
 
 			<h5 id="methods_standards">Methods</h5>
 
@@ -139,6 +143,14 @@ core/classes/session/cookie.php</code></pre>
 $buffer
 for ($i = 0; $i &lt; $max; $i++)</code></pre>
 
+			<p>
+				Except for the PHP global system constant that doesn't have a Fuel wrapper (for example <kbd>$_ENV</kbd>), global
+				variables should never been used. If you have a legitemate use for such a constant, please inform the team so a
+				wrapper can be created to allow consistent and immutable access to that constant.<br />
+				Use of the keyword <kbd>global</kbd> to create or import global variables into a local variable scope is
+				<strong>explicitly</strong> forbidden!
+			</p>
+
 			<h5 id="constants">Constants</h5>
 
 			<p>Constants follow the same guide lines as variables with the exception that constants should be all upper
@@ -147,6 +159,12 @@ for ($i = 0; $i &lt; $max; $i++)</code></pre>
 			<pre class="php"><code>MY_CONSTANT
 TEMPLATE_PATH
 TEXT_DEFAULT</code></pre>
+
+			<p>
+				The use of global constants is discouraged and should be kept to an absolute minimum. If you need one, be prepend to
+				defend your use case before the Fuel team will accept your proposal!. Where possible, use class constants to make
+				their scope, usage and meaning clear.
+			</p>
 
 			<h3 id="keywords">Keywords</h3>
 
@@ -159,6 +177,14 @@ $var = null;
 foreach ($array as $key => $value)
 public function my_function(array $array)
 function my_function($arg = null)</code></pre>
+
+			<h3 id="type_casting">Type casting</h3>
+
+			<p>
+				The use of type casting is discouraged. PHP is a weakly typed language with at times very vague type conversion rules. They may
+				cause unintended behaviour, which may introduce very hard to find bugs. Instead, do a content check before you convert to make
+				sure the variable contains an expected value.
+			</p>
 
 			<h3 id="control_structures">Control Structures</h3>
 
@@ -240,7 +266,8 @@ else
 
 // Or this:
 $var = Uri::segment(3) ? Uri::segment(3) : 'default';
-// Or actually this:
+
+// Or even better, this:
 $var = Uri::segment(3) ?: 'default';</code></pre>
 
 			<h3 id="comparison_logical">Comparisons, Logical operators</h3>
@@ -302,7 +329,7 @@ for ($i = 0; $i < $max; $i++)</code></pre>
 
 			<h5 id="quotation">String quotation</h5>
 
-			<p>Single quotes are preferred over double quotes.</p>
+			<p>Single quotes are preferred over double quotes. It prevents unwanted or unintended expansion of variables and control characters.</p>
 
 			<h5 id="concatenation">Concatenation</h5>
 
