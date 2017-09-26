@@ -244,8 +244,8 @@
 			</article>
 
 			<article>
-				<h4 class="method" id="method_js_fetch_token">js_fetch_token()</h4>
-				<p>The <strong>js_fetch_token</strong> method allows you to produce JavaScript fuel_csrf_token() function that will return the current CSRF token when called. Use to fill right field on form submit for AJAX operations.</p>
+				<h4 class="method" id="method_set_token">set_token($rotate = true)</h4>
+				<p>The <strong>set_token</strong> method allows you to set the next CSRF token to be used, or to force a token rotation.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -254,65 +254,25 @@
 					</tr>
 					<tr>
 						<th>Parameters</th>
-						<td>None</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>string</td>
-					</tr>
-					<tr>
-						<th>Example</th>
 						<td>
-							<pre class="php"><code>// output the javascript function
-echo Security::js_fetch_token();
-
-// you can now use the generated function in the javascript code on your page
-&lt;script type="text/javascript"&gt;
-	var current_token = fuel_csrf_token();
-&lt;/script&gt;
-</code></pre>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$rotate</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>If true, generation of a new CSRF token is forced. If false, an existing CSRF token is reused if available.</td>
+								</tr>
+							</table>
 						</td>
 					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_js_set_token">js_set_token()</h4>
-				<p>
-					The <strong>js_set_token</strong> method allows you to produce JavaScript
-					fuel_set_csrf_token() function that will set the current CSRF token field
-					in the form when called. Use this on an onsubmit of a form, to update the
-					hidden token field in the form with the current value of the csrf cookie.
-					You have to use this when you want to allow multiple windows open, and
-					use a strict rotation and expiry of the CSRF token.
-				</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">Static</th>
-						<td>Yes</td>
-					</tr>
-					<tr>
-						<th>Parameters</th>
-						<td>None</td>
-					</tr>
-					<tr>
-						<th>Returns</th>
-						<td>string</td>
-					</tr>
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>// output the javascript function
-echo Security::js_set_token();
-
-// you use the function generated as an onsubmit function, like so.
-// do NOT forget the 'this' parameter, so the function knows which form to update!
-&lt;form onsubmit="fuel_set_csrf_token(this);"&gt;
-	&lt;!-- do your stuff here --&gt;
-&lt;/form&gt;
-</code></pre>
+							<pre class="php"><code>Security::set_token();</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -544,6 +504,83 @@ $text = Security::xss_clean($text);</code></pre>
 						<td>
 							<pre class="php"><code>$text = '&lt;p&gt;Test paragraph.&lt;/p&gt;';
 $text = Security::htmlentities($text);</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+
+			<article>
+				<h4 class="method" id="method_js_fetch_token">js_fetch_token()</h4>
+				<p>The <strong>js_fetch_token</strong> method allows you to produce JavaScript fuel_csrf_token() function that will return the current CSRF token when called. Use to fill right field on form submit for AJAX operations.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// output the javascript function
+echo Security::js_fetch_token();
+
+// you can now use the generated function in the javascript code on your page
+&lt;script type="text/javascript"&gt;
+	var current_token = fuel_csrf_token();
+&lt;/script&gt;
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_js_set_token">js_set_token()</h4>
+				<p>
+					The <strong>js_set_token</strong> method allows you to produce JavaScript
+					fuel_set_csrf_token() function that will set the current CSRF token field
+					in the form when called. Use this on an onsubmit of a form, to update the
+					hidden token field in the form with the current value of the csrf cookie.
+					You have to use this when you want to allow multiple windows open, and
+					use a strict rotation and expiry of the CSRF token.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// output the javascript function
+echo Security::js_set_token();
+
+// you use the function generated as an onsubmit function, like so.
+// do NOT forget the 'this' parameter, so the function knows which form to update!
+&lt;form onsubmit="fuel_set_csrf_token(this);"&gt;
+	&lt;!-- do your stuff here --&gt;
+&lt;/form&gt;
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
