@@ -3,44 +3,33 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20180417">
 	<link rel="shortcut icon" href="./../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 	</script>
-	<script src="./../../assets/js/combined.js"></script>
+	<script src="./../../assets/js/combined.js?20180417"></script>
 	<title>Introduction - Orm Package - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 			<h2>Orm</h2>
@@ -68,6 +57,88 @@
 		'orm',
 	),
 ),</code></pre>
+			</section>
+
+			<section>
+				<h2 id="caching">Object Caching</h2>
+
+				<p>By default, the ORM implements object caching, to ensure data consistency. Consider the following example:</p>
+					<pre class="php"><code>// fetch a customer record from the client table by its id key
+$customer = Model_Clients::find($id);
+
+// give the user a minumum discount of 10%
+if ($customer->discount &lt; 10)
+{
+	$customer->discount = 10;
+}
+
+// fetch the same customer record
+$client = Model_Client($id);
+
+// print the clients discount
+echo $client->discount;
+</code></pre>
+				<p>
+					If you would have used standard database queries, you would expect the printout to show the value of "discount"
+					as it is stored in the table record for this customer. With the ORM, thanks to object caching, this is not the
+					case. Both queries return the same object (by reference), so the change to <strong>$customer</strong> will be reflected in <strong>$client</strong>.
+					If you would <strong>var_dump()</strong> both variables, you will see that they are identical, with the same object #id.
+				</p>
+
+				<p>You can disable the retrieval from cache for a subsequent query using:</p>
+					<pre class="php"><code>// fetch a customer record from the client table by its id key
+$customer = Model_Clients::find($id);
+
+// fetch as a new object using array notation
+$client1 = Model_Client($id, array('from_cache' => false));
+
+// fetch as a new object using chaining
+$client2 = Model_Client::query()-&gt;from_cache(false)-&gt;where('id', '=', $id)-&gt;get_one();
+</code></pre>
+				<p>
+					If you would dump these three variables, you will see that the objects will have unique #id's, and modifying one will
+					not change the other. You can also enable this behaviour globally, so ORM results will never be cached. You need this
+					for example in tasks, for batch operations. You wouldn't want to store thousands of objects in memory!
+				</p>
+					<pre class="php"><code>// globally disable the ORM object cache
+\Orm\Query::caching(false);
+</code></pre>
+				<p>If you have disabled the caching globally, you can enable it on a per-query basis:</p>
+					<pre class="php"><code>// fetch a customer record from the client table by its id key
+$customer = Model_Clients::find($id);
+
+// fetch as a new object using array notation
+$client1 = Model_Client($id, array('from_cache' => true));
+
+// fetch as a new object using chaining
+$client2 = Model_Client::query()-&gt;from_cache(true)-&gt;where('id', '=', $id)-&gt;get_one();
+</code></pre>
+
+				<p>
+					And finally, if you really know you are not going to need or use ORM object caching, you can also create an <strong>orm.php</strong>
+					configuration file in your application config directory, and add:
+				</p>
+					<pre class="php"><code>&lt;?php
+return array(
+    // global query settings
+    'caching' => true,
+);
+</code></pre>
+				<p>
+					Under specific circumstances, you may need to flush the complete ORM cache, or part of it. For example it you run a batch processor
+					or queue worker, to run background tasks. Since it always runs, it will always re-use it's cache, which can lead to cached values
+					being reused while the database has been altered in the meantime. To flush, use:
+				</p>
+					<pre class="php"><code>// flush the complete ORM cache
+\Orm\Model::flush_cache(null);
+
+// flush the cache for a specific model
+\Some\Model\Name::flush::cache();
+
+// or by class name
+\Orm\Model::flush_cache('Some\Model\Name');
+</code></pre>
+
 			</section>
 
 			<section>
@@ -104,13 +175,16 @@
 				<p>If you are absolutely sure you are not going to manipulate the results, for example because you need them
 					for pagination only, you can use <kbd>rows_limit()</kbd> and <kbd>rows_offset()</kbd> instead, which will
 					force them on the entire query.</p>
+
+				<h3>My query result doesn't reflect the record values in the database</h3>
+				<p>Familiarize yourself with ORM object caching, see the explanation given above.</p>
 			</section>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

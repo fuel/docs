@@ -3,44 +3,33 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../../assets/css/combined.css?20180417">
 	<link rel="shortcut icon" href="./../../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../../';
 	</script>
-	<script src="./../../../assets/js/combined.js"></script>
+	<script src="./../../../assets/js/combined.js?20180417"></script>
 	<title>Introduction - OrmAuth - Auth Package - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 			<h2>OrmAuth - Introduction</h2>
@@ -171,6 +160,47 @@ $role->save();</code></pre>
 				This will allow you to construct checks like <code>blog.comments[read,create,write,write-own,delete,delete-own]</code>.
 			</p>
 
+
+			<h3 id="permissions">Add Permissions to Users</h3>
+
+			<p>
+			To add Permissions to Users, you need to create a User and a Permission, then relate the two:
+			</p>
+<pre class="php"><code>
+// create user
+$id = Auth::create_user('name','pass','email@example.com',5); // 6 group has all access so we use 5 to demonstrate
+$user = \Model\Auth_User::find($id); //get the user we created
+// create permission
+$perm = \Model_Auth_Permission::forge();
+$perm->area = 'site';
+$perm->permission = 'access';
+$perm->description = 'example permission';
+$perm->save(); // save the permission
+// related the two
+$user->permissions[] = $perm; (or an array of $perms)
+$user->save();
+
+// check that our user has the permission we assigned to:
+Auth::force_login($id);
+Auth::has_access('site.access'); // should return true
+</code></pre>
+<h3 id="permissions">Delete User Permissions</h3>
+
+			<p>
+			Deleting User permissions is as easy as unsetting the array User->permissions
+			</p>
+<pre class="php"><code>
+
+$user = \Model\Auth_User::find($id); //get the user we created
+
+// remove permissions
+unset($user->permissions);
+$user->save();
+
+// check that our user has the permission we assigned to:
+Auth::force_login($id);
+Auth::has_access('site.access'); // should return false (permission from previous example)
+</code></pre>
 
 
 			<h3 id="caching">Caching</h3>
@@ -336,11 +366,128 @@ $role->save();</code></pre>
 				uses an encrypted cookie to store the user information to be remembered.
 			</p>
 
-			<h3 id="database">Database table</h3>
+			<h3 id="database">Database tables</h3>
 
 			<p>
 				OrmAuth relies on a quite a few tables to store all information. The Auth package contains the required migration files to create these tables.<br />
 				Just run <code>oil refine migrate --packages=auth</code> to have these tables created for you.
+			</p>
+
+			<p>
+				Simpleauth uses the following table:
+			</p>
+
+			<table>
+				<tbody>
+					<tr class="header">
+						<th style="width:200px;">Name</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>users</th>
+						<td>Main users table. This table also controls concurrent login protection through the stored login-hash. Besides the password, the group the user belongs to and the users email address, all other properties are serialized in the profile_fields colunm.</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p>
+				Ormauth uses the following tables:
+			</p>
+
+			<table>
+				<tbody>
+					<tr class="header">
+						<th style="width:200px;">Name</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>users</th>
+						<td>Main users table. This table also controls concurrent login protection through the stored login-hash. Besides the password, the group the user belongs to and the users email address, this table does not contain any user properties.</td>
+					</tr>
+					<tr>
+						<th>users_metadata</th>
+						<td>Users metadata table. This table contains all user properties. It is accessed through the User model as an EAV container, so you are free to add any property you like to any user. Metadata is automatically loaded by the User model.</td>
+					</tr>
+					<tr>
+						<th>users_groups</th>
+						<td>Groups table. The list of groups a user can belong to. It is pre-populated with default groups by the Auth migrations.</td>
+					</tr>
+					<tr>
+						<th>users_roles</th>
+						<td>Roles table. The list of roles a user can belong to. It is pre-populated with default roles by the Auth migrations.</td>
+					</tr>
+					<tr>
+						<th>users_permissions</th>
+						<td>Permissions table. The list of permissions used by your application. These permissions can be assigned to users, roles and groups.</td>
+					</tr>
+					<tr>
+						<th>user_group_roles</th>
+						<td>Junction (relationship) table in the many-many relation between groups and roles.</td>
+					</tr>
+					<tr>
+						<th>users_group_permissions</th>
+						<td>Junction (relationship) table in the many-many relation between groups and permissions.</td>
+					</tr>
+					<tr>
+						<th>users_role_permissions</th>
+						<td>Junction (relationship) table in the many-many relation between roles and permissions.</td>
+					</tr>
+					<tr>
+						<th>users_user_permissions</th>
+						<td>Junction (relationship) table in the many-many relation between users and permissions.</td>
+					</tr>
+					<tr>
+						<th>users_user_roles</th>
+						<td>Junction (relationship) table in the many-many relation between users and roles</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p class="note">
+				Note that this table shows the default table names. The name of the users table is configurable in the Ormauth config file.
+				The configured name is also used as prefix for the other table names. So if you name your users table <code>abc</code>, the
+				role-permission Junction (relationship) table will be called <code>abc_role_permissions</code>.
+			</p>
+
+			<p>
+				For the integration with OpAuth, the following tables are created. If you don't intend to use OpAuth, it is safe to delete them
+				using a migration in your application.
+			</p>
+
+			<table class="config">
+				<tbody>
+					<tr class="header">
+						<th style="width:200px;">Name</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>users_providers</th>
+						<td>Opauth provider table. It has a one-many relation with users, and for each Opauth strategy used, it records the providers name, the users UID and security tokens for re-authentication.</td>
+					</tr>
+					<tr>
+						<th>users_clients</th>
+						<td>Reserved for Oauth2 server usage.</td>
+					</tr>
+					<tr>
+						<th>users_scopes</th>
+						<td>Reserved for Oauth2 server usage.</td>
+					</tr>
+					<tr>
+						<th>users_sessions</th>
+						<td>Reserved for Oauth2 server usage.</td>
+					</tr>
+					<tr>
+						<th>users_sessionscopes</th>
+						<td>Reserved for Oauth2 server usage.</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p class="note">
+				Note that all tables that are not Junction (relationship) tables in a many-many relationship have a column <code>user_id</code>. This is
+				a field you can optionally use to record the id of the user who has changed the record, for audit purposes. <code>Auth</code> itself
+				does not use this record, you need to set it yourself in your user administration admin backend, through the models
+				provided for those tables.
 			</p>
 
 			<h3 id="example">Example</h3>
@@ -378,7 +525,7 @@ $role->save();</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

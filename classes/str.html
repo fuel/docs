@@ -3,51 +3,47 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20180417">
 	<link rel="shortcut icon" href="./../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 		var class_prefix = "Str::";
 	</script>
-	<script src="./../assets/js/combined.js"></script>
+	<script src="./../assets/js/combined.js?20180417"></script>
 	<title>Str - Classes - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
 
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
-
 		<div id="main">
 
 			<h2>Str Class</h2>
 
-			<p>The str class is a set of methods to help with the manipulation of strings.</p>
+			<p>The Str class is a set of methods to help with the manipulation of strings.</p>
+
+			<p>
+				The class also contains multibyte agnostic versions of PHP's multibyte-aware functions in category 2, as defined <a href="http://php.net/manual/en/mbstring.overload.php" target="_blank">on this page</a>.
+				They are drop-in replacements for both versions. For example, you can replace both <strong>strlen()</strong> and <strong>mb_strlen()</strong> with <strong>Str::strlen()</strong>, which will return a
+				multi-byte aware result based on whether or not PHP's <strong>mbstring</strong> extension is loaded.
+			</p>
+			<p class="note">The php.ini setting <strong>mbstring.func_overload</strong> is not supported by FuelPHP. The framework refuses to start when it is set!</p>
 
 			<article>
 				<h4 class="method" id="method_increment">increment($str, $first = 1)</h4>
@@ -284,102 +280,6 @@ echo $alt(); // outputs 'three'
 echo $alt(); // outputs 'four'
 echo $alt(); // outputs 'one'
 // etc...</code></pre>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_upper">upper($str, $encoding = null)</h4>
-				<p>The <strong>upper</strong> method converts all characters to uppercase. It is equivalent to PHP's strtoupper() for your specific character encoding.</p>
-				<table class="method">
-					<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
-									</tr>
-									<tr>
-										<th><kbd>$string</kbd></th>
-										<td><em>string</em></td>
-										<td><em>Required</em></td>
-										<td>The input string.</td>
-									</tr>
-									<tr>
-										<th><kbd>$encoding</kbd></th>
-										<td><em>string</em></td>
-										<td><pre class="php"><code>null</code></pre></td>
-										<td>The character encoding.</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>string</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>Str::upper('User Data'); // returns 'USER DATA'</code></pre>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_lower">lower($str, $encoding = null)</h4>
-				<p>The <strong>lower</strong> method converts all characters to lowercase. It is equivalent to PHP's strtolower() for your specific character encoding.</p>
-				<table class="method">
-					<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>Param</th>
-										<th>Type</th>
-										<th>Default</th>
-										<th class="description">Description</th>
-									</tr>
-									<tr>
-										<th><kbd>$string</kbd></th>
-										<td><em>string</em></td>
-										<td><em>Required</em></td>
-										<td>The input string.</td>
-									</tr>
-									<tr>
-										<th><kbd>$encoding</kbd></th>
-										<td><em>string</em></td>
-										<td><pre class="php"><code>null</code></pre></td>
-										<td>The character encoding.</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>string</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>Str::lower('User Data'); // returns 'user data'</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -715,66 +615,11 @@ Str::ends_with($string, 'Amet', true); // returns true
 				</table>
 			</article>
 
-			<article>
-				<h4 class="method" id="method_sub">sub($str, $start, $length = null, $encoding = null)</h4>
-				<p>The <strong>sub</strong> method returns the portion of the string specified. It is equivalent to PHP's substr() for your specific character encoding.</p>
-				<table class="method">
-					<tbody>
-						<tr>
-							<th class="legend">Static</th>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<th>Parameters</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>Param</th>
-										<th>Default</th>
-										<th class="description">Description</th>
-									</tr>
-									<tr>
-										<th><kbd>$str</kbd></th>
-										<td><em>required</em></td>
-										<td>The input string.</td>
-									</tr>
-									<tr>
-										<th><kbd>$start</kbd></th>
-										<td><em>required</em></td>
-										<td>Position of first character. See <a href="http://php.net/substr" target="_blank">php.net</a> for detailed usage.</td>
-									</tr>
-									<tr>
-										<th><kbd>$length</kbd></th>
-										<td><pre class="php"><code>null</code></pre></td>
-										<td>Maximum number of characters. See <a href="http://php.net/substr" target="_blank">php.net</a> for detailed usage.</td>
-									</tr>
-									<tr>
-										<th><kbd>$encoding</kbd></th>
-										<td><pre class="php"><code>null</code></pre></td>
-										<td>The character encoding.</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>Returns</th>
-							<td>string</td>
-						</tr>
-						<tr>
-							<th>Example</th>
-							<td>
-								<pre class="php"><code>Str::sub('User Data', 3, -1); // returns 'r Dat'</code></pre>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
-
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

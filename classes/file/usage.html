@@ -3,45 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20180417">
 	<link rel="shortcut icon" href="./../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 		var class_prefix = "File::";
 	</script>
-	<script src="./../../assets/js/combined.js"></script>
+	<script src="./../../assets/js/combined.js?20180417"></script>
 	<title>File Usage - Classes - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -904,7 +893,7 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 
 			<article>
 				<h4 class="method" id="method_open_file">open_file($path, $lock = true, $area = null)</h4>
-				<p>Opens a file and locks it.</p>
+				<p>Opens a file and optionally locks it.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -928,7 +917,7 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 								<tr>
 									<th><kbd>$lock</kbd></th>
 									<td><em>true</em></td>
-									<td>Whether to lock the file when opening.</td>
+									<td>If <kbd>true</kbd>, lock exclusively. If <kbd>false</kbd>, don't lock. You can also pass an <kbd>flock()</kbd> value explicitly.</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
@@ -946,8 +935,9 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 					<tr>
 						<th>Throws</th>
 						<td>
-							<kbd>OutsideAreaException</kbd> when a path not inside the file area.
-							<kbd>FileAccessException</kbd> when the file could not be locked.
+							<kbd>OutsideAreaException</kbd> when a path not inside the file area.<br />
+							<kbd>FileAccessException</kbd> when the file could not be locked.<br />
+							<kbd>FileAccessException</kbd> when an invalid <kbd>$lock</kbd> value is passed.
 						</td>
 					</tr>
 					<tr>
@@ -958,6 +948,9 @@ File::copy(APPPATH.'tmp/1.jpg', DOCROOT.'folder/1.jpg', 'tmp', 'public');
 					</tr>
 					</tbody>
 				</table>
+				<p class="note">
+					Please note that the <kbd>$lock</kbd> value is ignored if file locking is disabled in the <a href="intro.html#/configuration">base config</a> (which is the default!).
+				</p>
 			</article>
 
 			<article>
@@ -1436,7 +1429,7 @@ File::download(DOCROOT.'/img/image.jpg', null, 'image/jpeg', null, false, 'inlin
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

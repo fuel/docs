@@ -3,44 +3,33 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../../assets/css/combined.css?20180417">
 	<link rel="shortcut icon" href="./../../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../../';
 	</script>
-	<script src="./../../../assets/js/combined.js"></script>
+	<script src="./../../../assets/js/combined.js?20180417"></script>
 	<title>Included - Observers - Orm Package - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -338,11 +327,16 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 						<tr>
 							<th>data_type</th>
 							<td>varchar, int, integer, tinyint, smallint, mediumint, bigint, float, double, decimal[:d],
-								text, tinytext, mediumtext, longtext, enum, set, bool, boolean, serialize, json,
+								text, tinytext, mediumtext, longtext, enum, set, bool, boolean, serialize, encrypt, json,
 								time_unix, time_mysql</td>
 							<td>
 								The SQL data type, <strong>Required</strong> to have the typing observer used on a field.
 							</td>
+						</tr>
+						<tr>
+							<th>db_decimals</th>
+							<td>int</td>
+							<td>Number of decimals the value in the database has, if different from the specification in "data_type".</td>
 						</tr>
 						<tr>
 							<th>null</th>
@@ -355,7 +349,14 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 							<th>character_maximum_length</th>
 							<td>int</td>
 							<td>
-								The maximum number of characters allowed for a string data type (varchar, text)
+								The maximum number of characters allowed for a string data type (varchar, text, serialized or encrypted result)
+							</td>
+						</tr>
+						<tr>
+							<th>encryption_key</th>
+							<td>string</td>
+							<td>
+								A custom encryption key to encrypt and decrypt this value. If given, it will replace the "crypto_key" set in the Crypt config file.
 							</td>
 						</tr>
 						<tr>
@@ -430,7 +431,7 @@ protected static $_observers = array('Orm\\Observer_Slug' => array('before_inser
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

@@ -3,45 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20180417">
 	<link rel="shortcut icon" href="./../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 		var class_prefix = 'Query_Builder_Update::';
 	</script>
-	<script src="./../../assets/js/combined.js"></script>
+	<script src="./../../assets/js/combined.js?20180417"></script>
 	<title>Query Builder Update - Classes - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -413,7 +402,7 @@ $sql = $query->compile($connection);
 						<tr>
 							<th>Example</th>
 							<td>
-								<pre id="join_example" class="php"><code>// prepare an update statement
+								<pre class="php"><code>// prepare an update statement
 $query = DB::update('users');
 
 // Join a table
@@ -431,11 +420,166 @@ $query->value('users.profile_type', \DB::expr('`profiles`.`type`'));
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_and_on">and_on()</h4>
+				<p>The <strong>and_on</strong> method is an alias for <a href="#method_on">on</a>.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_or_on">or_ on($c1, $op, $c2)</h4>
+				<p>The <strong>on</strong> method adds "OR ON ..." conditions for the last created JOIN statement.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$c1</kbd></th>
+										<td><em>mixed</em></td>
+										<td><em>required</em></td>
+										<td>table name or array($table, $alias)</td>
+									</tr>
+									<tr>
+										<th><kbd>$op</kbd></th>
+										<td><em>string</em></td>
+										<td><em>required</em></td>
+										<td>logical operator</td>
+									</tr>
+									<tr>
+										<th><kbd>$c2</kbd></th>
+										<td><em>mixed</em></td>
+										<td><em>required</em></td>
+										<td>table name or array($table, $alias)</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare an update statement
+$query = DB::update('users');
+
+// Join a table
+$query->join('profiles');
+$query->on('users.id', '=', 'profiles.user_id');
+
+// Add an OR ON condition
+$query->or_on('users.id', '=', 'profiles.other_id');
+
+// Use a Database_Expression so the value does not get escaped.
+$query->value('users.profile_type', \DB::expr('`profiles`.`type`'));
+
+// UPDATE `users` JOIN `profiles` ON `users`.`id` = `profiles`.`user_id` OR `users`.`id` = `profiles`.`other_id` SET `users`.`profile_type` = `profiles`.`type`
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_on_open">on_open()</h4>
+				<p>The <strong>on_open</strong> method adds an open bracket for the last created JOIN statement.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<em>None</em>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<em>See below</em>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_on_close">on_close()</h4>
+				<p>The <strong>on_close</strong> method adds an closing bracket for the last created JOIN statement.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<em>None</em>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
+$query = DB::update('users');
+
+// Join a table
+$query->join('profiles');
+$query->on('users.id', '=', 'profiles.user_id');
+
+// Add some nested conditions
+$query->on_open()
+  ->on('profiles.status', '=', DB::expr('A')
+  ->or_on('profiles.status', '=', DB::expr('B')
+->on_close();
+
+// Use a Database_Expression so the value does not get escaped.
+$query->value('users.profile_type', \DB::expr('`profiles`.`type`'));
+
+// UPDATE `users` JOIN `profiles` ON `users`.`id` = `profiles`.`user_id`
+//          AND (`profiles`.`status` = "A" OR  `profiles`.`status` = "B"))
+//          SET `users`.`profile_type` = `profiles`.`type`
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_and_on">and_on()</h4>
+				<p>The <strong>and_on</strong> method is an alias for <a href="#method_on">on</a>.</p>
+			</article>
+
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

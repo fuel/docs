@@ -3,44 +3,33 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20180417">
 	<link rel="shortcut icon" href="./../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 	</script>
-	<script src="./../assets/js/combined.js"></script>
+	<script src="./../assets/js/combined.js?20180417"></script>
 	<title>Coding Standards - General - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -88,9 +77,9 @@
 			<h5 id="classes">Classes</h5>
 
 			<p>Class names should use underscores to separate words, and each word in the class name should begin with a
-				capital letter. An underscore will, however, be converted to a directory separator during autoloading. The
-				use of camelcase is discouraged but cannot be prevented in some cases when putting the class in a
-				subdirectory makes no sense.</p>
+				capital letter. The use of camelcase is discouraged but cannot be prevented in some cases when putting
+				the class in a subdirectory makes absolutely no sense. If possible, this should be avoided.
+			</p>
 
 			<pre class="php"><code>namespace Fuel\Core;
 
@@ -106,10 +95,14 @@ class Session_Cookie extends Session_Driver
 
 }</code></pre>
 
-			<p>This would result in the following file path:</p>
+			<p>
+				Every class should be defined into its own file. Any underscores in the class name will be converted to a directory
+				separator during autoloading, so this must be reflected in the name and location of the class file. For the classes
+				above, their names wouldresult in the following file path:
+			</p>
 
-			<pre class="php"><code>core/classes/session.php
-core/classes/session/cookie.php</code></pre>
+			<pre class="php"><code>COREPATH/classes/session.php
+COREPATH/classes/session/cookie.php</code></pre>
 
 			<h5 id="methods_standards">Methods</h5>
 
@@ -150,6 +143,14 @@ core/classes/session/cookie.php</code></pre>
 $buffer
 for ($i = 0; $i &lt; $max; $i++)</code></pre>
 
+			<p>
+				Except for the PHP global system constant that doesn't have a Fuel wrapper (for example <kbd>$_ENV</kbd>), global
+				variables should never been used. If you have a legitemate use for such a constant, please inform the team so a
+				wrapper can be created to allow consistent and immutable access to that constant.<br />
+				Use of the keyword <kbd>global</kbd> to create or import global variables into a local variable scope is
+				<strong>explicitly</strong> forbidden!
+			</p>
+
 			<h5 id="constants">Constants</h5>
 
 			<p>Constants follow the same guide lines as variables with the exception that constants should be all upper
@@ -158,6 +159,12 @@ for ($i = 0; $i &lt; $max; $i++)</code></pre>
 			<pre class="php"><code>MY_CONSTANT
 TEMPLATE_PATH
 TEXT_DEFAULT</code></pre>
+
+			<p>
+				The use of global constants is discouraged and should be kept to an absolute minimum. If you need one, be prepend to
+				defend your use case before the Fuel team will accept your proposal!. Where possible, use class constants to make
+				their scope, usage and meaning clear.
+			</p>
 
 			<h3 id="keywords">Keywords</h3>
 
@@ -170,6 +177,14 @@ $var = null;
 foreach ($array as $key => $value)
 public function my_function(array $array)
 function my_function($arg = null)</code></pre>
+
+			<h3 id="type_casting">Type casting</h3>
+
+			<p>
+				The use of type casting is discouraged. PHP is a weakly typed language with at times very vague type conversion rules. They may
+				cause unintended behaviour, which may introduce very hard to find bugs. Instead, do a content check before you convert to make
+				sure the variable contains an expected value.
+			</p>
 
 			<h3 id="control_structures">Control Structures</h3>
 
@@ -251,7 +266,8 @@ else
 
 // Or this:
 $var = Uri::segment(3) ? Uri::segment(3) : 'default';
-// Or actually this:
+
+// Or even better, this:
 $var = Uri::segment(3) ?: 'default';</code></pre>
 
 			<h3 id="comparison_logical">Comparisons, Logical operators</h3>
@@ -313,7 +329,7 @@ for ($i = 0; $i < $max; $i++)</code></pre>
 
 			<h5 id="quotation">String quotation</h5>
 
-			<p>Single quotes are preferred over double quotes.</p>
+			<p>Single quotes are preferred over double quotes. It prevents unwanted or unintended expansion of variables and control characters.</p>
 
 			<h5 id="concatenation">Concatenation</h5>
 
@@ -362,7 +378,7 @@ $path = Arr::get($array, 'always_load.packages.package');
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

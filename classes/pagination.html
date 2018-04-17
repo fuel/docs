@@ -3,45 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20180417">
 	<link rel="shortcut icon" href="./../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 		var class_prefix = "Pagination::";
 	</script>
-	<script src="./../assets/js/combined.js"></script>
+	<script src="./../assets/js/combined.js?20180417"></script>
 	<title>Pagination - Classes - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -164,7 +153,7 @@ return \View::forge('posts/index', $data);</code></pre>
 							<td>integer</td>
 							<td><pre class="php"><code>null</code></pre></td>
 							<td>
-								The page to load if no page number is present in the URI. If not given, it defaults to 1.
+								The page to load if no page number is present in the URI. If not given, it defaults to 'default_page'.
 							</td>
 						</tr>
 						<tr>
@@ -189,6 +178,14 @@ return \View::forge('posts/index', $data);</code></pre>
 							<td><pre class="php"><code>0.50</code></pre></td>
 							<td>
 								Offset of the active link in the pagination block, either in a decimal between 0 and 1, or in an integer (precentage) between 0 and 100.
+							</td>
+						</tr>
+						<tr>
+							<th>default_page</th>
+							<td>mixed</td>
+							<td><pre class="php"><code>'first'</code></pre></td>
+							<td>
+								The page to load if no page number is present in the URI. Valid are 'first', 'last' or a page number. If not given, it defaults to 'first'.
 							</td>
 						</tr>
 					</tbody>
@@ -955,7 +952,7 @@ Model_Article::query()
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

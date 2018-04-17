@@ -3,45 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20180417">
 	<link rel="shortcut icon" href="./../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 		var class_prefix = "DB::";
 	</script>
-	<script src="./../../assets/js/combined.js"></script>
+	<script src="./../../assets/js/combined.js?20180417"></script>
 	<title>DB - Classes - FuelPHP Documentation</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="search" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">table of contents</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -845,6 +834,123 @@ print_r(DB::list_columns('users','%name%'));
 			</article>
 
 			<article>
+				<h4 class="method" id="method_list_indexes">list_indexes($table, $like = null, $db = null)</h4>
+				<p>The <strong>list_indexes</strong> method return a lists all of the indexes on a table.
+				Optionally, a LIKE string can be used to search for specific index names.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$table</kbd></th>
+										<td><em>null</em></td>
+										<td class="description">The table to look in.</td>
+									</tr>
+									<tr>
+										<th><kbd>$like</kbd></th>
+										<td><strong>null</strong></td>
+										<td class="description">The indexes to search for.</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><strong>null</strong></td>
+										<td class="description">The database connection.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns an array with field data.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>/*
+Array
+(
+    [name] => PRIMARY
+    [column] => id
+    [order] => 1
+    [type] => BTREE
+    [primary] => true
+    [unique] => true
+    [null] => false
+    [ascending] => true
+)
+Array
+(
+    [name] => TypeValue
+    [column] => type
+    [order] => 1
+    [type] => BTREE
+    [primary] => false
+    [unique] => true
+    [null] => false
+    [ascending] => true
+)
+Array
+(
+    [name] => TypeValue
+    [column] => value
+    [order] => 2
+    [type] => BTREE
+    [primary] => false
+    [unique] => true
+    [null] => false
+    [ascending] => true
+)
+
+// here, TypeValue is a compound index with two columns, the order indicates
+// the sequence in which the columns are defined in the index
+
+*/
+print_r(DB::list_columns('table'));
+
+/*
+Array
+(
+    [name] => TypeValue
+    [column] => type
+    [order] => 1
+    [type] => BTREE
+    [primary] =>
+    [unique] => 1
+    [null] =>
+    [ascending] => 1
+)
+Array
+(
+    [name] => TypeValue
+    [column] => value
+    [order] => 2
+    [type] => BTREE
+    [primary] =>
+    [unique] => 1
+    [null] =>
+    [ascending] => 1
+)
+*/
+print_r(DB::list_columns('table','%Value%'));
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_list_tables">list_tables($like = null, $db = null)</h4>
 				<p>The <strong>list_tables</strong> method return a lists all of the tables in a database.
 				Optionally, a LIKE string can be used to search for specific tables.</p>
@@ -1324,7 +1430,7 @@ catch (Exception $e)
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>
