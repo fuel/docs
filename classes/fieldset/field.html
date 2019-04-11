@@ -95,7 +95,7 @@ $field-&gt;set_fieldset($fieldset);
 			</article>
 
 			<article>
-				<h4 class="method" id="method_set_name">set_name($name)</h4>
+				<h4 class="method" id="method_set_name">set_name($name, $update = false)</h4>
 				<p>
 					Change the name of a field.
 				</p>
@@ -120,6 +120,11 @@ $field-&gt;set_fieldset($fieldset);
 										<td><pre class="php">required</pre></td>
 										<td>Name of the field when generating the HTML for this field.</td>
 									</tr>
+									<tr>
+										<th><kbd>$update</kbd></th>
+										<td><pre class="php">true</pre></td>
+										<td>When set to false, the associated fieldset is not updated. This is for internal use only!</td>
+									</tr>
 								</tbody>
 							</table>
 						</td>
@@ -135,8 +140,8 @@ $field-&gt;set_fieldset($fieldset);
 						</td>
 					</tr>
 					</tbody>
-					<p class="note">If the fieldset field is part of a field, the field will be renamed in the fieldset too.</p>
 				</table>
+					<p class="note">If the fieldset field is part of a field, the field will be renamed in the fieldset too. Field order in the fieldset will be maintained.</p>
 			</article>
 
 			<article>
