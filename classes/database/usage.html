@@ -42,6 +42,7 @@
 			<p>Database usage is divided into a couple of segments:</p>
 
 			<ul>
+				<li><a href="#query-results">Query results</a></li>
 				<li><a href="#running-queries">Running queries</a></li>
 				<li><a href="#selecting">Selecting</a>,</li>
 				<li><a href="#results">Results</a>,</li>
@@ -55,6 +56,46 @@
 				<li><a href="#caching">Query caching</a></li>
 			</ul>
 
+			<article>
+				<h3 id="query-results">Query results</h3>
+				<p>
+					A database query always returns the result in an iterator object. <br />
+					There are two types of result object available, each with their pros and cons.<br />
+					<ul>
+						<li>Database_Result</li>
+						<li>Database_Cached</li>
+					</ul>
+					A Database_Result object fetches rows from the result one at the time, and doesn't store it.
+					This means that this object has a low memory footprint, but only allows sequential access to
+					the rows retrieved, in the sequence they are returned, one at the time, from start to finish.<br />
+					<br />
+					In plain PHP, you can roughly compare it to:</br />
+					<pre class="php"><code>while ($row = $pdoResult->fetch())
+{
+	// do something with $row
+}</code></pre>
+					A Database_Cached object however fetches all rows from the result at once, and stores it in
+					the object. This means that, depending on the size of the resultset, it might have quite a
+					substantial memoty footprint. But the plus side is, it allows you random access to the rows
+					retrieved, and you access all rows simultaneously, multiple times, iterate over it backwards,
+					anything you could do with an array of values.<br />
+					<br />
+					In plain PHP, you can roughly compare it to:</br />
+					<pre class="php"><code>$rows = $pdoResult->fetchAll(PDO::FETCH_NUM); // or FETCH_ASSOC, depending on your db config
+foreach ($rows as $row)
+{
+	// do something with $row
+}</code></pre>
+					You can control the type of result object returned globally, per database connection, using
+					the <em>enable_cache</em> configuration item, on the defined database connection, in your db.php
+					config file. By default, caching is enabled. You can override the global setting per query, using:<br />
+					<pre class="php"><code>// this returns a Database_Result, independent of the global setting
+$result = \DB::select()->from('table')->caching(false)->execute();
+
+// this returns a Database_Cached, independent of the global setting
+$result = \DB::select()->from('table')->caching(true)->execute();</code></pre>
+				</p>
+			</article>
 
 			<article>
 				<h3 id="running-queries">Running queries</h3>
@@ -65,7 +106,7 @@ $query = DB::query('SELECT * FROM `users`');
 				<p>Now we can execute that query:</p>
 				<pre class="php"><code>$query = DB::query('SELECT * FROM `users`');
 
-// return a new Database_MySQLi_Result
+// return a new Database_xxx_Result or Database_xxx_Cached object
 $query->execute();
 
 // Or execute is on a different database group
