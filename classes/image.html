@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css?20180417">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 		var class_prefix = "Image::";
 	</script>
-	<script src="./../assets/js/combined.js?20180417"></script>
+	<script src="./../assets/js/combined.js?20190627"></script>
 	<title>Image - Classes - FuelPHP Documentation</title>
 </head>
 <body>
@@ -924,7 +924,7 @@ Object
 					<tbody>
 					<tr>
 						<th class="legend">Static</th>
-						<td>No</td>
+						<td>Yes</td>
 					</tr>
 					<tr>
 						<th>Parameters</th>
@@ -942,6 +942,10 @@ Object
 							<pre class="php"><code>// Returns 'jpg'
 $ext = Image::load('uploaded_file.jpg')
 	->extension();
+
+// Returns 'jpg', using the static instance
+Image::forge($config, 'uploaded_file.jpg');
+$ext = Image::extension();
 
 // Save a PNG as a JPG
 Image::load('placeholder.png')
@@ -1153,7 +1157,7 @@ Image::load('filename.gif')
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2019 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

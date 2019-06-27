@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css?20180417">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 		var class_prefix = "Log::";
 	</script>
-	<script src="./../assets/js/combined.js?20180417"></script>
+	<script src="./../assets/js/combined.js?20190627"></script>
 	<title>Log - Classes - FuelPHP Documentation</title>
 </head>
 <body>
@@ -110,7 +110,7 @@ if($var !== 1) Log::warning('Although $var has been changed, we will keep going.
 // Send an error log entry
 if($var !== 1) Log::error('We cannot keep going, $var has been changed! :o');
 
-// Finally, create a log entry with a custom $level
+// Finally, try to make a log entry with a custom $level
 Log::write('Link', 'More info on https://fuelphp.com/');</code></pre>
 
 			<h5 id="output">Output</h5>
@@ -125,7 +125,8 @@ Log::write('Link', 'More info on https://fuelphp.com/');</code></pre>
 			</p>
 
 			<p><strong>The examples above would write the following code to the log file:</strong></p>
-			<pre class="php"><code>&lt;?php defined('COREPATH') or exit('No direct script access allowed'); ?&gt;<br/><br/>Info - 2011-01-03 18:44:45 --> my_init_function() - Application started (with $var = 1)<br/>Debug - 2011-01-03 18:44:45 --> $var is now 5<br/>Warning - 2011-01-03 18:44:45 --> Although $var has been changed, we will keep going.<br/>Error - 2011-01-03 18:44:45 --> We cannot keep going, $var has been changed! :o<br/>Link - 2011-01-03 18:44:45 --> More info on https://fuelphp.com/</code></pre>
+			<pre class="php"><code>&lt;?php defined('COREPATH') or exit('No direct script access allowed'); ?&gt;<br/><br/>INFO - 2011-01-03 18:44:45 --> my_init_function() - Application started (with $var = 1)<br/>DEBUG - 2011-01-03 18:44:45 --> $var is now 5<br/>WARNING - 2011-01-03 18:44:45 --> Although $var has been changed, we will keep going.<br/>ERROR - 2011-01-03 18:44:45 --> We cannot keep going, $var has been changed! :o<br/>NOTICE - 2011-01-03 18:44:45 --> More info on https://fuelphp.com/</code></pre>
+			<p class="note">Note that the custom log level "Link" that was used to create the last line was mapped to "Notice". Since Fuel switched to using the Monolog package for logging, custom log levels are no longer supported, the mapping is there to provide backward compatibility with earlier Fuel versions.</p>
 
 			<article>
 				<h4 class="method" id="method_info">info($msg, $method = null)</h4>
@@ -410,7 +411,7 @@ Log::write('Link', 'More info on https://fuelphp.com/')</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2019 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>

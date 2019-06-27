@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../assets/css/combined.css?20180417">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 		var class_prefix = "Crypt::";
 	</script>
-	<script src="./../../assets/js/combined.js?20180417"></script>
+	<script src="./../../assets/js/combined.js?20190627"></script>
 	<title>Crypt Configuration - Classes - FuelPHP Documentation</title>
 </head>
 <body>
@@ -39,16 +39,24 @@
 			<p>
 				The Crypt class allows encrypt or decrypt a string. The Crypt class is also used internally by for example the Fuel Sessions class.
 			</p>
-			<p>It uses the encryption and hashing methods provided by PHPSecLib, so it's not dependent on external modules being available, such as mcrypt.</p>
+			<p>
+				Until version 1.8, Crypt used the encryption and hashing methods provided by the composer package PHPSecLib.
+				Currently, it uses Sodium, either internally in PHP 7.2+, using libsodium if available, or via software emulation through the sodium-compat composer package.
+				It's not dependent on external PHP modules being available, such as mcrypt.
+			</p>
+			<p>
+				Crypt encryption is backwards compatible. If you have data encrypted with PHPSeclib, it will detect this from the encrypted data, and decrypt using PHPSeclib using the old crypt keys.
+				When encrypting data, it will always use Sodium.
+			</p>
 
 			<section>
 				<h3 id="configuration">Configuration</h3>
 
 				<p>
-					The Crypt class is configured through the <kbd>app/config/crypt.php</kbd> configuration file. It will be generated and populated with random values when you first use the Crypt class or if one of the required configuration values is missing.
+					The Crypt class is configured through the <strong>app/config/crypt.php</strong> configuration file. It will be generated and populated with random values when you first use the Crypt class or if one of the required configuration values is missing.
 				</p>
 				<p class="note">
-					Note that this will require write access to app/config/crypt.php! If this is not possible, make sure all configuration settings are set!
+					Note that this will require write access to app/config/crypt.php! If this is not possible, Crypt terminates with an error, while displaying the contents that should be written to the config file. You need to copy and paste this into the file yourself before you can continue.
 				</p>
 				<p>The following configuration settings can be defined:</p>
 				<table class="config">
@@ -60,41 +68,56 @@
 							<th>Description</th>
 						</tr>
 						<tr>
-							<th>crypto_key</th>
+							<th>legacy.crypto_key</th>
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								Random encryption key value used in the encryption routines. Make sure you set this to something unique and random!
+								<strong>PHPSecLib</strong>: Random string used as encryption key in the encryption routines. Make sure you set this to something unique and random!
 							</td>
 						</tr>
 						<tr>
-							<th>crypto_iv</th>
+							<th>legacy.crypto_iv</th>
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								Random encryption initialisation vector used in the encryption routines. Make sure you set this to something unique and random!
+								<strong>PHPSecLib</strong>: Random string used as encryption initialisation vector in the encryption routines. Make sure you set this to something unique and random!
 							</td>
 						</tr>
 						<tr>
-							<th>crypto_hmac</th>
+							<th>legacy.crypto_hmac</th>
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								Random value used in the Hash-based Message Authentication Code (HMAC) routines. Make sure you set this to something unique and random!
+								<strong>PHPSecLib</strong>: Random string used in the Hash-based Message Authentication Code (HMAC) routines. Make sure you set this to something unique and random!
+							</td>
+						</tr>
+						<tr>
+							<th>sodium.cipherkey</th>
+							<td>string</td>
+							<td>n/a</td>
+							<td>
+								<strong>Sodium</strong>: Random hexadecimal value used in the Hash-based Message Authentication Code (HMAC) routines. Make sure you set this to something unique and random!
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<p class="note">
-					If you assign keys manually, note that they are base64_encoded, and the length must be a multiple of 4 to be able to decode it. Make sure the length is correct!
-				</p>
 			</section>
 
+			<p class="note">
+				If you want to assign the legacy keys manually, make sure they are base64_encoded using the <strong><kbd>safe_b64encode()</kbd></strong> method from the Crypt class, and have a string length that is a multiple of 4!
+			</p>
+			<p class="note">
+				If you want to assign the <strong>cipherkey</strong>, use <strong><kbd>sodium_bin2hex(random_bytes(SODIUM_CRYPTO_STREAM_KEYBYTES)))</kbd></strong> to create a sufficiently random key in the correct format!
+			</p>
+
+			<p>
+				If you have a crypt configuration file with legacy keys from a pre-1.8.1 version of the framework, it will automatically be converted to the new format, and a cipherkey is randomly generated, upon first use of the new Sodium powered Crypt class.
+			</p>
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
+				&copy; FuelPHP Development Team 2010-2019 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
 			</p>
 		</footer>
 	</div>
