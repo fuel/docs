@@ -80,6 +80,7 @@
 	'enable_cache'   => true,
 	'profiling'      => false,
 	'readonly'       => false,
+	'command'        => '',
 ),
 
 // a PDO driver configuration, using PostgreSQL
@@ -98,6 +99,7 @@
 	'enable_cache'   => true,
 	'profiling'      => false,
 	'readonly'       => array('slave1', 'slave2', 'slave3'),
+	'command'        => '',
 ),
 
 'slave1' => array(
@@ -185,6 +187,11 @@
 							<th><kbd>readonly</kbd></th>
 							<td>array|false</td>
 							<td>If you have a database in a master/slave setup, you can use this to define an array of slave connections, which will be used at random for read operations.</td>
+						</tr>
+						<tr>
+							<th><kbd>command</kbd></th>
+							<td>string</td>
+							<td>Optional SQL command to send to the database after a connection has been made. You can use this for example to change session mode settings.</td>
 						</tr>
 					</tbody>
 				</table>
