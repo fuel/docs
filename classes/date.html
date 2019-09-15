@@ -416,6 +416,55 @@ echo Date::time_ago(strtotime("12 April 1964"), strtotime("01 March 2012"), 'yea
 			</article>
 
 			<article>
+				<h4 class="method" id="method_is_valid">is_valid($date, 'Y-m-d')</h4>
+				<p>The <strong>is_valid</strong> returns whether the date value passed matches the given format, and if it is a valid date.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$date</kbd></th>
+									<td><i>Required</i></td>
+									<td>String, a date and/or time combination that can be expressed in a string.</td>
+								</tr>
+								<tr>
+									<th><kbd>$format</kbd></th>
+									<td><pre class="php"><code>'Y-m-d h:i:s'</code></pre></td>
+									<td>The format to match against (see <a href="https://www.php.net/manual/en/datetime.createfromformat.php">the PHP docs</a>)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>echo \Date::is_valid('2019-01-01', 'Y-m-d') ? "true" : "false"; // true
+echo \Date::is_valid('2019-01-32', 'Y-m-d') ? "true" : "false"; // false
+echo \Date::is_valid('2019-02-28', 'Y-m-d') ? "true" : "false"; // true
+echo \Date::is_valid('2019-02-29', 'Y-m-d') ? "true" : "false"; // false
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_format">format($pattern_key = 'local', $timezone = null)</h4>
 				<p>
 					The <strong>format</strong> method returns a formatted date as specified by the pattern key. The
