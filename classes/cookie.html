@@ -74,10 +74,16 @@
 						<td>Set to true if you only want to transmit cookies over secure connections.</td>
 					</tr>
 					<tr>
-						<th><kbd>httponly</kbd></th>
+						<th><kbd>http_only</kbd></th>
 						<td>boolean</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>Allow only transmit of cookies over HTTP, disabling Javascript access.</td>
+					</tr>
+					<tr>
+						<th><kbd>same_site</kbd></th>
+						<td>string</td>
+						<td><pre class="php"><code>none</code></pre></td>
+						<td>Samesite options for the cookie.</td>
 					</tr>
 				</tbody>
 			</table>
@@ -135,7 +141,7 @@
 			</article>
 
 			<article>
-				<h4 class="method" id="method_set">set($name, $value, $expiration = null, $path = null, $domain = null, $secure = null, $httponly = null)</h4>
+				<h4 class="method" id="method_set">set($name, $value, $expiration = null, $path = null, $domain = null, $secure = null, $http_only = null, $same_site = null)</h4>
 				<p>The <strong>set</strong> method allows you to create a cookie.</p>
 				<table class="method">
 					<tbody>
@@ -183,9 +189,14 @@
 									<td>Set to true if you only want to transmit cookies over secure connections.</td>
 								</tr>
 								<tr>
-									<th><kbd>$httponly</kbd></th>
+									<th><kbd>$http_only</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>Allow only transmit of cookies over HTTP, disabling Javascript access.</td>
+								</tr>
+								<tr>
+									<th><kbd>$same_site</kbd></th>
+									<td><pre class="php"><code>none</code></pre></td>
+									<td>Samesite property of the cookie.</td>
 								</tr>
 							</table>
 						</td>
@@ -206,7 +217,7 @@
 			</article>
 
 			<article>
-				<h4 class="method" id="method_delete">delete($name, $path = null, $domain = null, $secure = null, $httponly = null)</h4>
+				<h4 class="method" id="method_delete">delete($name, $path = null, $domain = null, $secure = null, $http_only = null, $same_site = null)</h4>
 				<p>The <strong>delete</strong> method deletes a parameter from the $_COOKIE array.</p>
 				<p class="note">
 					When a cookie was created under a specified path or/or domain etc. you must also supply this to the delete function.
@@ -247,9 +258,14 @@
 									<td>Set to true if you only want to transmit cookies over secure connections.</td>
 								</tr>
 								<tr>
-									<th><kbd>$httponly</kbd></th>
+									<th><kbd>$http_only</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>Allow only transmit of cookies over HTTP, disabling Javascript access.</td>
+								</tr>
+								<tr>
+									<th><kbd>$same_site</kbd></th>
+									<td><pre class="php"><code>none</code></pre></td>
+									<td>Samesite property of the cookie.</td>
 								</tr>
 							</table>
 						</td>
