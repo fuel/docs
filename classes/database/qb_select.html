@@ -3,45 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 		var class_prefix = 'Query_Builder_Select::';
 	</script>
-	<script src="./../../assets/js/combined.js"></script>
+	<script src="./../../assets/js/combined.js?20190627"></script>
 	<title>Query Builder Select - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 			<h2 id="introduction">Query_Builder_Select クラス</h2>
@@ -476,6 +465,84 @@ $query->or_on('users.id', '=', 'profiles.other_id');
 			</article>
 
 			<article>
+				<h4 class="method" id="method_on_open">on_open()</h4>
+				<p>The <strong>on_open</strong> method adds an open bracket for the last created JOIN statement.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<em>None</em>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<em>See below</em>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_on_close">on_close()</h4>
+				<p>The <strong>on_close</strong> method adds an closing bracket for the last created JOIN statement.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<em>None</em>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>Returns the current instance.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// prepare a select statement
+$query = DB::select()->from('users');
+
+// Join a table
+$query->join('profiles');
+$query->on('users.id', '=', 'profiles.user_id');
+
+// Add some nested conditions
+$query->on_open()
+  ->on('profiles.status', '=', DB::expr('A')
+  ->or_on('profiles.status', '=', DB::expr('B')
+->on_close();
+
+// SELECT * FROM `users` JOIN `profiles` ON `users`.`id` = `profiles`.`user_id`
+//          AND (`profiles`.`status` = "A" OR  `profiles`.`status` = "B"))
+</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_and_on">and_on()</h4>
+				<p>The <strong>and_on</strong> method is an alias for <a href="#method_on">on</a>.</p>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_group_by">group_by($columns)</h4>
 				<p><strong>group_by</strong> メソッドは、 "GROUP BY ..."  フィルタを作成します。</p>
 				<table class="method">
@@ -513,8 +580,13 @@ $query->or_on('users.id', '=', 'profiles.other_id');
 								<pre class="php"><code>// select 文を準備
 $query = DB::select()->from('articles');
 
+<<<<<<< HEAD
 // 'genre' でグループ化
 $query->group_by('genre', 'category');
+=======
+// Group by 'genre'
+$query-&gt;group_by('genre', 'category');
+>>>>>>> 1.8/master
 
 // SELECT * FROM `articles` GROUP BY `genre`, `category`
 </code></pre>
@@ -998,8 +1070,8 @@ $query->select('email')->from('admins')->where('role', 'superadmin');
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/database/qb_select.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/database/qb_select.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/database/qb_select.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/classes/database/qb_select.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/classes/database/qb_select.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/database/qb_select.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

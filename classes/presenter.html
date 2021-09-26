@@ -3,45 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 		var class_prefix = "Presenter::";
 	</script>
-	<script src="./../assets/js/combined.js"></script>
+	<script src="./../assets/js/combined.js?20190627"></script>
 	<title>Presenter - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -191,7 +180,54 @@ $view = $presenter->get_view();</code></pre>
 				</p>
 			</article>
 
-			<h3 id="view">View オブジェクトの互換性</h3>
+			<article>
+				<h4 class="method" id="method_set_view">set_view($view = null)</h4>
+				<p>The <strong>set_view</strong> method can be used to change the View associated with the presenter.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$view</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">Name of the view file, or a valid View object.</td>
+									</tr>
+								</table>
+							</td>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// create a presenter instance
+$presenter = Presenter::Forge('admin/public');
+
+// some code here that changes the associated view
+if ($something)
+{
+	$presenter->set_view('admin/member');
+}</code></pre>
+							</td>
+						</tr>
+						</tr>
+					</tbody>
+				</table>
+
+				<p class="note">
+					When you use this method, any variables set on or bound to the original View object will be transferred to the new View.
+				</p>
+			</article>
+
+			<h3 id="view">View object compatibility</h3>
 
 			<p>
 				Presenter クラスは、コードの中で、ビュークラスと取り換え可能です。これは、もし、ビューで始めてその後、追加のビューの準備ロジックの必要性を感じ、
@@ -218,8 +254,8 @@ $view = $presenter->get_view();</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/presenter.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/presenter.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/presenter.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/classes/presenter.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/classes/presenter.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/presenter.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

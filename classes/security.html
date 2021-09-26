@@ -3,45 +3,35 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 		var class_prefix = "Security::";
 	</script>
-	<script src="./../assets/js/combined.js"></script>
+	<script src="./../assets/js/combined.js?20190627"></script>
 	<title>Security - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
 
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -255,8 +245,8 @@
 			</article>
 
 			<article>
-				<h4 class="method" id="method_js_fetch_token">js_fetch_token()</h4>
-				<p><strong>js_fetch_token</strong> メソッドは、現在の CSRF トークンを返す JavaScript fuel_csrf_token() 関数を作成します。AJAX 操作のためにフォーム送信時に適切なフィールドに挿入します。</p>
+				<h4 class="method" id="method_set_token">set_token($rotate = true)</h4>
+				<p>The <strong>set_token</strong> method allows you to set the next CSRF token to be used, or to force a token rotation.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -264,66 +254,26 @@
 						<td>はい</td>
 					</tr>
 					<tr>
-						<th>パラメータ</th>
-						<td>なし</td>
-					</tr>
-					<tr>
-						<th>返り値</th>
-						<td>string</td>
-					</tr>
-					<tr>
-						<th>例</th>
+						<th>Parameters</th>
 						<td>
-							<pre class="php"><code>// javascript 関数を出力する
-echo Security::js_fetch_token();
-
-// 生成された javascript コードをページで使用できる
-&lt;script type="text/javascript"&gt;
-	var current_token = fuel_csrf_token();
-&lt;/script&gt;
-</code></pre>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$rotate</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>If true, generation of a new CSRF token is forced. If false, an existing CSRF token is reused if available.</td>
+								</tr>
+							</table>
 						</td>
 					</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_js_set_token">js_set_token()</h4>
-				<p>
-					<strong>js_set_token</strong> メソッドは、JavaScript fuel_set_csrf_token() 関数を生成します。
-					この関数は呼び出されたフォームに CSRF トークンフィールドをセットします。
-					onsubmit (フォーム送信)にこれを用いて、
-					csrf クッキーの値を更新します。
-					複数のウィンドウを開きたい場合、これを使う必要があります。
-					また CSRF トークンを厳密に更新する必要があります。
-				</p>
-				<table class="method">
-					<tbody>
-					<tr>
-						<th class="legend">静的</th>
-						<td>はい</td>
-					</tr>
-					<tr>
-						<th>パラメータ</th>
-						<td>なし</td>
-					</tr>
-					<tr>
-						<th>返り値</th>
-						<td>string</td>
-					</tr>
 					<tr>
 						<th>例</th>
 						<td>
-							<pre class="php"><code>// javascript 関数を出力する
-echo Security::js_set_token();
-
-// 生成された関数を onsubmit 時に実行します。
-// 「this」パラメータを忘れないでください。更新するフォームを関数が知るために必要です。
-&lt;form onsubmit="fuel_set_csrf_token(this);"&gt;
-	&lt;!-- do your stuff here --&gt;
-&lt;/form&gt;
-</code></pre>
+							<pre class="php"><code>Security::set_token();</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -561,7 +511,84 @@ $text = Security::htmlentities($text);</code></pre>
 				</table>
 			</article>
 
-			<h3 id="procedural_helpers">手続き型ヘルパ</h3>
+
+			<article>
+				<h4 class="method" id="method_js_fetch_token">js_fetch_token()</h4>
+				<p>The <strong>js_fetch_token</strong> method allows you to produce JavaScript fuel_csrf_token() function that will return the current CSRF token when called. Use to fill right field on form submit for AJAX operations.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// output the javascript function
+echo Security::js_fetch_token();
+
+// you can now use the generated function in the javascript code on your page
+&lt;script type="text/javascript"&gt;
+	var current_token = fuel_csrf_token();
+&lt;/script&gt;
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_js_set_token">js_set_token()</h4>
+				<p>
+					The <strong>js_set_token</strong> method allows you to produce JavaScript
+					fuel_set_csrf_token() function that will set the current CSRF token field
+					in the form when called. Use this on an onsubmit of a form, to update the
+					hidden token field in the form with the current value of the csrf cookie.
+					You have to use this when you want to allow multiple windows open, and
+					use a strict rotation and expiry of the CSRF token.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// output the javascript function
+echo Security::js_set_token();
+
+// you use the function generated as an onsubmit function, like so.
+// do NOT forget the 'this' parameter, so the function knows which form to update!
+&lt;form onsubmit="fuel_set_csrf_token(this);"&gt;
+	&lt;!-- do your stuff here --&gt;
+&lt;/form&gt;
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<h3 id="procedural_helpers">Procedural helpers</h3>
 
 			<article>
 				<h4 id="function_e" class="method" data-class="">e($string)</h4>
@@ -604,8 +631,8 @@ $text = e($text);</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/security.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/security.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/security.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/classes/security.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/classes/security.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/security.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

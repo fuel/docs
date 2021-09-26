@@ -3,45 +3,35 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 		var class_prefix = "Fieldset::";
 	</script>
-	<script src="./../../assets/js/combined.js"></script>
+	<script src="./../../assets/js/combined.js?20190627"></script>
 	<title>Fieldset - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
 
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -349,6 +339,65 @@ $form->add(
 					<tr>
 						<th>返り値</th>
 						<td>現在の Fieldset インスタンス</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>RuntimeException, if the field given is not defined</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$fieldset->delete('article_title');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_duplicate">duplicate($name, $newname)</h4>
+				<p>Duplicates a named <a href="field.html">Fieldset_Field</a> instance from the Fieldset.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$name</kbd></th>
+										<td><i>required</i></td>
+										<td>name of the current field within the Fieldset</td>
+									</tr>
+									<tr>
+										<th><kbd>$newname</kbd></th>
+										<td><i>required</i></td>
+										<td>name of the duplicated field within the Fieldset</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>The current Fieldset instance</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>RuntimeException, if the field given is not defined</td>
+					</tr>
+					<tr>
+						<th>Throws</th>
+						<td>RuntimeException, if the field given is not defined</td>
 					</tr>
 					<tr>
 						<th>例</th>
@@ -1097,8 +1146,8 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_set_tabular_form">set_tabular_form($model, $relation, $parent, $blanks = 1)</h4>
-				<p>関連付けられる ORM モデルの埋め込みフィールドセットを定義し、1 対多フォームを作成する。</p>
+				<h4 class="method" id="method_set_tabular_form">set_tabular_form($model, $relation, $parent, $blanks = 1, $pagination = null)</h4>
+				<p>Define an embedded fieldset on a related ORM model to create a One-to-Many form.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1134,6 +1183,11 @@ $name = $article_form->get_name();  // 'article'</code></pre>
 										<th><kbd>$blanks</kbd></th>
 										<td><pre class="php"><code>1</code></pre></td>
 										<td>テーブルに表示される空の行の数。</td>
+									</tr>
+									<tr>
+										<th><kbd>$pagination</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Pagination object, to make the tabular form paginated</td>
 									</tr>
 								</tbody>
 							</table>
@@ -1550,8 +1604,8 @@ $fieldset->form()->set_attribute('id', 'edit_article_form');
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/fieldset/fieldset.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/fieldset/fieldset.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/fieldset/fieldset.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019  - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/classes/fieldset/fieldset.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/classes/fieldset/fieldset.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/fieldset/fieldset.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

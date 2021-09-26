@@ -3,44 +3,33 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 	</script>
-	<script src="./../../assets/js/combined.js"></script>
+	<script src="./../../assets/js/combined.js?20190627"></script>
 	<title>はじめに - Orm パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 			<h2>Orm</h2>
@@ -71,47 +60,132 @@
 			</section>
 
 			<section>
-				<h2 id="troubleshooting">トラブルシューティング</h2>
+				<h2 id="caching">Object Caching</h2>
 
-				<p>一般的な問題とよくある質問。</p>
+				<p>By default, the ORM implements object caching, to ensure data consistency. Consider the following example:</p>
+					<pre class="php"><code>// fetch a customer record from the client table by its id key
+$customer = Model_Clients::find($id);
 
-				<h3>リレーション/外部キーが保存されていません。 (1)</h3>
-				<p>リレーションシップの間違った型を使用している場合に、最も頻繁に起こります。 特に Has-one と
-					Belongs-to に混ざってしまいがちです。 ドキュメントの例を再読し、
-					あなたが正しくリレーションタイプを使用していることと、すべてが正しく設定されているかどうかを確認してください。</p>
+// give the user a minumum discount of 10%
+if ($customer->discount &lt; 10)
+{
+	$customer->discount = 10;
+}
 
-				<h3>オブジェクトを関連付けることができません (2)</h3>
-				<p>あなたのモデルが <code>Orm\Model</code> を継承し、 <code>Model_Crud</code> を継承していない事を確認してください。</p>
+// fetch the same customer record
+$client = Model_Client($id);
 
-				<h3>package/module にある私の関連するモデルが見つからないという例外を受け取りました</h3>
-				<p>パッケージまたはモジュールがFuelによってロードされていることを確認してください。
-					そうでなければオートローダーは、クラスを見つけることができません。<br />
-					そして、関連するモデルを <code>"model_to"</code> に設定するときは
-					<em>同じ名前空間に属している場合であっても</em>、名前空間を含めた完全なクラス名を設定してください。
-					文字列内のクラス名は、常にグローバルコンテキストから取得されます。現在の名前空間コンテキストは関係ありません。</p>
+// print the clients discount
+echo $client->discount;
+</code></pre>
+				<p>
+					If you would have used standard database queries, you would expect the printout to show the value of "discount"
+					as it is stored in the table record for this customer. With the ORM, thanks to object caching, this is not the
+					case. Both queries return the same object (by reference), so the change to <strong>$customer</strong> will be reflected in <strong>$client</strong>.
+					If you would <strong>var_dump()</strong> both variables, you will see that they are identical, with the same object #id.
+				</p>
 
-				<h3>Orm\FrozenObject という例外を受け取りました</h3>
-				<p>オブジェクトは、データベースの保存中に変更することはできません。これは連携によってループする保存や、
-				  すでに保存してあるオブジェクトをもう一度保存することを防ぐためです。
-				  これは通常の使用時に起きるべきではありませんし、たいていは間違ったリレーションの設定によって起きます。<br />
-				  また安定リリースを使っていない場合に、バグにより引き起こされることもあります。</p>
+				<p>You can disable the retrieval from cache for a subsequent query using:</p>
+					<pre class="php"><code>// fetch a customer record from the client table by its id key
+$customer = Model_Clients::find($id);
 
-				<h3>Limit 及び Offset を定義したが、結果が正しくありません</h3>
-                <p>ORM は常にクエリの結果に一貫性があることを確認します。関連するモデルが含まれているクエリを実行すると、
-                すべての関連する結果がフェッチされたかどうかを確認するためにサブクエリが生成されます。
-                これは、 limit で定義した以上のレコードがフェッチされることを意味しています。
-                一旦不完全な結果セットを操作し始めると、関連するモデルにとてもわるい影響が起こるためです。</p>
-                <p>もしあなたがその結果を絶対に操作しないことが確信できる場合(たとえば pagination のみに利用する場合)
-                代わりに <kbd>rows_limit()</kbd> と <kbd>rows_offset()</kbd> を利用する事で
-                クエリに対して limit, offset を強制することができます。</p>
+// fetch as a new object using array notation
+$client1 = Model_Client($id, array('from_cache' => false));
+
+// fetch as a new object using chaining
+$client2 = Model_Client::query()-&gt;from_cache(false)-&gt;where('id', '=', $id)-&gt;get_one();
+</code></pre>
+				<p>
+					If you would dump these three variables, you will see that the objects will have unique #id's, and modifying one will
+					not change the other. You can also enable this behaviour globally, so ORM results will never be cached. You need this
+					for example in tasks, for batch operations. You wouldn't want to store thousands of objects in memory!
+				</p>
+					<pre class="php"><code>// globally disable the ORM object cache
+\Orm\Query::caching(false);
+</code></pre>
+				<p>If you have disabled the caching globally, you can enable it on a per-query basis:</p>
+					<pre class="php"><code>// fetch a customer record from the client table by its id key
+$customer = Model_Clients::find($id);
+
+// fetch as a new object using array notation
+$client1 = Model_Client($id, array('from_cache' => true));
+
+// fetch as a new object using chaining
+$client2 = Model_Client::query()-&gt;from_cache(true)-&gt;where('id', '=', $id)-&gt;get_one();
+</code></pre>
+
+				<p>
+					And finally, if you really know you are not going to need or use ORM object caching, you can also create an <strong>orm.php</strong>
+					configuration file in your application config directory, and add:
+				</p>
+					<pre class="php"><code>&lt;?php
+return array(
+    // global query settings
+    'caching' => true,
+);
+</code></pre>
+				<p>
+					Under specific circumstances, you may need to flush the complete ORM cache, or part of it. For example it you run a batch processor
+					or queue worker, to run background tasks. Since it always runs, it will always re-use it's cache, which can lead to cached values
+					being reused while the database has been altered in the meantime. To flush, use:
+				</p>
+					<pre class="php"><code>// flush the complete ORM cache
+\Orm\Model::flush_cache(null);
+
+// flush the cache for a specific model
+\Some\Model\Name::flush::cache();
+
+// or by class name
+\Orm\Model::flush_cache('Some\Model\Name');
+</code></pre>
+
+			</section>
+
+			<section>
+				<h2 id="troubleshooting">Troubleshooting</h2>
+
+				<p>Some common problems and frequent questions.</p>
+
+				<h3>My relations/foreign keys aren't being saved (1)</h3>
+				<p>This happens most often when you're using the wrong type of relationship. Especially Has-one and
+					Belongs-to tend to get mixed up. Reread the examples in the docs to make sure you're using the
+					correct relation types and check if everything is configured correctly.</p>
+
+				<h3>I can't relate objects (2)</h3>
+				<p>Make sure your model is extending <code>Orm\Model</code> and not <code>Model_Crud</code>.</p>
+
+				<h3>I get an exception that my related model in a package/module can't be found</h3>
+				<p>Make sure the package or module is loaded by Fuel, otherwise the Autoloader won't be able to find
+					the class.<br />
+					And when configuring the related model <code>"model_to"</code> make sure you configure the full
+					classname, this includes the namespace <em>even if you're in that namespace</em>. Classnames in
+					strings are always taken from global context, no matter the current namespace context.</p>
+
+				<h3>I get an Orm\FrozenObject exception</h3>
+				<p>Objects can't be edited while being saved to the database, that prevents circular saving and resaving
+					already saved objects. This shouldn't happen during normal usage and is most often caused by faulty
+					configuration of relations.<br />
+					Sometimes this can be caused by a bug, especially when you're not using a stable release.</p>
+
+				<h3>I have defined a limit and offset, but the results are not correct</h3>
+				<p>The ORM always makes sure that query results are consistent. If you run a query that contains related
+					models, a subquery will be generated to make sure the entire related resultset is fetched. Even if this
+					means more records then the limit you have set will be fetched. This is because once you start manipulating
+					incomplete resultsets, very bad things might happen to your related models.</p>
+				<p>If you are absolutely sure you are not going to manipulate the results, for example because you need them
+					for pagination only, you can use <kbd>rows_limit()</kbd> and <kbd>rows_offset()</kbd> instead, which will
+					force them on the entire query.</p>
+
+				<h3>My query result doesn't reflect the record values in the database</h3>
+				<p>Familiarize yourself with ORM object caching, see the explanation given above.</p>
 			</section>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/packages/orm/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/packages/orm/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/packages/orm/intro.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/packages/orm/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/packages/orm/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/packages/orm/intro.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

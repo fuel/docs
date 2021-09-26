@@ -3,51 +3,71 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 		var class_prefix = "Profiler::";
 	</script>
-	<script src="./../assets/js/combined.js"></script>
+	<script src="./../assets/js/combined.js?20190627"></script>
 	<title>Profiler - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
-
 		<div id="main">
 
 			<h2>Profiler クラス</h2>
 
-			<p><strong>Profiler クラス</strong>を使うと、独自のプロファイリング情報をプロファイラに送ることができます。</p>
+			<p>The profiler class allows you to add your own profiling information to the profiler. It implements a customized version of PHPQuickProfiler (PQP).</p>
+
+			<h3>Configure runtime behaviour</h3>
+
+			<p>
+				The profiler contains a collection of javascript global variables through which you can control the initial state of the profiler.
+				<ul>
+					<li>
+						<strong>PQP_SHOWONLOAD</strong>: boolean, if true, the profiler is opened on page load, if false. The default is false.
+					</li>
+					<li>
+						<strong>PQP_HEIGHT</strong>: string, "tall" shows double the info from "short". The default is "tall".
+					</li>
+					<li>
+						<strong>PQP_DETAILS</strong>: boolean, if false, no details will be shown, only the tab information. The default is true.
+					</li>
+					<li>
+						<strong>PQP_BOTTOM</strong>: boolean, if true, the profiler is attached to the bottom of the viewport. If false, it is displayed below the output. The default is true.
+					</li>
+				</ul>
+				<strong>Example:</strong>
+			</p/>
+				<pre class="php"><code>	&lt;script type="text/javascript"&gt;
+		var PQP_SHOWONLOAD = true;
+		var PQP_HEIGHT = 'short';
+		var PQP_DETAILS = true;
+		var PQP_BOTTOM = true;
+	&lt;/script&gt;
+</code></pre>
+
+
+			<h3>Class methods</h3>
 
 			<article>
 				<h4 class="method" id="method_mark">mark($label)</h4>
@@ -187,8 +207,8 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/profiler.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/profiler.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/profiler.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/classes/profiler.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/classes/profiler.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/profiler.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

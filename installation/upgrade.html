@@ -3,44 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 	</script>
-	<script src="./../assets/js/combined.js"></script>
+	<script src="./../assets/js/combined.js?20190627"></script>
 	<title>インストール - アップグレード - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
 
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -55,18 +45,35 @@
 			</p>
 			<h4 id="plain">単に zip ファイルをダウンロードしてインストールした場合</h4>
 			<p>
-				この方法でインストールしていた場合は、単にもう一度同じ事をすれば良いです。
-				新バージョンの zip ファイルをダウンロードし、 fuel/core とインストールされている全ての fuel/packages を入れ替えます。
-				それが終わったらチェンジログ (Changelog) を見て、それぞれの項目があなたのアプリケーションに与える影響をチェックします。
+				If you have taken this route, it depends from which version you are upgrading.
+			</p>
+			<p>
+				If you are upgrading from 1.7.1 or newer, chances are you can upgrade using composer by
+				manually updating the <code>oil</code> and <code>public/index.php</code> files, and the <code>composer.json</code> file,
+				either from the fuel/fuel repository or from the latest zipfile. After that, you can run
+<pre class="cli"><code>$ php composer.phar self-update
+$ php composer.phar update --prefer-dist
+</code></pre>
+				from the root of your application folder structure.
+			</p>
+			<p>
+				If you have to upgrade from an earlier version, you must manually remove the following folders:
+<pre class="cli"><code>$ rm -rf fuel/core/ docs/
+$ rm -rf fuel/packages/auth/ fuel/packages/email/ fuel/packages/oil/
+$ rm -rf fuel/packages/orm/ fuel/packages/parser/ fuel/vendor/
+</code></pre>
+				before executing the composer update command as described above. If you are on a recent version but get
+				composer errors when you attempt to directly update using composer, removing these folders will also
+				allow you to upgrade again.
 			</p>
 
 			<h4 id="own_git">プロジェクトがフレームワークも含んだ独自のリポジトリを持っている場合</h4>
 			<p>
-				作業的には同じです。zip ファイルをダウンロードして置き換えて下さい。
-				リポジトリを持つことは、その中で作業をすることで diff を見ることができ、
-				必要な場合にチェンジログを用いて修正を行う作業を楽にしてくれることでしょう。
+				Use the same procedure. Download the zip, and replace the files. Having them in a repository
+				gives you the benefit though to see the diffs, which makes it easier to work with the changelog
+				to make the required modifications your application (if needed).
 			</p>
-			<p class="note"><strong>Note</strong> もしまだ Subversion を使っている場合は、 .svn 隠しディレクトリに注意して下さい。ファイルを入れ替える時に .svn ディレクトリを削除してはいけません。</p>
+			<p class="note"><strong>Note</strong> that if you (still) use SubVersion, pay attention to the hidden `.svn` directories in each folder. Don't delete them when replacing the files!</p>
 
 			<h4 id="git_with_subs">プロジェクトが独自のリポジトリを持っていて、FuelPHP のリポジトリのサブモジュールを使っている場合</h4>
 			<p>
@@ -74,6 +81,7 @@
 				fuel/fuel リポジトリから clone を行うことで開始していた場合は、上流リポジトリとして追加して、新バージョンの master ブランチを pull して下さい。
 				マージに関する問題に対処したら、 'git submodule update' コマンドを実行してサブモジュールをリリースバージョンに更新します。
 			</p>
+			<p class="note"><strong>Note</strong> that it is strongly recommended to remove the submodules, and use composer to update the framework components!</p>
 
 			<h4 id="git_with_git">プロジェクトが独自のリポジトリを持っているが、FuelPHP コンポーネントには別のリポジトリを持っている場合</h4>
 			<p>
@@ -112,11 +120,14 @@
 
 			<h4 id="app_others">含まれるその他のファイル</h4>
 			<p>
-				アップデートする必要があるかもしれないその他のファイルとは、 Oil 起動スクリプト、 .htaccess ファイル、そして PHPUnit が必要とするファイルのことです。
-				それらを変更していなければ、単に新バージョンに置き換えて、
-				実際に使用した時に問題が起きないことを確認すれば OK です。
-			</p>
+                Other files may need upgrading. If you haven't changed them, just replace them with the new version, to make sure
+                you don't run into issues.</p>
 
+                <p><code>oil</code> - the 'Oil' bootstrap script, <code>.htaccess</code> and files needed by PHPUnit.</p>
+                <p> <code>app/config/config.php</code> - you may see an <em>"There is no security.output_filter defined"</em> error.<br/>
+                Keep your current config file, but copy over the "security" array from the latest version.</p>
+                <p> <code>app/bootstrap.php</code> - if you still have "Load in the Autoloader" (lines 3-6) these should be removed.<br/>
+                This is the cause of the <em>"Cannot declare class Fuel\Core\Autoloader, because the name is already in use"</em> error.</p>
 			<h3 id="tips">上流リポジトリを使う</h3>
 
 			<p>
@@ -129,8 +140,8 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/installation/upgrade.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/installation/upgrade.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/installation/upgrade.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/installation/upgrade.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/installation/upgrade.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/installation/upgrade.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

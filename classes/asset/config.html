@@ -1,202 +1,214 @@
 <!doctype html>
 <html lang="ja">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../assets/css/combined.css">
-	<link rel="shortcut icon" href="./../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
-	<script type="text/javascript">
-		var path = './../../';
-		var class_prefix = "Asset::";
-	</script>
-	<script src="./../../assets/js/combined.js"></script>
-	<title>Asset 設定 - クラス - FuelPHP ドキュメント</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../../assets/css/combined.css?20190627">
+    <link rel="shortcut icon" href="./../../favicon.ico"/>
+    <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+        var path = './../../';
+        var class_prefix = "Asset::";
+    </script>
+    <script src="./../../assets/js/combined.js?20190627"></script>
+    <title>Asset 設定 - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
-	<div id="container">
-		<header id="header">
-			<div class="table">
-				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
-					<strong>Documentation</strong>
-				</h1>
+<div id="container">
+    <header id="header">
+        <div class="table">
+            <div id="cse">
+                <gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+            </div>
+            <h1>
+                <a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png"/></a>
+                <strong>Documentation</strong>
+            </h1>
+        </div>
+        <nav>
+            <div class="clear"></div>
+        </nav>
+        <a href="#" id="toc_handle">目次</a>
+        <div class="clear"></div>
+    </header>
 
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
-			</div>
-			<nav>
+    <div id="main">
 
-				<div class="clear"></div>
-			</nav>
-			<a href="#" id="toc_handle">目次</a>
-			<div class="clear"></div>
-		</header>
+        <h2>Asset クラス</h2>
 
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
+        <p>Asset クラスは、アセット (js 、css 、img またはカスタムタイプ) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
 
-		<div id="main">
+        <section>
+            <h3 id="config">設定</h3>
 
-			<h2>Asset クラス</h2>
+            <p>Asset クラスのデフォルト設定は、fuel/core/config/asset.php ファイルで設定されています。
+                デフォルトの設定が有効になっています。あなたのアプリケーションの config ディレクトリに、同名の config ファイルを追加し、
+                変更したい値を設定することで、設定を上書きできます。
+                コアの設定を上書きしますが、上書きしたくないものは変更しません。</p>
 
-			<p>Asset クラスは、アセット (js 、css 、img またはカスタムタイプ) を収集し、グループ化し、表示するために役立つメソッドをまとめたクラスです。</p>
-
-			<section>
-				<h3 id="config">設定</h3>
-
-				<p>Asset クラスのデフォルト設定は、fuel/core/config/asset.php ファイルで設定されています。
-				デフォルトの設定が有効になっています。あなたのアプリケーションの config ディレクトリに、同名の config ファイルを追加し、
-				変更したい値を設定することで、設定を上書きできます。
-				コアの設定を上書きしますが、上書きしたくないものは変更しません。</p>
-
-				<p>以下のグローバル設定値が定義できます。</p>
-				<table class="config">
-					<tbody>
-						<tr class="header">
-							<th>パラメータ</th>
-							<th>型</th>
-							<th>デフォルト</th>
-							<th>説明</th>
-						</tr>
-						<tr>
-							<th>paths</th>
-							<td>array</td>
-							<td><pre class="php"><code>array('assets/')</code></pre></td>
-							<td>
-								デフォルトのアセットのルートパス。末尾にスラッシュが必要。
-							</td>
-						</tr>
-						<tr>
-							<th>css_dir</th>
-							<td>string</td>
-							<td><pre class="php"><code>'css/'</code></pre></td>
-							<td>
-								デフォルトの css フォルダ。末尾にスラッシュが必要。
-							</td>
-						</tr>
-						<tr>
-							<th>js_dir</th>
-							<td>string</td>
-							<td><pre class="php"><code>'js/'</code></pre></td>
-							<td>
-								デフォルトの js フォルダ。末尾にスラッシュが必要。
-							</td>
-						</tr>
-						<tr>
-							<th>img_dir</th>
-							<td>string</td>
-							<td><pre class="php"><code>'img/'</code></pre></td>
-							<td>
-								デフォルトの画像フォルダ。末尾にスラッシュが必要。
-							</td>
-						</tr>
-						<tr>
-							<th>folders</th>
-							<td>array</td>
-							<td><pre class="php"><code>array(
+            <p>以下のグローバル設定値が定義できます。</p>
+            <table class="config">
+                <tbody>
+                <tr class="header">
+                    <th>パラメータ</th>
+                    <th>型</th>
+                    <th>デフォルト</th>
+                    <th>説明</th>
+                </tr>
+                <tr>
+                    <th>paths</th>
+                    <td>array</td>
+                    <td>
+                        <pre class="php"><code>array('assets/')</code></pre>
+                    </td>
+                    <td>
+                        デフォルトのアセットのルートパス。末尾にスラッシュが必要。
+                    </td>
+                </tr>
+                <tr>
+                    <th>css_dir</th>
+                    <td>string</td>
+                    <td>
+                        <pre class="php"><code>'css/'</code></pre>
+                    </td>
+                    <td>
+                        デフォルトの css フォルダ。末尾にスラッシュが必要。
+                    </td>
+                </tr>
+                <tr>
+                    <th>js_dir</th>
+                    <td>string</td>
+                    <td>
+                        <pre class="php"><code>'js/'</code></pre>
+                    </td>
+                    <td>
+                        デフォルトの js フォルダ。末尾にスラッシュが必要。
+                    </td>
+                </tr>
+                <tr>
+                    <th>img_dir</th>
+                    <td>string</td>
+                    <td>
+                        <pre class="php"><code>'img/'</code></pre>
+                    </td>
+                    <td>
+                        デフォルトの画像フォルダ。末尾にスラッシュが必要。
+                    </td>
+                </tr>
+                <tr>
+                    <th>folders</th>
+                    <td>array</td>
+                    <td><pre class="php"><code>array(
 	'css' => array(),
 	'js'  => array(),
 	'img' => array(),
 ),
-</code></pre></td>
-							<td>
-								アセットの種類に応じて、アセットを指定してください。
-							</td>
-						</tr>
-						<tr>
-							<th>url</th>
-							<td>string</td>
-							<td><pre class="php"><code>\Config::get('base_url')</code></pre></td>
-							<td>
-								アセットのルートの URL 。アセットをロードするとき、アセットのパスとアセット名が URL に付加される。
-							</td>
-						</tr>
-						<tr>
-							<th>add_mtime</th>
-							<td>bool</td>
-							<td><pre class="php"><code>true</code></pre></td>
-							<td>
-								アセットの最終更新時刻を url に付加するかどうかを指定する。アセットのキャッシングの助けとなるので、使用を推奨する。
-							</td>
-						</tr>
-						<tr>
-							<th>indent_level</th>
-							<td>integer</td>
-							<td><pre class="php"><code>1</code></pre></td>
-							<td>
-								生成される HTML をきれいに保つため、Asset クラスはタグをインデントできる。インデントのレベルを設定する。
-							</td>
-						</tr>
-						<tr>
-							<th>indent_with</th>
-							<td>string</td>
-							<td><pre class="php"><code>"\t"</code></pre></td>
-							<td>
-								生成された HTML をインデントする文字列。デフォルトはタブ 1 つ。
-							</td>
-						</tr>
-						<tr>
-							<th>auto_render</th>
-							<td>bool</td>
-							<td><pre class="php"><code>true</code></pre></td>
-							<td>
-								グループ名無しでアセットのメソッドを呼び出したとき、生成された HTML を返すかどうかを指定する。
-								false の場合、アセットはデフォルトグループに追加され、後でレンダリングされる。
-							</td>
-						</tr>
-						<tr>
-							<th>fail_silently</th>
-							<td>bool</td>
-							<td><pre class="php"><code>false</code></pre></td>
-							<td>
-								true に設定すると、アセットファイルが見つからなかった場合に例外を返さない。
-								そのアセットは無視される。
-							</td>
-						</tr>
-						<tr>
-							<th>always_resolve</th>
-							<td>bool</td>
-							<td><pre class="php"><code>false</code></pre></td>
-							<td>
-								true に設定すると、Asset クラスは絶えずアセットをローカルで解決しようとします。false に設定すると
-								アセットの URL が相対的な (つまり、ローカルホスト自身を指す) 場合にのみ解決します。
-								これは、アセットのコピーをアセットサーバに置く場合や、Varnish のようなアセットキャッシュの後ろに
-								置く場合に役立ちます。
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</section>
+</code></pre>
+                    </td>
+                    <td>
+                        アセットの種類に応じて、アセットを指定してください。
+                    </td>
+                </tr>
+                <tr>
+                    <th>url</th>
+                    <td>string</td>
+                    <td>
+                        <pre class="php"><code>\Config::get('base_url')</code></pre>
+                    </td>
+                    <td>
+                        アセットのルートの URL 。アセットをロードするとき、アセットのパスとアセット名が URL に付加される。
+                    </td>
+                </tr>
+                <tr>
+                    <th>add_mtime</th>
+                    <td>bool</td>
+                    <td>
+                        <pre class="php"><code>true</code></pre>
+                    </td>
+                    <td>
+                        アセットの最終更新時刻を url に付加するかどうかを指定する。アセットのキャッシングの助けとなるので、使用を推奨する。
+                    </td>
+                </tr>
+                <tr>
+                    <th>indent_level</th>
+                    <td>integer</td>
+                    <td>
+                        <pre class="php"><code>1</code></pre>
+                    </td>
+                    <td>
+                        生成される HTML をきれいに保つため、Asset クラスはタグをインデントできる。インデントのレベルを設定する。
+                    </td>
+                </tr>
+                <tr>
+                    <th>indent_with</th>
+                    <td>string</td>
+                    <td>
+                        <pre class="php"><code>"\t"</code></pre>
+                    </td>
+                    <td>
+                        生成された HTML をインデントする文字列。デフォルトはタブ 1 つ。
+                    </td>
+                </tr>
+                <tr>
+                    <th>auto_render</th>
+                    <td>bool</td>
+                    <td>
+                        <pre class="php"><code>true</code></pre>
+                    </td>
+                    <td>
+                        グループ名無しでアセットのメソッドを呼び出したとき、生成された HTML を返すかどうかを指定する。
+                        false の場合、アセットはデフォルトグループに追加され、後でレンダリングされる。
+                    </td>
+                </tr>
+                <tr>
+                    <th>fail_silently</th>
+                    <td>bool</td>
+                    <td>
+                        <pre class="php"><code>false</code></pre>
+                    </td>
+                    <td>
+                        true に設定すると、アセットファイルが見つからなかった場合に例外を返さない。
+                        そのアセットは無視される。
+                    </td>
+                </tr>
+                <tr>
+                    <th>always_resolve</th>
+                    <td>bool</td>
+                    <td>
+                        <pre class="php"><code>false</code></pre>
+                    </td>
+                    <td>
+                        true に設定すると、Asset クラスは絶えずアセットをローカルで解決しようとします。false に設定すると
+                        アセットの URL が相対的な (つまり、ローカルホスト自身を指す) 場合にのみ解決します。
+                        これは、アセットのコピーをアセットサーバに置く場合や、Varnish のようなアセットキャッシュの後ろに
+                        置く場合に役立ちます。
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
 
-			<section>
-				<h3 id="asset_paths">アセットのパス</h3>
+        <section>
+            <h3 id="asset_paths">アセットのパス</h3>
 
-				<p>
-					アセットのパスを定義する方法はいくつかあります。アセットの 'root' を定義するグローバルアセット検索パスを定義する。
-					アセットを探すとき、ロードするアセットに定義されているフォルダをパスに追加します。
-					複数のグローバル検索パスを使用する場合、同一のフォルダ構造にしなければなりません。
-					<pre class="php"><code>// 想定:
+            <p>
+                アセットのパスを定義する方法はいくつかあります。アセットの 'root' を定義するグローバルアセット検索パスを定義する。
+                アセットを探すとき、ロードするアセットに定義されているフォルダをパスに追加します。
+                複数のグローバル検索パスを使用する場合、同一のフォルダ構造にしなければなりません。
+            <pre class="php"><code>// 想定:
 // - URL が "http://example.org/"
 // - グローバル検索パスが "assets/"
 // - img_dir が "img/"
 // &lt;img src="http://example.org/assets/img/icons/myicon.png" /&gt; を返す
 echo Asset::img('icons/myicon.png');
 </code></pre>
-				</p>
+            </p>
 
-				<p>
-					標準のフォルダ構造を好まない場合、あるいはアセットのパスが定義済みの既存の環境を維持する必要がある場合は、
-					Asset クラスは、サポートされるアセットの種類ごとに、
-					個別の検索フォルダを定義できます。
-					<pre class="php"><code>// 下記の設定の場合で
+            <p>
+                標準のフォルダ構造を好まない場合、あるいはアセットのパスが定義済みの既存の環境を維持する必要がある場合は、
+                Asset クラスは、サポートされるアセットの種類ごとに、
+                個別の検索フォルダを定義できます。
+            <pre class="php"><code>// 下記の設定の場合で
 // 'folders' => array(
 //	'css' => array('assets/css'),
 //	'js'  => array('assets/js', 'global/js/'),
@@ -206,36 +218,41 @@ echo Asset::img('icons/myicon.png');
 // &lt;img src="http://example.org/assets/icons/myicon.png" /&gt; を返す
 echo Asset::img('myicon.png');
 </code></pre>
-				</p>
+            </p>
 
 
-				<p>パスと検索フォルダは、<a href="./usage.html#method_add_path">add_path()</a> メソッドを使用して、実行時に定義できます。</p>
-			</section>
+            <p>パスと検索フォルダは、<a href="./usage.html#method_add_path">add_path()</a> メソッドを使用して、実行時に定義できます。</p>
+        </section>
 
-			<section>
-				<h3 id="static_assets">静的なアセット</h3>
+        <section>
+            <h3 id="static_assets">静的なアセット</h3>
 
-				<p>
-					アセット (の一部) がアプリケーションのドキュメントルートではなく、異なるホストを使用している場合は、
-					アセットをロードするのに、以下のテクニックが使えます。
-					<pre class="php"><code>// 個別に、アセット毎に
+            <p>
+                アセット (の一部) がアプリケーションのドキュメントルートではなく、異なるホストを使用している場合は、
+                アセットをロードするのに、以下のテクニックが使えます。
+            <pre class="php"><code>// 個別に、アセット毎に
 echo Asset::img('http://static.example.org/icons/myicon.png');
 
 // 全てのセットに対して、アセット URL を 'http://static.example.org/' を設定する
 echo Asset::img('icons/myicon.png');
 </code></pre>
-					この場合、検索パスは無視されます。
-				</p>
-			</section>
+            この場合、検索パスは無視されます。
+            </p>
+        </section>
 
-		</div>
+    </div>
 
-		<footer>
-			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/asset/config.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/asset/config.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/asset/config.html">GitHubで修正</a> ]
-			</p>
-		</footer>
-	</div>
+    <footer>
+        <p>
+            &copy; FuelPHP Development Team 2010-2019 - <a href="http://fuelphp.com">FuelPHP</a> is released under the
+            MIT license.
+            [ <a href="https://github.com/fuel/docs/commits/1.8/master/classes/asset/config.html">原文コミット履歴</a> | <a
+                href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/classes/asset/config.html">翻訳コミット履歴</a>
+            | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/asset/config.html">GitHubで修正</a>
+            ]
+
+        </p>
+    </footer>
+</div>
 </body>
 </html>

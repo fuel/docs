@@ -3,45 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 		var class_prefix = "Crypt::";
 	</script>
-	<script src="./../../assets/js/combined.js"></script>
+	<script src="./../../assets/js/combined.js?20190627"></script>
 	<title>Crypt 設定 - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -50,16 +39,26 @@
 			<p>
 				Crypt クラスにより文字列を暗号化や複号が可能になります。例えば、Sessions クラスにおいても Crypt クラスが内部で使用されています。
 			</p>
-			<p>PHPSecLib により提供される暗号化とハッシング関数が使われているため、mcrypt のような外部モジュールに依存していません。</p>
+			<p>
+				Until version 1.8, Crypt used the encryption and hashing methods provided by the composer package PHPSecLib.
+				Currently, it uses Sodium, either internally in PHP 7.2+, using libsodium if available, or via software emulation through the sodium-compat composer package.
+				It's not dependent on external PHP modules being available, such as mcrypt.
+			</p>
+			<p>
+				Crypt encryption is backwards compatible. If you have data encrypted with PHPSeclib, it will detect this from the encrypted data, and decrypt using PHPSeclib using the old crypt keys.
+				When encrypting data, it will always use Sodium.
+			</p>
 
 			<section>
 				<h3 id="configuration">設定</h3>
 
 				<p>
-					Crypt クラスの設定は <kbd>app/config/crypt.php</kbd> にて行います。これは、Crypt クラスを初めて利用するときか、必要な設定ファイルが無い場合に、乱数とともに生成・追加されます。
-				</p>
 				<p class="note">
 					app/config/crypt.php への書き込み権限が必要です！ もし不可能な場合、全ての設定項目が設定されているかどうか確認してください！
+					The Crypt class is configured through the <strong>app/config/crypt.php</strong> configuration file. It will be generated and populated with random values when you first use the Crypt class or if one of the required configuration values is missing.
+				</p>
+				<p class="note">
+					Note that this will require write access to app/config/crypt.php! If this is not possible, Crypt terminates with an error, while displaying the contents that should be written to the config file. You need to copy and paste this into the file yourself before you can continue.
 				</p>
 				<p>以下の設定項目を定義できます：</p>
 				<table class="config">
@@ -71,42 +70,57 @@
 							<th>説明</th>
 						</tr>
 						<tr>
-							<th>crypto_key</th>
+							<th>legacy.crypto_key</th>
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								暗号ルーチンで使われるランダムな暗号キー。ユニークでランダムな値を設定するようにしてください！
+								<strong>PHPSecLib</strong>: Random string used as encryption key in the encryption routines. Make sure you set this to something unique and random!
 							</td>
 						</tr>
 						<tr>
-							<th>crypto_iv</th>
+							<th>legacy.crypto_iv</th>
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								暗号ルーチンにおけるランダムな暗号の初期化ベクトル。ユニークでランダムな値を設定するようにしてください！
+								<strong>PHPSecLib</strong>: Random string used as encryption initialisation vector in the encryption routines. Make sure you set this to something unique and random!
 							</td>
 						</tr>
 						<tr>
-							<th>crypto_hmac</th>
+							<th>legacy.crypto_hmac</th>
 							<td>string</td>
 							<td>n/a</td>
 							<td>
-								ハッシュに基づくメッセージ認証コード (HMAC) にて使われる乱数。ユニークでランダムな値を設定するようにしてください！
+								<strong>PHPSecLib</strong>: Random string used in the Hash-based Message Authentication Code (HMAC) routines. Make sure you set this to something unique and random!
+							</td>
+						</tr>
+						<tr>
+							<th>sodium.cipherkey</th>
+							<td>string</td>
+							<td>n/a</td>
+							<td>
+								<strong>Sodium</strong>: Random hexadecimal value used in the Hash-based Message Authentication Code (HMAC) routines. Make sure you set this to something unique and random!
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<p class="note">
-					もしキーを手入力で指定する場合、キーは base64 エンコードした文字列で、デコードするために長さは 4 の倍数でなければなりません。必ず正しい長さになるよう指定してください！
-				</p>
 			</section>
 
+			<p class="note">
+				If you want to assign the legacy keys manually, make sure they are base64_encoded using the <strong><kbd>safe_b64encode()</kbd></strong> method from the Crypt class, and have a string length that is a multiple of 4!
+			</p>
+			<p class="note">
+				If you want to assign the <strong>cipherkey</strong>, use <strong><kbd>sodium_bin2hex(random_bytes(SODIUM_CRYPTO_STREAM_KEYBYTES)))</kbd></strong> to create a sufficiently random key in the correct format!
+			</p>
+
+			<p>
+				If you have a crypt configuration file with legacy keys from a pre-1.8.1 version of the framework, it will automatically be converted to the new format, and a cipherkey is randomly generated, upon first use of the new Sodium powered Crypt class.
+			</p>
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/crypt/config.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/crypt/config.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/crypt/config.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019  - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/classes/crypt/config.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/classes/crypt/config.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/crypt/config.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

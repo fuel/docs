@@ -3,45 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 		var class_prefix = 'Query_Builder_Select::';
 	</script>
-	<script src="./../../assets/js/combined.js"></script>
+	<script src="./../../assets/js/combined.js?20190627"></script>
 	<title>Query Builder Select - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -53,19 +42,60 @@
 			<p>データベースの使用法は大きく 2 つに分けられます:</p>
 
 			<ul>
-				<li><a href="#running-queries">クエリの実行</a></li>
-				<li><a href="#selecting">SELECT 文</a></li>
-				<li><a href="#results">結果の取得</a></li>
-				<li><a href="#filtering">抽出条件</a> (WHERE 句、ORDER BY 句、LIMIT 句、OFFSET 句)</li>
-				<li><a href="#inserting">INSERT 文</a></li>
-				<li><a href="#updating">UPDATE 文</a></li>
-				<li><a href="#deleting">DELETE 文</a></li>
+				<li><a href="#query-results">Query results</a></li>
+				<li><a href="#running-queries">Running queries</a></li>
+				<li><a href="#selecting">SELECT 文</a>,</li>
+				<li><a href="#results">結果の取得</a>,</li>
+				<li><a href="#filtering">抽出条件</a> (WHERE 句、ORDER BY 句、LIMIT 句、OFFSET 句),</li>
+				<li><a href="#inserting">INSERT 文</a>,</li>
+				<li><a href="#updating">UPDATE 文</a>,</li>
+				<li><a href="#deleting">DELETE 文</a> data</li>
 				<li><a href="#joins">表の結合</a></li>
 				<li><a href="#escaping">エスケープ</a></li>
-				<li><a href="#binding">値のバインド</a></li>
+				<li><a href="#binding">クエリバインディング</a></li>
 				<li><a href="#caching">クエリキャッシュ</a></li>
 			</ul>
 
+			<article>
+				<h3 id="query-results">Query results</h3>
+				<p>
+					A database query always returns the result in an iterator object. <br />
+					There are two types of result object available, each with their pros and cons.<br />
+					<ul>
+						<li>Database_Result</li>
+						<li>Database_Cached</li>
+					</ul>
+					A Database_Result object fetches rows from the result one at the time, and doesn't store it.
+					This means that this object has a low memory footprint, but only allows sequential access to
+					the rows retrieved, in the sequence they are returned, one at the time, from start to finish.<br />
+					<br />
+					In plain PHP, you can roughly compare it to:</br />
+					<pre class="php"><code>while ($row = $pdoResult->fetch())
+{
+	// do something with $row
+}</code></pre>
+					A Database_Cached object however fetches all rows from the result at once, and stores it in
+					the object. This means that, depending on the size of the resultset, it might have quite a
+					substantial memoty footprint. But the plus side is, it allows you random access to the rows
+					retrieved, and you access all rows simultaneously, multiple times, iterate over it backwards,
+					anything you could do with an array of values.<br />
+					<br />
+					In plain PHP, you can roughly compare it to:</br />
+					<pre class="php"><code>$rows = $pdoResult->fetchAll(PDO::FETCH_NUM); // or FETCH_ASSOC, depending on your db config
+foreach ($rows as $row)
+{
+	// do something with $row
+}</code></pre>
+					You can control the type of result object returned globally, per database connection, using
+					the <em>enable_cache</em> configuration item, on the defined database connection, in your db.php
+					config file. By default, caching is enabled. You can override the global setting per query, using:<br />
+					<pre class="php"><code>// this returns a Database_Result, independent of the global setting
+$result = \DB::select()->from('table')->caching(false)->execute();
+
+// this returns a Database_Cached, independent of the global setting
+$result = \DB::select()->from('table')->caching(true)->execute();</code></pre>
+				</p>
+			</article>
 
 			<article>
 				<h3 id="running-queries">クエリの実行</h3>
@@ -76,7 +106,11 @@ $query = DB::query('SELECT * FROM `users`');
 				<p>これで、クエリを実行できます:</p>
 				<pre class="php"><code>$query = DB::query('SELECT * FROM `users`');
 
+<<<<<<< HEAD
 // 返り値: Database_MySQLi_Result オブジェクト
+=======
+// return a new Database_xxx_Result or Database_xxx_Cached object
+>>>>>>> 1.8/master
 $query->execute();
 
 // 別のデータベース接続に対して実行したい場合
@@ -509,8 +543,8 @@ Cache::delete_all("db");</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/database/usage.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/database/usage.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/database/usage.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/classes/database/usage.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/classes/database/usage.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/database/usage.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

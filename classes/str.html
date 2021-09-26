@@ -3,51 +3,47 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20180417">
 	<link rel="shortcut icon" href="./../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 		var class_prefix = "Str::";
 	</script>
-	<script src="./../assets/js/combined.js"></script>
+	<script src="./../assets/js/combined.js?20180417"></script>
 	<title>Str - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
-
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
 
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
-
 		<div id="main">
 
 			<h2>Str クラス</h2>
 
-			<p>str クラスは、文字列の操作を手助けするメソッドの集合です。</p>
+			<p>The Str class is a set of methods to help with the manipulation of strings.</p>
+
+			<p>
+				The class also contains multibyte agnostic versions of PHP's multibyte-aware functions in category 2, as defined <a href="http://php.net/manual/en/mbstring.overload.php" target="_blank">on this page</a>.
+				They are drop-in replacements for both versions. For example, you can replace both <strong>strlen()</strong> and <strong>mb_strlen()</strong> with <strong>Str::strlen()</strong>, which will return a
+				multi-byte aware result based on whether or not PHP's <strong>mbstring</strong> extension is loaded.
+			</p>
+			<p class="note">The php.ini setting <strong>mbstring.func_overload</strong> is not supported by FuelPHP. The framework refuses to start when it is set!</p>
 
 			<article>
 				<h4 class="method" id="method_increment">increment($str, $first = 1)</h4>
@@ -284,102 +280,6 @@ echo $alt(); // 'three' を出力
 echo $alt(); // 'four' を出力
 echo $alt(); // 'one' を出力
 // ～など</code></pre>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_upper">upper($str, $encoding = null)</h4>
-				<p><strong>upper</strong> メソッドは、すべてのアルファベットを大文字に変換します。特定の文字のエンコーディングについては、PHP の strtoupper() と同等です。</p>
-				<table class="method">
-					<tbody>
-						<tr>
-							<th class="legend">静的</th>
-							<td>はい</td>
-						</tr>
-						<tr>
-							<th>パラメータ</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>パラメータ</th>
-										<th>型</th>
-										<th>デフォルト</th>
-										<th class="description">説明</th>
-									</tr>
-									<tr>
-										<th><kbd>$string</kbd></th>
-										<td><em>string</em></td>
-										<td><em>必須</em></td>
-										<td>入力文字列。</td>
-									</tr>
-									<tr>
-										<th><kbd>$encoding</kbd></th>
-										<td><em>string</em></td>
-										<td><pre class="php"><code>null</code></pre></td>
-										<td>文字エンコーディング。</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>返り値</th>
-							<td>string</td>
-						</tr>
-						<tr>
-							<th>例</th>
-							<td>
-								<pre class="php"><code>Str::upper('User Data'); // 返り値: 'USER DATA'</code></pre>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
-
-			<article>
-				<h4 class="method" id="method_lower">lower($str, $encoding = null)</h4>
-				<p><strong>lower</strong> メソッドは、すべてのアルファベットを小文字に変換します。特定の文字のエンコーディングについては、PHP の strtolower() と同等です。</p>
-				<table class="method">
-					<tbody>
-						<tr>
-							<th class="legend">静的</th>
-							<td>はい</td>
-						</tr>
-						<tr>
-							<th>パラメータ</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>パラメータ</th>
-										<th>型</th>
-										<th>デフォルト</th>
-										<th class="description">説明</th>
-									</tr>
-									<tr>
-										<th><kbd>$string</kbd></th>
-										<td><em>string</em></td>
-										<td><em>必須</em></td>
-										<td>入力文字列。</td>
-									</tr>
-									<tr>
-										<th><kbd>$encoding</kbd></th>
-										<td><em>string</em></td>
-										<td><pre class="php"><code>null</code></pre></td>
-										<td>文字エンコーディング。</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>返り値</th>
-							<td>string</td>
-						</tr>
-						<tr>
-							<th>例</th>
-							<td>
-								<pre class="php"><code>Str::lower('User Data'); // 返り値: 'user data'</code></pre>
 							</td>
 						</tr>
 					</tbody>
@@ -714,68 +614,12 @@ Str::ends_with($string, 'Amet', true); // 返り値: true
 					</tbody>
 				</table>
 			</article>
-
-			<article>
-				<h4 class="method" id="method_sub">sub($str, $start, $length = null, $encoding = null)</h4>
-				<p><strong>sub</strong> メソッドは、指定された文字列の一部分を返します。特定の文字のエンコーディングについては、PHP の substr() と同等です。</p>
-				<table class="method">
-					<tbody>
-						<tr>
-							<th class="legend">静的</th>
-							<td>はい</td>
-						</tr>
-						<tr>
-							<th>パラメータ</th>
-							<td>
-								<table class="parameters">
-									<tr>
-										<th>パラメータ</th>
-										<th>デフォルト</th>
-										<th class="description">説明</th>
-									</tr>
-									<tr>
-										<th><kbd>$str</kbd></th>
-										<td><em>必須</em></td>
-										<td>入力文字列。</td>
-									</tr>
-									<tr>
-										<th><kbd>$start</kbd></th>
-										<td><em>必須</em></td>
-										<td>開始位置 (詳細は <a href="http://php.net/substr" target="_blank">php.net</a> を参照してください) 。</td>
-									</tr>
-									<tr>
-										<th><kbd>$length</kbd></th>
-										<td><pre class="php"><code>null</code></pre></td>
-										<td>文字数の最大値 (詳細は <a href="http://php.net/substr" target="_blank">php.net</a> を参照してください) 。</td>
-									</tr>
-									<tr>
-										<th><kbd>$encoding</kbd></th>
-										<td><pre class="php"><code>null</code></pre></td>
-										<td>文字エンコーディング。</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th>返り値</th>
-							<td>string</td>
-						</tr>
-						<tr>
-							<th>例</th>
-							<td>
-								<pre class="php"><code>Str::sub('User Data', 3, -1); // 返り値: 'r Dat'</code></pre>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
-
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/str.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/str.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/str.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/classes/str.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/classes/str.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/str.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

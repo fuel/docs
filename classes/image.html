@@ -3,45 +3,35 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 		var class_prefix = "Image::";
 	</script>
-	<script src="./../assets/js/combined.js"></script>
+	<script src="./../assets/js/combined.js?20190627"></script>
 	<title>Image - クラス - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
 
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 
@@ -645,7 +635,7 @@ Image::load('filename')
 			</article>
 
 			<article>
-				<h4 class="method" id="method_watermark">watermark($filename, $position, $padding = 5)</h4>
+				<h4 class="method" id="method_watermark">watermark($filename, $position, $padding = array(5,5))</h4>
 				<p>画像にウォーターマークを加える。</p>
 				<table class="method">
 					<tbody>
@@ -671,14 +661,17 @@ Image::load('filename')
 
 								<tr>
 									<th><kbd>$position</kbd></th>
-									<td><i>必須</i></td>
-									<td>ウォーターマークの位置、"(top|center|middle|bottom) (left|center|middle|bottom)" として指定ができます。</td>
+									<td><i>Required</i></td>
+									<td>The position of the watermark, accepts "(top|center|middle|bottom|&lt;int&gt;) (left|center|middle|bottom|&lt;int&gt;)".</td>
 								</tr>
 
 								<tr>
 									<th><kbd>$padding</kbd></th>
-									<td><pre class="php"><code>5</code></pre></td>
-									<td>端からのパディングをピクセルで指定します。</td>
+									<td><pre class="php"><code>array(5,5)</code></pre></td>
+									<td>
+										The amount of padding from the edges, in pixels. The first value defines the vertical padding,
+										the second value the horizontal padding. You can also pass an integer if both have the same value.
+									</td>
 								</tr>
 							</table>
 						</td>
@@ -694,14 +687,22 @@ Image::load('filename')
 Image::load('filename.gif')
 	->watermark('watermark.ext', "top left", 15);
 
-// 画像の右下の角にウォーターマークを加える
+// Watermarks the image in the top left corner with top-padding of 5px and a left-padding of 10px
+Image::load('filename.gif')
+	->watermark('watermark.ext', "top left", array(5, 10));
+
+// Watermarks the image in the bottom right corner
 Image::load('filename.gif')
 	->watermark('watermark.ext', "bottom right");
 
 // 画像の中央にウォーターマークを加える
 Image::load('filename.gif')
 	->watermark('watermark.ext', "center middle");
-// "center middle" は、 "center center"、 "middle middle" または "middle center" と同じです。</code></pre>
+// "center middle" is identical to "center center", "middle middle", or "middle center"
+
+// Watermarks the image in a fixed location, upper left at [10,40], with the default 5px padding
+Image::load('filename.gif')
+	->watermark('watermark.ext', "10 40");</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -923,8 +924,8 @@ Object
 				<table class="method">
 					<tbody>
 					<tr>
-						<th class="legend">静的</th>
-						<td>いいえ</td>
+						<th class="legend">Static</th>
+						<td>Yes</td>
 					</tr>
 					<tr>
 						<th>パラメータ</th>
@@ -943,7 +944,11 @@ Object
 $ext = Image::load('uploaded_file.jpg')
 	->extension();
 
-// PNG を JPG として出力する
+// Returns 'jpg', using the static instance
+Image::forge($config, 'uploaded_file.jpg');
+$ext = Image::extension();
+
+// Save a PNG as a JPG
 Image::load('placeholder.png')
 	->output($ext);
 							</code></pre>
@@ -1153,8 +1158,8 @@ Image::load('filename.gif')
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/classes/image.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/classes/image.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/image.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/classes/image.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/classes/image.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/classes/image.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>

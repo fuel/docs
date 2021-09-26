@@ -3,44 +3,34 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./../../../assets/css/combined.css">
+	<link rel="stylesheet" href="./../../../assets/css/combined.css?20190627">
 	<link rel="shortcut icon" href="./../../../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../../';
 	</script>
-	<script src="./../../../assets/js/combined.js"></script>
+	<script src="./../../../assets/js/combined.js?20190627"></script>
 	<title>はじめに - Opauth - Auth パッケージ - FuelPHP ドキュメント</title>
 </head>
 <body>
 	<div id="container">
 		<header id="header">
 			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
 				<h1>
-					<a href="http://fuelphp.com"><img height="37px" width="147px" src="./../../../assets/img/fuel.png" /></a>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../../assets/img/fuel.png" /></a>
 					<strong>Documentation</strong>
 				</h1>
 
-				<form id="google_search">
-					<p>
-						<span id="search_clear">&nbsp;</span>
-						<input type="submit" name="search_submit" id="search_submit" value="検索" />
-						<input type="text" value="" id="search_input" name="search_input" />
-					</p>
-				</form>
 			</div>
 			<nav>
-
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">目次</a>
 			<div class="clear"></div>
 		</header>
-
-		<div id="cse">
-			<div id="cse_point"></div>
-			<div id="cse_content"></div>
-		</div>
 
 		<div id="main">
 			<h2>Opauth - はじめに</h2>
@@ -149,8 +139,8 @@ $ php composer.phar update</code></pre>
 						<td><pre class="php"><code>false</code></pre>
 						</td>
 						<td>
-							<strong>true</strong> の場合、ニックネームとメールアドレスが存在するのであれば、
-							プロバイダ経由でのログインは自動的にランダムなパスワードを使用しダミーのローカルユーザーアカウントが作成されます。
+							If <strong>true</strong>, a login via a provider will automatically create a dummy local user account with a
+							random password, if a nickname and an email address is present.
 						</td>
 					</tr>
 					<tr>
@@ -227,18 +217,18 @@ $ php composer.phar update</code></pre>
 				は、インスタンス化している Auth_Opauth ドライバのコントローラの中でのメソッド名) なります。
 			</p>
 
-			<p class="note">ローカルアカウントに関心がなく、アカウントにもリンクしたくない場合にのみ、 <strong>auto_registration = 'true'</strong> を利用すべきです。
-			これは、「 &lt;プロバイダ&gt; を使用してログイン」のための簡素なシナリオのような物です。</p>
-			
-			<p class="note">とくに <strong>default_group</strong> の値に細心の注意を払いましょう。Ormauth の場合、データーベーステーブルでは
-			group id は固定ではなく自動インクリメントされます。間違ったものを定義すると、管理者へのアクセス権をすべての OAuth
-			ユーザーに与えることになります！！！</p>
+			<p class="note">You should only use <strong>auto_registration = 'true'</strong> if you don't care about local account, and you don't want to
+			link accounts. It's there for simple "login using <provider>" kind of scenario's.</p>
+
+			<p class="note">Pay very close attention to the value of <strong>default_group</strong>. For Ormauth, group id's are
+			not fixed as they are autoincrement in your database table. You don't want to define the wrong one, and ending up
+			giving every OAuth user administrator access!!!</p>
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP Development Team 2010-2016 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
-[ <a href="https://github.com/fuel/docs/commits/1.8/develop/packages/auth/opauth/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/develop_japanese/packages/auth/opauth/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/packages/auth/opauth/intro.html">GitHubで修正</a> ]
+				&copy; FuelPHP Development Team 2010-2019 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+[ <a href="https://github.com/fuel/docs/commits/1.8/master/packages/auth/opauth/intro.html">原文コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/commits/1.8/master_japanese/packages/auth/opauth/intro.html">翻訳コミット履歴</a> | <a href="https://github.com/NEKOGET/FuelPHP_docs_jp/blob/1.8/develop_japanese/packages/auth/opauth/intro.html">GitHubで修正</a> ]
 			</p>
 		</footer>
 	</div>
