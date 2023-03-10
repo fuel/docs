@@ -103,7 +103,7 @@
 							<td>string</td>
 							<td><pre class="php"><code>'default'</code></pre></td>
 							<td>
-								The default setup to use if none is profided.
+								The default setup to use if none is provided.
 							</td>
 						</tr>
 						<tr>
@@ -207,6 +207,17 @@
 							<td><pre class="php"><code>false</code></pre></td>
 							<td>
 								Use this to set a default from name.
+							</td>
+						</tr>
+						<tr>
+							<th>force_to</th>
+							<td>null|array</td>
+							<td><pre class="php"><code>null</code></pre></td>
+							<td>
+								Set to an array with email and name (like from) to force all outgoing emails to be
+								send to this address instead.<br />
+								This allows you to test outgoing emails without sending them to real addresses
+								by mistake.
 							</td>
 						</tr>
 						<tr>
@@ -341,6 +352,19 @@
 								https://, since some Email clients (Outlook!) do not support relative protocol URI's.
 							</td>
 						</tr>
+					</tbody>
+				</table>
+
+				<h4 id="mandrill">Mandrill configuration</h4>
+
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
 						<tr>
 							<th>mandrill.key</th>
 							<td>string</td>
@@ -385,9 +409,8 @@
 				</table>
 
 				<p class="note">
-					Make sure to install <strong>mandrill/mandrill</strong> composer package if you want to use the mandrill driver.
+					Make sure to install the <strong>mandrill/mandrill</strong> composer package if you want to use the mandrill driver.
 				</p>
-
 
 				<h4 id="mailgun">Mailgun configuration</h4>
 
@@ -400,7 +423,7 @@
 						<th>Description</th>
 					</tr>
 					<tr>
-						<th>key</th>
+						<th>mailgun.key</th>
 						<td>string</td>
 						<td><pre class="php"><code>'YOUR KEY'</code></pre></td>
 						<td>
@@ -408,7 +431,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>domain</th>
+						<th>mailgun.domain</th>
 						<td>string</td>
 						<td><pre class="php"><code>'YOUR DOMAIN'</code></pre></td>
 						<td>
@@ -416,17 +439,22 @@
 						</td>
 					</tr>
 					<tr>
-						<th>endpoint</th>
+						<th>mailgun.endpoint</th>
 						<td>string|null</td>
 						<td><pre class="php"><code>'ALTERNATIVE API ENDPOINT URL'</code></pre></td>
 						<td>
-							(OPTIONAL) Omit entirely or set to null to use Mailgun's default endpoint. 
-							Can be set to match the region in which the domain is provisioned. 
+							(OPTIONAL) Omit entirely or set to null to use Mailgun's default endpoint.
+							Can be set to match the region in which the domain is provisioned.
 							Example: 'https://api.eu.mailgun.net/v3'
 						</td>
 					</tr>
 					</tbody>
 				</table>
+
+				<p class="note">
+					Make sure to install the <strong>mailgun/mailgun-php</strong> composer package if you want to use the mandrill driver.
+				</p>
+
 			</section>
 
 		</div>
