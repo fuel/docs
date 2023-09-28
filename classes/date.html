@@ -182,9 +182,9 @@ Date::display_timezone('America/Lima');</code></pre>
 				<p>The <strong>create_from_string</strong> creates a Date object from a named date string format or a
 					pattern.</p>
 
-				<p class="note">This function uses <a href="http://www.php.net/manual/en/function.strptime.php" target="_blank">strptime()</a>
-					for i18n purposes. That method isn't available on Windows hosts however, on those <kbd>strtotime()</kbd>
-					is used instead and the pattern is ignored.</p>
+				<p class="note">This function uses <a href="http://www.php.net/manual/en/function.strptime.php" target="_blank">strptime()</a>.
+					This method isn't available on Windows hosts, and deprecated in PHP 8.1. In those cases, we emulate it using <kbd>Date::strptime()</kbd>.
+					Note that this doesn't have locale support (i.e. pattern values representing locale values, like %c).</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -228,11 +228,25 @@ Fuel\Core\Date Object
     [timestamp:protected] => 1322956800
     [timezone:protected] => UTC
 )
+
+date_default_timezone_set('Europe/London');
+print_r(Date::create_from_string("01/04/2011 -0900" , "%m/%d/%Y %z"))
+
+// Returns
+Fuel\Core\Date Object
+(
+    [timestamp:protected] => 1294135200
+    [timezone:protected] => Europe/London
+)
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
+				<p class="note">
+					The Date object created is always in the currently active timezone. If a timezone is detected in the format,
+					its offset will be taken into account when creating the object.
+				</p>
 			</article>
 
 			<article>
@@ -464,6 +478,125 @@ echo \Date::is_valid('2019-02-29', 'Y-m-d') ? "true" : "false"; // false
 				</table>
 			</article>
 
+
+			<article>
+				<h4 class="method" id="method_strftime">strftime($format, $timestamp)</h4>
+				<p>The <strong>strftime</strong> method is a drop-in replacedment for the PHP strftime() function, for use on Windows or PHP 8.1+.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$format</kbd></th>
+									<td><pre class="php"><code>'%Y-%m-%d %H:%M:%S'</code></pre></td>
+									<td>The format to render with (see <a href="https://www.php.net/manual/en/function.strftime.php">the PHP docs</a>)</td>
+								</tr>
+								<tr>
+									<th><kbd>$timestamp</kbd></th>
+									<td><i>null</i></td>
+									<td>Int, a valid unix timestamp. If not given, time() is used instead.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>echo \Date::strftime("%d, %B, %Y", strtotime("01/03/2004")); // 03, januari, 2004
+echo \Date::strftime("%I:%M  %p", strtotime("21:34")); // 09:34  PM
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_strptime">strptime($timestamp, $format)</h4>
+				<p>The <strong>strptime</strong> method is a drop-in replacedment for the PHP strftime() function, for use on Windows or PHP 8.1+.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$timestamp</kbd></th>
+									<td><i>required</i></td>
+									<td>Int, a valid unix timestamp.</td>
+								</tr>
+								<tr>
+									<th><kbd>$format</kbd></th>
+									<td><pre class="php"><code>'%Y-%m-%d %H:%M:%S'</code></pre></td>
+									<td>The format to parse with (see <a href="https://www.php.net/manual/en/function.strptime.php">the PHP docs</a>)</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$format = '%d/%m/%Y %H:%M:%S %z';
+$strf = strftime($format);
+echo "$strf\n";
+print_r(strptime($strf, $format));
+
+// will output something like
+
+03/10/2004 15:54:19 +0200
+
+Array
+(
+    [tm_sec] => 19
+    [tm_min] => 54
+    [tm_hour] => 15
+    [tm_mday] => 3
+    [tm_mon] => 9
+    [tm_year] => 104
+    [tm_wday] => 0
+    [tm_yday] => 276
+    [unparsed] =>
+    [tm_zone] => 7200
+)
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					Unlike the PHP built-in function, this version has support for timezones. If a timezone is detected in the format, like
+					"%z" in the above example, an additional "tm_zone" value is returned in the array, indicating the offset to UTC, in seconds.
+				</p>
+			</article>
+
 			<article>
 				<h4 class="method" id="method_format">format($pattern_key = 'local', $timezone = null)</h4>
 				<p>
@@ -472,7 +605,8 @@ echo \Date::is_valid('2019-02-29', 'Y-m-d') ? "true" : "false"; // false
 					by creating a similar file in <kbd>app/config</kbd>.
 				</p>
 				<p class="note">This method uses patterns for the <a href="http://www.php.net/manual/en/function.strftime.php" target="_blank">strftime()</a>
-					function instead of <kbd>date()</kbd> to allow for i18n.</p>
+					function instead of <kbd>date()</kbd> to allow for i18n. On PHP 8.1 or higher, or on platforms not supporting this function,
+					it is emulated by <kbd>Date::strftime()</kbd>.</p>
 				<p>
 					If you don't pass a timezone, the timezone set on the current Date object will be used when formatting the result. By default,
 					this is the system timezone, unless you have altered it by calling the <kbd>set_timezone()</kbd> method. You can also pass
