@@ -99,7 +99,7 @@ echo Input::uri(); // returns /controller/method</code></pre>
 					</tr>
 					<tr>
 						<th>Returns</th>
-						<td>array - Format::from_json result array</td>
+						<td>array</td>
 					</tr>
 					<tr>
 						<th>Example</th>
@@ -112,6 +112,10 @@ $value = \Input::json('key', 'backup-value');</code></pre>
 					</tr>
 					</tbody>
 				</table>
+				<p class="note">
+					Note that the hydration code in the Input class uses <code>Format::forge($input, 'json')->to_array()</code>, to be able to access nested data using dot&#8209;notation.
+					This implies that all json objects in the input are converted to arrays instead of StdClass !
+				</p>
 			</article>
 
 			<article>
