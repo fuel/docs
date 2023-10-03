@@ -319,7 +319,7 @@ $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pr
 								</tr>
 								<tr>
 									<th><kbd>$email</kbd></th>
-									<td><em>string</em></td>
+									<td><em>string|array</em></td>
 									<td><em>required</em></td>
 									<td>The from email.</td>
 								</tr>
@@ -327,7 +327,7 @@ $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pr
 									<th><kbd>$name</kbd></th>
 									<td><em>string</em></td>
 									<td><pre class="php"><code>false</code></pre></td>
-									<td>The from name.</td>
+									<td>The from name, ignored when $email is an array.</td>
 								</tr>
 							</table>
 						</td>
@@ -339,7 +339,21 @@ $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pr
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>$email->from('me@example.com', 'My Name');</code></pre>
+							<pre class="php"><code>$email->from('me@example.com', 'My Name');
+
+// Using an assoc array
+$email->from(array(
+	'email' => 'me@example.com',
+	'name' => 'My Name',
+));
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">Note that while RFC5322 explicitly allows multiple From addresses, we do not support this, as most email clients can handle this.</p>
+			</article>
+							</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -432,11 +446,17 @@ $email->html_body(\View::forge('welcome/email', $data), true, false);</code></pr
 							<pre class="php"><code>// Add a single address
 $email->to('me@example.com', 'My Name');
 
-// Add multiple addresses
+// Using an assoc array
+$email->to(array(
+	'email' => 'me@example.com',
+	'name' => 'My Name',
+));
+
+// Or as an key-value array
 $email->to(array(
 	'me@example.com',
 	// with a name
-	'me@example.com' => 'His/Her name.',
+	'me@example.com' => 'My Name',
 ));
 </code></pre>
 						</td>
@@ -489,11 +509,17 @@ $email->to(array(
 							<pre class="php"><code>// Add a single address
 $email->cc('me@example.com', 'My Name');
 
-// Add multiple addresses
+// Using an assoc array
+$email->cc(array(
+	'email' => 'me@example.com',
+	'name' => 'My Name',
+));
+
+// Or as an key-value array
 $email->cc(array(
 	'me@example.com',
 	// with a name
-	'me@example.com' => 'His/Her name.',
+	'me@example.com' => 'My Name',
 ));
 </code></pre>
 						</td>
@@ -546,11 +572,18 @@ $email->cc(array(
 							<pre class="php"><code>// Add a single address
 $email->bcc('me@example.com', 'My Name');
 
-// Add multiple addresses
+// Using an assoc array
 $email->bcc(array(
+	'email' => 'me@example.com',
+	'name' => 'My Name',
+));
+
+// Or as an key-value array
+$email->bcc(array(
+	// without a name
 	'me@example.com',
 	// with a name
-	'me@example.com' => 'His/Her name.',
+	'me@example.com' => 'My Name',
 ));
 </code></pre>
 						</td>
@@ -603,17 +636,25 @@ $email->bcc(array(
 							<pre class="php"><code>// Add a single address
 $email->reply_to('me@example.com', 'My Name');
 
-// Add multiple addresses
+// Using an assoc array
 $email->reply_to(array(
+	'email' => 'me@example.com',
+	'name' => 'My Name',
+));
+
+// Or as an key-value array
+$email->reply_to(array(
+	// without a name
 	'me@example.com',
 	// with a name
-	'me@example.com' => 'His/Her name.',
+	'me@example.com' => 'My Name',
 ));
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
+				<p class="note">Note that while RFC5322 explicitly allows multiple Reply-To addresses, it is discouraged to use this, as not all email clients can handle this.</p>
 			</article>
 
 			<article>
@@ -742,7 +783,7 @@ $email->reply_to('me@example.com', 'My Name');
 $email->to(array(
 	'me@example.com',
 	// with a name
-	'me@example.com' => 'His/Her name.',
+	'me@example.com' => 'My Name',
 ));
 
 // Reset them
