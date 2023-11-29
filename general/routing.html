@@ -206,6 +206,37 @@ echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 		}
 };</code></pre>
 
+			<h3 id="recursion">Route recursion</h3>
+
+			<p>
+				By default, the requested URI is processed by the routing engine only once. Using the configuration key 'routing.recursive',
+				you can enable recursive route lookups.
+			</p>
+
+			<p>
+				This means that when a given URI resolves to a defined route, but this route doesn't resolve to a valid controller action,
+				the resulting route is reprocessed. This allows you to define aliases or redirects:
+			</p>
+
+			<pre class="php"><code>&lt;?php
+return array(
+	// default routes
+	'_root_'       => 'homepage/index',
+
+	// alias in another language
+	'un/:slug'       => 'one/$1',
+	'deux/:slug'     => 'two/$1',
+	'trois/:slug'    => 'three/$1',
+
+	// redirect old uri's
+	'old/uri/:slug'  => 'controller/new/$1',
+
+	// site routes
+	'one/:slug'      => 'controller/one/$1',
+	'two/:slug'      => 'controller/two/$1',
+	'three/:slug'    => 'controller/three/$1',
+);</code></pre>
+
 			<h3 id="module_routing">Modules &amp; Routing</h3>
 
 			<p><a href="modules.html#module_routing">Read about how modules handle routing</a>.</p>
