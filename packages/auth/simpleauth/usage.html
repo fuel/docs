@@ -358,7 +358,7 @@ Auth::create_user(
 				</article>
 
 				<article>
-					<h4 id="method_update_user" class="method">update_user($values, $username = null)</h4>
+					<h4 id="method_update_user" class="method">update_user($values, $username_or_email = null)</h4>
 					<p>
 						The <strong>update_user</strong> method allows you to update values in the user record,
 						either for a named user, or for the current logged-in user.
@@ -384,9 +384,9 @@ Auth::create_user(
 										<td>Associative array with column name / value pairs for the columns or profile fields you want to update.</td>
 									</tr>
 									<tr>
-										<th><kbd>$username</kbd></th>
+										<th><kbd>$username_or_email</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the user you want to update</td>
+										<td>The name or the email of the user you want to update (depending on the "login_type" config setting).</td>
 									</tr>
 								</table>
 							</td>
@@ -423,7 +423,7 @@ Auth::update_user(
 				</article>
 
 				<article>
-					<h4 id="method_change_password" class="method">change_password($old_password, $new_password, $username = null)</h4>
+					<h4 id="method_change_password" class="method">change_password($old_password, $new_password, $username_or_email = null)</h4>
 					<p>
 						The <strong>change_password</strong> method allows you to change a users password.
 					</p>
@@ -453,9 +453,9 @@ Auth::update_user(
 										<td>The users new password</td>
 									</tr>
 									<tr>
-										<th><kbd>$username</kbd></th>
+										<th><kbd>$username_or_email</kbd></th>
 										<td><pre class="php"><code>null</code></pre></td>
-										<td>The name of the user of whom you want to change the password</td>
+										<td>The name or the email of the user of whom you want to change the password (depending on the "login_type" config setting).</td>
 									</tr>
 								</table>
 							</td>
@@ -485,7 +485,7 @@ Auth::change_password('mycurrentpassword','mynewpassword');
 				</article>
 
 				<article>
-					<h4 id="method_reset_password" class="method">reset_password($username)</h4>
+					<h4 id="method_reset_password" class="method">reset_password($username_or_email)</h4>
 					<p>
 						The <strong>reset_password</strong> method allows you to assign a new random password to a user.
 					</p>
@@ -505,9 +505,9 @@ Auth::change_password('mycurrentpassword','mynewpassword');
 										<th class="description">Description</th>
 									</tr>
 									<tr>
-										<th><kbd>$username</kbd></th>
+										<th><kbd>$username_or_email</kbd></th>
 										<td>required</td>
-										<td>The name of the user for whom you want to reset the password</td>
+										<td>The name or email of the user for whom you want to reset the password (depending on the "login_type" config setting).</td>
 									</tr>
 								</table>
 							</td>
@@ -533,7 +533,7 @@ $new_password = Auth::reset_password('thisusername');
 				</article>
 
 				<article>
-					<h4 id="method_delete_user" class="method">delete_user($username)</h4>
+					<h4 id="method_delete_user" class="method">delete_user($username_or_email)</h4>
 					<p>
 						The <strong>delete_user</strong> method allows you to delete a user account.
 					</p>
@@ -553,9 +553,9 @@ $new_password = Auth::reset_password('thisusername');
 										<th class="description">Description</th>
 									</tr>
 									<tr>
-										<th><kbd>$username</kbd></th>
+										<th><kbd>$username_or_email</kbd></th>
 										<td>required</td>
-										<td>The name of the user account you want to delete</td>
+										<td>The name or the email of the user account you want to delete (depending on the "login_type" config setting).</td>
 									</tr>
 								</table>
 							</td>

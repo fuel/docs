@@ -139,6 +139,14 @@
 							</td>
 						</tr>
 						<tr>
+							<th>login_type</th>
+							<td>string</td>
+							<td><pre class="php"><code>'both'</code></pre></td>
+							<td>
+								The type of login you want to utilize. Valid values are "username", "email" or "both".
+							</td>
+						</tr>
+						<tr>
 							<th>salt</th>
 							<td>string</td>
 							<td><pre class="php"><code>'put_your_salt_here'</code></pre></td>
@@ -161,6 +169,14 @@
 				<p class="note">
 					Note that 'verify_multiple_logins' is a driver level setting. It has no meaning for
 					login drivers, it does not mean "allow a user to be logged-in multiple times"!
+				</p>
+
+				<p class="note">
+					Note that for 'login_type', "both" is the default for compatibility with existing installations, but should be used with
+					caution, as theoretically, you can create a user with as the username the email address from an existing user, and thus
+					potentionally hijack or block that account.<br />
+					Also, even though in most methods both values where checked, not all methods did support checking both, or could find multiple
+					user records and blindly use the first one found. Which is another reason not to use "both" !
 				</p>
 
 				<p>Your auth config file should look like this:</p>
