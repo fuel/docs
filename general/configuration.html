@@ -215,13 +215,24 @@ array("always_load" => array("packages" => array(...) ) );
 					</tr>
 					<tr>
 						<th>locale</th>
-						<td>string</td>
+						<td>string | array</td>
 						<td><pre class="php"><code>'en_US'</code></pre></td>
 						<td>
-							Used for <em>setlocale()</em> required on some php installations, set to <kbd>false</kbd>
-							to prevent it from being set.<br />
+							Used for set the locale for your application, if it differs from the default server or
+							PHP configuation locale. See <em>setlocale()</em> for more information.<br />
 							<em>The syntax setting for this can differ per OS, Ubuntu for example requires a
-							<kbd>.utf8</kbd> (the encoding) suffix.</em>
+							<kbd>.utf8</kbd> (the encoding) suffix.</em>. To pass multiple options, pass an indexed array
+							with the locales in order of preference.<br />
+							If you don't need to use a difffent locale, set to <kbd>false</kbd>.
+						</td>
+					</tr>
+						<th>locale_category</th>
+						<td>int | array</td>
+						<td><pre class="php"><code>LC_ALL</code></pre></td>
+						<td>
+							One or more categories for which the defined locale should be set, define either a single
+							category, like the LC_ALL constant, or an indexed array of LC constants.<br />
+							The array is needed because unlike other constants in PHP, these can't be or'd.
 						</td>
 					</tr>
 					<tr>
