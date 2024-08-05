@@ -175,7 +175,13 @@ Lang::load('foo::example', 'bar');
 
 // Will load the example language file in italian.
 // If that doesn't exist, it will load the configured language
-Lang::load('foo::example', 'bar', 'it');</code></pre>
+Lang::load('foo::example', 'bar', 'it');
+
+// Special case: if you want to explicitly load a file from the app, even when in
+// an active module, use this. It will not merge the result with a file in the
+// active module, like a standard load would do.
+Lang::load('::example', 'bar', 'it');
+</code></pre>
 						</td>
 					</tr>
 					</tbody>

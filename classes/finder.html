@@ -189,7 +189,18 @@ $finder = Finder::forge($array));
 						<td>
 							<pre class="php"><code>// will return APPPATH/views/welcome/index.php
 $viewfile = Finder::search('views', 'welcome/index');
-</code></pre>
+
+// assuming we're in active module called "test", and requested all files, this could
+// return array("MODULEPATH/test/lang/en/welcome.php", "APPPATH/lang/en/welcome.php")
+$lang = Finder::search('lang/en', 'welcome');
+
+// searching explicitly in the module, this would return
+// array("MODULEPATH/test/lang/en/welcome.php")
+$lang = Finder::search('test::lang/en', 'welcome', '.php', true);
+
+// searching explicitly in the app, this would return
+// array("APPPATH/lang/en/welcome.php")
+$lang = Finder::search('::lang/en', 'welcome', '.php', true);</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -445,7 +456,19 @@ $dbcfg = Finder::instance()->list_files('config', 'db.php');
 						<td>
 							<pre class="php"><code>// will return APPPATH/views/welcome/index.php
 $viewfile = Finder::instance()->locate('views', 'welcome/index');
-</code></pre>
+
+// assuming we're in active module called "test", and requested all files, this could
+// return array("MODULEPATH/test/lang/en/welcome.php", "APPPATH/lang/en/welcome.php")
+$lang = Finder::instance()->locate('lang/en', 'welcome');
+
+// searching explicitly in the module, this would return
+// array("MODULEPATH/test/lang/en/welcome.php")
+$lang = Finder::instance()->locate('test::lang/en', 'welcome', '.php', true);
+
+// searching explicitly in the app, this would return
+// array("APPPATH/lang/en/welcome.php")
+$lang = Finder::instance()->locate('::lang/en', 'welcome', '.php', true);</code></pre>
+
 						</td>
 					</tr>
 					</tbody>
