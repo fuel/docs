@@ -1,6 +1,6 @@
 
 # Number of commits to create
-commit_count=2483
+commit_count=100
 
 # Function to generate a random date within the past 2483 days
 random_date() {
