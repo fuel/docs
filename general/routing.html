@@ -90,6 +90,7 @@
 				<li><kbd>:everything</kbd> - Like <kbd>:any</kbd>, but also matches "nothing"</li>
 				<li><kbd>:segment</kbd> - This matches only 1 segment in the URI, but that segment can be anything</li>
 				<li><kbd>:num</kbd> - This matches any numbers</li>
+				<li><kbd>:decimal</kbd> - This matches decimal values, with support for both decimal point and decimal comma.</li>
 				<li><kbd>:alpha</kbd> - This matches any alpha characters, including UTF-8</li>
 				<li><kbd>:alnum</kbd> - This matches any alphanumeric characters, including UTF-8</li>
 			</ul>
@@ -107,6 +108,11 @@
     '(\d{2})/about'     => 'site/about/$1', // Routes /12/about to /site/about/12
 );</code></pre>
 
+			<p class="note">
+				Note that you need to disable "routing.strip_extensions" in your application config when
+				you want to use ":decimal", as by default everthing after a dot will be seen as
+				extension and stripped. This is not an issue when you use a decimal comma.
+			</p>
 
 			<h3 id="advanced">Advanced Routing</h3>
 
