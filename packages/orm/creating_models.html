@@ -217,6 +217,38 @@ class Model_Article extends Orm\Model
 					custom properties and relations, allowing you to exclude properties from all of them.
 				</p>
 
+				<h3 id="property_map">protected static $_property_map</h3>
+
+				<p>
+					Sometimes you run into issues where column names in a database are not compatible or practical for use
+					in PHP. For example, some database platforms allow characters like "&lt;" or "&gt;", or even spaces, in
+					column names.
+				</p>
+
+				<p>
+					This is not an issue for the database itself, for the queries the ORM generates, or for creating ORM model
+					objects, but it is for accessing the data. After all, you can't have spaces in an object property name, and
+					names like "<kbd>$model-&gt;small&lt;large</kbd>" are illegal in PHP. To deal with this, you can create a
+					property map, in which you map column names to property names:
+				</p>
+				<pre class="php"><code>protected static $_property_map = array(
+	'with a space' =&gt; 'with_no_space',
+	'small&lt;large' =&gt; 'small_large',
+);
+
+protected static $_properties = array(
+	'with a space',
+	'small&lt;large',
+);</code></pre>
+				<p>
+					This mapping allows you to access the column values using "<kbd>$model-&gt;with_no_space</kbd>" and "<kbd>$model-&gt;small_large</kbd>".
+				</p>
+
+				<p class="note">
+					In terms of precedence, mapped property names are checked after real properties, relations and EAV properties, but before
+					any custom properties the model object my have.
+				</p>
+
 				<h3 id="observers">protected static $_observers</h3>
 
 				<p>Adding observers is explained in <a href="observers/intro.html">Observers</a></p>
