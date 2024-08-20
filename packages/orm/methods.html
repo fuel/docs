@@ -1,0 +1,1593 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20170912">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+		var class_prefix = "Orm\\Model::";
+	</script>
+	<script src="./../../assets/js/combined.js?20170912"></script>
+	<title>Model methodss - Orm Package - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
+				<h1>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<strong>Documentation</strong>
+				</h1>
+			</div>
+			<nav>
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="main">
+
+			<h2>ORM Model Class</h2>
+
+			<p>
+				The ORM Model Class is not only the container for a database record, it also provides methods to manipulate the object and its data.
+			</p>
+
+			<article>
+				<h4 class="method" id="method_cached_object">cached_object($objpk, $class = null)</h4>
+				<p>The <strong>cached_object</strong> method allows you to retrieve specific model object from the object cache, by primary key and model class name.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$objpk</kbd></th>
+									<td><i>required</i></td>
+									<td>The primary key value of the model object you want to retrieve. If the model has a compound primary key, you can pass the key values in an array, in the order the keys are defined in the model.</td>
+								</tr>
+								<tr>
+									<th><kbd>$class</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>The model you want to lookup. If not given, the current model name is used.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Orm\Model | false</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// tries to retrieve OtherModel object with primary key value "12" from the cache
+$from_cache = MyModel::cached_object(12, 'OtherModel');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_condition">condition($type = null)</h4>
+				<p>The <strong>condition</strong> method allows you to retrieve the models defined conditions.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>The type of condition you want to retrieve. Currently supported are 'order_by' and 'where'. When no type is given, all conditions are returned.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array()</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// tries to retrieve MyModel where conditions
+$where = MyModel::conditions('where');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_connection">connection($writeable = false)</h4>
+				<p>The <strong>connection</strong> method allows you to retrieve the models defined database connection.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$writeable</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>The type of connection you want to retrieve. A model can have seperate connection definitions for read and write operations. By default, the read connection is returned.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string | null</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// retrieves the MyModel write connection
+$where = MyModel::connection(true);</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_find">find($id = null, $options = null)</h4>
+				<p>The <strong>find</strong> method allows you to retrieve record as a model object or an array of model objects.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$id</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>The primary key of the record you want to retrieve, or one of the special keywords 'all', 'first' or 'last'.</td>
+								</tr>
+								<tr>
+									<th><kbd>$options</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>Array of options that can be passed, including relations and query conditions.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Orm/Model | array | null</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">See the <a href="crud.html">CRUD</a> documentation for detailed examples on how to use this method.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_flush_cache">flush_cache($class = null)</h4>
+				<p>The <strong>flush_cache</strong> method allows you to (selectively) delete model objects from the object cache.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$class</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>
+										If not given, the entire cache is emptied. Optionally you can specify a model (either as a string containing a class name,
+										or a model object, and only flush the cache for that model.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_primary_key">primary_key()</h4>
+				<p>The <strong>primary_key</strong> method returns an array with the column names that define the tables primary key.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// returns array('id') for default PK's
+$pk = MyModel::primary_key();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_implode_pk">implode_pk($data)</h4>
+				<p>The <strong>implode_pk</strong> method allows you convert the value of a (compound) primary key into a string.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$data</kbd></th>
+									<td><i>required</i></td>
+									<td>
+										Either an array with key-value pairs, or an object with properties. All column names that are part of
+										the models primary key must be present, no validation is done. <pre class="php"><span class="keyword">null</span></pre> is returned
+										if the data doesn't contain all key values.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string | null</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// with PK defined as both columns "A" and "B", this returns "[1][2]"
+$pk = MyModel::implode_pk(array('A' => 1, 'B' => 2));</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_forge">forge($data = array(), $new = true, $view = null, $cache = true)</h4>
+				<p>The <strong>forge</strong> method allows you to forge a new model instance.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$data</kbd></th>
+									<td><pre class="php"><span class="keyword">array()</span></pre></td>
+									<td>
+										Multi-dimensional array of data to populate the new model object. This array may included data for
+										related model objects.
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$new</kbd></th>
+									<td><pre class="php"><span class="keyword">true</span></pre></td>
+									<td>
+										If set to <pre class="php"><span class="keyword">false</span></pre>, <pre class="php"><span class="keyword">$data</span></pre>
+										must contain at least all primary key values. The object will be set to "loaded" state, as if it was retrieved from the
+										database. This is mainly used after reading data from the database and hydrating it into model objects, or to recreate
+										objects from data stored elsewhere, for example in an external cache.
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$view</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>
+										Used internally when models are created from on of the table views defined in the model. It changes the model object into
+										a read-only state.
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$cache</kbd></th>
+									<td><pre class="php"><span class="keyword">true</span></pre></td>
+									<td>
+										If set to true and <pre class="php"><span class="keyword">$new</span></pre> set to false, and the data given contains all PK values, any existing
+										model object is cache is returned, instead of a newly instantiated object, optionally updated with any remaining data passed.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string | null</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// create a new MyModel model object
+$mymodel = MyModel::forge();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get_filtered_properties">get_filtered_properties()</h4>
+				<p>
+					The <strong>get_filtered_properties</strong> method returns the list of properties returned by a call to <pre class="php"><span class="keyword">to_array()</span></pre>.
+					It will take into account the list of excluded property names defined in the model.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// with PK defined as both columns "A" and "B", this returns "[1][2]"
+$pk = MyModel::implode_pk(array('A' => 1, 'B' => 2));</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					Excluding properties can come in handy for properties you don't want to expose, for example if you want to return model data to the caller in a JSON response.
+					See the static model property <strong>$_to_array_exclude</strong>.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_max">max($key = null)</h4>
+				<p>
+					The <strong>max</strong> method returns the maximum value of the given column name.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>
+										Name of a numeric table column. If not given, the primary key column is used.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>int | bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get the last id issued
+$last = MyModel::max('id');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					This method does not support compound primary keys (as you can only query MAX() on a single column), and will return false if there is no result.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_min">min($key = null)</h4>
+				<p>
+					The <strong>min</strong> method returns the minimum value of the given column name.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>
+										Name of a numeric table column. If not given, the primary key column is used.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>int | bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get the first id issued
+$last = MyModel::min('id');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					This method does not support compound primary keys (as you can only query MAX() on a single column), and will return false if there is no result.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_observers">observers($specific = null, $default = null)</h4>
+				<p>
+					The <strong>observers</strong> method returns a list of all observers defined in the model.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$specific</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>
+										Name of a spefific observer to get the definition of. Supports dot-notation to directly get any array element in the definition.
+										If none given, it will return all observers defined in the current model class.
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>
+										The value to return is no data was found.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get the observers defined in the model
+// might return array('Orm\Observer_Typing' => array())
+MyModel::observers();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					The array value associated with the observer in the result will contain the additional configuration the observer requires.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_properties">properties()</h4>
+				<p>
+					The <strong>properties</strong> method returns an array of all properties (i.e. column names) defined in the model class.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					<strong>Note</strong>: If the model does not define its properties, the ORM will attempt to generate it dynamically, by running
+					a "list all columns" query on the defined table. As this is performance impacting, you should not use this in a production
+					environment, but you could dump the generated array, and use that to populate the model properties array.
+				</p>
+				<p class="note">
+					Not all database drivers support a "list all columns" method, and will through an exception instead.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_property">property($key, $default = null)</h4>
+				<p>
+					The <strong>property</strong> method returns the definition of a single model class property.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><i>required</i></td>
+									<td>
+										Name of a property you want to query.
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$default</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>
+										The value to return is no data was found.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get the definition of the primary key
+MyModel::property('id');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					If no properties are defined in the model class, a call to <strong>properties()</strong> will be made in an attempt to generate them.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_query">query()</h4>
+				<p>
+					The <strong>query</strong> method returns an ORM query object for the current model class.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>ORM\Query</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get query object, and get the first record
+$query = MyModel::query()->get_one();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">See the <a href="crud.html">CRUD</a> documentation for detailed examples on how to use this method.</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_related_class">related_class($relation)</h4>
+				<p>
+					The <strong>related_class</strong> method returns the name of the ORM model class a relation maps to.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$relation</kbd></th>
+									<td><i>required</i></td>
+									<td>
+										Name of a defined model class relation.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string | null</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// might return "\Some\Namespace\Model_Child"
+MyModel::related_class('children');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_related_class">relations($specific)</h4>
+				<p>
+					The <strong>relations</strong> method returns the ORM definition of the given relation.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$specific</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>
+										Name of a defined model class relation, or <pre class="php"><span class="keyword">false</span></pre> to return an array of all defined relations.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Relation | array | false</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>/**
+ * might return:
+ * object(Orm\HasMany)
+ *   protected 'name' => string 'children' (length=12)
+ *   protected 'model_from' => string 'Model\Parent' (length=19)
+ *   protected 'model_to' => string 'Model\Child' (length=23)
+ *   protected 'key_from' =>
+ *     array (size=1)
+ *       0 => string 'id' (length=2)
+ *   protected 'key_to' =>
+ *     array (size=1)
+ *       0 => string 'parent_id' (length=6)
+ *   protected 'conditions' =>
+ *     array (size=1)
+ *       'where' =>
+ *         array (size=1)
+ *           0 =>
+ *             array (size=3)
+ *               ...
+ *   protected 'singular' => boolean false
+ *   protected 'cascade_save' => boolean true
+ *   protected 'cascade_delete' => boolean false
+ */
+MyModel::relations('children');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_connection">set_connection($connection)</h4>
+				<p>
+					The <strong>connection</strong> method allows you to set or override the defined database connection to be used by the model class.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$connection</kbd></th>
+									<td><i>required</i></td>
+									<td>
+										Name of database definition, defined in the db.php config file.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// switch database connection to an Oracle db
+MyModel::connection('oracle');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					This sets both the read and write connection, unless a seperate write connection was defined.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_set_write_connection">set_write_connection($connection)</h4>
+				<p>
+					The <strong>set_write_connection</strong> method allows you to set or override the defined database connection for writes, to be used by the model class.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$connection</kbd></th>
+									<td><i>required</i></td>
+									<td>
+										Name of database definition, defined in the db.php config file.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// switch database connection to the master db
+MyModel::connection('master');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					This sets the database write connection, which will override the generic connection for write queries.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_table">table()</h4>
+				<p>
+					The <strong>table</strong> method returns the name of the table associated with the model class. If none is defined in the model, one will be generated.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// might return "prefix_mymodel"
+$table = MyModel::table();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					The generated table name will be derived from the model name, after the namespaces and any "model_" prefix is stripped, lowercase, and made plural (for english names only).
+					So "\Some\Model_Cat" will map to a table called "cats".
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_delete">delete($cascade = null, $use_transaction = false)</h4>
+				<p>The <strong>delete</strong> method deletes the record associated with the current model object from the database.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$cascade</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>
+										This argument allows you to control cascading delete behaviour. <pre class="php"><span class="keyword">null</span></pre> is the default behavior,
+										configured in the relations of the model. <pre class="php"><span class="keyword">true</span></pre> or <pre class="php"><span class="keyword">false</span></pre>
+										explicitly enables or disables cascading deletes, or you can pass an array with relation names, if you want selective cascading deletes.
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$use_transaction</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>
+										Whether or not you want to wrap the delete in a database transaction. This allows automatic rollback, especially important when you use cascading deletes and
+										one of them fails. Without a transaction, you'll end up with partially deleted relations.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Model | false</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// delete the current record
+$record->delete();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					When the delete() operation fails logically, the method returns <strong>false</strong>. Otherwise it will return a new model
+					instance, retaining all model data but with the primary keys reset, so a model in new state.
+				</p>
+				<p class="note">
+					Note also that database exceptions that drivers might throw are not caught in this method !
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_disable_event">disable_event($event)</h4>
+				<p>The <strong>disable_event</strong> method allows you to disable a particular observer event defined in the model on a per-model instance basis.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$event</kbd></th>
+									<td><i>required</i></td>
+									<td>
+										Name of the event to disable. Supported are 'after_load', 'after_create', 'after_clone', 'before_save', 'after_save', 'before_insert', 'after_insert',
+										'before_update', 'after_update', , 'before_delete' and 'after_delete'.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// disable the after_save observers
+$record->disable_event('after_save');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_enable_event">enable_event($event)</h4>
+				<p>The <strong>disable_event</strong> method allows you to enable a particular observer event that was disabled previously. See <a href="#method_disable_event">disable_event()</a>.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$event</kbd></th>
+									<td><i>required</i></td>
+									<td>
+										Name of the event to disable. Supported are 'after_load', 'after_create', 'after_clone', 'before_save', 'after_save', 'before_insert', 'after_insert',
+										'before_update', 'after_update', , 'before_delete' and 'after_delete'.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// remove a defined block of all after_save observers
+$record->enable_event('after_save');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_from_array">from_array(array $values, $from_cache = false)</h4>
+				<p>The <strong>from_array</strong> method allows you to populate a model object, and optionally related models objects, from a multi-dimensional array.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$values</kbd></th>
+									<td><i>required</i></td>
+									<td>
+										Multi-dimensional array of key-value pairs, representing column names and column values.
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$from_cache</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>
+										When set to true, the model object cache will be checked before creating any related model objects from the data passed.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Model, the current object, for chaining.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// create a model object and populate it
+$mymodel = MyModel::forge();
+$mymodel->from_array($data);
+
+//NB: this is identical to:
+$mymodel = MyModel::forge($data);</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					Be careful with enabling <strong>$from_cache</strong>. As objects are passed around by reference in PHP, modifying a cached object with the data
+					passed will also modify any variable containing a reference to that object. This can lead to unexpected results and possible data corruption !
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get">get($property, array $conditions = array())</h4>
+				<p>The <strong>get</strong> method allows you to get a property from the model object. Properties include columns, related objects, EAV values or custom/runtime data stored in the object.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$property</kbd></th>
+									<td><i>required</i></td>
+									<td>
+										The name of the property whos value you want to retrieve.
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$conditions</kbd></th>
+									<td><pre class="php"><span class="keyword">array()</span></pre></td>
+									<td>
+										Only used for relations that aren't fetched yet. This allows you to add additional conditions (order_by or where clauses)
+										to the query that will fetch the related model objects. This allows you to fetch a subset, or to alter the default ordering.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>mixed</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get all the related child records (from a defined related called 'children')
+$mymodel->get('children');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get_diff">get_diff()</h4>
+				<p>The <strong>get_diff</strong> method returns an array with all properties that have been modified on the object since it was loaded.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// returns array('id' => 2)
+$mymodel = MyModel::find(1);
+$mymodel->id = 2;
+print_r($mymodel->get_diff());</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get_pk_assoc">get_pk_assoc()</h4>
+				<p>The <strong>get_pk_assoc</strong> method returns an array with a key-value pair for all primary key columns of the current model object.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// returns array('id' => 1)
+$mymodel = MyModel::find(1);
+print_r($mymodel->get_pk_assoc());</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_is_changed">is_changed($property = null, $observe = false)</h4>
+				<p>The <strong>is_changed</strong> method allows you to test if a model object has been altered since it was loaded.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$property</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>
+										The name of specific property whos value you want to check for changes. If not given, or <pre class="php"><span class="keyword">null</span></pre>,
+										all properties will be checked.
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$observe</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>
+										Whether or not 'before_save' observers should run. This can be desirable since you could have observers defined
+										on the model that would autonomously alter data when saving the model, without code or user interaction being involved.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// you can use get_diff() to check what has changed
+if ($mymodel->is_changed()
+{
+	echo "something has changed in the object !";
+}</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_is_fecthed">is_fetched($relation)</h4>
+				<p>The <strong>is_fetched</strong> method allows you check if related objects have been loaded.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$relation</kbd></th>
+									<td><i>required</i></td>
+									<td>
+										The name of the relation you want to check.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>if ( ! $mymodel->is_fetched('children'))
+{
+	echo "no child records have been loaded yet !";
+}</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					Note that you can't use <strong>isset($mymodel->children)</strong>, as that would access the property, which in turn would trigger a query
+					to autoload the related records (which in turn would make <strong>is_fetched()</strong> return true) !
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_is_new">is_new()</h4>
+				<p>The <strong>is_new</strong> method can be used to check if the object has a representation in the database, i.e. if a corresponding record exists.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>if ( ! $mymodel->is_new())
+{
+	echo "no record exists of this object yet";
+}</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					Note that that if your model uses database assigned primary keys (like AUTO_INCREMENT or SERIAL), the objects primary key properties will not
+					have a value at this point. But the absence of such values doesn't say anything about the "new" state, as the model could have primary key
+					values that are manually assigned or generated by observers, in which case it could already have a primary key set, even though it is still
+					classified as "new".
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_is_parent">is_parent($all = false)</h4>
+				<p>The <strong>is_new</strong> method can be used to check if the object has a representation in the database, i.e. if a corresponding record exists.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$all</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>
+										If set to <pre class="php"><span class="keyword">false</span></pre>, it will return <pre class="php"><span class="keyword">true</span></pre>
+										as soon as a relation is detected of which the current model object is a parent. Otherwise, it will check all relations, and will
+										return an array of relations from which the current model object is a parent (which could be empty).
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool | array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>if ($rels = $mymodel->is_parent(true))
+{
+	echo "don't delete it, it still has child records in " . impode(",", $rels) . " !";
+}</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					You can use this as a manual foreign key check, either because you don't want to wait for a database driver exception in case of a foreign key
+					violation, or because the database you work with doesn't have any foreign key constraints defined, and you want to make sure you don't want to
+					corrupt the database by leaving child records without a parent.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_reset">reset()</h4>
+				<p>The <strong>reset</strong> method deletes all changes made to the model object, and resets it to the state it was after loading.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					If you call <strong>reset()</strong> on an object in "new" state, it will be completely wiped, like you had just called <strong>ClassName::forge()</strong>.
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_save">save($cascade = null, $use_transaction = false)</h4>
+				<p>The <strong>save</strong> method save the record associated with the current model object to the database, by using an INSERT if the object is in "new" state, or an UPDATE if not.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$cascade</kbd></th>
+									<td><pre class="php"><span class="keyword">null</span></pre></td>
+									<td>
+										This argument allows you to control cascading save behaviour. <pre class="php"><span class="keyword">null</span></pre> is the default behavior,
+										configured in the relations of the model. <pre class="php"><span class="keyword">true</span></pre> or <pre class="php"><span class="keyword">false</span></pre>
+										explicitly enables or disables cascading saves, or you can pass an array with relation names, if you want selective cascading saves.
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$use_transaction</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>
+										Whether or not you want to wrap the save in a database transaction. This allows automatic rollback, especially important when you use cascading saves and
+										one of them fails for some reason. Without a transaction, you'll end up with partially saved relations.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>Model | false</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// saves the current record
+$record->save();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					When the save() operation fails logically, the method returns <strong>false</strong>. Otherwise it will return <strong>true</strong>.
+				</p>
+				<p class="note">
+					Note also that database exceptions that drivers might throw are not caught in this method !
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_to_array">to_array($custom = false, $recurse = false, $eav = false)</h4>
+				<p>The <strong>to_array</strong> method allows you to convert the model object, any relational data loaded, and optionally any custom/runtime data or EAV data, to be return as a multi-dimensional array.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$custom</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>
+										Set this to true if you want to include custom or runtime data stored in the model object.
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$recurse</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>
+										Used internally for object recursion detected. No <strong>NOT EVER</strong> set this to anything other than <pre class="php"><span class="keyword">false</span></pre> or weird things will happen!
+									</td>
+								</tr>
+								<tr>
+									<th><kbd>$eav</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>
+										Set this to true if you want to include EAV properties stored in the model object.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// dump the contents of the current object into an array
+$array = $record->to_array();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					Did I mention not to set the <strong>recurse</strong> variable to anything other than <strong>false</strong>?
+				</p>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_to_object">to_array($custom = false)</h4>
+				<p>The <strong>to_array</strong> method allows you to convert the model object into a StdClass object with only the data properties.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$custom</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>
+										Set this to true if you want to include custom or runtime data stored in the model object.
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>StdClass</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// these are identical
+$obj1 = $record->to_object();
+$obj2 = (object) $record->to_array();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2019 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>
