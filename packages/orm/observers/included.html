@@ -328,7 +328,7 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 							<th>data_type</th>
 							<td>varchar, int, integer, tinyint, smallint, mediumint, bigint, float, double, decimal[:d],
 								text, tinytext, mediumtext, longtext, enum, set, bool, boolean, serialize, encrypt, json,
-								time_unix, time_mysql</td>
+								time_unix, time_mysql, timestamp, date, datetime</td>
 							<td>
 								The SQL data type, <strong>Required</strong> to have the typing observer used on a field.
 							</td>
@@ -387,6 +387,10 @@ protected static $_observers = array('Orm\\Observer_Typing' => array(
 					In case of data_type "decimal", you can suffix the type with the number of decimals required. If defined,
 					the value returned is a string, formatted with the defined number of decimal digits, and taking the
 					current defined locale into account.
+				</p>
+
+				<p class="note">
+					The date and time related data types will be converted to and from a Date object.
 				</p>
 
 				<p class="note">
