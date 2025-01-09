@@ -203,6 +203,102 @@
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_app_total">app_total()</h4>
+				<p>
+					The <strong>app_total</strong> method returs an array with two values, the number of microseconds Fuel is running processing the current request,
+					and the number of bytes of memory the process has allocated sofar (excluding PHP internal bootstrap memory used).
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// might return:
+// Array
+// (
+//     [0] => 0.13538384437561
+//     [1] => 253208
+// )
+print_r(Profiler::app_total());</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+
+			<article>
+				<h4 class="method" id="method_init">init()</h4>
+				<p>
+					The <strong>init</strong> method initializes the profiler state. It will create a profiler instance, and sets up database query profiling.<br />
+					As long as the profiler is not initialized, all profiler methods apart from <strong>app_total()</strong> are NOOP's.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Profiler::reset();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_reset">reset()</h4>
+				<p>
+					The <strong>reset</strong> method reset the Profiler to its uninitialized state. You will have to call <strong>init()</strong> again if you want to re-enable the profiler.
+				</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>None</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>void</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>Profiler::reset();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 		</div>
 
 		<footer>
