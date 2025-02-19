@@ -49,6 +49,24 @@
 			</section>
 
 			<section>
+				<h2 id="install">A word of warning</h2>
+
+				<p>
+					Contrary to popular belief, an ORM model is not the same a an application model. ORM models map directly to a single record (the Active <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">Active Record Pattern</a>),
+					where as application model classes contain your business logic, and may (or may not) use the ORM to access the data in the configured storage backend.
+				</p>
+				<p>
+					Although it is possible, and perfectly fine in most cases, to use the ORM directly in your controllers, it is strongly advised not to do so, but seperate your controller logic from your business logic, 
+					which makes it a lot easier to make changes to that logic without having to search through all your controllers and other classes to make sure the changes have no side effect. Prime examples are for
+					example changes in database relations, adding or removing columns, and or changing the meaning or contents of a column.
+				</p>
+				<p class="note">
+					The most common way to seperate the two types of model is to put them into different namespaces in your application, so you have no name collisions and you can not accidentially mix up the two.
+				</p>
+
+			</section>
+
+			<section>
 				<h2 id="install">Installation</h2>
 
 				<p>The Orm package is included in the Fuel download. All you need to do is enable it in your config.</p>
@@ -57,6 +75,65 @@
 		'orm',
 	),
 ),</code></pre>
+			</section>
+
+			<section>
+
+				<h2 id="configuration">Configuration</h2>
+
+				<p>There are a few features or behaviours in the ORM that are configurable:</p>
+
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<th>caching</th>
+							<td>bool</td>
+							<td><pre class="php"><code>true</code></pre></td>
+							<td>
+								By default, the ORM caches all hydrated objects, so that when you request the same object a second time, you get the cached
+								(and potentially modified!) object, and not a new object for the same record (which can lead to data inconsistency).<br />
+								You can override whatever default you set on a per-query basis if needed using the <kbd>caching()</kbd> method.
+							</td>
+						</tr>
+						<tr>
+							<th>relation_lazy_load</th>
+							<td>bool</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								When set to <kbd>true</kbd>, an <kbd>isset()</kbd> or <kbd>empty()</kbd> check on an object relation will always return true,
+								whether or not the related records are fetched. When the actual related records are accessed, they will be "lazy loaded" with
+								an additional query.
+							</td>
+						</tr>
+						<tr>
+							<th>sql_max_timestamp_mysql</th>
+							<td>string</td>
+							<td><pre class="php"><code>'2038-01-18 22:14:08'</code></pre></td>
+							<td>
+							</td>
+						</tr>
+						<tr>
+							<th>sql_max_timestamp_unix</th>
+							<td>integer</td>
+							<td><pre class="php"><code>2147483647</code></pre></td>
+							<td>
+								Used to set the upper limit for the timestamp in the <strong>Temporal model<.strong>, if no limit is given.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<p class="note">
+					Lazy loading of relations was default behavior in the ORM prior to <strong>version 1.9</strong>. If you have an application that relies on this, do not forget
+					to enable this feature in the config when you upgrade your application to this or a later version!
+				</p>
+
 			</section>
 
 			<section>
