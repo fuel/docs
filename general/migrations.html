@@ -151,7 +151,7 @@ $ php oil refine migrate --version=10</code></pre>
 
 			<p class="note">
 				<strong>Note: </strong>
-				The migrate:current task is to match your schema to the version listed in <kbd>fuel/[app|core]/config/migrate.php</kbd> as if you have just got
+				The migrate:current task is to match your schema to the version listed in <kbd>fuel/[app|core]/config/migrations.php</kbd> as if you have just got
 				a copy of the application, the very latest migration not be the one considered stable. Using oil for migrations will modify this migration
 				config number so the current command will not be relevant in many situations.
 			</p>
@@ -188,6 +188,30 @@ $ php oil refine migrate --version=10</code></pre>
 				The <kbd>after()</kbd> method will only be called if the migration itself was succesful. If the migration method returns <kbd>false</kbd>, it
 				will not be called.
 			</p>
+
+			<h3 id="database_restore">Restoring or truncating the database</h3>
+
+			<p>
+				When you alter your database structure, for example by dropping all tables, or by restoring an older version of the database, you may create
+				a mismatch between the migration status table in the database and the data in the applications config file. In this case, delete the config
+				file, and run all migrations. The config file will be reconstructed from data in the database, and any missing migrations will run, bringing
+				the database in sync with the code again.
+			</p>
+
+			<p class="note">
+				Please note that there are no provisions to repair a damaged database. You can not for example delete a table, run migrations, and expect
+				that table to be recreated again !
+			</p>
+
+			<h3 id="code_restore">Reverting to an older version of your code</h3>
+
+			<p>
+				This can also lead to a disconnect between the structure of your database and the migration versions the application will be expecting.
+				As the old version of the code might be of a lower migration version, you need to check the migration versions of the app, all modules and
+				all packages, and you need to <u>manually</u> revert any migrations applied to the database but not present in the code being reverted to,
+				before you revert your code.
+			</p>
+
 		</div>
 
 		<footer>
