@@ -40,7 +40,7 @@
 			Fuel Date class has full support for i18n. You can also use the Date class for timezone conversions.</p>
 
 			<article>
-				<h4 class="method" id="method_forge">forge($timestamp = null, $timezone = null)</h4>
+				<h4 class="method" id="method_forge">forge($timestamp = null, $timezone = null, $pattern = null)</h4>
 				<p>The <strong>forge</strong> method returns a new date object.</p>
 				<table class="method">
 					<tbody>
@@ -60,12 +60,17 @@
 								<tr>
 									<th><kbd>$timestamp</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The timestamp to set the date object to</td>
+									<td>The timestamp to set the date object to. Defaults to <kbd>time()</kbd> with the defined offset applied.</td>
 								</tr>
 								<tr>
 									<th><kbd>$timezone</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
-									<td>The timezone in which the time is set</td>
+									<td>The timezone in which the time is set. Defaults to "UTC".</td>
+								</tr>
+								<tr>
+									<th><kbd>$pattern</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>The default date pattern string to use when formatting the date held by the object. Defaults to "local".</td>
 								</tr>
 							</table>
 						</td>
@@ -77,13 +82,14 @@
 					<tr>
 						<th>Example</th>
 						<td>
-							<pre class="php"><code>print_r(Date::forge(1294176140));
+							<pre class="php"><code>print_r(Date::forge(1294176140, null, 'mysql'));
 
 // Returns
 Fuel\Core\Date Object
 (
     [timestamp:protected] => 1294176140
     [timezone:protected] => UTC
+    [pattern:protected] => %Y-%m-%d %H:%M:%S
 )
 </code></pre>
 						</td>
@@ -227,6 +233,7 @@ Fuel\Core\Date Object
 (
     [timestamp:protected] => 1322956800
     [timezone:protected] => UTC
+    [pattern:protected] => local
 )
 
 date_default_timezone_set('Europe/London');
@@ -237,6 +244,7 @@ Fuel\Core\Date Object
 (
     [timestamp:protected] => 1294135200
     [timezone:protected] => Europe/London
+    [pattern:protected] => local
 )
 </code></pre>
 						</td>
@@ -303,24 +311,28 @@ Array
         (
             [timestamp:protected] => 1294181818
             [timezone:protected] => UTC
+	        [pattern:protected] => local
         )
 
     [1] => Fuel\Core\Date Object
         (
             [timestamp:protected] => 1294354618
             [timezone:protected] => UTC
+	        [pattern:protected] => local
         )
 
     [2] => Fuel\Core\Date Object
         (
             [timestamp:protected] => 1294527418
             [timezone:protected] => UTC
+	        [pattern:protected] => local
         )
 
     [3] => Fuel\Core\Date Object
         (
             [timestamp:protected] => 1294700218
             [timezone:protected] => UTC
+	        [pattern:protected] => local
         )
 )</code></pre>
 						</td>
@@ -598,11 +610,13 @@ Array
 			</article>
 
 			<article>
-				<h4 class="method" id="method_format">format($pattern_key = 'local', $timezone = null)</h4>
+				<h4 class="method" id="method_format">format($pattern_key = null, $timezone = null)</h4>
 				<p>
 					The <strong>format</strong> method returns a formatted date as specified by the pattern key. The
 					patterns are defined in the <kbd>fuel/core/config/date.php</kbd> config file - you can add your own
-					by creating a similar file in <kbd>app/config</kbd>.
+					by creating a similar file in <kbd>app/config</kbd>. If you don't pass a pattern, the pattern given when
+					the object was constructed is used. If that wasn't given either, it defaults to '<kbd>local</kbd>'. If the pattern
+					is not a key in the date config file, it is assumed to be a valid <kbd>strftime()</kbd> pattern string.
 				</p>
 				<p class="note">This method uses patterns for the <a href="http://www.php.net/manual/en/function.strftime.php" target="_blank">strftime()</a>
 					function instead of <kbd>date()</kbd> to allow for i18n. On PHP 8.1 or higher, or on platforms not supporting this function,
@@ -665,6 +679,7 @@ echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M", true);</code></pre>
 					</tr>
 					</tbody>
 				</table>
+				<p class="note">If you echo a Date object or otherwise cast it to string, it will return the string representation of the objects' date, using the default or configured pattern, identical to calling <kbd>format()</kbd> without arguments.</p>
 			</article>
 
 			<article>
@@ -707,6 +722,31 @@ echo Date::forge(1294176140)->format("%m/%d/%Y %H:%M", true);</code></pre>
 						<th>Example</th>
 						<td>
 							<pre class="php"><code>echo Date::forge(1294176140, "Europe/London")->get_timezone(); // Europe/London</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_get_pattern">get_pattern()</h4>
+				<p>The <strong>get_pattern</strong> method returns the Date object's configured date pattern</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>string</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$date = Date::forge(1294176140, "Europe/London", "mysql");
+echo $date->get_pattern(); // "%Y-%m-%d %H:%M:%S", with default date config
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
