@@ -158,9 +158,107 @@ protected static $_many_many = array(
 		'model_to' => 'Model_User',
 		'key_to' => 'id',
 		'cascade_save' => true,
-		'cascade_delete' => false,
+		'constraint' => \Orm\Relation::CONSTRAINT_SETDEFAULT,
 	)
 );</code></pre>
+
+				<h3>A hybrid many-many relation</h3>
+
+				<p>
+					There are situations where you have a many-many relation between two tables, but you have values that are
+					not a property of either table, but of the relation.
+				</p>
+
+				<p>
+					An example of this could be a relation between "Recipes" and "Ingredients", where a recipe has multiple ingredients,
+					and ingredients can be used in multiple recipes. But something like how much of an ingredient is needed in the recipe
+					is a property of the relation between the two. In this case, you can define a hybrid relation between the two:
+				</p>
+
+				<pre class="php"><code>// recipe model relationship definitions
+class Model_Recipe extends /Orm/Model
+{
+	protected static $_many_many = array(
+		'ingredients' => array(
+			'key_from' => 'id',
+			'key_through_from' => 'recipe_id', // column 1 from the table in between, should match a recipe.id
+			'table_through' => 'recipes_ingredients', // both models plural without prefix in alphabetical order
+			'key_through_to' => 'ingredient_id', // column 2 from the through-table, should match an ingredient.id
+			'model_to' => 'Model_Ingredient',
+			'key_to' => 'id',
+			'cascade_save' => true,
+			'constraint' => \Orm\Relation::CONSTRAINT_SETDEFAULT, // don't delete the ingredients when deleting the recipe
+		)
+	);
+
+	protected static $_has_many = array(
+		'comments' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_RecipeIngredient',
+			'key_to' => 'recipe_id',
+			'cascade_save' => true,
+			'constraint' => \Orm\Relation::CONSTRAINT_CASCADE, // delete the through table records on delete of the recipe
+		)
+	);
+}
+
+// ingredient model relationship definitions
+class Model_Ingredient extends /Orm/Model
+{
+	protected static $_many_many = array(
+		'recipes' => array(
+			'key_from' => 'id',
+			'key_through_from' => 'ingredient_id', // column 1 from the table in between, should match an ingredient.id
+			'table_through' => 'recipes_ingredients', // both models plural without prefix in alphabetical order
+			'key_through_to' => 'recipe_id', // column 2 from the through-table, should match a recipe.id
+			'model_to' => 'Model_Ingredient',
+			'key_to' => 'id',
+			'cascade_save' => true,
+			'constraint' => \Orm\Relation::CONSTRAINT_SETDEFAULT,  // don't delete the recipes when deleting the ingredient
+		)
+	);
+
+	protected static $_has_many = array(
+		'comments' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_RecipeIngredient',
+			'key_to' => 'ingredient_id',
+			'cascade_save' => true,
+			'constraint' => \Orm\Relation::CONSTRAINT_CASCADE, // delete the through table records on delete of the ingredient
+		)
+	);
+
+// through-table model relationship definitions
+class Model_RecipeIngredient extends /Orm/Model
+{
+	protected static $_table_name = 'recipes_ingredients';
+
+	protected static $_belongs_to = array(
+		'recipe' => array(
+			'key_from' => 'recipe_id',
+			'model_to' => 'Model_Recipe',
+			'key_to' => 'id',
+			'cascade_save' => true,
+			'constraint' => \Orm\Relation::CONSTRAINT_SETDEFAULT,
+		),
+		'ingredient' => array(
+			'key_from' => 'ingredient_id',
+			'model_to' => 'Model_Ingredient',
+			'key_to' => 'id',
+			'cascade_save' => true,
+			'constraint' => \Orm\Relation::CONSTRAINT_SETDEFAULT,
+		)
+	);
+}</code></pre>
+
+				<p class="note">
+					If you're just using it as a "through-table", that table doesn't have to have its own primary key, you could define a compound
+					primary key for it, using both the "recipe_id" and "ingredient_id" properties. Although this works fine for the hybrid relationship
+					too, you'll have to use <kbd>array('recipe_id', 'ingredient_id')</kbd> for the "key_from" of the "has_many", and "key_to" of the "belongs_to"
+					relation definitions. Depending on your requirements it might be better to give the through table its own primary "id" key (as used in this example)
+					and use unique indexes for the foreign keys.
+				</p>
+
 			</section>
 
 		</div>

@@ -99,9 +99,9 @@ $employee->undelete(); //Does the same as above.</code></pre>
 			<section>
 				<h2 id="relations">Relations</h2>
 				<h1>Delete</h1>
-				<p>The delete function will soft delete related models providing that <kbd>cascade_delete</kbd> is true. If the related model is not soft delete as well then a <kbd>RelationNotSoft</kbd> exception is thrown.</p>
+				<p>The delete function will soft delete related models providing that <kbd>constraint</kbd> is set to <kbd>\Orm\Relation::CONSTRAINT_CASCADE</kbd>. If the related model is not soft delete as well then a <kbd>RelationNotSoft</kbd> exception is thrown.</p>
 				<h1>Restore</h1>
-				<p>The restore function will also restore related entries providing the <kbd>cascade_delete</kbd> is true for the relation.</p>
+				<p>The restore function will also restore related entries providing the <kbd>constraint</kbd> is set to <kbd>\Orm\Relation::CONSTRAINT_CASCADE</kbd> for the relation.</p>
 			</section>
 		</div>
 

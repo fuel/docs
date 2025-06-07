@@ -92,11 +92,11 @@
 	// set up the statistics relation the usual way
 	protected static $_has_many = array(
 		'statistics' => array(
-			'key_from' => 'id',			// key in this model
-			'model_to' => 'Model_Statistic',      // related model
-			'key_to' => 'patient_id',		// key in the related model
-			'cascade_save' => true,		// update the related table on save
-			'cascade_delete' => true,		// delete the related data when deleting the parent
+			'key_from' => 'id',	                             // key in this model
+			'model_to' => 'Model_Statistic',                 // related model
+			'key_to' => 'patient_id',                        // key in the related model
+			'cascade_save' => true,                          // update the related table on save
+			'constraint' => \Orm\Relation::CONSTRAINT_CASCADE, // delete the related data when deleting the parent
 		)
 	);
 
@@ -126,7 +126,7 @@ class Model_Statistic extend \Orm\Model
 	        'model_to' => 'Model_Patient',
 	        'key_to' => 'id',
 	        'cascade_save' => true,
-	        'cascade_delete' => true,
+	        'constraint' => \Orm\Relation::CONSTRAINT_CASCADE,
 	    )
 	);
 }</code></pre>

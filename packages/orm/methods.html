@@ -170,7 +170,7 @@ $where = MyModel::connection(true);</code></pre>
 
 			<article>
 				<h4 class="method" id="method_find">find($id = null, $options = null)</h4>
-				<p>The <strong>find</strong> method allows you to retrieve record as a model object or an array of model objects.</p>
+				<p>The <strong>find</strong> method allows you to retrieve a record as a model object or an array of model objects.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -591,7 +591,7 @@ MyModel::observers();</code></pre>
 					environment, but you could dump the generated array, and use that to populate the model properties array.
 				</p>
 				<p class="note">
-					Not all database drivers support a "list all columns" method, and will through an exception instead.
+					Not all database drivers support a "list all columns" method, and will throw an exception instead.
 				</p>
 			</article>
 
@@ -780,7 +780,7 @@ MyModel::related_class('children');</code></pre>
  *               ...
  *   protected 'singular' => boolean false
  *   protected 'cascade_save' => boolean true
- *   protected 'cascade_delete' => boolean false
+ *   protected 'constraint' => string 'delete_default'
  */
 MyModel::relations('children');</code></pre>
 						</td>
@@ -929,9 +929,10 @@ $table = MyModel::table();</code></pre>
 									<th><kbd>$cascade</kbd></th>
 									<td><pre class="php"><span class="keyword">null</span></pre></td>
 									<td>
-										This argument allows you to control cascading delete behaviour. <pre class="php"><span class="keyword">null</span></pre> is the default behavior,
-										configured in the relations of the model. <pre class="php"><span class="keyword">true</span></pre> or <pre class="php"><span class="keyword">false</span></pre>
-										explicitly enables or disables cascading deletes, or you can pass an array with relation names, if you want selective cascading deletes.
+										This argument allows you to override the constraint definition on a relation. <pre class="php"><span class="keyword">null</span></pre> is the default behavior,
+										in which case the constraint as defined on the relation will be used.
+										<pre class="php"><span class="keyword">true</span></pre> is the equivalent of <kbd>\Orm\Relation::CONSTRAINT_CASCADE</kbd>, while <pre class="php"><span class="keyword">false</span></pre>
+										is the equivalent of <kbd>\Orm\Relation::CONSTRAINT_SETDEFAULT</kbd>.
 									</td>
 								</tr>
 								<tr>

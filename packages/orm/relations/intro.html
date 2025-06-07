@@ -71,7 +71,7 @@
 	'key_from' => 'article_id',
 	'key_to' => 'parent_article_id',
 	'cascade_save' => true,
-	'cascade_delete' => false,
+	'constraint' => \Orm\Relation::CONSTRAINT_SETDEFAULT,
 	// there are some more options for specific relation types
 ));</code></pre>
 
@@ -131,8 +131,8 @@
 								argument when calling <kbd>save()</kbd> or <kbd>delete()</kbd> on the originating model.</td>
 						</tr>
 						<tr>
-							<th>cascade_delete</th>
-							<td>bool <kbd>false</kbd></td>
+							<th>constraint</th>
+							<td>string <kbd>\Orm\Relation::CONSTRAINT_SETDEFAULT</kbd></td>
 						</tr>
 						<tr>
 							<th>conditions</th>
@@ -145,6 +145,24 @@
 						</tr>
 					</tbody>
 				</table>
+
+				<p class="note">
+					'constraint' here refers to the <kbd>ON DELETE</kbd> constraint of the relation. The options are:<br />
+					<kbd>\Orm\Relation::CONSTRAINT_SETDEFAULT</kbd>, when deleting a parent, set the foreign key in the child to its default value, as defined in the model properties.
+					If no default is defined, the foreign key is set to <kbd>null</kbd>.<br />
+					<kbd>\Orm\Relation::CONSTRAINT_CASCADE</kbd>, when deleting a parent, also delete all related children.<br />
+					<kbd>\Orm\Relation::CONSTRAINT_RESTRICT</kbd>, throw an <kbd>DeleteConstraintViolation</kbd> exception when the parent has related children.
+					The message of the exception will contain the name of the relation on which the violation occurred, which can be used to provide feedback to the user.
+				</p>
+				<p class="note">
+					Note that 'constraint' can be defined on all relationship types. Be careful however of using <kbd>\Orm\Relation::CONSTRAINT_CASCADE</kbd> on a "belongs_to" relation,
+					as that would delete the parent record, which only makes sense if the other side of the relationship is defined as "has_one".
+				</p>
+				<p>
+					The boolean option 'cascade_delete' is deprecated as of Fuel v1.9. It did the same as <kbd>\Orm\Relation::CONSTRAINT_CASCADE</kbd> when <kbd>true</kbd>, or
+					<kbd>\Orm\Relation::CONSTRAINT_SETDEFAULT</kbd> when <kbd>false</kbd>, but lacked the option to block deletes when related records are present.
+				</p>
+
 			</article>
 
 			<article id="usage">
@@ -300,18 +318,16 @@ $post = Model_Post::query()
 				<p>The Orm supports the following relationship types natively:</p>
 
 				<ul>
-					<li><a href="belongs_to.html">Belongs To</a><br />
-						Has the primary key of the relation kept in its table, belongs to 1 related object.</li>
 					<li><a href="has_one.html">Has One</a><br />
-						Has its primary key saved in one other row of another table (which belongs to this), has 1
-						related object.</li>
+						The "1" side of a "1:1" relation. Its primary key provides the foreign key for the record belonging to the relation. It is the parent in the relationship.</li>
 					<li><a href="has_many.html">Has Many</a><br />
-						Has its primary key saved in many other rows of another table (which belong to this one), has
-						many related objects.</li>
+						The "1" side of a "1:N" relation. Its primary key provides the foreign key for the records belonging to the relation. It is the parent in the relationship.</li>
+					<li><a href="belongs_to.html">Belongs To</a><br />
+						The "1" side of a "1:1" or "N:1" relation. Its record contains the foreign key for the relation. It is the child in the relationship.</li>
 					<li><a href="many_many.html">Many to Many</a><br />
-						Have their primary keys saved in a table in between which keeps pairs of primary keys from both
-						tables. Have and belong to many objects.</li>
+						This allows you to define an "N:M" relation between two models, using a "through" or "junction" table to store the primary keys of both sides.</li>
 				</ul>
+
 			</article>
 
 		</div>
