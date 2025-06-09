@@ -107,6 +107,19 @@ $role->permissions = $perm;
 // and save the relation
 $role->save();</code></pre>
 
+			<h4 id="constaints">Database relation constraints</h4>
+
+			<p>The following relationship constaints are defined:</p>
+
+			<ul>
+				<li>If you delete a user, you also delete all its metadata</li>
+				<li>If you delete a user, you also delete all its oauth provider data</li>
+				<li>If you delete a user, you also delete all its permission assignments</li>
+				<li>If you delete a role, you also delete all its permission assignments</li>
+				<li>If you delete a group, you also delete all its permission assignments</li>
+				<li>If you delete a group, and it still has users, an <kbd>\Orm\DeleteConstraintViolation</kbd> will be thrown</li>
+			</ul>
+
 			<h4 id="actions">Actions</h4>
 
 			<p>
