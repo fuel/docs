@@ -1972,7 +1972,7 @@ $children = $bill->children;
 										<tr>
 											<th><kbd>$related</kbd></th>
 											<td><pre class="php">required</pre></td>
-											<td>The name of the relation to include.</td>
+											<td>The name of the relation to include, or an array with relation names and/or relation/condition combinations.</td>
 										</tr>
 										<tr>
 											<th><kbd>$conditions</kbd></th>
@@ -1991,6 +1991,15 @@ $children = $bill->children;
 								<td>
 									<pre class="php"><code>// include related 'child' objects in the result
 $tree = $bill->related('child')->dump_tree();
+
+// include related 'child' and 'granbchild' objects in the result
+$tree = $bill->related('child')->related('grandchild')->dump_tree();
+
+// alternative, with conditions
+$tree = $bill->related(array(
+		'child',
+		'grandchild' => array('order_by' => array('age', 'asc'))
+	))->dump_tree();
 
 // get the descendants of $ben
 $descendants = $ben->descendants()->related('child')->get();
