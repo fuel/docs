@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20170912">
+	<link rel="shortcut icon" href="./../favicon.ico" />
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+		var class_prefix = "";
+	</script>
+	<script src="./../assets/js/combined.js?20170912"></script>
+	<title>Functions - General - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
+				<h1>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
+					<strong>Documentation</strong>
+				</h1>
+			</div>
+			<nav>
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="main">
+
+			<article>
+				<h2>Functions</h2>
+
+				<p>
+					Fuel provides a few global functions for things that are used in the framework, but may also be handy in your own applications. These functiona re defined in base.php, which can be found in the Fuel core directory.
+				</p>
+
+				<h4 class="method" id="method_call_fuel_func_array">call_fuel_func_array()</h4>
+				<p>A faster equivalent to call_user_func_array(), especially in older PHP versions.</p>
+
+				<h4 class="method" id="method_http_build_url">http_build_url()</h4>
+				<p>The reverse function of parse_url(). It is defined in a PECL extension (pecl_http >= 0.21.0), but not every server has the extension loaded, and not everyone has the option to change installed PHP modules.</p>
+
+				<h4 class="method" id="method_in_arrayi">in_arrayi()</h4>
+				<p>Equivalent to the built-in function in_array(), but does a case-insensitive check.</p>
+
+				<h4 class="method" id="method_e">e(string $s)</h4>
+				<p>A shortcut to \Security::htmlentities(), mainly used in view files.</p>
+
+				<h4 class="method" id="method___">__(string $string, array $params, string|null $default, string|null $language)</h4>
+				<p>A shortcut to \Lang::get(), mainly used in view files.</p>
+
+				<h4 class="method" id="method_logger">logger(string|int $level, string $msg, string|array|null $context)</h4>
+				<p>A shortcut to \Log::write().</p>
+
+				<h4 class="method" id="method_render">render(string $view, array|null $data, bool $auto_filter)</h4>
+				<p>A shortcut to creating a View object using \View::forge(), and then calling the render() method of the object.</p>
+
+				<h4 class="method" id="method_get_common_path">get_common_path(array $paths)</h4>
+				<p>Takes an array with one of more fully qualified file paths, and returns the common parent. Does not work for Windows paths!</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$paths</kbd></th>
+									<td><i>required</i></td>
+									<td>An array contains one or more strings representing fully qualified filenames of file paths</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>A string containing the common parent for all paths given. "/" (the file system root) will be returned of there was no common parent.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Returns "/data".
+$paths = array('/data/dir1', '/data/dir2');
+echo get_common_path($paths);</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<h4 class="method" id="method_get_real_class">get_real_class(string $class)</h4>
+				<p>Uses Reflection to find and return the real class name. Useful when using class aliasing.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$class</kbd></th>
+									<td><i>required</i></td>
+									<td>Fully namespaced class name, without the leading backslash.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>A string containing the real class.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Returns "Fuel\Core\Fuel", if not overloaded in the app
+echo get_real_class('Fuel');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<h4 class="method" id="method_html_tag">html_tag(string $tag, array $attr, string|null $content)</h4>
+				<p>Generated a string containing a HTML tag, including attributes and optional content for tag types that have data between open and close tags.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$tag</kbd></th>
+									<td><i>required</i></td>
+									<td>HTML tag to generate.</td>
+								</tr>
+								<tr>
+									<th><kbd>$attr</kbd></th>
+									<td><kbd>array()</kbd></td>
+									<td>Array of tag attributes.</td>
+								</tr>
+								<tr>
+									<th><kbd>$content</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>Optional content for tags that may have any content.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>A string containing a HTML tag.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Returns "&lt;a href="https://fuelphp.com"&gt;Fuel Website&lt;/a&gt;"
+echo html_tag('a', array('href' => 'https://fuelphp.com'), 'Fuel Website');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<h4 class="method" id="method_import">import(string $class, string $folder)</h4>
+				<p>Imports a Fuel core class, and loads the App overload if defined as well.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$class</kbd></th>
+									<td><i>required</i></td>
+									<td>Class name, or relative path and class name in case the load is from a subdirectory.</td>
+								</tr>
+								<tr>
+									<th><kbd>$folder</kbd></th>
+									<td><kbd>'classes'</kbd></td>
+									<td>Directory the class has to be loaded from. In general, this is always "classes", the Fuel standard location.</td>
+								</tr>
+								<tr>
+									<th><kbd>$content</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>Optional content for tags that may have any content.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// will "require" COREPATH/classes/controller/rest.php
+// and APPPATH/classes/controller/rest.php if it exists.
+import('controller/rest', 'classes');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<h4 class="method" id="method_is_uuid">is_uuid(string $uuid)</h4>
+				<p>Checks if the given string is in valid UUID format.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$uuid</kbd></th>
+									<td><i>required</i></td>
+									<td>String to test for a valid UUID.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>True if the string is a valid UUID, false if not.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// will return true
+$valid = is_uuid('dedd6906-de08-4b7f-b4de-46ae04942516');
+
+// will return false, 'x' is not a valid character
+$valid = is_uuid('dedd6906-xe08-4b7f-b4de-46ae04942516');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<h4 class="method" id="method_array_to_attr">array_to_attr(array $attr)</h4>
+				<p>Takes an array of attributes and turns it into a string for an html tag.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$attr</kbd></th>
+									<td><i>required</i></td>
+									<td>Array of HTML tag attributes.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>A stringified version of the attributes.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Returns 'href="https://fuelphp.com disabled="disabled";
+echo array_to_attr(array('href' => 'https://fuelphp.com', 'disabled' => true, 'readonly' => false));</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<h4 class="method" id="method_tempdir">tempdir()</h4>
+				<p>Creates a temporary directory with a fuel prefixed unique name. In case of a collision, the existing directory will be deleted.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Returns</th>
+						<td>A string containing a fully qualified path.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// May return something like "/tmp/fuelv5kjoreotn66e4Xhq8f"
+echo tempdir();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<h4 class="method" id="method_is_windows">is_windows()</h4>
+				<p>Checks if the application runs on a Windows platform.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Returns</th>
+						<td>True if the server OS is Windows, false if not.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// will return false on Linux
+$windows = is_windows();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2025 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

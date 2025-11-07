@@ -339,9 +339,11 @@ panes.main = {
 		"Configuration":	"general/configuration.html",
 		"Constants":		"general/constants.html",
 		"Environments":		"general/environments.html",
+		"Functions": 		"general/functions.html",
 		"Model-View-Controller":	"general/mvc.html",
 		"Models":			"general/models.html",
 		"Views":			"general/views.html",
+		"Polyfills": 		"general/polyfills.html",
 		"Presenters":		"general/presenters.html",
 		"Controllers": {
 			"Base" :		"general/controllers/base.html",
