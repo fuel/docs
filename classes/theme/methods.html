@@ -1157,9 +1157,11 @@ $themes = $theme->all();
 			<article>
 				<h4 class="method" id="method_use_modules">use_modules($enable = true)</h4>
 				<p>
-					The <strong>use_modules</strong> method enables or disables the prefixing feature for views loaded from a
-					module. If <em>true</em>, the views loaded via the Theme class will be prefixed by the current active module
-					name (if any). If a string is passed, it will be prefixed as well, allowing you to store all modules in a
+					By default, when using themes, the views requested by the controller will be loaded from the active (or
+					fallback) theme directory structure. The <strong>use_modules</strong> method enables or disables the
+					possibility of overriding these views with a view from the app or module "themes" directory.
+					If <em>true</em>, the views loaded via the Theme class will be prefixed by the current active module
+					path (or the APPPATH). If a string is passed, it will be prefixed as-as, allowing you to store all modules in a
 					separate directory, to avoid name conficts between module names and non-prefixed view names. If the view can
 					not be found, it's checked again without the prefix, allowing for global views from inside a module. If that
 					doesn't exist either, the View class will be called to load the view the regular way.

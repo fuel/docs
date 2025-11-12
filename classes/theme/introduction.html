@@ -114,6 +114,16 @@
 				The contents of a partials section can be accessed through a view variable $partials, an array with an entry for each of the partial
 				sections defined. You access a section using its name. So for a partial section called 'sidebar', you would use <strong>echo $partials['sidebar'];</strong> in your page template.
 			</p>
+			<h5>Partials will be searched for in the following locations, in this order:</h5>
+				<ul>
+					<li>APPPATH/themes, in case of a app or global controller, and <kbd>use_modules</kbd> is set to <kbd>true</kbd>.</li>
+					<li>MODULEPATH/module/themes, in case of a module controller, and <kbd>use_modules</kbd> is set to <kbd>true</kbd>.</li>
+					<li>APPPATH/themes, in case of a app or global controller, and <kbd>use_modules</kbd> is set to <kbd>true</kbd>.</li>
+					<li>THEMEPATH/module, in case of a module controller.</li>
+					<li>THEMEPATH.</li>
+				</ul>
+			</p>
+
 
 			<h3 id="chrome">Partial chrome</h3>
 
@@ -262,9 +272,10 @@ class Homepage extends \Controller
 						<td>boolean|string</td>
 						<td><pre class="php"><code>false</code></pre></td>
 						<td>
-							Whether to automatically prefix the view filename with the current module name. If it contains a string,
-							it will be used to prefix the theme view path. This allows you to move all module theme views into a
-							separate folder, and avoid collisions between module names and app views...
+							If true, you can use a "themes" directory in a module (or in the app) to override view files in the
+							theme folder structure. If it contains a string, it will be used to prefix the theme view path.
+							This also allows you to move all module theme views into a separate folder, and avoid collisions
+							between module names and app views...
 						</td>
 					</tr>
 				</tbody>
