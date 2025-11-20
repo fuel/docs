@@ -615,6 +615,79 @@ Str::ends_with($string, 'Amet', true); // returns true
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_number_format">number_format($num, $decimals = null, $thousands_separator = null, $decimal_separator = null, $currency_symbol = false)</h4>
+				<p>
+					The <strong>number_format</strong> is virtually identical to the PHP built-in function with the same name, but it also supports a currency symbol,
+					and it uses information from the current locale to determine the value for fields which are null.
+				</p>
+				<p class="note">Note that in the argument list, the thousand and decimal separator are the other way around compared to the PHP built-in function, because it happens more often that the thousand separator needs to be supressed.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$num</kbd></th>
+										<td><em>required</em></td>
+										<td>The float value to format.</td>
+									</tr>
+									<tr>
+										<th><kbd>$decimals</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>The ending to check for.</td>
+									</tr>
+									<tr>
+										<th><kbd>$thousands_separator</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Thousand separator to use.</td>
+									</tr>
+									<tr>
+										<th><kbd>$decimal_separator</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Decimal separator to use.</td>
+									</tr>
+									<tr>
+										<th><kbd>$currency_symbol</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Currency Symbol to use. If null, information from the current the locale will be used. By default, it is false, and no currency info will added to the number.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>bool</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>$num = 123456.789;
+
+setlocale(LC_ALL, 'nl_NL.UTF-8');
+echo Str::number_format($num);                          // will return "123456,79"
+echo Str::number_format($num, null, null, null, "EUR"); // will return "EUR 123.456,789"
+echo Str::number_format($num, 3, "");                   // will return "€ 123456,789"
+
+setlocale(LC_ALL, 'en_US.UTF-8');
+echo Str::number_format($num);                          // will return "123,456.79"
+echo Str::number_format($num, 3, "");                   // will return "123456.789"
+echo Str::number_format($num, 3, null, null, null);     // will return "$123,456.789"</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
 		</div>
 
 		<footer>
