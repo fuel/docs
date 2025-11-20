@@ -593,6 +593,78 @@ echo Num::mask_credit_card('1234123412341234', '0000 **** **** ****');
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_floatval">floatval($num, $thousands_separator = null, $decimal_separator = null)</h4>
+				<p>
+					Like the PHP built-in function <strong>floatval</strong> but locale aware.
+				</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Type</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$num</kbd></th>
+										<th><em>string</em></th>
+										<td><pre class="php"><code>''</code></pre></td>
+										<td>String representing a decimal number, with or without separators, to be converted to a float.</td>
+									</tr>
+									<tr>
+										<th><kbd>$thousands_separator</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Thousand separator to use.</td>
+									</tr>
+									<tr>
+										<th><kbd>$decimal_separator</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Decimal separator to use.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>float</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// make sure the format matches the locale !
+$num    = "123456,78";
+$num_eu = "123.456,78";
+$num_us = "123,456.78";
+
+setlocale(LC_ALL, 'nl_NL.UTF-8');  // decimal comma, has no thousand separator
+echo Num::floatval($num);          // echos 123456.78
+echo Num::floatval($num_eu);       // echos 123.456 (unsupported comma)
+echo Num::floatval($num_us);       // echos 123.456 (invalid format)
+
+setlocale(LC_ALL, 'de_DE.UTF-8');  // decimal comma, dot as thousand separator
+echo Num::floatval($num);          // echos 123456.78
+echo Num::floatval($num_eu);       // echos 123456.78
+echo Num::floatval($num_us);       // echos 123.45678 (invalid format)
+
+setlocale(LC_ALL, 'en_US.UTF-8');  // decimal dot, comma, as thousand separator
+echo Num::floatval($num);          // echos 12345678  (invalid format)
+echo Num::floatval($num_eu);       // echos 123.45678 (invalid format)
+echo Num::floatval($num_us);       // echos 123456.78</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
 		</div>
 
 		<footer>
