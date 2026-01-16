@@ -189,7 +189,7 @@ Migrate::version(10, 'mymodule', 'module');
 
 			<article>
 				<h4 class="method" id="method_up">up($version, $name = 'default', $type = 'app')</h4>
-				<p>The <strong>version</strong> method will move the migrations up by one, or up to a specific version if given.</p>
+				<p>The <strong>up</strong> method will move the migrations up by one, or up to a specific version if given.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -241,7 +241,7 @@ Migrate::up(10, 'mymodule', 'module');
 
 			<article>
 				<h4 class="method" id="method_down">down($version, $name = 'default', $type = 'app')</h4>
-				<p>The <strong>version</strong> method will move the migrations down by one, or down to a specific version if given.</p>
+				<p>The <strong>down</strong> method will move the migrations down by one, or down to a specific version if given.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -295,6 +295,61 @@ Migrate::down(10, 'mymodule', 'module');
 				All methods return an array, specifying a list a migration files ( file names only! ) executed.<br />
 				If no migrations where found, or if the version specified resulted in no migrations being executed, the array returned is empty.
 			</p>
+
+			<article>
+				<h4 class="method" id="method_has">has($name, $type, $seq = null)</h4>
+				<p>The <strong>has</strong> method allows you to check if a given migration has already run. This is most useful inside migrations, to check for dependencies.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><i>required</i></td>
+									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><i>required</i></td>
+									<td>Name of the package or module. In case of app, use 'default' as a placeholder.</td>
+								</tr>
+								<tr>
+									<th><kbd>$seq</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// skip further processing if migration 10 of the module 'mymodule' has not already run
+// use this in a migration up() method to postpone that migration
+if ( ! Migrate::has('module', 'mymodule', '010'))
+{
+	return false;
+}
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 
 		</div>
 
