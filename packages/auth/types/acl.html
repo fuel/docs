@@ -192,6 +192,104 @@ $key = Auth::instance('simpleacl')->get_config('key', false);
 					</table>
 				</article>
 
+				<article>
+					<h4 id="method_has_any_access" class="method">has_any_access($conditions, Array $entity)</h4>
+					<p>The <strong>has_any_access</strong> method uses the defined ACL drivers to check the users access according to the given array of conditions.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$conditions</kbd></th>
+										<td>required</td>
+										<td>takes a array of locations and the required rights on the location as either a string or array</td>
+									</tr>
+									<tr>
+										<th><kbd>$entity</kbd></th>
+										<td>required</td>
+										<td>user or group identifier in the form of array(driver_id, id).</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean, <strong>true</strong> if access was granted to ANY of the given conditions, <strong>false</strong> if not.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// check if user is allowed to comment when one right is granted
+if ( ! Auth::acl()->has_any_access(array('comments.create', 'comments.edit')))
+{
+	Response::redirect('no_admin');
+}</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<article>
+					<h4 id="method_has_all_access" class="method">has_all_access($conditions, Array $entity)</h4>
+					<p>The <strong>has_all_access</strong> method uses the defined ACL drivers to check the users access according to the given array of conditions.</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">Static</th>
+							<td>No</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$conditions</kbd></th>
+										<td>required</td>
+										<td>takes a array of locations and the required rights on the location as either a string or array</td>
+									</tr>
+									<tr>
+										<th><kbd>$entity</kbd></th>
+										<td>required</td>
+										<td>user or group identifier in the form of array(driver_id, id).</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>boolean, <strong>true</strong> if access was granted to ALL of the given conditions, <strong>false</strong> if not.</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// check if user is allowed to comment when both rights are granted
+if ( ! Auth::acl()->has_all_access(array('comments.create', 'comments.edit')))
+{
+	Response::redirect('no_admin');
+}</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+
 				<h3 id="abstract_methods">Abstract methods</h3>
 
 				<p>
