@@ -1217,7 +1217,7 @@ print_r($mymodel->get_pk_assoc());</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_is_changed">is_changed($property = null, $observe = false)</h4>
+				<h4 class="method" id="method_is_changed">is_changed($property = null, $observe = false, $recurse = false)</h4>
 				<p>The <strong>is_changed</strong> method allows you to test if a model object has been altered since it was loaded.</p>
 				<table class="method">
 					<tbody>
@@ -1250,6 +1250,14 @@ print_r($mymodel->get_pk_assoc());</code></pre>
 										on the model that would autonomously alter data when saving the model, without code or user interaction being involved.
 									</td>
 								</tr>
+								<tr>
+									<th><kbd>$recurse</kbd></th>
+									<td><pre class="php"><span class="keyword">false</span></pre></td>
+									<td>
+										When <pre class="php"><span class="keyword">true</span></pre>, it will call <pre class="php"><span class="class">is_changed()</span></pre>
+										on any related object of relations given in <kbd>$property</kbd>.
+									</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -1264,11 +1272,21 @@ print_r($mymodel->get_pk_assoc());</code></pre>
 if ($mymodel->is_changed()
 {
 	echo "something has changed in the object !";
+}
+// not only check if child objects were added or removed, but
+// also if loaded child objects themselfs have been modified
+if ($mymodel->is_changed('child', false, true)
+{
+	echo "something related to 'child' model objects is changed";
 }</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
+				<p class="note">
+					Using the <kbd>$recurse</kbd> option is particularly handy if you've loaded a hierarchical tree of model objects, with relations that
+					have "cascade_save" enabled, or use an "EAV" container, so it returns a true status of the fact something in the chain needs saving.
+				</p>
 			</article>
 
 			<article>
