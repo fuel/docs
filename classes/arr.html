@@ -1924,7 +1924,7 @@ array(
 			</article>
 
 			<article>
-				<h4 id="method_multisort" class="method">multisort($array, $conditions, $ignore_case = false)</h4>
+				<h4 id="method_multisort" class="method">multisort($array, $conditions, $ignore_case = false, $reindex = true)</h4>
 				<p>The <strong>sort</strong> method sorts a multi-dimensional array by multiple values.</p>
 				<table class="method">
 					<tbody>
@@ -1952,9 +1952,14 @@ array(
 									<td>Array of sorting conditions.</td>
 								</tr>
 								<tr>
-									<th><kbd>$ornire_case</kbd></th>
+									<th><kbd>$ignore_case</kbd></th>
 									<td><pre class="php"><code>false</code></pre></td>
 									<td>Whether to sort case insensitive.</td>
+								</tr>
+								<tr>
+									<th><kbd>$reindex</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>When an indexed array is multisorted, do we want the result to be re-indexed or not.</td>
 								</tr>
 							</table>
 						</td>
@@ -2043,6 +2048,10 @@ Array
 					</tr>
 					</tbody>
 				</table>
+				<p class="note">
+					By default, Arr::multisort() works similar to PHP's default <strong>array_multisort</strong>, which preserves keys of associative arrays, but re-indexes indexed arrays.
+					You can disable this behavior, and preserve keys if indexed arrays too, by passing <strong>false</strong> for <strong>$reindex</strong>.
+				</p>
 			</article>
 
 			<article>
