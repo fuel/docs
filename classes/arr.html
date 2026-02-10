@@ -101,7 +101,7 @@ echo Arr::is_multi($arr, true);  // Result: false
 			</article>
 
 			<article>
-				<h4 class="method" id="method_is_assoc">is_assoc($arr)</h4>
+				<h4 class="method" id="method_is_assoc">is_assoc($arr, $consecutive)</h4>
 				<p>The <strong>is_assoc</strong> method checks if the array passed is an associative array or not.</p>
 				<table class="method">
 					<tbody>
@@ -122,6 +122,11 @@ echo Arr::is_multi($arr, true);  // Result: false
 									<th><kbd>$arr</kbd></th>
 									<td><em>required</em></td>
 									<td>The array to check.</td>
+								</tr>
+								<tr>
+									<th><kbd>$consecutive</kbd></th>
+									<td><pre class="php"><code>true</code></pre></td>
+									<td>If true, it expects an indexed array to have sequential, consecutive numeric keys, starting with zero. If false, a key has to be not an integer for the array to be classified as associative.</td>
 								</tr>
 							</table>
 						</td>
@@ -148,11 +153,17 @@ echo Arr::is_assoc($arr);
 $arr = array(0 => 'foo', 1 => 'bar', '2' => 'baz', 3 => 'yay');
 echo Arr::is_assoc($arr);
 // Result: false!
+
+// non-consecutive numeric keys, not assoc!
+$arr = array(0 => 'foo', 3 => 'bar', '9' => 'baz', 12 => 'yay');
+echo Arr::is_assoc($arr, false);
+// Result: false!
 </code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
+				<p>Note: the $consecutive flag has been added to be able to test for all indexed arrays, to avoid breaking backward compatibilty with pre-1.9 code which expects all indexed arrays to be zero-based and have consecutive numeric keys.</p>
 			</article>
 
 			<article>
