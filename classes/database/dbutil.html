@@ -95,6 +95,63 @@ DBUtil::set_connection(null);
 			</article>
 
 			<article>
+				<h4 class="method" id="method_database_exists">database_exists($database)</h4>
+				<p>The <strong>database_exists</strong> method checks if a named database already exists.  Will throw a Database_Exception if it cannot.</p>
+				<table class="method">
+					<tbody>
+						<tr>
+							<th>Static</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Parameters</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$database</kbd></th>
+										<td><em>required</em></td>
+										<td>the database name</td>
+									</tr>
+									<tr>
+										<th><kbd>$db</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td class="description">The database connection.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td><span class="keyword">true</span> if the database exists, <span class="keyword">false</span> if not.</td>
+						</tr>
+						<tr>
+							<th>Throws</th>
+							<td>\Database_Exception on failure; \Fuel_Exception if not implemented</td>
+						</tr>
+						<tr>
+							<th>Example</th>
+							<td>
+								<pre class="php"><code>// check if the database exists
+if (DBUtil::database_exists('my_database'))
+{
+	// deal with it
+}</code></pre>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					This method is currently only available for MySQL/MariaDB, SQLSrv and SQLite.<br />
+					In case of SQLite, you can check on either the attached database name or the FQFN or the attached database file (case-insensitive).
+				</p>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_create_database">create_database($database, charset = null, $if_not_exists = true, $db = null)</h4>
 				<p>The <strong>create_database</strong> method creates a database.  Will throw a Database_Exception if it cannot.</p>
 				<table class="method">
