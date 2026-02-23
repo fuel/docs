@@ -188,6 +188,58 @@ array(
 				</table>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_installed">installed($package = null)</h4>
+				<p>The <strong>installed</strong> method allows you to check if a package is currently installed, i.e. present in a defined package path.  If no package name is given then all installed packages are returned.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$package</kbd></th>
+									<td><kbd>null</kbd></td>
+									<td>Name of the package to be checked.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><kbd>bool|array</kbd></td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Check if the orm package is installed
+$loaded = Package::installed('orm');
+
+// Get all installed packages
+$loaded = Package::installed();
+/*
+Returns something like:
+array(
+    'orm' => '/path/to/orm',
+    'parser' => '/path/to/parser',
+    'notloaded' =>  '/path/to/notloaded',
+)
+*/
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
 		</div>
 
 		<footer>
