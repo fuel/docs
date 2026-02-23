@@ -117,6 +117,55 @@ $session = Session::instance('myappcookie');
 			</article>
 
 			<article>
+				<h4 class="method" id="method_active">active($instance = null)</h4>
+				<p>The <strong>active</strong> method returns wether or not the named or default session instance is active (loaded and initialized).</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$instance</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>Cookiename (as defined in config/session.php) that identifies the required session instance.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool, <kbd>true</kbd> if the session is active and can be used, <kbd>false</kbd> if not.</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Make sure we have an active session before using it
+if (Session::active())
+{
+	$var = Session::get('var');
+}
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					You may need this check if your application has cases where no session is active, and can not be activated, for example because the database session table has not been created yet.
+					Web-based installers as part of your application are a great example where this may be the case.
+				</p>
+			</article>
+
+			<article>
 				<h4 class="method" id="method_set">set($variable, $value = null)</h4>
 				<p>The <strong>set</strong> method allows you to set a session variable.</p>
 				<table class="method">
