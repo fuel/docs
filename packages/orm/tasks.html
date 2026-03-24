@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20170912">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+	</script>
+	<script src="./../../assets/js/combined.js?20170912"></script>
+	<title>Tasks - Orm Package - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
+				<h1>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<strong>Documentation</strong>
+				</h1>
+			</div>
+			<nav>
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="main">
+			<h2>Tasks</h2>
+
+			<p>
+				The ORM package comes with tasks that automate things, thus making your life just that little bit easier.
+			<p>
+
+			<section>
+				<h2 id="intro">ModelDBCheck</h2>
+
+				<p>The modeldbcheck task allows you to check your application model definition against the current database schema.</p>
+
+				<p>
+					The task will scan your application "classes" directories, in the app, and all defined model and package
+					paths, for model classes that extend "\Orm\Model", either directly, or via a base class.
+				</p>
+
+				<p>
+					For every ORM model found, it will connect to the database using the models' defined table name, and retrieve
+					the database schema for that table. It will then verify if all columns defined in the schema are present
+					in the model properties list. If not, it will generate a basic array for that column, which you can simply
+					copy and paste into the model. It will also warn you if you have columns defined that are no longer
+					present in the schema.
+				</p>
+
+				<pre class="shell"><code>$ php oil refine modeldbcheck
+</code></pre>
+
+			<p>
+				Which will return something like
+			</p>
+
+				<pre class="shell"><code>Enumerate application models...
+10 ORM database models found to verify
+
+Verifying model \Auth\Model\Auth_Group
+Verifying model \Auth\Model\Auth_User
+Verifying model \Auth\Model\Auth_Role
+Verifying model \Auth\Model\Auth_Grouppermission
+Verifying model \Auth\Model\Auth_Metadata
+Verifying model \Auth\Model\Auth_Permission
+Verifying model \Auth\Model\Auth_Provider
+Verifying model \Auth\Model\Auth_Rolepermission
+Verifying model \Auth\Model\Auth_Userpermission
+</code></pre>
+
+			<p>
+				If you define and run your own migrations, there is usually no mismatch detected. But if your database is
+				designed and managed by a third party, or is part of another application, you might find the schema changed
+				since the last time you checked or worked on the application.
+			</p>
+			<p>
+				In these cases it is important to check, and missing columns in your model properties definition aren't
+				detected until you want to access a column, or you do an INSERT or UPDATE and a missing column is defined
+				in the schame as "NOT NULL", in which case the query will fail.
+			</p>
+
+			</section>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2026 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>
