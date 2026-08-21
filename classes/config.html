@@ -43,21 +43,21 @@
 			You can use different file layouts to store your configuration. The layout type is determined by the file extension:
 			<ul>
 				<li>
-					PHP. The default type. A PHP file should return an array structure.
+					<strong>PHP</strong><br />The default type. A PHP file should return an array structure.
 					<pre class="php"><code> return array('key' => 'value');</code></pre>
 				</li>
 				<li>
-					INI. See <a href="http://en.wikipedia.org/wiki/INI_file">this page</a> for a definition of the ini-file layout.
+					<strong>INI</strong><br />See <a href="http://en.wikipedia.org/wiki/INI_file">this page</a> for a definition of the ini-file layout.
 					<pre class="ini"><code> [group]
 key=value</code></pre>
 				</li>
 				<li>
-					YAML. See <a href="http://en.wikipedia.org/wiki/YAML">this page</a> for a definition of the yaml-file layout.
+					<strong>YAML</strong><br />See <a href="http://en.wikipedia.org/wiki/YAML">this page</a> for a definition of the yaml-file layout.
 					<pre class="yaml"><code> group:
    key: value</code></pre>
 				</li>
 				<li>
-					JSON. See <a href="http://en.wikipedia.org/wiki/JSON">this page</a> for a definition of the json-file layout.
+					<strong>JSON</strong><br />See <a href="http://en.wikipedia.org/wiki/JSON">this page</a> for a definition of the json-file layout.
 					<pre class="javascript"><code> {
 "group" :
     {
@@ -66,14 +66,14 @@ key=value</code></pre>
 }</code></pre>
 				</li>
 				<li>
-					MEMCACHED. Stores or retrieves the config from a Memcached or Memcachedb store.
+					<strong>MEMCACHED</strong><br />Stores or retrieves the config from a Memcached or Memcachedb store.
 					<br /><br />
 					It will use the <strong>config.memcached</strong> section of the <code>app/config/config.php</code> configuration
 					file to configure the memcached class used to connect to the store.
 					<br /><br />
 				</li>
 				<li>
-					DB. Use the following table structure:
+					<strong>DB</strong><br />Use the following table structure:
 					<pre class="php"><code>  CREATE TABLE IF NOT EXISTS `config` (
   `identifier` char(100) NOT NULL,
   `config` longtext NOT NULL,
@@ -268,7 +268,7 @@ Config::delete('blog.items_to_display');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_load">load($file, $group = null, $reload = false, $overwrite = false)</h4>
+				<h4 class="method" id="method_load">load($file, $group = null, $reload = false, $overwrite = false, $appfirst = false)</h4>
 				<p>The <strong>load</strong> method reads in a config file into the system.  It searches through the config directories for the requested file.  You can optionally group the config files to avoid naming collisions.</p>
 				<table class="method">
 					<tbody>
@@ -292,18 +292,23 @@ Config::delete('blog.items_to_display');</code></pre>
 								</tr>
 								<tr>
 									<th><kbd>$group</kbd></th>
-									<td><kbd>null</kbd></td>
+									<td><pre class="php"><code>null</code></pre></td>
 									<td>(Optional) A group name to use.  If set to <kbd>true</kbd> then a group of the same name as <kbd>$file</kbd> will be created.  If this is not set or is <kbd>null</kbd> then the loaded config will be merged with the root config.</td>
 								</tr>
 								<tr>
 									<th><kbd>$reload</kbd></th>
-									<td><kbd>false</kbd></td>
+									<td><pre class="php"><code>false</code></pre></td>
 									<td>(Optional) If set to <kbd>true</kbd> a reload of the requested configuration is forced, erasing cached configuration items related to the config file to be loaded.</td>
 								</tr>
 								<tr>
 									<th><kbd>$overwrite</kbd></th>
-									<td><kbd>false</kbd></td>
+									<td><pre class="php"><code>false</code></pre></td>
 									<td>(Optional) If set to <kbd>true</kbd> the loaded configuration items will be merged with the items already loaded in a non-recursive manner, with will overwrite array values in a multidimensional array, rather then merging them.</td>
+								</tr>
+								<tr>
+									<th><kbd>$appfirst</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>By default, module files override global files (app, core, packages). By setting this to true, files in the app will have precedence over module files.</td>
 								</tr>
 							</table>
 						</td>
@@ -333,6 +338,12 @@ Config::load('foo::custom', 'bar');</code></pre>
 					</tr>
 					</tbody>
 				</table>
+			<p class="note">
+				When loading configuration files from a module, whatever the type, files found are loaded in the following order:<br >
+				MODULE, APP, PACKAGES (in order of definition/loading), CORE<br />
+				If you have a modules that require customisation in the app in which the module is used, without altering the code in the module (for examples modules that are distributed), you need to set <kbd>$appfirst</kbd> to <kbd>true</kbd> when loading the configuration, which alters the load order to:<br />
+				APP, MODULE, PACKAGES (in order of definition/loading), CORE.
+			</p>
 			</article>
 
 			<article>

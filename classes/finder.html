@@ -133,7 +133,7 @@ $finder = Finder::forge($array));
 			</article>
 
 			<article>
-				<h4 class="method" id="method_search">search($dir, $file, $ext = '.php', $multiple = false, $cache = true)</h4>
+				<h4 class="method" id="method_search">search($dir, $file, $ext = '.php', $multiple = false, $cache = true, $appfirst = false)</h4>
 				<p>The <strong>search</strong> method is a static alias for <code>locate()</code> on the default finder instance.</p>
 				<table class="method">
 					<tbody>
@@ -175,6 +175,11 @@ $finder = Finder::forge($array));
 									<td><pre class="php"><code>true</code></pre></td>
 									<td>If true, cache the results for subsequent requests to prevent unnecessary disk access.</td>
 								</tr>
+								<tr>
+									<th><kbd>$appfirst</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>By default, module files override global files (app, core, packages). By setting this to true, files in the app will have precedence over module files.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -192,7 +197,11 @@ $viewfile = Finder::search('views', 'welcome/index');
 
 // assuming we're in active module called "test", and requested all files, this could
 // return array("MODULEPATH/test/lang/en/welcome.php", "APPPATH/lang/en/welcome.php")
-$lang = Finder::search('lang/en', 'welcome');
+$lang = Finder::search('lang/en', 'welcome', true, false);
+
+// assuming we're in active module called "test", and requested all files, this could
+// return array("APPPATH/lang/en/welcome.php", "MODULEPATH/test/lang/en/welcome.php")
+$lang = Finder::search('lang/en', 'welcome', true, false, true);
 
 // searching explicitly in the module, this would return
 // array("MODULEPATH/test/lang/en/welcome.php")
@@ -400,7 +409,7 @@ $dbcfg = Finder::instance()->list_files('config', 'db.php');
 			</article>
 
 			<article>
-				<h4 class="method" id="method_locate">locate($dir, $file, $ext = '.php', $multiple = false, $cache = true)</h4>
+				<h4 class="method" id="method_locate">locate($dir, $file, $ext = '.php', $multiple = false, $cache = true, $appfirst = false)</h4>
 				<p>The <strong>locate</strong> method locates files in the defined search paths.</p>
 				<table class="method">
 					<tbody>
@@ -442,6 +451,11 @@ $dbcfg = Finder::instance()->list_files('config', 'db.php');
 									<td><pre class="php"><code>true</code></pre></td>
 									<td>If true, cache the results for subsequent requests to prevent unnecessary disk access.</td>
 								</tr>
+								<tr>
+									<th><kbd>$appfirst</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>By default, module files override global files (app, core, packages). By setting this to true, files in the app will have precedence over module files.</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -459,7 +473,11 @@ $viewfile = Finder::instance()->locate('views', 'welcome/index');
 
 // assuming we're in active module called "test", and requested all files, this could
 // return array("MODULEPATH/test/lang/en/welcome.php", "APPPATH/lang/en/welcome.php")
-$lang = Finder::instance()->locate('lang/en', 'welcome');
+$lang = Finder::instance()->locate('lang/en', 'welcome', true, false);
+
+// assuming we're in active module called "test", and requested all files, this could
+// return array("APPPATH/lang/en/welcome.php", "MODULEPATH/test/lang/en/welcome.php")
+$lang = Finder::instance()->locate('lang/en', 'welcome', true, false, true);
 
 // searching explicitly in the module, this would return
 // array("MODULEPATH/test/lang/en/welcome.php")
