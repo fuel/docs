@@ -1425,6 +1425,62 @@ File::download(DOCROOT.'/img/image.jpg', null, 'image/jpeg', null, false, 'inlin
 				</p>
 			</article>
 
+			<article>
+				<h4 class="method" id="method_relativepath">relativepath($reference, $to)</h4>
+				<p>Converts an absolute path to a path relative to the given reference path.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$reference</kbd></th>
+									<td><em>required</em></td>
+									<td>Path to be used a a referencde</td>
+								</tr>
+								<tr>
+									<th><kbd>$to</kbd></th>
+									<td><em>required</em></td>
+									<td>Absolute path, to be converted to a relative path</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td><kbd>string</kbd> the path for $to, relative to $reference</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// get the relative path on *nix
+$relpath = File::relativepath('/a/b/c/d', '/a/b/e/f'); // returns "../e/f"
+$relpath = File::relativepath('/a/b/c/d', '/e/f/g/h'); // returns "../../../e/f/g/h"
+// get the relative path on Windows
+$relpath = File::relativepath('C:\\a\\b\\c\\d', 'C:\\a\\b\\e\\f'); // returns "..\e\f"
+$relpath = File::relativepath('C:\\a\\b\\c\\d', 'D:\\a\\b\\e\\f'); // throws an exception
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					Note that on Windows, if only one of the paths is prefixed with a drive letter, it is assumed that the other path
+					is on the same drive. When both are prefixed with a drive letter, it MUST be the same drive, if not, an exception
+					is thrown, as you can't create relative paths between different drives.
+				</p>
+			</article>
+
 		</div>
 
 		<footer>
