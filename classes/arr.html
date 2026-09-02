@@ -976,7 +976,7 @@ Array
 			</article>
 
 			<article>
-				<h4 id="method_filter_recursive" class="method">filter_recursive($array, $callback = null)</h4>
+				<h4 id="method_filter_recursive" class="method">filter_recursive($array, $callback = null, $mode = 0)</h4>
 				<p>The <strong>filter_recursive</strong> method provides a recursive version of PHP's array_filter() function. Like its counterpart, you can optionally pass a callback function to determine what should be filtered.</p>
 				<table class="method">
 					<tbody>
@@ -1002,6 +1002,11 @@ Array
 									<th><kbd>$callback</kbd></th>
 									<td><pre class="php"><code>null</code></pre></td>
 									<td>A valid callback that returns a boolean.</td>
+								</tr>
+								<tr>
+									<th><kbd>$mode</kbd></th>
+									<td><pre class="php"><code>ARRAY_FILTER_USE_KEY</code></pre></td>
+									<td>either ARRAY_FILTER_USE_KEY or ARRAY_FILTER_USE_BOTH</td>
 								</tr>
 							</table>
 						</td>
@@ -1046,7 +1051,7 @@ Array
 )
 
 // Let's use a callback
-print_r(Arr::filter_recursive($arr, function($item){ return $item !== ""; }));
+print_r(Arr::filter_recursive($arr, function($k){ return $k !== 1; }));
 
 // Result:
 Array
@@ -1059,12 +1064,25 @@ Array
 				(
 					[data] => a value
 				)
-			[1] => Array
-				(
-				)
 			[2] => Array
 				(
 					[data] => 0
+				)
+		)
+)
+
+print_r(Arr::filter_recursive($arr, function($v, $k){ return ! empty($v); }, \ARRAY_FILTER_USE_BOTH));
+
+// Result:
+Array
+(
+	[user_name] => John
+	[user_surname] => Lastname
+	[info] => Array
+		(
+			[0] => Array
+				(
+					[data] => a value
 				)
 		)
 )
