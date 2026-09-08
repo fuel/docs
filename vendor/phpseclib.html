@@ -44,7 +44,7 @@
 
 			<h3>Documentation</h3>
 
-			<p>You can find the original PHPSecLib documentation <a href="http://phpseclib.sourceforge.net/documentation/" target="_blank">here</a>.</p>
+			<p>You can find the original PHPSecLib documentation <a href="https://phpseclib.com/docs/intro/why" target="_blank">here</a>.</p>
 
 			<h3>FuelPHP Usage</h3>
 
@@ -55,7 +55,6 @@
 			<h3>Application Usage</h3>
 
 			<p>
-				For use in your application the PHPSecLib package has been converted to a namespaced, autoloader friendly library.
 				You can use it directly from your application.
 			</p>
 <pre class="php"><code>&lt;?php
@@ -68,7 +67,7 @@ class Controller_Ssh extends Controller
 	public function action_index()
 	{
 		// connect to my server
-		$ssh = new \phpseclib\Net\SSH2('myserver.example.org');
+		$ssh = new \phpseclib3\Net\SSH2('myserver.example.org');
 
 		// login
 		if ( ! $ssh->login('username', 'password'))
@@ -84,6 +83,13 @@ class Controller_Ssh extends Controller
 	}
 }
 </code></pre>
+
+		<p class="note">
+			Note that the current version of PHPSecLib defined in Fuel's composer.json is version 3. If you want to change the version,
+			please be aware that it may have tighter PHP version restrictions than Fuel itself has. Also, Fuel's Crypt class references
+			the phpseclib3 namespace, so you might want to alias either the PHPSecLib 3 namespace, or overload the Crypt class, to
+			address this problem.
+		</p>
 
 		</div>
 
