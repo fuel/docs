@@ -546,6 +546,7 @@ panes.orm = {
 		"Introduction":		"packages/orm/intro.html",
 		"Creating Models":	"packages/orm/creating_models.html",
 		"Model methods":	"packages/orm/methods.html",
+		"View support":		"packages/orm/views.html",
 		"CRUD":				"packages/orm/crud.html",
 		"Relating Models": {
 			"Introduction":	"packages/orm/relations/intro.html",

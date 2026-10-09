@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css?20170912">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+	</script>
+	<script src="./../../assets/js/combined.js?20170912"></script>
+	<title>View support - Orm Package - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
+				<h1>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../../assets/img/fuel.png" /></a>
+					<strong>Documentation</strong>
+				</h1>
+			</div>
+			<nav>
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="main">
+			<h2>View support</h2>
+
+			<p>
+				You can also use the ORM to query database views instead of tables.
+			</p>
+			<p>
+				Two different ways of accessing views are supported:
+				<ul>
+					<li>A model representation of a single view</li>
+					<li>A model representation of a table with views for subsets</li>
+				</ul>
+			</p>
+
+			<section>
+				<h2 id="viewmodel">View model</h2>
+
+				<p>
+					A view model is simply a model that uses a view instead of a table for selection.<br />
+					The resulting model objects will be read-only, any attempt to call <kbd>save()</kbd> or <kbd>update()</kbd> will return <kbd>false</kbd>.
+				</p>
+
+				<pre class="php"><code>class Model_Patient extends \Orm\Model
+
+	/**
+	 * @var  string  define the name of the view this model should use
+	 *
+	 * @var string
+	 */
+	protected static $_table_name = 'vw_PatientView';
+
+	/**
+	 * @var  bool  the given table name is actually a view
+	 */
+	protected static $_table_is_view = true;
+
+}</code></pre>
+
+				<p>And that is it. Define the rest of the model as usual, and use is as a standard model:</p>
+				<pre class="php"><code>// get the patient record for John Doe
+$patient = Model_Patient::query()->where('name', '=', 'John Doe')->get_one();
+
+// will return false, not throw an error !
+$patient->save();
+</code></pre>
+
+				<p class="note">
+					Note that for models, it is required to define a primary key, which by default is 'id'. If your view does not have
+					an 'id' column, make sure the view has one or more fields which can be defined as primary key.
+				</p>
+
+			</section>
+
+			<section>
+				<h2 id="modelwithviews">Table model with views</h2>
+
+				<p>
+					This is a standard ORM model, with the addition that you can define views to return table data. This can be useful in organisations
+					where views are used by the database administrator to hide the selection SQL from the application developers.
+				</p>
+
+				<pre class="php"><code>class Model_Patient extends \Orm\Model
+
+	/**
+	 * @var  string  define the name of the view this model should use
+	 *
+	 * @var string
+	 */
+	protected static $_table_name = 'Patients';
+
+	/**
+	 * @var  bool  define the available views on this table
+	 */
+	protected static $_views = array(
+		// use the alias 'discharged' for the view 'vw_PatientsDischargedToday'
+		// view returns all columns defined in the model properties
+		'discharged' => array(
+			'view' => 'vw_PatientsDischargedToday',
+			'columns' => true,
+		),
+		// use the view name directly
+		// and returns a specific set of columns
+		'vw_PatientsAdmittedToday'  => array(
+			'columns' => array(
+				'id',
+				'name',
+				'dob',
+				'room',
+			),
+		),
+	);
+}</code></pre>
+
+			<p>You can now query the model the usual way, or define you want to use one of the views:</p>
+				<pre class="php"><code>// check if John Doe was discharged today
+$patient = Model_Patient::query()->use_view('discharged')->where('name', '=', 'John Doe')->get_one();
+
+if ($patient)
+{
+	// yes, John Doe is discharged today
+}
+
+// check if John Doe was admitted today
+$patient = Model_Patient::query()->use_view('vw_PatientsAdmittedToday')->where('name', '=', 'John Doe')->get_one();
+
+if ($patient)
+{
+	// yes, John Doe is admitted today
+	// note the patient object will contain a subset of data due to the column list defined
+}</code></pre>
+
+			</section>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2026 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>
